@@ -206,14 +206,31 @@ export default function SuccessStories() {
     }, [currentHeroIndex]);
 
     const [isMobile, setIsMobile] = useState(false);
-    useEffect(()=>{
+    useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768)
         }
         handleResize()
         window.addEventListener("resize", handleResize)
         return () => window.removeEventListener("resize", handleResize)
-    },[window.innerWidth])
+    }, [window.innerWidth])
+
+    const sectionRef = useRef(null);
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sectionRef.current && sectionRef.current.contains(event.target)) {
+                setActiveVideoIndex(null);
+                setActiveWrittenIndex(null);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     // const [loadedVideoIndexes, setLoadedVideoIndexes] = useState(
     //     Array(testimonialVideos.length).fill(false)
@@ -262,7 +279,7 @@ export default function SuccessStories() {
                 description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
                 canonicalUrl="https://globalprofessionalcertifications.com/success"
             />
-            <section className={`h-screen w-full bg-brand-blue flex justify-center items-center md:h-screen md:pt-${height.toString()}`}> 
+            <section className={`h-screen w-full bg-brand-blue flex justify-center items-center md:h-screen md:pt-${height.toString()}`}>
                 <div className="md:py-[161px] flex flex-col gap-6 max-w-[25rem] md:grid md:grid-cols-2 md:max-w-[72rem] md:gap-8 md:mx-auto">
                     <div className="relative flex justify-center h-full items-center md:gap-32">
                         <div className="px-4 md:px-0">
@@ -275,10 +292,10 @@ export default function SuccessStories() {
                     </div>
                     {!isMobile ? <div className="relative flex flex-col items-center">
                         <div className="overflow-hidden w-[560px] rounded-xl">
-                            <motion.div 
-                            animate={{ x: `-${currentHeroIndex * 560}px` }}
-                            transition={{duration: isAnimating ? 0.5 : 0, ease: "easeInOut"}}
-                            className="flex rounded-xl">
+                            <motion.div
+                                animate={{ x: `-${currentHeroIndex * 560}px` }}
+                                transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
+                                className="flex rounded-xl">
                                 {heroImages.map((image, index) => (
                                     <img src={image} key={index} className="w-[560px] rounded-xl shrink-0 mb-2" />
                                 ))}
@@ -287,10 +304,10 @@ export default function SuccessStories() {
                         <p className="text-gray-300 text-sm font-semibold">Our industrious alumni who have made us proud!</p>
                     </div> : <div className="relative flex flex-col items-center">
                         <div className="overflow-hidden w-[400px] rounded-xl">
-                            <motion.div 
-                            animate={{ x: `-${currentHeroIndex * 400}px` }}
-                            transition={{duration: isAnimating ? 0.5 : 0, ease: "easeInOut"}}
-                            className="flex rounded-xl">
+                                <motion.div
+                                    animate={{ x: `-${currentHeroIndex * 400}px` }}
+                                    transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
+                                    className="flex rounded-xl">
                                 {heroImages.map((image, index) => (
                                     <img src={image} key={index} className="w-[560px] rounded-xl shrink-0 mb-2" />
                                 ))}
@@ -303,241 +320,255 @@ export default function SuccessStories() {
             </section>
 
 
-            <section className="bg-gray-50 pb-10 pt-20">
+            <section ref={sectionRef} className="bg-gray-50 pb-10 pt-20">
                 <div className="bg-[url('assets/bg.jpg')] max-w-5xl mx-auto border border-gray-300 pb-10 rounded-xl shadow-lg">
                     <div className="md:flex md:flex-col justify-center items-center">
-                    <h1 className="text-2xl sm:text-3xl text-brand-blue font-bold pt-10 px-4 md:px-0 text-center">
-                        Celebrating Our CIA Champions!{" "}
-                        {!isMobile ? <span><GiConqueror className="inline h-16 w-16 pb-4 text-brand-dark" /></span> : null}
-                    </h1>
-                    <h2 className="text-xl sm:text-2xl text-brand-blue font-bold pt-1 px-12 md:px-0 text-center">
-                        Join the Legacy of Success with Our Elite Alumni!
-                    </h2>
-                    <hr className="mt-6 mb-4 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
-                    {/* <h3 className="text-3xl sm:text-2xl text-brand-blue font-bold pt-3">
+                        <h1 className="text-2xl sm:text-3xl text-brand-blue font-bold pt-10 px-4 md:px-0 text-center">
+                            Celebrating Our CIA Champions!{" "}
+                            {!isMobile ? <span><GiConqueror className="inline h-16 w-16 pb-4 text-brand-dark" /></span> : null}
+                        </h1>
+                        <h2 className="text-xl sm:text-2xl text-brand-blue font-bold pt-1 px-12 md:px-0 text-center">
+                            Join the Legacy of Success with Our Elite Alumni!
+                        </h2>
+                        <hr className="mt-6 mb-4 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
+                        {/* <h3 className="text-3xl sm:text-2xl text-brand-blue font-bold pt-3">
                         Hear from those who made it!
                     </h3> */}
-                    <button className="md:mt-6 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold hover:text-brand-purple hover:border-brand-purple transition duration-300 block mx-auto md:inline">Hear from those who made it!</button>
+                        <div className="md:mt-6 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold block mx-auto md:inline">Hear from those who made it!</div>
 
-                    {/* Video Testimonials */}
+                        {/* Video Testimonials */}
 
-                    {!isMobile ? <div className="relative flex flex-col items-center pt-10">
-                        <div className="overflow-hidden w-[848px]">
-                            <motion.div
-                                animate={{ x: `-${currentVideoIndex * (200 + 16)}px` }}
-                                className="flex gap-4"
-                            >
-                                {testimonialVideos.map((video, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="relative h-[350px] w-[200px] flex-shrink-0"
+                        <div className="relative flex flex-col items-center pt-10">
+                            <div className={`${!isMobile ? "w-[848px]" : "w-[408px]"} overflow-hidden`}>
+
+                                < motion.div className="flex gap-4"
+                                    animate={{ x: `-${currentVideoIndex * (200 + (!isMobile ? 16 : 8))}px` }}
+                                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                 >
-                                    {!(index === activeVideoIndex) ? (
-                                    <div
-                                        className="absolute top-0 left-0 w-full h-full cursor-pointer"
-                                        onClick={() => setActiveVideoIndex(index)}
-                                    >
-                                        {/* Thumbnail */}
-                                        <img
-                                        src={videoThumbnails[index]}
-                                        alt={`Thumbnail for video ${index + 1}`}
-                                        className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                                        />
-
-                                        <div className="absolute bottom-2 left-2 flex items-center justify-center bg-black bg-opacity-10 rounded-full">
-                                            <button className="bg-gray-800 bg-opacity-50 text-white px-3 py-1.5 rounded-full text-2xl text-sm">
-                                                ▶
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                    ) : (
-                                    <video
-                                        // ref={videoRefs.current[index]}
-                                        // onPlay={() => handleVideoPlay(index)}
-                                        src={video}
-                                        className="w-full h-full object-cover rounded"
-                                        controls
-                                        playsInline
-                                    />
+                                    {testimonialVideos.map((video, index) => (
+                                        <motion.div
+                                            key={index}
+                                            className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                        >
+                                            <AnimatePresence>
+                                                {activeVideoIndex === index ? (
+                                                    <motion.video
+                                                        key="video"
+                                                        src={video}
+                                                        className="w-full h-full object-cover rounded-lg"
+                                                        controls
+                                                        autoPlay
+                                                        playsInline
+                                                        initial={{ opacity: 0, scale: 0.95 }}
+                                                        animate={{ opacity: 1, scale: 1 }}
+                                                        exit={{ opacity: 0, scale: 0.95 }}
+                                                        transition={{ duration: 0.3 }}
+                                                    />
+                                                ) : (
+                                                    <motion.div
+                                                            key="thumbnail"
+                                                            className="absolute inset-0"
+                                                            onClick={() => {
+                                                                setActiveVideoIndex(index);
+                                                                setActiveWrittenIndex(null);
+                                                            }}
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0 }}
+                                                        >
+                                                            <img
+                                                                src={videoThumbnails[index]}
+                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                className="w-full h-full object-cover rounded-lg"
+                                                            />
+                                                            <div className="absolute rounded-lg bottom-3 left-3">
+                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                    ▶
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
                                     )}
+                                            </AnimatePresence>
+                                        </motion.div>
+                                    ))}
                                 </motion.div>
-                                ))}
-                            </motion.div>
+                            </div>
+
+                            {/* Carousel Arrows */}
+                            <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
+                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handlePrev}>
+                                    <FaChevronLeft />
                         </div>
-                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronLeft onClick={handlePrev}/></div>
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronRight onClick={handleNext}/></div>
+                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handleNext}>
+                                    <FaChevronRight />
+                                </div>
+                            </div>
                         </div>
-                    </div> : <div className="relative flex flex-col items-center pt-10">
-                        <div className="overflow-hidden w-[408px]">
-                            <motion.div
-                                animate={{ x: `-${currentVideoIndex * (200 + 8)}px` }}
-                                className="flex gap-2"
-                            >
-                                {testimonialVideos.map((video, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="relative h-[350px] w-[200px] flex-shrink-0"
-                                >
-                                    {!(index === activeVideoIndex) ? (
-                                    <div
-                                        className="absolute top-0 left-0 w-full h-full cursor-pointer"
-                                        onClick={() => setActiveVideoIndex(index)}
-                                    >
-                                        {/* Thumbnail */}
-                                        <img
-                                        src={videoThumbnails[index]}
-                                        alt={`Thumbnail for video ${index + 1}`}
-                                        className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                                        />
 
-                                        <div className="absolute bottom-2 left-2 flex items-center justify-center bg-black bg-opacity-10 rounded-full">
-                                            <button className="bg-gray-800 bg-opacity-50 text-white px-3 py-1.5 rounded-full text-2xl text-sm">
-                                                ▶
-                                            </button>
-                                        </div>
 
-                                    </div>
-                                    ) : (
-                                    <video
-                                        // ref={videoRefs.current[index]}
-                                        // onPlay={() => handleVideoPlay(index)}
-                                        src={video}
-                                        className="w-full h-full object-cover rounded"
-                                        controls
-                                        playsInline
-                                    />
-                                    )}
-                                </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
-                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronLeft onClick={handlePrev}/></div>
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronRight onClick={handleNext}/></div>
-                        </div>
-                    </div>}
+                        <hr className="mt-6 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
 
-                    <hr className="mt-6 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
+                        {/* <h4 className="text-3xl sm:text-2xl text-brand-blue font-bold mt-8">Read their journey!</h4> */}
+                        <div className="block md:inline mx-auto mt-4 md:mt-10 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold">Read their journey!</div>
 
-                    {/* <h4 className="text-3xl sm:text-2xl text-brand-blue font-bold mt-8">Read their journey!</h4> */}
-                    <button className="block md:inline mx-auto mt-4 md:mt-10 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold hover:text-brand-purple hover:border-brand-purple transition duration-300">Read their journey!</button>
+                        {/* Written Testimonials */}
 
-                    {/* Written Testimonials */}
-
-                    {!isMobile ? <div className="relative flex flex-col items-center pt-10">
+                        {!isMobile ? (
+                            <div className="relative flex flex-col items-center pt-10">
                         <div className="overflow-hidden w-[848px]">
                             <motion.div
                                 animate={{ x: `-${currentIndex * (200 + 16)}px` }}
+                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                 className="flex gap-4"
                             >
                                 {writtenTestimonials.map((video, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="relative h-[350px] w-[200px] flex-shrink-0"
-                                >
-                                    {!(index === activeWrittenIndex) ? (
-                                    <div
-                                        className="absolute top-0 left-0 w-full h-full cursor-pointer"
-                                        onClick={() => setActiveWrittenIndex(index)}
+                                    <motion.div
+                                        key={index}
+                                        className="relative h-[350px] w-[200px] flex-shrink-0"
                                     >
-                                        {/* Thumbnail */}
-                                        <img
-                                        src={writtenThumbnails[index]}
-                                        alt={`Thumbnail for video ${index + 1}`}
-                                        className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                                        />
-
-                                        <div className="absolute bottom-2 left-2 flex items-center justify-center bg-black bg-opacity-10 rounded-full">
-                                            <button className="bg-gray-800 bg-opacity-50 text-white px-3 py-1.5 rounded-full text-2xl text-sm">
-                                                ▶
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                    ) : (
-                                    <video
-                                        // ref={writtenRefs.current[index]}
-                                        // onPlay={() => handleWrittenPlay(index)}
-                                        src={video}
-                                        className="w-full h-full object-cover rounded"
-                                        controls
-                                        playsInline
-                                    />
-                                    )}
-                                </motion.div>
+                                        <AnimatePresence>
+                                            {activeWrittenIndex === index ? (
+                                                <motion.video
+                                                    key="video"
+                                                    src={video}
+                                                    className="w-full h-full object-cover rounded"
+                                                    controls
+                                                    autoPlay
+                                                    playsInline
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.3 }}
+                                                />
+                                            ) : (
+                                                <motion.div
+                                                    key="thumbnail"
+                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                    onClick={() => {
+                                                        setActiveWrittenIndex(index);
+                                                        setActiveVideoIndex(null);
+                                                    }}
+                                                    initial={{ opacity: 0.6 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0.6 }}
+                                                    transition={{ duration: 0.3 }}
+                                                >
+                                                        <img
+                                                            src={writtenThumbnails[index]}
+                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                            className="w-full h-full object-cover rounded-lg"
+                                                        />
+                                                        <div className="absolute bottom-3 left-3">
+                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                ▶
+                                                            </button>
+                                                        </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
                                 ))}
                             </motion.div>
                         </div>
 
-                        {/* Uncomment the below arrows section when more videos are added */}
-
                         <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronLeft onClick={handleWrittenPrev}/></div>
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronRight onClick={handleWrittenNext}/></div>
-                        </div>
-                    </div> : <div className="relative flex flex-col items-center pt-10">
+                                    <div
+                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handleWrittenPrev}
+                                    >
+                                        <FaChevronLeft />
+                                    </div>
+                                    <div
+                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handleWrittenNext}
+                                    >
+                                        <FaChevronRight />
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="relative flex flex-col items-center pt-10">
                         <div className="overflow-hidden w-[408px]">
                             <motion.div
                                 animate={{ x: `-${currentIndex * (200 + 8)}px` }}
+                                            transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                 className="flex gap-2"
                             >
                                 {writtenTestimonials.map((video, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="relative h-[350px] w-[200px] flex-shrink-0"
-                                >
-                                    {!(index === activeWrittenIndex) ? (
-                                    <div
-                                        className="absolute top-0 left-0 w-full h-full cursor-pointer"
-                                        onClick={() => setActiveWrittenIndex(index)}
+                                    <motion.div
+                                        key={index}
+                                        className="relative h-[350px] w-[200px] flex-shrink-0"
                                     >
-                                        {/* Thumbnail */}
-                                        <img
-                                        src={writtenThumbnails[index]}
-                                        alt={`Thumbnail for video ${index + 1}`}
-                                        className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                                        />
-
-                                        <div className="absolute bottom-2 left-2 flex items-center justify-center bg-black bg-opacity-10 rounded-full">
-                                            <button className="bg-gray-800 bg-opacity-50 text-white px-3 py-1.5 rounded-full text-2xl text-sm">
-                                                ▶
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                    ) : (
-                                    <video
-                                        // ref={writtenRefs.current[index]}
-                                        // onPlay={() => handleWrittenPlay(index)}
-                                        src={video}
-                                        className="w-full h-full object-cover rounded"
-                                        controls
-                                        playsInline
-                                    />
-                                    )}
-                                </motion.div>
+                                        <AnimatePresence>
+                                            {activeWrittenIndex === index ? (
+                                                <motion.video
+                                                    key="video"
+                                                    src={video}
+                                                    className="w-full h-full object-cover rounded"
+                                                    controls
+                                                    autoPlay
+                                                    playsInline
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.3 }}
+                                                />
+                                            ) : (
+                                                <motion.div
+                                                    key="thumbnail"
+                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                    onClick={() => setActiveWrittenIndex(index)}
+                                                        initial={{ opacity: 0.6 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0.6 }}
+                                                        transition={{ duration: 0.3 }}
+                                                    >
+                                                        <img
+                                                            src={writtenThumbnails[index]}
+                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                            className="w-full h-full object-cover rounded-lg"
+                                                        />
+                                                        <div className="absolute bottom-3 left-3">
+                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                ▶
+                                                            </button>
+                                                        </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
                                 ))}
                             </motion.div>
                         </div>
 
-                        {/* Uncomment the below arrows section when more videos are added */}
-
                         <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronLeft onClick={handleWrittenPrev}/></div>
-                            <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"><FaChevronRight onClick={handleWrittenNext}/></div>
-                        </div>
-                    </div>}
+                                        <div
+                                            className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                            onClick={handleWrittenPrev}
+                                        >
+                                            <FaChevronLeft />
+                                        </div>
+                                    <div
+                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handleWrittenNext}
+                                    >
+                                        <FaChevronRight />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
-                    <p className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
-                        Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
-                        dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
-                        first step.
-                    </p>
+
+
+                        <p className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
+                            Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
+                            dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
+                            first step.
+                        </p>
                     </div>
-                </div>
-            </section>
+                </div >
+            </section >
+
 
 
             <div className="mx-auto text-center pt-[80px] pb-20 bg-gray-50">
@@ -634,45 +665,45 @@ const ExamTestimonials = () => {
         <section id="testimonials" aria-label="What our customers are saying" className="bg-gray-50 pb-20 md:pb-[140px] pt-20 ">
             <div className="mx-auto max-w-sm md:max-w-[76rem] px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                <h2 className="font-display text-3xl font-bold text-brand-blue sm:text-3xl">
-                    Real Results from CIA Challenge Exam Training
-                </h2>
+                    <h2 className="font-display text-3xl font-bold text-brand-blue sm:text-3xl">
+                        Real Results from CIA Challenge Exam Training
+                    </h2>
                 </div>
                 <ul className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3">
-                {testimonials.map((testimonial, index) => (
-                    <li key={index}>
-                    <figure className="relative border border-gray-300 rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
-                        <svg
-                        aria-hidden="true"
-                        width="105"
-                        height="78"
-                        className="absolute left-6 top-6 fill-slate-100"
-                        >
-                        <path d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616..." />
-                        </svg>
-                        <blockquote className="relative">
-                        <p className="text-lg text-slate-900">{testimonial.text}</p>
-                        </blockquote>
-                        <figcaption className="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                        <div>
-                            <div className="font-display text-base text-slate-900">{testimonial.name}</div>
-                            <div className="font-display text-sm text-brand-gray">{testimonial.designation}</div>
-                        </div>
-                        <div className="overflow-hidden rounded-full bg-slate-50">
-                            <img
-                            alt=""
-                            className="h-14 w-14 object-cover"
-                            src={testimonial.image}
-                            />
-                        </div>
-                        </figcaption>
-                    </figure>
-                    </li>
-                ))}
+                    {testimonials.map((testimonial, index) => (
+                        <li key={index}>
+                            <figure className="relative border border-gray-300 rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
+                                <svg
+                                    aria-hidden="true"
+                                    width="105"
+                                    height="78"
+                                    className="absolute left-6 top-6 fill-slate-100"
+                                >
+                                    <path d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616..." />
+                                </svg>
+                                <blockquote className="relative">
+                                    <p className="text-lg text-slate-900">{testimonial.text}</p>
+                                </blockquote>
+                                <figcaption className="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div className="font-display text-base text-slate-900">{testimonial.name}</div>
+                                        <div className="font-display text-sm text-brand-gray">{testimonial.designation}</div>
+                                    </div>
+                                    <div className="overflow-hidden rounded-full bg-slate-50">
+                                        <img
+                                            alt=""
+                                            className="h-14 w-14 object-cover"
+                                            src={testimonial.image}
+                                        />
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </section>
 
-        
+
     )
 }
