@@ -1,7 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-
-// Feedback Screenshots
-
 import studentTestimonialOne from "../../assets/testimonial-mobile-screenshot-1.png"
 import studentTestimonialTwo from "../../assets/testimonial-mobile-screenshot-2.png"
 import studentTestimonialThree from "../../assets/testimonial-mobile-screenshot-3.png"
@@ -21,14 +18,11 @@ import studentTestimonialEighteen from "../../assets/Testimonial-screenshot-13.p
 import studentTestimonialNineteen from "../../assets/Testimonial-screenshot-14.png"
 import studentTestimonialTwenty from "../../assets/Testimonial-screenshot-15.png"
 import studentTestimonialTwentyOne from "../../assets/Testimonial-screenshot-16.png"
-import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/siva-subramanian.mp4"
-import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/sanjeev-kumar.mp4"
 import vinodKumarTestimonial from "../../assets/Vinod-kumar-testimonial-wapp.png"
+import { GiConqueror } from "react-icons/gi";
 import pinkyPhoto from "../../assets/pinky-photo.jpg";
 import akshdeepSingh from "../../assets/akshdeep-singh.png";
 import testimonialTwo from "../../assets/testimonial-2.png";
-
-import { GiConqueror } from "react-icons/gi";
 
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
@@ -85,8 +79,12 @@ import jigneshTestimonial from "../../assets/video-testimonials/jignesh-mehta.mp
 import archanaTestimonial from "../../assets/video-testimonials/archana-tiwari.mp4"
 import ranveerTestimonial from "../../assets/video-testimonials/ranveer-singh-negi.mp4"
 import bhargavTestimonial from "../../assets/video-testimonials/bhargav-tej.mp4"
-import hemaTestimonial from "../../assets/video-testimonials/hema -chavan.mp4"
+import hemaTestimonial from "../../assets/video-testimonials/hema-chavan.mp4"
 import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju.mp4"
+import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/sanjeev-kumar.mp4"
+import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/siva-subramanian.mp4"
+
+
 
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
@@ -416,10 +414,10 @@ export default function SuccessStories() {
 
                             {/* Carousel Arrows */}
                             <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out select-none" onClick={handlePrev}>
+                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handlePrev}>
                                     <FaChevronLeft />
                         </div>
-                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out select-none" onClick={handleNext}>
+                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handleNext}>
                                     <FaChevronRight />
                                 </div>
                             </div>
@@ -563,13 +561,13 @@ export default function SuccessStories() {
 
                         <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                         <div
-                                            className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out select-none"
+                                            className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                             onClick={handleWrittenPrev}
                                         >
                                             <FaChevronLeft />
                                         </div>
                                     <div
-                                            className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out select-none"
+                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenNext}
                                     >
                                         <FaChevronRight />
@@ -580,11 +578,11 @@ export default function SuccessStories() {
 
 
 
-                        <div className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold select-none">
+                        <p className="select-none px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
                             Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
                             dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
                             first step.
-                        </div>
+                        </p>
                     </div>
                 </div >
             </section >
