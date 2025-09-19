@@ -41,7 +41,7 @@ import archanaThumbnail from "../../assets/thumbnails/archana-tiwari-thumbnail.p
 import jigneshThumbnail from "../../assets/thumbnails/jignesh-mehta-thumbnail.png"
 import sachinThumbnail from "../../assets/thumbnails/sachin-kokcha-thumbnail.png"
 import wajihaThumbnail from "../../assets/thumbnails/wajiha-ansari-thumbnail.png"
-import ajayThumbnail from "../../assets/thumbnails/ajay-kumar-thumbnail.png"
+import ajayThumbnail from "../../assets/thumbnails/ajay-thumbnail.png"
 import harishankarThumbnail from "../../assets/thumbnails/harishankar-joshi-thumbnail.png"
 import deepakGargThumbnail from "../../assets/thumbnails/deepak-garg-thumbnail.png"
 import fazilThumbnail from "../../assets/thumbnails/fazil-musthafa-thumbnail.png"
