@@ -18,6 +18,8 @@ import studentTestimonialEighteen from "../../assets/Testimonial-screenshot-13.p
 import studentTestimonialNineteen from "../../assets/Testimonial-screenshot-14.png"
 import studentTestimonialTwenty from "../../assets/Testimonial-screenshot-15.png"
 import studentTestimonialTwentyOne from "../../assets/Testimonial-screenshot-16.png"
+import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/Siva-Subramanian-cia-testimonial.mp4"
+import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/Sanjeev-kumar-testimonial-video.mp4"
 import vinodKumarTestimonial from "../../assets/Vinod-kumar-testimonial-wapp.png"
 import { GiConqueror } from "react-icons/gi";
 import pinkyPhoto from "../../assets/pinky-photo.jpg";
@@ -26,66 +28,54 @@ import testimonialTwo from "../../assets/testimonial-2.png";
 
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
-
-// Thumbnails
-
-import bhargavThumbnail from "../../assets/thumbnails/bhargav-tej-thumbnail.png"
-import ranveerThumbnail from "../../assets/thumbnails/ranveer-singh-negi-thumbnail.png"
-import archanaThumbnail from "../../assets/thumbnails/archana-tiwari-thumbnail.png"
-import jigneshThumbnail from "../../assets/thumbnails/jignesh-mehta-thumbnail.png"
-import sachinThumbnail from "../../assets/thumbnails/sachin-kokcha-thumbnail.png"
-import wajihaThumbnail from "../../assets/thumbnails/wajiha-ansari-thumbnail.png"
-import ajayThumbnail from "../../assets/thumbnails/ajay-thumbnail.png"
-import harishankarThumbnail from "../../assets/thumbnails/harishankar-joshi-thumbnail.png"
-import deepakGargThumbnail from "../../assets/thumbnails/deepak-thumbnail.png"
-import fazilThumbnail from "../../assets/thumbnails/fazil-musthafa-thumbnail.png"
-import amitThumbnail from "../../assets/thumbnails/amit-mayani-thumbnail.png"
-import vijayThumbnail from "../../assets/thumbnails/vijay-singhal-thumbnail.png"
-import priyankaThumbnail from "../../assets/thumbnails/priyanka-paul-thumbnail.png"
-import vishalThumbnail from "../../assets/thumbnails/vishal-gupta-thumbnail.png"
-import danishThumbnail from "../../assets/thumbnails/md-danish-thumbnail.png"
-import simranThumbnail from "../../assets/thumbnails/simran-garg-thumbnail.png"
-import sivaThumbnail from "../../assets/thumbnails/siva-subramanian-thumbnail.png"
-import sanjeevThumbnail from "../../assets/thumbnails/sanjeev-kumar-thumbnail.png"
-import murtuzaThumbnail from "../../assets/thumbnails/murtuza-quresh-thumbnail.png"
-import prathwiThumbnail from "../../assets/thumbnails/prathwi-shetty-thumbnail.png"
-import pramodThumbnail from "../../assets/thumbnails/pramod-pujari-thumbnail.png"
-import simranjeetThumbnail from "../../assets/thumbnails/simranjeet-kaur-thumbnail.png"
-import deepakThumbnail from "../../assets/thumbnails/deepak-kumar-garg-thumbnail.png"
+import simranGargTestimonial from "../../assets/video-testimonials/Simran-garg-testimonial.mp4"
+import murtuzaTestimonial from "../../assets/video-testimonials/Murtuza-testimonial.mp4"
+import prathwiShettyTestimonial from "../../assets/video-testimonials/Prathwi-shetty-testimonial.mp4"
+import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
+import deepakWrittenTestimonial from "../../assets/written-testimonials/Deepak-written-testimonial.mp4"
+import simranjeetWrittenTestimonial from "../../assets/written-testimonials/Simranjeet-written-testimonial.mp4"
+import danishTestimonial from "../../assets/written-testimonials/Danish-testimonial.mp4"
+import vishalTestimonial from "../../assets/video-testimonials/Vishal-testimonial.mp4"
+import vishalThumbnail from "../../assets/thumbnails/Vishal-thumbnail.png"
+import danishThumbnail from "../../assets/thumbnails/Danish-thumbnail.png"
+import simranThumbnail from "../../assets/thumbnails/Simran-garg-thumbnail.png"
+import sivaThumbnail from "../../assets/thumbnails/Siva-subramanian-thumbnail.png"
+import sanjeevThumbnail from "../../assets/thumbnails/Sanjeev-kumar-thumbnail.png"
+import murtuzaThumbnail from "../../assets/thumbnails/Murtuza-quresh-thumbnail.png"
+import prathwiThumbnail from "../../assets/thumbnails/Prathwi-shetty-thumbnail.png"
+import pramodThumbnail from "../../assets/thumbnails/Pramod-pujari-thumbnail.png"
+import simranjeetThumbnail from "../../assets/thumbnails/Simranjeet-thumbnail.png"
+import deepakThumbnail from "../../assets/thumbnails/Deepak-thumbnail.png"
+import priyankaThumbnail from "../../assets/thumbnails/Priyanka-thumbnail.png"
+import pramodTestimonial from "../../assets/video-testimonials/Pramod-pujari-testimonial.mp4"
+import vijayTestimonial from "../../assets/written-testimonials/Vijay-testimonial.mp4"
+import vijayThumbnail from "../../assets/thumbnails/Vijay-thumbnail.png"
+import amitTestimonial from "../../assets/video-testimonials/Amit-testimonial.mp4"
+import amitThumbnail from "../../assets/thumbnails/Amit-mayani-thumbnail.png"
+import fazilTestimonial from "../../assets/written-testimonials/Fazil-testimonial.mp4"
+import fazilThumbnail from "../../assets/thumbnails/Fazil-thumbnail.png"
+import deepakGargTestimonial from "../../assets/written-testimonials/Deepak-garg-testimonial.mp4"
+import deepakGargThumbnail from "../../assets/thumbnails/Deepak-garg-thumbnail.png"
+import wajihaTestimonial from "../../assets/written-testimonials/Wajiha-testimonial.mp4"
+import wajihaThumbnail from "../../assets/thumbnails/Wajiha-thumbnail.png"
+import ajayThumbnail from "../../assets/thumbnails/Ajay-kumar-thumbnail.png"
+import harishankarThumbnail from "../../assets/thumbnails/Harishankar-thumbnail.png"
+import ajayTestimonial from "../../assets/written-testimonials/Ajay-kumar-testimonial.mp4"
+import harishankarTestimonial from "../../assets/video-testimonials/Harishankar-testimonial.mp4"
+import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonial.mp4"
+import sachinThumbnail from "../../assets/thumbnails/Sachin-thumbnail.png"
+import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
+import jigneshThumbnail from "../../assets/thumbnails/Jignesh-thumbnail.png"
+import archanaTestimonial from "../../assets/video-testimonials/Archana-testimonial.mp4"
+import archanaThumbnail from "../../assets/thumbnails/Archana-thumbnail.png"
+import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimonial.mp4"
+import ranveerThumbnail from "../../assets/thumbnails/Ranveer-thumbnail.png"
+import bhargavTestimonial from "../../assets/video-testimonials/Bhargav-testimonial.mp4"
+import bhargavThumbnail from "../../assets/thumbnails/Bhargav-thumbnail.png"
+import hemaTestimonial from "../../assets/video-testimonials/Hema-chavan.mp4"
+import lokeshwarTestimonial from "../../assets/video-testimonials/Lokeshwar-raju.mp4"
 import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
 import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
-
-
-// Video Testimonials
-
-// import simranGargTestimonial from "../../assets/video-testimonials/simran-garg.mp4"
-// import murtuzaTestimonial from "../../assets/video-testimonials/murtaza-quresh.mp4"
-// import prathwiShettyTestimonial from "../../assets/video-testimonials/prathwi-shetty.mp4"
-// import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
-// import pramodTestimonial from "../../assets/video-testimonials/pramod-pujari.mp4"
-// import amitTestimonial from "../../assets/video-testimonials/amit-mayani.mp4"
-// import harishankarTestimonial from "../../assets/video-testimonials/harishankar-joshi.mp4"
-// import sachinTestimonial from "../../assets/video-testimonials/sachin-kokcha.mp4"
-// import jigneshTestimonial from "../../assets/video-testimonials/jignesh-mehta.mp4"
-// import archanaTestimonial from "../../assets/video-testimonials/archana-tiwari.mp4"
-// import ranveerTestimonial from "../../assets/video-testimonials/ranveer-singh-negi.mp4"
-// import bhargavTestimonial from "../../assets/video-testimonials/bhargav-tej.mp4"
-// import hemaTestimonial from "../../assets/video-testimonials/hema-chavan.mp4"
-// import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju.mp4"
-// import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/sanjeev-kumar.mp4"
-// import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/siva-subramanian.mp4"
-
-// Written Testimonials
-
-import ajayTestimonial from "../../assets/written-testimonials/ajay-kumar-sharma.mp4"
-import fazilTestimonial from "../../assets/written-testimonials/fazil-musthafa.mp4"
-import deepakGargTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
-import wajihaTestimonial from "../../assets/written-testimonials/wajiha-ansari.mp4"
-import priyankaWrittenTestimonial from "../../assets/written-testimonials/priyanka-paul.mp4"
-import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-kumar-garg.mp4"
-import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
-import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
-import vijayTestimonial from "../../assets/written-testimonials/vijay-singhal.mp4"
 
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
@@ -104,22 +94,22 @@ import { FaChevronRight } from "react-icons/fa";
 export default function SuccessStories() {
 
     const testimonialVideos = [
-        "/video-testimonials/bhargav-tej.mp4",
-        "/video-testimonials/ranveer-singh-negi.mp4",
-        "/video-testimonials/archana-tiwari.mp4",
-        "/video-testimonials/jignesh-mehta.mp4",
-        "/video-testimonials/sachin-kokcha.mp4",
-        "/video-testimonials/harishankar-joshi.mp4",
-        "/video-testimonials/amit-mayani.mp4",
-        "/video-testimonials/simran-garg.mp4",
-        "/video-testimonials/murtaza-quresh.mp4",
-        "/video-testimonials/prathwi-shetty.mp4",
-        "/video-testimonials/pramod-pujari.mp4",
-        "/video-testimonials/vishal-gupta.mp4",
-        "/video-testimonials/sanjeev-kumar.mp4",
-        "/video-testimonials/siva-subramanian.mp4",
-        "/video-testimonials/hema-chavan.mp4",
-        "/video-testimonials/lokeshwar-raju.mp4"
+        bhargavTestimonial,
+        ranveerTestimonial,
+        archanaTestimonial,
+        jigneshTestimonial,
+        sachinTestimonial,
+        harishankarTestimonial,
+        amitTestimonial,
+        simranGargTestimonial,
+        murtuzaTestimonial,
+        prathwiShettyTestimonial,
+        pramodTestimonial,
+        vishalTestimonial,
+        sanjeevKumarTestimonialVideo,
+        sivaSubramanianCiaTestimonial,
+        hemaTestimonial,
+        lokeshwarTestimonial
     ]
 
     const writtenTestimonials = [
@@ -374,7 +364,7 @@ export default function SuccessStories() {
                                                     <motion.video
                                                         key="video"
                                                         src={video}
-                                                        className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-contain"
+                                                        className="w-full h-full object-cover rounded-lg"
                                                         controls
                                                         autoPlay
                                                         playsInline
@@ -385,28 +375,28 @@ export default function SuccessStories() {
                                                     />
                                                 ) : (
                                                     <motion.div
-                                                        key="thumbnail"
-                                                        className="absolute inset-0"
-                                                        onClick={() => {
-                                                            setActiveVideoIndex(index);
-                                                            setActiveWrittenIndex(null);
-                                                        }}
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                    >
-                                                        <img
-                                                            src={videoThumbnails[index]}
-                                                            alt={`Thumbnail for video ${index + 1}`}
-                                                            className="w-full h-full object-cover rounded-lg"
-                                                        />
-                                                        <div className="absolute rounded-lg bottom-3 left-3">
-                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                ▶
-                                                            </button>
-                                                        </div>
-                                                    </motion.div>
-                                                )}
+                                                            key="thumbnail"
+                                                            className="absolute inset-0"
+                                                            onClick={() => {
+                                                                setActiveVideoIndex(index);
+                                                                setActiveWrittenIndex(null);
+                                                            }}
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0 }}
+                                                        >
+                                                            <img
+                                                                src={videoThumbnails[index]}
+                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                className="w-full h-full object-cover rounded-lg"
+                                                            />
+                                                            <div className="absolute rounded-lg bottom-3 left-3">
+                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                    ▶
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
+                                    )}
                                             </AnimatePresence>
                                         </motion.div>
                                     ))}
@@ -417,7 +407,7 @@ export default function SuccessStories() {
                             <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                 <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handlePrev}>
                                     <FaChevronLeft />
-                                </div>
+                        </div>
                                 <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handleNext}>
                                     <FaChevronRight />
                                 </div>
@@ -434,63 +424,63 @@ export default function SuccessStories() {
 
                         {!isMobile ? (
                             <div className="relative flex flex-col items-center pt-10">
-                                <div className="overflow-hidden w-[848px]">
-                                    <motion.div
-                                        animate={{ x: `-${currentIndex * (200 + 16)}px` }}
+                        <div className="overflow-hidden w-[848px]">
+                            <motion.div
+                                animate={{ x: `-${currentIndex * (200 + 16)}px` }}
                                         transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                        className="flex gap-4"
+                                className="flex gap-4"
+                            >
+                                {writtenTestimonials.map((video, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="relative h-[350px] w-[200px] flex-shrink-0"
                                     >
-                                        {writtenTestimonials.map((video, index) => (
-                                            <motion.div
-                                                key={index}
-                                                className="relative h-[350px] w-[200px] flex-shrink-0"
-                                            >
-                                                <AnimatePresence>
-                                                    {activeWrittenIndex === index ? (
-                                                        <motion.video
-                                                            key="video"
-                                                            src={video}
-                                                            className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
-                                                            controls
-                                                            autoPlay
-                                                            playsInline
-                                                            initial={{ opacity: 0, scale: 0.95 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            exit={{ opacity: 0, scale: 0.95 }}
-                                                            transition={{ duration: 0.3 }}
+                                        <AnimatePresence>
+                                            {activeWrittenIndex === index ? (
+                                                <motion.video
+                                                    key="video"
+                                                    src={video}
+                                                    className="w-full h-full object-cover rounded"
+                                                    controls
+                                                    autoPlay
+                                                    playsInline
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.3 }}
+                                                />
+                                            ) : (
+                                                <motion.div
+                                                    key="thumbnail"
+                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                    onClick={() => {
+                                                        setActiveWrittenIndex(index);
+                                                        setActiveVideoIndex(null);
+                                                    }}
+                                                    initial={{ opacity: 0.6 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0.6 }}
+                                                    transition={{ duration: 0.3 }}
+                                                >
+                                                        <img
+                                                            src={writtenThumbnails[index]}
+                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                            className="w-full h-full object-cover rounded-lg"
                                                         />
-                                                    ) : (
-                                                        <motion.div
-                                                            key="thumbnail"
-                                                            className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                            onClick={() => {
-                                                                setActiveWrittenIndex(index);
-                                                                setActiveVideoIndex(null);
-                                                            }}
-                                                            initial={{ opacity: 0.6 }}
-                                                            animate={{ opacity: 1 }}
-                                                            exit={{ opacity: 0.6 }}
-                                                            transition={{ duration: 0.3 }}
-                                                        >
-                                                            <img
-                                                                src={writtenThumbnails[index]}
-                                                                alt={`Thumbnail for video ${index + 1}`}
-                                                                className="w-full h-full object-cover rounded-lg"
-                                                            />
-                                                            <div className="absolute bottom-3 left-3">
-                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                    ▶
-                                                                </button>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </motion.div>
-                                        ))}
+                                                        <div className="absolute bottom-3 left-3">
+                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                ▶
+                                                            </button>
+                                                        </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     </motion.div>
-                                </div>
+                                ))}
+                            </motion.div>
+                        </div>
 
-                                <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
+                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                     <div
                                         className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenPrev}
@@ -507,60 +497,60 @@ export default function SuccessStories() {
                             </div>
                         ) : (
                             <div className="relative flex flex-col items-center pt-10">
-                                    <div className="overflow-hidden w-[408px]">
-                                        <motion.div
-                                            animate={{ x: `-${currentIndex * (200 + 8)}px` }}
+                        <div className="overflow-hidden w-[408px]">
+                            <motion.div
+                                animate={{ x: `-${currentIndex * (200 + 8)}px` }}
                                             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                            className="flex gap-2"
-                                        >
-                                            {writtenTestimonials.map((video, index) => (
+                                className="flex gap-2"
+                            >
+                                {writtenTestimonials.map((video, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="relative h-[350px] w-[200px] flex-shrink-0"
+                                    >
+                                        <AnimatePresence>
+                                            {activeWrittenIndex === index ? (
+                                                <motion.video
+                                                    key="video"
+                                                    src={video}
+                                                    className="w-full h-full object-cover rounded"
+                                                    controls
+                                                    autoPlay
+                                                    playsInline
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.3 }}
+                                                />
+                                            ) : (
                                                 <motion.div
-                                                    key={index}
-                                                    className="relative h-[350px] w-[200px] flex-shrink-0"
-                                                >
-                                                    <AnimatePresence>
-                                                        {activeWrittenIndex === index ? (
-                                                            <motion.video
-                                                                key="video"
-                                                                src={video}
-                                                                className="w-full h-full object-cover rounded"
-                                                                controls
-                                                                autoPlay
-                                                                playsInline
-                                                                initial={{ opacity: 0, scale: 0.95 }}
-                                                                animate={{ opacity: 1, scale: 1 }}
-                                                                exit={{ opacity: 0, scale: 0.95 }}
-                                                                transition={{ duration: 0.3 }}
-                                                            />
-                                                        ) : (
-                                                            <motion.div
-                                                                key="thumbnail"
-                                                                className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                                onClick={() => setActiveWrittenIndex(index)}
-                                                                initial={{ opacity: 0.6 }}
-                                                                animate={{ opacity: 1 }}
-                                                                exit={{ opacity: 0.6 }}
-                                                                transition={{ duration: 0.3 }}
-                                                            >
-                                                                <img
-                                                                    src={writtenThumbnails[index]}
-                                                                    alt={`Thumbnail for video ${index + 1}`}
-                                                                    className="w-full h-full object-cover rounded-lg"
-                                                                />
-                                                                <div className="absolute bottom-3 left-3">
-                                                                    <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                        ▶
-                                                                    </button>
-                                                                </div>
-                                                            </motion.div>
-                                                        )}
-                                                    </AnimatePresence>
+                                                    key="thumbnail"
+                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                    onClick={() => setActiveWrittenIndex(index)}
+                                                        initial={{ opacity: 0.6 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0.6 }}
+                                                        transition={{ duration: 0.3 }}
+                                                    >
+                                                        <img
+                                                            src={writtenThumbnails[index]}
+                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                            className="w-full h-full object-cover rounded-lg"
+                                                        />
+                                                        <div className="absolute bottom-3 left-3">
+                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                ▶
+                                                            </button>
+                                                        </div>
                                                 </motion.div>
-                                            ))}
-                                        </motion.div>
-                                    </div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
 
-                                    <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
+                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                         <div
                                             className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                             onClick={handleWrittenPrev}
@@ -579,7 +569,7 @@ export default function SuccessStories() {
 
 
 
-                        <p className="select-none px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
+                        <p className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
                             Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
                             dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
                             first step.
@@ -599,10 +589,10 @@ export default function SuccessStories() {
             <SuccessTestimonials start={0} end={8} /> {/* First 8 testimonials */}
             <ExamTestimonials />
             <h2 className="font-display text-center text-3xl font-bold tracking-tight text-brand-blue sm:text-4xl pb-12 bg-gray-50">
-                More Success Stories
+                    More Success Stories
             </h2>
             <SuccessTestimonials start={8} end={20} /> {/* Remaining 13 testimonials */}
-            <div className="pb-20 bg-gray-50"></div>
+            <div className="pb-20 bg-gray-50"></div>  
 
         </>
     );
