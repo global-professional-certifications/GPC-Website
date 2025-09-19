@@ -37,7 +37,7 @@ import sachinThumbnail from "../../assets/thumbnails/sachin-kokcha-thumbnail.png
 import wajihaThumbnail from "../../assets/thumbnails/wajiha-ansari-thumbnail.png"
 import ajayThumbnail from "../../assets/thumbnails/ajay-thumbnail.png"
 import harishankarThumbnail from "../../assets/thumbnails/harishankar-joshi-thumbnail.png"
-import deepakGargThumbnail from "../../assets/thumbnails/deepak-garg-thumbnail.png"
+import deepakGargThumbnail from "../../assets/thumbnails/deepak-thumbnail.png"
 import fazilThumbnail from "../../assets/thumbnails/fazil-musthafa-thumbnail.png"
 import amitThumbnail from "../../assets/thumbnails/amit-mayani-thumbnail.png"
 import vijayThumbnail from "../../assets/thumbnails/vijay-singhal-thumbnail.png"
@@ -56,35 +56,36 @@ import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
 import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
 
 
-// Videos
+// Video Testimonials
 
-import simranGargTestimonial from "/video-testimonials/simran-garg.mp4"
-import murtuzaTestimonial from "/video-testimonials/murtaza-quresh.mp4"
-import prathwiShettyTestimonial from "/video-testimonials/prathwi-shetty.mp4"
+// import simranGargTestimonial from "../../assets/video-testimonials/simran-garg.mp4"
+// import murtuzaTestimonial from "../../assets/video-testimonials/murtaza-quresh.mp4"
+// import prathwiShettyTestimonial from "../../assets/video-testimonials/prathwi-shetty.mp4"
+// import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
+// import pramodTestimonial from "../../assets/video-testimonials/pramod-pujari.mp4"
+// import amitTestimonial from "../../assets/video-testimonials/amit-mayani.mp4"
+// import harishankarTestimonial from "../../assets/video-testimonials/harishankar-joshi.mp4"
+// import sachinTestimonial from "../../assets/video-testimonials/sachin-kokcha.mp4"
+// import jigneshTestimonial from "../../assets/video-testimonials/jignesh-mehta.mp4"
+// import archanaTestimonial from "../../assets/video-testimonials/archana-tiwari.mp4"
+// import ranveerTestimonial from "../../assets/video-testimonials/ranveer-singh-negi.mp4"
+// import bhargavTestimonial from "../../assets/video-testimonials/bhargav-tej.mp4"
+// import hemaTestimonial from "../../assets/video-testimonials/hema-chavan.mp4"
+// import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju.mp4"
+// import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/sanjeev-kumar.mp4"
+// import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/siva-subramanian.mp4"
+
+// Written Testimonials
+
+import ajayTestimonial from "../../assets/written-testimonials/ajay-kumar-sharma.mp4"
+import fazilTestimonial from "../../assets/written-testimonials/fazil-musthafa.mp4"
+import deepakGargTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
+import wajihaTestimonial from "../../assets/written-testimonials/wajiha-ansari.mp4"
 import priyankaWrittenTestimonial from "../../assets/written-testimonials/priyanka-paul.mp4"
 import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-kumar-garg.mp4"
 import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
 import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
-import vishalTestimonial from "/video-testimonials/vishal-gupta.mp4"
-import pramodTestimonial from "/video-testimonials/pramod-pujari.mp4"
 import vijayTestimonial from "../../assets/written-testimonials/vijay-singhal.mp4"
-import amitTestimonial from "/video-testimonials/amit-mayani.mp4"
-import fazilTestimonial from "../../assets/written-testimonials/fazil-musthafa.mp4"
-import deepakGargTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
-import wajihaTestimonial from "../../assets/written-testimonials/wajiha-ansari.mp4"
-import ajayTestimonial from "../../assets/written-testimonials/ajay-kumar-sharma.mp4"
-import harishankarTestimonial from "/video-testimonials/harishankar-joshi.mp4"
-import sachinTestimonial from "/video-testimonials/sachin-kokcha.mp4"
-import jigneshTestimonial from "/video-testimonials/jignesh-mehta.mp4"
-import archanaTestimonial from "/video-testimonials/archana-tiwari.mp4"
-import ranveerTestimonial from "/video-testimonials/ranveer-singh-negi.mp4"
-import bhargavTestimonial from "/video-testimonials/bhargav-tej.mp4"
-import hemaTestimonial from "/video-testimonials/hema-chavan.mp4"
-import lokeshwarTestimonial from "/video-testimonials/lokeshwar-raju.mp4"
-import sanjeevKumarTestimonialVideo from "/video-testimonials/sanjeev-kumar.mp4"
-import sivaSubramanianCiaTestimonial from "/video-testimonials/siva-subramanian.mp4"
-
-
 
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
@@ -103,22 +104,22 @@ import { FaChevronRight } from "react-icons/fa";
 export default function SuccessStories() {
 
     const testimonialVideos = [
-        bhargavTestimonial,
-        ranveerTestimonial,
-        archanaTestimonial,
-        jigneshTestimonial,
-        sachinTestimonial,
-        harishankarTestimonial,
-        amitTestimonial,
-        simranGargTestimonial,
-        murtuzaTestimonial,
-        prathwiShettyTestimonial,
-        pramodTestimonial,
-        vishalTestimonial,
-        sanjeevKumarTestimonialVideo,
-        sivaSubramanianCiaTestimonial,
-        hemaTestimonial,
-        lokeshwarTestimonial
+        "/video-testimonials/bhargav-tej.mp4",
+        "/video-testimonials/ranveer-singh-negi.mp4",
+        "/video-testimonials/archana-tiwari.mp4",
+        "/video-testimonials/jignesh-mehta.mp4",
+        "/video-testimonials/sachin-kokcha.mp4",
+        "/video-testimonials/harishankar-joshi.mp4",
+        "/video-testimonials/amit-mayani.mp4",
+        "/video-testimonials/simran-garg.mp4",
+        "/video-testimonials/murtaza-quresh.mp4",
+        "/video-testimonials/prathwi-shetty.mp4",
+        "/video-testimonials/pramod-pujari.mp4",
+        "/video-testimonials/vishal-gupta.mp4",
+        "/video-testimonials/sanjeev-kumar.mp4",
+        "/video-testimonials/siva-subramanian.mp4",
+        "/video-testimonials/hema-chavan.mp4",
+        "/video-testimonials/lokeshwar-raju.mp4"
     ]
 
     const writtenTestimonials = [
