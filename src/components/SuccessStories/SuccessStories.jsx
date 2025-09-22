@@ -364,7 +364,7 @@ export default function SuccessStories() {
                                                     <motion.video
                                                         key="video"
                                                         src={video}
-                                                        className="w-full h-full object-cover rounded-lg"
+                                                        className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-contain"
                                                         controls
                                                         autoPlay
                                                         playsInline
@@ -440,7 +440,7 @@ export default function SuccessStories() {
                                                 <motion.video
                                                     key="video"
                                                     src={video}
-                                                    className="w-full h-full object-cover rounded"
+                                                    className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
                                                     controls
                                                     autoPlay
                                                     playsInline
@@ -566,6 +566,7 @@ export default function SuccessStories() {
                                 </div>
                             </div>
                         )}
+
 
 
 
