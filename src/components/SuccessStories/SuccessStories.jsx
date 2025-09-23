@@ -55,8 +55,8 @@ import simranjeetThumbnail from "../../assets/thumbnails/Simranjeet-thumbnail.pn
 import deepakThumbnail from "../../assets/thumbnails/Deepak-thumbnail.png"
 import priyankaThumbnail from "../../assets/thumbnails/Priyanka-thumbnail.png"
 import deepakGargThumbnail from "../../assets/thumbnails/Deepak-garg-thumbnail.png"
-// import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
-// import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
+import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
+import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
 
 
 
@@ -75,8 +75,8 @@ import murtuzaTestimonial from "../../assets/video-testimonials/murtaza-quresh.m
 import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/siva-subramanian.mp4"
 import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/Sanjeev-kumar-testimonial-video.mp4"
 import prathwiShettyTestimonial from "../../assets/video-testimonials/prathwi-shetty.mp4"
-// import hemaTestimonial from "../../assets/video-testimonials/Hema-chavan.mp4"
-// import lokeshwarTestimonial from "../../assets/video-testimonials/Lokeshwar-raju.mp4"
+import hemaTestimonial from "../../assets/video-testimonials/hema-chavan.mp4"
+import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju.mp4"
 
 
 
@@ -123,8 +123,8 @@ export default function SuccessStories() {
         vishalTestimonial,
         sanjeevKumarTestimonialVideo,
         sivaSubramanianCiaTestimonial,
-        // hemaTestimonial,
-        // lokeshwarTestimonial
+        hemaTestimonial,
+        lokeshwarTestimonial
     ]
 
     const writtenTestimonials = [
@@ -154,8 +154,8 @@ export default function SuccessStories() {
         vishalThumbnail,
         sanjeevThumbnail,
         sivaThumbnail,
-        // hemaThumbnail,
-        // lokeshwarThumbnail
+        hemaThumbnail,
+        lokeshwarThumbnail
     ]
 
     const writtenThumbnails = [
