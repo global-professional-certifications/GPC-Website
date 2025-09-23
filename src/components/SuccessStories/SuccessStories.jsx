@@ -83,14 +83,14 @@ import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju
 // Written Testimonials
 
 import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
-import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-kumar-garg.mp4"
+import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
 import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
 import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
 import vijayTestimonial from "../../assets/written-testimonials/Vijay-testimonial.mp4"
 import fazilTestimonial from "../../assets/written-testimonials/Fazil-testimonial.mp4"
 import deepakGargTestimonial from "../../assets/written-testimonials/Deepak-garg-testimonial.mp4"
 import wajihaTestimonial from "../../assets/written-testimonials/Wajiha-testimonial.mp4"
-import ajayTestimonial from "../../assets/written-testimonials/Ajay-kumar-testimonial.mp4"
+import ajayTestimonial from "../../assets/written-testimonials/ajay-kumar-sharma.mp4"
 
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
