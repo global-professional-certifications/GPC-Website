@@ -33,9 +33,9 @@ import murtuzaTestimonial from "../../assets/video-testimonials/Murtuza-testimon
 import prathwiShettyTestimonial from "../../assets/video-testimonials/Prathwi-shetty-testimonial.mp4"
 import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
 import deepakWrittenTestimonial from "../../assets/written-testimonials/Deepak-written-testimonial.mp4"
-import simranjeetWrittenTestimonial from "../../assets/written-testimonials/Simranjeet-written-testimonial.mp4"
-import danishTestimonial from "../../assets/written-testimonials/Danish-testimonial.mp4"
-import vishalTestimonial from "../../assets/video-testimonials/Vishal-testimonial.mp4"
+import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
+import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
+import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
 import vishalThumbnail from "../../assets/thumbnails/Vishal-thumbnail.png"
 import danishThumbnail from "../../assets/thumbnails/Danish-thumbnail.png"
 import simranThumbnail from "../../assets/thumbnails/Simran-garg-thumbnail.png"
@@ -72,6 +72,11 @@ import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimon
 import ranveerThumbnail from "../../assets/thumbnails/Ranveer-thumbnail.png"
 import bhargavTestimonial from "../../assets/video-testimonials/Bhargav-testimonial.mp4"
 import bhargavThumbnail from "../../assets/thumbnails/Bhargav-thumbnail.png"
+// import hemaTestimonial from "../../assets/video-testimonials/Hema-chavan.mp4"
+// import lokeshwarTestimonial from "../../assets/video-testimonials/Lokeshwar-raju.mp4"
+// import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
+// import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
+
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
 import agmIiaDelhiChapterTwo from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-success.png"
@@ -103,6 +108,8 @@ export default function SuccessStories() {
         vishalTestimonial,
         sanjeevKumarTestimonialVideo,
         sivaSubramanianCiaTestimonial,
+        // hemaTestimonial,
+        // lokeshwarTestimonial
     ]
 
     const writtenTestimonials = [
@@ -132,6 +139,8 @@ export default function SuccessStories() {
         vishalThumbnail,
         sanjeevThumbnail,
         sivaThumbnail,
+        // hemaThumbnail,
+        // lokeshwarThumbnail
     ]
 
     const writtenThumbnails = [
@@ -355,7 +364,7 @@ export default function SuccessStories() {
                                                     <motion.video
                                                         key="video"
                                                         src={video}
-                                                        className="w-full h-full object-cover rounded-lg"
+                                                        className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-contain"
                                                         controls
                                                         autoPlay
                                                         playsInline
@@ -431,7 +440,7 @@ export default function SuccessStories() {
                                                 <motion.video
                                                     key="video"
                                                     src={video}
-                                                    className="w-full h-full object-cover rounded"
+                                                    className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
                                                     controls
                                                     autoPlay
                                                     playsInline
@@ -560,7 +569,8 @@ export default function SuccessStories() {
 
 
 
-                        <p className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
+
+                        <p className="select-none px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
                             Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
                             dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
                             first step.
