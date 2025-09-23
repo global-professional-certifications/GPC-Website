@@ -570,7 +570,7 @@ export default function SuccessStories() {
 
 
 
-                        <p className="px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
+                        <p className="select-none px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
                             Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
                             dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
                             first step.
