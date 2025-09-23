@@ -18,8 +18,6 @@ import studentTestimonialEighteen from "../../assets/Testimonial-screenshot-13.p
 import studentTestimonialNineteen from "../../assets/Testimonial-screenshot-14.png"
 import studentTestimonialTwenty from "../../assets/Testimonial-screenshot-15.png"
 import studentTestimonialTwentyOne from "../../assets/Testimonial-screenshot-16.png"
-import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/Siva-Subramanian-cia-testimonial.mp4"
-import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/Sanjeev-kumar-testimonial-video.mp4"
 import vinodKumarTestimonial from "../../assets/Vinod-kumar-testimonial-wapp.png"
 import { GiConqueror } from "react-icons/gi";
 import pinkyPhoto from "../../assets/pinky-photo.jpg";
@@ -28,14 +26,23 @@ import testimonialTwo from "../../assets/testimonial-2.png";
 
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
-import simranGargTestimonial from "../../assets/video-testimonials/Simran-garg-testimonial.mp4"
-import murtuzaTestimonial from "../../assets/video-testimonials/Murtuza-testimonial.mp4"
-import prathwiShettyTestimonial from "../../assets/video-testimonials/Prathwi-shetty-testimonial.mp4"
-import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
-import deepakWrittenTestimonial from "../../assets/written-testimonials/Deepak-written-testimonial.mp4"
-import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
-import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
-import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
+
+
+
+// Thumbnails
+
+import ranveerThumbnail from "../../assets/thumbnails/Ranveer-thumbnail.png"
+import bhargavTestimonial from "../../assets/video-testimonials/Bhargav-testimonial.mp4"
+import bhargavThumbnail from "../../assets/thumbnails/Bhargav-thumbnail.png"
+import archanaThumbnail from "../../assets/thumbnails/Archana-thumbnail.png"
+import sachinThumbnail from "../../assets/thumbnails/Sachin-thumbnail.png"
+import jigneshThumbnail from "../../assets/thumbnails/Jignesh-thumbnail.png"
+import wajihaThumbnail from "../../assets/thumbnails/Wajiha-thumbnail.png"
+import ajayThumbnail from "../../assets/thumbnails/Ajay-kumar-thumbnail.png"
+import harishankarThumbnail from "../../assets/thumbnails/Harishankar-thumbnail.png"
+import fazilThumbnail from "../../assets/thumbnails/Fazil-thumbnail.png"
+import amitThumbnail from "../../assets/thumbnails/Amit-mayani-thumbnail.png"
+import vijayThumbnail from "../../assets/thumbnails/Vijay-thumbnail.png"
 import vishalThumbnail from "../../assets/thumbnails/Vishal-thumbnail.png"
 import danishThumbnail from "../../assets/thumbnails/Danish-thumbnail.png"
 import simranThumbnail from "../../assets/thumbnails/Simran-garg-thumbnail.png"
@@ -47,35 +54,43 @@ import pramodThumbnail from "../../assets/thumbnails/Pramod-pujari-thumbnail.png
 import simranjeetThumbnail from "../../assets/thumbnails/Simranjeet-thumbnail.png"
 import deepakThumbnail from "../../assets/thumbnails/Deepak-thumbnail.png"
 import priyankaThumbnail from "../../assets/thumbnails/Priyanka-thumbnail.png"
-import pramodTestimonial from "../../assets/video-testimonials/Pramod-pujari-testimonial.mp4"
-import vijayTestimonial from "../../assets/written-testimonials/Vijay-testimonial.mp4"
-import vijayThumbnail from "../../assets/thumbnails/Vijay-thumbnail.png"
-import amitTestimonial from "../../assets/video-testimonials/Amit-testimonial.mp4"
-import amitThumbnail from "../../assets/thumbnails/Amit-mayani-thumbnail.png"
-import fazilTestimonial from "../../assets/written-testimonials/Fazil-testimonial.mp4"
-import fazilThumbnail from "../../assets/thumbnails/Fazil-thumbnail.png"
-import deepakGargTestimonial from "../../assets/written-testimonials/Deepak-garg-testimonial.mp4"
 import deepakGargThumbnail from "../../assets/thumbnails/Deepak-garg-thumbnail.png"
-import wajihaTestimonial from "../../assets/written-testimonials/Wajiha-testimonial.mp4"
-import wajihaThumbnail from "../../assets/thumbnails/Wajiha-thumbnail.png"
-import ajayThumbnail from "../../assets/thumbnails/Ajay-kumar-thumbnail.png"
-import harishankarThumbnail from "../../assets/thumbnails/Harishankar-thumbnail.png"
-import ajayTestimonial from "../../assets/written-testimonials/Ajay-kumar-testimonial.mp4"
-import harishankarTestimonial from "../../assets/video-testimonials/Harishankar-testimonial.mp4"
-import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonial.mp4"
-import sachinThumbnail from "../../assets/thumbnails/Sachin-thumbnail.png"
-import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
-import jigneshThumbnail from "../../assets/thumbnails/Jignesh-thumbnail.png"
-import archanaTestimonial from "../../assets/video-testimonials/Archana-testimonial.mp4"
-import archanaThumbnail from "../../assets/thumbnails/Archana-thumbnail.png"
-import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimonial.mp4"
-import ranveerThumbnail from "../../assets/thumbnails/Ranveer-thumbnail.png"
-import bhargavTestimonial from "../../assets/video-testimonials/Bhargav-testimonial.mp4"
-import bhargavThumbnail from "../../assets/thumbnails/Bhargav-thumbnail.png"
-// import hemaTestimonial from "../../assets/video-testimonials/Hema-chavan.mp4"
-// import lokeshwarTestimonial from "../../assets/video-testimonials/Lokeshwar-raju.mp4"
 // import hemaThumbnail from "../../assets/thumbnails/hema-chavan-thumbnail.png"
 // import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail.png"
+
+
+
+// Video Testimonials
+
+import harishankarTestimonial from "../../assets/video-testimonials/Harishankar-testimonial.mp4"
+import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonial.mp4"
+import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
+import archanaTestimonial from "../../assets/video-testimonials/Archana-testimonial.mp4"
+import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimonial.mp4"
+import amitTestimonial from "../../assets/video-testimonials/Amit-testimonial.mp4"
+import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
+import pramodTestimonial from "../../assets/video-testimonials/pramod-pujari.mp4"
+import simranGargTestimonial from "../../assets/video-testimonials/simran-garg.mp4"
+import murtuzaTestimonial from "../../assets/video-testimonials/murtaza-quresh.mp4"
+import sivaSubramanianCiaTestimonial from "../../assets/video-testimonials/Siva-Subramanian-cia-testimonial.mp4"
+import sanjeevKumarTestimonialVideo from "../../assets/video-testimonials/Sanjeev-kumar-testimonial-video.mp4"
+import prathwiShettyTestimonial from "../../assets/video-testimonials/Prathwi-shetty-testimonial.mp4"
+// import hemaTestimonial from "../../assets/video-testimonials/Hema-chavan.mp4"
+// import lokeshwarTestimonial from "../../assets/video-testimonials/Lokeshwar-raju.mp4"
+
+
+
+// Written Testimonials
+
+import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
+import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-kumar-garg.mp4"
+import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
+import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
+import vijayTestimonial from "../../assets/written-testimonials/Vijay-testimonial.mp4"
+import fazilTestimonial from "../../assets/written-testimonials/Fazil-testimonial.mp4"
+import deepakGargTestimonial from "../../assets/written-testimonials/Deepak-garg-testimonial.mp4"
+import wajihaTestimonial from "../../assets/written-testimonials/Wajiha-testimonial.mp4"
+import ajayTestimonial from "../../assets/written-testimonials/Ajay-kumar-testimonial.mp4"
 
 
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
