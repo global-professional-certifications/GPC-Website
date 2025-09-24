@@ -32,7 +32,6 @@ import { height } from "../Notifications/NotificationBanner";
 // Thumbnails
 
 import ranveerThumbnail from "../../assets/thumbnails/Ranveer-thumbnail.png"
-import bhargavTestimonial from "../../assets/video-testimonials/Bhargav-testimonial.mp4"
 import bhargavThumbnail from "../../assets/thumbnails/Bhargav-thumbnail.png"
 import archanaThumbnail from "../../assets/thumbnails/Archana-thumbnail.png"
 import sachinThumbnail from "../../assets/thumbnails/Sachin-thumbnail.png"
@@ -62,11 +61,12 @@ import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail
 
 // Video Testimonials
 
+import bhargavTestimonial from "../../assets/video-testimonials/bhargav-tej.mp4"
 import harishankarTestimonial from "../../assets/video-testimonials/harishankar-joshi.mp4"
 import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonial.mp4"
 import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
-import archanaTestimonial from "../../assets/video-testimonials/Archana-testimonial.mp4"
-import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimonial.mp4"
+import archanaTestimonial from "../../assets/video-testimonials/archana-tiwari.mp4"
+import ranveerTestimonial from "../../assets/video-testimonials/ranveer-singh-negi.mp4"
 import amitTestimonial from "../../assets/video-testimonials/amit-mayani.mp4"
 import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
 import pramodTestimonial from "../../assets/video-testimonials/pramod-pujari.mp4"
