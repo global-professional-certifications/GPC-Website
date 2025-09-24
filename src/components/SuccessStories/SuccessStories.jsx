@@ -67,7 +67,7 @@ import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonia
 import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
 import archanaTestimonial from "../../assets/video-testimonials/Archana-testimonial.mp4"
 import ranveerTestimonial from "../../assets/video-testimonials/Ranveer-testimonial.mp4"
-import amitTestimonial from "../../assets/video-testimonials/Amit-testimonial.mp4"
+import amitTestimonial from "../../assets/video-testimonials/amit-mayani.mp4"
 import vishalTestimonial from "../../assets/video-testimonials/vishal-gupta.mp4"
 import pramodTestimonial from "../../assets/video-testimonials/pramod-pujari.mp4"
 import simranGargTestimonial from "../../assets/video-testimonials/simran-garg.mp4"
@@ -83,13 +83,13 @@ import lokeshwarTestimonial from "../../assets/video-testimonials/lokeshwar-raju
 // Written Testimonials
 
 import priyankaWrittenTestimonial from "../../assets/written-testimonials/Priyanka-written-testimonial.mp4"
-import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
+import deepakWrittenTestimonial from "../../assets/written-testimonials/deepak-kumar-garg.mp4"
 import simranjeetWrittenTestimonial from "../../assets/written-testimonials/simranjeet-kaur.mp4"
 import danishTestimonial from "../../assets/written-testimonials/md-danish.mp4"
 import vijayTestimonial from "../../assets/written-testimonials/Vijay-testimonial.mp4"
 import fazilTestimonial from "../../assets/written-testimonials/Fazil-testimonial.mp4"
-import deepakGargTestimonial from "../../assets/written-testimonials/Deepak-garg-testimonial.mp4"
-import wajihaTestimonial from "../../assets/written-testimonials/Wajiha-testimonial.mp4"
+import deepakGargTestimonial from "../../assets/written-testimonials/deepak-garg.mp4"
+import wajihaTestimonial from "../../assets/written-testimonials/wajiha-ansari.mp4"
 import ajayTestimonial from "../../assets/written-testimonials/ajay-kumar-sharma.mp4"
 
 
