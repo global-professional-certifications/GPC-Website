@@ -63,8 +63,8 @@ import lokeshwarThumbnail from "../../assets/thumbnails/lokeshwar-raju-thumbnail
 
 import bhargavTestimonial from "../../assets/video-testimonials/bhargav-tej.mp4"
 import harishankarTestimonial from "../../assets/video-testimonials/harishankar-joshi.mp4"
-import sachinTestimonial from "../../assets/video-testimonials/Sachin-testimonial.mp4"
-import jigneshTestimonial from "../../assets/video-testimonials/Jignesh-testimonial.mp4"
+import sachinTestimonial from "../../assets/video-testimonials/sachin-kokcha.mp4"
+import jigneshTestimonial from "../../assets/video-testimonials/jignesh-mehta.mp4"
 import archanaTestimonial from "../../assets/video-testimonials/archana-tiwari.mp4"
 import ranveerTestimonial from "../../assets/video-testimonials/ranveer-singh-negi.mp4"
 import amitTestimonial from "../../assets/video-testimonials/amit-mayani.mp4"
