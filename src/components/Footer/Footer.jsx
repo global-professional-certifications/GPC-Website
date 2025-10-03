@@ -56,6 +56,12 @@ const Footer = () => {
                             <li>
                                 <NavLink to="privacy" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Privacy Policy </NavLink>
                             </li>
+                            <li>
+                                <NavLink to="faq" title="" className={({ isActive }) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> FAQ </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="glossary" title="" className={({ isActive }) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Glossary </NavLink>
+                            </li>
                         </ul>
                     </div>
 
