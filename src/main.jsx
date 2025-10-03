@@ -18,24 +18,41 @@ import CoursesOverview from './components/CoursesOverview/CoursesOverview.jsx';
 import Crma from './components/Courses/Crma.jsx';
 import Cisa from './components/Courses/Cisa.jsx';
 import Iap from './components/Courses/Iap.jsx';
+import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
+import AddVideo from './components/AdminPanel/AddVideo.jsx';
+import AddBlog from './components/AdminPanel/AddBlog.jsx';
+import AdminLogin from './components/AdminPanel/AdminLogin.jsx';
+import FaqPage from './components/FaqPage/FaqPage.jsx';
+import Glossary from './components/Glossary/Glossary.jsx';
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="" element={<Home />}/>
-      <Route path="about" element={<AboutUs />}/>
-      <Route path="terms" element={<Terms />}/>
-      <Route path="privacy" element={<PrivacyPolicy />}/>
-      <Route path="contact" element={<ContactUs />}/>
-      <Route path="refund" element={<RefundPolicy />}/>
-      <Route path="success" element={<SuccessStories />}/>
-      <Route path="courses" element={<CoursesOverview />} />
-      <Route path="courses/cia" element={<Cia />}/>
-      <Route path="courses/crma" element={<Crma />}/>
-      <Route path="courses/cisa" element={<Cisa />}/>
-      <Route path="courses/iap" element={<Iap />}/>
-      <Route path="events" element={<Events />} />
-    </Route>
+    <>
+      <Route path="/" element={<Layout />}>
+        <Route path="" element={<Home />} />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
+        <Route path="contact" element={<ContactUs />} />
+        <Route path="refund" element={<RefundPolicy />} />
+        <Route path="faq" element={<FaqPage />} />
+        <Route path="glossary" element={<Glossary />} />
+        <Route path="success" element={<SuccessStories />} />
+        <Route path="courses" element={<CoursesOverview />}>
+          <Route path="cia" element={<Cia />} />
+          <Route path="crma" element={<Crma />} />
+          <Route path="cisa" element={<Cisa />} />
+          <Route path="iap" element={<Iap />} />
+        </Route>
+        <Route path="events" element={<Events />} />
+      </Route>
+      <Route path="admin" element={true ? <AdminPanel /> : <AdminLogin />} >
+        <Route index element={<AddVideo />} />
+        <Route path="addBlog" element={<AddBlog />} />
+      </Route>
+    </>
   )
 )
 
