@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
+import { Helmet } from 'react-helmet-async';
 
 const glossary = [
     { term: "Audit", definition: "Systematic review of records and controls to ensure compliance, accuracy, and integrity in an organization. Global Professional Certifications delivers world-class audit training for global risk and compliance careers." },
@@ -56,6 +57,7 @@ const Glossary = () => {
     const [activeLetter, setActiveLetter] = useState(null);
     const [search, setSearch] = useState("");
 
+
     // Group glossary by first letter
     const groupedGlossary = glossary.reduce((acc, item) => {
         const firstLetter = item.term[0].toUpperCase();
@@ -93,8 +95,22 @@ const Glossary = () => {
         return acc;
     }, {});
 
+    // Schema for Glossary Page
+    const glossarySchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Glossary | Global Professional Certifications",
+        "description": "A comprehensive glossary of terms and definitions related to auditing, risk management, and professional certifications by Global Professional Certifications.",
+        "url": "https://globalprofessionalcertifications.com/glossary",
+    };
+
     return (
         <>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(glossarySchema)}
+                </script>
+            </Helmet>
             <MetaTags
                 title="Certification Glossary | Key Terms for Auditors & Risk Professionals"
                 description="Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications."

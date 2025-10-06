@@ -13,16 +13,38 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import ciaHero from "../../assets/cia-hero.jpg";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
+import { Helmet } from 'react-helmet-async';
 
 const Cia = () => {
+
     useEffect(() => {
         // Preload the hero image when the component mounts
         const img = new Image();
         img.src = heroGirl;
     }, []);
 
+    const cisaSchema = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Certified Information Systems Auditor (CISA)",
+        "description":
+            "Become a certified expert in IT auditing and risk management with our comprehensive CISA course by Global Professional Certifications.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "sameAs": "https://globalprofessionalcertifications.com",
+        },
+        "url": "https://globalprofessionalcertifications.com/courses/cisa",
+    };
+
     return (
         <>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(cisaSchema)}
+                </script>
+            </Helmet>
+
             <MetaTags 
                 title="CIA Certification Course – Pass the Challenge Exam"
                 description="Prepare for the CIA Challenge Exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications."

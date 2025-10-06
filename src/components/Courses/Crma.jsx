@@ -1,13 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
+import { Helmet } from 'react-helmet-async';
 
 const Crma = () => {
   const marginTop = (68 + (4 * (height ? height : 0))).toString()
   console.log(marginTop)
 
+  const crmaSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Certification in Risk Management Assurance (CRMA)",
+    "description":
+      "Advance your career in risk management and assurance with the CRMA course by Global Professional Certifications. Learn governance, risk, and control strategies from experts.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Global Professional Certifications",
+      "sameAs": "https://globalprofessionalcertifications.com",
+    },
+    "url": "https://globalprofessionalcertifications.com/courses/crma",
+  };
+
   return (
-    <div className={`bg-gray-100 mt-[${marginTop}px] font-sans`}>
+    <>
+      <Helmet>
+        <title>CRMA Certification – Global Professional Certifications</title>
+        <meta
+          name="description"
+          content="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
+        />
+        <link
+          rel="canonical"
+          href="https://globalprofessionalcertifications.com/courses/crma"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(crmaSchema)}
+        </script>
+      </Helmet>
+
+      <div className={`bg-gray-100 mt-[${marginTop}px] font-sans`}>
       {/* Header */}
       <header className="bg-brand-blue text-white py-12 text-center">
         <h1 className="px-4 md:px-0 text-3xl md:text-5xl font-bold">
@@ -68,7 +99,8 @@ const Crma = () => {
           </Link>
       </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

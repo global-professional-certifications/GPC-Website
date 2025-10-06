@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
+import { Helmet } from "react-helmet-async";
 
 const faqs = [
     {
@@ -219,8 +220,19 @@ const FAQ = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage"
+    };
+
+
     return (
         <>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(faqSchema)}
+                </script>
+            </Helmet>
             <MetaTags
                 title="Frequently Asked Questions (FAQs) | Global Professional Certifications"
                 description="Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career."

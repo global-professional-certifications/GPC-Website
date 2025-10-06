@@ -1,12 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
+import { Helmet } from 'react-helmet-async';
+
 
 const Cisa = () => {
 
+  const cisaSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Certified Information Systems Auditor (CISA)",
+    "description":
+      "Become a certified expert in IT auditing and risk management with our comprehensive CISA course by Global Professional Certifications.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Global Professional Certifications",
+      "sameAs": "https://globalprofessionalcertifications.com",
+    },
+    "url": "https://globalprofessionalcertifications.com/courses/cisa",
+  };
+
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
-    <div className={`mt-[${marginTop}px] bg-gray-100 font-sans`}>
+    <>
+      <Helmet>
+        <title>CISA Certification – Global Professional Certifications</title>
+        <meta
+          name="description"
+          content="Become a certified expert in IT auditing and risk management with our globally recognized CISA certification course."
+        />
+        <link
+          rel="canonical"
+          href="https://globalprofessionalcertifications.com/courses/cisa"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(cisaSchema)}
+        </script>
+      </Helmet>
+      <div className={`mt-[${marginTop}px] bg-gray-100 font-sans`}>
       {/* Header */}
       <header className="bg-brand-blue text-white py-8 md:py-12 text-center">
         <h1 className="px-4 md:px-0 text-3xl md:text-5xl font-bold">
@@ -78,7 +109,8 @@ const Cisa = () => {
         </section>
 
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 
