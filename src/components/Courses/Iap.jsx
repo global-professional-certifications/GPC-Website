@@ -1,12 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
+import { Helmet } from 'react-helmet-async';
 
 const Iap = () => {
 
   const marginTop = 68 + (4 * (height ? height : 0))
 
+  const iapSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Internal Audit Practitioner (IAP)",
+    "description":
+      "Start your auditing career with the Internal Audit Practitioner (IAP) course by Global Professional Certifications. Learn essential auditing principles, ethics, and best practices recognized globally.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Global Professional Certifications",
+      "sameAs": "https://globalprofessionalcertifications.com",
+    },
+    "url": "https://globalprofessionalcertifications.com/courses/iap",
+  };
+
   return (
+    <>
+      <Helmet>
+        <title>IAP Certification – Global Professional Certifications</title>
+        <meta
+          name="description"
+          content="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
+        />
+        <link
+          rel="canonical"
+          href="https://globalprofessionalcertifications.com/courses/iap"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(iapSchema)}
+        </script>
+      </Helmet>
     <div className={`mt-[${marginTop}px] bg-gray-100 font-sans`}>
       {/* Header */}
       <header className="bg-brand-blue text-white py-12 text-center">
@@ -68,7 +98,8 @@ const Iap = () => {
           </Link>
       </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

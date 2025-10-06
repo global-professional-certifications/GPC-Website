@@ -7,6 +7,7 @@ import iapLogo from "../../assets/iap-logo-cropped.webp";
 import crmaLogoOne from "../../assets/crma-logo-1.png";
 import { FaArrowTurnDown } from "react-icons/fa6";
 import MetaTags from "../MetaTags";
+import CoursesSEO from "./CoursesSEO";
 
 export default function CoursesOverview() {
 
@@ -29,6 +30,7 @@ export default function CoursesOverview() {
 
   return (
     <>
+      <CoursesSEO />
       <MetaTags 
         title="Certification Courses – Global Professional Certifications"
         description="Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content."

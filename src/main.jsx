@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ThemeProvider } from "@material-tailwind/react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Home from './components/Home/Home.jsx';
 import Layout from './Layout.jsx';
 import AboutUs from './components/About/AboutUs.jsx';
@@ -40,12 +40,12 @@ const router = createBrowserRouter(
         <Route path="faq" element={<FaqPage />} />
         <Route path="glossary" element={<Glossary />} />
         <Route path="success" element={<SuccessStories />} />
-        <Route path="courses" element={<CoursesOverview />}>
-          <Route path="cia" element={<Cia />} />
-          <Route path="crma" element={<Crma />} />
-          <Route path="cisa" element={<Cisa />} />
-          <Route path="iap" element={<Iap />} />
-        </Route>
+        <Route path="courses" element={<CoursesOverview />} />
+        <Route path="courses/cia" element={<Cia />} />
+        <Route path="courses/crma" element={<Crma />} />
+        <Route path="courses/cisa" element={<Cisa />} />
+        <Route path="courses/iap" element={<Iap />} />
+
         <Route path="events" element={<Events />} />
       </Route>
       {/*<Route path="admin" element={true ? <AdminPanel /> : <AdminLogin />} >
@@ -56,10 +56,45 @@ const router = createBrowserRouter(
   )
 )
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Global Professional Certifications",
+  "url": "https://globalprofessionalcertifications.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://globalprofessionalcertifications.com/search?query={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Global Professional Certifications",
+  "url": "https://globalprofessionalcertifications.com",
+  "logo": "https://globalprofessionalcertifications.com/logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/global-professional-certifications/",
+    "https://www.instagram.com/global__professionals",
+    "https://www.youtube.com/watch?v=2FWaO_Cf0eg"
+  ]
+};
+
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
     <HelmetProvider>
-      <RouterProvider router={router} />
+      <>
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(websiteSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(organizationSchema)}
+          </script>
+        </Helmet>
+        <RouterProvider router={router} />
+      </>
     </HelmetProvider>
   </ThemeProvider>
 )
