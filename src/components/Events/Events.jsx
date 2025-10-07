@@ -16,6 +16,7 @@ import iiaDelhiFlyer from "../../assets/IIA_Delhi_flyer.png"
 import { RxCross1 } from "react-icons/rx";
 import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.webp"
 import agmIiaDelhiChapter from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-events.webp"
+import { Helmet } from 'react-helmet-async';
 
 // Hi there
 
@@ -104,8 +105,39 @@ export default function Events(){
         return () => window.removeEventListener("resize", handleResize)
     }, [window.innerWidth])
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Upcoming Events by Global Professional Certifications",
+        "description": "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
+        "author": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://globalprofessionalcertifications.com/logo.png"
+            }
+        },
+        "url": "https://globalprofessionalcertifications.com/events",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://globalprofessionalcertifications.com/events"
+        },
+        "datePublished": "2025-10-07",
+        "dateModified": "2025-10-07"
+
+
+    };
+
     return (
         <>
+            <Helmet>
+                <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+            </Helmet>
             <MetaTags
                 title="Upcoming Certification Events & Webinars - GPC"
                 description="Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."

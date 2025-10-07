@@ -27,7 +27,7 @@ import testimonialTwo from "../../assets/testimonial-2.png";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
 
-
+import { Helmet } from 'react-helmet-async';
 
 // Thumbnails
 
@@ -105,6 +105,7 @@ import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.jpeg"
 import { MotionConfig, motion, AnimatePresence } from "motion/react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
+
 
 export default function SuccessStories() {
 
@@ -256,6 +257,33 @@ export default function SuccessStories() {
         };
     }, []);
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Success Stories of Global Professional Certifications",
+        "description": "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications.",
+        "author": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://globalprofessionalcertifications.com/logo.png"
+            }
+        },
+        "url": "https://globalprofessionalcertifications.com/success",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://globalprofessionalcertifications.com/success"
+        },
+        "datePublished": "2025-10-07",
+        "dateModified": "2025-10-07"
+
+    };
+
     // const [loadedVideoIndexes, setLoadedVideoIndexes] = useState(
     //     Array(testimonialVideos.length).fill(false)
     // )
@@ -298,6 +326,11 @@ export default function SuccessStories() {
 
     return (
         <>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(articleSchema)}
+                </script>
+            </Helmet>
             <MetaTags
                 title="CIA Exam Success Stories – Real Achievements"
                 description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
