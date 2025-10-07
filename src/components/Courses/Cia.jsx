@@ -23,25 +23,25 @@ const Cia = () => {
         img.src = heroGirl;
     }, []);
 
-    const cisaSchema = {
+
+    const ciaSchema = {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": "Certified Information Systems Auditor (CISA)",
-        "description":
-            "Become a certified expert in IT auditing and risk management with our comprehensive CISA course by Global Professional Certifications.",
+        "name": "Certified Internal Auditor (CIA)",
+        "description": "The CIA course provides professional certification for internal auditors to enhance auditing skills and career credibility.",
         "provider": {
             "@type": "Organization",
             "name": "Global Professional Certifications",
-            "sameAs": "https://globalprofessionalcertifications.com",
-        },
-        "url": "https://globalprofessionalcertifications.com/courses/cisa",
+            "url": "https://globalprofessionalcertifications.com",
+            "logo": "https://globalprofessionalcertifications.com/logo.png"
+        }
     };
 
     return (
         <>
             <Helmet>
                 <script type="application/ld+json">
-                    {JSON.stringify(cisaSchema)}
+                    {JSON.stringify(ciaSchema)}
                 </script>
             </Helmet>
 
