@@ -95,18 +95,43 @@ const Glossary = () => {
         return acc;
     }, {});
 
-    // Schema for Glossary Page
     const glossarySchema = {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Glossary | Global Professional Certifications",
-        "description": "A comprehensive glossary of terms and definitions related to auditing, risk management, and professional certifications by Global Professional Certifications.",
+        "@type": "DefinedTermSet",
+        "name": "Glossary of Terms - Global Professional Certifications",
+        "description": "A glossary of terms related to CIA, CISA, CRMA, and IAP certifications.",
         "url": "https://globalprofessionalcertifications.com/glossary",
+        "hasDefinedTerm": [
+            { "@type": "DefinedTerm", "name": "CIA", "description": "Certified Internal Auditor - professional certification for internal auditors." },
+            { "@type": "DefinedTerm", "name": "CISA", "description": "Certified Information Systems Auditor - certification for auditing and control of information systems." },
+            { "@type": "DefinedTerm", "name": "CRMA", "description": "Certified Risk Management Auditor - certification for auditors specializing in risk management." },
+            { "@type": "DefinedTerm", "name": "IAP", "description": "Internal Audit Practitioner - entry-level certification for aspiring internal auditors." }
+        ]
     };
+
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Glossary of Terms for CIA, CISA, CRMA, and IAP Certifications",
+        "description": "This glossary explains key terms and concepts related to CIA, CISA, CRMA, and IAP certifications.",
+        "author": { "@type": "Organization", "name": "Global Professional Certifications" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "logo": { "@type": "ImageObject", "url": "https://globalprofessionalcertifications.com/logo.png" }
+        },
+        "url": "https://globalprofessionalcertifications.com/glossary",
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://globalprofessionalcertifications.com/glossary" },
+        "datePublished": "2025-10-07",
+        "dateModified": "2025-10-07"
+    }; 
 
     return (
         <>
             <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(articleSchema)}
+                </script>
                 <script type="application/ld+json">
                     {JSON.stringify(glossarySchema)}
                 </script>
