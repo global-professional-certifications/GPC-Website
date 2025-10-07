@@ -18,10 +18,10 @@ import CoursesOverview from './components/CoursesOverview/CoursesOverview.jsx';
 import Crma from './components/Courses/Crma.jsx';
 import Cisa from './components/Courses/Cisa.jsx';
 import Iap from './components/Courses/Iap.jsx';
-/*import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
-import AddVideo from './components/AdminPanel/AddVideo.jsx';
-import AddBlog from './components/AdminPanel/AddBlog.jsx';
-import AdminLogin from './components/AdminPanel/AdminLogin.jsx';*/
+// import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
+// import AddVideo from './components/AdminPanel/AddVideo.jsx';
+// import AddBlog from './components/AdminPanel/AddBlog.jsx';
+// import AdminLogin from './components/AdminPanel/AdminLogin.jsx';
 import FaqPage from './components/FaqPage/FaqPage.jsx';
 import Glossary from './components/Glossary/Glossary.jsx';
 
@@ -48,10 +48,10 @@ const router = createBrowserRouter(
 
         <Route path="events" element={<Events />} />
       </Route>
-      {/*<Route path="admin" element={true ? <AdminPanel /> : <AdminLogin />} >
+      {/* <Route path="admin" element={true ? <AdminPanel /> : <AdminLogin />} >
         <Route index element={<AddVideo />} />
         <Route path="addBlog" element={<AddBlog />} />
-      </Route>*/}
+      </Route> */}
     </>
   )
 )
