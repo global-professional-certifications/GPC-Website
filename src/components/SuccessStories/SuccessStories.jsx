@@ -105,7 +105,7 @@ import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.jpeg"
 import { MotionConfig, motion, AnimatePresence } from "motion/react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-import { Helmet } from "react-helmet-async";
+
 
 export default function SuccessStories() {
 
