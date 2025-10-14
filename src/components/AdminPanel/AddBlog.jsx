@@ -7,37 +7,45 @@ const AddBlog = () => {
     const [blog, setBlog] = useState("");
     const [blogCategory, setBlogCategory] = useState("");
 
-    const API_TOKEN = "200c5438326d9824c624a896ea9f7471b5930ef41c928fefad1e6b6eed2d7452d8d3b18439eb7cc4a5ab73ac84c8c9bc0169c76b187c4d9bcd87c1fbf4d1d0edc0b784da36dc43a19524a0318e03b531330e3cfaa25353c265d18d7389e0ad44d70cbf7f0b9df078e32a66ca1d1f705ebb7816311ca0f56a6555181413e3ed8f";
-    const API_URL = "http://localhost:1337/api/blogs";
+    // Load env variables
+    const API_URL = import.meta.env.VITE_STRAPI_URL;
+    const API_TOKEN = import.meta.env.VITE_STRAPI_TOKEN;
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
 
+        if (!title || !blog || !blogCategory) {
+            alert("Please fill all fields!");
+            return;
+        }
+
         try {
             const formData = new FormData();
 
-            // Append blog data
+            // JSON string for non-file fields
             formData.append(
                 "data",
                 JSON.stringify({
-                    title,
+                    title: title,
                     content: blog,
                     category: blogCategory,
                 })
             );
 
-            // Append image file if exists
+            // File field
             if (blogThumbnail) {
-                formData.append("files.thumbnail", blogThumbnail);
+                formData.append("files.thumbnail", blogThumbnail); 
             }
 
-            const response = await fetch(API_URL, {
+            // Fetch request
+            const response = await fetch(`${API_URL}/api/blogs`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${API_TOKEN}`,
                 },
                 body: formData,
             });
+
 
             if (response.ok) {
                 alert("Blog published successfully!");
@@ -47,11 +55,11 @@ const AddBlog = () => {
                 setBlogThumbnail(null);
             } else {
                 const errorData = await response.json();
-                console.error("Error:", errorData);
+                console.error("Error publishing blog:", errorData);
                 alert("Failed to publish blog. Check console for details.");
             }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Error publishing blog:", error);
             alert("Something went wrong while publishing!");
         }
     };
@@ -66,7 +74,7 @@ const AddBlog = () => {
                 <label htmlFor="blogThumbnail">
                     <img
                         src={!blogThumbnail ? uploadImage : URL.createObjectURL(blogThumbnail)}
-                        alt=""
+                        alt="thumbnail"
                         className="mt-2 h-auto w-40 rounded cursor-pointer"
                     />
                     <input
