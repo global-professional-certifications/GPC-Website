@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
 import logoOne from "../../assets/logo-1.png";
-import wappLogo from "../../assets/Gpc_Whatsapp_Community_qr.jpeg";
+import wappLogo from "../../assets/Gpc_Whatsapp_Community_qr.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
@@ -141,7 +141,7 @@ const Footer = () => {
                             <img
                                 src={wappLogo}
                                 alt="WhatsApp community QR code"
-                                className="h-24 w-24 object-contain hover:scale-105 transition-transform duration-300"
+                                className="h-24 w-24 bg-white object-contain hover:scale-105 transition-transform duration-300"
                             />
                         </div>
 

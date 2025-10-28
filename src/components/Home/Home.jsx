@@ -125,7 +125,7 @@ export default function Home() {
                     <Hero />
 
                     {/* Stats Section */}
-                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 text-center z-10 w-[90%] sm:w-auto scale-90 sm:scale-100">
+                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-4 md:px-16 lg:px-16 py-6 md:py-8 lg:py-8 text-center z-10 w-auto scale-90 md:scale-100 lg:scale-100">
 
                         {/* Students */}
                         <div className="flex items-center gap-3 sm:gap-4">
@@ -272,27 +272,40 @@ export default function Home() {
 
                 {/* Download Brochure CTA */}
 
-                <div className="m-4 mt-20 p-12">
-                    <div className="flex justify-start items-center gap-12">
-                        <div className="w-[26rem] h-auto mx-auto object-contain">
-                            <div>
-                                <img src={brochureCover} alt="Brochure" />
-                            </div>
+                <div className="mt-20 px-6 md:px-12 lg:px-12 py-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+                        {/* Image Section */}
+                        <div className="w-full md:w-1/2 flex justify-center">
+                            <img
+                                src={brochureCover}
+                                alt="Brochure"
+                                className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
+                            />
                         </div>
-                        <div className="flex flex-col justify-center items-start gap-4 px-16">
-                            <p className="text-2xl md:text-4xl lg:text-4xl font-bold text-left max-w-lg mb-12">
-                                Get <span className="text-brand-blue font-normal italic">Detailed</span> Information About Our Courses
+
+                        {/* Text Section */}
+                        <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
+                            <p className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 max-w-[300px] md:max-w-xl lg:max-w-xl">
+                                Download Our{" "}
+                                <span className="text-brand-blue font-normal italic">Comprehensive</span>{" "}
+                                CIA Course Brochure
                             </p>
-                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed text-left">
-                                Download our Brochure
+                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0">
+                                Unlock global career opportunities as a Certified Internal Auditor (CIA)
+                                with GPC. Get detailed insights on course structure, expert mentorship,
+                                and global recognition in our downloadable brochure.
                             </p>
-                            <a href={brochure} target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
+                            <a
+                                href={brochure}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-brand-blue text-white text-sm sm:text-base py-2 px-5 sm:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 mt-2"
+                            >
                                 Download
                             </a>
                         </div>
                     </div>
                 </div>
-
 
 
                 {/* Why Choose Us? */}
@@ -345,9 +358,9 @@ export default function Home() {
                         <div className="grid grid-cols-2 md:flex md:flex-col justify-center items-center gap-8 sm:gap-12 w-full md:w-1/3">
                             <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center">
                                 <FontAwesomeIcon icon={faRobot} className="text-2xl sm:text-3xl md:text-4xl text-brand-blue mb-3 sm:mb-4" />
-                                <p className="text-base sm:text-lg font-semibold">Support</p>
+                                <p className="text-base sm:text-lg font-semibold">Dedicated Support</p>
                                 <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                    Doubt resolution, personalized learning paths
+                                    Get dedicated support until you succeed — we’re with you every step of the way.
                                 </p>
                             </div>
 
@@ -407,12 +420,12 @@ export default function Home() {
                     </div>
 
                     {/* Floating Video */}
-                    <div className="absolute left-1/2 -translate-x-1/2 top-[60%] md:top-[35%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-[65%] md:top-[35%] lg:top-[35%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
                         <VideoSection />
                     </div>
 
                     {/* Blue Background Section */}
-                    <div className="h-[180px] md:h-[350px] mt-6 md:mt-32 bg-brand-blue w-full"></div>
+                    <div className="h-[180px] md:h-[350px] mt-4 md:mt-32 lg:mt-32 bg-brand-blue w-full"></div>
                 </div>
 
 
