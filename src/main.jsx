@@ -24,7 +24,9 @@ import Iap from './components/Courses/Iap.jsx';
 // import AdminLogin from './components/AdminPanel/AdminLogin.jsx';
 import FaqPage from './components/FaqPage/FaqPage.jsx';
 import Glossary from './components/Glossary/Glossary.jsx';
-
+import BlogList from './components/Blog/BlogList.jsx';
+import BlogPage from './components/Blog/BlogPage.jsx';
+import fetch from './hooks/fetch.jsx';
 
 
 const router = createBrowserRouter(
@@ -45,8 +47,9 @@ const router = createBrowserRouter(
         <Route path="courses/crma" element={<Crma />} />
         <Route path="courses/cisa" element={<Cisa />} />
         <Route path="courses/iap" element={<Iap />} />
-
         <Route path="events" element={<Events />} />
+        <Route path="blogs" element={<BlogList />} />
+        <Route path="blogs/:slug" element={<BlogPage />} />
       </Route>
       {/* <Route path="admin" element={true ? <AdminPanel /> : <AdminLogin />} >
         <Route index element={<AddVideo />} />

@@ -31,8 +31,8 @@ export default function NotificationBanner () {
                         <BsLightbulbFill className="inline text-yellow-700 mr-1 pb-1 h-4 w-4 md:h-6 md:h-6" />Not sure how to start your CIA journey? Watch our<a href="https://www.youtube.com/@global-professional-cert" target="_blank" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition-all duration-300 transform ease-in-out">Orientation Program</a>for each part or<a href="/contact" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition duration-300 ease-in-out">Contact Us</a>to get started!<BsLightbulbFill className="inline text-yellow-700 ml-1 pb-1 h-4 w-4 md:h-6 md:h-6" />
                     </div>
                     : 
-                    <p className="md:text-sm text-xs md:p-0 px-8 font-semibold md:text-base">
-                    Not sure how to start your CIA journey? Explore our <Link to="https://www.youtube.com/@global-professional-cert" target="_blank" className="text-red-600 hover:underline">youtube channel</Link> or <Link className="text-red-600" to="/contact">contact us</Link> to get started!
+                    <p className="md:text-sm text-xs md:p-0 px-2 md:text-base leading-relaxed">
+                        Explore our <Link to="https://www.youtube.com/@global-professional-cert" target="_blank" className="border border-brand-purple border-1 rounded-md p-1 ">youtube channel</Link> or <Link className="border border-brand-purple border-1 rounded-md p-1" to="/contact">contact us</Link> to get started!
                     </p>
                 }
             </div>

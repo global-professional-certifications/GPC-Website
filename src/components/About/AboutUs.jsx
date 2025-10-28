@@ -287,7 +287,7 @@ export default function AboutUs() {
                                     <h6 className="text-gray-500 text-xs sm:text-sm font-medium leading-normal">Years of Teaching Experience</h6>
                                 </div>
                                 <div className="flex flex-col w-full justify-start items-start bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                    <h4 className="text-gray-900 text-lg sm:text-xl md:text-2xl font-bold font-manrope leading-snug">1000+</h4>
+                                    <h4 className="text-gray-900 text-lg sm:text-xl md:text-2xl font-bold font-manrope leading-snug">1500+</h4>
                                     <h6 className="text-gray-500 text-xs sm:text-sm font-medium leading-normal">Professionals from Top Companies</h6>
                                 </div>
                                 <div className="flex flex-col w-full justify-start items-start bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">

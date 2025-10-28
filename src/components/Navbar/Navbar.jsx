@@ -56,7 +56,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
   return (
     <nav
-      className={`fixed w-full z-30 top-${topOffset} left-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm`}
+      className={`fixed w-full z-50 top-${topOffset} left-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}

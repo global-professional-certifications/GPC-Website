@@ -11,7 +11,10 @@ export default withMT({
   theme: {
     extend: {
       fontFamily: {
-        custom: ["Roboto", ...fontFamily.serif]
+        custom: ["Roboto", ...fontFamily.serif],
+        poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        noto: ['"Noto Sans"', 'sans-serif']
       },
       colors: {
         "brand-purple": "#a622e1",
@@ -20,7 +23,10 @@ export default withMT({
         "brand-dark": "#100e28",
         "brand-contrast": "#ffcc33",
       },
-    scale: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      scale: {
         "130": "1.325",
         "175": "1.75",
         "200": "2",
