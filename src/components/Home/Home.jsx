@@ -149,7 +149,7 @@ export default function Home() {
                         <div className="flex items-center gap-3 sm:gap-4">
                             <FontAwesomeIcon icon={faStar} className="text-yellow-300 text-lg sm:text-xl md:text-2xl bg-blue-300 rounded-lg p-2" />
                             <div className="text-left">
-                                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">4.9/5</p>
+                                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">5/5</p>
                                 <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">Rating</p>
                             </div>
                         </div>
@@ -484,7 +484,14 @@ export default function Home() {
                 </div>
 
                 {/* People Image Display */}
-                <div className="w-full mx-auto">
+                <div className="w-full mx-auto mt-12">
+                    <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
+                        <p className="text-2xl md:text-4xl text-center font-bold">What Our  <span className="text-brand-blue font-normal italic">Learners </span>Say
+                        </p>
+                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl text-center text-gray-600 mt-6 px-8">
+                            Discover how GPC’s expert-led programs empower professionals to achieve global certification and career growth.
+                        </p>
+                    </div>
                     <img src={testimonialCover} alt="Testimonial Cover" className="scale-100 md:scale-90" />
                 </div>
 
@@ -497,15 +504,15 @@ export default function Home() {
 
                     {/* Testimonials Container */}
                     <div className="overflow-x-auto">
-                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-12 lg:gap-12 py-12 mx-2 md:mx-12 lg:mx-14">
+                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-12 lg:gap-12 py-12 mx-0 md:mx-12 lg:mx-14">
                             {testimonials.map((testimonial, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[320px] min-w-[320px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
+                                    className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
                                 >
                                     <div className="flex-1 flex items-start">
 
-                                        <p className="text-black text-lg font-poppins font-medium">
+                                        <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
                                             "{testimonial.quote}"
                                         </p>
                                     </div>
@@ -517,8 +524,8 @@ export default function Home() {
                                         />
 
                                         <div>
-                                            <p className="font-medium font-poppins  text-gray-900">{testimonial.name}</p>
-                                            <p className="text-sm font-poppins  text-gray-600">{testimonial.title}</p>
+                                            <p className="font-medium font-poppins  text-gray-900 text-xs md:text-sm lg:text-sm">{testimonial.name}</p>
+                                            <p className="text-xs md:text-sm lg:text-sm font-poppins text-gray-600">{testimonial.title}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -536,8 +543,6 @@ export default function Home() {
                         <FontAwesomeIcon icon={faQuoteRight} className="hidden md:block lg:block text-3xl text-black md:text-5xl" />
                     </div>
                 </div>
-
-
 
 
                 {/* FAQ Section */}
