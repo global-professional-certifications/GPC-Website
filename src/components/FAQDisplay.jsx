@@ -46,7 +46,7 @@ const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
                                         : "0px",
                             }}
                         >
-                            <p className="mt-4">{faq.answer}</p>
+                            <p className="mt-4 text-justify">{faq.answer}</p>
                         </div>
                     </div>
                 ))}

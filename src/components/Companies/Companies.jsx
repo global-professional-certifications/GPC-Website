@@ -37,6 +37,7 @@ import bse from "../../assets/Companies/BSE.png"
 import wipro from "../../assets/Companies/Wipro.png"
 import zensar from "../../assets/Companies/Zensar.png"
 import luthra from "../../assets/Companies/Luthra-Group.png"
+import riskman from "../../assets/Companies/Riskman.png"
 
 // importing marquee
 import Marquee from "../Marquee/Marquee";
@@ -45,7 +46,7 @@ export default function Companies() {
 
     const companiesOne = [jpMorganChase, atlas, gitlab, kpmg, suzlon, wellsFargo, hpLogo, pwcLogo, eyLogo, luthra]
 
-    const companiesTwo = [deloitteLogo, bdoLogo, comptrollerLogo, vodafoneLogo, deutscheBankLogo, kotakMahindraBankLogo, sbiLifeInsuranceLogo, yesBankLogo, cognizantLogo]
+    const companiesTwo = [deloitteLogo, riskman, bdoLogo, comptrollerLogo, vodafoneLogo, deutscheBankLogo, kotakMahindraBankLogo, sbiLifeInsuranceLogo, yesBankLogo, cognizantLogo]
 
     const companiesThree = [eatonLogo, courseraLogo, allstateLogo, hexawareLogo, sunPharmaseutical, powerGridLogo, bse, wipro, zensar]
 
@@ -57,8 +58,8 @@ export default function Companies() {
                 <div className="flex flex-col gap-2 justify-center items-center p-4 mb-20">
                     <p className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
                     </p>
-                    <p className="text-xs md:text-base lg:text-lg font-poppins max-w-4xl text-center text-gray-600 mt-6 ">
-                        Trusted by professionals from top multinational corporations for CIA, CISA, CRMA, and IAP certifications. Advance your career with expert-led, industry-recognized programs.
+                    <p className="text-xs md:text-base lg:text-lg font-poppins text-center text-gray-600 mt-6">
+                        Trusted by professionals from top multinational corporations for CIA, CISA, CRMA, and IAP certifications.
                     </p>
                 </div>
                 <div className="container mx-auto">

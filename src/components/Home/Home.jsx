@@ -52,7 +52,7 @@ const courseFaqs = [
     {
         question: "Who is Arpit Garg?",
         answer:
-            "Arpit Garg is widely recognized as the best faculty for CIA, CISA, CRMA, and IAP training in India. As a top-qualified audit, assurance, and risk management expert, he is renowned for his insightful teaching style, industry expertise, and high student success rates. Associated with Global Professional Certifications and recognized by IIA India, Arpit Garg is a trusted mentor for aspiring audit professionals nationwide."
+            "Arpit Garg is the Founding Partner of RiskMan Consulting and a certified CIA, CISA, CRMA, and IAP professional. He is widely recognized as the best faculty for CIA, CISA, CRMA, and IAP training in India. As a top-qualified audit, assurance, and risk management expert, he is renowned for his insightful teaching style, industry expertise, and high student success rates. Associated with Global Professional Certifications and recognized by IIA India, Arpit Garg is a trusted mentor for aspiring audit professionals nationwide."
     },
     {
         question: "Is GPC an authorized learning partner of IIA India?",
@@ -140,8 +140,8 @@ export default function Home() {
                         <div className="flex items-center gap-3 sm:gap-4">
                             <FontAwesomeIcon icon={faCertificate} className="text-red-600 text-lg sm:text-xl md:text-2xl bg-yellow-200 rounded-lg p-2" />
                             <div className="text-left">
-                                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">500+</p>
-                                <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">Certifications</p>
+                                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">250+</p>
+                                <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">CIAs</p>
                             </div>
                         </div>
 
@@ -156,7 +156,6 @@ export default function Home() {
 
                     </div>
                 </div>
-
 
 
                 {/* Company Marquee Section */}
@@ -392,7 +391,7 @@ export default function Home() {
                             {/* Buttons */}
                             <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-6 mt-8 px-2 md:px-8">
                                 <a
-                                    href="https://www.youtube.com/@global-professional-cert"
+                                    href="https://youtu.be/XNnXkttYQUY?si=_sHWBCLvDgFtGIZD"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
@@ -444,7 +443,7 @@ export default function Home() {
                                 <span className="font-semibold"> IIA India Authorized Learning Partner</span>.
                             </p>
                             <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
-                                <a href="https://www.youtube.com/@global-professional-cert" target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white text-sm py-2 px-4 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 inline-block transform origin-top"
+                                <a href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz" target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
                                 >
                                     Watch Video
                                 </a>
@@ -536,7 +535,7 @@ export default function Home() {
                     {/* Bottom CTA and Quote Icon */}
                     <div className="flex justify-center md:justify-between lg:justify-between mt-2 md:mt-8 lg:mt-8 items-center">
                         <NavLink to="/success" className="mt-2">
-                            <button className="bg-brand-blue text-white py-3 px-8 rounded-full font-semibold hover:bg-brand-purple hover:scale-105 transition-all duration-300 shadow-lg">
+                            <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
                                 Read More Success Stories
                             </button>
                         </NavLink>
@@ -593,7 +592,7 @@ export default function Home() {
                             {/* Button */}
                             <Link
                                 to="/contact"
-                                className="bg-brand-blue text-sm md:text-md hover:bg-brand-purple text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300"
+                                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple  transition-all duration-300"
                             >
                                 Contact Us
                             </Link>
