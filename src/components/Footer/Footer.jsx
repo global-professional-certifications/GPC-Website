@@ -1,82 +1,162 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
 import logoOne from "../../assets/logo-1.png";
-import wappLogo from "../../assets/GPC_WhatsApp_Community_White.webp";
-import { AiOutlineYoutube } from "react-icons/ai";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { AiOutlineLinkedin } from "react-icons/ai";
+import wappLogo from "../../assets/Gpc_Whatsapp_Community_qr.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 
 const Footer = () => {
     return (
-        <section className="font-sans py-10 bg-gray-900 sm:pt-16 lg:pt-24">
-            <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
-                    <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-                            <Link to="/"><img className="h-20" src={logoOne} alt="Global Professoinal Certifications logo" /></Link>
-                        <ul className="flex items-center space-x-3 ml-10">
-                            <li><Link to="https://www.youtube.com/watch?v=2FWaO_Cf0eg" target="blank"><AiOutlineYoutube className="text-white h-7 w-7 cursor-pointer"/></Link></li>
-                            <li><Link to="https://www.instagram.com/global__professionals/" target="blank"><AiOutlineInstagram className="text-white h-6 w-6 cursor-pointer"/></Link></li>
-                            <li><Link to="https://www.linkedin.com/company/global-professional-certifications/" target="blank"><AiOutlineLinkedin className="text-white h-6 w-6 cursor-pointer"/></Link></li>
+        <footer className="font-sans bg-black text-white pb-8 pt-12">
+            <div className="px-6 mx-auto max-w-7xl">
+                {/* GRID SECTION */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12">
+
+                    {/* LOGO & ADDRESS */}
+                    <div className="lg:col-span-2">
+                        <Link to="/" className="inline-block">
+                            <img
+                                src={logoOne}
+                                alt="Global Professional Certifications logo"
+                                className="h-26 sm:h-28 w-auto object-contain -ml-6"
+                            />
+                        </Link>
+
+                        <div className="mt-2 pr-8 space-y-4 text-gray-500 text-xs">
+                            <p>
+                                Global Professional Certifications empowers auditors, risk managers, and advisors worldwide with industry-accredited courses and expert mentorship.
+                                Join a thriving community and unlock new career heights with globally recognized certifications like CIA, CRMA, IAP, and CISA.
+                            </p>
+                        </div>
+
+                        {/* SOCIAL ICONS */}
+                        <ul className="flex items-center gap-6 mt-12">
+                            <li>
+                                <Link
+                                    to="https://www.youtube.com/watch?v=2FWaO_Cf0eg"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
+                                >
+                                    <AiOutlineYoutube className="h-10 w-10" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="https://www.instagram.com/global__professionals/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
+                                >
+                                    <AiOutlineInstagram className="h-9 w-9" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="https://www.linkedin.com/company/global-professional-certifications/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
+                                >
+                                    <AiOutlineLinkedin className="h-9 w-9" />
+                                </Link>
+                            </li>
                         </ul>
+
                     </div>
 
-                    <div>
-                        <p className="text-sm font-semibold tracking-widest text-gray-50 uppercase">Company</p>
-                        <ul className="mt-6 space-y-4">
-                            <li>
-                                <NavLink to="courses" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Courses </NavLink>
-                            </li>
 
-                            <li>
-                                <NavLink to="success" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Success Stories </NavLink>
-                            </li>
+                    <div className="lg:col-span-2 grid grid-cols-2 gap-8 sm:gap-12 mt-2">
+                        {/* COMPANY LINKS */}
+                        <div>
+                            <p className="text-sm uppercase text-white tracking-widest mb-4">Company</p>
+                            <ul className="space-y-3">
+                                {["courses", "success", "about", "contact"].map((item) => (
+                                    <li key={item}>
+                                        <NavLink
+                                            to={item}
+                                            className={({ isActive }) =>
+                                                `text-base ${isActive ? "text-[#a622e1]" : "text-gray-500"}  transition-all hover:text-brand-purple duration-300 inline-block`
+                                            }
 
-                            <li>
-                                <NavLink to="about" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> About </NavLink>
-                            </li>
+                                        >
+                                            {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                            <li>
-                                <NavLink to="contact" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Contact </NavLink>
-                            </li>
-                        </ul>
+                        {/* LEGAL LINKS */}
+                        <div>
+                            <p className="text-sm uppercase tracking-widest mb-4">Legal</p>
+                            <ul className="space-y-3">
+                                {[
+                                    ["refund", "Refund Policy"],
+                                    ["/terms", "Terms & Conditions"],
+                                    ["privacy", "Privacy Policy"],
+                                    ["faq", "FAQ"],
+                                    ["glossary", "Glossary"],
+                                ].map(([path, label]) => (
+                                    <li key={path}>
+                                        <NavLink
+                                            to={path}
+                                            className={({ isActive }) =>
+                                                `text-base ${isActive ? "text-[#a622e1]" : "text-gray-500"}  transition-all hover:text-brand-purple duration-300 inline-block`
+                                            }
+                                        >
+                                            {label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
-                    <div>
-                        <p className="text-sm font-semibold tracking-widest text-gray-50 uppercase">legal</p>
+                    {/* Contacts and QR */}
 
-                        <ul className="mt-6 space-y-4">
-                            <li>
-                                <NavLink to="refund" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Refund Policy </NavLink>
-                            </li>
+                    <div className="lg:col-span-2 flex flex-col items-start lg:items-center">
+                        <div className="mb-12 mt-1.5 space-y-4 text-sm leading-relaxed text-left">
+                            <div className="flex items-start gap-3">
+                                <FontAwesomeIcon icon={faLocationDot} className="text-white mt-1.5" />
+                                <p>
+                                    Innov8 Building, Orchid Centre, <br />Golf course road, Gurugram, <br />Haryana, India - 122022
+                                </p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <FontAwesomeIcon icon={faPhone} className="text-white mt-1.5" />
+                                <a href="tel:+918736083099" className=" hover:text-brand-purple transition-all duration-300">&nbsp;&nbsp;+91 87360 83099</a>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <FontAwesomeIcon icon={faEnvelope} className="text-white mt-1.5" />
+                                <a href="mailto:cia@globalprofessionalcertifications.com" className="hover:text-brand-purple transition-all duration-300">&nbsp;&nbsp;cia@globalprofessionalcertifications.com</a>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-6">
+                            <p className="text-xs text-gray-400 text-left">
+                                Scan To Join Our<br />  WhatsApp Community
+                            </p>
+                            <img
+                                src={wappLogo}
+                                alt="WhatsApp community QR code"
+                                className="h-24 w-24 object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
 
-                            <li>
-                                <NavLink to="/terms" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Terms & Conditions </NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to="privacy" title="" className={({isActive}) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Privacy Policy </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="faq" title="" className={({ isActive }) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> FAQ </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="glossary" title="" className={({ isActive }) => `flex text-base ${isActive ? "text-brand-purple" : "text-gray-50"} transition-all duration-200 hover:text-[#a622e1]`}> Glossary </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
-                        <p className="text-sm font-semibold tracking-widest text-gray-50 uppercase">JOIN OUR COMMUNITY</p>
-                        <img src={wappLogo} className="h-32 w-32 pt-2" alt="whatsapp group QR code"></img>
                     </div>
                 </div>
 
-                <hr className="mt-16 mb-10 border-gray-200" />
+                <hr className="mt-14 mb-6 border-gray-700" />
 
-                <p className="text-sm text-center text-gray-50 font-semibold">© Copyright 2025, All Rights Reserved by Global Professional Certifications</p>
+                {/* COPYRIGHT */}
+                <p className="text-sm text-center text-gray-400">
+                    © {new Date().getFullYear()} Global Professional Certifications. All Rights Reserved.
+                </p>
             </div>
-        </section>
-    )
-}
+        </footer>
+    );
+};
 
 export default Footer;

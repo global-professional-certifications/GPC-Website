@@ -1,77 +1,83 @@
 import React from "react";
 
 // importing company logos
-import emami from "../../assets/Emami-bgremoved.png";
-import atlas from "../../assets/atlas.png";
-import gitlab from "../../assets/Gitlab-bgremoved.png";
-import kpmg from "../../assets/kpmg.png";
-import suzlon from "../../assets/Suzlon-bgremoved.png";
-import wellsFargo from "../../assets/wells-fargo.webp";
-import hpLogo from "../../assets/hp-logo.png";
-import pwcLogo from "../../assets/PWC-logo.svg";
-import eyLogo from "../../assets/EY-logo.png";
-import deloitteLogo from "../../assets/Deloitte-logo.png";
-import bdoLogo from "../../assets/BDO-logo-bgremoved.webp"
-import comptrollerLogo from "../../assets/Comptroller-logo-bgremoved.png";
-import vodafoneLogo from "../../assets/Vodafone_Logo.png";
-import deutscheBankLogo from "../../assets/DeutscheBank-logo.png";
-import kotakMahindraBankLogo from "../../assets/Kotak-mahindra-bank-logo.png"
-import sbiLifeInsuranceLogo from "../../assets/SBI-life-insurance.png"
-import yesBankLogo from "../../assets/yes-bank-logo.png"
-import courseraLogo from "../../assets/coursera-logo.png"
-import eatonLogo from "../../assets/eaton-logo-mobile.png"
-import cognizantLogo from "../../assets/Cognizant-Logo.png"
-import allstateLogo from "../../assets/allstate-logo.png"
-import hexawareLogo from "../../assets/hexaware-logo.png"
-import truLogo from "../../assets/tru-logo.png"
-import powerGridLogo from "../../assets/Power-Grid-Crop.png"
-import rblBank from "../../assets/RBL_Bank.png"
-import londonStockExchange from "../../assets/London_Stock_Exchange.png"
-import orix from "../../assets/Orix.png"
-import sunPharmaseutical from "../../assets/Sun_Pharmaseutical.png"
-import jpMorganChase from "../../assets/JP_Morgan_Chase.png"
-import hsbc from "../../assets/HSBC.png"
-import gspu from "../../assets/Gspu.png"
-import equitas from "../../assets/Equitas.png"
-import bse from "../../assets/BSE.png"
-import wipro from "../../assets/Wipro.png"
-import zensar from "../../assets/Zensar.png"
-import luthra from "../../assets/luthra_logo.png"
+import emami from "../../assets/Companies/Emami.png";
+import atlas from "../../assets/Companies/Atlas.png";
+import gitlab from "../../assets/Companies/Gitlab.png";
+import wellsFargo from "../../assets/Companies/Wells-Fargo.png";
+import eyLogo from "../../assets/Companies/EY.png";
+import bdoLogo from "../../assets/Companies/BDO.png"
+import vodafoneLogo from "../../assets/Companies/Vodafone.png";
+import kpmg from "../../assets/Companies/KPMG.png";
+import suzlon from "../../assets/Companies/Suzlon.png";
+import hpLogo from "../../assets/Companies/HP.png";
+import deloitteLogo from "../../assets/Companies/Deloitte.png";
+import deutscheBankLogo from "../../assets/Companies/Deutsche-Bank.png";
+import courseraLogo from "../../assets/Companies/Coursera.png"
+import pwcLogo from "../../assets/Companies/PWC.png";
+import comptrollerLogo from "../../assets/Companies/Comptroller.png";
+import eatonLogo from "../../assets/Companies/Eaton.png"
+import cognizantLogo from "../../assets/Companies/Cognizant.png"
+import hexawareLogo from "../../assets/Companies/Hexaware.png"
+import orix from "../../assets/Companies/Orix.png"
+import jpMorganChase from "../../assets/Companies/JP-Morgan-Chase.png"
+import kotakMahindraBankLogo from "../../assets/Companies/Kotak.png"
+import sbiLifeInsuranceLogo from "../../assets/Companies/SBI.png"
+import yesBankLogo from "../../assets/Companies/Yes-Bank.png"
+import allstateLogo from "../../assets/Companies/Allstate-India.png"
+import truLogo from "../../assets/Companies/Tru.png"
+import powerGridLogo from "../../assets/Companies/Power-Grid.png"
+import rblBank from "../../assets/Companies/RBL.png"
+import londonStockExchange from "../../assets/Companies/London-Stock-Exchange.png"
+import sunPharmaseutical from "../../assets/Companies/Sun-Pharma.png"
+import hsbc from "../../assets/Companies/HSBC.png"
+import gspu from "../../assets/Companies/GSPU.png"
+import equitas from "../../assets/Companies/Equitas.png"
+import bse from "../../assets/Companies/BSE.png"
+import wipro from "../../assets/Companies/Wipro.png"
+import zensar from "../../assets/Companies/Zensar.png"
+import luthra from "../../assets/Companies/Luthra-Group.png"
 
 // importing marquee
 import Marquee from "../Marquee/Marquee";
 
 export default function Companies() {
 
-    const companiesOne = [emami, atlas, gitlab, kpmg, suzlon, wellsFargo, hpLogo, pwcLogo, eyLogo, luthra]
+    const companiesOne = [jpMorganChase, atlas, gitlab, kpmg, suzlon, wellsFargo, hpLogo, pwcLogo, eyLogo, luthra]
 
-    const companiesTwo = [deloitteLogo, bdoLogo, comptrollerLogo, vodafoneLogo, deutscheBankLogo, kotakMahindraBankLogo, sbiLifeInsuranceLogo, yesBankLogo, courseraLogo]
+    const companiesTwo = [deloitteLogo, bdoLogo, comptrollerLogo, vodafoneLogo, deutscheBankLogo, kotakMahindraBankLogo, sbiLifeInsuranceLogo, yesBankLogo, cognizantLogo]
 
-    const companiesThree = [eatonLogo, cognizantLogo, allstateLogo, hexawareLogo, truLogo, powerGridLogo, bse, wipro, zensar]
+    const companiesThree = [eatonLogo, courseraLogo, allstateLogo, hexawareLogo, sunPharmaseutical, powerGridLogo, bse, wipro, zensar]
 
-    const companiesFour = [rblBank, londonStockExchange, orix, sunPharmaseutical, jpMorganChase, hsbc, gspu, equitas]
+    const companiesFour = [rblBank, londonStockExchange, orix, truLogo, emami, hsbc, gspu, equitas]
 
     return (
         <>
-            <div className="pt-12 md:pt-32 pb-20 mb-10 md:mb-20 max-w-[70rem] mx-auto flex flex-col items-center overflow-x-hidden">
-                <h1 className="text-xl md:text-4xl mb-12 font-bold text-brand-blue text-center">Our students are from Top Corporates</h1>
+            <div className="sm:pt-4 md:pt-24 pb-8 md:pb-20 mb-10 md:mb-20 **max-w-6xl** mx-auto flex flex-col items-center overflow-x-hidden">
+                <div className="flex flex-col gap-2 justify-center items-center p-4 mb-20">
+                    <p className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
+                    </p>
+                    <p className="text-xs md:text-base lg:text-lg font-poppins max-w-4xl text-center text-gray-600 mt-6 ">
+                        Trusted by professionals from top multinational corporations for CIA, CISA, CRMA, and IAP certifications. Advance your career with expert-led, industry-recognized programs.
+                    </p>
+                </div>
                 <div className="container mx-auto">
-                    <div className="flex myGradient">
+                    <div className="flex myGradient ">
                         <Marquee companies={companiesOne} start={0} end={"-100%"} />
                     </div>
                 </div>
-                <div className="container mx-auto mt-20">
-                    <div className="flex myGradient">
+                <div className="container mx-auto mt-8">
+                    <div className="flex myGradient ">
                         <Marquee companies={companiesTwo} start={"-100%"} end={0} />
                     </div>
                 </div>
-                <div className="container mx-auto mt-20">
-                    <div className="flex myGradient">
+                <div className="container mx-auto mt-8">
+                    <div className="flex myGradient ">
                         <Marquee companies={companiesThree} start={0} end={"-100%"} />
                     </div>
                 </div>
-                <div className="container mx-auto mt-20">
-                    <div className="flex myGradient">
+                <div className="container mx-auto mt-8">
+                    <div className="flex myGradient ">
                         <Marquee companies={companiesFour} start={"-100%"} end={0} />
                     </div>
                 </div>
