@@ -291,8 +291,8 @@ export default function Home() {
                             </p>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0">
                                 Unlock global career opportunities as a Certified Internal Auditor (CIA)
-                                with GPC. Get detailed insights on course structure, expert mentorship,
-                                and global recognition in our downloadable brochure.
+                                with Global Professional Certifications (GPC). Get detailed insights on course structure, expert mentorship,
+                                and global recognition in our downloadable brochure
                             </p>
                             <a
                                 href={brochure}
@@ -413,7 +413,7 @@ export default function Home() {
                         {/* Right Text Section */}
                         <div className="max-w-lg text-center md:text-left px-4 md:px-0">
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                At Global Professional Certifications (GPC), we are dedicated to empowering professionals worldwide by providing top-tier certification programs that unlock career growth, enhance expertise, and elevate industry standards.
+                                At Global Professional Certifications (GPC), we are dedicated to empowering professionals worldwide by providing top-tier certification programs that unlock career growth, enhance expertise, and elevate industry standards
                             </p>
                         </div>
                     </div>
@@ -440,7 +440,7 @@ export default function Home() {
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                                 Mr. Mukundan K.V, CEO of IIA India, presents the official accreditation certificate to
                                 Arpit Garg, GPC mentor — marking Global Professional Certifications as an
-                                <span className="font-semibold"> IIA India Authorized Learning Partner</span>.
+                                <span className="font-semibold"> IIA India Authorized Learning Partner</span>
                             </p>
                             <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
                                 <a href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz" target="_blank" rel="noopener noreferrer" className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
@@ -487,8 +487,8 @@ export default function Home() {
                     <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
                         <p className="text-2xl md:text-4xl text-center font-bold">What Our  <span className="text-brand-blue font-normal italic">Learners </span>Say
                         </p>
-                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl text-center text-gray-600 mt-6 px-8">
-                            Discover how GPC’s expert-led programs empower professionals to achieve global certification and career growth.
+                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
+                            Discover how Global Professional Certifications' expert-led programs empower professionals to achieve global certification and career growth
                         </p>
                     </div>
                     <img src={testimonialCover} alt="Testimonial Cover" className="scale-100 md:scale-90" />
