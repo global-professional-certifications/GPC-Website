@@ -162,7 +162,7 @@ const Navbar = ({ topOffset = 0 }) => {
           }`}
       >
         <ul className="flex flex-col items-center py-4 space-y-3">
-          {["Courses", "Events", "About", "Success", "Contact"].map((item, index) => (
+          {["Courses", "Events", "About", "Success", "Contact", "Blogs"].map((item, index) => (
             <li key={index} className="w-full text-center">
               <NavLink
                 onClick={() => setIsOpen(false)}

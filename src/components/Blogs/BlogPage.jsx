@@ -34,7 +34,7 @@ const BlogPage = () => {
         <>
             <div className="relative min-h-screen w-full">
                 <div class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
-                <div className='flex flex-col justify-start mt-36 mx-52 px-24'>
+                <div className='flex flex-col justify-start mt-36 mx-6 md:mx-52 lg:mx-52 px-4 md:px-24 lg:px-24'>
 
                     {/* Blog Title */}
                     <h1 className='text-3xl font-bold py-4'>{title}</h1>
@@ -57,7 +57,7 @@ const BlogPage = () => {
                     </div>
 
                     {/* Blog Content */}
-                    <div className='text-xl text-gray-800 mt-12'>
+                    <div className='text-lg md:text-xl lg:text-xl text-gray-800 mt-12'>
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
@@ -80,15 +80,15 @@ const BlogPage = () => {
                     </div>
 
                     {/* Author Details */}
-                    <div className='my-12 bg-gray-200 rounded-lg px-16 py-10 flex flex flex justify-center items-center gap-12'>
-                        <div className='w-28 h-28 rounded-full overflow-hidden flex-shrink-0'>
+                    <div className='my-6 md:my-12 lg:my-12 bg-gray-200 rounded-lg px-6 md:px-16 lg:px-16 py-10 flex flex-col md:flex-row lg:flex-row justify-center items-center gap-12'>
+                        <div className='w-20 h-20 md:w-28 md:h-28 lg:w-28 lg:h-28 rounded-full overflow-hidden flex-shrink-0'>
                             <img src={authorImage} alt={author} className='w-full h-full object-cover' />
                         </div>
 
-                        <div className='flex flex-col gap-1'>
+                        <div className='flex flex-col justify-center items-center md:justify-start md:items-start lg:justify-start lg:items-start gap-1'>
                             <p className='text-base text-gray-600'>Written By</p>
                             <p className='text-xl font-semibold'>{author}</p>
-                            <p className='text-base text-gray-600 mt-6'>
+                            <p className='text-xs md:text-sm lg:text-sm text-center md:text-left lg:text-left text-gray-600 mt-6'>
                                 Arpit Garg (CA, CIA, CRMA, CISA) is an IIA-recognized faculty and partner at RiskMan.
                                 He has pioneered CIA education in India, training over 1,500 audit professionals and students in the last 5 years.
                             </p>
@@ -99,7 +99,7 @@ const BlogPage = () => {
                 </div>
 
                 {/* Related Blogs */}
-                <div className='mt-12 px-24'>
+                <div className='mt-12 px-24 hidden md:block lg:block'>
                     <h3 className='text-3xl font-bold'>Related Blogs</h3>
                     <div className='grid grid-cols-3 gap-4 my-12'>
                         {blogs
