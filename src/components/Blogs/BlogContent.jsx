@@ -1,4 +1,3 @@
-import cover from '../../assets/cia-hero.jpg'
 import authorImage from '../../assets/Arpit-Garg.jpg'
 import blog1 from '../../assets/blog-1.png'
 import blog2 from '../../assets/blog-2.png'

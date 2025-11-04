@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays, faUser, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import remarkBreaks from 'remark-breaks'
 import { blogs } from '../Blogs/BlogContent.jsx'
 import { NavLink } from 'react-router-dom'
 
