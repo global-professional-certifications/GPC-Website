@@ -41,21 +41,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
 <!-- Zoho SalesIQ Chatbot -->
 <script>
   window.$zoho = window.$zoho || {};
   $zoho.salesiq = $zoho.salesiq || {
-    ready: function () {
-      // Prevent auto-popup on page load
-      $zoho.salesiq.floatwindow.visible("hide");
-      $zoho.salesiq.chat.autopopup.disable();
-    }
+    ready: function () { }
   };
 </script>
 <script id="zsiqscript"
   src="https://salesiq.zohopublic.in/widget?wc=siqf35804132e65c49b7d29d4a0685cd42d624236b97d32b42c0c692f0601766c17f529b5932a53b4ef8a440086e89cf8ae"
   defer>
-  </script>
+</script>
 
   </body>
 </html>

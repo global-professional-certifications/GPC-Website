@@ -68,7 +68,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {["Courses", "Events", "About", "Success", "Contact"].map((item, index) =>
+          {["Courses", "Events", "About", "Success", "Contact", "Blogs"].map((item, index) =>
             item === "Courses" ? (
               <div
                 key={index}
