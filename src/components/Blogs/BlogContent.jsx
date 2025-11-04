@@ -1,4 +1,4 @@
-import authorImage from '../../assets/Arpit-Garg.jpg'
+import authorImage from '../../assets/arpit-garg.png'
 import blog1 from '../../assets/blog-1.png'
 import blog2 from '../../assets/blog-2.png'
 import blog3 from '../../assets/blog-3.png'
