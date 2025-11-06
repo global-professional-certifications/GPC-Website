@@ -19,7 +19,6 @@ import choose from "../../assets/exam-3.png";
 import flowchartWeb from "../../assets/how-it-works.png";
 import flowchartMobile1 from "../../assets/how-it-works-1.png";
 import flowchartMobile2 from "../../assets/how-it-works-2.png";
-import feedbackPerson from "../../assets/user-2.jpg";
 import FAQDisplay from "../FAQDisplay.jsx";
 import faqImage from "../../assets/our-mission-1.webp";
 import testimonialCover from "../../assets/testimonial-cover.png";
@@ -465,7 +464,7 @@ export default function Home() {
 
                 <div className="w-full mb-8">
                     <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-                        <p className="text-2xl md:text-4xl text-center font-bold">How It <span className="text-brand-blue font-normal italic">Works?</span>
+                        <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">How It <span className="text-brand-blue font-normal italic">Works?</span>
                         </p>
                         <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6">
                             Your Success Path, Simplified<br />Your Certification Journey — From Learning to Leadership
@@ -546,7 +545,7 @@ export default function Home() {
 
                 {/* FAQ Section */}
 
-                <div className="mt-10 px-8 mb-[220px] lg:px-24">
+                <div className="mt-10 px-8 pb-40 md:pb-[220px] lg:px-24">
                     <div className="flex flex-col lg:flex-row items-center gap-20 md:gap-12">
 
                         {/* Image Section */}
@@ -577,7 +576,7 @@ export default function Home() {
                 {/* Radial Gradient Banner */}
 
                 <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 -top-32 z-20 h-56 sm:h-32 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full max-w-3xl flex items-center justify-center scale-90 md:scale-100">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 sm:h-32 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full max-w-3xl flex items-center justify-center scale-90 md:scale-100">
                         <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-12">
                             {/* Text Content */}
                             <div className="text-center md:text-left mb-6 md:mb-0">
@@ -600,11 +599,7 @@ export default function Home() {
                     </div>
 
                 </div>
-                <div className="bg-black h-28 relative"></div>
-
-                {/* <Benefits />
-            <Training />
-            <Demand /> */}
+                <div className="bg-black h-16 md:h-36 relative"></div>
             </div >
         </>
     )
