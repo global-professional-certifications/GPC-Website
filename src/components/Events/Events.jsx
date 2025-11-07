@@ -206,24 +206,25 @@ export default function Events() {
                     </h2>
 
                     <div className="mt-8">
-                        <Link
-                            to="/contact"
+                        <button
+                            onClick={() => {
+                                document.getElementById("past-section").scrollIntoView({ behavior: "smooth" });
+                            }}
                             className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white 
                                             rounded-lg shadow-lg transition-all duration-300 
                                             bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
-                                            hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                                            hover:scale-105 hover:shadow-xl focus:outline-none"
                         >
-                            Contact Us
-                        </Link>
-                        <Link to>
-                        </Link>
+                            See Our Events
+
+                        </button>
                     </div>
                 </div>
             </section>
 
             {/* Mobile Version */}
 
-            <section className="md:hidden bg-black mt-16">
+            <section className="flex flex-col justify-center items-center md:hidden bg-black mt-16">
                 <div className="flex flex-col justify-center items-center text-white pt-24 px-8">
                     <h1 className="text-2xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
                     <h2 className="text-xs font-light text-gray-300 font-poppins mt-4 text-center">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
@@ -231,6 +232,19 @@ export default function Events() {
                 <div className="w-full h-auto px-8 rounded-xl mt-12">
                     <img src={heroImageMobile} alt="Hero Image" className="w-full h-full object-cover rounded-xl" />
                 </div>
+                <button
+                    onClick={() => {
+                        document.getElementById("past-section").scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="px-8 py-3 text-sm font-semibold text-white 
+                                            rounded-lg shadow-lg transition-all duration-300 
+                                            bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+                                            hover:scale-105 hover:shadow-xl focus:outline-none mt-12"
+                >
+                    See Our Events
+
+                </button>
+
 
             </section>
 
@@ -413,7 +427,7 @@ export default function Events() {
 
             {/* Past Events */}
 
-            <section className="bg-white">
+            <section id="past-section" className="bg-white">
                 <div className="flex flex-col items-center max-w-[77rem] mx-auto gap-6 py-4 md:py-16">
 
                     <div className="flex flex-col gap-2 justify-center items-center p-4 md:mb-6">
@@ -634,7 +648,7 @@ export default function Events() {
                                             <p className="text-gray-600">{evt.date}</p>
                                         </div>
                                         <button
-                                            onClick={() => setActiveEvent(event.id)}
+                                            onClick={() => setActiveEvent(evt.id)}
                                             className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full"
                                         >
                                             See More Images
