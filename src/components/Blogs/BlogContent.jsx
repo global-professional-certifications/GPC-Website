@@ -38,7 +38,7 @@ export const blogs = [
             keywords:
                 "Certified Internal Auditor India, CIA exam preparation, internal audit certification, audit career advancement, CIA eligibility India, global audit standards",
             image: blog1,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/how-to-become-certified-internal-auditor-india",
             primaryKeyword: "Certified Internal Auditor India",
             lsiKeywords: ["IIA exam preparation", "audit career advancement", "internal audit certification", "global audit standards", "CIA challenge exam tips", "audit professional salary India", "internal audit jobs in India"],
         },
@@ -158,7 +158,7 @@ Certified CIAs enjoy a **significant salary premium**, with many also moving int
             keywords:
                 "risk management certification India, CRMA vs CIA vs CISA vs IAP, audit job market trends India, IT audit certification India, internal audit practitioner guide, audit career growth",
             image: blog2,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/top-10-reasons-to-pursue-cia-qualification",
             primaryKeyword: "Risk Management Certification India",
             lsiKeywords: ["CRMA vs CIA vs CISA vs IAP", "audit job market trends India", "risk assurance professional", "IT audit certification India", "internal audit practitioner guide", "audit career growth", "global audit standards"],
         },
@@ -224,7 +224,7 @@ A5: Increasingly, yes. Many MNCs and Indian enterprises prioritize these credent
             keywords:
                 "IIA authorized training India, audit career advancement, internal audit mentorship, recognized audit certification, global auditor jobs, audit interview success stories",
             image: blog3,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/cia-vs-cpa-which-certification-to-choose",
             primaryKeyword: "CIA Challenge Exam India",
             lsiKeywords: ["audit mentor Arpit Garg, how to pass CIA exam first try", "internal audit certification tips", "audit exam preparation, auditor exam experience", "successful audit study plan", "real-life exam guide", "audit coaching India"],
         },
@@ -286,7 +286,7 @@ A5: You may have additional opportunities, but each attempt requires a new regis
             keywords:
                 "IIA authorized training India, audit career advancement, internal audit mentorship, recognized audit certification, global auditor jobs, audit interview success stories",
             image: blog4,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/why-choose-iia-authorized-training-for-your-audit-career",
             primaryKeyword: "IIA authorized training India",
             lsiKeywords: ["audit career advancement", "internal audit mentorship", "recognized audit certification", "global auditor jobs", "audit interview success stories", "audit exam tips", "practical audit skills", "industry faculty mentors"],
         },
@@ -348,7 +348,7 @@ A5: Employers see authorized certification as a mark of reliability and expertis
             keywords:
                 "audit certification trends 2025, IT audit certification India, CISA exam eligibility, CRMA course benefits, risk and advisory career India, IAP for graduates, technology auditor jobs",
             image: blog5,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/top-audit-certification-trends-in-2025",
             primaryKeyword: "audit certification trends 2025",
             lsiKeywords: ["IT audit certification India", "CISA exam eligibility", "CRMA course benefits", "risk and advisory career India", "IAP for graduates", "remote audit exam India", "technology auditor jobs", "enterprise risk management", "cybersecurity auditing", "internal controls automation"],
         },
@@ -424,7 +424,7 @@ A5: Visit the IIA India website or consult with authorized training centers list
             keywords:
                 "AI in internal audit India, audit automation, risk management AI tools, audit data analytics, digital auditing careers, audit AI trends, technology upskilling for auditors",
             image: blog6,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/how-is-ai-transforming-internal-audit-and-risk-management-careers",
             primaryKeyword: "AI in internal audit India",
             lsiKeywords: ["audit automation", "risk management AI tools", "audit data analytics", "digital auditing careers", "predictive risk assessment", "machine learning in audit", "technology upskilling for auditors", "audit AI trends"],
         },
@@ -482,7 +482,7 @@ A5: Attend webinars, online courses, and participate in technology-focused works
             keywords:
                 "IT and cybersecurity in audit India, IT audit certification, cyber risk management, CISA, CIA, cybersecurity audit career, audit skills 2025, technology risk, cyber certifications India",
             image: blog7,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/the-rise-of-it-and-cybersecurity-in-audit-why-you-need-to-upgrade-your-knowledge-in-2025",
             primaryKeyword: "IT and cybersecurity in audit India",
             lsiKeywords: ["IT audit certification", "cyber risk management", "CISA", "CIA", "cybersecurity audit career", "technology risk", "digital transformation audit", "cyber certifications India", "audit skills 2025", "cyber risk in business", "audit upskilling"],
         },
@@ -570,7 +570,7 @@ A5: Industry programs offer flexible online courses, weekend intensives, and mic
             keywords:
                 "",
             image: blog8,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/cracking-the-cia-challenge-exam-advanced-strategies-and-pitfalls",
             primaryKeyword: "CIA Challenge Exam preparation India",
             lsiKeywords: ["CIA Challenge strategies", "working professional audit exam", "global audit standards", "audit exam pitfalls", "advanced internal audit certification", "scenario-based audit exam", "exam time management", "IIA eligibility India", "microlearning for auditors"],
         },
@@ -660,7 +660,7 @@ A5: Most need at least 6–10 weeks of consistent, targeted study to cover the f
             keywords:
                 "CRMA certification India, enterprise risk consulting, strategic risk advisory, ERM training, COSO, ISO 31000, CRMA program benefits, risk management upskilling, scenario risk analysis",
             image: blog9,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/from-audit-fundamentals-to-crma-mastery",
             primaryKeyword: "CRMA certification India",
             lsiKeywords: ["enterprise risk consulting", "strategic risk advisory", "ERM training", "COSO", "ISO 31000", "risk management upskilling", "CRMA program benefits", "internal audit management", "board-level risk reporting", "scenario risk analysis"],
         },
@@ -748,7 +748,7 @@ A5: Absolutely—expect scenario analyses, mock risk reports, and interaction wi
             keywords:
                 "CISA for non-technical auditors India, IT control audit careers, cybersecurity assurance, data governance jobs, audit upskilling, digital assurance certification, process automation, audit career transformation",
             image: blog10,
-            url: "",
+            url: "https://www.globalprofessionalcertifications.com/blogs/cisa-for-non-tech-auditors-demystifying-it-control-audits",
             primaryKeyword: "CISA for non-technical auditors India",
             lsiKeywords: ["IT control audit careers", "cybersecurity assurance", "data governance jobs", "audit upskilling", "CISA exam for non-tech", "digital assurance certification", "business continuity audit", "process automation", "cyber risk roles", "audit career transformation"],
         },

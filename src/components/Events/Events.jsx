@@ -1,11 +1,9 @@
-import React, {useState, useCallback, useEffect, act} from "react";
+import React, { useState, useCallback, useEffect, act } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import iiaEvent from "../../assets/iia-event.jpeg";
-import { FiPhone } from "react-icons/fi";
-import { BsCalendarDate } from "react-icons/bs";
 import wofaBanner from "../../assets/wofa-banner.webp";
 import iiaKolkataBanner from "../../assets/iia-kolkata-banner.webp";
 import iiaBengaluruBanner from "../../assets/iia-bengaluru-banner.webp";
@@ -25,6 +23,8 @@ import Countdown from "react-countdown";
 import eventThumbnail from '../../assets/event-thumbnail.png'
 import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages } from "../../../eventImages";
 import EventCarousel from "../Carousels/EventCarousel";
+import heroImage from '../../assets/event-hero-image-1.png'
+import heroImageMobile from '../../assets/event-hero.jpg'
 
 const courseFaqs = [
     {
@@ -50,7 +50,7 @@ const courseFaqs = [
 ];
 
 
-export default function Events(){
+export default function Events() {
 
     const events = [
         {
@@ -91,7 +91,7 @@ export default function Events(){
     const [activeEvent, setActiveEvent] = useState(null)
 
     const handleEscapeKey = useCallback((event) => {
-        if (event.key === "Escape"){
+        if (event.key === "Escape") {
             setActiveEvent(null)
         }
     }, [])
@@ -101,7 +101,7 @@ export default function Events(){
     // absolute top-1 right-2
 
     useEffect(() => {
-        if (activeEvent){
+        if (activeEvent) {
             document.body.style.overflow = "hidden"
             window.addEventListener("keydown", handleEscapeKey)
         } else {
@@ -117,7 +117,7 @@ export default function Events(){
 
     // detects if the window is in mobile view or desktop view
     // let windowSize = window.innerWidth
-    
+
     const [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
         const handleResize = () => {
@@ -159,11 +159,11 @@ export default function Events(){
 
     const eventDate = new Date("2025-11-15T18:59:59");
     const eventCard = {
-        title: "Title of the event",
+        title: "In Conversation with the IIA India CEO",
         date: "15",
         month: "Nov",
-        time: "8:00 pm",
-        venue: "Virtual Event (Zoom Session)",
+        time: "To be announced",
+        venue: "To be announced",
         thumbnail: eventThumbnail
     }
 
@@ -180,47 +180,80 @@ export default function Events(){
 
             {/* Hero Section */}
 
-            {!isMobile ? <div className="">
-                <div className="relative flex h-screen bg-[url('assets/iia-conference.jpg')] bg-cover bg-center">
-                    
-                    {/* Dark overlay */} 
-                    <div className="absolute inset-0 bg-black opacity-50"></div>
+            {/* Desktop Version */}
 
-                    <motion.p
-                        animate={{scale: [1, 1.3, 1]}}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                        className="absolute bottom-[2rem] text-white text-center left-[45%] font-bold">
-                            Scroll down to view our events 
-                    </motion.p>
+            <section className="hidden md:block relative w-screen h-screen overflow-hidden">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center mt-16"
+                    style={{ backgroundImage: `url(${heroImage})` }}
+                ></div>
+
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-32 space-y-6 mt-8">
+                    <h1 className="mt-6 text-xl sm:text-4xl md:text-6xl font-bold leading-tight text-white">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                            Connect.
+                        </span>
+                        <br />
+                        Learn. Grow.
+                    </h1>
+
+                    <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
+                        Step into our events and virtual sessions to connect with leading mentors
+                        and industry experts. Experience <span className='font-bold text-orange-400'>interactive learning, insightful panels, and exclusive networking</span> — all designed to empower your career and certification journey at <span className='font-bold text-orange-400'>Global Professional Certifications.</span>
+                    </h2>
+
+                    <div className="mt-8">
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white 
+                                            rounded-lg shadow-lg transition-all duration-300 
+                                            bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+                                            hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                        >
+                            Contact Us
+                        </Link>
+                        <Link to>
+                        </Link>
+                    </div>
                 </div>
-            </div> : <div className="mt-[130px] flex justify-center items-center h-[80px]">
-                <p className="text-brand-blue px-2 text-2xl font-bold">Walk with us through our Events!</p>
-            </div>}
+            </section>
+
+            {/* Mobile Version */}
+
+            <section className="md:hidden bg-black mt-16">
+                <div className="flex flex-col justify-center items-center text-white pt-24 px-8">
+                    <h1 className="text-2xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
+                    <h2 className="text-xs font-light text-gray-300 font-poppins mt-4 text-center">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
+                </div>
+                <div className="w-full h-auto px-8 rounded-xl mt-12">
+                    <img src={heroImageMobile} alt="Hero Image" className="w-full h-full object-cover rounded-xl" />
+                </div>
+
+            </section>
 
             {/* Upcoming Events Countdown*/}
 
-            <section className="w-full py-24 px-6 md:px-32">
-                <div className="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] w-full h-auto rounded-3xl shadow-xl px-12 md:px-24 py-8 md:py-16">
+            < section className="bg-black w-full py-16 md:py-24 px-6 md:px-32" >
+                <div className="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] w-full h-auto rounded-3xl border border-brand-blue ring-1 ring-gray-200 shadow-gray-200 shadow-3xl px-12 md:px-24 py-8 md:py-16">
                     <div className="w-full text-white flex flex-col jsutify-center items-center md:items-start gap-2 mb-2 md:mb-12">
                         <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold">Upcoming <span className="text-[#FFD700] font-normal italic">Events</span>
                         </h2>
-                        <p className="text-xs md:text-base lg:text-base max-w-md font-light text-gray-300 font-poppins mt-2 md:mt-4 text-center md:text-left">
+                        <p className="text-xs md:text-base lg:text-base max-w-2xl font-light text-gray-300 font-poppins mt-2 text-center md:text-left">
                             Stay ahead with the latest industry updates! <span className="hidden md:block">Our globally recognized sessions are designed to guide you at every step.</span>
                         </p>
                     </div>
-                    <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-12 p-8">
-                        <div className="flex flex-col justify-between items-center bg-white w-[300px] md:w-[400px] h-auto shadow-xl shadow-gray-400 rounded-3xl">
-                            <div className="w-full h-48 md:h-64 rounded-3xl shadow-black/40 shadow-lg">
+                    <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-12 pt-8">
+                        <div className="flex flex-col justify-between items-center bg-white w-[300px] md:w-[450px] h-auto rounded-3xl shadow-2xl shadow-black">
+                            <div className="w-full h-44 md:h-64 rounded-3xl shadow-black/40 shadow-lg">
                                 <img src={eventCard.thumbnail} alt="" className="w-full h-full object-cover rounded-2xl" />
                             </div>
                             <div className="flex flex-col justify-center p-6 text-gray-800">
-                                <p className="text-left text-lg leading-tight md:text-3xl mb-4 font-bold">{eventCard.title}</p>
+                                <p className="text-left text-lg leading-tight md:text-3xl mb-4 md:mb-2 font-bold">{eventCard.title}</p>
 
-                                <div className="flex justify-start items-stretch gap-8 mt-2 md:mt-6 px-2 md:px-6">
+                                <div className="flex justify-start items-stretch gap-8 md:mt-2 px-2 md:px-4">
                                     {/* date */}
 
                                     <div className="flex flex-col justify-center items-center">
@@ -230,7 +263,7 @@ export default function Events(){
 
                                     {/* line */}
 
-                                    <div className="h-auto w-0.5 bg-gray-800"></div>
+                                    <div className="h-auto w-0.5 md:w-[1.5px] bg-gray-800"></div>
 
                                     {/* location and time */}
 
@@ -245,7 +278,7 @@ export default function Events(){
                                             <div>
                                                 <FontAwesomeIcon icon={faClock} className="font-light" />
                                             </div>
-                                            <p className="pl-2 text-sm md:text-base">Starts at {eventCard.time}</p>
+                                            <p className="pl-2 text-sm md:text-base">{eventCard.time}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -255,27 +288,27 @@ export default function Events(){
 
                         <div className="flex flex-col gap-1 md:gap-8 justify-center items-center">
                             <p className="text-2xl md:text-4xl font-light text-[#FFD700]">Event starts in</p>
-                            <div className="p-2 md:p-6">
+                            <div className="p-2">
                                 <Countdown
                                     date={eventDate}
                                     renderer={({ days, hours, minutes, seconds }) => (
                                         <div className="text-white flex justify-center items-center gap-1 md:gap-2">
-                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
+                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
                                                 <p className="font-bold text-base md:text-2xl">{days}</p>
                                                 <p className="text-[8px] md:text-xs font-light">Days</p>
                                             </div>
                                             <p className="text-3xl md:text-5xl font-bold">:</p>
-                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
+                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
                                                 <p className="font-bold text-base md:text-2xl">{hours}</p>
                                                 <p className="text-[8px] md:text-xs font-light">Hours</p>
                                             </div>
                                             <p className="text-3xl md:text-5xl font-bold">:</p>
-                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
+                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
                                                 <p className="font-bold text-base md:text-2xl">{minutes}</p>
                                                 <p className="text-[8px] md:text-xs font-light">Minutes</p>
                                             </div>
                                             <p className="text-3xl md:text-5xl font-bold">:</p>
-                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
+                                            <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
                                                 <p className="font-bold text-base md:text-2xl">{seconds}</p>
                                                 <p className="text-[8px] md:text-xs font-light">Seconds</p>
                                             </div>
@@ -284,12 +317,13 @@ export default function Events(){
                                 />
 
                             </div>
-                            <p className="text-xs px-2 md:text-lg leading-tight font-light text-white text-center max-w-xl mt-6 md:mt-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At architecto blanditiis adipisci aperiam animi a tempore, illo dignissimos officiis quae illum, atque, aliquam vel voluptate veniam labore! Eius fugit, sequi in veritatis hic cum.</p>
+                            <p className="text-xs px-2 md:px-6 md:text-base  leading-tight font-thin text-white text-center max-w-xl mt-6 md:mt-12">Join an exclusive live session with Mr. Mukundan KV, CEO of The Institute of Internal Auditors (IIA), where you can ask questions, get direct feedback, and gain insights on the future of internal auditing.
+                                A rare opportunity to engage with global leadership and understand where the profession is heading next.</p>
                             <a
                                 href=""
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-fit border border-gray-400 text-white text-sm sm:text-base py-2 px-5 sm:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 mt-6 md:mt-2 shadow-md shadow-gray-400"
+                                className="w-fit border-2 border-gray-400 text-white text-sm sm:text-base py-2 px-5 sm:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 mt-6 md:mt-0"
                             >
                                 Register Now
                             </a>
@@ -301,7 +335,7 @@ export default function Events(){
 
             {/* Our Event Presence */}
 
-            <section className="w-full pb-10 px-6 md:px-16 lg:px-24 xl:px-32">
+            < section className="w-full pb-10 px-6 md:px-16 lg:px-24 xl:px-32 pt-20" >
                 <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
 
                     {/* Image Section */}
@@ -328,7 +362,7 @@ export default function Events(){
                         </div>
 
                         {/* Two-column grid */}
-                        <div className="flex justify-center gap-4 md:gap-12 py-6 md:py-8">
+                        <div className="flex justify-center md:justify-start gap-4 md:gap-12 py-6 md:py-8">
                             <div className="flex flex-col items-center gap-4">
                                 <FaHandshakeAngle className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
                                 <p className="text-sm sm:text-base md:text-lg font-semibold font-poppins text-center lg:text-left">
