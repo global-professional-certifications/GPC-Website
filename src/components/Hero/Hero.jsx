@@ -37,7 +37,7 @@ const Hero = () => {
                     </h1>
 
                     {/* Subheading (H2) */}
-                    <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200  leading-relaxed">
+                    <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 leading-relaxed">
                         Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led, industry-accredited courses—<span className='font-bold text-orange-400'>including CIA, CRMA, IAP, and CISA</span>—designed for aspiring and experienced professionals in risk assurance and advisory.
                     </h2>
 
