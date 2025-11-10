@@ -1,16 +1,12 @@
 import React from "react";
 import Hero from "../Hero/Hero";
-import Benefits from "../Benefits/Benefits";
-import Training from "../Training/Training";
-import Demand from "../Demand/Demand";
 import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
-import { FaChevronDown } from "react-icons/fa";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import { Link, NavLink } from 'react-router-dom';
 import MetaTags from "../MetaTags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faCertificate, faStar, faArrowUpRightFromSquare, faGlobe, faChalkboardTeacher, faQuoteLeft, faQuoteRight, faRobot, faHandshake } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCalendarDays, faCertificate, faStar, faArrowUpRightFromSquare, faGlobe, faChalkboardTeacher, faQuoteLeft, faQuoteRight, faRobot, faHandshake } from "@fortawesome/free-solid-svg-icons";
 import cia from "../../assets/cia-logo.png";
 import cisa from "../../assets/cisa-logo-1.png";
 import crma from "../../assets/crma-logo-1.png";
@@ -30,7 +26,8 @@ import starwinTestimonial from "../../assets/testimonial-2.png"
 import wajihaTestimonial from "../../assets/Wajiha-Ansari.png"
 import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg"
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png"
-import prateekTestimonial from "../../assets/Prateek-Bhatia.jpg"
+import { blogs } from '../Blogs/BlogContent.jsx'
+
 
 const courseFaqs = [
     {
@@ -105,6 +102,9 @@ const testimonials = [
     //     image: feedbackPerson
     // },
 ];
+
+const latestBlogs = blogs.slice(0, 3);
+
 
 export default function Home() {
 
@@ -542,10 +542,80 @@ export default function Home() {
                     </div>
                 </div>
 
+                {/* Blog Section */}
+                <div className="px-6 md:px-24 w-full mt-6 md:mt-12">
+                    <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
+                        <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span>
+                        </p>
+                        <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
+                            Explore expert insights and latest trends in audit, risk, and professional certification on our blog
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {latestBlogs.map((blog) => (
+                            <div
+                                key={blog.id}
+                                className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                            >
+                                <img
+                                    src={blog.cover}
+                                    alt={blog.title}
+                                    className="w-full h-56 object-cover"
+                                />
+
+                                <div className="w-full flex justify-between items-center p-6">
+                                    <div className="flex justify-center items-center gap-2">
+                                        <FontAwesomeIcon icon={faCalendarDays} className="text-blue-400" />
+                                        <div className="text-gray-600">{blog.date}</div>
+                                    </div>
+                                    <div className="flex justify-center items-center gap-2">
+                                        <FontAwesomeIcon icon={faUser} className="text-blue-400" />
+                                        <div className="text-gray-600">{blog.author}</div>
+                                    </div>
+                                </div>
+
+                                <div className="px-6 flex flex-col justify-between pb-6 h-[240px]">
+                                    <div>
+                                        <h3 className="text-sm md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3">
+                                            {blog.title}
+                                        </h3>
+                                        <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
+                                            {blog.content}
+                                        </p>
+                                    </div>
+
+                                    <Link
+                                        key={blog.id}
+                                        to={`/blogs/${blog.slug}`}
+                                        className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit hover:scale-105 transition-all duration-300 mt-8"
+                                    >
+                                        <span className="md:text-base text-sm pl-2 text-gray-700">
+                                            Learn More
+                                        </span>
+                                        <FontAwesomeIcon
+                                            icon={faArrowUpRightFromSquare}
+                                            className="text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2"
+                                        />
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+
+                    <div className="flex justify-center items-center mt-12">
+                        <NavLink to="/success">
+                            <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
+                                Read More Blogs
+                            </button>
+                        </NavLink>
+                    </div>
+                </div>
+
 
                 {/* FAQ Section */}
 
-                <div className="mt-10 px-8 pb-40 md:pb-[220px] lg:px-24">
+                <div className="mt-20 px-8 pb-40 md:pb-[220px] lg:px-24">
                     <div className="flex flex-col lg:flex-row items-center gap-20 md:gap-12">
 
                         {/* Image Section */}

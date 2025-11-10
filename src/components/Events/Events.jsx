@@ -224,7 +224,7 @@ export default function Events() {
 
             {/* Mobile Version */}
 
-            <section className="flex flex-col justify-center items-center md:hidden bg-black mt-16">
+            <section className="flex flex-col justify-center items-center md:hidden bg-brand-blue pb-12 mt-16">
                 <div className="flex flex-col justify-center items-center text-white pt-24 px-8">
                     <h1 className="text-2xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
                     <h2 className="text-xs font-light text-gray-300 font-poppins mt-4 text-center">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
@@ -248,8 +248,9 @@ export default function Events() {
 
             </section>
 
-            {/* Upcoming Events Countdown*/}
+            {/* Upcoming Events Countdown */}
 
+            {false && (
             < section className="bg-black w-full py-16 md:py-24 px-6 md:px-32" >
                 <div className="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] w-full h-auto rounded-3xl border border-brand-blue ring-1 ring-gray-200 shadow-gray-200 shadow-3xl px-12 md:px-24 py-8 md:py-16">
                     <div className="w-full text-white flex flex-col jsutify-center items-center md:items-start gap-2 mb-2 md:mb-12">
@@ -345,11 +346,12 @@ export default function Events() {
 
                     </div>
                 </div>
-            </section>
+                </section> 
+            )}
 
             {/* Our Event Presence */}
 
-            < section className="w-full pb-10 px-6 md:px-16 lg:px-24 xl:px-32 pt-20" >
+            < section className="w-full pb-10 px-6 md:px-16 lg:px-24 xl:px-32 pt-16" >
                 <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
 
                     {/* Image Section */}
