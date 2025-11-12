@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
-import ciaHero from "../../assets/cia-hero.jpg";
+import cisaHero from "../../assets/cisa-hero.jpg";
 
 
 
@@ -43,7 +43,7 @@ const Cisa = () => {
 
       {/* Header */}
       <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center gap-36 px-8">
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center gap-12 px-8">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
@@ -66,7 +66,7 @@ const Cisa = () => {
           </div>
 
           <div className="relative mx-auto lg:max-w-6xl">
-            <img className="w-[400px] h-auto rounded-xl shadow-2xl hidden md:block" src={ciaHero} alt="homepage hero" />
+            <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={cisaHero} alt="homepage hero" />
           </div>
 
         </div>
