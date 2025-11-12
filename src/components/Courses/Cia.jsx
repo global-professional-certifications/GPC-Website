@@ -50,41 +50,39 @@ const Cia = () => {
                 description="Prepare for the CIA Challenge Exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications."
                 canonicalUrl="https://globalprofessionalcertifications.com/courses/cia"
             />
-            <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center">
+            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
+                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center gap-36 px-8">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
-                        <div className="relative max-w-xl">
-                            <p className="text-2xl md:text-6xl font-bold leading-tight text-gray-50 sm:leading-tight sm:text-5xl lg:text-5xl lg:leading-tight font-pj text-left">
-                                Become a <span className="text-orange-500">Globally Recognised</span> Certified Internal Auditor (CIA)
-                            </p>
-                            <h1 className="pt-6 md:text-lg text-gray-50">Our comprehensive CIA course prepares you for the certification exam, covering internal audit principles, practices, and standards. Gain expertise in risk management, control, and governance, and enhance your career prospects in internal audit. Join over 1000 professionals who have advanced their careers with our expert mentorship! </h1>
+                        <div className="relative w-md md:max-w-xl">
+                            <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
+                                Ace Your CIA Exam with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">India's #1 IIA-Accredited</span> Training Program
+                            </h1>
+                            <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Become Certified Internal Auditor (CIA) with <span className='font-bold text-orange-400'>Gleim content, 1000+ MCQs, weekend live classes.</span> Our proven methodology helped 250+ professionals achieve CIA certification with an 80%+ pass rate. Complete in 7-8 months with full IIA registration and exam support. </h2>
                         </div>
 
-                        <div className="md:ml- px-8 sm:px-0 sm:space-x-5 mt-9 md:flex">
+                        <div className="mt-6">
                             <Link
                                 to="https://rzp.io/rzp/CIASessions"
                                 target='blank'
                                 title=""
-                                className="inline-flex items-center justify-center w-full px-8 py-2 text-lg font-bold text-white transition-all duration-200 bg-orange-500 border-2 border-transparent sm:w-auto rounded-lg font-pj hover:bg-gray-50 hover:text-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
                                 role="button"
                             >
                                 Enroll Now
                             </Link>
                         </div>
                     </div>
-                    <div className="pb-12">
-                        <div className="relative">
-                            <div className="relative mx-auto ml-[80px] lg:max-w-6xl">
-                                <img className="h-[500px] rounded-lg hidden md:block" src={ciaHero} alt="homepage hero" />
+
+                    <div className="relative mx-auto lg:max-w-6xl">
+                        <img className="w-[400px] h-auto rounded-xl shadow-2xl hidden md:block" src={ciaHero} alt="homepage hero" />
                             </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
             <div className="max-w-sm md:max-w-[52rem] mx-auto mt-24">
-                <h1 className="text-center text-2xl md:text-4xl font-extrabold mb-8 mt-16 text-brand-blue">CIA Enrollment (All 3 Parts), Your Path to Success</h1>
-                <h2 className="text-center text-xl md:text-2xl font-semibold mb-16 md:mb-8 mt-8 text-brand-dark">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</h2>
+                <h3 className="text-center text-2xl md:text-4xl font-extrabold mb-8 mt-16 text-brand-blue">CIA Enrollment (All 3 Parts), Your Path to Success</h3>
+                <p className="text-center text-xl md:text-2xl font-semibold mb-16 md:mb-8 mt-8 text-brand-dark">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
             </div>
             <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
                 <Card 
@@ -110,45 +108,13 @@ const Cia = () => {
                     imageStyle={"pt-8"}/>
             </div>
 
-            {/* <div className="md:mb-24 w-full">
-                <div className="flex justify-center">
-                    <div className=" bg-[#ffebcd] grid grid-cols-1 grid-cols-2 md:w-[72rem] py-10 rounded-2xl shadow-xl">
-                        <h1 className="text-2xl md:col-span-2 px-10 md:text-4xl black font-bold mb-8">CIA All Parts with Gleim Content as Per the New Syllabus</h1>
-                        <div className="flex flex-col px-10">
-                            <div className="flex space-x-2 mb-4 items-center text-xl">
-                                <span><SiGoogleclassroom className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-black" /></span>
-                                <span className="text-black font-semibold">Live Classes</span>
-                            </div>
-                            <div className="flex space-x-2 mb-4 items-center text-xl">
-                                <span><IoBookOutline className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-black" /></span>
-                                <span className="text-black font-semibold">Gleim Soft Book + 1000+ MCQs</span>
-                            </div>
-                            <div className="flex space-x-2 mb-4 items-center text-xl">
-                                <span><CgNotes className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-grayblack" /></span>
-                                <span className="text-black font-semibold">Class Notes + In-Class MCQs</span>
-                            </div>
-                            <p className="md:text-3xl mt-4 font-semibold text-[#964b00]">Start your upskilling journey today!</p>
-                        </div>
-                        <div className="flex items-center justify-center relative">
-                            <Link
-                                to={"https://rzp.io/rzp/CIASessions"}
-                                target="_blank"
-                                className="flex items-center justify-center rounded-xl bg-[#E0C4A8] px-16 py-8 text-center text-3xl font-medium text-gray-800 hover:bg-[#D4B190] transition ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300"
-                            >
-                                Enroll Now
-                                <FaArrowRightLong className="ml-2 h-8 w-8" />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
 
             <div className="md:mb-24 mt-16 w-full px-4">
                 <div className="flex justify-center">
                     <div className="bg-[#ffebcd] grid grid-cols-1 md:grid-cols-2 md:w-[72rem] py-10 rounded-2xl shadow-xl w-full">
-                        <h1 className="text-2xl px-6 md:px-10 md:text-4xl font-bold mb-6 md:col-span-2 text-center md:text-left text-black">
+                        <p className="text-2xl px-6 md:px-10 md:text-4xl font-bold mb-6 md:col-span-2 text-center md:text-left text-black">
                             CIA All Parts with Gleim Content as Per the New Syllabus
-                        </h1>
+                        </p>
 
                         {/* Left Side */}
                         <div className="flex flex-col px-6 md:px-10">
@@ -187,11 +153,11 @@ const Cia = () => {
 
 
             <div className="max-w-6xl mx-auto mt-16 md:mt-24 mb-24 px-4 md:px-0">
-                <h1 className="text-center text-3xl md:text-4xl font-extrabold mb-8 md:mb-20 text-brand-blue">CIA Exam Structure</h1>
+                <p className="text-center text-3xl md:text-4xl font-extrabold mb-8 md:mb-20 text-brand-blue">CIA Exam Structure</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <h2 className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 1</h2>
-                        <h3 className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Fundamentals</h3>
+                        <p className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 1</p>
+                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Fundamentals</p>
                         <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
                         <p className="text-gray-700 text-lg">125 questions | 2.5 Hours</p>
                         <p className="text-gray-800 font-bold mt-2">Topics:</p>
@@ -203,8 +169,8 @@ const Cia = () => {
                         </ul>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <h2 className="text-2xl text-center font-bold text-brand-blue mb-2">CIA Part 2</h2>
-                        <h3 className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Engagement</h3>
+                        <p className="text-2xl text-center font-bold text-brand-blue mb-2">CIA Part 2</p>
+                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Engagement</p>
                         <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
                         <p className="text-gray-700 text-lg">100 questions | 2 Hours</p>
                         <p className="text-gray-800 font-bold mt-2">Topics:</p>
@@ -215,8 +181,8 @@ const Cia = () => {
                         </ul>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <h2 className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 3</h2>
-                        <h3 className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Function</h3>
+                        <p className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 3</p>
+                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Function</p>
                         <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
                         <p className="text-gray-700 text-lg">100 questions | 2 Hours</p>
                         <p className="text-gray-800 font-bold mt-2">Topics:</p>
@@ -230,34 +196,13 @@ const Cia = () => {
                 </div>
             </div>
 
-            {/* <div className="max-w-6xl mx-auto my-24 px-4 md:px-0">
-                <div className="bg-white shadow-xl rounded-xl py-12 px-16 border border-gray-300">
-                    <h1 className="text-center text-3xl md:text-5xl font-extrabold mb-10 text-brand-blue">
-                    Exam Logistics
-                    </h1>
-                    <hr className="border-2 border-solid border-gray-300 mb-6"></hr>
-                    <ul className="space-y-6 list-disc pl-8">
-                    {[
-                        "CIA is a 100% MCQ-based exam with no negative marking",
-                        "Score at least 600 points out of 750 (80%) to clear the exam",
-                        "Validity of CIA registration is 3 years from the date of initial registration (when you pay application fees)",
-                        "Exam window is 180 days from the date you register for your CIA exam (when you pay exam fees)",
-                        "Appear for any part in any sequence and get results immediately",
-                        "Exams are conducted both in India and abroad; in India, exams are only at PearsonVue Centers",
-                    ].map((point, index) => (
-                        <li key={index} className="text-gray-800 text-lg marker:text-brand-blue marker:text-2xl">
-                            {point}
-                        </li>
-                    ))}
-                    </ul>
-                </div>
-            </div> */}
+
 
             <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4">
                 <div className="bg-white shadow-xl rounded-xl py-8 sm:py-12 px-6 sm:px-10 md:px-16 border border-gray-300">
-                    <h1 className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
+                    <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
                         Exam Logistics
-                    </h1>
+                    </p>
                     <hr className="border-2 border-solid border-gray-300 mb-6" />
                     <ul className="space-y-2 sm:space-y-6 list-disc pl-5 sm:pl-8">
                         {[
@@ -281,53 +226,10 @@ const Cia = () => {
 
 
 
-            {/* <div className="max-w-5xl mx-auto my-24 px-4 md:px-0 md:flex md:flex-col md:items-center">
-                <h1 className="text-center text-3xl md:text-5xl font-extrabold mb-12 text-brand-blue">Fees and Membership Benefits</h1>
-                <div className="overflow-x-auto">
-                    <table className="min-w-[800px] bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden"> */}
-
-                        {/* Style the table in a better way! */}
-
-                        {/* <thead>
-                            <tr className="bg-brand-blue text-white text-xl text-left font-bold">
-                                <th className="py-3 pr-4 pl-6 border-b">Fee Type</th>
-                                <th className="py-3 px-4 border-b">IIA Members</th>
-                                <th className="py-3 px-4 border-b">Non-Members</th>
-                            </tr>
-                        </thead>
-                        <tbody className="[&>*:nth-child(even)]:bg-gray-100 [&>*:nth-child(odd)]:bg-gray-50">
-
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Application Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 90</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 240</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 1 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 232.50</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 445</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 2 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 210</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 415</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 3 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 210</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 415</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p className="pl-1 mt-4 text-gray-700 italic text-sm">Note: 18% GST is applicable on the above fees</p>
-                    <p className="pl-1 mt-2 text-gray-700 italic text-sm">IIA Membership Fees: New Member - INR 6500 + GST | <span className="">Annual Renewal</span> - INR 4000 + GST</p>
-                </div>
-            </div> */}
-
             <div className="max-w-5xl mx-auto my-16 sm:my-24 px-4 md:px-0">
-    <h1 className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-10 text-brand-blue">
+                <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-10 text-brand-blue">
         Fees and Membership Benefits
-    </h1>
+                </p>
 
     {/* Table Layout (visible on md and up) */}
     <div className="hidden md:block overflow-x-auto">
@@ -429,9 +331,9 @@ const Cia = () => {
 
             <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4">
                 <div className="bg-white shadow-xl rounded-xl py-8 sm:py-12 px-6 sm:px-10 md:px-16 border border-gray-200">
-                    <h1 className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
+                    <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
                         Training Program Details
-                    </h1>
+                    </p>
                     <hr className="border-2 border-solid border-gray-300 mb-6" />
                     <ul className="space-y-2 sm:space-y-6 list-disc pl-5 sm:pl-8">
                         {[
@@ -457,43 +359,20 @@ const Cia = () => {
 
 
 
-            {/* <div className="max-w-6xl mx-auto mb-24 px-4 md:px-0 bg-orange-100 py-12 rounded-lg shadow-xl">
-                <h1 className="text-center text-3xl md:text-5xl font-bold mb-8 text-brand-blue">Revised pricing plan 16th April 2025 onwards...</h1>
-                <p className="text-center text-2xl font-semibold text-gray-700 mb-8">
-                    Enroll for all 3 parts along with Gleim content for ₹58,999 only<br></br> Or each part for ₹23,599 only
-                </p>
-                <h2 className="text-center mb-10 md:text-4xl font-semibold text-brand-blue">Enroll now to kickstart your career and stay ahead of the curve!</h2>
-                <div className="flex justify-center gap-6">
-                    <Link
-                        to="https://rzp.io/rzp/CIASessions"
-                        target="_blank"
-                        className="inline-flex items-center justify-center px-8 py-3 text-xl font-bold text-white bg-orange-500 rounded-lg hover:bg-orange-900 transition duration-200"
-                    >
-                        Enroll for All Parts
-                    </Link>
-                    <Link
-                        to="https://rzp.io/rzp/iFUFvKph"
-                        target="_blank"
-                        className="inline-flex items-center justify-center px-8 py-3 text-xl font-bold text-white bg-orange-500 rounded-lg hover:bg-orange-900 transition duration-200"
-                    >
-                        Enroll for Each Part
-                    </Link>
-                </div>
-            </div> */}
 
             <div className="max-w-6xl mx-auto mb-16 sm:mb-24 px-4 md:px-0 bg-orange-100 py-8 sm:py-12 rounded-lg shadow-xl">
-                <h1 className="text-center text-2xl sm:text-3xl md:text-5xl font-bold mb-6 sm:mb-8 text-brand-blue">
+                <p className="text-center text-2xl sm:text-3xl md:text-5xl font-bold mb-6 sm:mb-8 text-brand-blue">
                     Revised pricing plan <span className="whitespace-nowrap">16th April 2025</span> onwards...
-                </h1>
+                </p>
 
                 <p className="text-center text-lg sm:text-2xl font-semibold text-gray-700 mb-6 sm:mb-8 leading-relaxed">
                     Enroll for all 3 parts along with Gleim content for ₹58,999 only<br />
                     Or each part for ₹23,599 only
                 </p>
 
-                <h2 className="text-center text-xl sm:text-3xl md:text-4xl font-semibold text-brand-blue mb-8 sm:mb-10">
+                <p className="text-center text-xl sm:text-3xl md:text-4xl font-semibold text-brand-blue mb-8 sm:mb-10">
                     Enroll now to kickstart your career and stay ahead of the curve!
-                </h2>
+                </p>
 
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
                     <Link

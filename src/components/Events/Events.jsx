@@ -192,7 +192,7 @@ export default function Events() {
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-32 space-y-6 mt-8">
-                    <h1 className="mt-6 text-xl sm:text-4xl md:text-6xl font-bold leading-tight text-white">
+                    <h1 className="mt-6 text-xl md:text-6xl font-bold leading-tight text-white">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                             Connect.
                         </span>

@@ -36,20 +36,19 @@ export default function CoursesOverview() {
         description="Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content."
         canonicalUrl="https://globalprofessionalcertifications.com/courses"
       />
+
+
       {/* Hero */}
-      <section className="md:h-screen flex justify-center items-center bg-brand-blue sm:pt-16">
-        <div className="flex flex-col-reverse md:flex-row md:px-4 md:py-32 pt-32 pb-10 mx-auto md:max-w-7xl md:px-6 lg:px-8 md:flex">
+      <section className="md:h-screen flex justify-center items-center bg-brand-blue pt-6 md:pt-16">
+        <div className="flex flex-col-reverse md:flex-row md:px-4 md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-6 lg:px-8 md:flex mt-16 px-8">
           <div className="max-w-sm md:max-w-2xl mx-auto md:mr-20 md:mt-16">
-            <button className="px-4 py-2 md:px-6 md:py-3 bg-gray-50 border border-gray-400 md:text-lg text-brand-dark rounded-lg hover:bg-orange-500 hover:text-gray-50 font-bold font-inter transform hover:scale-105 transition duration-300 ease-in-out">
-              Globally recognised
-            </button>
             <div className="relative max-w-xl mt-8">
-              <p className="relative text-xl md:text-6xl font-bold leading-tight text-gray-50 sm:leading-tight sm:text-5xl lg:text-4xl lg:leading-tight font-pj text-left">
-                Elevate Your Expertise: Master the Art of Auditing and Risk Management
-              </p>
-              <h1 className="pt-6 md:text-2xl text-gray-50">
-                Discover our prestigious certifications, meticulously crafted to propel your career to new heights of excellence and recognition.
+              <h1 className="mt-6 text-2xl md:text-6xl font-bold leading-tight text-white">
+                Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Global Audit</span> Excellence
               </h1>
+              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
+                Achieve globally recognized certifications in <span className='font-bold text-orange-400'>Internal Audit, IT Systems Audit and Risk Management.</span> Expert-led courses with Gleim content, comprehensive study materials, and proven success strategies for <span className='font-bold text-orange-400'>CIA, CISA, CRMA, and IAP</span> exams
+              </h2>
             </div>
 
             {!isMobile ? 
@@ -57,21 +56,21 @@ export default function CoursesOverview() {
               <a
                 href="#courses"
                 title=""
-                className="relative inline-flex items-center justify-center w-full pl-8 pr-12 pt-3 pb-5 text-xl font-bold text-white transition-all duration-200 bg-orange-500 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-gray-50 hover:text-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                  className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
                 role="button"
               >
-                Kickstart your Career <span><FaArrowTurnDown className="absolute bottom-4 ml-2 font-semibold" /></span>
+                  Explore Our Programs
               </a>
             </div>
             :
-            <button className="mt-8 px-4 py-2 bg-orange-500 text-white font-bold rounded-lg hover:bg-gray-50 hover:text-brand-dark transform hover:scale-105 transition duration-300 ease-in-out">Explore our courses below</button>
+              <button className="inline-flex items-center justify-center mt-4 px-6 py-3 text-base font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl">Explore our courses below</button>
           }
           </div>
-          <div className="pb-12">
+          <div className="pb-6 md:pb-12">
             <div className="relative">
               <div className="relative mx-auto lg:max-w-6xl p-2 transform lg:scale-110">
                 <img
-                  className="h-[500px] rounded-md"
+                  className="h-[350px] md:h-[450px] rounded-md"
                   src={coursesPhoto}
                   alt="homepage hero"
                 />

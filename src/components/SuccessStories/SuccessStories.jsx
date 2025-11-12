@@ -336,41 +336,61 @@ export default function SuccessStories() {
                 description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
                 canonicalUrl="https://globalprofessionalcertifications.com/success"
             />
-            <section className={`h-screen w-full bg-brand-blue flex justify-center items-center md:h-screen md:pt-${height.toString()}`}>
-                <div className="md:py-[161px] flex flex-col gap-6 max-w-[25rem] md:grid md:grid-cols-2 md:max-w-[72rem] md:gap-8 md:mx-auto">
+
+            {/* Hero Section  */}
+
+            <section className={`h-screen w-full bg-brand-blue flex justify-cennter items-center md:h-screen md:pt-${height.toString()}`}>
+                <div className="md:py-[161px] flex flex-col gap-6 max-w-[25rem] md:grid md:grid-cols-2 md:max-w-[72rem] md:gap-8 md:mx-auto mt-16">
                     <div className="relative flex justify-center h-full items-center md:gap-32">
-                        <div className="px-4 md:px-0">
-                            <h1 className="font-bold text-2xl md:text-4xl pt-12 md:pt-0 pb-4 md:pb-8 text-gray-50">Success Stories: CIA-Certified Professionals on Career Growth</h1>
-                            <h3 className="font-semibold text-lg md:text-2xl pb-4 md:pb-8 text-gray-50">Join over 250 professionals who have elevated their careers with the Certified Internal Auditor (CIA) certification.</h3>
-                            <div className="flex justify-center md:justify-start">
-                                <a href="#testimonials"><button className="px-6 py-2 md:py-3 md:px-6 md:text-xl bg-orange-500 text-gray-50 font-semibold transition ease-in-out duration-300 hover:bg-gray-50 hover:text-black rounded-lg">Read Testimonials below</button></a>
+                        <div className="relative z-10 flex flex-col justify-center items-start h-full">
+
+                            <h1 className="mt-6 text-xl sm:text-4xl md:text-6xl font-bold leading-tight text-white">
+                                Ready to create <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">your own</span> success story?
+                            </h1>
+
+                            <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">Discover our <span className='font-bold text-orange-400'>certification programs</span> and take the next step to <span className='font-bold text-orange-400'>advance your career</span> today!
+                            </h2>
+
+                            <div className="mt-8">
+                                <button
+                                    onClick={() => {
+                                        document.getElementById("testimonials").scrollIntoView({ behavior: "smooth" });
+                                    }}
+                                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white 
+                                            rounded-lg shadow-lg transition-all duration-300 
+                                            bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+                                            hover:scale-105 hover:shadow-xl focus:outline-none"
+                                >
+                                    Read Testimonials
+
+                                </button>
                             </div>
                         </div>
                     </div>
-                    {!isMobile ? <div className="relative flex flex-col items-center">
-                        <div className="overflow-hidden w-[560px] rounded-xl">
+                    {!isMobile ? <div className="relative flex flex-col justify-center items-center h-96">
+                        <div className="overflow-hidden w-[460px] rounded-xl shadow-2xl">
                             <motion.div
-                                animate={{ x: `-${currentHeroIndex * 560}px` }}
+                                animate={{ x: `-${currentHeroIndex * 460}px` }}
                                 transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
                                 className="flex rounded-xl">
                                 {heroImages.map((image, index) => (
-                                    <img src={image} key={index} className="w-[560px] rounded-xl shrink-0 mb-2" />
+                                    <img src={image} key={index} className="w-[460px] rounded-xl shrink-0 mb-2" />
                                 ))}
                             </motion.div>
                         </div>
-                        <p className="text-gray-300 text-sm font-semibold">Our industrious alumni who have made us proud!</p>
+                        <p className=" font-light text-center text-gray-300 text-sm md:text-base mt-4">(Our industrious alumni who have made us proud)</p>
                     </div> : <div className="relative flex flex-col items-center">
-                        <div className="overflow-hidden w-[400px] rounded-xl">
+                            <div className="overflow-hidden w-[300px] rounded-xl">
                                 <motion.div
-                                    animate={{ x: `-${currentHeroIndex * 400}px` }}
+                                    animate={{ x: `-${currentHeroIndex * 300}px` }}
                                     transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
                                     className="flex rounded-xl">
                                 {heroImages.map((image, index) => (
-                                    <img src={image} key={index} className="w-[560px] rounded-xl shrink-0 mb-2" />
+                                    <img src={image} key={index} className="w-[300px] rounded-xl shrink-0 mb-2" />
                                 ))}
                             </motion.div>
                         </div>
-                        <p className="text-gray-300 text-sm font-semibold">Our industrious alumni who have made us proud!</p>
+                            <p className="font-poppins font-light text-white text-sm mt-4">(Our industrious alumni who have made us proud)</p>
                     </div>}
 
                 </div>
@@ -380,13 +400,13 @@ export default function SuccessStories() {
             <section ref={sectionRef} className="bg-gray-50 pb-10 pt-20">
                 <div className="bg-[url('assets/bg.jpg')] max-w-5xl mx-auto border border-gray-300 pb-10 rounded-xl shadow-lg">
                     <div className="md:flex md:flex-col justify-center items-center">
-                        <h1 className="text-2xl sm:text-3xl text-brand-blue font-bold pt-10 px-4 md:px-0 text-center">
+                        <h3 className="text-2xl sm:text-3xl text-brand-blue font-bold pt-10 px-4 md:px-0 text-center">
                             Celebrating Our CIA Champions!{" "}
                             {!isMobile ? <span><GiConqueror className="inline h-16 w-16 pb-4 text-brand-dark" /></span> : null}
-                        </h1>
-                        <h2 className="text-xl sm:text-2xl text-brand-blue font-bold pt-1 px-12 md:px-0 text-center">
+                        </h3>
+                        <p className="text-xl sm:text-2xl text-brand-blue font-bold pt-1 px-12 md:px-0 text-center">
                             Join the Legacy of Success with Our Elite Alumni!
-                        </h2>
+                        </p>
                         <hr className="mt-6 mb-4 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
                         {/* <h3 className="text-3xl sm:text-2xl text-brand-blue font-bold pt-3">
                         Hear from those who made it!
