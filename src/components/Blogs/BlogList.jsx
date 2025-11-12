@@ -80,7 +80,7 @@ const BlogList = () => {
 
                         <div className='flex flex-col gap-4 justify-start items-start'>
                             <p className='text-xl md:text-2xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 line-clamp-4'>
-                                Accelerate Your Audit Career with the CIA Challenge Exam: A Strategic guide for Internal Audit Professionals
+                                Accelerate Your Audit Career with the CIA Challenge Exam: A Strategic Guide for Internal Audit Professionals
                             </p>
 
                             <p className='text-gray-500 md:text-base lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
