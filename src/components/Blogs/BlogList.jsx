@@ -6,6 +6,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { blogs } from "../Blogs/BlogContent.jsx";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import iiaBlog from '../../assets/iia-blog-thumbnail.jpg'
 
 
 
@@ -57,7 +58,7 @@ const BlogList = () => {
     return (
         <div className='relative min-h-screen w-full'>
             <div class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
-            <div className="mt-20 pt-32 px-6 lg:px-52 mx-auto">
+            <div className="mt-20 pb-20 pt-32 px-6 lg:px-52 mx-auto">
                 <div className="flex flex-col justify-center items-center text-center">
                     <h1 className="md:text-5xl lg:text-5xl text-3xl font-extrabold text-gray-900 mb-6">
                         Blog & Expert Insights
@@ -67,8 +68,39 @@ const BlogList = () => {
                     </p>
                 </div>
 
-                <div className='flex flex-col md:flex-row lg:flex-row justify-start items-stretch gap-6 w-full h-full'>
+                {/* Featured */}
 
+                <p className='text-3xl font-semibold px-6 mb-4'>Featured Blog</p>
+
+                <div className='flex flex-col justify-center items-start gap-6 p-4 bg-white rounded-2xl border-gray-300 border shadow-xl mb-20'>
+
+                    <div className='flex flex-col md:flex-row justify-between items-center gap-6 md:gap-10'>
+
+                        <img src={iiaBlog} alt="" className='h-44 md:h-56 w-full  md:object-cover rounded-xl' />
+
+                        <div className='flex flex-col gap-4 justify-start items-start'>
+                            <p className='text-xl md:text-2xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 line-clamp-4'>
+                                Accelerate Your Audit Career with the CIA Challenge Exam: A Strategic guide for Internal Audit Professionals
+                            </p>
+
+                            <p className='text-gray-500 md:text-base lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
+                                In today’s dynamic corporate environment, internal auditors are expected to be more than compliance checkers — they’re strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
+                            </p>
+                            <Link
+                                to="https://delhi.iiaindia.co/accelerate-your-audit-career-with-the-cia-challenge-exam-a-strategic-guide-for-internal-audit-professionals/"
+                                target='_blank'
+                                className="inline-flex justify-start items-center gap-1.5 p-1 border border-brand-purple rounded-full w-fit hover:scale-105 transition-all duration-300"
+                            >
+                                <span className="md:text-base text-sm pl-2 text-gray-700">
+                                    Learn More
+                                </span>
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className='text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2' />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='flex flex-col md:flex-row lg:flex-row justify-start items-stretch gap-6 w-full h-full'>
 
                     {/* Featured Blog */}
                     <div className='w-full md:w-[50%] lg:w-[50%] flex flex-col justify-between'>
@@ -81,7 +113,7 @@ const BlogList = () => {
                                 />
                                 <div className='flex flex-col justify-between h-auto'>
                                     <div className="pt-8 flex-1 pb-0 flex flex-col justify-between">
-                                        <h2 className="text-3xl font-bold text-gray-900 mb-4 line-clamp-4">
+                                        <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-4 line-clamp-4">
                                             {featured.title}
                                         </h2>
                                         <div className="text-gray-500 text-base line-clamp-3 mb-8">

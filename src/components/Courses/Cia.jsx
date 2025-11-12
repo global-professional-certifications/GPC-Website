@@ -140,7 +140,7 @@ const Cia = () => {
                             <Link
                                 to={"https://rzp.io/rzp/CIASessions"}
                                 target="_blank"
-                                className="flex items-center justify-center rounded-xl bg-[#E0C4A8] px-10 py-5 sm:px-16 sm:py-8 text-center text-xl sm:text-2xl md:text-3xl font-medium text-gray-800 hover:bg-[#D4B190] transition ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300"
+                                className="flex items-center justify-center rounded-xl bg-[#E0C4A8] px-10 py-5 sm:px-10 sm:py-6 text-center text-xl sm:text-2xl md:text-2xl font-medium text-gray-800 hover:bg-[#D4B190] transition ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300"
                             >
                                 Enroll Now
                                 <FaArrowRightLong className="ml-2 h-6 w-6 sm:h-8 sm:w-8" />
@@ -378,14 +378,14 @@ const Cia = () => {
                     <Link
                         to="https://rzp.io/rzp/CIASessions"
                         target="_blank"
-                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-orange-500 rounded-lg hover:bg-orange-900 transition duration-200"
+                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-brand-blue rounded-lg hover:bg-orange-900 transition duration-200"
                     >
                         Enroll for All Parts
                     </Link>
                     <Link
                         to="https://rzp.io/rzp/iFUFvKph"
                         target="_blank"
-                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-orange-500 rounded-lg hover:bg-orange-900 transition duration-200"
+                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-brand-blue rounded-lg hover:bg-orange-900 transition duration-200"
                     >
                         Enroll for Each Part
                     </Link>

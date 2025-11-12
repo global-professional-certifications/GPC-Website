@@ -93,17 +93,17 @@ export default function CoursesOverview() {
           linkTo="/courses/cia" 
           enrollLink="https://rzp.io/rzp/CIASessions" 
           imageStyle="object-cover w-full"
-          gst="Including GST"
+          gst="(Including GST)"
         />
         <Card
           title="Certified Informations Systems Auditor (CISA)"
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
-          price={23599}
+          price={17700}
           linkTo="/courses/cisa" 
           enrollLink="https://rzp.io/rzp/VuvF84x" 
           imageStyle="object-cover w-full"
-          gst="Including GST"
+          gst="(Including GST)"
         />
         <Card
           title="Internal Audit Practioner (IAP)"
@@ -113,7 +113,7 @@ export default function CoursesOverview() {
           linkTo="/courses/iap" 
           enrollLink="https://rzp.io/rzp/C7jUKuC" 
           imageStyle="object-contain"
-          gst="Including GST"
+          gst="(Including GST)"
         />
         <Card
           title="Certification in Risk Management Assurance"
@@ -123,7 +123,7 @@ export default function CoursesOverview() {
           linkTo="/courses/crma" 
           enrollLink="https://rzp.io/rzp/hjuC9dj" 
           imageStyle="object-contain"
-          gst="Including GST"
+          gst="(Including GST)"
         />
       </div>
     </>

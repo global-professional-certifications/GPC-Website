@@ -33,9 +33,9 @@ export default function Card({
         <div className="flex justify-between items-end">
           <div className="flex flex-col text-sm justify-center">
             <p>
-              <span className="text-brand-gray">INR {price}</span>
+              <span className="font-bold text-base text-gray-800">INR {price}</span>
             </p>
-            <p className="text-brand-gray">{gst}</p>
+            <p className="text-xs text-brand-gray">{gst}</p>
           </div>
           <Link
             to={enrollLink}
