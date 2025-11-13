@@ -43,7 +43,7 @@ const Iap = () => {
       {/* Header */}
 
       <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center gap-12 px-8">
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">

@@ -40,7 +40,7 @@ export default function CoursesOverview() {
 
       {/* Hero */}
       <section className="md:h-screen flex justify-center items-center bg-brand-blue pt-6 md:pt-16">
-        <div className="flex flex-col-reverse md:flex-row md:px-4 md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-6 lg:px-8 md:flex mt-16 px-8">
+        <div className="flex flex-col-reverse md:flex-col lg:flex-row md:px-4 md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-6 lg:px-8 md:flex mt-16 px-8">
           <div className="max-w-sm md:max-w-2xl mx-auto md:mr-20 md:mt-16">
             <div className="relative max-w-xl mt-8">
               <h1 className="mt-6 text-2xl md:text-6xl font-bold leading-tight text-white">
@@ -67,8 +67,8 @@ export default function CoursesOverview() {
           }
           </div>
           <div className="pb-6 md:pb-12">
-            <div className="relative">
-              <div className="relative mx-auto lg:max-w-6xl p-2 transform lg:scale-110">
+            <div className="relative md:flex md:justify-end md:items-end">
+              <div className="relative lg:max-w-6xl p-2 transform lg:scale-110">
                 <img
                   className="h-[350px] md:h-[450px] rounded-md"
                   src={coursesPhoto}
@@ -84,7 +84,7 @@ export default function CoursesOverview() {
       <h1 id="courses" className="text-2xl md:text-4xl font-bold text-brand-blue mb-10 text-center mt-10 md:mt-24">
         COURSES WE OFFER
       </h1>
-      <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full mb-10 md:mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:flex lg:flex-row lg:justify-center lg:items-center gap-6 md:gap-0 lg:gap-6 items-center mb-10 md:mb-24">
         <Card
           title="CIA all 3 Parts with Gleim Content"
           image={ciaLogo}

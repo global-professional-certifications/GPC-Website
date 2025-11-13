@@ -124,7 +124,7 @@ export default function Home() {
                     <Hero />
 
                     {/* Stats Section */}
-                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-4 md:px-16 lg:px-16 py-6 md:py-8 lg:py-8 text-center z-10 w-auto scale-90 md:scale-100 lg:scale-100">
+                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 md:-bottom-14 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-4 md:px-16 lg:px-16 py-6 md:py-8 lg:py-8 text-center z-10 w-auto scale-90 md:scale-100 lg:scale-100">
 
                         {/* Students */}
                         <div className="flex items-center gap-3 sm:gap-4">
@@ -168,12 +168,12 @@ export default function Home() {
 
                 {/* Popular Courses Section */}
 
-                <div className="my-10 px-2 mt-2 md:px-28">
+                <div className="my-10 px-2 mt-2 md:px-12 lg:px-28">
                     <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold">
                         Explore Our <span className="text-brand-blue font-normal italic">Flagship Certification Programs</span>
                     </p>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                         <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
                             <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                                 <img
@@ -270,7 +270,7 @@ export default function Home() {
 
                 {/* Download Brochure CTA */}
 
-                <div className="mt-20 px-6 md:px-12 lg:px-12 py-8">
+                <div className="mt-20 md:mt-32 lg:mt-20 px-6 md:px-16 lg:px-12 py-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
                         {/* Image Section */}
                         <div className="w-full md:w-1/2 flex justify-center">
@@ -310,8 +310,8 @@ export default function Home() {
 
                 <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
                     {/* Heading */}
-                    <div className="text-center mt-4 md:mt-12 mb-12 sm:mb-20 px-4">
-                        <p className="font-bold text-2xl sm:text-3xl md:text-4xl leading-snug">
+                    <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
+                        <p className="font-bold text-2xl md:text-4xl leading-snug">
                             Why Choose{" "}
                             <span className="text-brand-blue font-normal italic">
                                 Global Professional Certifications?
@@ -320,14 +320,14 @@ export default function Home() {
                     </div>
 
                     {/* Main Flex Layout */}
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-10 sm:gap-16 md:gap-20 px-4 sm:px-8 md:px-24">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-16 md:gap-20 px-4 sm:px-8 md:px-24">
 
                         {/* Left Column */}
-                        <div className="grid grid-cols-2 md:flex md:flex-col justify-center items-center gap-8 sm:gap-12 w-full md:w-1/3">
+                        <div className="grid grid-cols-2 lg:flex lg:flex-col justify-center items-center gap-8 sm:gap-12 w-full lg:w-1/3">
                             <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center">
                                 <FontAwesomeIcon icon={faGlobe} className="text-2xl sm:text-3xl md:text-4xl text-brand-blue mb-3 sm:mb-4" />
                                 <p className="text-base sm:text-lg font-semibold">Global Accreditation</p>
-                                <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
                                     Programs authorized and recognized internationally
                                 </p>
                             </div>
@@ -335,14 +335,14 @@ export default function Home() {
                             <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center">
                                 <FontAwesomeIcon icon={faChalkboardTeacher} className="text-2xl sm:text-3xl md:text-4xl text-brand-blue mb-3 sm:mb-4" />
                                 <p className="text-base sm:text-lg font-semibold">Expert Mentorship</p>
-                                <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
                                     Led by India's top faculty <br />Arpit Garg (CA, CIA, CRMA, CISA)
                                 </p>
                             </div>
                         </div>
 
                         {/* Center Image */}
-                        <div className="w-full md:w-1/3 flex justify-center relative">
+                        <div className="w-full md:w-2/3 lg:w-1/3 flex justify-center relative">
                             {/* Shadow Background */}
                             <div className="bg-brand-blue w-[60%] md:w-[90%] lg:w-[90%] h-full rounded-3xl absolute rotate-6 shadow-lg"></div>
                             <img
@@ -353,11 +353,11 @@ export default function Home() {
                         </div>
 
                         {/* Right Column */}
-                        <div className="grid grid-cols-2 md:flex md:flex-col justify-center items-center gap-8 sm:gap-12 w-full md:w-1/3">
+                        <div className="grid grid-cols-2 lg:flex lg:flex-col justify-center items-center gap-8 sm:gap-12 w-full lg:w-1/3">
                             <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center">
                                 <FontAwesomeIcon icon={faRobot} className="text-2xl sm:text-3xl md:text-4xl text-brand-blue mb-3 sm:mb-4" />
                                 <p className="text-base sm:text-lg font-semibold">Dedicated Support</p>
-                                <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
                                     Get dedicated support until you succeed — we’re with you every step of the way.
                                 </p>
                             </div>
@@ -365,7 +365,7 @@ export default function Home() {
                             <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center">
                                 <FontAwesomeIcon icon={faHandshake} className="text-2xl sm:text-3xl md:text-4xl text-brand-blue mb-3 sm:mb-4" />
                                 <p className="text-base sm:text-lg font-semibold">Flexibility</p>
-                                <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
                                     Weekend online classes with 100% recorded sessions
                                 </p>
                             </div>
@@ -377,23 +377,23 @@ export default function Home() {
 
 
                 {/* Video Section */}
-                <div className="relative w-full overflow-visible mt-4 md:mt-14">
+                <div className="relative w-full overflow-visible mt-4 lg:mt-14">
                     {/* Top White Section */}
-                    <div className="flex flex-col md:flex-row justify-center items-center  gap-10 md:gap-36 md:m-12 p-12 md:p-18 pb-[90px]">
+                    <div className="flex flex-col lg:flex-row justify-center items-center  gap-10 lg:gap-36 lg:m-12 p-12 md:p-18 pb-[90px]">
                         {/* Left Text Section */}
                         <div className="flex flex-col max-w-xl text-center md:text-left">
-                            <p className="text-2xl md:text-4xl font-bold leading-snug px-2 md:px-8">
+                            <p className="text-2xl md:text-4xl font-bold leading-snug px-2 lg:px-8">
                                 Hear What{" "}
                                 <span className="text-brand-blue font-normal italic">Our Mentor</span> Has To Say About This Course
                             </p>
 
                             {/* Buttons */}
-                            <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-6 mt-8 px-2 md:px-8">
+                            <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 lg:gap-6 mt-8 px-2 lg:px-8">
                                 <a
                                     href="https://youtu.be/XNnXkttYQUY?si=_sHWBCLvDgFtGIZD"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
                                 >
                                     Orientation Program
                                 </a>
@@ -410,7 +410,7 @@ export default function Home() {
                         </div>
 
                         {/* Right Text Section */}
-                        <div className="max-w-lg text-center md:text-left px-4 md:px-0">
+                        <div className="md:max-w-lg text-center md:text-left px-4 md:px-0">
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                                 At Global Professional Certifications (GPC), we are dedicated to empowering professionals worldwide by providing top-tier certification programs that unlock career growth, enhance expertise, and elevate industry standards
                             </p>
@@ -418,7 +418,7 @@ export default function Home() {
                     </div>
 
                     {/* Floating Video */}
-                    <div className="absolute left-1/2 -translate-x-1/2 top-[65%] md:top-[35%] lg:top-[35%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-[65%] md:top-[45%] lg:top-[35%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
                         <VideoSection />
                     </div>
 
@@ -429,10 +429,10 @@ export default function Home() {
 
                 {/* Accreditation */}
                 <div className="py-20 px-6 mx-12 my-4 md:my-10 md:px-16">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-20">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
 
                         {/* Left Content */}
-                        <div className="flex flex-col gap-6 md:w-1/2 text-center md:text-left">
+                        <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
                             <p className="text-2xl md:text-4xl font-bold leading-snug">
                                 <span className="text-brand-blue font-normal italic">IIA India</span> Authorized Training Partner
                             </p>
@@ -450,11 +450,11 @@ export default function Home() {
                         </div>
 
                         {/* Right Image */}
-                        <div className="flex justify-center md:justify-end w-80 md:w-1/2">
+                        <div className="flex justify-center md:justify-end w-80 md:w-full lg:w-1/2">
                             <img
                                 src={learningPartner}
                                 alt="IIA India Certification Ceremony"
-                                className="w-80 md:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
+                                className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
                             />
                         </div>
                     </div>
@@ -482,7 +482,7 @@ export default function Home() {
                 </div>
 
                 {/* People Image Display */}
-                <div className="w-full mx-auto mt-12">
+                <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
                     <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
                         <p className="text-2xl md:text-4xl text-center font-bold">What Our  <span className="text-brand-blue font-normal italic">Learners </span>Say
                         </p>
@@ -495,18 +495,18 @@ export default function Home() {
 
                 {/* Feedback Cards */}
 
-                <div className="py-8 bg-gray-50 px-6 md:px-16 mx-auto md:mx-12 lg:mx-14">
+                <div className="py-8 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-14">
 
                     {/* Top Quote Icon */}
                     <FontAwesomeIcon icon={faQuoteLeft} className="hidden md:block lg:block mb-8 text-3xl text-black md:text-5xl" />
 
                     {/* Testimonials Container */}
                     <div className="overflow-x-auto">
-                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-12 lg:gap-12 py-12 mx-0 md:mx-12 lg:mx-14">
+                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 py-12 mx-0 lg:mx-14">
                             {testimonials.map((testimonial, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
+                                    className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
                                 >
                                     <div className="flex-1 flex items-start">
 
@@ -543,7 +543,7 @@ export default function Home() {
                 </div>
 
                 {/* Blog Section */}
-                <div className="px-6 md:px-24 w-full mt-6 md:mt-12">
+                <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
                     <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
                         <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span>
                         </p>
@@ -551,7 +551,7 @@ export default function Home() {
                             Explore expert insights and latest trends in audit, risk, and professional certification on our blog
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {latestBlogs.map((blog) => (
                             <div
                                 key={blog.id}
@@ -615,8 +615,8 @@ export default function Home() {
 
                 {/* FAQ Section */}
 
-                <div className="mt-20 px-8 pb-40 md:pb-[220px] lg:px-24">
-                    <div className="flex flex-col lg:flex-row items-center gap-20 md:gap-12">
+                <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-24">
+                    <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-12">
 
                         {/* Image Section */}
                         <div className="w-full lg:w-2/5 flex justify-center items-center relative">
@@ -646,14 +646,14 @@ export default function Home() {
                 {/* Radial Gradient Banner */}
 
                 <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 sm:h-32 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full max-w-3xl flex items-center justify-center scale-90 md:scale-100">
-                        <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-12">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full md:max-w-2xl lg:max-w-3xl flex items-center justify-center scale-90 md:scale-100">
+                        <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-8 lg:gap-12">
                             {/* Text Content */}
                             <div className="text-center md:text-left mb-6 md:mb-0">
-                                <p className="text-white text-lg md:text-4xl font-bold">
+                                <p className="text-white text-lg md:text-2xl lg:text-4xl font-bold">
                                     Ready to advance your career?
                                 </p>
-                                <p className="text-gray-200 text-xs md:text-md mt-2">
+                                <p className="text-gray-200 text-xs md:text-sm lg:text-base mt-2">
                                     Enroll now and become part of a global network of successful professionals
                                 </p>
                             </div>
@@ -661,7 +661,7 @@ export default function Home() {
                             {/* Button */}
                             <Link
                                 to="/contact"
-                                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple  transition-all duration-300"
+                                className="bg-brand-blue text-white text-sm lg:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple  transition-all duration-300"
                             >
                                 Contact Us
                             </Link>
@@ -669,7 +669,9 @@ export default function Home() {
                     </div>
 
                 </div>
-                <div className="bg-black h-16 md:h-36 relative"></div>
+                <div className="bg-black">
+                    <div className="bg-black h-16 md:h-36 relative"></div>
+                </div>
             </div >
         </>
     )

@@ -182,7 +182,7 @@ export default function Events() {
 
             {/* Desktop Version */}
 
-            <section className="hidden md:block relative w-screen h-screen overflow-hidden">
+            <section className="hidden lg:block relative w-screen h-screen overflow-hidden">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center mt-16"
@@ -224,10 +224,10 @@ export default function Events() {
 
             {/* Mobile Version */}
 
-            <section className="flex flex-col justify-center items-center md:hidden bg-brand-blue pb-12 mt-16">
+            <section className="flex flex-col justify-center items-center lg:hidden bg-brand-blue pb-12 mt-16">
                 <div className="flex flex-col justify-center items-center text-white pt-24 px-8">
-                    <h1 className="text-2xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
-                    <h2 className="text-xs font-light text-gray-300 font-poppins mt-4 text-center">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
+                    <h1 className="text-2xl md:text-4xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
+                    <h2 className="text-xs md:text-base font-light text-gray-300 font-poppins mt-4 text-center px-0 md:px-20">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
                 </div>
                 <div className="w-full h-auto px-8 rounded-xl mt-12">
                     <img src={heroImageMobile} alt="Hero Image" className="w-full h-full object-cover rounded-xl" />
@@ -236,7 +236,7 @@ export default function Events() {
                     onClick={() => {
                         document.getElementById("past-section").scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="px-8 py-3 text-sm font-semibold text-white 
+                    className="px-8 py-3 text-sm md:text-base font-semibold text-white 
                                             rounded-lg shadow-lg transition-all duration-300 
                                             bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
                                             hover:scale-105 hover:shadow-xl focus:outline-none mt-12"
@@ -372,13 +372,13 @@ export default function Events() {
                                 Our Event Presence:{" "}
                                 <span className="text-brand-blue font-normal italic">Why It Matters</span>
                             </h3>
-                            <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mt-6 text-center md:text-left max-w-2xl mx-auto lg:mx-0 px-4 md:px-0">
+                            <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mt-6 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 px-4 md:px-0">
                                 At Global Professional Certifications, we don't just talk about growth — we live it. Our active presence at industry-leading conferences, training programs, and networking forums across the globe reflects our commitment to staying ahead of the curve and bringing real-world insights to the professionals we serve.
                             </p>
                         </div>
 
                         {/* Two-column grid */}
-                        <div className="flex justify-center md:justify-start gap-4 md:gap-12 py-6 md:py-8">
+                        <div className="flex justify-center lg:justify-start gap-4 md:gap-12 py-6 md:py-8">
                             <div className="flex flex-col items-center gap-4">
                                 <FaHandshakeAngle className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
                                 <p className="text-sm sm:text-base md:text-lg font-semibold font-poppins text-center lg:text-left">
@@ -489,7 +489,7 @@ export default function Events() {
 
                     {/*  Desktop  */}
 
-                    <div className="hidden md:flex flex-col gap-6 w-full">
+                    <div className="hidden lg:flex flex-col gap-6 w-full">
                         {[
                             {
                                 id: "hyderabad",
@@ -582,7 +582,7 @@ export default function Events() {
 
 
                     {/* Mobile Carousel */}
-                    <div className="md:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
+                    <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
                         {[
                             {
                                 id: "hyderabad",
@@ -635,11 +635,11 @@ export default function Events() {
                         ].map((evt) => (
                             <div
                                 key={evt.id}
-                                className="min-w-[85%] snap-center p-4 border border-gray-300 shadow-lg rounded-xl flex flex-col gap-4 bg-white"
+                                className="min-w-[85%] md:min-w-[55%] snap-center p-4 border border-gray-300 shadow-lg rounded-xl flex flex-col gap-4 bg-white"
                             >
                                 <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover" />
-                                <div className="flex flex-col justify-between h-[240px] gap-2">
-                                    <h5 className="text-base font-semibold text-gray-800 leading-tight">{evt.desc}</h5>
+                                <div className="flex flex-col justify-between h-[240px] md:h-[280px] gap-2">
+                                    <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.desc}</h5>
                                     <div className="flex flex-col gap-2 justify-start item-center text-sm">
                                         <div className="flex items-center gap-2 mt-4">
                                             <IoLocationOutline className="h-5 w-5 text-gray-600" />
@@ -668,7 +668,7 @@ export default function Events() {
 
             {/* FAQ Section */}
 
-            < div className="pt-16 px-8 pb-40 md:pb-[220px] lg:px-24 bg-gray-50" >
+            < div className="pt-16 md:pt-32 lg:pt-16 px-8 pb-40 md:pb-[220px] lg:px-24 bg-gray-50" >
                 <div className="flex flex-col lg:flex-row items-center gap-20 md:gap-12">
 
                     {/* Image Section */}
