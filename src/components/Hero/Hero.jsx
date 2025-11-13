@@ -19,11 +19,11 @@ const Hero = () => {
             className="relative min-h-screen flex items-center justify-center bg-brand-blue sm:pt-24"
             style={{ paddingTop: `${paddingTop}px` }}
         >
-            <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row items-center gap-10">
+            <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col lg:flex-row md:items-start lg:items-center gap-10">
 
                 {/* --- Left: Text Section --- */}
-                <div className="w-full md:w-1/2 max-w-3xl text-left">
-                    <p className="inline-block px-3 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-50/10 border border-white/80 md:border-white text-xs md:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm">
+                <div className="w-full md:w-full lg:w-1/2 lg:max-w-3xl text-left">
+                    <p className="inline-block px-3 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-50/10 border border-white/80 md:border-white text-xs md:text-sm lg:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm ">
                         Trusted by Professionals from Top Corporates
                     </p>
 
@@ -37,7 +37,7 @@ const Hero = () => {
                     </h1>
 
                     {/* Subheading (H2) */}
-                    <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 leading-relaxed">
+                    <h2 className="mt-4 text-base md:text-base lg:text-lg text-gray-200 leading-relaxed">
                         Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led, industry-accredited courses—<span className='font-bold text-orange-400'>including CIA, CRMA, IAP, and CISA</span>—designed for aspiring and experienced professionals in risk assurance and advisory.
                     </h2>
 
@@ -58,7 +58,7 @@ const Hero = () => {
                 </div>
 
                 {/* --- Right: Hero Image --- */}
-                <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+                <div className="w-full lg:w-1/2 flex justify-center md:justify-end">
                     <div className="relative max-w-lg">
                         <img
                             src={heroGirl}

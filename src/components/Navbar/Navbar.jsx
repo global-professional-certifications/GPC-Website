@@ -56,7 +56,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-${topOffset} left-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm`}
+      className={`fixed w-full z-50 top-${topOffset} bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm px-0 md:px-8`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
@@ -67,7 +67,7 @@ const Navbar = ({ topOffset = 0 }) => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           {["Courses", "Events", "About", "Success", "Contact", "Blogs"].map((item, index) =>
             item === "Courses" ? (
               <div
@@ -130,7 +130,7 @@ const Navbar = ({ topOffset = 0 }) => {
         </div>
 
         {/* Desktop Login / Signup */}
-        <div className="hidden md:flex items-center space-x-3">
+        <div className="hidden lg:flex items-center space-x-3">
           <a
             href="https://learn.globalprofessionalcertifications.com/learn/account/signin"
             target="_blank"
@@ -150,7 +150,7 @@ const Navbar = ({ topOffset = 0 }) => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-800 dark:text-white focus:outline-none"
+          className="lg:hidden text-gray-800 dark:text-white focus:outline-none"
         >
           {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
         </button>
@@ -158,7 +158,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        className={`lg:hidden bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
           }`}
       >
         <ul className="flex flex-col items-center py-4 space-y-3">

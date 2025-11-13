@@ -76,14 +76,14 @@ const BlogList = () => {
 
                     <div className='flex flex-col md:flex-row justify-between items-center gap-6 md:gap-10'>
 
-                        <img src={iiaBlog} alt="" className='h-44 md:h-56 w-full  md:object-cover rounded-xl' />
+                        <img src={iiaBlog} alt="" className='h-44 lg:h-56 w-full  md:object-cover rounded-xl' />
 
                         <div className='flex flex-col gap-4 justify-start items-start'>
-                            <p className='text-xl md:text-2xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 line-clamp-4'>
+                            <p className='text-xl lg:text-2xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 line-clamp-4'>
                                 Accelerate Your Audit Career with the CIA Challenge Exam: A Strategic Guide for Internal Audit Professionals
                             </p>
 
-                            <p className='text-gray-500 md:text-base lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
+                            <p className='text-gray-500 lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
                                 In today’s dynamic corporate environment, internal auditors are expected to be more than compliance checkers — they’re strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
                             </p>
                             <Link
