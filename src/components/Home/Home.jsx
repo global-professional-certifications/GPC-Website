@@ -646,7 +646,7 @@ export default function Home() {
                 {/* Radial Gradient Banner */}
 
                 <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full md:max-w-2xl lg:max-w-3xl flex items-center justify-center scale-90 md:scale-100">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full md:max-w-2xl lg:max-w-4xl flex items-center justify-center scale-90 md:scale-100">
                         <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-8 lg:gap-12">
                             {/* Text Content */}
                             <div className="text-center md:text-left mb-6 md:mb-0">
