@@ -23,7 +23,7 @@ const Hero = () => {
 
                 {/* --- Left: Text Section --- */}
                 <div className="w-full md:w-1/2 max-w-3xl text-left">
-                    <p className="inline-block px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-50/10 border border-white/80 md:border-white text-xs sm:text-sm md:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm">
+                    <p className="inline-block px-3 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-50/10 border border-white/80 md:border-white text-xs md:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm">
                         Trusted by Professionals from Top Corporates
                     </p>
 

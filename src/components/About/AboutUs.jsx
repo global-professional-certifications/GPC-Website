@@ -224,25 +224,24 @@ export default function AboutUs() {
             />
             <section className="bg-brand-blue py-20 sm:py-20 lg:py-20 relative md:min-h-[80vh] md:flex md:justify-center md:items-center">
                 <div className="w-full mt-24 max-w-[75rem] px-4 sm:px-6 lg:px-8 mx-auto ">
-                    {/* <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-8 items-center"> */}
                     <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-12 items-center">
                         <div className="w-full flex flex-col justify-start lg:items-start items-center gap-6 sm:gap-8">
                             <div className="w-full flex flex-col lg:items-start items-center gap-4">
-                                <h2 className="text-gray-50 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-manrope leading-tight lg:text-start text-center">
-                                    Take your career to the next level in Risk Assurance and Advisory Domain
+                                <h1 className="mt-6 text-xl md:text-6xl font-bold leading-tight text-white">
+                                    Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Career</span>
+                                </h1>
+                                <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
+                                    At <span className='font-bold text-orange-400'>Global Professional Certifications</span> (GPC), we empower audit and risk professionals worldwide with industry-leading <span className='font-bold text-orange-400'>CIA, CISA, CRMA, and IAP</span> certification programs. 
                                 </h2>
-                                <p className="text-gray-50 text sm:text-base md:text-lg font-normal leading-relaxed lg:text-start text-center">
-                                    At Global Professional Certifications (GPC), we are dedicated to empowering professionals worldwide by providing top-tier certification programs that unlock career growth, enhance expertise, and elevate industry standards.
-                                </p>
                             </div>
-                            <Link to="/courses">
-                                <button className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-orange-500 text-gray-50 hover:text-brand-dark hover:bg-gray-50 transition-all duration-300 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] flex justify-center items-center text-base sm:text-lg font-bold">
-                                    Explore our Programs
+                            <Link to="/contact">
+                                <button className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl">
+                                    Talk to Us
                                 </button>
                             </Link>
                         </div>
                         <img 
-                            className="w-full max-w-[500px] mx-auto lg:mx-auto h-auto rounded-3xl object-cover shadow-2xl shadow-gray-500/50 " 
+                            className="w-full max-w-[500px] mx-auto lg:mx-auto h-auto rounded-3xl object-cover " 
                             src={professionalWorkingOnHerDesktop} 
                             alt="Professional working on her desktop" 
                         />
@@ -270,9 +269,9 @@ export default function AboutUs() {
                         </div>
                         <div className="w-full flex flex-col justify-center lg:items-start items-center gap-8">
                             <div className="w-full flex flex-col justify-start lg:items-start items-center gap-4">
-                                <h2 className="text-brand-dark text-2xl sm:text-3xl md:text-4xl font-bold font-manrope leading-tight lg:text-start text-center">
+                                <h3 className="text-brand-dark text-2xl sm:text-3xl md:text-4xl font-bold font-manrope leading-tight lg:text-start text-center">
                                     Our Mission
-                                </h2>
+                                </h3>
                                 <p className="text-brand-gray text-sm sm:text-base md:text-lg font-normal leading-relaxed lg:text-start text-center">
                                     Our mission is to bridge the gap between ambition and achievement, transforming learners into leaders through rigorous, globally recognized certifications. We specialize in preparing individuals for prestigious programs, including the Certified Internal Auditor (CIA), Certification in Risk Management Assurance (CRMA), Internal Audit Practitioner (IAP), and Certified Information Systems Auditor (CISA), each widely regarded as the gold standard in the risk assurance and advisory domain.
                                 </p>

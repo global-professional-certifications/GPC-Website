@@ -560,23 +560,23 @@ export default function Home() {
                                 <img
                                     src={blog.cover}
                                     alt={blog.title}
-                                    className="w-full h-56 object-cover"
+                                    className="w-full h-36 md:h-56 object-cover"
                                 />
 
-                                <div className="w-full flex justify-between items-center p-6">
+                                <div className="w-full flex justify-between items-center p-4 md:p-6">
                                     <div className="flex justify-center items-center gap-2">
                                         <FontAwesomeIcon icon={faCalendarDays} className="text-blue-400" />
-                                        <div className="text-gray-600">{blog.date}</div>
+                                        <div className="text-xs md:text-sm text-gray-600">{blog.date}</div>
                                     </div>
                                     <div className="flex justify-center items-center gap-2">
                                         <FontAwesomeIcon icon={faUser} className="text-blue-400" />
-                                        <div className="text-gray-600">{blog.author}</div>
+                                        <div className="text-xs md:text-sm text-gray-600">{blog.author}</div>
                                     </div>
                                 </div>
 
-                                <div className="px-6 flex flex-col justify-between pb-6 h-[240px]">
+                                <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
                                     <div>
-                                        <h3 className="text-sm md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3">
+                                        <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3">
                                             {blog.title}
                                         </h3>
                                         <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">

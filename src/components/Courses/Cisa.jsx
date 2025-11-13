@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
+import cisaHero from "../../assets/cisa-hero.jpg";
+
 
 
 const Cisa = () => {
@@ -37,21 +39,46 @@ const Cisa = () => {
           {JSON.stringify(cisaSchema)}
         </script>
       </Helmet>
-      <div className={`mt-[${marginTop}px] bg-gray-100 font-sans`}>
+
+
       {/* Header */}
-      <header className="bg-brand-blue text-white py-8 md:py-12 text-center">
-        <h1 className="px-4 md:px-0 text-3xl md:text-5xl font-bold">
-          Certified Information Systems Auditor (CISA)
-        </h1>
-      </header>
+      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl md:flex md:justify-center md:items-center gap-12 px-8">
+          <div className="max-w-sm md:max-w-2xl mx-auto">
+            <div className="relative max-w-xl">
+              <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
+                Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit</span> Expert with CISA
+              </h1>
+              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Pass the CISA certification with ISACA aligned training. Master<span className='font-bold text-orange-400'> IT auditing, risk assessment, and cybersecurity with recorded classes, MCQs, and mentorship</span> from India's top CISA faculty—Arpit Garg.</h2>
+            </div>
+
+            <div className="mt-6">
+              <Link
+                onClick={() => {
+                  document.getElementById("enrollment").scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
+                role="button"
+              >
+                Enroll Now
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative mx-auto lg:max-w-6xl">
+            <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={cisaHero} alt="homepage hero" />
+          </div>
+
+        </div>
+      </div>
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* About Section */}
         <section className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl md:text-5xl font-semibold text-brand-blue mb-4 md:mb-8">
+          <h3 className="text-2xl md:text-5xl font-semibold text-brand-blue mb-4 md:mb-8">
             About the CISA Course
-          </h2>
+          </h3>
           <p className="text-gray-700 text-md md:text-xl mb-4">
             Become a certified expert in information systems auditing with our CISA course. This comprehensive program prepares you for the CISA certification exam, covering IT audit, control, and assurance.
           </p>
@@ -89,7 +116,7 @@ const Cisa = () => {
         </section>
 
         {/* Enrollment Section */}
-        <section className="flex flex-col md:flex-row justify-around items-center bg-orange-100 rounded-lg shadow-lg p-6 md:p-8 text-center space-y-6 md:space-y-0 md:space-x-8">
+        <section id="enrollment" className="flex flex-col md:flex-row justify-around items-center bg-orange-100 rounded-lg shadow-lg p-6 md:p-8 text-center space-y-6 md:space-y-0 md:space-x-8">
             <div className="flex flex-col items-center md:items-start">
                 <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-brand-blue mb-2">
                     Enroll Now
@@ -109,7 +136,6 @@ const Cisa = () => {
         </section>
 
       </main>
-      </div>
     </>
   );
 };

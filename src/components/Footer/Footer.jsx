@@ -35,7 +35,7 @@ const Footer = () => {
                         <ul className="flex items-center gap-6 mt-12">
                             <li>
                                 <Link
-                                    to="https://www.youtube.com/watch?v=2FWaO_Cf0eg"
+                                    to="https://www.youtube.com/@global-professional-cert"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
