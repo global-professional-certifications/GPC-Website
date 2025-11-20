@@ -3,28 +3,33 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
 import { Link } from "react-router-dom";
+import MetaTags from "../MetaTags";
+import { motion } from "motion/react";
+import { RxCross1 } from "react-icons/rx";
+import { Helmet } from 'react-helmet-async';
+import FAQDisplay from "../FAQDisplay.jsx";
+import Countdown from "react-countdown";
+import EventCarousel from "../Carousels/EventCarousel";
+
+// images import
 import iiaEvent from "../../assets/iia-event.jpeg";
 import wofaBanner from "../../assets/wofa-banner.webp";
 import iiaKolkataBanner from "../../assets/iia-kolkata-banner.webp";
 import iiaBengaluruBanner from "../../assets/iia-bengaluru-banner.webp";
 import iiaMumbaiBanner from "../../assets/iia-mumbai-banner.webp";
-import MetaTags from "../MetaTags";
-import { motion } from "motion/react";
-import { RxCross1 } from "react-icons/rx";
 import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.webp"
 import agmIiaDelhiChapter from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-events.webp"
-import { Helmet } from 'react-helmet-async';
-import FAQDisplay from "../FAQDisplay.jsx";
+import eventThumbnail from '../../assets/event-thumbnail.png'
+import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages } from "../../../eventImages";
+import heroImage from '../../assets/event-hero-image-1.png'
+import heroImageMobile from '../../assets/event-hero.jpg'
 import faqImage from "../../assets/our-mission-1.webp";
+
+// icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
-import Countdown from "react-countdown";
-import eventThumbnail from '../../assets/event-thumbnail.png'
-import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages } from "../../../eventImages";
-import EventCarousel from "../Carousels/EventCarousel";
-import heroImage from '../../assets/event-hero-image-1.png'
-import heroImageMobile from '../../assets/event-hero.jpg'
+
 
 const courseFaqs = [
     {
@@ -187,6 +192,7 @@ export default function Events() {
                 <div
                     className="absolute inset-0 bg-cover bg-center mt-16"
                     style={{ backgroundImage: `url(${heroImage})` }}
+                    loading="lazy"
                 ></div>
 
 
@@ -230,7 +236,7 @@ export default function Events() {
                     <h2 className="text-xs md:text-base font-light text-gray-300 font-poppins mt-4 text-center px-0 md:px-20">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
                 </div>
                 <div className="w-full h-auto px-8 rounded-xl mt-12">
-                    <img src={heroImageMobile} alt="Hero Image" className="w-full h-full object-cover rounded-xl" />
+                    <img src={heroImageMobile} alt="Hero Image" className="w-full h-full object-cover rounded-xl" loading="lazy" />
                 </div>
                 <button
                     onClick={() => {
@@ -637,7 +643,7 @@ export default function Events() {
                                 key={evt.id}
                                 className="min-w-[85%] md:min-w-[55%] snap-center p-4 border border-gray-300 shadow-lg rounded-xl flex flex-col gap-4 bg-white"
                             >
-                                <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover" />
+                                <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover" loading='lazy' />
                                 <div className="flex flex-col justify-between h-[240px] md:h-[280px] gap-2">
                                     <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.desc}</h5>
                                     <div className="flex flex-col gap-2 justify-start item-center text-sm">

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import coursesPhoto from "../../assets/Courses-photo-1.png";
 import Card from "../Card/Card";
+import MetaTags from "../MetaTags";
+import CoursesSEO from "./CoursesSEO";
+
+// images import
+import coursesPhoto from "../../assets/Courses-photo-1.png";
 import cisaLogo from "../../assets/cisa-logo-1.png";
 import ciaLogo from "../../assets/cia-logo.webp";
 import iapLogo from "../../assets/iap-logo-cropped.webp";
 import crmaLogoOne from "../../assets/crma-logo-1.png";
-import { FaArrowTurnDown } from "react-icons/fa6";
-import MetaTags from "../MetaTags";
-import CoursesSEO from "./CoursesSEO";
+
 
 export default function CoursesOverview() {
 

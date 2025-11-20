@@ -77,7 +77,7 @@ const Cia = () => {
                     </div>
 
                     <div className="relative mx-auto lg:max-w-6xl">
-                        <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={ciaHero} alt="homepage hero" />
+                        <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={ciaHero} alt="homepage hero" loading='lazy' />
                             </div>
 
                 </div>

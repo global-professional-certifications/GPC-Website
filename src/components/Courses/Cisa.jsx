@@ -66,7 +66,7 @@ const Cisa = () => {
           </div>
 
           <div className="relative mx-auto lg:max-w-6xl">
-            <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={cisaHero} alt="homepage hero" />
+            <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={cisaHero} alt="homepage hero" loading='lazy' />
           </div>
 
         </div>
