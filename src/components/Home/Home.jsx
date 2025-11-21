@@ -178,71 +178,77 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
+                    <div className="flex flex-col lg:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
 
                         {/* Card 1 */}
-                        <div className="w-full md:w-1/2 lg:w-1/3 h-auto lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
-                            <img
-                                src={annoucement1}
-                                alt=""
-                                className="w-full h-[200px] lg:h-[220px] object-cover rounded-t-3xl"
-                            />
+                        <div className="w-full h-auto md:h-[250px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
 
-                            <div className="bg-gradient-to-t from-black to-brand-blue rounded-b-3xl w-full h-auto md:h-[230px] flex flex-col px-6 py-4">
-                                <div className="flex flex-col justify-between h-full">
-                                    <div>
-                                        <div className="w-full flex justify-between items-center">
-                                            <div className="flex items-center gap-2">
-                                                <FontAwesomeIcon icon={faCalendarDays} className="text-white" />
-                                                <div className="text-xs lg:text-base text-white">
-                                                    29<sup>th</sup> Nov, 2025
+                            <div className="flex flex-col md:flex-row lg:flex-col w-full h-full">
+                                <img
+                                    src={annoucement1}
+                                    alt=""
+                                    className="w-full h-[200px] md:h-full md:w-full lg:h-[220px] lg:w-full object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none lg:rounded-t-3xl lg:rounded-b-none"
+                                />
+
+                                <div className="bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none lg:rounded-b-3xl lg:rounded-tr-none w-full h-auto lg:h-[230px] flex flex-col px-6 py-4">
+                                    <div className="flex flex-col justify-between h-full">
+                                        <div>
+                                            <div className="flex flex-col md:flex-col-reverse lg:flex-col">
+                                                <div className="md:pt-8 lg:pt-0 w-full flex justify-between items-center">
+                                                    <div className="flex items-center gap-2">
+                                                        <FontAwesomeIcon icon={faCalendarDays} className="text-white" />
+                                                        <div className="text-xs lg:text-base text-white">
+                                                            29<sup>th</sup> Nov, 2025
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <FontAwesomeIcon icon={faClock} className="text-white" />
+                                                        <div className="text-xs lg:text-base text-white">5pm - 6pm</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <FontAwesomeIcon icon={faClock} className="text-white" />
-                                                <div className="text-xs lg:text-base text-white">5pm - 6pm</div>
+                                                <div className="flex flex-col">
+                                                    <p className="text-2xl md:text-3xl lg:text-3xl  font-bold text-[#FFD700] my-2">
+                                                        CIA Part 1 Orientation
+                                                    </p>
+                                                    <p className="text-white text-sm md:text-base leading-snug">
+                                                        Get all the details, guidance, and tips you need before starting your CIA journey.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <p className="text-2xl md:text-xl lg:text-3xl  font-bold text-[#FFD700] my-2">
-                                            CIA Part 1 Orientation
-                                        </p>
-                                        <p className="text-white text-sm lg:text-base leading-snug">
-                                            Get all the details, guidance, and tips you need before starting your CIA journey.
-                                        </p>
-                                    </div>
-
-                                    <div className="pt-4 pb-2">
-                                        <a
-                                            href="https://zfrmz.in/XkllEWzA37g02fP3roBa"
-                                            title="Register for CIA Part 1 Orientation"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl w-full"
-                                            role="button"
-                                        >
-                                            Register Now
-                                        </a>
+                                        <div className="pt-4 pb-2">
+                                            <a
+                                                href="https://zfrmz.in/XkllEWzA37g02fP3roBa"
+                                                title="Register for CIA Part 1 Orientation"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl w-full"
+                                                role="button"
+                                            >
+                                                Register Now
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Card 2 */}
-                        <div className="w-full md:w-1/2 lg:w-2/3 h-auto lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
-                            <div className="flex flex-col lg:flex-row w-full h-full">
+                        <div className="w-full lg:w-2/3 h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
+                            <div className="flex flex-col md:flex-row w-full h-full">
 
                                 <img
                                     src={annoucement2}
                                     alt=""
-                                    className="w-full lg:w-[40%] h-[220px] md:h-[200px] lg:h-full object-cover object-top md:object-cover rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none"
+                                    className="w-full md:w-[40%] h-[220px] md:h-auto lg:h-full object-cover object-top md:object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none"
                                 />
 
-                                <div className="h-auto lg:h-full w-full lg:w-[60%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none px-6 py-8 flex flex-col justify-start">
+                                <div className="h-auto lg:h-full w-full lg:w-[60%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none px-6 py-6 md:py-8 flex flex-col justify-start">
                                     <div className="flex flex-col justify-between h-full">
 
                                         <div className="h-full">
-                                            <p className="text-2xl lg:text-4xl text-[#FFD700] font-bold">
+                                            <p className="text-2xl md:text-3xl lg:text-4xl text-[#FFD700] font-bold">
                                                 Kickstart Your CIA Part 1
                                             </p>
 
@@ -250,19 +256,19 @@ export default function Home() {
                                                 New Batch Starting from 6<sup>th</sup> Dec, 2025
                                             </p>
 
-                                            <div className="md:hidden lg:flex text-xs md:text-sm pt-0 md:pt-2 font-thin text-white leading-tight md:pr-4 flex flex-col">
+                                            <div className="text-xs md:text-sm pt-0 md:pt-2 font-thin text-white leading-tight md:pr-4 flex flex-col">
                                                 <p>
                                                     Great careers don’t wait. Join the CIA Part 1 batch starting from 6th December,
                                                     11:30 AM – 2:30 PM, and move closer to your certification.
                                                 </p>
-                                                <ol className="sm:flex md:hidden lg:flex pt-2 font-semibold text-[#FFD700] text-xs lg:text-sm list-none gap-3">
+                                                <ol className="hidden md:flex pt-2 font-semibold text-[#FFD700] text-xs lg:text-sm list-none gap-3">
                                                     <li>1. Live Training</li>
                                                     <li>2. Expert Mentorship</li>
                                                     <li>3. Proven Outcomes</li>
                                                 </ol>
                                             </div>
 
-                                            <div className="md:hidden lg:flex text-white text-xl md:text-2xl flex flex-col items-center gap-2 mt-6 md:mt-8">
+                                            <div className=" text-white text-xl md:text-2xl flex flex-col items-center gap-2 mt-6 md:mt-8">
                                                 <p className="text-sm md:text-base">Hurry Up! Only</p>
                                                 <span>
                                                     <Countdown
@@ -293,7 +299,7 @@ export default function Home() {
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 pb-2">
+                                        <div className="pt-4 md:pb-2">
                                             <a
                                                 href="https://zfrmz.in/d0MKpQhN9W2A6MPya8Kf"
                                                 title="Register for CIA Part 1 Orientation"

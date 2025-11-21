@@ -27,6 +27,7 @@ import Glossary from './components/Glossary/Glossary.jsx';
 import BlogList from './components/Blogs/BlogList.jsx';
 import BlogPage from './components/Blogs/BlogPage.jsx';
 import useFetch from './components/Hooks/useFetch.jsx';
+import { Analytics } from "@vercel/analytics/react"
 
 
 const router = createBrowserRouter(
@@ -72,6 +73,7 @@ createRoot(document.getElementById('root')).render(
           </script>
         </Helmet> */}
         <RouterProvider router={router} />
+        <Analytics />
       </>
     </HelmetProvider>
   </ThemeProvider>
