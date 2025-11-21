@@ -174,36 +174,37 @@ export default function Home() {
                 <div className="bg-gray-50 px-6 lg:px-28 pt-12 pb-12 mt-20">
                     <div>
                         <p className="text-2xl md:text-4xl lg:text-4xl pl-2 md:pl-4 pr-0 md:pr-24 text-left mb-12 font-bold">
-                            Upcoming <span className="text-brand-blue font-normal italic">Events</span>
+                            Upcoming
                         </p>
                     </div>
 
                     <div className="flex flex-col lg:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
 
                         {/* Card 1 */}
-                        <div className="w-full h-auto md:h-[250px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
+                        <div className="w-full h-auto md:h-[230px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
 
                             <div className="flex flex-col md:flex-row lg:flex-col w-full h-full">
                                 <img
                                     src={annoucement1}
                                     alt=""
                                     className="w-full h-[200px] md:h-full md:w-full lg:h-[220px] lg:w-full object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none lg:rounded-t-3xl lg:rounded-b-none"
+                                    loading="lazy"
                                 />
 
                                 <div className="bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none lg:rounded-b-3xl lg:rounded-tr-none w-full h-auto lg:h-[230px] flex flex-col px-6 py-4">
                                     <div className="flex flex-col justify-between h-full">
                                         <div>
                                             <div className="flex flex-col md:flex-col-reverse lg:flex-col">
-                                                <div className="md:pt-8 lg:pt-0 w-full flex justify-between items-center">
+                                                <div className="md:pt-4 lg:pt-0 w-full flex justify-between items-center">
                                                     <div className="flex items-center gap-2">
                                                         <FontAwesomeIcon icon={faCalendarDays} className="text-white" />
-                                                        <div className="text-xs lg:text-base text-white">
+                                                        <div className="text-xs md:text-sm lg:text-base text-white">
                                                             29<sup>th</sup> Nov, 2025
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center gap-2">
                                                         <FontAwesomeIcon icon={faClock} className="text-white" />
-                                                        <div className="text-xs lg:text-base text-white">5pm - 6pm</div>
+                                                        <div className="text-xs md:text-sm lg:text-base text-white">5pm - 6pm</div>
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col">
@@ -242,6 +243,7 @@ export default function Home() {
                                     src={annoucement2}
                                     alt=""
                                     className="w-full md:w-[40%] h-[220px] md:h-auto lg:h-full object-cover object-top md:object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none"
+                                    loading="lazy"
                                 />
 
                                 <div className="h-auto lg:h-full w-full lg:w-[60%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none px-6 py-6 md:py-8 flex flex-col justify-start">
