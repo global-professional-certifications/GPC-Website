@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
@@ -11,43 +10,6 @@ import iiaBlog from '../../assets/iia-blog-thumbnail.jpg'
 
 
 const BlogList = () => {
-    // const [blogs, setBlogs] = useState([])
-    // const [loading, setLoading] = useState(true)
-    // const [error, setError] = useState(null)
-
-    // useEffect(() => {
-    //     axios
-    //         .get('http://localhost:1338/api/blogs?populate=*')
-    //         .then((res) => {
-    //             setBlogs(res.data.data || [])
-    //             setLoading(false)
-    //         })
-    //         .catch((err) => {
-    //             console.error('Error fetching blogs:', err)
-    //             setError(err)
-    //             setLoading(false)
-    //         })
-    // }, [])
-
-    // const getImage = (blog) => {
-    //     const url = blog.cover?.url
-    //     return url ? `http://localhost:1338${url}` : cover
-    // }
-
-    // if (loading)
-    //     return (
-    //         <p className="text-center mt-32 text-2xl font-semibold text-purple-600">
-    //             Loading...
-    //         </p>
-    //     )
-
-    // if (error)
-    //     return (
-    //         <p className="text-center mt-32 text-2xl font-semibold text-red-600">
-    //             Error fetching blogs
-    //         </p>
-    //     )
-
 
     const featured = blogs[0]
     const right = blogs.slice(1, 4)

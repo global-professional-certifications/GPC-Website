@@ -3,23 +3,106 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+    <!-- Static Pages -->
     <url>
         <loc>https://globalprofessionalcertifications.com/</loc>
-        <lastmod>2025-03-13</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://globalprofessionalcertifications.com/about</loc>
-        <lastmod>2025-03-13</lastmod>
-        <priority>0.8</priority>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/terms</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/privacy</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
     </url>
 
     <url>
         <loc>https://globalprofessionalcertifications.com/contact</loc>
-        <lastmod>2025-03-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/refund</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/faq</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/glossary</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/success</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Courses -->
+    <url>
+        <loc>https://globalprofessionalcertifications.com/courses</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/courses/cia</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/courses/crma</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/courses/cisa</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://globalprofessionalcertifications.com/courses/iap</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Events -->
+    <url>
+        <loc>https://globalprofessionalcertifications.com/events</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Blogs -->
+    <url>
+        <loc>https://globalprofessionalcertifications.com/blogs</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
