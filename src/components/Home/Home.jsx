@@ -137,24 +137,25 @@ const latestBlogs = blogs.slice(0, 3);
 const eventDate = new Date("2025-12-06T11:30:00");
 
 export default function Home() {
-  const [open, setOpen] = useState(false);
-  const [readyToDownload, setReadyToDownload] = useState(false);
 
-  //   Brochure download form pop-up
+//   const [open, setOpen] = useState(false);
+//   const [readyToDownload, setReadyToDownload] = useState(false);
 
-  useEffect(() => {
-    const handleZohoSubmit = (event) => {
-      // Only trigger if form was opened first & submission = success
-      if (readyToDownload && event.data?.status === "success") {
-        window.open({ brochure }, "_blank");
-        setOpen(false);
-        setReadyToDownload(false); // reset for next time
-      }
-    };
+//   //   Brochure download form pop-up
 
-    window.addEventListener("message", handleZohoSubmit);
-    return () => window.removeEventListener("message", handleZohoSubmit);
-  }, [readyToDownload]);
+//   useEffect(() => {
+//     const handleZohoSubmit = (event) => {
+//       // Only trigger if form was opened first & submission = success
+//       if (readyToDownload && event.data?.status === "success") {
+//         window.open({ brochure }, "_blank");
+//         setOpen(false);
+//         setReadyToDownload(false); // reset for next time
+//       }
+//     };
+
+//     window.addEventListener("message", handleZohoSubmit);
+//     return () => window.removeEventListener("message", handleZohoSubmit);
+//   }, [readyToDownload]);
 
   return (
     <>
@@ -536,19 +537,17 @@ export default function Home() {
                 detailed insights on course structure, expert mentorship, and
                 global recognition in our downloadable brochure
               </p>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setReadyToDownload(true);
-                  setOpen(true);
-                }}
-                className="bg-brand-blue text-white text-sm sm:text-base py-2 px-5 sm:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 mt-2"
-              >
-                Download
-              </button>
+              <a
+                  href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+                >
+                  Download
+                </a>
 
               {/* Popup Modal — also inside Home.jsx */}
-              {open && (
+              {/* {open && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
                   <div className="bg-white p-6 rounded-xl shadow-xl w-[90%] max-w-xl relative">
                     <button
@@ -570,7 +569,7 @@ export default function Home() {
                     ></iframe>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
