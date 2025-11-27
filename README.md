@@ -15,10 +15,10 @@ To run this project locally, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Priyanshu-Oneskai/Duplicate-GPC.git
+git clone https://github.com/global-professional-certifications/GPC-Website.git
 
 # Navigate to the project folder
-cd Duplicate-GPC
+cd GPC-Website
 
 # Install dependencies
 npm install
