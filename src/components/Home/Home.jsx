@@ -25,6 +25,7 @@ import {
   faRobot,
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 // images import
 import cia from "../../assets/cia-logo.png";
@@ -46,9 +47,6 @@ import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
 import annoucement1 from "../../assets/orientation-announcement.png";
 import annoucement2 from "../../assets/batch-announcement.webp";
-
-// import brochure from "../../assets/CIA-Brochure.pdf";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 const courseFaqs = [
   {
@@ -137,26 +135,6 @@ const latestBlogs = blogs.slice(0, 3);
 const eventDate = new Date("2025-12-06T11:30:00");
 
 export default function Home() {
-
-//   const [open, setOpen] = useState(false);
-//   const [readyToDownload, setReadyToDownload] = useState(false);
-
-//   //   Brochure download form pop-up
-
-//   useEffect(() => {
-//     const handleZohoSubmit = (event) => {
-//       // Only trigger if form was opened first & submission = success
-//       if (readyToDownload && event.data?.status === "success") {
-//         window.open({ brochure }, "_blank");
-//         setOpen(false);
-//         setReadyToDownload(false); // reset for next time
-//       }
-//     };
-
-//     window.addEventListener("message", handleZohoSubmit);
-//     return () => window.removeEventListener("message", handleZohoSubmit);
-//   }, [readyToDownload]);
-
   return (
     <>
       <MetaTags
@@ -234,7 +212,7 @@ export default function Home() {
 
           <div className="flex flex-col lg:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
             {/* Card 1 */}
-            <div className="w-full h-auto md:h-[230px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
+            {/* <div className="w-full h-auto md:h-[230px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
               <div className="flex flex-col md:flex-row lg:flex-col w-full h-full">
                 <img
                   src={annoucement1}
@@ -294,10 +272,10 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Card 2 */}
-            <div className="w-full lg:w-2/3 h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
+            <div className="w-full h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
               <div className="flex flex-col md:flex-row w-full h-full">
                 <img
                   src={annoucement2}
@@ -306,9 +284,9 @@ export default function Home() {
                   loading="lazy"
                 />
 
-                <div className="h-auto lg:h-full w-full lg:w-[65%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none px-6 py-6 md:py-8 flex flex-col justify-start">
+                <div className="h-auto lg:h-full w-full lg:w-[65%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none px-6 py-6 md:py-8 flex flex-col justify-center items-center">
                   <div className="flex flex-col justify-between h-full">
-                    <div className="h-full">
+                    <div className="h-full text-center">
                       <p className="text-2xl md:text-3xl lg:text-4xl text-[#FFD700] font-bold">
                         Kickstart Your CIA Part 1
                       </p>
@@ -323,7 +301,7 @@ export default function Home() {
                           starting from 6th December, 11:30 AM – 2:30 PM, and
                           move closer to your certification.
                         </p>
-                        <ol className="hidden md:flex pt-2 font-semibold text-[#FFD700] text-xs lg:text-sm list-none gap-3">
+                        <ol className="hidden md:flex pt-2 font-semibold text-[#FFD700] text-xs lg:text-sm list-none gap-3 justify-center">
                           <li>1. Live Training</li>
                           <li>2. Expert Mentorship</li>
                           <li>3. Proven Outcomes</li>
@@ -538,38 +516,13 @@ export default function Home() {
                 global recognition in our downloadable brochure
               </p>
               <a
-                  href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-                >
-                  Download
-                </a>
-
-              {/* Popup Modal — also inside Home.jsx */}
-              {/* {open && (
-                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-                  <div className="bg-white p-6 rounded-xl shadow-xl w-[90%] max-w-xl relative">
-                    <button
-                      onClick={() => setOpen(false)}
-                      className="absolute right-3 top-3 text-black text-xl font-bold"
-                    >
-                      ✕
-                    </button>
-
-                    <h2 className="text-xl font-semibold mb-4">
-                      Fill the form to download
-                    </h2>
-
-                    <iframe
-                      src="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
-                      width="100%"
-                      height="500px"
-                      frameBorder="0"
-                    ></iframe>
-                  </div>
-                </div>
-              )} */}
+                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+              >
+                Download
+              </a>
             </div>
           </div>
         </div>
@@ -679,7 +632,7 @@ export default function Home() {
               {/* Buttons */}
               <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 lg:gap-6 mt-8 px-2 lg:px-8">
                 <a
-                  href="https://youtu.be/XNnXkttYQUY?si=_sHWBCLvDgFtGIZD"
+                  href="https://youtu.be/qdnLecSFurU?si=0-A0Xnq7t__ixliV"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
