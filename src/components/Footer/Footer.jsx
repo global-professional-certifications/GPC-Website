@@ -117,7 +117,7 @@ const Footer = () => {
 
                     {/* Contacts and QR */}
 
-                    <div className="lg:col-span-2 flex flex-col items-start lg:items-center">
+                    <div className="lg:col-span-2 flex flex-col items-start lg:items-end">
                         <div className="mb-12 mt-1.5 space-y-4 text-sm leading-relaxed text-left">
                             <div className="flex items-start gap-3">
                                 <FontAwesomeIcon icon={faLocationDot} className="text-white mt-1.5" />
