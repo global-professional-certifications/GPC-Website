@@ -203,7 +203,7 @@ export default function Home() {
 
         {/* Batch Announcement */}
 
-        <div className="bg-gray-50 px-6 lg:px-20 pt-12 pb-12 mt-20">
+        {/*<div className="bg-gray-50 px-6 lg:px-20 pt-12 pb-12 mt-20">
           <div>
             <p className="text-2xl md:text-4xl lg:text-4xl pl-2 md:pl-4 pr-0 md:pr-24 text-left mb-12 font-bold">
               Upcoming
@@ -211,7 +211,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col lg:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
-            {/* Card 1 */}
+             Card 1 */}
             {/* <div className="w-full h-auto md:h-[230px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
               <div className="flex flex-col md:flex-row lg:flex-col w-full h-full">
                 <img
@@ -275,7 +275,7 @@ export default function Home() {
             </div> */}
 
             {/* Card 2 */}
-            <div className="w-full h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
+            {/* <div className="w-full h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
               <div className="flex flex-col md:flex-row w-full h-full">
                 <img
                   src={annoucement2}
@@ -362,7 +362,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Company Marquee Section */}
 
