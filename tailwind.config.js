@@ -1,0 +1,47 @@
+/** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require("tailwindcss/defaultTheme");
+import withMT from "@material-tailwind/react/utils/withMT";
+
+export default withMT({
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        custom: ["Roboto", ...fontFamily.serif],
+        poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        noto: ['"Noto Sans"', 'sans-serif']
+      },
+      colors: {
+        "brand-purple": "#a622e1",
+        "brand-blue": "#3a1292",
+        "brand-gray": "#6f6d7e",
+        "brand-dark": "#100e28",
+        "brand-contrast": "#ffcc33",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      scale: {
+        "130": "1.325",
+        "175": "1.75",
+        "200": "2",
+        "225": "2.25",
+        "250": "2.5",
+      }
+    },
+  },
+  plugins: [require('@tailwindcss/line-clamp')],
+  safelist: [
+    'sm:pt-[96px]',
+    'sm:pt-24',
+    "top-12",
+    'md:pt-12',
+    "lg:py-[168px]",
+    "mt-[116px]",
+  ]
+})
