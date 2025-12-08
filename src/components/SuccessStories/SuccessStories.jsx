@@ -41,10 +41,21 @@ export default function SuccessStories() {
                     "videoUrl": video.asset->url
                 }`;
                 const data = await client.fetch(query);
-                
-                setVideoStories(data.filter(story => story.category === 'video'));
-                setWrittenStories(data.filter(story => story.category === 'written'));
-                setImageStories(data.filter(story => story.category === 'image'));
+
+                console.log("Fetched success stories:", data);
+                console.log("Total stories:", data.length);
+
+                const videoData = data.filter(story => story.category === 'video');
+                const writtenData = data.filter(story => story.category === 'written');
+                const imageData = data.filter(story => story.category === 'image');
+
+                console.log("Video stories:", videoData.length, videoData);
+                console.log("Written stories:", writtenData.length, writtenData);
+                console.log("Image stories:", imageData.length, imageData);
+
+                setVideoStories(videoData);
+                setWrittenStories(writtenData);
+                setImageStories(imageData);
             } catch (error) {
                 console.error("Error fetching success stories:", error);
             }
@@ -261,17 +272,17 @@ export default function SuccessStories() {
                         </div>
                         <p className=" font-light text-center text-gray-300 text-sm md:text-base mt-4">(Our industrious alumni who have made us proud)</p>
                     </div> : <div className="relative flex flex-col items-center">
-                            <div className="overflow-hidden w-[300px] rounded-xl">
-                                <motion.div
-                                    animate={{ x: `-${currentHeroIndex * 300}px` }}
-                                    transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
-                                    className="flex rounded-xl">
+                        <div className="overflow-hidden w-[300px] rounded-xl">
+                            <motion.div
+                                animate={{ x: `-${currentHeroIndex * 300}px` }}
+                                transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
+                                className="flex rounded-xl">
                                 {heroImages.map((image, index) => (
                                     <img src={image} key={index} className="w-[300px] rounded-xl shrink-0 mb-2" />
                                 ))}
                             </motion.div>
                         </div>
-                            <p className="font-poppins font-light text-white text-sm mt-4">(Our industrious alumni who have made us proud)</p>
+                        <p className="font-poppins font-light text-white text-sm mt-4">(Our industrious alumni who have made us proud)</p>
                     </div>}
 
                 </div>
@@ -324,28 +335,28 @@ export default function SuccessStories() {
                                                     />
                                                 ) : (
                                                     <motion.div
-                                                            key="thumbnail"
-                                                            className="absolute inset-0"
-                                                            onClick={() => {
-                                                                setActiveVideoIndex(index);
-                                                                setActiveWrittenIndex(null);
-                                                            }}
-                                                            initial={{ opacity: 0 }}
-                                                            animate={{ opacity: 1 }}
-                                                            exit={{ opacity: 0 }}
-                                                        >
-                                                            <img
-                                                                src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${index + 1}`}
-                                                                className="w-full h-full object-cover rounded-lg"
-                                                            />
-                                                            <div className="absolute rounded-lg bottom-3 left-3">
-                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                    ▶
-                                                                </button>
-                                                            </div>
-                                                        </motion.div>
-                                    )}
+                                                        key="thumbnail"
+                                                        className="absolute inset-0"
+                                                        onClick={() => {
+                                                            setActiveVideoIndex(index);
+                                                            setActiveWrittenIndex(null);
+                                                        }}
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                    >
+                                                        <img
+                                                            src={story.thumbnailUrl}
+                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                            className="w-full h-full object-cover rounded-lg"
+                                                        />
+                                                        <div className="absolute rounded-lg bottom-3 left-3">
+                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                ▶
+                                                            </button>
+                                                        </div>
+                                                    </motion.div>
+                                                )}
                                             </AnimatePresence>
                                         </motion.div>
                                     ))}
@@ -356,7 +367,7 @@ export default function SuccessStories() {
                             <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                 <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handlePrev}>
                                     <FaChevronLeft />
-                        </div>
+                                </div>
                                 <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handleNext}>
                                     <FaChevronRight />
                                 </div>
@@ -373,63 +384,63 @@ export default function SuccessStories() {
 
                         {!isMobile ? (
                             <div className="relative flex flex-col items-center pt-10">
-                        <div className="overflow-hidden w-[848px]">
-                            <motion.div
-                                animate={{ x: `-${currentIndex * (200 + 16)}px` }}
-                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                className="flex gap-4"
-                            >
-                                {writtenStories.map((story, index) => (
+                                <div className="overflow-hidden w-[848px]">
                                     <motion.div
-                                        key={index}
-                                        className="relative h-[350px] w-[200px] flex-shrink-0"
+                                        animate={{ x: `-${currentIndex * (200 + 16)}px` }}
+                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                                        className="flex gap-4"
                                     >
-                                        <AnimatePresence>
-                                            {activeWrittenIndex === index ? (
-                                                <motion.video
-                                                    key="video"
-                                                    src={story.videoUrl}
-                                                    className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
-                                                    controls
-                                                    autoPlay
-                                                    playsInline
-                                                    initial={{ opacity: 0, scale: 0.95 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0.95 }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            ) : (
-                                                <motion.div
-                                                    key="thumbnail"
-                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                    onClick={() => {
-                                                        setActiveWrittenIndex(index);
-                                                        setActiveVideoIndex(null);
-                                                    }}
-                                                    initial={{ opacity: 0.6 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0.6 }}
-                                                    transition={{ duration: 0.3 }}
-                                                >
-                                                        <img
-                                                            src={story.thumbnailUrl}
-                                                            alt={`Thumbnail for video ${index + 1}`}
-                                                            className="w-full h-full object-cover rounded-lg"
+                                        {writtenStories.map((story, index) => (
+                                            <motion.div
+                                                key={index}
+                                                className="relative h-[350px] w-[200px] flex-shrink-0"
+                                            >
+                                                <AnimatePresence>
+                                                    {activeWrittenIndex === index ? (
+                                                        <motion.video
+                                                            key="video"
+                                                            src={story.videoUrl}
+                                                            className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
+                                                            controls
+                                                            autoPlay
+                                                            playsInline
+                                                            initial={{ opacity: 0, scale: 0.95 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            exit={{ opacity: 0, scale: 0.95 }}
+                                                            transition={{ duration: 0.3 }}
                                                         />
-                                                        <div className="absolute bottom-3 left-3">
-                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                ▶
-                                                            </button>
-                                                        </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                                    ) : (
+                                                        <motion.div
+                                                            key="thumbnail"
+                                                            className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                            onClick={() => {
+                                                                setActiveWrittenIndex(index);
+                                                                setActiveVideoIndex(null);
+                                                            }}
+                                                            initial={{ opacity: 0.6 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0.6 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        >
+                                                            <img
+                                                                src={story.thumbnailUrl}
+                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                className="w-full h-full object-cover rounded-lg"
+                                                            />
+                                                            <div className="absolute bottom-3 left-3">
+                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                    ▶
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </motion.div>
+                                        ))}
                                     </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
+                                </div>
 
-                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
+                                <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
                                     <div
                                         className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenPrev}
@@ -446,66 +457,66 @@ export default function SuccessStories() {
                             </div>
                         ) : (
                             <div className="relative flex flex-col items-center pt-10">
-                        <div className="overflow-hidden w-[408px]">
-                            <motion.div
-                                animate={{ x: `-${currentIndex * (200 + 8)}px` }}
-                                            transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                className="flex gap-2"
-                            >
-                                {writtenStories.map((story, index) => (
+                                <div className="overflow-hidden w-[408px]">
                                     <motion.div
-                                        key={index}
-                                        className="relative h-[350px] w-[200px] flex-shrink-0"
+                                        animate={{ x: `-${currentIndex * (200 + 8)}px` }}
+                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                                        className="flex gap-2"
                                     >
-                                        <AnimatePresence>
-                                            {activeWrittenIndex === index ? (
-                                                <motion.video
-                                                    key="video"
-                                                    src={story.videoUrl}
-                                                    className="w-full h-full object-cover rounded"
-                                                    controls
-                                                    autoPlay
-                                                    playsInline
-                                                    initial={{ opacity: 0, scale: 0.95 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0.95 }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            ) : (
-                                                <motion.div
-                                                    key="thumbnail"
-                                                    className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                    onClick={() => setActiveWrittenIndex(index)}
-                                                        initial={{ opacity: 0.6 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0.6 }}
-                                                        transition={{ duration: 0.3 }}
-                                                    >
-                                                        <img
-                                                            src={story.thumbnailUrl}
-                                                            alt={`Thumbnail for video ${index + 1}`}
-                                                            className="w-full h-full object-cover rounded-lg"
+                                        {writtenStories.map((story, index) => (
+                                            <motion.div
+                                                key={index}
+                                                className="relative h-[350px] w-[200px] flex-shrink-0"
+                                            >
+                                                <AnimatePresence>
+                                                    {activeWrittenIndex === index ? (
+                                                        <motion.video
+                                                            key="video"
+                                                            src={story.videoUrl}
+                                                            className="w-full h-full object-cover rounded"
+                                                            controls
+                                                            autoPlay
+                                                            playsInline
+                                                            initial={{ opacity: 0, scale: 0.95 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            exit={{ opacity: 0, scale: 0.95 }}
+                                                            transition={{ duration: 0.3 }}
                                                         />
-                                                        <div className="absolute bottom-3 left-3">
-                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                ▶
-                                                            </button>
-                                                        </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                                    ) : (
+                                                        <motion.div
+                                                            key="thumbnail"
+                                                            className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
+                                                            onClick={() => setActiveWrittenIndex(index)}
+                                                            initial={{ opacity: 0.6 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0.6 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        >
+                                                            <img
+                                                                src={story.thumbnailUrl}
+                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                className="w-full h-full object-cover rounded-lg"
+                                                            />
+                                                            <div className="absolute bottom-3 left-3">
+                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                    ▶
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </motion.div>
+                                        ))}
                                     </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
+                                </div>
 
-                        <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                                        <div
-                                            className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
-                                            onClick={handleWrittenPrev}
-                                        >
-                                            <FaChevronLeft />
-                                        </div>
+                                <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
+                                    <div
+                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handleWrittenPrev}
+                                    >
+                                        <FaChevronLeft />
+                                    </div>
                                     <div
                                         className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenNext}
@@ -539,10 +550,10 @@ export default function SuccessStories() {
             <SuccessTestimonials stories={imageStories} start={0} end={8} /> {/* First 8 testimonials */}
             <ExamTestimonials />
             <h2 className="font-display text-center text-3xl font-bold tracking-tight text-brand-blue sm:text-4xl pb-12 bg-gray-50">
-                    More Success Stories
+                More Success Stories
             </h2>
             <SuccessTestimonials stories={imageStories} start={8} end={20} /> {/* Remaining 13 testimonials */}
-            <div className="pb-20 bg-gray-50"></div>  
+            <div className="pb-20 bg-gray-50"></div>
 
         </>
     );
