@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
 import logoOne from "../../assets/logo-1.png";
@@ -7,15 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 
-<<<<<<< HEAD
 export default function Footer() {
     return (
         <footer className="font-sans bg-black text-white pb-8 pt-12 transition-colors duration-300">
-=======
-const Footer = () => {
-    return (
-        <footer className="font-sans bg-black text-white pb-8 pt-12">
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             <div className="px-6 mx-auto max-w-7xl">
                 {/* GRID SECTION */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12">
@@ -30,11 +24,7 @@ const Footer = () => {
                             />
                         </Link>
 
-<<<<<<< HEAD
                         <div className="mt-2 px-0 md:pr-12 lg:pr-12 space-y-4 text-gray-400 text-xs text-justify">
-=======
-                        <div className="mt-2 px-0 md:pr-12 lg:pr-12 space-y-4 text-gray-500 text-xs text-justify">
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                             <p>
                                 Global Professional Certifications (GPC) empowers auditors, risk managers, and advisors worldwide with industry-accredited courses and expert mentorship.
                                 Join a thriving community and unlock new career heights with globally recognized certifications like CIA, CRMA, IAP, and CISA.
@@ -48,11 +38,7 @@ const Footer = () => {
                                     to="https://www.youtube.com/@global-professional-cert"
                                     target="_blank"
                                     rel="noopener noreferrer"
-<<<<<<< HEAD
                                     className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
-=======
-                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                 >
                                     <AiOutlineYoutube className="h-10 w-10" />
                                 </Link>
@@ -62,11 +48,7 @@ const Footer = () => {
                                     to="https://www.instagram.com/global__professionals/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-<<<<<<< HEAD
                                     className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
-=======
-                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                 >
                                     <AiOutlineInstagram className="h-9 w-9" />
                                 </Link>
@@ -76,11 +58,7 @@ const Footer = () => {
                                     to="https://www.linkedin.com/company/global-professional-certifications/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-<<<<<<< HEAD
                                     className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
-=======
-                                    className="hover:text-[#a622e1] hover:scale-110 transition-all inline-block duration-300"
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                 >
                                     <AiOutlineLinkedin className="h-9 w-9" />
                                 </Link>
@@ -100,23 +78,15 @@ const Footer = () => {
                                         <NavLink
                                             to={item}
                                             className={({ isActive }) =>
-<<<<<<< HEAD
                                                 `text-base ${isActive ? "text-brand-purple" : "text-gray-400"}  transition-all hover:text-brand-purple duration-300 inline-block`
-=======
-                                                `text-base ${isActive ? "text-[#a622e1]" : "text-gray-500"}  transition-all hover:text-brand-purple duration-300 inline-block`
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                             }
 
                                         >
                                             {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
                                         </NavLink>
                                     </li>
-<<<<<<< HEAD
                                 ))
                                 }
-=======
-                                ))}
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                             </ul>
                         </div>
 
@@ -135,11 +105,7 @@ const Footer = () => {
                                         <NavLink
                                             to={path}
                                             className={({ isActive }) =>
-<<<<<<< HEAD
                                                 `text-base ${isActive ? "text-brand-purple" : "text-gray-400"}  transition-all hover:text-brand-purple duration-300 inline-block`
-=======
-                                                `text-base ${isActive ? "text-[#a622e1]" : "text-gray-500"}  transition-all hover:text-brand-purple duration-300 inline-block`
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                             }
                                         >
                                             {label}
@@ -187,16 +153,10 @@ const Footer = () => {
 
                 {/* COPYRIGHT */}
                 <p className="text-sm text-center text-gray-400">
-                    © {new Date().getFullYear()} Global Professional Certifications. All Rights Reserved.
+                    ┬⌐ {new Date().getFullYear()} Global Professional Certifications. All Rights Reserved.
                 </p>
             </div>
         </footer>
     );
-<<<<<<< HEAD
 }
 
-=======
-};
-
-export default Footer;
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1

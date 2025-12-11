@@ -1,4 +1,4 @@
-// import React from "react";
+﻿// import React from "react";
 // import { PiBrain } from "react-icons/pi";
 // import professionalWorkingOnHerDesktop from "../../assets/professional-working-on-her-desktop.webp"
 // import arpitGarg from "../../assets/arpit-garg.webp";
@@ -223,19 +223,11 @@ export default function AboutUs() {
                 canonicalUrl="https://globalprofessionalcertifications.com/about"
             />
             <section className="bg-brand-blue py-20 sm:py-20 lg:py-20 relative md:min-h-[80vh] md:flex md:justify-center md:items-center">
-<<<<<<< HEAD
                 <div className="w-full mt-24 max-w-[75rem] px-4 sm:px-6 lg:px-12 mx-auto ">
                     <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-12 items-center">
                         <div className="w-full flex flex-col justify-start lg:items-start items-center gap-6 sm:gap-8">
                             <div className="w-full flex flex-col lg:items-start items-center gap-4">
                                 <h1 className="mt-6 text-3xl md:text-6xl font-bold leading-tight text-white">
-=======
-                <div className="w-full mt-24 max-w-[75rem] px-4 sm:px-6 lg:px-8 mx-auto ">
-                    <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-12 items-center">
-                        <div className="w-full flex flex-col justify-start lg:items-start items-center gap-6 sm:gap-8">
-                            <div className="w-full flex flex-col lg:items-start items-center gap-4">
-                                <h1 className="mt-6 text-xl md:text-6xl font-bold leading-tight text-white">
->>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                                     Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Career</span>
                                 </h1>
                                 <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
