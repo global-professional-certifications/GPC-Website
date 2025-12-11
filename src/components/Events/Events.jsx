@@ -197,7 +197,11 @@ export default function Events() {
 
 
                 {/* Content */}
+<<<<<<< HEAD
                 <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-20 space-y-6 mt-8">
+=======
+                <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-32 space-y-6 mt-8">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     <h1 className="mt-6 text-xl md:text-6xl font-bold leading-tight text-white">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                             Connect.

@@ -43,10 +43,17 @@ const Cisa = () => {
 
       {/* Header */}
       <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
+<<<<<<< HEAD
         <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
+=======
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8">
+          <div className="max-w-sm md:max-w-2xl mx-auto">
+            <div className="relative max-w-xl">
+              <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                 Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit</span> Expert with CISA
               </h1>
               <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Pass the CISA certification with ISACA aligned training. Master<span className='font-bold text-orange-400'> IT auditing, risk assessment, and cybersecurity with recorded classes, MCQs, and mentorship</span> from India's top CISA faculty—Arpit Garg.</h2>

@@ -11,7 +11,11 @@ const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
     };
 
     return (
+<<<<<<< HEAD
         <div className="bg-gray-50 px-2 md:px-0 pl-0 md:pl-20 rounded-2xl">
+=======
+        <div className="bg-gray-50 px-2 md:px-16 rounded-2xl">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             <p className="text-3xl font-bold text-center mb-10">
                 Frequently Asked <span className="text-brand-blue font-normal italic">Questions</span>
             </p>

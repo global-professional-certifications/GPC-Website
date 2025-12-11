@@ -22,14 +22,20 @@ import FaqPage from './components/FaqPage/FaqPage.jsx';
 import Glossary from './components/Glossary/Glossary.jsx';
 import BlogList from './components/Blogs/BlogList.jsx';
 import BlogPage from './components/Blogs/BlogPage.jsx';
+<<<<<<< HEAD
 import StudioPage from './components/Studio/StudioPage.jsx';
+=======
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
 import { Analytics } from "@vercel/analytics/react"
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+<<<<<<< HEAD
       <Route path="/studio/*" element={<StudioPage />} />
+=======
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Home />} />
         <Route path="about" element={<AboutUs />} />

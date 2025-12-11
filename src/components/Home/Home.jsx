@@ -6,9 +6,13 @@ import VideoSection from "../VideoSection/VideoSection";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
+<<<<<<< HEAD
 import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
+=======
+import { blogs } from "../Blogs/BlogContent.jsx";
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
 import FAQDisplay from "../FAQDisplay.jsx";
 import Countdown from "react-countdown";
 
@@ -132,6 +136,7 @@ const testimonials = [
   // },
 ];
 
+<<<<<<< HEAD
 const eventDate = new Date("2025-12-06T11:30:00");
 
 export default function Home() {
@@ -148,6 +153,13 @@ export default function Home() {
     };
     fetchBlogs();
   }, []);
+=======
+const latestBlogs = blogs.slice(0, 3);
+
+const eventDate = new Date("2025-12-06T11:30:00");
+
+export default function Home() {
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
   return (
     <>
       <MetaTags
@@ -155,7 +167,11 @@ export default function Home() {
         description="Get globally recognized with our CIA certification courses. Join 100+ professionals who have advanced their careers through our expert-led programs"
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
+<<<<<<< HEAD
       <div className="bg-gray-50 transition-colors duration-300">
+=======
+      <div className="bg-gray-50">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
         {/* Hero Section and Stats */}
 
         <div className="relative">
@@ -215,7 +231,171 @@ export default function Home() {
         </div>
 
         {/* Batch Announcement */}
+<<<<<<< HEAD
         {/* Upcoming section temporarily hidden - no active announcements */}
+=======
+
+        {/*<div className="bg-gray-50 px-6 lg:px-20 pt-12 pb-12 mt-20">
+          <div>
+            <p className="text-2xl md:text-4xl lg:text-4xl pl-2 md:pl-4 pr-0 md:pr-24 text-left mb-12 font-bold">
+              Upcoming
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row justify-center items-center md:items-start gap-6 lg:gap-12">
+             Card 1 */}
+            {/* <div className="w-full h-auto md:h-[230px] lg:w-1/3 lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800 ">
+              <div className="flex flex-col md:flex-row lg:flex-col w-full h-full">
+                <img
+                  src={annoucement1}
+                  alt=""
+                  className="w-full h-[200px] md:h-full md:w-full lg:h-[220px] lg:w-full object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none lg:rounded-t-3xl lg:rounded-b-none"
+                  loading="lazy"
+                />
+
+                <div className="bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none lg:rounded-b-3xl lg:rounded-tr-none w-full h-auto lg:h-[230px] flex flex-col px-6 py-4">
+                  <div className="flex flex-col justify-between h-full">
+                    <div>
+                      <div className="flex flex-col md:flex-col-reverse lg:flex-col">
+                        <div className="md:pt-4 lg:pt-0 w-full flex justify-between items-center">
+                          <div className="flex items-center gap-2">
+                            <FontAwesomeIcon
+                              icon={faCalendarDays}
+                              className="text-white"
+                            />
+                            <div className="text-xs md:text-sm lg:text-base text-white">
+                              29<sup>th</sup> Nov, 2025
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <FontAwesomeIcon
+                              icon={faClock}
+                              className="text-white"
+                            />
+                            <div className="text-xs md:text-sm lg:text-base text-white">
+                              5pm - 6pm
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl md:text-3xl lg:text-3xl  font-bold text-[#FFD700] my-2">
+                            CIA Part 1 Orientation
+                          </p>
+                          <p className="text-white text-sm md:text-base leading-snug">
+                            Get all the details, guidance, and tips you need
+                            before starting your CIA journey.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 pb-2">
+                      <a
+                        href="https://zfrmz.in/XkllEWzA37g02fP3roBa"
+                        title="Register for CIA Part 1 Orientation"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl w-full"
+                        role="button"
+                      >
+                        Register Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Card 2 */}
+            {/* <div className="w-full h-full lg:h-[450px] rounded-3xl shadow-xl shadow-gray-800">
+              <div className="flex flex-col md:flex-row w-full h-full">
+                <img
+                  src={annoucement2}
+                  alt=""
+                  className="w-full md:w-[35%] h-[220px] md:h-auto lg:h-full object-cover object-top md:object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none"
+                  loading="lazy"
+                />
+
+                <div className="h-auto lg:h-full w-full lg:w-[65%] bg-gradient-to-t from-black to-brand-blue rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none px-6 py-6 md:py-8 flex flex-col justify-center items-center">
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="h-full text-center">
+                      <p className="text-2xl md:text-3xl lg:text-4xl text-[#FFD700] font-bold">
+                        Kickstart Your CIA Part 1
+                      </p>
+
+                      <p className="mb-4 font-semibold text-base md:text-xl text-white">
+                        New Batch Starting from 6<sup>th</sup> Dec, 2025
+                      </p>
+
+                      <div className="text-xs md:text-sm pt-0 md:pt-2 font-thin text-white leading-tight md:pr-4 flex flex-col">
+                        <p>
+                          Great careers don’t wait. Join the CIA Part 1 batch
+                          starting from 6th December, 11:30 AM – 2:30 PM, and
+                          move closer to your certification.
+                        </p>
+                        <ol className="hidden md:flex pt-2 font-semibold text-[#FFD700] text-xs lg:text-sm list-none gap-3 justify-center">
+                          <li>1. Live Training</li>
+                          <li>2. Expert Mentorship</li>
+                          <li>3. Proven Outcomes</li>
+                        </ol>
+                      </div>
+
+                      <div className=" text-white text-xl md:text-2xl flex flex-col items-center gap-2 mt-6 md:mt-8">
+                        <p className="text-sm md:text-base">Hurry Up! Only</p>
+                        <span>
+                          <Countdown
+                            date={eventDate}
+                            renderer={({ days, hours, minutes, seconds }) => (
+                              <div className="text-white flex items-center gap-1 md:gap-2">
+                                {[
+                                  { label: "Days", value: days },
+                                  { label: "Hours", value: hours },
+                                  { label: "Minutes", value: minutes },
+                                  { label: "Seconds", value: seconds },
+                                ].map((t, i) => (
+                                  <React.Fragment key={i}>
+                                    <div className="p-4 md:p-4 h-14 w-14 md:h-16 md:w-16 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl">
+                                      <p className="font-bold text-sm md:text-xl">
+                                        {t.value}
+                                      </p>
+                                      <p className="text-xs md:text-xs font-light">
+                                        {t.label}
+                                      </p>
+                                    </div>
+                                    {i !== 3 && (
+                                      <p className="text-2xl md:text-5xl font-bold">
+                                        :
+                                      </p>
+                                    )}
+                                  </React.Fragment>
+                                ))}
+                              </div>
+                            )}
+                          />
+                        </span>
+                        <p className="text-sm md:text-base">Left</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 md:pb-2">
+                      <a
+                        href="https://zfrmz.in/d0MKpQhN9W2A6MPya8Kf"
+                        title="Register for CIA Part 1 Orientation"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl w-full"
+                        role="button"
+                      >
+                        Enroll Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
 
         {/* Company Marquee Section */}
 
@@ -226,7 +406,11 @@ export default function Home() {
         {/* Popular Courses Section */}
 
         <div className="my-10 px-2 mt-2 md:px-12 lg:px-20">
+<<<<<<< HEAD
           <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
+=======
+          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             Explore Our{" "}
             <span className="text-brand-blue font-normal italic">
               Flagship Certification Programs
@@ -234,7 +418,11 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
+<<<<<<< HEAD
             <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
+=======
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cia}
@@ -244,7 +432,11 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
+<<<<<<< HEAD
                   <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
+=======
+                  <p className="text-sm md:text-xl font-bold mb-2">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     Certified Internal Auditor (CIA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -253,14 +445,22 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cia">
+<<<<<<< HEAD
                   <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
+=======
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
+=======
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cisa}
@@ -270,7 +470,11 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
+<<<<<<< HEAD
                   <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
+=======
+                  <p className="text-sm md:text-xl font-bold mb-2">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     Certified Information Systems Auditor (CISA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -279,14 +483,22 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cisa">
+<<<<<<< HEAD
                   <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
+=======
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
+=======
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={crma}
@@ -296,7 +508,11 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
+<<<<<<< HEAD
                   <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
+=======
+                  <p className="text-sm md:text-xl font-bold mb-2">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     Certification in Risk Management Assurance (CRMA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -305,14 +521,22 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/crma">
+<<<<<<< HEAD
                   <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
+=======
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
+=======
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={iap}
@@ -322,7 +546,11 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
+<<<<<<< HEAD
                   <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
+=======
+                  <p className="text-sm md:text-xl font-bold mb-2">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     Internal Audit Practitioner (IAP)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -331,7 +559,11 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/iap">
+<<<<<<< HEAD
                   <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
+=======
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     View Course
                   </button>
                 </NavLink>
@@ -385,7 +617,11 @@ export default function Home() {
         <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
           {/* Heading */}
           <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
+<<<<<<< HEAD
             <p className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
+=======
+            <p className="font-bold text-2xl md:text-4xl leading-snug">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               Why Choose{" "}
               <span className="text-brand-blue font-normal italic">
                 Global Professional Certifications?
@@ -635,11 +871,19 @@ export default function Home() {
 
           {/* Testimonials Container */}
           <div className="overflow-x-auto">
+<<<<<<< HEAD
             <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
                   className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+=======
+            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-12 mx-0 lg:mx-10">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                 >
                   <div className="flex-1 flex items-start">
                     <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
@@ -685,9 +929,16 @@ export default function Home() {
 
         <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
           <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
+<<<<<<< HEAD
             <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
               Learning Resources &amp; <span className="text-brand-blue font-normal italic">Blogs</span>
             </Link>
+=======
+            <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">
+              Learning Resources &{" "}
+              <span className="text-brand-blue font-normal italic">Blogs</span>
+            </p>
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
               Explore expert insights and latest trends in audit, risk, and
               professional certification on our blog
@@ -695,6 +946,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestBlogs.map((blog) => (
+<<<<<<< HEAD
               <Link
                 key={blog._id}
                 to={`/blogs/${blog.slug.current || blog.slug}`}
@@ -703,6 +955,14 @@ export default function Home() {
               >
                 <img
                   src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
+=======
+              <div
+                key={blog.id}
+                className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300"
+              >
+                <img
+                  src={blog.cover}
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                   alt={blog.title}
                   className="w-full h-36 md:h-56 object-cover"
                 />
@@ -714,7 +974,11 @@ export default function Home() {
                       className="text-blue-400"
                     />
                     <div className="text-xs md:text-sm text-gray-600">
+<<<<<<< HEAD
                       {new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+=======
+                      {blog.date}
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     </div>
                   </div>
                   <div className="flex justify-center items-center gap-2">
@@ -727,6 +991,7 @@ export default function Home() {
 
                 <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
                   <div>
+<<<<<<< HEAD
                     <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue group-hover:underline">
                       {blog.title}
                     </h3>
@@ -738,14 +1003,37 @@ export default function Home() {
                   <div className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit mt-8">
                     <span className="md:text-base text-sm pl-2 text-gray-700">
                       Read Full Blog
+=======
+                    <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3">
+                      {blog.title}
+                    </h3>
+                    <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
+                      {blog.content}
+                    </p>
+                  </div>
+
+                  <Link
+                    key={blog.id}
+                    to={`/blogs/${blog.slug}`}
+                    className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit hover:scale-105 transition-all duration-300 mt-8"
+                  >
+                    <span className="md:text-base text-sm pl-2 text-gray-700">
+                      Learn More
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
                     </span>
                     <FontAwesomeIcon
                       icon={faArrowUpRightFromSquare}
                       className="text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2"
                     />
+<<<<<<< HEAD
                   </div>
                 </div>
               </Link>
+=======
+                  </Link>
+                </div>
+              </div>
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             ))}
           </div>
 
@@ -761,7 +1049,11 @@ export default function Home() {
         {/* FAQ Section */}
 
         <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
+<<<<<<< HEAD
           <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
+=======
+          <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-12">
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
             {/* Image Section */}
             <div className="w-full lg:w-2/5 flex justify-center items-center relative">
               <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
@@ -770,7 +1062,11 @@ export default function Home() {
               <img
                 src={faqImage}
                 alt="FAQ illustration"
+<<<<<<< HEAD
                 className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+=======
+                className="max-w-md w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
               />
             </div>
 
@@ -814,4 +1110,7 @@ export default function Home() {
     </>
   );
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1
