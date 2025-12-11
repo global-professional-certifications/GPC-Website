@@ -155,7 +155,7 @@ export default function Home() {
         description="Get globally recognized with our CIA certification courses. Join 100+ professionals who have advanced their careers through our expert-led programs"
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 transition-colors duration-300">
         {/* Hero Section and Stats */}
 
         <div className="relative">
@@ -226,7 +226,7 @@ export default function Home() {
         {/* Popular Courses Section */}
 
         <div className="my-10 px-2 mt-2 md:px-12 lg:px-20">
-          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold">
+          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
             Explore Our{" "}
             <span className="text-brand-blue font-normal italic">
               Flagship Certification Programs
@@ -234,7 +234,7 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cia}
@@ -244,7 +244,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certified Internal Auditor (CIA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -253,14 +253,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cia">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cisa}
@@ -270,7 +270,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certified Information Systems Auditor (CISA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -279,14 +279,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cisa">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={crma}
@@ -296,7 +296,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certification in Risk Management Assurance (CRMA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -305,14 +305,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/crma">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={iap}
@@ -322,7 +322,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Internal Audit Practitioner (IAP)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -331,7 +331,7 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/iap">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
@@ -385,7 +385,7 @@ export default function Home() {
         <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
           {/* Heading */}
           <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
-            <p className="font-bold text-2xl md:text-4xl leading-snug">
+            <p className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
               Why Choose{" "}
               <span className="text-brand-blue font-normal italic">
                 Global Professional Certifications?
@@ -635,11 +635,11 @@ export default function Home() {
 
           {/* Testimonials Container */}
           <div className="overflow-x-auto">
-            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-12 mx-0 lg:mx-10">
+            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
+                  className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
                 >
                   <div className="flex-1 flex items-start">
                     <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
@@ -699,7 +699,7 @@ export default function Home() {
                 key={blog._id}
                 to={`/blogs/${blog.slug.current || blog.slug}`}
                 aria-label={`Read blog: ${blog.title}`}
-                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200"
+                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 h-[380px] md:h-[520px]"
               >
                 <img
                   src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
@@ -761,7 +761,7 @@ export default function Home() {
         {/* FAQ Section */}
 
         <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
-          <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
             {/* Image Section */}
             <div className="w-full lg:w-2/5 flex justify-center items-center relative">
               <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
@@ -770,7 +770,7 @@ export default function Home() {
               <img
                 src={faqImage}
                 alt="FAQ illustration"
-                className="max-w-md w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+                className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
               />
             </div>
 
@@ -814,3 +814,4 @@ export default function Home() {
     </>
   );
 }
+

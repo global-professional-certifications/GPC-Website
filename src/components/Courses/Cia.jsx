@@ -54,10 +54,10 @@ const Cia = () => {
             {/* Hero Section */}
 
             <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8">
+                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
-                            <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
+                            <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                                 Ace Your CIA Exam with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">India's #1 IIA-Accredited</span> Training Program
                             </h1>
                             <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Become Certified Internal Auditor (CIA) with <span className='font-bold text-orange-400'>Gleim content, 1000+ MCQs, weekend live classes.</span> Our proven methodology helped 250+ professionals achieve CIA certification with an 80%+ pass rate. Complete in 7-8 months with full IIA registration and exam support. </h2>

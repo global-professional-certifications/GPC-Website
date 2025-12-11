@@ -78,19 +78,19 @@ export default function SuccessStories() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handlePrev = () => {
-        setCurrentVideoIndex((prev) => (prev === 0 ? Math.max(0, videoStories.length - 4) : prev - 1));
+        setCurrentVideoIndex((prev) => prev - 1);
     };
 
     const handleNext = () => {
-        setCurrentVideoIndex((prev) => (prev >= videoStories.length - 4 ? 0 : prev + 1));
+        setCurrentVideoIndex((prev) => prev + 1);
     };
 
     const handleWrittenPrev = () => {
-        setCurrentIndex((prev) => (prev === 0 ? Math.max(0, writtenStories.length - 4) : prev - 1));
+        setCurrentIndex((prev) => prev - 1);
     };
 
     const handleWrittenNext = () => {
-        setCurrentIndex((prev) => (prev >= writtenStories.length - 4 ? 0 : prev + 1));
+        setCurrentIndex((prev) => prev + 1);
     };
 
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
@@ -231,176 +231,188 @@ export default function SuccessStories() {
 
             {/* Hero Section  */}
 
-            <section className={`h-screen w-full bg-brand-blue flex justify-cennter items-center md:h-screen md:pt-${height.toString()}`}>
-                <div className="md:py-[161px] flex flex-col gap-6 max-w-[25rem] md:grid md:grid-cols-2 md:max-w-[72rem] md:gap-8 md:mx-auto mt-16">
-                    <div className="relative flex justify-center h-full items-center md:gap-32">
-                        <div className="relative z-10 flex flex-col justify-center items-start h-full">
+            <section className={`min-h-screen w-full bg-brand-blue flex items-center justify-center px-4 sm:px-6 md:px-8 pt-${height.toString()}`}>
+                <div className="w-full max-w-7xl mx-auto py-20 md:py-24 flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-0 items-center pl-0 lg:pl-12 mt-12">
+                    {/* Left Content */}
+                    <div className="w-full flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-2xl">
+                            Ready to create <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">your own</span> success story?
+                        </h1>
 
-                            <h1 className="mt-6 text-xl sm:text-4xl md:text-6xl font-bold leading-tight text-white">
-                                Ready to create <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">your own</span> success story?
-                            </h1>
+                        <h2 className="text-base sm:text-lg md:text-xl text-gray-200 max-w-xl leading-relaxed">
+                            Discover our <span className='font-bold text-orange-400'>certification programs</span> and take the next step to <span className='font-bold text-orange-400'>advance your career</span> today!
+                        </h2>
 
-                            <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">Discover our <span className='font-bold text-orange-400'>certification programs</span> and take the next step to <span className='font-bold text-orange-400'>advance your career</span> today!
-                            </h2>
-
-                            <div className="mt-8">
-                                <button
-                                    onClick={() => {
-                                        document.getElementById("testimonials").scrollIntoView({ behavior: "smooth" });
-                                    }}
-                                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white 
-                                            rounded-lg shadow-lg transition-all duration-300 
-                                            bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
-                                            hover:scale-105 hover:shadow-xl focus:outline-none"
-                                >
-                                    Read Testimonials
-
-                                </button>
-                            </div>
+                        <div className="pt-2">
+                            <button
+                                onClick={() => {
+                                    document.getElementById("testimonials").scrollIntoView({ behavior: "smooth" });
+                                }}
+                                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold text-white 
+                                        rounded-lg shadow-lg transition-all duration-300 
+                                        bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+                                        hover:scale-105 hover:shadow-xl focus:outline-none"
+                            >
+                                Read Testimonials
+                            </button>
                         </div>
                     </div>
-                    {!isMobile ? <div className="relative flex flex-col justify-center items-center h-96">
-                        <div className="overflow-hidden w-[460px] rounded-xl shadow-2xl">
-                            <motion.div
-                                animate={{ x: `-${currentHeroIndex * 460}px` }}
-                                transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
-                                className="flex rounded-xl">
-                                {heroImages.map((image, index) => (
-                                    <img src={image} key={index} className="w-[460px] rounded-xl shrink-0 mb-2" />
-                                ))}
-                            </motion.div>
-                        </div>
-                        <p className=" font-light text-center text-gray-300 text-sm md:text-base mt-4">(Our industrious alumni who have made us proud)</p>
-                    </div> : <div className="relative flex flex-col items-center">
-                        <div className="overflow-hidden w-[300px] rounded-xl">
-                            <motion.div
-                                animate={{ x: `-${currentHeroIndex * 300}px` }}
-                                transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
-                                className="flex rounded-xl">
-                                {heroImages.map((image, index) => (
-                                    <img src={image} key={index} className="w-[300px] rounded-xl shrink-0 mb-2" />
-                                ))}
-                            </motion.div>
-                        </div>
-                        <p className="font-poppins font-light text-white text-sm mt-4">(Our industrious alumni who have made us proud)</p>
-                    </div>}
 
+                    {/* Right Image Carousel */}
+                    <div className="w-full flex flex-col items-center justify-center space-y-4">
+                        <div className={`overflow-hidden rounded-xl shadow-2xl ${isMobile ? 'w-full max-w-sm' : 'w-full max-w-md'}`}>
+                            <motion.div
+                                animate={{ x: `-${(currentHeroIndex % heroImages.length) * 100}%` }}
+                                transition={{ duration: isAnimating ? 0.5 : 0, ease: "easeInOut" }}
+                                className="flex"
+                            >
+                                {[...heroImages, ...heroImages].map((image, index) => (
+                                    <img
+                                        src={image}
+                                        key={index}
+                                        className="w-full flex-shrink-0 rounded-xl"
+                                        alt={`Success story ${(index % heroImages.length) + 1}`}
+                                    />
+                                ))}
+                            </motion.div>
+                        </div>
+                        <p className="font-light text-center text-gray-300 text-sm md:text-base px-4">
+                            (Our industrious alumni who have made us proud)
+                        </p>
+                    </div>
                 </div>
             </section>
 
 
-            <section ref={sectionRef} className="bg-gray-50 pb-10 pt-20">
-                <div className="bg-[url('assets/bg.jpg')] max-w-5xl mx-auto border border-gray-300 pb-10 rounded-xl shadow-lg">
-                    <div className="md:flex md:flex-col justify-center items-center">
-                        <h3 className="text-2xl sm:text-3xl text-brand-blue font-bold pt-10 px-4 md:px-0 text-center">
-                            Celebrating Our CIA Champions!{" "}
-                            {!isMobile ? <span><GiConqueror className="inline h-16 w-16 pb-4 text-brand-dark" /></span> : null}
-                        </h3>
-                        <p className="text-xl sm:text-2xl text-brand-blue font-bold pt-1 px-12 md:px-0 text-center">
-                            Join the Legacy of Success with Our Elite Alumni!
-                        </p>
-                        <hr className="mt-6 mb-4 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
-                        {/* <h3 className="text-3xl sm:text-2xl text-brand-blue font-bold pt-3">
-                        Hear from those who made it!
-                    </h3> */}
-                        <div className="md:mt-6 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold block mx-auto md:inline">Hear from those who made it!</div>
 
-                        {/* Video Testimonials */}
+            <section ref={sectionRef} className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="bg-[url('assets/bg.jpg')] border border-gray-300 rounded-xl shadow-lg p-6 md:p-10">
+                        <div className="flex flex-col justify-center items-center space-y-6">
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl text-brand-blue font-bold text-center">
+                                Celebrating Our CIA Champions!{" "}
+                                {!isMobile && <span><GiConqueror className="inline h-12 w-12 md:h-16 md:w-16 text-brand-dark" /></span>}
+                            </h3>
+                            <p className="text-lg sm:text-xl md:text-2xl text-brand-blue font-bold text-center px-4">
+                                Join the Legacy of Success with Our Elite Alumni!
+                            </p>
+                            <hr className="border-2 border-solid border-gray-300 w-5/6" />
 
-                        <div className="relative flex flex-col items-center pt-10">
-                            <div className={`${!isMobile ? "w-[848px]" : "w-[408px]"} overflow-hidden`}>
-
-                                < motion.div className="flex gap-4"
-                                    animate={{ x: `-${currentVideoIndex * (200 + (!isMobile ? 16 : 8))}px` }}
-                                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                >
-                                    {videoStories.map((story, index) => (
-                                        <motion.div
-                                            key={index}
-                                            className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
-                                        >
-                                            <AnimatePresence>
-                                                {activeVideoIndex === index ? (
-                                                    <motion.video
-                                                        key="video"
-                                                        src={story.videoUrl}
-                                                        className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-contain"
-                                                        controls
-                                                        autoPlay
-                                                        playsInline
-                                                        initial={{ opacity: 0, scale: 0.95 }}
-                                                        animate={{ opacity: 1, scale: 1 }}
-                                                        exit={{ opacity: 0, scale: 0.95 }}
-                                                        transition={{ duration: 0.3 }}
-                                                    />
-                                                ) : (
-                                                    <motion.div
-                                                        key="thumbnail"
-                                                        className="absolute inset-0"
-                                                        onClick={() => {
-                                                            setActiveVideoIndex(index);
-                                                            setActiveWrittenIndex(null);
-                                                        }}
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                    >
-                                                        <img
-                                                            src={story.thumbnailUrl}
-                                                            alt={`Thumbnail for video ${index + 1}`}
-                                                            className="w-full h-full object-cover rounded-lg"
-                                                        />
-                                                        <div className="absolute rounded-lg bottom-3 left-3">
-                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                ▶
-                                                            </button>
-                                                        </div>
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
+                            <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                Hear from those who made it!
                             </div>
 
-                            {/* Carousel Arrows */}
-                            <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handlePrev}>
-                                    <FaChevronLeft />
-                                </div>
-                                <div className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out" onClick={handleNext}>
-                                    <FaChevronRight />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <hr className="mt-6 border-2 border-solid border-gray-300 w-5/6 mx-auto"></hr>
-
-                        {/* <h4 className="text-3xl sm:text-2xl text-brand-blue font-bold mt-8">Read their journey!</h4> */}
-                        <div className="block md:inline mx-auto mt-4 md:mt-10 px-3 py-1.5 md:px-6 md:py-1.5 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg md:text-2xl font-bold">Read their journey!</div>
-
-                        {/* Written Testimonials */}
-
-                        {!isMobile ? (
-                            <div className="relative flex flex-col items-center pt-10">
-                                <div className="overflow-hidden w-[848px]">
+                            {/* Video Testimonials */}
+                            <div className="relative flex flex-col items-center w-full pt-6">
+                                <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
                                     <motion.div
-                                        animate={{ x: `-${currentIndex * (200 + 16)}px` }}
+                                        className="flex gap-2 md:gap-4"
+                                        animate={{ x: `-${(currentVideoIndex % videoStories.length) * (200 + (isMobile ? 8 : 16))}px` }}
                                         transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                        className="flex gap-4"
+                                        onAnimationComplete={() => {
+                                            if (currentVideoIndex >= videoStories.length || currentVideoIndex < 0) {
+                                                setCurrentVideoIndex(currentVideoIndex % videoStories.length);
+                                            }
+                                        }}
                                     >
-                                        {writtenStories.map((story, index) => (
+                                        {[...videoStories, ...videoStories, ...videoStories].map((story, index) => (
+                                            <motion.div
+                                                key={index}
+                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                            >
+                                                <AnimatePresence>
+                                                    {activeVideoIndex === (index % videoStories.length) ? (
+                                                        <motion.video
+                                                            key="video"
+                                                            src={story.videoUrl}
+                                                            className="w-full h-full object-contain rounded-lg"
+                                                            controls
+                                                            autoPlay
+                                                            playsInline
+                                                            initial={{ opacity: 0, scale: 0.95 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            exit={{ opacity: 0, scale: 0.95 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        />
+                                                    ) : (
+                                                        <motion.div
+                                                            key="thumbnail"
+                                                            className="absolute inset-0"
+                                                            onClick={() => {
+                                                                setActiveVideoIndex(index % videoStories.length);
+                                                                setActiveWrittenIndex(null);
+                                                            }}
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0 }}
+                                                        >
+                                                            <img
+                                                                src={story.thumbnailUrl}
+                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                className="w-full h-full object-cover rounded-lg"
+                                                            />
+                                                            <div className="absolute rounded-lg bottom-3 left-3">
+                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                    ▶
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </div>
+
+                                {/* Carousel Arrows */}
+                                <div className="flex justify-center gap-3 items-center w-full mt-6">
+                                    <button
+                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handlePrev}
+                                        aria-label="Previous video"
+                                    >
+                                        <FaChevronLeft />
+                                    </button>
+                                    <button
+                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
+                                        onClick={handleNext}
+                                        aria-label="Next video"
+                                    >
+                                        <FaChevronRight />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr className="border-2 border-solid border-gray-300 w-5/6" />
+
+                            <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                Read their journey!
+                            </div>
+
+                            {/* Written Testimonials */}
+                            <div className="relative flex flex-col items-center w-full pt-6">
+                                <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
+                                    <motion.div
+                                        animate={{ x: `-${(currentIndex % writtenStories.length) * (200 + (isMobile ? 8 : 16))}px` }}
+                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                                        className="flex gap-2 md:gap-4"
+                                        onAnimationComplete={() => {
+                                            if (currentIndex >= writtenStories.length || currentIndex < 0) {
+                                                setCurrentIndex(currentIndex % writtenStories.length);
+                                            }
+                                        }}
+                                    >
+                                        {[...writtenStories, ...writtenStories, ...writtenStories].map((story, index) => (
                                             <motion.div
                                                 key={index}
                                                 className="relative h-[350px] w-[200px] flex-shrink-0"
                                             >
                                                 <AnimatePresence>
-                                                    {activeWrittenIndex === index ? (
+                                                    {activeWrittenIndex === (index % writtenStories.length) ? (
                                                         <motion.video
                                                             key="video"
                                                             src={story.videoUrl}
-                                                            className="w-full h-full object-contain rounded-lg fullscreen:h-screen fullscreen:w-screen fullscreen:object-screen"
+                                                            className="w-full h-full object-contain rounded-lg"
                                                             controls
                                                             autoPlay
                                                             playsInline
@@ -414,7 +426,7 @@ export default function SuccessStories() {
                                                             key="thumbnail"
                                                             className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
                                                             onClick={() => {
-                                                                setActiveWrittenIndex(index);
+                                                                setActiveWrittenIndex(index % writtenStories.length);
                                                                 setActiveVideoIndex(null);
                                                             }}
                                                             initial={{ opacity: 0.6 }}
@@ -440,145 +452,127 @@ export default function SuccessStories() {
                                     </motion.div>
                                 </div>
 
-                                <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                                    <div
-                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                <div className="flex justify-center gap-3 items-center w-full mt-6">
+                                    <button
+                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenPrev}
+                                        aria-label="Previous story"
                                     >
                                         <FaChevronLeft />
-                                    </div>
-                                    <div
-                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
+                                    </button>
+                                    <button
+                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
                                         onClick={handleWrittenNext}
+                                        aria-label="Next story"
                                     >
                                         <FaChevronRight />
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
-                        ) : (
-                            <div className="relative flex flex-col items-center pt-10">
-                                <div className="overflow-hidden w-[408px]">
-                                    <motion.div
-                                        animate={{ x: `-${currentIndex * (200 + 8)}px` }}
-                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                        className="flex gap-2"
-                                    >
-                                        {writtenStories.map((story, index) => (
-                                            <motion.div
-                                                key={index}
-                                                className="relative h-[350px] w-[200px] flex-shrink-0"
-                                            >
-                                                <AnimatePresence>
-                                                    {activeWrittenIndex === index ? (
-                                                        <motion.video
-                                                            key="video"
-                                                            src={story.videoUrl}
-                                                            className="w-full h-full object-cover rounded"
-                                                            controls
-                                                            autoPlay
-                                                            playsInline
-                                                            initial={{ opacity: 0, scale: 0.95 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            exit={{ opacity: 0, scale: 0.95 }}
-                                                            transition={{ duration: 0.3 }}
-                                                        />
-                                                    ) : (
-                                                        <motion.div
-                                                            key="thumbnail"
-                                                            className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                            onClick={() => setActiveWrittenIndex(index)}
-                                                            initial={{ opacity: 0.6 }}
-                                                            animate={{ opacity: 1 }}
-                                                            exit={{ opacity: 0.6 }}
-                                                            transition={{ duration: 0.3 }}
-                                                        >
-                                                            <img
-                                                                src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${index + 1}`}
-                                                                className="w-full h-full object-cover rounded-lg"
-                                                            />
-                                                            <div className="absolute bottom-3 left-3">
-                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                    ▶
-                                                                </button>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-                                </div>
 
-                                <div className="flex justify-center gap-2 items-center px-4 w-full mt-6">
-                                    <div
-                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handleWrittenPrev}
-                                    >
-                                        <FaChevronLeft />
-                                    </div>
-                                    <div
-                                        className="p-2 rounded-full bg-brand-dark text-white hover:cursor-pointer hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handleWrittenNext}
-                                    >
-                                        <FaChevronRight />
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-
-
-
-                        <p className="select-none px-2 sm:px-0 sm:text-lg sm:text-xl text-gray-800 mt-8 text-center max-w-3xl font-semibold">
-                            Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
-                            dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
-                            first step.
-                        </p>
+                            <p className="text-sm sm:text-base md:text-lg text-gray-800 text-center max-w-3xl font-semibold px-4 pt-4">
+                                Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
+                                dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
+                                first step.
+                            </p>
+                        </div>
                     </div>
-                </div >
-            </section >
+                </div>
+            </section>
 
 
 
-            <div className="mx-auto text-center pt-[80px] pb-20 bg-gray-50">
-                <h2 className="font-display text-3xl font-bold tracking-tight text-brand-blue sm:text-4xl">
+            <div className="mx-auto text-center py-12 md:py-20 bg-gray-50 px-4">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
                     What Our Students Say
                 </h2>
             </div>
 
-            <SuccessTestimonials stories={imageStories} start={0} end={8} /> {/* First 8 testimonials */}
+            <SuccessTestimonials stories={imageStories} start={0} end={8} />
             <ExamTestimonials />
-            <h2 className="font-display text-center text-3xl font-bold tracking-tight text-brand-blue sm:text-4xl pb-12 bg-gray-50">
+            <h2 className="font-display text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue py-12 px-4 bg-gray-50">
                 More Success Stories
             </h2>
-            <SuccessTestimonials stories={imageStories} start={8} end={20} /> {/* Remaining 13 testimonials */}
-            <div className="pb-20 bg-gray-50"></div>
+            <SuccessTestimonials stories={imageStories} start={8} end={20} />
+            
 
         </>
     );
 }
 
 const SuccessTestimonials = ({ stories, start, end }) => {
-    // Slice the array based on start and end props
     const displayedTestimonials = stories.slice(start, end);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isMobileView, setIsMobileView] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth < 768);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const handleImagePrev = () => {
+        setCurrentImageIndex((prev) => prev - 1);
+    };
+
+    const handleImageNext = () => {
+        setCurrentImageIndex((prev) => prev + 1);
+    };
+
+    const cardWidth = isMobileView ? 280 : 250;
+    const gap = isMobileView ? 16 : 24;
 
     return (
-        <section className="py-12 bg-gray-50">
+        <section className="py-8 md:py-12 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {displayedTestimonials.map((testimonial, index) => (
-                        <div
-                            key={index}
-                            className="relative overflow-hidden border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
+                <div className="relative flex flex-col items-center">
+                    {/* Carousel Container */}
+                    <div className={`overflow-hidden ${isMobileView ? 'w-full max-w-[280px]' : 'w-full max-w-[1064px]'}`}>
+                        <motion.div
+                            animate={{ x: `-${(currentImageIndex % displayedTestimonials.length) * (cardWidth + gap)}px` }}
+                            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                            className={`flex ${isMobileView ? 'gap-4' : 'gap-6'}`}
+                            onAnimationComplete={() => {
+                                if (currentImageIndex >= displayedTestimonials.length || currentImageIndex < 0) {
+                                    setCurrentImageIndex(currentImageIndex % displayedTestimonials.length);
+                                }
+                            }}
                         >
-                            <img
-                                src={testimonial.thumbnailUrl}
-                                alt={testimonial.name}
-                                className="w-full h-[338.4px] object-contain py-4"
-                            />
-                        </div>
-                    ))}
+                            {[...displayedTestimonials, ...displayedTestimonials, ...displayedTestimonials].map((testimonial, index) => (
+                                <div
+                                    key={index}
+                                    className={`relative overflow-hidden transition-transform transform hover:scale-105 flex-shrink-0 ${isMobileView ? 'w-[280px]' : 'w-[250px]'}`}
+                                >
+                                    <img
+                                        src={testimonial.thumbnailUrl}
+                                        alt={testimonial.name || `Success story ${index + 1}`}
+                                        className="w-full h-auto object-contain py-4"
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <div className="flex justify-center gap-3 items-center w-full mt-6">
+                        <button
+                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
+                            onClick={handleImagePrev}
+                            aria-label="Previous testimonials"
+                        >
+                            <FaChevronLeft />
+                        </button>
+                        <button
+                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
+                            onClick={handleImageNext}
+                            aria-label="Next testimonials"
+                        >
+                            <FaChevronRight />
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -608,17 +602,17 @@ const ExamTestimonials = () => {
     ];
 
     return (
-        <section id="testimonials" aria-label="What our customers are saying" className="bg-gray-50 pb-20 md:pb-[140px] pt-20 ">
-            <div className="mx-auto max-w-sm md:max-w-[76rem] px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="font-display text-3xl font-bold text-brand-blue sm:text-3xl">
+        <section id="testimonials" aria-label="What our customers are saying" className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+                <div className="mx-auto max-w-2xl text-center mb-12 md:mb-16">
+                    <h2 className="font-display text-2xl sm:text-3xl font-bold text-brand-blue">
                         Real Results from CIA Challenge Exam Training
                     </h2>
                 </div>
-                <ul className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {testimonials.map((testimonial, index) => (
                         <li key={index}>
-                            <figure className="relative border border-gray-300 rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
+                            <figure className="relative border border-gray-300 rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10 h-full flex flex-col">
                                 <svg
                                     aria-hidden="true"
                                     width="105"
@@ -627,15 +621,15 @@ const ExamTestimonials = () => {
                                 >
                                     <path d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616..." />
                                 </svg>
-                                <blockquote className="relative">
-                                    <p className="text-lg text-slate-900">{testimonial.text}</p>
+                                <blockquote className="relative flex-1">
+                                    <p className="text-base md:text-lg text-slate-900">{testimonial.text}</p>
                                 </blockquote>
                                 <figcaption className="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
                                     <div>
                                         <div className="font-display text-base text-slate-900">{testimonial.name}</div>
                                         <div className="font-display text-sm text-brand-gray">{testimonial.designation}</div>
                                     </div>
-                                    <div className="overflow-hidden rounded-full bg-slate-50">
+                                    <div className="overflow-hidden rounded-full bg-slate-50 flex-shrink-0">
                                         <img
                                             alt=""
                                             className="h-14 w-14 object-cover"

@@ -42,10 +42,10 @@ export default function CoursesOverview() {
 
       {/* Hero */}
       <section className="md:h-screen flex justify-center items-center bg-brand-blue pt-6 md:pt-16">
-        <div className="flex flex-col-reverse md:flex-col lg:flex-row md:px-4 md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-6 lg:px-8 md:flex mt-16 px-8">
-          <div className="max-w-sm md:max-w-2xl mx-auto md:mr-20 md:mt-16">
+        <div className="flex flex-col-reverse md:flex-col lg:flex-row md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-24 lg:px-8 md:flex mt-16 px-8">
+          <div className="max-w-sm md:max-w-2xl mx-auto md:mr-12 md:mt-16">
             <div className="relative max-w-xl mt-8">
-              <h1 className="mt-6 text-2xl md:text-6xl font-bold leading-tight text-white">
+              <h1 className="mt-6 text-2xl md:text-4xl font-bold leading-tight text-white">
                 Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Global Audit</span> Excellence
               </h1>
               <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
@@ -86,7 +86,7 @@ export default function CoursesOverview() {
       <h1 id="courses" className="text-2xl md:text-4xl font-bold text-brand-blue mb-10 text-center mt-10 md:mt-24">
         COURSES WE OFFER
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:flex lg:flex-row lg:justify-center lg:items-center gap-6 md:gap-0 lg:gap-6 items-center mb-10 md:mb-24">
+      <div className="md:m-20 lg:m-8 grid grid-cols-1 md:grid-cols-2 justify-items-center lg:flex lg:flex-row lg:justify-center lg:items-center gap-6 md:gap-0 lg:gap-6 items-center mb-10 md:mb-24">
         <Card
           title="CIA all 3 Parts with Gleim Content"
           image={ciaLogo}
