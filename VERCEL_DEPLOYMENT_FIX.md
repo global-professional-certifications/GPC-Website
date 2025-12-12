@@ -70,10 +70,16 @@ git push origin main
 
 ## Changes Made Locally
 
-✅ Updated `vite.config.js` to:
+✅ **Updated `vite.config.js`** to:
 - Add proper TypeScript file resolution (.ts, .tsx)
 - Optimize build configuration for production
 - Ensure compatibility with Vercel's build system
+
+✅ **Fixed `StudioPage.jsx`** import:
+- Added explicit `.ts` extension to `sanity.config.ts` import
+- This fixes Rollup build errors where TypeScript files weren't being resolved correctly
+- Changed: `import config from '../../../sanity.config'`
+- To: `import config from '../../../sanity.config.ts'`
 
 ## Additional Notes
 
