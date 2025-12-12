@@ -1,4 +1,4 @@
-import iiaBombayOne from "././src/assets/iia-bombay/IIA-bombay-1.jpeg"
+import iiaBombayOne from "./src/assets/iia-bombay/IIA-bombay-1.jpeg"
 import iiaBombayFive from "./src/assets/iia-bombay/IIA-bombay-5.jpg"
 import iiaBombayNine from "./src/assets/iia-bombay/IIA-bombay-9.jpg"
 
