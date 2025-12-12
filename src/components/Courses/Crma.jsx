@@ -26,7 +26,7 @@ const Crma = () => {
   return (
     <>
       <Helmet>
-        <title>CRMA Certification ΓÇô Global Professional Certifications</title>
+        <title>CRMA Certification - Global Professional Certifications</title>
         <meta
           name="description"
           content="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."

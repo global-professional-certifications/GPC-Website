@@ -10,8 +10,8 @@ import { TiArrowRight } from "react-icons/ti";
 export default function ContactUs() {
     // List of courses for checkboxes
     const courses = [
-        "CIA ΓÇô Specific Part",
-        "CIA ΓÇô All Parts",
+        "CIA - Specific Part",
+        "CIA - All Parts",
         "CISA",
         "IAP",
         "CRMA",
@@ -20,7 +20,7 @@ export default function ContactUs() {
     return (
         <>
             <MetaTags
-                title="Contact Us ΓÇô Global Professional Certifications"
+                title="Contact Us - Global Professional Certifications"
                 description="Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."
                 canonicalUrl="https://globalprofessionalcertifications.com/contact"
             />
@@ -83,18 +83,18 @@ export default function ContactUs() {
                         </div>
                         <div className="w-full px-4 lg:w-1/2 xl:w-7/12">
 
-                                <iframe
-                                    aria-label="GPC Website Contact Us"
-                                    style={{
-                                        height: '600px',
-                                        width: '99%',
-                                        border: 'none',
-                                    }}
-                                    src="https://forms.zohopublic.in/globalprofessionalcertificat1/form/test/formperma/zOWVICVVpCKVK7R_erMCeQrDKHeTI3UTOYkhLCXa7PA"
-                                    title="GPC Contact Us Form"
-                                ></iframe>
+                            <iframe
+                                aria-label="GPC Website Contact Us"
+                                style={{
+                                    height: '600px',
+                                    width: '99%',
+                                    border: 'none',
+                                }}
+                                src="https://forms.zohopublic.in/globalprofessionalcertificat1/form/test/formperma/zOWVICVVpCKVK7R_erMCeQrDKHeTI3UTOYkhLCXa7PA"
+                                title="GPC Contact Us Form"
+                            ></iframe>
 
-                            </div>
+                        </div>
                         {/* </div> */}
                     </div>
                 </div>

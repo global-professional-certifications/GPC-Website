@@ -26,7 +26,7 @@ const Iap = () => {
   return (
     <>
       <Helmet>
-        <title>IAP Certification ΓÇô Global Professional Certifications</title>
+        <title>IAP Certification - Global Professional Certifications</title>
         <meta
           name="description"
           content="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."

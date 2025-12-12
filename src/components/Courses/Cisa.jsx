@@ -26,7 +26,7 @@ const Cisa = () => {
   return (
     <>
       <Helmet>
-        <title>CISA Certification ΓÇô Global Professional Certifications</title>
+        <title>CISA Certification - Global Professional Certifications</title>
         <meta
           name="description"
           content="Become a certified expert in IT auditing and risk management with our globally recognized CISA certification course."

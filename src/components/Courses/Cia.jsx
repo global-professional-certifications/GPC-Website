@@ -46,7 +46,7 @@ const Cia = () => {
             </Helmet>
 
             <MetaTags
-                title="CIA Certification Course ΓÇô Pass the Challenge Exam"
+                title="CIA Certification Course - Pass the Challenge Exam"
                 description="Prepare for the CIA Challenge Exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications."
                 canonicalUrl="https://globalprofessionalcertifications.com/courses/cia"
             />
@@ -324,8 +324,8 @@ const Cia = () => {
                 <div className="mt-6 text-sm sm:text-base text-gray-700 italic space-y-2 pl-1">
                     <p>Note: 18% GST is applicable on the above fees</p>
                     <p>
-                        IIA Membership Fees: <span className="font-medium">New Member ΓÇô INR 6500 + GST</span> |
-                        <span className="font-medium ml-1">Annual Renewal ΓÇô INR 4000 + GST</span>
+                        IIA Membership Fees: <span className="font-medium">New Member - INR 6500 + GST</span> |
+                        <span className="font-medium ml-1">Annual Renewal - INR 4000 + GST</span>
                     </p>
                 </div>
             </div>

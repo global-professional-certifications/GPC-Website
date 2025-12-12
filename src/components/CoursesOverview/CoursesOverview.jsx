@@ -34,7 +34,7 @@ export default function CoursesOverview() {
     <>
       <CoursesSEO />
       <MetaTags
-        title="Certification Courses ΓÇô Global Professional Certifications"
+        title="Certification Courses - Global Professional Certifications"
         description="Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content."
         canonicalUrl="https://globalprofessionalcertifications.com/courses"
       />
