@@ -302,7 +302,7 @@ export default function Home() {
           <div className="container mx-auto relative z-10">
             {/* Centered Title */}
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 leading-tight px-2 md:px-28">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight px-2 md:px-28">
                 Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-600">Success and Growth</span>
               </h2>
               <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
