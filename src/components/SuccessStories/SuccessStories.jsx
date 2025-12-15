@@ -23,6 +23,8 @@ import { MotionConfig, motion, AnimatePresence } from "motion/react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 
+// Helper function to handle negative modulo correctly
+const safeModulo = (n, m) => ((n % m) + m) % m;
 
 export default function SuccessStories() {
 
@@ -307,7 +309,11 @@ export default function SuccessStories() {
                                 <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
                                     <motion.div
                                         className="flex gap-2 md:gap-4"
-                                        animate={{ x: `-${(currentVideoIndex % videoStories.length) * (200 + (isMobile ? 8 : 16))}px` }}
+                                        animate={{
+                                            x: videoStories.length > 0
+                                                ? -safeModulo(currentVideoIndex, videoStories.length) * (200 + (isMobile ? 8 : 16))
+                                                : 0
+                                        }}
                                         transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                         onAnimationComplete={() => {
                                             if (currentVideoIndex >= videoStories.length || currentVideoIndex < 0) {
@@ -367,15 +373,25 @@ export default function SuccessStories() {
                                 {/* Carousel Arrows */}
                                 <div className="flex justify-center gap-3 items-center w-full mt-6">
                                     <button
+                                        type="button"
                                         className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handlePrev}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            handlePrev();
+                                        }}
                                         aria-label="Previous video"
                                     >
                                         <FaChevronLeft />
                                     </button>
                                     <button
+                                        type="button"
                                         className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handleNext}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            handleNext();
+                                        }}
                                         aria-label="Next video"
                                     >
                                         <FaChevronRight />
@@ -393,7 +409,11 @@ export default function SuccessStories() {
                             <div className="relative flex flex-col items-center w-full pt-6">
                                 <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
                                     <motion.div
-                                        animate={{ x: `-${(currentIndex % writtenStories.length) * (200 + (isMobile ? 8 : 16))}px` }}
+                                        animate={{
+                                            x: writtenStories.length > 0
+                                                ? -safeModulo(currentIndex, writtenStories.length) * (200 + (isMobile ? 8 : 16))
+                                                : 0
+                                        }}
                                         transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                         className="flex gap-2 md:gap-4"
                                         onAnimationComplete={() => {
@@ -454,15 +474,25 @@ export default function SuccessStories() {
 
                                 <div className="flex justify-center gap-3 items-center w-full mt-6">
                                     <button
+                                        type="button"
                                         className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handleWrittenPrev}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            handleWrittenPrev();
+                                        }}
                                         aria-label="Previous story"
                                     >
                                         <FaChevronLeft />
                                     </button>
                                     <button
+                                        type="button"
                                         className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={handleWrittenNext}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            handleWrittenNext();
+                                        }}
                                         aria-label="Next story"
                                     >
                                         <FaChevronRight />

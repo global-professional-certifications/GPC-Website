@@ -142,8 +142,8 @@ export default function Home() {
   const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
 
   useEffect(() => {
-    // Check if celebration has been shown in this session
-    const hasSeenCelebration = sessionStorage.getItem('hasSeenCelebration');
+    // Check if celebration has been shown before (persists across sessions)
+    const hasSeenCelebration = localStorage.getItem('hasSeenCelebration');
     if (!hasSeenCelebration) {
       setShowCelebration(true);
     }
@@ -151,7 +151,7 @@ export default function Home() {
 
   const handleCelebrationComplete = () => {
     setShowCelebration(false);
-    sessionStorage.setItem('hasSeenCelebration', 'true');
+    localStorage.setItem('hasSeenCelebration', 'true');
   };
 
   useEffect(() => {
@@ -302,7 +302,7 @@ export default function Home() {
           <div className="container mx-auto relative z-10">
             {/* Centered Title */}
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 leading-tight px-28">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 leading-tight px-2 md:px-28">
                 Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-600">Success and Growth</span>
               </h2>
               <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
