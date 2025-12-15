@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Hero from "../Hero/Hero";
 import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
@@ -11,6 +11,7 @@ import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import FAQDisplay from "../FAQDisplay.jsx";
 import Countdown from "react-countdown";
+import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -135,7 +136,44 @@ const testimonials = [
 const eventDate = new Date("2025-12-06T11:30:00");
 
 export default function Home() {
+  const [showCelebration, setShowCelebration] = useState(false);
   const [latestBlogs, setLatestBlogs] = useState([]);
+  const anniversaryRef = useRef(null);
+  const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
+
+  useEffect(() => {
+    // Check if celebration has been shown in this session
+    const hasSeenCelebration = sessionStorage.getItem('hasSeenCelebration');
+    if (!hasSeenCelebration) {
+      setShowCelebration(true);
+    }
+  }, []);
+
+  const handleCelebrationComplete = () => {
+    setShowCelebration(false);
+    sessionStorage.setItem('hasSeenCelebration', 'true');
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAnniversaryVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (anniversaryRef.current) {
+      observer.observe(anniversaryRef.current);
+    }
+
+    return () => {
+      if (anniversaryRef.current) {
+        observer.unobserve(anniversaryRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -150,12 +188,16 @@ export default function Home() {
   }, []);
   return (
     <>
+      {showCelebration && (
+        <CelebrationOverlay onComplete={handleCelebrationComplete} />
+      )}
       <MetaTags
-        title="Global Professional Certifications G�� Advance Your Career"
+        title="Global Professional Certifications - Advance Your Career"
         description="Get globally recognized with our CIA certification courses. Join 100+ professionals who have advanced their careers through our expert-led programs"
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
       <div className="bg-gray-50 transition-colors duration-300">
+
         {/* Hero Section and Stats */}
 
         <div className="relative">
@@ -213,6 +255,98 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+
+
+        {/* 1-Year Anniversary Celebration Section */}
+        <section
+          ref={anniversaryRef}
+          className={`relative bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white py-20 md:py-28 px-4 md:px-12 lg:px-20 overflow-hidden transition-all duration-1000 ${isAnniversaryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+        >
+          {/* Beautiful Multi-layered Background Pattern */}
+          <div className="absolute inset-0 opacity-15">
+            {/* Large polka dots */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)',
+              backgroundSize: '60px 60px'
+            }}></div>
+            {/* Small polka dots offset */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+              backgroundSize: '30px 30px',
+              backgroundPosition: '15px 15px'
+            }}></div>
+          </div>
+
+          {/* Radial gradient circles for depth */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl"></div>
+
+          {/* Decorative Doodles */}
+          <svg className="absolute top-10 left-10 w-20 h-20 text-yellow-300 opacity-60" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+            <path d="M10,50 Q30,20 50,50 T90,50" />
+          </svg>
+
+          {/* Large Beautiful Stars */}
+          <div className="absolute top-20 right-20 text-6xl text-purple-300 opacity-50">★</div>
+          <div className="absolute top-1/3 right-1/4 text-5xl text-white opacity-40">★</div>
+          <div className="absolute bottom-1/4 left-20 text-4xl text-pink-300 opacity-35">★</div>
+
+          {/* Other Doodles */}
+          <div className="absolute bottom-20 left-32 w-12 h-12 text-pink-300 opacity-40">▲</div>
+          <div className="absolute bottom-32 right-10 w-14 h-14 border-4 border-yellow-400 rounded-full opacity-40"></div>
+          <div className="absolute top-1/3 left-10 w-3 h-3 bg-white rounded-full opacity-40"></div>
+          <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-white rounded-full opacity-30"></div>
+
+          <div className="container mx-auto relative z-10">
+            {/* Centered Title */}
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 leading-tight px-28">
+                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-600">Success and Growth</span>
+              </h2>
+              <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
+                We are joining together to celebrate one year of success of our CIA students and aiming to continuously empower them with more knowledge and opportunities.
+              </p>
+            </div>
+
+            {/* Two Column Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mt-8">
+              {/* Video - Left Side (2 columns) */}
+              <div className="lg:col-span-2">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                  <iframe
+                    className="w-full h-[300px] sm:h-[400px] md:h-[450px]"
+                    src="https://www.youtube.com/embed/WgA9VzD06kY"
+                    title="One Year of GPC | A Journey of Growth, Learning & Cre..."
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* CTA Card - Right Side (1 column) */}
+              <div className="lg:col-span-1">
+                <div className="bg-purple-600 bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-purple-400">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                    Our Journey So Far
+                  </h3>
+                  <p className="text-white text-base mb-6 opacity-90">
+                    Discover how we've grown into a trusted partner for thousands of professionals!
+                  </p>
+                  <Link
+                    to="events"
+                    className="inline-flex items-center justify-center w-full py-3 px-6 rounded-full bg-white text-brand-blue font-bold text-lg shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300"
+                  >
+                    See Our Journey →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
         {/* Batch Announcement */}
         {/* Upcoming section temporarily hidden - no active announcements */}

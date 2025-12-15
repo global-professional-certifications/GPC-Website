@@ -494,7 +494,7 @@ export default function SuccessStories() {
                 More Success Stories
             </h2>
             <SuccessTestimonials stories={imageStories} start={8} end={20} />
-            
+
 
         </>
     );
@@ -515,15 +515,30 @@ const SuccessTestimonials = ({ stories, start, end }) => {
     }, []);
 
     const handleImagePrev = () => {
-        setCurrentImageIndex((prev) => prev - 1);
+        console.log('Prev clicked, current index:', currentImageIndex);
+        setCurrentImageIndex((prev) => {
+            const newIndex = prev - 1;
+            console.log('New index:', newIndex);
+            return newIndex;
+        });
     };
 
     const handleImageNext = () => {
-        setCurrentImageIndex((prev) => prev + 1);
+        console.log('Next clicked, current index:', currentImageIndex);
+        setCurrentImageIndex((prev) => {
+            const newIndex = prev + 1;
+            console.log('New index:', newIndex);
+            return newIndex;
+        });
     };
 
     const cardWidth = isMobileView ? 280 : 250;
     const gap = isMobileView ? 16 : 24;
+
+    // Safety check: if no testimonials, don't render carousel
+    if (!displayedTestimonials || displayedTestimonials.length === 0) {
+        return null;
+    }
 
     return (
         <section className="py-8 md:py-12 bg-gray-50">
@@ -557,17 +572,27 @@ const SuccessTestimonials = ({ stories, start, end }) => {
                     </div>
 
                     {/* Navigation Arrows */}
-                    <div className="flex justify-center gap-3 items-center w-full mt-6">
+                    <div className="relative z-50 flex justify-center gap-3 items-center w-full mt-6">
                         <button
-                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                            onClick={handleImagePrev}
+                            type="button"
+                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out cursor-pointer"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleImagePrev();
+                            }}
                             aria-label="Previous testimonials"
                         >
                             <FaChevronLeft />
                         </button>
                         <button
-                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                            onClick={handleImageNext}
+                            type="button"
+                            className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out cursor-pointer"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleImageNext();
+                            }}
                             aria-label="Next testimonials"
                         >
                             <FaChevronRight />
