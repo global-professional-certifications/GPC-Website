@@ -25,6 +25,7 @@ npm install
 
 # Start the development server
 npm run dev
+<<<<<<< HEAD
 
 ## Sanity CMS Integration
 
@@ -56,3 +57,5 @@ npm run sanity:deploy
 ### Content Migration
 
 A migration script `migrate.js` was used to migrate content from `BlogContent.jsx` to Sanity.
+=======
+>>>>>>> d77435c043d0530e142937c431fe8582c041fcd1

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import heroGirl from '../../assets/hero-girl.webp';
 import { Link } from 'react-router-dom';
 import { height } from "../Notifications/NotificationBanner";
@@ -16,14 +16,14 @@ const Hero = () => {
 
     return (
         <section
-            className="relative min-h-screen flex items-center justify-center bg-brand-blue sm:pt-24"
+            className="relative min-h-screen flex items-center justify-center bg-brand-blue sm:pt-24 transition-colors duration-300"
             style={{ paddingTop: `${paddingTop}px` }}
         >
             <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col lg:flex-row md:items-start lg:items-center gap-10">
 
                 {/* --- Left: Text Section --- */}
                 <div className="w-full md:w-full lg:w-1/2 lg:max-w-3xl text-left">
-                    <p className="inline-block px-3 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-50/10 border border-white/80 md:border-white text-xs md:text-sm lg:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm ">
+                    <p className="inline-block px-3 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-white/10 border border-white/80 md:border-white text-xs md:text-sm lg:text-base text-gray-100 rounded-md sm:rounded-lg font-semibold font-inter tracking-wide backdrop-blur-sm ">
                         Trusted by Professionals from Top Corporates
                     </p>
 
@@ -38,7 +38,7 @@ const Hero = () => {
 
                     {/* Subheading (H2) */}
                     <h2 className="mt-4 text-base md:text-base lg:text-lg text-gray-200 leading-relaxed">
-                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led, industry-accredited courses—<span className='font-bold text-orange-400'>including CIA, CRMA, IAP, and CISA</span>—designed for aspiring and experienced professionals in risk assurance and advisory.
+                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led, industry-accredited courses<span className='font-bold text-orange-400'> (including CIA, CRMA, IAP, and CISA)</span> designed for aspiring and experienced professionals in risk assurance and advisory.
                     </h2>
 
                     {/* CTA Button */}

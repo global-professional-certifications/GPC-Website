@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Hero from "../Hero/Hero";
 import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
@@ -11,6 +11,7 @@ import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import FAQDisplay from "../FAQDisplay.jsx";
 import Countdown from "react-countdown";
+import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,7 +56,7 @@ const courseFaqs = [
     question:
       "What certifications or training does Global Professional Certifications offer?",
     answer:
-      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) – the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) – for IT audit, cyber risk, and information security professionals, Certification in Risk Management Assurance (CRMA) – for expertise in governance, risk, and control, and Internal Auditor Practitioner (IAP) – foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
+      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) G�� the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) G�� for IT audit, cyber risk, and information security professionals, Certification in Risk Management Assurance (CRMA) G�� for expertise in governance, risk, and control, and Internal Auditor Practitioner (IAP) G�� foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
   },
   {
     question:
@@ -67,7 +68,7 @@ const courseFaqs = [
     question:
       "What are the unique features of Global Professional Certifications' teaching methodology?",
     answer:
-      "Global Professional Certifications leverages a blended learning model—expert-led live sessions, interactive online resources, case-based simulations, and flexible weekend classes. Our curriculum is aligned with IIA, ISACA, and global standards, ensuring you gain actionable, practical skills for today’s risk assurance landscape. We prioritize active learning, career development, and networking within a thriving professional community.",
+      "Global Professional Certifications leverages a blended learning modelG��expert-led live sessions, interactive online resources, case-based simulations, and flexible weekend classes. Our curriculum is aligned with IIA, ISACA, and global standards, ensuring you gain actionable, practical skills for todayG��s risk assurance landscape. We prioritize active learning, career development, and networking within a thriving professional community.",
   },
   {
     question: "Who is Arpit Garg?",
@@ -84,48 +85,48 @@ const courseFaqs = [
 const testimonials = [
   {
     quote:
-      "Highly recommend Arpit Garg’s CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
+      "Highly recommend Arpit GargG��s CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
     name: "Pinky Agarwal",
     title: "Head Internal Audit, Emami Limited",
     image: pinkyTestimonial,
   },
   {
     quote:
-      "Arpit Garg’s CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
+      "Arpit GargG��s CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
     name: "Akshdeep Singh",
     title: "Manager, KPMG",
     image: akshdeepTestimonial,
   },
   {
     quote:
-      "Attending Arpit Garg’s CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
+      "Attending Arpit GargG��s CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
     name: "Starwin PJ",
     title: "AVP, Wells Fargo",
     image: starwinTestimonial,
   },
   {
     quote:
-      "Arpit Garg’s CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
+      "Arpit GargG��s CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
     name: "Wajiha Ansari",
     title: "Auditor, Grant Thornton Bahrain",
     image: wajihaTestimonial,
   },
   {
     quote:
-      "I owe my CIA Challenge Exam success to Arpit Garg’s exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship—highly recommended!",
+      "I owe my CIA Challenge Exam success to Arpit GargG��s exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorshipG��highly recommended!",
     name: "Ramakrishna Mude",
     title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
     image: ramakrishnaTestimonial,
   },
   {
     quote:
-      "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg’s mentorship, strategy, and insights—his guidance made it possible!",
+      "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit GargG��s mentorship, strategy, and insightsG��his guidance made it possible!",
     name: "Unmesh Upadhye",
     title: "Assistant Vice President, State Bank of India",
     image: unmeshTestimonial,
   },
   // {
-  //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit Garg’s exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
+  //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit GargG��s exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
   //     name: "Prateek Bhatia",
   //     title: "Group Head of Internal Audit, Cravia Group",
   //     image: feedbackPerson
@@ -135,7 +136,44 @@ const testimonials = [
 const eventDate = new Date("2025-12-06T11:30:00");
 
 export default function Home() {
+  const [showCelebration, setShowCelebration] = useState(false);
   const [latestBlogs, setLatestBlogs] = useState([]);
+  const anniversaryRef = useRef(null);
+  const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
+
+  useEffect(() => {
+    // Check if celebration has been shown before (persists across sessions)
+    const hasSeenCelebration = localStorage.getItem('hasSeenCelebration');
+    if (!hasSeenCelebration) {
+      setShowCelebration(true);
+    }
+  }, []);
+
+  const handleCelebrationComplete = () => {
+    setShowCelebration(false);
+    localStorage.setItem('hasSeenCelebration', 'true');
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAnniversaryVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (anniversaryRef.current) {
+      observer.observe(anniversaryRef.current);
+    }
+
+    return () => {
+      if (anniversaryRef.current) {
+        observer.unobserve(anniversaryRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -150,12 +188,16 @@ export default function Home() {
   }, []);
   return (
     <>
+      {showCelebration && (
+        <CelebrationOverlay onComplete={handleCelebrationComplete} />
+      )}
       <MetaTags
-        title="Global Professional Certifications – Advance Your Career"
+        title="Global Professional Certifications - Advance Your Career"
         description="Get globally recognized with our CIA certification courses. Join 100+ professionals who have advanced their careers through our expert-led programs"
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 transition-colors duration-300">
+
         {/* Hero Section and Stats */}
 
         <div className="relative">
@@ -214,6 +256,98 @@ export default function Home() {
           </div>
         </div>
 
+
+
+        {/* 1-Year Anniversary Celebration Section */}
+        <section
+          ref={anniversaryRef}
+          className={`relative bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white py-20 md:py-28 px-4 md:px-12 lg:px-20 overflow-hidden transition-all duration-1000 ${isAnniversaryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+        >
+          {/* Beautiful Multi-layered Background Pattern */}
+          <div className="absolute inset-0 opacity-15">
+            {/* Large polka dots */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)',
+              backgroundSize: '60px 60px'
+            }}></div>
+            {/* Small polka dots offset */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+              backgroundSize: '30px 30px',
+              backgroundPosition: '15px 15px'
+            }}></div>
+          </div>
+
+          {/* Radial gradient circles for depth */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl"></div>
+
+          {/* Decorative Doodles */}
+          <svg className="absolute top-10 left-10 w-20 h-20 text-yellow-300 opacity-60" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+            <path d="M10,50 Q30,20 50,50 T90,50" />
+          </svg>
+
+          {/* Large Beautiful Stars */}
+          <div className="absolute top-20 right-20 text-6xl text-purple-300 opacity-50">★</div>
+          <div className="absolute top-1/3 right-1/4 text-5xl text-white opacity-40">★</div>
+          <div className="absolute bottom-1/4 left-20 text-4xl text-pink-300 opacity-35">★</div>
+
+          {/* Other Doodles */}
+          <div className="absolute bottom-20 left-32 w-12 h-12 text-pink-300 opacity-40">▲</div>
+          <div className="absolute bottom-32 right-10 w-14 h-14 border-4 border-yellow-400 rounded-full opacity-40"></div>
+          <div className="absolute top-1/3 left-10 w-3 h-3 bg-white rounded-full opacity-40"></div>
+          <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-white rounded-full opacity-30"></div>
+
+          <div className="container mx-auto relative z-10">
+            {/* Centered Title */}
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight px-2 md:px-28">
+                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-600">Success and Growth</span>
+              </h2>
+              <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
+                We are joining together to celebrate one year of success of our CIA students and aiming to continuously empower them with more knowledge and opportunities.
+              </p>
+            </div>
+
+            {/* Two Column Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mt-8">
+              {/* Video - Left Side (2 columns) */}
+              <div className="lg:col-span-2">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                  <iframe
+                    className="w-full h-[300px] sm:h-[400px] md:h-[450px]"
+                    src="https://www.youtube.com/embed/WgA9VzD06kY"
+                    title="One Year of GPC | A Journey of Growth, Learning & Cre..."
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* CTA Card - Right Side (1 column) */}
+              <div className="lg:col-span-1">
+                <div className="bg-purple-600 bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-purple-400">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                    Our Journey So Far
+                  </h3>
+                  <p className="text-white text-base mb-6 opacity-90">
+                    Discover how we've grown into a trusted partner for thousands of professionals!
+                  </p>
+                  <Link
+                    to="events"
+                    className="inline-flex items-center justify-center w-full py-3 px-6 rounded-full bg-white text-brand-blue font-bold text-lg shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300"
+                  >
+                    See Our Journey →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         {/* Batch Announcement */}
         {/* Upcoming section temporarily hidden - no active announcements */}
 
@@ -223,10 +357,10 @@ export default function Home() {
           <Companies />
         </div>
 
-        {/* Popular Courses Section */}
+        {/* Popular Courses Card Section */}
 
         <div className="my-10 px-2 mt-2 md:px-12 lg:px-20">
-          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold">
+          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
             Explore Our{" "}
             <span className="text-brand-blue font-normal italic">
               Flagship Certification Programs
@@ -234,7 +368,7 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cia}
@@ -244,7 +378,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certified Internal Auditor (CIA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -253,14 +387,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cia">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={cisa}
@@ -270,7 +404,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certified Information Systems Auditor (CISA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -279,14 +413,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/cisa">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={crma}
@@ -296,7 +430,7 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Certification in Risk Management Assurance (CRMA)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
@@ -305,14 +439,14 @@ export default function Home() {
                   </p>
                 </div>
                 <NavLink to="/courses/crma">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-shadow duration-300 hover:shadow-xl h-full">
+            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
               <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
                 <img
                   src={iap}
@@ -322,16 +456,16 @@ export default function Home() {
               </div>
               <div className="px-6 py-4 flex flex-col flex-1 justify-between">
                 <div>
-                  <p className="text-sm md:text-xl font-bold mb-2">
+                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
                     Internal Audit Practitioner (IAP)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Kickstart your CIA journey with our IAP course—covering
+                    Kickstart your CIA journey with our IAP courseG��covering
                     audit fundamentals and risk assessment
                   </p>
                 </div>
                 <NavLink to="/courses/iap">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple">
+                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                     View Course
                   </button>
                 </NavLink>
@@ -385,7 +519,7 @@ export default function Home() {
         <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
           {/* Heading */}
           <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
-            <p className="font-bold text-2xl md:text-4xl leading-snug">
+            <p className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
               Why Choose{" "}
               <span className="text-brand-blue font-normal italic">
                 Global Professional Certifications?
@@ -447,7 +581,7 @@ export default function Home() {
                   Dedicated Support
                 </p>
                 <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
-                  Get dedicated support until you succeed — we’re with you every
+                  Get dedicated support until you succeed G�� weG��re with you every
                   step of the way.
                 </p>
               </div>
@@ -538,7 +672,7 @@ export default function Home() {
               </p>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                 Mr. Mukundan K.V, CEO of IIA India, presents the official
-                accreditation certificate to Arpit Garg, GPC mentor — marking
+                accreditation certificate to Arpit Garg, GPC mentor G�� marking
                 Global Professional Certifications as an
                 <span className="font-semibold">
                   {" "}
@@ -579,7 +713,7 @@ export default function Home() {
             <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6">
               Your Success Path, Simplified
               <br />
-              Your Certification Journey — From Learning to Leadership
+              Your Certification Journey G�� From Learning to Leadership
             </p>
           </div>
           <div className="m-8 hidden md:block lg:block">
@@ -635,11 +769,11 @@ export default function Home() {
 
           {/* Testimonials Container */}
           <div className="overflow-x-auto">
-            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-12 mx-0 lg:mx-10">
+            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-shadow duration-300 hover:shadow-xl"
+                  className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
                 >
                   <div className="flex-1 flex items-start">
                     <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
@@ -699,7 +833,7 @@ export default function Home() {
                 key={blog._id}
                 to={`/blogs/${blog.slug.current || blog.slug}`}
                 aria-label={`Read blog: ${blog.title}`}
-                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200"
+                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 h-[380px] md:h-[520px]"
               >
                 <img
                   src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
@@ -761,7 +895,7 @@ export default function Home() {
         {/* FAQ Section */}
 
         <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
-          <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
             {/* Image Section */}
             <div className="w-full lg:w-2/5 flex justify-center items-center relative">
               <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
@@ -770,7 +904,7 @@ export default function Home() {
               <img
                 src={faqImage}
                 alt="FAQ illustration"
-                className="max-w-md w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+                className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
               />
             </div>
 
@@ -814,3 +948,4 @@ export default function Home() {
     </>
   );
 }
+

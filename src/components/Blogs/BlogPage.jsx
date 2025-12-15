@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import { useParams, Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays, faUser, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +19,7 @@ const BlogPage = () => {
             try {
                 const postData = await client.fetch(getPostBySlug, { slug })
                 setPost(postData)
-                
+
                 // Fetch related posts (recent posts for now, excluding current)
                 const recent = await client.fetch(getRecentPosts)
                 setRelatedPosts(recent.filter(p => p.slug.current !== slug))
@@ -146,7 +146,9 @@ const BlogPage = () => {
                                             <span className="text-base pl-2 text-gray-700">
                                                 Read Full Blog
                                             </span>
-                                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className='text-white text-sm bg-brand-blue h-4 w-4 rounded-full p-2' />
+                                            <div className="bg-brand-purple rounded-full p-2">
+                                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-white" />
+                                            </div>
                                         </Link>
                                     </div>
                                 </div>

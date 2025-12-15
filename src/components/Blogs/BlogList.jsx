@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
@@ -71,7 +71,7 @@ const BlogList = () => {
                             </p>
 
                             <p className='text-gray-500 lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
-                                In today’s dynamic corporate environment, internal auditors are expected to be more than compliance checkers — they’re strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
+                                In todayΓÇÖs dynamic corporate environment, internal auditors are expected to be more than compliance checkers ΓÇö theyΓÇÖre strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
                             </p>
                             <Link
                                 to="https://delhi.iiaindia.co/accelerate-your-audit-career-with-the-cia-challenge-exam-a-strategic-guide-for-internal-audit-professionals/"

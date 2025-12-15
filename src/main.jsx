@@ -1,4 +1,4 @@
-
+﻿
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ThemeProvider } from "@material-tailwind/react";
@@ -23,6 +23,7 @@ import Glossary from './components/Glossary/Glossary.jsx';
 import BlogList from './components/Blogs/BlogList.jsx';
 import BlogPage from './components/Blogs/BlogPage.jsx';
 import StudioPage from './components/Studio/StudioPage.jsx';
+import Journey from './components/Journey/Journey.jsx';
 import { Analytics } from "@vercel/analytics/react"
 
 
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         <Route path="faq" element={<FaqPage />} />
         <Route path="glossary" element={<Glossary />} />
         <Route path="success" element={<SuccessStories />} />
+        <Route path="our-journey" element={<Journey />} />
         <Route path="courses" element={<CoursesOverview />} />
         <Route path="courses/cia" element={<Cia />} />
         <Route path="courses/crma" element={<Crma />} />

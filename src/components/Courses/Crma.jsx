@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
@@ -26,7 +26,7 @@ const Crma = () => {
   return (
     <>
       <Helmet>
-        <title>CRMA Certification – Global Professional Certifications</title>
+        <title>CRMA Certification - Global Professional Certifications</title>
         <meta
           name="description"
           content="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
@@ -43,10 +43,10 @@ const Crma = () => {
       {/* Header */}
 
       <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8">
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
-              <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white">
+              <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                 Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified Risk Management Assurance </span> Professional (CRMA)
               </h1>
               <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">
@@ -110,22 +110,22 @@ const Crma = () => {
         {/* Enrollment Section */}
         <section id="enrollment" className="flex flex-col md:flex-row justify-around items-center bg-orange-100 rounded-lg shadow-lg p-6 md:p-8 text-center space-y-6 md:space-y-0 md:space-x-8">
           <div className="flex flex-col items-center md:items-start">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-brand-blue mb-2">
-                  Enroll Now
-              </h2>
-              <p className="text-gray-700 text-lg sm:text-xl md:text-2xl mb-2">
-                  Enrollment Cost: <span className="font-bold">INR 29,500 </span>{" "}
-                  <span className="text-sm italic">(Including GST)</span>
-              </p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-brand-blue mb-2">
+              Enroll Now
+            </h2>
+            <p className="text-gray-700 text-lg sm:text-xl md:text-2xl mb-2">
+              Enrollment Cost: <span className="font-bold">INR 29,500 </span>{" "}
+              <span className="text-sm italic">(Including GST)</span>
+            </p>
           </div>
           <Link
-              to="https://rzp.io/rzp/hjuC9dj"
-              target="_blank"
-              className="inline-block bg-orange-500 text-white py-3 px-6 rounded-lg text-lg sm:text-xl md:text-2xl font-semibold hover:bg-orange-800 transition-colors"
+            to="https://rzp.io/rzp/hjuC9dj"
+            target="_blank"
+            className="inline-block bg-orange-500 text-white py-3 px-6 rounded-lg text-lg sm:text-xl md:text-2xl font-semibold hover:bg-orange-800 transition-colors"
           >
-              Join the Course
+            Join the Course
           </Link>
-      </section>
+        </section>
       </main>
     </>
   );

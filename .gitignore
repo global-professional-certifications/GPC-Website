@@ -16,6 +16,9 @@ dist-ssr
 screenshots-carousel.txt
 notes.txt
 
+# Unused media files archive
+Unused Files/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
