@@ -73,11 +73,16 @@ export default function SuccessStories() {
         wofaFive,
     ]
 
+
     const [activeVideoIndex, setActiveVideoIndex] = useState(null);
     const [activeWrittenIndex, setActiveWrittenIndex] = useState(null);
 
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Refs to manage video playback
+    const videoRefs = useRef({});
+    const writtenVideoRefs = useRef({});
 
     const handlePrev = () => {
         setCurrentVideoIndex((prev) => prev - 1);
@@ -94,6 +99,28 @@ export default function SuccessStories() {
     const handleWrittenNext = () => {
         setCurrentIndex((prev) => prev + 1);
     };
+
+    // Handle infinite loop for video carousel
+    useEffect(() => {
+        if (videoStories.length > 0) {
+            if (currentVideoIndex >= videoStories.length) {
+                setTimeout(() => setCurrentVideoIndex(0), 300);
+            } else if (currentVideoIndex < 0) {
+                setTimeout(() => setCurrentVideoIndex(videoStories.length - 1), 300);
+            }
+        }
+    }, [currentVideoIndex, videoStories.length]);
+
+    // Handle infinite loop for written carousel
+    useEffect(() => {
+        if (writtenStories.length > 0) {
+            if (currentIndex >= writtenStories.length) {
+                setTimeout(() => setCurrentIndex(0), 300);
+            } else if (currentIndex < 0) {
+                setTimeout(() => setCurrentIndex(writtenStories.length - 1), 300);
+            }
+        }
+    }, [currentIndex, writtenStories.length]);
 
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
     const [isAnimating, setIsAnimating] = useState(true)
@@ -310,51 +337,65 @@ export default function SuccessStories() {
                                     <motion.div
                                         className="flex gap-2 md:gap-4"
                                         animate={{
-                                            x: videoStories.length > 0
-                                                ? -safeModulo(currentVideoIndex, videoStories.length) * (200 + (isMobile ? 8 : 16))
-                                                : 0
+                                            x: `${-(currentVideoIndex * (isMobile ? 208 : 216))}px`
                                         }}
-                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                                        onAnimationComplete={() => {
-                                            if (currentVideoIndex >= videoStories.length || currentVideoIndex < 0) {
-                                                setCurrentVideoIndex(currentVideoIndex % videoStories.length);
-                                            }
-                                        }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     >
-                                        {[...videoStories, ...videoStories, ...videoStories].map((story, index) => (
-                                            <motion.div
-                                                key={index}
-                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
-                                            >
-                                                <AnimatePresence>
-                                                    {activeVideoIndex === (index % videoStories.length) ? (
-                                                        <motion.video
-                                                            key="video"
+                                        {videoStories.length > 0 && [...videoStories, ...videoStories, ...videoStories].map((story, index) => {
+                                            const actualIndex = index % videoStories.length;
+                                            const isActive = activeVideoIndex === actualIndex;
+                                            const uniqueKey = `video-${index}`;
+                                            // Only render video for the FIRST matching instance
+                                            const shouldRenderVideo = isActive && (index < videoStories.length || (activeVideoIndex >= videoStories.length && index >= videoStories.length && index < videoStories.length * 2) || (activeVideoIndex >= videoStories.length * 2 && index >= videoStories.length * 2));
+
+                                            return (
+                                                <div
+                                                    key={uniqueKey}
+                                                    className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                                >
+                                                    {shouldRenderVideo ? (
+                                                        <video
+                                                            ref={(el) => {
+                                                                if (el) {
+                                                                    videoRefs.current[uniqueKey] = el;
+                                                                    // Autoplay when video element is created
+                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                }
+                                                            }}
                                                             src={story.videoUrl}
                                                             className="w-full h-full object-contain rounded-lg"
                                                             controls
-                                                            autoPlay
                                                             playsInline
-                                                            initial={{ opacity: 0, scale: 0.95 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            exit={{ opacity: 0, scale: 0.95 }}
-                                                            transition={{ duration: 0.3 }}
+                                                            onPlay={() => {
+                                                                // Pause all other videos when this one plays
+                                                                Object.entries(videoRefs.current).forEach(([key, video]) => {
+                                                                    if (key !== uniqueKey && video) {
+                                                                        video.pause();
+                                                                    }
+                                                                });
+                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                            }}
                                                         />
                                                     ) : (
-                                                        <motion.div
-                                                            key="thumbnail"
+                                                        <div
                                                             className="absolute inset-0"
                                                             onClick={() => {
-                                                                setActiveVideoIndex(index % videoStories.length);
+                                                                // Pause all videos first
+                                                                Object.values(videoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                                setActiveVideoIndex(actualIndex);
                                                                 setActiveWrittenIndex(null);
                                                             }}
-                                                            initial={{ opacity: 0 }}
-                                                            animate={{ opacity: 1 }}
-                                                            exit={{ opacity: 0 }}
                                                         >
                                                             <img
                                                                 src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                alt={`Thumbnail for video ${actualIndex + 1}`}
                                                                 className="w-full h-full object-cover rounded-lg"
                                                             />
                                                             <div className="absolute rounded-lg bottom-3 left-3">
@@ -362,11 +403,11 @@ export default function SuccessStories() {
                                                                     ▶
                                                                 </button>
                                                             </div>
-                                                        </motion.div>
+                                                        </div>
                                                     )}
-                                                </AnimatePresence>
-                                            </motion.div>
-                                        ))}
+                                                </div>
+                                            );
+                                        })}
                                     </motion.div>
                                 </div>
 
@@ -378,6 +419,11 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
+                                            // Pause all videos when navigating
+                                            Object.values(videoRefs.current).forEach((video) => {
+                                                if (video) video.pause();
+                                            });
+                                            setActiveVideoIndex(null);
                                             handlePrev();
                                         }}
                                         aria-label="Previous video"
@@ -390,6 +436,11 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
+                                            // Pause all videos when navigating
+                                            Object.values(videoRefs.current).forEach((video) => {
+                                                if (video) video.pause();
+                                            });
+                                            setActiveVideoIndex(null);
                                             handleNext();
                                         }}
                                         aria-label="Next video"
@@ -409,54 +460,67 @@ export default function SuccessStories() {
                             <div className="relative flex flex-col items-center w-full pt-6">
                                 <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
                                     <motion.div
-                                        animate={{
-                                            x: writtenStories.length > 0
-                                                ? -safeModulo(currentIndex, writtenStories.length) * (200 + (isMobile ? 8 : 16))
-                                                : 0
-                                        }}
-                                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
                                         className="flex gap-2 md:gap-4"
-                                        onAnimationComplete={() => {
-                                            if (currentIndex >= writtenStories.length || currentIndex < 0) {
-                                                setCurrentIndex(currentIndex % writtenStories.length);
-                                            }
+                                        animate={{
+                                            x: `${-(currentIndex * (isMobile ? 208 : 216))}px`
                                         }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     >
-                                        {[...writtenStories, ...writtenStories, ...writtenStories].map((story, index) => (
-                                            <motion.div
-                                                key={index}
-                                                className="relative h-[350px] w-[200px] flex-shrink-0"
-                                            >
-                                                <AnimatePresence>
-                                                    {activeWrittenIndex === (index % writtenStories.length) ? (
-                                                        <motion.video
-                                                            key="video"
+                                        {writtenStories.length > 0 && [...writtenStories, ...writtenStories, ...writtenStories].map((story, index) => {
+                                            const actualIndex = index % writtenStories.length;
+                                            const isActive = activeWrittenIndex === actualIndex;
+                                            const uniqueKey = `written-${index}`;
+                                            // Only render video for the FIRST matching instance
+                                            const shouldRenderVideo = isActive && (index < writtenStories.length || (activeWrittenIndex >= writtenStories.length && index >= writtenStories.length && index < writtenStories.length * 2) || (activeWrittenIndex >= writtenStories.length * 2 && index >= writtenStories.length * 2));
+
+                                            return (
+                                                <div
+                                                    key={uniqueKey}
+                                                    className="relative h-[350px] w-[200px] flex-shrink-0"
+                                                >
+                                                    {shouldRenderVideo ? (
+                                                        <video
+                                                            ref={(el) => {
+                                                                if (el) {
+                                                                    writtenVideoRefs.current[uniqueKey] = el;
+                                                                    // Autoplay when video element is created
+                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                }
+                                                            }}
                                                             src={story.videoUrl}
                                                             className="w-full h-full object-contain rounded-lg"
                                                             controls
-                                                            autoPlay
                                                             playsInline
-                                                            initial={{ opacity: 0, scale: 0.95 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            exit={{ opacity: 0, scale: 0.95 }}
-                                                            transition={{ duration: 0.3 }}
+                                                            onPlay={() => {
+                                                                // Pause all other videos when this one plays
+                                                                Object.entries(writtenVideoRefs.current).forEach(([key, video]) => {
+                                                                    if (key !== uniqueKey && video) {
+                                                                        video.pause();
+                                                                    }
+                                                                });
+                                                                Object.values(videoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                            }}
                                                         />
                                                     ) : (
-                                                        <motion.div
-                                                            key="thumbnail"
+                                                        <div
                                                             className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
                                                             onClick={() => {
-                                                                setActiveWrittenIndex(index % writtenStories.length);
+                                                                // Pause all videos first
+                                                                Object.values(videoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                    if (video) video.pause();
+                                                                });
+                                                                setActiveWrittenIndex(actualIndex);
                                                                 setActiveVideoIndex(null);
                                                             }}
-                                                            initial={{ opacity: 0.6 }}
-                                                            animate={{ opacity: 1 }}
-                                                            exit={{ opacity: 0.6 }}
-                                                            transition={{ duration: 0.3 }}
                                                         >
                                                             <img
                                                                 src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${index + 1}`}
+                                                                alt={`Thumbnail for video ${actualIndex + 1}`}
                                                                 className="w-full h-full object-cover rounded-lg"
                                                             />
                                                             <div className="absolute bottom-3 left-3">
@@ -464,11 +528,11 @@ export default function SuccessStories() {
                                                                     ▶
                                                                 </button>
                                                             </div>
-                                                        </motion.div>
+                                                        </div>
                                                     )}
-                                                </AnimatePresence>
-                                            </motion.div>
-                                        ))}
+                                                </div>
+                                            );
+                                        })}
                                     </motion.div>
                                 </div>
 
@@ -479,6 +543,11 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
+                                            // Pause all videos when navigating
+                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                if (video) video.pause();
+                                            });
+                                            setActiveWrittenIndex(null);
                                             handleWrittenPrev();
                                         }}
                                         aria-label="Previous story"
@@ -491,6 +560,11 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
+                                            // Pause all videos when navigating
+                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                if (video) video.pause();
+                                            });
+                                            setActiveWrittenIndex(null);
                                             handleWrittenNext();
                                         }}
                                         aria-label="Next story"
