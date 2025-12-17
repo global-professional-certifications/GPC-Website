@@ -161,6 +161,29 @@ export default function SuccessStories() {
         return () => window.removeEventListener("resize", handleResize)
     }, [window.innerWidth])
 
+    // Handle infinite loop for video carousel
+    useEffect(() => {
+        if (videoStories.length > 0) {
+            if (currentVideoIndex >= videoStories.length) {
+                setTimeout(() => setCurrentVideoIndex(0), 300);
+            } else if (currentVideoIndex < 0) {
+                setTimeout(() => setCurrentVideoIndex(videoStories.length - 1), 300);
+            }
+        }
+    }, [currentVideoIndex, videoStories.length]);
+
+    // Handle infinite loop for written carousel
+    useEffect(() => {
+        if (writtenStories.length > 0) {
+            if (currentIndex >= writtenStories.length) {
+                setTimeout(() => setCurrentIndex(0), 300);
+            } else if (currentIndex < 0) {
+                setTimeout(() => setCurrentIndex(writtenStories.length - 1), 300);
+            }
+        }
+    }, [currentIndex, writtenStories.length]);
+
+
     const sectionRef = useRef(null);
 
 
