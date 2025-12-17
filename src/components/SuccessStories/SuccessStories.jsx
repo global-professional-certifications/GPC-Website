@@ -73,6 +73,7 @@ export default function SuccessStories() {
         wofaFive,
     ]
 
+
     const [activeVideoIndex, setActiveVideoIndex] = useState(null);
     const [activeWrittenIndex, setActiveWrittenIndex] = useState(null);
 
@@ -98,6 +99,28 @@ export default function SuccessStories() {
     const handleWrittenNext = () => {
         setCurrentIndex((prev) => prev + 1);
     };
+
+    // Handle infinite loop for video carousel
+    useEffect(() => {
+        if (videoStories.length > 0) {
+            if (currentVideoIndex >= videoStories.length) {
+                setTimeout(() => setCurrentVideoIndex(0), 300);
+            } else if (currentVideoIndex < 0) {
+                setTimeout(() => setCurrentVideoIndex(videoStories.length - 1), 300);
+            }
+        }
+    }, [currentVideoIndex, videoStories.length]);
+
+    // Handle infinite loop for written carousel
+    useEffect(() => {
+        if (writtenStories.length > 0) {
+            if (currentIndex >= writtenStories.length) {
+                setTimeout(() => setCurrentIndex(0), 300);
+            } else if (currentIndex < 0) {
+                setTimeout(() => setCurrentIndex(writtenStories.length - 1), 300);
+            }
+        }
+    }, [currentIndex, writtenStories.length]);
 
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
     const [isAnimating, setIsAnimating] = useState(true)
@@ -345,23 +368,29 @@ export default function SuccessStories() {
                                             const actualIndex = index % videoStories.length;
                                             const isActive = activeVideoIndex === actualIndex;
                                             const uniqueKey = `video-${index}`;
+                                            // Only render video for the FIRST matching instance
+                                            const shouldRenderVideo = isActive && (index < videoStories.length || (activeVideoIndex >= videoStories.length && index >= videoStories.length && index < videoStories.length * 2) || (activeVideoIndex >= videoStories.length * 2 && index >= videoStories.length * 2));
 
                                             return (
-                                                <motion.div
+                                                <div
                                                     key={uniqueKey}
                                                     className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
                                                 >
-                                                    {isActive && index === activeVideoIndex + Math.floor(index / videoStories.length) * videoStories.length ? (
+                                                    {shouldRenderVideo ? (
                                                         <video
                                                             ref={(el) => {
-                                                                if (el) videoRefs.current[uniqueKey] = el;
+                                                                if (el) {
+                                                                    videoRefs.current[uniqueKey] = el;
+                                                                    // Autoplay when video element is created
+                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                }
                                                             }}
                                                             src={story.videoUrl}
                                                             className="w-full h-full object-contain rounded-lg"
                                                             controls
                                                             playsInline
                                                             onPlay={() => {
-                                                                // Pause all other videos
+                                                                // Pause all other videos when this one plays
                                                                 Object.entries(videoRefs.current).forEach(([key, video]) => {
                                                                     if (key !== uniqueKey && video) {
                                                                         video.pause();
@@ -399,7 +428,7 @@ export default function SuccessStories() {
                                                             </div>
                                                         </div>
                                                     )}
-                                                </motion.div>
+                                                </div>
                                             );
                                         })}
                                     </motion.div>
@@ -413,7 +442,6 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
-                                            console.log('Prev clicked, current index:', currentVideoIndex);
                                             // Pause all videos when navigating
                                             Object.values(videoRefs.current).forEach((video) => {
                                                 if (video) video.pause();
@@ -431,7 +459,6 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
-                                            console.log('Next clicked, current index:', currentVideoIndex);
                                             // Pause all videos when navigating
                                             Object.values(videoRefs.current).forEach((video) => {
                                                 if (video) video.pause();
@@ -466,23 +493,29 @@ export default function SuccessStories() {
                                             const actualIndex = index % writtenStories.length;
                                             const isActive = activeWrittenIndex === actualIndex;
                                             const uniqueKey = `written-${index}`;
+                                            // Only render video for the FIRST matching instance
+                                            const shouldRenderVideo = isActive && (index < writtenStories.length || (activeWrittenIndex >= writtenStories.length && index >= writtenStories.length && index < writtenStories.length * 2) || (activeWrittenIndex >= writtenStories.length * 2 && index >= writtenStories.length * 2));
 
                                             return (
-                                                <motion.div
+                                                <div
                                                     key={uniqueKey}
                                                     className="relative h-[350px] w-[200px] flex-shrink-0"
                                                 >
-                                                    {isActive && index === activeWrittenIndex + Math.floor(index / writtenStories.length) * writtenStories.length ? (
+                                                    {shouldRenderVideo ? (
                                                         <video
                                                             ref={(el) => {
-                                                                if (el) writtenVideoRefs.current[uniqueKey] = el;
+                                                                if (el) {
+                                                                    writtenVideoRefs.current[uniqueKey] = el;
+                                                                    // Autoplay when video element is created
+                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                }
                                                             }}
                                                             src={story.videoUrl}
                                                             className="w-full h-full object-contain rounded-lg"
                                                             controls
                                                             playsInline
                                                             onPlay={() => {
-                                                                // Pause all other videos
+                                                                // Pause all other videos when this one plays
                                                                 Object.entries(writtenVideoRefs.current).forEach(([key, video]) => {
                                                                     if (key !== uniqueKey && video) {
                                                                         video.pause();
@@ -520,7 +553,7 @@ export default function SuccessStories() {
                                                             </div>
                                                         </div>
                                                     )}
-                                                </motion.div>
+                                                </div>
                                             );
                                         })}
                                     </motion.div>
@@ -533,7 +566,6 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
-                                            console.log('Written Prev clicked, current index:', currentIndex);
                                             // Pause all videos when navigating
                                             Object.values(writtenVideoRefs.current).forEach((video) => {
                                                 if (video) video.pause();
@@ -551,7 +583,6 @@ export default function SuccessStories() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
-                                            console.log('Written Next clicked, current index:', currentIndex);
                                             // Pause all videos when navigating
                                             Object.values(writtenVideoRefs.current).forEach((video) => {
                                                 if (video) video.pause();
