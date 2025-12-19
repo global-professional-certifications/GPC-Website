@@ -24,7 +24,7 @@ export default function Card({
       <div className="mt-4 px-5 pb-5 flex flex-col">
         <div className="flex flex-col mb-4">
           <Link to={linkTo}>
-            <h5 className="text-xl font-bold tracking-tight text-brand-dark">{title}</h5>
+            <h3 className="text-xl font-bold tracking-tight text-brand-dark">{title}</h3>
           </Link>
           <p className="pt-2 text-sm text-brand-gray overflow-hidden">
             {text}
