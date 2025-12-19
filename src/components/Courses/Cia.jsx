@@ -1,6 +1,6 @@
-﻿import React, { useEffect } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import heroGirl from '../../assets/hero-girl.webp';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import examOne from "../../assets/exam-1.webp";
 import examTwo from "../../assets/exam-2.webp";
 import examThree from "../../assets/exam-3.webp";
@@ -14,13 +14,81 @@ import ciaHero from "../../assets/cia-hero.jpg";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faCertificate, faStar, faQuoteLeft, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import brochureCover from "../../assets/brochure-cover.png";
+import testimonialCover from "../../assets/testimonial-cover.png";
+import pinkyTestimonial from "../../assets/pinky-photo.jpg";
+import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
+import starwinTestimonial from "../../assets/testimonial-2.png";
+import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
+import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
+import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
+import { client } from "../../lib/sanity/client";
+import { getRecentPosts } from "../../lib/sanity/queries";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+
+
+
+
+const testimonials = [
+    {
+        quote: "Highly recommend Arpit Garg's CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
+        name: "Pinky Agarwal",
+        title: "Head Internal Audit, Emami Limited",
+        image: pinkyTestimonial,
+    },
+    {
+        quote: "Arpit Garg's CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
+        name: "Akshdeep Singh",
+        title: "Manager, KPMG",
+        image: akshdeepTestimonial,
+    },
+    {
+        quote: "Attending Arpit Garg's CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
+        name: "Starwin PJ",
+        title: "AVP, Wells Fargo",
+        image: starwinTestimonial,
+    },
+    {
+        quote: "Arpit Garg's CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
+        name: "Wajiha Ansari",
+        title: "Auditor, Grant Thornton Bahrain",
+        image: wajihaTestimonial,
+    },
+    {
+        quote: "I owe my CIA Challenge Exam success to Arpit Garg's exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship highly recommended!",
+        name: "Ramakrishna Mude",
+        title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
+        image: ramakrishnaTestimonial,
+    },
+    {
+        quote: "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg's mentorship, strategy, and insights his guidance made it possible!",
+        name: "Unmesh Upadhye",
+        title: "Assistant Vice President, State Bank of India",
+        image: unmeshTestimonial,
+    },
+];
 
 const Cia = () => {
+    const [latestBlogs, setLatestBlogs] = useState([]);
 
     useEffect(() => {
         // Preload the hero image when the component mounts
         const img = new Image();
         img.src = heroGirl;
+    }, []);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const data = await client.fetch(getRecentPosts);
+                setLatestBlogs(data);
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        };
+        fetchBlogs();
     }, []);
 
 
@@ -46,10 +114,12 @@ const Cia = () => {
             </Helmet>
 
             <MetaTags
-                title="CIA Certification Course - Pass the Challenge Exam"
-                description="Prepare for the CIA Challenge Exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications."
+                title="Become Certified Internal Auditor | Join CIA Certification Training Course in India"
+                description="Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India’s leading CIA certification training providers."
                 canonicalUrl="https://globalprofessionalcertifications.com/courses/cia"
             />
+
+
 
             {/* Hero Section */}
 
@@ -58,9 +128,16 @@ const Cia = () => {
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
-                                Ace Your CIA Exam with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">India's #1 IIA-Accredited</span> Training Program
+                                India's #1{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">IIA-Accredited</span>{" "}CIA Training Program
                             </h1>
-                            <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Become Certified Internal Auditor (CIA) with <span className='font-bold text-orange-400'>Gleim content, 1000+ MCQs, weekend live classes.</span> Our proven methodology helped 250+ professionals achieve CIA certification with an 80%+ pass rate. Complete in 7-8 months with full IIA registration and exam support. </h2>
+                            <p className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
+                                <ul className='list-disc pl-3'>
+                                    <li>Certified Internal Auditor (CIA) Classes with Gleim Content </li>
+                                    <li>Weekend Live Classes with 1000+ Relevant MCQs </li>
+                                    <li>7-8 months Course with Full IIA Registration and Exam Support </li>
+                                    <li>250+ Successful CIA Professionals Trained by 100% Proven Methodology </li>
+                                </ul>
+                            </p>
                         </div>
 
                         <div className="mt-6">
@@ -83,318 +160,849 @@ const Cia = () => {
                 </div>
             </div>
 
-            <div className="max-w-sm md:max-w-[52rem] mx-auto mt-24">
-                <h3 className="text-center text-2xl md:text-4xl font-extrabold mb-8 mt-16 text-brand-blue">CIA Enrollment (All 3 Parts), Your Path to Success</h3>
-                <p className="text-center text-xl md:text-2xl font-semibold mb-16 md:mb-8 mt-8 text-brand-dark">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
-            </div>
-            <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
-                <Card
-                    title="CIA all 3 Parts with Gleim Content"
-                    image={examOne}
-                    text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                    price={58999}
-                    enrollLink="https://rzp.io/rzp/CIASessions"
-                    imageStyle={"pt-4"} />
-                <Card
-                    title="CIA Part 1 with Gleim Content"
-                    image={examTwo}
-                    text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                    imageStyle={"pt-12"} />
-                <Card
-                    title="CIA Part 2 with Gleim Content"
-                    image={examThree}
-                    text={"Strengthen your skills in risk management, governance, and control processes"} />
-                <Card
-                    title="CIA Part 3 with Gleim Content"
-                    image={examFour}
-                    text={"Gain expertise in business acumen, financial management, and data analytics"}
-                    imageStyle={"pt-8"} />
-            </div>
-
-
-            <div className="md:mb-24 mt-16 w-full px-4">
-                <div className="flex justify-center">
-                    <div className="bg-[#ffebcd] grid grid-cols-1 md:grid-cols-2 md:w-[72rem] py-10 rounded-2xl shadow-xl w-full">
-                        <p className="text-2xl px-6 md:px-10 md:text-4xl font-bold mb-6 md:col-span-2 text-center md:text-left text-black">
-                            CIA All Parts with Gleim Content as Per the New Syllabus
-                        </p>
-
-                        {/* Left Side */}
-                        <div className="flex flex-col px-6 md:px-10">
-                            <div className="flex space-x-2 mb-4 items-center text-base sm:text-lg md:text-xl">
-                                <SiGoogleclassroom className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-black" />
-                                <span className="text-black font-semibold">Live Classes</span>
-                            </div>
-                            <div className="flex space-x-2 mb-4 items-center text-base sm:text-lg md:text-xl">
-                                <IoBookOutline className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-black" />
-                                <span className="text-black font-semibold">Gleim Soft Book + 1000+ MCQs</span>
-                            </div>
-                            <div className="flex space-x-2 mb-4 items-center text-base sm:text-lg md:text-xl">
-                                <CgNotes className="h-6 w-6 md:h-8 md:w-8 mt-1 mr-2 text-black" />
-                                <span className="text-black font-semibold">Class Notes + In-Class MCQs</span>
-                            </div>
-                            <p className="text-lg md:text-3xl mt-4 font-semibold text-[#964b00]">
-                                Start your upskilling journey today!
+            {/* Stats Section */}
+            <div className="relative">
+                <div className="absolute left-1/2 -translate-x-1/2 -top-10 md:-top-14 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-4 md:px-16 lg:px-16 py-6 md:py-8 lg:py-8 text-center z-10 w-auto scale-90 md:scale-100 lg:scale-100">
+                    {/* Students */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <FontAwesomeIcon
+                            icon={faUser}
+                            className="text-brand-purple text-lg sm:text-xl md:text-2xl bg-gray-200 rounded-lg p-2"
+                        />
+                        <div className="text-left">
+                            <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
+                                1500+
+                            </p>
+                            <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
+                                Professionals
                             </p>
                         </div>
+                    </div>
 
-                        {/* Right Side Button */}
-                        <div className="flex items-center justify-center mt-6 md:mt-0 px-6 md:px-0">
-                            <Link
-                                to={"https://rzp.io/rzp/CIASessions"}
-                                target="_blank"
-                                className="flex items-center justify-center rounded-xl bg-[#E0C4A8] px-10 py-5 sm:px-10 sm:py-6 text-center text-xl sm:text-2xl md:text-2xl font-medium text-gray-800 hover:bg-[#D4B190] transition ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300"
-                            >
-                                Enroll Now
-                                <FaArrowRightLong className="ml-2 h-6 w-6 sm:h-8 sm:w-8" />
-                            </Link>
+                    {/* Certifications */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <FontAwesomeIcon
+                            icon={faCertificate}
+                            className="text-red-600 text-lg sm:text-xl md:text-2xl bg-yellow-200 rounded-lg p-2"
+                        />
+                        <div className="text-left">
+                            <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
+                                250+
+                            </p>
+                            <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
+                                CIAs
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <FontAwesomeIcon
+                            icon={faStar}
+                            className="text-yellow-300 text-lg sm:text-xl md:text-2xl bg-blue-300 rounded-lg p-2"
+                        />
+                        <div className="text-left">
+                            <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
+                                5/5
+                            </p>
+                            <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
+                                Rating
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div className="bg-gray-50 py-16">
 
-
-            <div className="max-w-6xl mx-auto mt-16 md:mt-24 mb-24 px-4 md:px-0">
-                <p className="text-center text-3xl md:text-4xl font-extrabold mb-8 md:mb-20 text-brand-blue">CIA Exam Structure</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <p className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 1</p>
-                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Fundamentals</p>
-                        <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
-                        <p className="text-gray-700 text-lg">125 questions | 2.5 Hours</p>
-                        <p className="text-gray-800 font-bold mt-2">Topics:</p>
-                        <ul className="text-gray-700 list-disc pl-4">
-                            <li>Foundations of Internal Auditing (35%)</li>
-                            <li>Ethics and Professionalism (20%)</li>
-                            <li>Governance, Risk Management and Control (30%)</li>
-                            <li>Fraud Risks (15%)</li>
-                        </ul>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <p className="text-2xl text-center font-bold text-brand-blue mb-2">CIA Part 2</p>
-                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Engagement</p>
-                        <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
-                        <p className="text-gray-700 text-lg">100 questions | 2 Hours</p>
-                        <p className="text-gray-800 font-bold mt-2">Topics:</p>
-                        <ul className="text-gray-700 list-disc pl-4">
-                            <li>Engagement Planning (50%)</li>
-                            <li>Information Gathering, Analysis and Evaluation (40%)</li>
-                            <li>Engagement Supervision and Communication (10%)</li>
-                        </ul>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
-                        <p className="text-2xl font-bold text-brand-blue mb-2 text-center">CIA Part 3</p>
-                        <p className="text-center mb-4 text-xl text-brand-purple font-bold">Internal Audit Function</p>
-                        <hr className="mb-4 border-2 border-solid border-gray-300"></hr>
-                        <p className="text-gray-700 text-lg">100 questions | 2 Hours</p>
-                        <p className="text-gray-800 font-bold mt-2">Topics:</p>
-                        <ul className="text-gray-700 list-disc pl-4">
-                            <li>Internal Audit Operations (25%)</li>
-                            <li>Internal Audit Plans (15%)</li>
-                            <li>Quality of the Internal Audit Function (15%)</li>
-                            <li>Engagement Results and Monitoring (45%)</li>
-                        </ul>
-                    </div>
+                <div className="max-w-sm md:max-w-[52rem] mx-auto mt-24">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
+                    <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
                 </div>
-            </div>
-
-
-
-            <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4">
-                <div className="bg-white shadow-xl rounded-xl py-8 sm:py-12 px-6 sm:px-10 md:px-16 border border-gray-300">
-                    <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
-                        Exam Logistics
-                    </p>
-                    <hr className="border-2 border-solid border-gray-300 mb-6" />
-                    <ul className="space-y-2 sm:space-y-6 list-disc pl-5 sm:pl-8">
-                        {[
-                            "CIA is a 100% MCQ-based exam with no negative marking",
-                            "Score at least 600 points out of 750 (80%) to clear the exam",
-                            "Validity of CIA registration is 3 years from the date of initial registration (when you pay application fees)",
-                            "Exam window is 180 days from the date you register for your CIA exam (when you pay exam fees)",
-                            "Appear for any part in any sequence and get results immediately",
-                            "Exams are conducted both in India and abroad; in India, exams are only at PearsonVue Centers",
-                        ].map((point, index) => (
-                            <li
-                                key={index}
-                                className="text-gray-800 text-base sm:text-lg marker:text-brand-blue marker:text-xl sm:marker:text-2xl"
-                            >
-                                {point}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-
-
-            <div className="max-w-5xl mx-auto my-16 sm:my-24 px-4 md:px-0">
-                <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-10 text-brand-blue">
-                    Fees and Membership Benefits
-                </p>
-
-                {/* Table Layout (visible on md and up) */}
-                <div className="hidden md:block overflow-x-auto">
-                    <table className="min-w-[800px] mx-auto bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden">
-
-                        {/* Style the table in a better way! */}
-
-                        <thead>
-                            <tr className="bg-brand-blue text-white text-xl text-left font-bold">
-                                <th className="py-3 pr-4 pl-6 border-b">Fee Type</th>
-                                <th className="py-3 px-4 border-b">IIA Members</th>
-                                <th className="py-3 px-4 border-b">Non-Members</th>
-                            </tr>
-                        </thead>
-                        <tbody className="[&>*:nth-child(even)]:bg-gray-100 [&>*:nth-child(odd)]:bg-gray-50">
-
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Application Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 90</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 240</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 1 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 232.50</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 445</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 2 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 210</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 415</td>
-                            </tr>
-                            <tr className="border-b text-lg text-left">
-                                <td className="py-2 pr-4 pl-6">CIA Part 3 Exam Fees</td>
-                                <td className="py-2 px-4 text-green-700 font-semibold">USD 210</td>
-                                <td className="py-2 px-4 text-red-700 font-semibold">USD 415</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {/* <p className="pl-1 mt-4 text-gray-700 italic text-sm">Note: 18% GST is applicable on the above fees</p>
-                    <p className="pl-1 mt-2 text-gray-700 italic text-sm">IIA Membership Fees: New Member - INR 6500 + GST | <span className="">Annual Renewal</span> - INR 4000 + GST</p> */}
+                <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
+                    <Card
+                        title="CIA All 3 Parts with Gleim Content"
+                        image={examOne}
+                        text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
+                        price={58999}
+                        enrollLink="https://rzp.io/rzp/CIASessions"
+                        imageStyle={"pt-4"} />
+                    <Card
+                        title="CIA Part 1 with Gleim Content"
+                        image={examTwo}
+                        text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
+                        imageStyle={"pt-12"} />
+                    <Card
+                        title="CIA Part 2 with Gleim Content"
+                        image={examThree}
+                        text={"Strengthen your skills in risk management, governance, and control processes"} />
+                    <Card
+                        title="CIA Part 3 with Gleim Content"
+                        image={examFour}
+                        text={"Gain expertise in business acumen, financial management, and data analytics"}
+                        imageStyle={"pt-8"} />
                 </div>
 
-                {/* Card Layout (visible below md) */}
-                <div className="md:hidden grid gap-6 mt-4">
-                    {[
-                        {
-                            label: "CIA Application Fees",
-                            member: "USD 90",
-                            nonMember: "USD 240",
-                        },
-                        {
-                            label: "CIA Part 1 Exam Fees",
-                            member: "USD 232.50",
-                            nonMember: "USD 445",
-                        },
-                        {
-                            label: "CIA Part 2 Exam Fees",
-                            member: "USD 210",
-                            nonMember: "USD 415",
-                        },
-                        {
-                            label: "CIA Part 3 Exam Fees",
-                            member: "USD 210",
-                            nonMember: "USD 415",
-                        },
-                    ].map((fee, index) => (
-                        <div
-                            key={index}
-                            className="bg-white border border-gray-300 rounded-xl shadow-md p-5"
-                        >
-                            <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                                {fee.label}
+                {/* Download Brochure CTA */}
+                <div className="mt-20 md:mt-32 lg:mt-20 px-6 md:px-16 lg:px-12 py-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+                        {/* Image Section */}
+                        <div className="w-full md:w-1/2 flex justify-center">
+                            <img
+                                src={brochureCover}
+                                alt="Brochure"
+                                className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
+                            />
+                        </div>
+
+                        {/* Text Section */}
+                        <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
+                            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold max-w-[300px] md:max-w-xl lg:max-w-xl">
+                                Download Our{" "}
+                                <span className="text-brand-blue font-normal italic">
+                                    CIA
+                                </span>{" "}
+                                Brochure
                             </h2>
-                            <div className="text-sm font-medium space-y-1">
-                                <p>
-                                    <span className="text-brand-blue font-bold">IIA Members: </span>
-                                    <span className="text-green-700">{fee.member}</span>
-                                </p>
-                                <p>
-                                    <span className="text-brand-blue font-bold">Non-Members: </span>
-                                    <span className="text-red-700">{fee.nonMember}</span>
-                                </p>
+                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
+                                Become a Certified Internal Auditor (CIA) with expert mentorship support. Download our course brochure to learn more
+                            </p>
+                            <a
+                                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+                            >
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="py-16 md:py-20 w-full px-4">
+                    <div className="max-w-6xl mx-auto">
+
+                        {/* Content Card */}
+                        <div className="bg-gradient-to-br from-brand-blue to-black rounded-2xl shadow-2xl overflow-hidden p-8 md:p-12">
+                            {/* Section Header */}
+                            <div className="text-center mb-10">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+                                    CIA All Parts with <span className="text-orange-400 font-normal italic">Gleim Content</span> as Per the New Syllabus
+                                </h2>
+                            </div>
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                {/* Features List */}
+                                <div className="lg:col-span-2 space-y-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {/* Feature 1 */}
+                                        <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-all duration-300">
+                                            <div className="bg-orange-400 rounded-full p-1.5 mt-0.5 flex-shrink-0">
+                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold text-sm md:text-base">Live Classes</p>
+                                                <p className="text-gray-200 text-xs md:text-sm">Interactive weekend sessions</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Feature 2 */}
+                                        <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-all duration-300">
+                                            <div className="bg-orange-400 rounded-full p-1.5 mt-0.5 flex-shrink-0">
+                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold text-sm md:text-base">Gleim Study Materials</p>
+                                                <p className="text-gray-200 text-xs md:text-sm">Soft book and 1000+ MCQs</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Feature 3 */}
+                                        <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-all duration-300">
+                                            <div className="bg-orange-400 rounded-full p-1.5 mt-0.5 flex-shrink-0">
+                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold text-sm md:text-base">Class Notes</p>
+                                                <p className="text-gray-200 text-xs md:text-sm">Comprehensive study guides</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Feature 4 */}
+                                        <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-all duration-300">
+                                            <div className="bg-orange-400 rounded-full p-1.5 mt-0.5 flex-shrink-0">
+                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold text-sm md:text-base">In-Class MCQs</p>
+                                                <p className="text-gray-200 text-xs md:text-sm">Practice questions & tests</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* CTA Section */}
+                                <div className="lg:col-span-1 flex flex-col justify-center items-center text-center space-y-6">
+                                    <div className="space-y-3">
+                                        <p className="text-white text-sm md:text-base">
+                                            Begin your journey today!
+                                        </p>
+                                    </div>
+
+                                    <Link
+                                        to={"https://rzp.io/rzp/CIASessions"}
+                                        target="_blank"
+                                        className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white 
+                        rounded-lg shadow-lg transition-all duration-300 
+                        bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+                        hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                                    >
+                                        Enroll Now
+                                        <FaArrowRightLong className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
 
-                {/* Notes (shared below both layouts) */}
-                <div className="mt-6 text-sm sm:text-base text-gray-700 italic space-y-2 pl-1">
-                    <p>Note: 18% GST is applicable on the above fees</p>
-                    <p>
-                        IIA Membership Fees: <span className="font-medium">New Member - INR 6500 + GST</span> |
-                        <span className="font-medium ml-1">Annual Renewal - INR 4000 + GST</span>
-                    </p>
+
+                <div className="max-w-6xl mx-auto py-16 md:py-24 px-4">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">CIA <span className="text-brand-blue font-normal italic">Exam </span>Structure</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Part 1 */}
+                        <div className="bg-white rounded-xl shadow-md border-l-4 border-brand-blue p-6 hover:shadow-xl transition-all duration-300">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="bg-brand-blue/10 p-3 rounded-lg">
+                                    <p className="text-brand-blue font-bold text-lg">Part 1</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-800 text-base">Internal Audit</p>
+                                    <p className="font-bold text-gray-800 text-base">Fundamentals</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                                <p className="text-sm text-gray-600 font-medium">125 questions • 2.5 Hours</p>
+                            </div>
+
+                            <p className="text-sm font-semibold text-gray-700 mb-3">Key Topics:</p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex gap-2">
+                                    <span className="text-brand-blue">▸</span>
+                                    <span>Foundations of Internal Auditing (35%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-brand-blue">▸</span>
+                                    <span>Ethics and Professionalism (20%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-brand-blue">▸</span>
+                                    <span>Governance, Risk Management (30%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-brand-blue">▸</span>
+                                    <span>Fraud Risks (15%)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Part 2 */}
+                        <div className="bg-white rounded-xl shadow-md border-l-4 border-brand-purple p-6 hover:shadow-xl transition-all duration-300">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="bg-brand-purple/10 p-3 rounded-lg">
+                                    <p className="text-brand-purple font-bold text-lg">Part 2</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-800 text-base">Internal Audit</p>
+                                    <p className="font-bold text-gray-800 text-base">Engagement</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                                <p className="text-sm text-gray-600 font-medium">100 questions • 2 Hours</p>
+                            </div>
+
+                            <p className="text-sm font-semibold text-gray-700 mb-3">Key Topics:</p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex gap-2">
+                                    <span className="text-brand-purple">▸</span>
+                                    <span>Engagement Planning (50%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-brand-purple">▸</span>
+                                    <span>Information Gathering & Analysis (40%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-brand-purple">▸</span>
+                                    <span>Engagement Supervision (10%)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Part 3 */}
+                        <div className="bg-white rounded-xl shadow-md border-l-4 border-orange-500 p-6 hover:shadow-xl transition-all duration-300">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="bg-orange-500/10 p-3 rounded-lg">
+                                    <p className="text-orange-500 font-bold text-lg">Part 3</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-800 text-base">Internal Audit</p>
+                                    <p className="font-bold text-gray-800 text-base">Function</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                                <p className="text-sm text-gray-600 font-medium">100 questions • 2 Hours</p>
+                            </div>
+
+                            <p className="text-sm font-semibold text-gray-700 mb-3">Key Topics:</p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500">▸</span>
+                                    <span>Internal Audit Operations (25%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500">▸</span>
+                                    <span>Internal Audit Plans (15%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500">▸</span>
+                                    <span>Quality of Function (15%)</span>
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500">▸</span>
+                                    <span>Engagement Results & Monitoring (45%)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
 
 
-            <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4">
-                <div className="bg-white shadow-xl rounded-xl py-8 sm:py-12 px-6 sm:px-10 md:px-16 border border-gray-200">
-                    <p className="text-center text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 sm:mb-10 text-brand-blue">
-                        Training Program Details
-                    </p>
-                    <hr className="border-2 border-solid border-gray-300 mb-6" />
-                    <ul className="space-y-2 sm:space-y-6 list-disc pl-5 sm:pl-8">
+
+
+                <div className="max-w-6xl mx-auto py-16 md:py-24 px-4">
+                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
+                        Exam <span className="text-brand-blue font-normal italic">Logistics</span>
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
-                            "Complete your CIA Certification within 7-8 months",
-                            "Upcoming Batch Schedule: CIA Part 1 - May & June, CIA Part 2 - July & Aug, CIA Part 3 - Sep & Oct",
-                            "15-20 live classes for each part, each class 3 hours long (weekend mornings, 7:00 AM IST to 10:00 AM IST)",
-                            "Recordings uploaded within 24-48 hours after class",
-                            "Access to LMS Portal with recorded sessions, PPT notes, and MCQs (no validity period)",
-                            "Guidance from top CIA faculty in India, Mr. Arpit Garg",
-                            "Access to Gleim software with soft copies of books and over 1000 MCQs (validity of 18 months)",
-                            "End-to-end support until you clear all exams",
-                        ].map((point, index) => (
-                            <li
+                            {
+                                title: "100% MCQ Format",
+                                desc: "CIA is a 100% MCQ-based exam with no negative marking",
+                                color: "from-blue-500 to-blue-600"
+                            },
+                            {
+                                title: "Passing Score",
+                                desc: "Score at least 600 points out of 750 (80%) to clear the exam",
+                                color: "from-purple-500 to-purple-600"
+                            },
+                            {
+                                title: "Registration Validity",
+                                desc: "Validity of CIA registration is 3 years from the date of initial registration",
+                                color: "from-orange-500 to-orange-600"
+                            },
+                            {
+                                title: "Exam Window",
+                                desc: "Exam window is 180 days from the date you register for your CIA exam",
+                                color: "from-green-500 to-green-600"
+                            },
+                            {
+                                title: "Flexible Sequencing",
+                                desc: "Appear for any part in any sequence and get results immediately",
+                                color: "from-pink-500 to-pink-600"
+                            },
+                            {
+                                title: "Exam Locations",
+                                desc: "Exams conducted both in India and abroad; in India, only at PearsonVue Centers",
+                                color: "from-indigo-500 to-indigo-600"
+                            },
+                        ].map((item, index) => (
+                            <div
                                 key={index}
-                                className="text-gray-800 text-base sm:text-lg marker:text-brand-blue marker:text-xl sm:marker:text-2xl"
+                                className="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200"
                             >
-                                {point}
-                            </li>
+                                <div className={`h-2 bg-gradient-to-r ${item.color}`}></div>
+                                <div className="p-6">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0`}>
+                                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <h4 className="font-bold text-gray-800 text-base">{item.title}</h4>
+                                    </div>
+                                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
-            </div>
 
 
 
+                <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4 font-inter">
+                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
+                        Fees and Membership<span className="text-brand-blue font-normal italic"> Benefits</span>
+                    </h3>
 
-            <div className="max-w-6xl mx-auto mb-16 sm:mb-24 px-4 md:px-0 bg-orange-100 py-8 sm:py-12 rounded-lg shadow-xl">
-                <p className="text-center text-2xl sm:text-3xl md:text-5xl font-bold mb-6 sm:mb-8 text-brand-blue">
-                    Revised pricing plan <span className="whitespace-nowrap">16th April 2025</span> onwards...
-                </p>
+                    {/* Desktop Comparison Table */}
+                    <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-gray-50 border-b border-gray-200">
+                                    <th className="px-8 py-6 text-gray-500 font-semibold uppercase tracking-wider text-sm">Exam / Fee Type</th>
+                                    <th className="px-8 py-6 text-gray-800 font-bold text-center">IIA Members</th>
+                                    <th className="px-8 py-6 text-gray-800 font-bold text-center">Non-Members</th>
+                                    <th className="px-8 py-6 text-brand-blue font-bold text-center bg-blue-50">Savings</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100">
+                                {[
+                                    { label: "Application Fee", member: 90, nonMember: 240 },
+                                    { label: "Part 1 Exam Fee", member: 232.50, nonMember: 445 },
+                                    { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
+                                    { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
+                                ].map((row, idx) => (
+                                    <tr key={idx} className="hover:bg-gray-50 transition-colors">
+                                        <td className="px-8 py-5 text-gray-700 font-medium">{row.label}</td>
+                                        <td className="px-8 py-5 text-gray-800 font-bold text-center">USD {row.member}</td>
+                                        <td className="px-8 py-5 text-gray-500 text-center">USD {row.nonMember}</td>
+                                        <td className="px-8 py-5 text-green-600 font-bold text-center bg-blue-50/50">USD {row.nonMember - row.member}</td>
+                                    </tr>
+                                ))}
+                                <tr className="bg-gray-50/80 font-bold">
+                                    <td className="px-8 py-6 text-gray-800">Total Certification Cost</td>
+                                    <td className="px-8 py-6 text-brand-blue text-2xl text-center">USD 742.50</td>
+                                    <td className="px-8 py-6 text-gray-500 text-center">USD 1,515</td>
+                                    <td className="px-8 py-6 text-green-600 text-2xl text-center bg-blue-50">USD 772.50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <p className="text-center text-lg sm:text-2xl font-semibold text-gray-700 mb-6 sm:mb-8 leading-relaxed">
-                    Enroll for all 3 parts along with Gleim content for Γé╣58,999 only<br />
-                    Or each part for Γé╣23,599 only
-                </p>
+                    {/* Mobile Comparison View */}
+                    <div className="md:hidden space-y-4">
+                        {[
+                            { label: "Application Fee", member: 90, nonMember: 240 },
+                            { label: "Part 1 Exam Fee", member: 232.50, nonMember: 445 },
+                            { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
+                            { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
+                        ].map((row, idx) => (
+                            <div key={idx} className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                                <h4 className="font-bold text-gray-800 mb-4">{row.label}</h4>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-blue-50 rounded-lg p-3">
+                                        <p className="text-xs text-brand-blue font-bold uppercase mb-1">Member</p>
+                                        <p className="text-gray-800 font-bold text-lg">USD {row.member}</p>
+                                    </div>
+                                    <div className="bg-gray-50 rounded-lg p-3">
+                                        <p className="text-xs text-gray-500 font-bold uppercase mb-1">Non-Member</p>
+                                        <p className="text-gray-600 font-bold text-lg">USD {row.nonMember}</p>
+                                    </div>
+                                </div>
+                                <div className="mt-3 flex justify-between items-center text-sm">
+                                    <span className="text-gray-500 italic">Total Savings with Membership</span>
+                                    <span className="text-green-600 font-bold">USD {row.nonMember - row.member}</span>
+                                </div>
+                            </div>
+                        ))}
+                        <div className="bg-brand-blue rounded-xl p-6 text-white shadow-lg">
+                            <h4 className="font-bold text-lg mb-4 text-center">Total Certification Value</h4>
+                            <div className="flex justify-between items-center mb-2">
+                                <span className="opacity-80">IIA Member Cost</span>
+                                <span className="font-bold text-xl">USD 742.50</span>
+                            </div>
+                            <div className="flex justify-between items-center mb-4">
+                                <span className="opacity-80">Non-Member Cost</span>
+                                <span className="font-bold text-xl">USD 1,515.00</span>
+                            </div>
+                            <div className="border-t border-white/20 pt-4 flex justify-between items-center">
+                                <span className="font-bold">Total Benefit</span>
+                                <span className="text-2xl font-black">USD 772.50</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <p className="text-center text-xl sm:text-3xl md:text-4xl font-semibold text-brand-blue mb-8 sm:mb-10">
-                    Enroll now to kickstart your career and stay ahead of the curve!
-                </p>
+                    {/* Membership & Notes Section */}
+                    <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        {/* IIA Membership Details */}
+                        <div className="lg:col-span-2 bg-white rounded-3xl p-8 border border-gray-100 shadow-2xl shadow-blue-500/5 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
 
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-                    <Link
-                        to="https://rzp.io/rzp/CIASessions"
-                        target="_blank"
-                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-brand-blue rounded-lg hover:bg-orange-900 transition duration-200"
-                    >
-                        Enroll for All Parts
-                    </Link>
-                    <Link
-                        to="https://rzp.io/rzp/iFUFvKph"
-                        target="_blank"
-                        className="w-full sm:w-auto text-center inline-flex items-center justify-center px-6 sm:px-8 py-3 text-base sm:text-xl font-bold text-white bg-brand-blue rounded-lg hover:bg-orange-900 transition duration-200"
-                    >
-                        Enroll for Each Part
-                    </Link>
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl md:text-2xl font-bold text-gray-800">
+                                        IIA India Membership Details
+                                    </h4>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="p-6 rounded-2xl border border-blue-100 bg-gradient-to-b from-blue-50/50 to-transparent">
+                                        <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-2">New Enrollment</p>
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-3xl font-black text-gray-900">INR 6,500</span>
+                                            <span className="text-sm font-medium text-gray-500">+ 18% GST</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 rounded-2xl border border-gray-100 bg-gradient-to-b from-gray-50/50 to-transparent">
+                                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Annual Renewal</p>
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-3xl font-black text-gray-900">INR 4,000</span>
+                                            <span className="text-sm font-medium text-gray-500">+ 18% GST</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Important Notes */}
+                        <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
+                            <h4 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-yellow-400/20 flex items-center justify-center text-yellow-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                                Important Notes
+                            </h4>
+                            <ul className="space-y-4">
+                                {[
+                                    "Fees are subject to change as per IIA guidelines.",
+                                    "Membership must be active at the time of exam registration to avail discounts.",
+                                    "Applicable taxes (GST) will be calculated during the final checkout."
+                                ].map((note, i) => (
+                                    <li key={i} className="flex items-start gap-3">
+                                        <div className="mt-1.5 shrink-0">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-brand-blue"></div>
+                                        </div>
+                                        <p className="text-sm leading-relaxed text-gray-600 font-medium">
+                                            {note}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+
+
+                <div className="max-w-7xl mx-auto py-16 md:py-24 px-4 bg-gray-50/50 rounded-[3rem] my-16">
+                    <div className="text-center mb-16">
+                        <h3 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                            <span className="text-brand-blue font-normal italic">Training</span> Program Details
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                title: "Program Duration",
+                                desc: "Complete your CIA Certification within 7-8 months",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                ),
+                                color: "blue"
+                            },
+                            {
+                                title: "Batch Schedule",
+                                desc: "Part 1 - May & June, Part 2 - July & Aug, Part 3 - Sep & Oct",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
+                                    </svg>
+                                ),
+                                color: "indigo"
+                            },
+                            {
+                                title: "Live Classes",
+                                desc: "15-20 live classes per part, 3 hours each (weekend mornings, 7:00 AM - 10:00 AM IST)",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                    </svg>
+                                ),
+                                color: "purple"
+                            },
+                            {
+                                title: "Class Recordings",
+                                desc: "Recordings uploaded within 24-48 hours after each class",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                ),
+                                color: "cyan"
+                            },
+                            {
+                                title: "LMS Access",
+                                desc: "Access to LMS Portal with recorded sessions, PPT notes, and MCQs (no validity period)",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                ),
+                                color: "teal"
+                            },
+                            {
+                                title: "Expert Faculty",
+                                desc: "Guidance from top CIA faculty in India, Mr. Arpit Garg",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                    </svg>
+                                ),
+                                color: "emerald"
+                            },
+                            {
+                                title: "Gleim Software",
+                                desc: "Access to Gleim software with soft copies of books and over 1000 MCQs (18 months validity)",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                ),
+                                color: "orange"
+                            },
+                            {
+                                title: "Full Support",
+                                desc: "End-to-end support until you clear all exams",
+                                icon: (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                ),
+                                color: "rose"
+                            },
+                        ].map((item, index) => (
+                            <div
+                                key={index}
+                                className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+                            >
+                                <div className={`w-14 h-14 rounded-2xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                    {item.icon}
+                                </div>
+                                <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
+                                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
+
+
+
+                <div className="max-w-5xl mx-auto mb-16 sm:mb-24 px-4 md:px-0">
+                    <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+                        {/* Decorative background element */}
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
+
+                        <div className="relative z-10 text-center">
+                            <div className="max-w-3xl mx-auto mb-8">
+                                <div className="p-5 md:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner">
+                                    <p className="text-lg md:text-2xl font-bold text-white mb-3">
+                                        Enroll for all 3 parts along with Gleim content for <span className="text-orange-400">₹58,999</span> only
+                                    </p>
+                                    <div className="w-12 h-0.5 bg-orange-400/30 mx-auto mb-3 rounded-full"></div>
+                                    <p className="text-base md:text-lg text-gray-300">
+                                        Or each part for <span className="text-white font-semibold">₹23,599</span> only
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p className="text-lg md:text-xl font-medium text-orange-300/90 mb-10 italic">
+                                Enroll now to kickstart your career and stay ahead of the curve!
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                                <Link
+                                    to="https://rzp.io/rzp/CIASessions"
+                                    target="_blank"
+                                    className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/20"
+                                >
+                                    Enroll for All Parts
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </Link>
+                                <Link
+                                    to="https://rzp.io/rzp/iFUFvKph"
+                                    target="_blank"
+                                    className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-white/10 backdrop-blur-sm border border-white-20 hover:bg-white/20 hover:scale-105"
+                                >
+                                    Enroll for Each Part
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* People Image Display */}
+                <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
+                    <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
+                        <p className="text-2xl md:text-4xl text-center font-bold">
+                            What Our{" "}
+                            <span className="text-brand-blue font-normal italic">
+                                Learners{" "}
+                            </span>
+                            Say
+                        </p>
+                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
+                            Discover how Global Professional Certifications' expert-led
+                            programs empower professionals to achieve global certification and
+                            career growth
+                        </p>
+                    </div>
+                    <img
+                        src={testimonialCover}
+                        alt="Testimonial Cover"
+                        className="scale-100 md:scale-90"
+                    />
+                </div>
+
+                {/* Feedback Cards */}
+                <div className="py-8 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
+                    {/* Top Quote Icon */}
+                    <FontAwesomeIcon
+                        icon={faQuoteLeft}
+                        className="hidden md:block lg:block mb-8 text-3xl text-black md:text-5xl"
+                    />
+
+                    {/* Testimonials Container */}
+                    <div className="overflow-x-auto">
+                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
+                            {testimonials.map((testimonial, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+                                >
+                                    <div className="flex-1 flex items-start">
+                                        <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
+                                            "{testimonial.quote}"
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center justify-start gap-4 pt-6 mt-6 border-t border-gray-200">
+                                        <img
+                                            src={testimonial.image}
+                                            alt={testimonial.name}
+                                            className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue aspect-square"
+                                        />
+
+                                        <div>
+                                            <p className="font-medium font-poppins  text-gray-900 text-xs md:text-sm lg:text-sm">
+                                                {testimonial.name}
+                                            </p>
+                                            <p className="text-xs md:text-sm lg:text-sm font-poppins text-gray-600">
+                                                {testimonial.title}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Blog Section */}
+                <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
+                    <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
+                        <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
+                            Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span>
+                        </Link>
+                        <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
+                            Explore expert insights and latest trends in audit, risk, and
+                            professional certification on our blog
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {latestBlogs.map((blog) => (
+                            <Link
+                                key={blog._id}
+                                to={`/blogs/${blog.slug.current || blog.slug}`}
+                                aria-label={`Read blog: ${blog.title}`}
+                                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 h-[380px] md:h-[520px]"
+                            >
+                                <img
+                                    src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
+                                    alt={blog.title}
+                                    className="w-full h-36 md:h-56 object-cover"
+                                />
+
+                                <div className="w-full flex justify-between items-center p-4 md:p-6">
+                                    <div className="flex justify-center items-center gap-2">
+                                        <FontAwesomeIcon
+                                            icon={faCalendarDays}
+                                            className="text-blue-400"
+                                        />
+                                        <div className="text-xs md:text-sm text-gray-600">
+                                            {new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-center items-center gap-2">
+                                        <FontAwesomeIcon icon={faUser} className="text-blue-400" />
+                                        <div className="text-xs md:text-sm text-gray-600">
+                                            {blog.author}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
+                                    <div>
+                                        <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue group-hover:underline">
+                                            {blog.title}
+                                        </h3>
+                                        <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
+                                            {blog.excerpt}
+                                        </p>
+                                    </div>
+
+                                    <div className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit mt-8">
+                                        <span className="md:text-base text-sm pl-2 text-gray-700">
+                                            Read Full Blog
+                                        </span>
+                                        <FontAwesomeIcon
+                                            icon={faArrowUpRightFromSquare}
+                                            className="text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2"
+                                        />
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+
+                    <div className="flex justify-center items-center mt-12">
+                        <NavLink to="/blogs">
+                            <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
+                                Read More Blogs
+                            </button>
+                        </NavLink>
+                    </div>
+                </div>
+            </div >
         </>
 
     );
