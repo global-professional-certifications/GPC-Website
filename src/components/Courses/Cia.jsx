@@ -213,11 +213,11 @@ const Cia = () => {
                 </div>
             </div>
 
-            <div className="bg-gray-50 py-16">
+            <div className="bg-gray-50 pt-6 md:pt-16 pb-16">
 
-                <div className="max-w-sm md:max-w-[52rem] mx-auto mt-24">
+                <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-24">
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
-                    <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
+                    <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
                 </div>
                 <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
                     <Card
