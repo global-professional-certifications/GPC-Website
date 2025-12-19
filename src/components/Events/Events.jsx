@@ -208,7 +208,7 @@ export default function Events() {
 
                     <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
                         Step into our events and virtual sessions to connect with leading mentors
-                        and industry experts. Experience <span className='font-bold text-orange-400'>interactive learning, insightful panels, and exclusive networking</span> ΓÇö all designed to empower your career and certification journey at <span className='font-bold text-orange-400'>Global Professional Certifications.</span>
+                        and industry experts. Experience <span className='font-bold text-orange-400'>interactive learning, insightful panels, and exclusive networking</span> — all designed to empower your career and certification journey at <span className='font-bold text-orange-400'>Global Professional Certifications.</span>
                     </h2>
 
                     <div className="mt-8">
@@ -379,7 +379,7 @@ export default function Events() {
                                 <span className="text-brand-blue font-normal italic">Why It Matters</span>
                             </h3>
                             <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mt-6 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 px-4 md:px-0">
-                                At Global Professional Certifications, we don't just talk about growth ΓÇö we live it. Our active presence at industry-leading conferences, training programs, and networking forums across the globe reflects our commitment to staying ahead of the curve and bringing real-world insights to the professionals we serve.
+                                At Global Professional Certifications, we don't just talk about growth — we live it. Our active presence at industry-leading conferences, training programs, and networking forums across the globe reflects our commitment to staying ahead of the curve and bringing real-world insights to the professionals we serve.
                             </p>
                         </div>
 
@@ -402,7 +402,7 @@ export default function Events() {
 
                         {/* Closing paragraph */}
                         <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
-                            Joining us at events isn't just about attending ΓÇö it's about engaging, evolving, and becoming part of a powerful global community.
+                            Joining us at events isn't just about attending — it's about engaging, evolving, and becoming part of a powerful global community.
                         </p>
 
                         {/* Button */}
@@ -426,7 +426,7 @@ export default function Events() {
                     <p className="text-2xl md:text-4xl text-center font-bold">Our Honorable <span className="text-brand-blue font-normal italic">Speakers</span>
                     </p>
                     <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6">
-                        Your Success Path, Simplified<br />Your Certification Journey ΓÇö From Learning to Leadership
+                        Your Success Path, Simplified<br />Your Certification Journey — From Learning to Leadership
                     </p>
                 </div>
 

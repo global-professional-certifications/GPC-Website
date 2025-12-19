@@ -56,7 +56,7 @@ const courseFaqs = [
     question:
       "What certifications or training does Global Professional Certifications offer?",
     answer:
-      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) G�� the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) G�� for IT audit, cyber risk, and information security professionals, Certification in Risk Management Assurance (CRMA) G�� for expertise in governance, risk, and control, and Internal Auditor Practitioner (IAP) G�� foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
+      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) for IT audit, cyber risk, and information security professionals, Certification in Risk Management Assurance (CRMA) for expertise in governance, risk, and control, and Internal Auditor Practitioner (IAP) foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
   },
   {
     question:
@@ -68,7 +68,7 @@ const courseFaqs = [
     question:
       "What are the unique features of Global Professional Certifications' teaching methodology?",
     answer:
-      "Global Professional Certifications leverages a blended learning modelG��expert-led live sessions, interactive online resources, case-based simulations, and flexible weekend classes. Our curriculum is aligned with IIA, ISACA, and global standards, ensuring you gain actionable, practical skills for todayG��s risk assurance landscape. We prioritize active learning, career development, and networking within a thriving professional community.",
+      "Global Professional Certifications leverages a blended learning model—expert-led live sessions, interactive online resources, case-based simulations, and flexible weekend classes. Our curriculum is aligned with IIA, ISACA, and global standards, ensuring you gain actionable, practical skills for today's risk assurance landscape. We prioritize active learning, career development, and networking within a thriving professional community.",
   },
   {
     question: "Who is Arpit Garg?",
@@ -85,48 +85,48 @@ const courseFaqs = [
 const testimonials = [
   {
     quote:
-      "Highly recommend Arpit GargG��s CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
+      "Highly recommend Arpit Garg's CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
     name: "Pinky Agarwal",
     title: "Head Internal Audit, Emami Limited",
     image: pinkyTestimonial,
   },
   {
     quote:
-      "Arpit GargG��s CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
+      "Arpit Garg's CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
     name: "Akshdeep Singh",
     title: "Manager, KPMG",
     image: akshdeepTestimonial,
   },
   {
     quote:
-      "Attending Arpit GargG��s CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
+      "Attending Arpit Garg's CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
     name: "Starwin PJ",
     title: "AVP, Wells Fargo",
     image: starwinTestimonial,
   },
   {
     quote:
-      "Arpit GargG��s CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
+      "Arpit Garg's CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
     name: "Wajiha Ansari",
     title: "Auditor, Grant Thornton Bahrain",
     image: wajihaTestimonial,
   },
   {
     quote:
-      "I owe my CIA Challenge Exam success to Arpit GargG��s exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorshipG��highly recommended!",
+      "I owe my CIA Challenge Exam success to Arpit Garg's exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship highly recommended!",
     name: "Ramakrishna Mude",
     title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
     image: ramakrishnaTestimonial,
   },
   {
     quote:
-      "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit GargG��s mentorship, strategy, and insightsG��his guidance made it possible!",
+      "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg's mentorship, strategy, and insights his guidance made it possible!",
     name: "Unmesh Upadhye",
     title: "Assistant Vice President, State Bank of India",
     image: unmeshTestimonial,
   },
   // {
-  //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit GargG��s exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
+  //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit Gargs exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
   //     name: "Prateek Bhatia",
   //     title: "Group Head of Internal Audit, Cravia Group",
   //     image: feedbackPerson
@@ -336,7 +336,7 @@ export default function Home() {
                     Discover how we've grown into a trusted partner for thousands of professionals!
                   </p>
                   <Link
-                    to="events"
+                    to="our-journey"
                     className="inline-flex items-center justify-center w-full py-3 px-6 rounded-full bg-white text-brand-blue font-bold text-lg shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300"
                   >
                     See Our Journey →
@@ -460,7 +460,7 @@ export default function Home() {
                     Internal Audit Practitioner (IAP)
                   </p>
                   <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Kickstart your CIA journey with our IAP courseG��covering
+                    Kickstart your CIA journey with our IAP course covering
                     audit fundamentals and risk assessment
                   </p>
                 </div>
@@ -581,7 +581,7 @@ export default function Home() {
                   Dedicated Support
                 </p>
                 <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
-                  Get dedicated support until you succeed G�� weG��re with you every
+                  Get dedicated support until you succeed. We are with you every
                   step of the way.
                 </p>
               </div>
@@ -672,7 +672,7 @@ export default function Home() {
               </p>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                 Mr. Mukundan K.V, CEO of IIA India, presents the official
-                accreditation certificate to Arpit Garg, GPC mentor G�� marking
+                accreditation certificate to Arpit Garg, GPC mentor marking
                 Global Professional Certifications as an
                 <span className="font-semibold">
                   {" "}
@@ -713,7 +713,7 @@ export default function Home() {
             <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6">
               Your Success Path, Simplified
               <br />
-              Your Certification Journey G�� From Learning to Leadership
+              Your Certification Journey From Learning to Leadership
             </p>
           </div>
           <div className="m-8 hidden md:block lg:block">
