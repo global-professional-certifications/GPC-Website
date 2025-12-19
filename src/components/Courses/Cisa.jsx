@@ -49,7 +49,7 @@ const Cisa = () => {
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                 Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit</span> Expert with CISA
               </h1>
-              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Pass the CISA certification with ISACA aligned training. Master<span className='font-bold text-orange-400'> IT auditing, risk assessment, and cybersecurity with recorded classes, MCQs, and mentorship</span> from India's top CISA facultyΓÇöArpit Garg.</h2>
+              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Pass the CISA certification with ISACA aligned training. Master<span className='font-bold text-orange-400'> IT auditing, risk assessment, and cybersecurity with recorded classes, MCQs, and mentorship</span> from India's top CISA faculty—Arpit Garg.</h2>
             </div>
 
             <div className="mt-6">

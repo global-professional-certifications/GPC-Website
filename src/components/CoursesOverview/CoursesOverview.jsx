@@ -110,7 +110,7 @@ export default function CoursesOverview() {
         <Card
           title="Internal Audit Practioner (IAP)"
           image={iapLogo}
-          text="Kickstart your CIA journey with our IAP courseΓÇöcovering audit fundamentals and risk assessment"
+          text="Kickstart your CIA journey with our IAP course—covering audit fundamentals and risk assessment"
           price={23600}
           linkTo="/courses/iap"
           enrollLink="https://rzp.io/rzp/C7jUKuC"

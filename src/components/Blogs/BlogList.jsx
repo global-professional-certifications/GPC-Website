@@ -71,7 +71,7 @@ const BlogList = () => {
                             </p>
 
                             <p className='text-gray-500 lg:text-base text-sm line-clamp-1 md:line-clamp-2 lg:line-clamp-2'>
-                                In todayΓÇÖs dynamic corporate environment, internal auditors are expected to be more than compliance checkers ΓÇö theyΓÇÖre strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
+                                In today's dynamic corporate environment, internal auditors are expected to be more than compliance checkers — they're strategic advisors, risk managers, and governance experts. For qualified professionals in India, the CIA Challenge Exam offers a fast-track route to earn the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal auditors.
                             </p>
                             <Link
                                 to="https://delhi.iiaindia.co/accelerate-your-audit-career-with-the-cia-challenge-exam-a-strategic-guide-for-internal-audit-professionals/"
@@ -143,8 +143,8 @@ const BlogList = () => {
                                         </div>
                                         <div className="inline-flex justify-start items-center gap-1.5 p-1 border border-brand-purple rounded-full w-fit">
                                             <span className="md:text-base text-sm pl-2 text-gray-700">
-                                                    Read Full Blog
-                                                </span>
+                                                Read Full Blog
+                                            </span>
                                             <FontAwesomeIcon icon={faArrowUpRightFromSquare} className='text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2' />
                                         </div>
                                     </div>
