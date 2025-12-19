@@ -374,7 +374,9 @@ const Cia = () => {
                 </div>
 
 
-                <div className="max-w-6xl mx-auto py-16 md:py-24 px-4">
+                {/* Exam Structure */}
+
+                <div className="max-w-6xl mx-auto py-16 px-4">
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">CIA <span className="text-brand-blue font-normal italic">Exam </span>Structure</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -488,13 +490,11 @@ const Cia = () => {
                 </div>
 
 
-
-
-
-                <div className="max-w-6xl mx-auto py-16 md:py-24 px-4">
-                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
+                {/* Exam Logistics */}
+                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
                         Exam <span className="text-brand-blue font-normal italic">Logistics</span>
-                    </h3>
+                    </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
@@ -541,7 +541,7 @@ const Cia = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <h4 className="font-bold text-gray-800 text-base">{item.title}</h4>
+                                        <p className="font-bold text-gray-800 text-base">{item.title}</p>
                                     </div>
                                     <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                                 </div>
@@ -551,8 +551,8 @@ const Cia = () => {
                 </div>
 
 
-
-                <div className="max-w-6xl mx-auto my-16 sm:my-24 px-4 font-inter">
+                {/* Fees and Membership Benefits */}
+                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
                     <h3 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
                         Fees and Membership<span className="text-brand-blue font-normal italic"> Benefits</span>
                     </h3>
@@ -648,9 +648,9 @@ const Cia = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                         </svg>
                                     </div>
-                                    <h4 className="text-xl md:text-2xl font-bold text-gray-800">
+                                    <h2 className="text-xl md:text-2xl font-bold text-gray-800">
                                         IIA India Membership Details
-                                    </h4>
+                                    </h2>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -674,14 +674,14 @@ const Cia = () => {
 
                         {/* Important Notes */}
                         <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                            <h4 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-lg bg-yellow-400/20 flex items-center justify-center text-yellow-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                                 Important Notes
-                            </h4>
+                            </h3>
                             <ul className="space-y-4">
                                 {[
                                     "Fees are subject to change as per IIA guidelines.",
@@ -703,12 +703,12 @@ const Cia = () => {
                 </div>
 
 
-
-                <div className="max-w-7xl mx-auto py-16 md:py-24 px-4 bg-gray-50/50 rounded-[3rem] my-16">
+                {/* Training Program Details */}
+                <div className="max-w-7xl mx-auto py-8 md:py-16 px-4 bg-gray-50/50 rounded-[3rem]">
                     <div className="text-center mb-16">
-                        <h3 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
                             <span className="text-brand-blue font-normal italic">Training</span> Program Details
-                        </h3>
+                        </h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -802,7 +802,7 @@ const Cia = () => {
                                 <div className={`w-14 h-14 rounded-2xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     {item.icon}
                                 </div>
-                                <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                                 <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                             </div>
                         ))}
@@ -810,10 +810,8 @@ const Cia = () => {
                 </div>
 
 
-
-
-
-                <div className="max-w-5xl mx-auto mb-16 sm:mb-24 px-4 md:px-0">
+                {/* 3 parts enrollment */}
+                <div className="max-w-5xl mx-auto py-8 md:py-16 px-4 md:px-0">
                     <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
                         {/* Decorative background element */}
                         <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
@@ -864,13 +862,13 @@ const Cia = () => {
                 {/* People Image Display */}
                 <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
                     <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-                        <p className="text-2xl md:text-4xl text-center font-bold">
+                        <h2 className="text-2xl md:text-4xl text-center font-bold">
                             What Our{" "}
                             <span className="text-brand-blue font-normal italic">
                                 Learners{" "}
                             </span>
                             Say
-                        </p>
+                        </h2>
                         <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
                             Discover how Global Professional Certifications' expert-led
                             programs empower professionals to achieve global certification and
@@ -931,7 +929,8 @@ const Cia = () => {
                 <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
                     <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
                         <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
-                            Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span>
+                            <h2>
+                                Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span></h2>
                         </Link>
                         <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
                             Explore expert insights and latest trends in audit, risk, and

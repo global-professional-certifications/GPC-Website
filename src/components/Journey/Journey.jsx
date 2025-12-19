@@ -168,7 +168,7 @@ const Journey = () => {
             <div className="bg-gray-50 min-h-screen font-sans text-gray-800">
                 {/* Hero Section */}
                 <section
-                    className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-6 lg:px-24 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white"
+                    className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 lg:px-24 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white"
                 >
                     {/* Beautiful Multi-layered Background Pattern */}
                     <div className="absolute inset-0 opacity-15">
@@ -210,19 +210,22 @@ const Journey = () => {
                         className={`relative z-10 max-w-5xl mx-auto text-center scroll-reveal ${isHeroVisible ? 'scroll-reveal-active' : ''}`}
                     >
 
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-8 drop-shadow-lg pt-8">
-                            Celebrating 1 Year of Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-yellow-200 to-orange-300">Future Internal Auditors</span>
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight mb-8 drop-shadow-lg pt-8">
+                            Celebrating 1 Year of Building <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-yellow-200 to-orange-300">
+                                Future Internal Auditors
+                            </span>
                         </h1>
 
                         <div className="flex flex-col sm:flex-row justify-center gap-5">
-                            <Link to="/contact" className="px-10 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:scale-105 hover:bg-gray-100">
+                            <Link to="/contact" className="px-8 py-3.5 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:scale-105 hover:bg-gray-100">
                                 Join Our Community
                             </Link>
                             <a
                                 href="https://youtu.be/WgA9VzD06kY?si=4yhF7QaxB5qLyGPu"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-10 py-4 bg-violet-800/40 backdrop-blur-md border border-white/30 text-white font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
+                                className="px-8 py-3.5 bg-violet-800/40 backdrop-blur-md border border-white/30 text-white font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
                             >
                                 Watch Celebration
                             </a>
@@ -232,14 +235,14 @@ const Journey = () => {
 
                 {/* Statistics Section */}
                 <section
-                    className="py-20 md:py-28 px-6 lg:px-24 bg-gradient-to-b from-gray-50 via-white to-gray-50"
+                    className="py-20 md:py-2 px-6 lg:px-24 bg-gradient-to-b from-gray-50 via-white to-gray-50"
                 >
                     <div
                         ref={statsRef}
                         className={`max-w-7xl mx-auto scroll-reveal ${isStatsVisible ? 'scroll-reveal-active' : ''}`}
                     >
-                        <div className="text-center mb-20">
-                            <p className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                        <div className="text-center mb-16">
+                            <p className="text-2xl md:text-4xl lg:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
                                 We Aim To Keep <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-extrabold">
                                     Increasing{" "}
                                 </span>
@@ -247,14 +250,14 @@ const Journey = () => {
                                     Service
                                 </span>
                             </p>
-                            <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mt-6"></div>
+                            <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mt-4"></div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {statistics.map((stat, index) => (
                                 <div
                                     key={index}
-                                    className={`relative group p-10 rounded-3xl bg-white border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_rgba(99,102,241,0.25)] transition-all duration-500 hover:-translate-y-3 overflow-hidden ${isStatsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                                    className={`relative group p-8 rounded-3xl bg-white border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_rgba(99,102,241,0.25)] transition-all duration-500 hover:-translate-y-3 overflow-hidden ${isStatsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                                     style={{ transitionDelay: `${index * 150}ms` }}
                                 >
                                     {/* Animated gradient background on hover */}
@@ -268,23 +271,25 @@ const Journey = () => {
                                     {/* Glow effect */}
                                     <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
 
-                                    <div className="relative z-10">
+                                    <div className="relative z-10 flex flex-row md:flex-col items-center md:items-start gap-5 md:gap-0">
                                         {/* Icon with enhanced animation */}
-                                        <div className={`w-20 h-20 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center text-4xl mb-8 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl`}>
+                                        <div className={`w-14 h-14 md:w-16 md:h-16 flex-shrink-0 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center text-2xl md:text-3xl md:mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl`}>
                                             <div className="group-hover:animate-bounce">
                                                 {stat.icon}
                                             </div>
                                         </div>
 
-                                        {/* Number with gradient on hover */}
-                                        <p className="text-5xl md:text-6xl font-black text-gray-900 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent mb-3 transition-all duration-300">
-                                            {stat.number}
-                                        </p>
+                                        <div className="flex flex-col">
+                                            {/* Number with gradient on hover */}
+                                            <p className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent mb-1 md:mb-2 transition-all duration-300">
+                                                {stat.number}
+                                            </p>
 
-                                        {/* Label */}
-                                        <p className="text-gray-600 group-hover:text-gray-900 font-semibold text-lg transition-colors duration-300">
-                                            {stat.label}
-                                        </p>
+                                            {/* Label */}
+                                            <p className="text-sm md:text-base lg:text-lg text-gray-600 group-hover:text-gray-900 font-semibold transition-colors duration-300">
+                                                {stat.label}
+                                            </p>
+                                        </div>
                                     </div>
 
                                     {/* Corner accent */}
@@ -300,7 +305,7 @@ const Journey = () => {
 
                 {/* Celebration Video Section */}
                 <section
-                    className="py-16 md:py-24 px-6 lg:px-24 bg-white"
+                    className="py-8 md:py-16 px-6 lg:px-24 bg-gray-50"
                 >
                     <div
                         ref={videoRef}
@@ -309,17 +314,11 @@ const Journey = () => {
                         <div className="flex flex-col lg:flex-row gap-12 items-center">
                             <div className="w-full lg:w-1/2">
                                 <span className="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block">Anniversary Special</span>
-                                <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-4 leading-tight">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 leading-tight">
                                     Celebrate This One Year Journey <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">With Us</span>
                                 </h2>
-                                <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full mb-6"></div>
-
                                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                                     We are deeply grateful for the trust, support, and dedication of our students and partners. This milestone is as much yours as it is ours.
-                                </p>
-                                <p className="flex items-center gap-3 text-gray-800 font-medium">
-                                    <span className="w-12 h-1 bg-indigo-600 rounded-full"></span>
-                                    Thank you for being part of our story.
                                 </p>
                             </div>
                             <div className="w-full lg:w-1/2">
@@ -341,7 +340,7 @@ const Journey = () => {
 
                 {/* Milestones Timeline */}
                 <section
-                    className="py-24 md:py-32 px-6 lg:px-24 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden"
+                    className="py-12 md:py-16 px-6 lg:px-24 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden"
                 >
                     {/* Decorative background elements */}
                     <div className="absolute inset-0 opacity-30 pointer-events-none">
@@ -353,12 +352,12 @@ const Journey = () => {
                         ref={milestonesRef}
                         className={`max-w-6xl mx-auto scroll-reveal ${isMilestonesVisible ? 'scroll-reveal-active' : ''} relative z-10`}
                     >
-                        <div className="text-center mb-24">
-                            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-4">
+                        <div className="text-center mb-16">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4">
                                 Milestones We Have <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Crossed</span>
                             </h2>
-                            <p className="text-xl text-gray-600 mt-4">Our journey of excellence and growth</p>
-                            <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mt-6"></div>
+                            <p className="text-base md:text-lg text-gray-600 mt-4">Our journey of excellence and growth</p>
+                            <div className="w-16 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mt-6"></div>
                         </div>
 
                         <div className="relative">
@@ -396,12 +395,12 @@ const Journey = () => {
                                                     </span>
 
                                                     {/* Title */}
-                                                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
+                                                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
                                                         {item.title}
                                                     </h3>
 
                                                     {/* Description */}
-                                                    <p className="text-gray-600 text-base md:text-lg leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                                                    <p className="text-gray-600 text-sm md:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -432,26 +431,26 @@ const Journey = () => {
 
                 {/* People Image Display */}
                 <div className="w-full mx-auto mt-6 md:mt-8 lg:mt-12">
-                    <div className="flex flex-col gap-4 justify-center items-center p-4 mb-12">
-                        <h2 className="text-4xl md:text-6xl text-center font-black text-gray-900">
+                    <div className="flex flex-col gap-4 justify-center items-center p-4 mb-4">
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl text-center font-black text-gray-900 leading-tight">
                             Students Who Have {" "}
                             <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                                 Trusted Us{" "}
                             </span>
                             In This Journey
                         </h2>
-                        <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"></div>
+                        <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"></div>
                     </div>
                     <img
                         src={testimonialCover}
                         alt="Testimonial Cover"
-                        className="scale-100 md:scale-90"
+                        className="w-full max-w-6xl mx-auto opacity-90 scale-100 md:scale-95"
                     />
                 </div>
 
                 {/* Feedback Cards */}
 
-                <div className="py-24 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
+                <div className="py-12 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
                     {/* Top Quote Icon */}
                     <FontAwesomeIcon
                         icon={faQuoteLeft}
@@ -508,20 +507,20 @@ const Journey = () => {
 
                 {/* Popular Courses Card Section */}
 
-                <div className="my-10 px-2 mt-2 md:px-12 lg:px-20 pb-32">
-                    <div className='flex flex-col gap-4 py-12'>
-                        <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
-                            We Aim To{" "}
-                            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                Serve You Continuously
-                            </span>
-                        </h2>
-                        <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full mb-2"></div>
-                        <h3 className='text-xs md:text-base lg:text-base font-poppins leading-relaxed text-gray-600'>
-                            Our Other Flagship Certification Courses
-                        </h3>
-                    </div>
+                <div className='flex flex-col gap-3 py-6 px-8 md:px-20'>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 leading-tight">
+                        We Aim To{" "}
+                        <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            Serve You Continuously
+                        </span>
+                    </h2>
+                    <h3 className='text-sm md:text-lg lg:text-xl font-poppins leading-relaxed text-gray-600 font-medium'>
+                        Our Other Flagship Certification Courses
+                    </h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full mb-1"></div>
+                </div>
 
+                <div className="my-10 px-2 mt-2 md:px-12 lg:px-20 pb-32">
 
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                         <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
@@ -634,14 +633,14 @@ const Journey = () => {
                 {/* Radial Gradient Banner */}
 
                 <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full md:max-w-2xl lg:max-w-4xl flex items-center justify-center scale-90 md:scale-100">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-48 md:h-48 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full md:max-w-xl lg:max-w-3xl flex items-center justify-center scale-90 md:scale-100">
                         <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-8 lg:gap-12">
                             {/* Text Content */}
                             <div className="text-center md:text-left mb-6 md:mb-0">
-                                <p className="text-white text-lg md:text-2xl lg:text-4xl font-bold">
+                                <p className="text-white text-lg md:text-xl lg:text-3xl font-bold">
                                     Ready to advance your career?
                                 </p>
-                                <p className="text-gray-200 text-xs md:text-sm lg:text-base mt-2">
+                                <p className="text-gray-200 text-xs md:text-sm lg:text-sm mt-2">
                                     Enroll now and become part of a global network of successful
                                     professionals
                                 </p>
