@@ -716,7 +716,7 @@ const Cia = () => {
                 {/* Excellence in Training Design */}
                 <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                             Excellence in <span className="text-brand-blue font-normal italic">Training Design</span>
                         </h2>
                     </div>
@@ -724,80 +724,77 @@ const Cia = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {/* Timeline & Schedule Group */}
                         <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="bg-indigo-600 rounded-[2rem] p-6 text-white shadow-xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 relative">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="bg-gradient-to-br from-indigo-900 via-indigo-600 to-indigo-100 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group hover:shadow-black/20 shadow-lg transition-all duration-500">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-110 transition-transform duration-500"></div>
+                                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md text-white flex items-center justify-center mb-6 relative border border-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">Completion Timeline</h3>
-                                <p className="text-indigo-100 text-sm leading-relaxed">
-                                    A structured 7-8 months journey designed for consistent preparation and success in the CIA designation.
-                                    <span className="block mt-4 text-white font-bold">Standard Cycle: May — October</span>
-                                </p>
+                                <h3 className="text-2xl font-bold mb-4 tracking-tight">Completion Timeline</h3>
+                                <div className='p-5 rounded-[1.5rem] bg-white/10 border border-white/10 backdrop-blur-sm'>
+                                    <p className="text-indigo-50/90 text-sm md:text-base leading-relaxed">
+                                        Embark on a comprehensively structured 7-8 month training journey, meticulously designed to ensure consistent preparation momentum and support your path toward successfully achieving the CIA designation.
+                                    </p>
+                                </div>
                             </div>
 
                             {/* Batch Calendar */}
-                            <div className="bg-gray-900 rounded-[2rem] p-6 shadow-xl relative overflow-hidden group">
-                                <div className="absolute bottom-0 right-0 w-32 h-32 bg-brand-blue/20 rounded-full -mb-16 -mr-16 blur-3xl"></div>
-                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 relative">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="bg-gradient-to-br from-black via-black to-black rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group  hover:shadow-xl transition-all duration-500">
+                                <div className="absolute bottom-0 right-0 w-40 h-40 bg-brand-blue/20 rounded-full -mb-20 -mr-20 blur-3xl group-hover:opacity-70 transition-opacity"></div>
+                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md text-white flex items-center justify-center mb-6 relative border border-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-4">Strategic Batch Cycles</h3>
-                                <div className="space-y-2">
-                                    {[
-                                        { part: "PART 1", date: "May & June" },
-                                        { part: "PART 2", date: "July & Aug" },
-                                        { part: "PART 3", date: "Sep & Oct" }
-                                    ].map((b, i) => (
-                                        <div key={i} className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                                            <span className="text-gray-400 text-[10px] font-bold font-mono">{b.part}</span>
-                                            <span className="text-white text-xs font-semibold">{b.date}</span>
-                                        </div>
-                                    ))}
+                                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">CIA Live Sessions</h3>
+                                <div className="p-5 rounded-[1.5rem] bg-white/10 border border-white/10 backdrop-blur-sm">
+                                    <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                                        Continuous live batches scheduled throughout the year, complemented by access to the latest session recordings to accelerate your preparation journey. Join the classes from anywhere in the world.
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-purple-800 rounded-[2rem] p-6 text-white relative overflow-hidden flex flex-col justify-between group">
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
+                        <div className="bg-gradient-to-br from-purple-800 to-fuchsia-900 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between group hover:shadow-black/20 shadow-lg transition-all duration-500">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
                             <div>
-                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md text-white flex items-center justify-center mb-6 border border-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 tracking-tight">Session Breakdown</h3>
+                                <h3 className="text-2xl font-bold mb-3 tracking-tight">Session Breakdown</h3>
                             </div>
 
-                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 space-y-3">
-                                <div className="flex justify-between items-center border-b border-white/10 pb-1.5">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 1</span>
-                                    <span className="font-bold text-base">60-70 Hours</span>
+                            <div className="bg-black/30 backdrop-blur-xl rounded-[2rem] p-6 space-y-2">
+                                <div>
+                                    <p className="text-base leading-relaxed text-gray-200 mb-8">Part-wise Session Length:</p>
                                 </div>
-                                <div className="flex justify-between items-center border-b border-white/10 pb-1.5">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 2</span>
-                                    <span className="font-bold text-base">80-90 Hours</span>
+                                <div className="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <span className="text-base font-semibold tracking-widest text-gray-200">Part 1</span>
+                                    <span className="text-base">60 - 70 Hours <span className="text-gray-250 italic text-xs">(approx.)</span></span>
+                                </div>
+                                <div className="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <span className="text-base font-semibold tracking-widest text-gray-200">Part 2</span>
+                                    <span className="text-base">80 - 90 Hours <span className="text-gray-250 italic text-xs">(approx.)</span></span>
                                 </div>
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 3</span>
-                                    <span className="font-bold text-base">40-50 Hours</span>
+                                    <span className="text-base font-semibold tracking-widest text-gray-200">Part 3</span>
+                                    <span className="text-base">40 - 50 Hours <span className="text-gray-250 italic text-xs">(approx.)</span></span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Resources Row */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:col-span-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:col-span-3 mt-4">
                             {[
                                 {
                                     title: "LMS Portal",
                                     desc: "Infinite access to recordings, PPTs, and topic-wise MCQs.",
                                     icon: "M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-                                    color: "teal"
+                                    color: "blue"
                                 },
                                 {
                                     title: "Expert Mentorship",
@@ -818,14 +815,14 @@ const Cia = () => {
                                     color: "rose"
                                 }
                             ].map((item, index) => (
-                                <div key={index} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
-                                    <div className={`w-10 h-10 rounded-xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-4`}>
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={item.icon} />
+                                <div key={index} className="group bg-white rounded-[2rem] p-7 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                    <div className={`w-12 h-12 rounded-2xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
+                                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                                         </svg>
                                     </div>
-                                    <h4 className="font-bold text-gray-900 text-base mb-2">{item.title}</h4>
-                                    <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                                    <h4 className="font-bold text-gray-900 text-lg mb-3">{item.title}</h4>
+                                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                                 </div>
                             ))}
                         </div>
