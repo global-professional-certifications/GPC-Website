@@ -577,15 +577,15 @@ const Cia = () => {
                                 ].map((row, idx) => (
                                     <tr key={idx} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-8 py-5 text-gray-700 font-medium">{row.label}</td>
-                                        <td className="px-8 py-5 text-gray-800 font-bold text-center">USD {row.member}</td>
-                                        <td className="px-8 py-5 text-gray-500 text-center">USD {row.nonMember}</td>
+                                        <td className="px-8 py-5 text-gray-800 font-bold text-center">USD {row.member} <span className="text-[10px] font-normal text-gray-400">+ taxes</span></td>
+                                        <td className="px-8 py-5 text-gray-500 text-center">USD {row.nonMember} <span className="text-[10px] font-normal text-gray-400">+ taxes</span></td>
                                         <td className="px-8 py-5 text-green-600 font-bold text-center bg-blue-50/50">USD {row.nonMember - row.member}</td>
                                     </tr>
                                 ))}
                                 <tr className="bg-gray-50/80 font-bold">
                                     <td className="px-8 py-6 text-gray-800">Total Certification Cost</td>
-                                    <td className="px-8 py-6 text-brand-blue text-2xl text-center">USD 742.50</td>
-                                    <td className="px-8 py-6 text-gray-500 text-center">USD 1,515</td>
+                                    <td className="px-8 py-6 text-brand-blue text-2xl text-center">USD 742.50 <span className="text-xs font-normal text-gray-400">+ taxes</span></td>
+                                    <td className="px-8 py-6 text-gray-500 text-center">USD 1,515 <span className="text-xs font-normal text-gray-400">+ taxes</span></td>
                                     <td className="px-8 py-6 text-green-600 text-2xl text-center bg-blue-50">USD 772.50</td>
                                 </tr>
                             </tbody>
@@ -605,11 +605,11 @@ const Cia = () => {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-blue-50 rounded-lg p-3">
                                         <p className="text-xs text-brand-blue font-bold uppercase mb-1">Member</p>
-                                        <p className="text-gray-800 font-bold text-lg">USD {row.member}</p>
+                                        <p className="text-gray-800 font-bold text-lg">USD {row.member} <span className="text-[10px] font-normal text-gray-500">+ taxes</span></p>
                                     </div>
                                     <div className="bg-gray-50 rounded-lg p-3">
                                         <p className="text-xs text-gray-500 font-bold uppercase mb-1">Non-Member</p>
-                                        <p className="text-gray-600 font-bold text-lg">USD {row.nonMember}</p>
+                                        <p className="text-gray-600 font-bold text-lg">USD {row.nonMember} <span className="text-[10px] font-normal text-gray-500">+ taxes</span></p>
                                     </div>
                                 </div>
                                 <div className="mt-3 flex justify-between items-center text-sm">
@@ -620,17 +620,28 @@ const Cia = () => {
                         ))}
                         <div className="bg-brand-blue rounded-xl p-6 text-white shadow-lg">
                             <h4 className="font-bold text-lg mb-4 text-center">Total Certification Value</h4>
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="opacity-80">IIA Member Cost</span>
-                                <span className="font-bold text-xl">USD 742.50</span>
-                            </div>
-                            <div className="flex justify-between items-center mb-4">
-                                <span className="opacity-80">Non-Member Cost</span>
-                                <span className="font-bold text-xl">USD 1,515.00</span>
+                            <div className="flex flex-col gap-4 mb-4">
+                                <div className="flex justify-between items-center">
+                                    <p className="opacity-80">IIA Member Cost</p>
+                                    <div className='flex flex-col justify-center items-end'>
+                                        <p className="font-bold text-xl text-right">USD 742.50</p>
+                                        <p className="text-[10px] font-normal opacity-70">+ taxes</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <p className="opacity-80">Non-Member Cost</p>
+                                    <div className='flex flex-col justify-center items-end'>
+                                        <p className="font-bold text-xl text-right">USD 1,515.00</p>
+                                        <p className="text-[10px] font-normal opacity-70">+ taxes</p>
+                                    </div>
+                                </div>
                             </div>
                             <div className="border-t border-white/20 pt-4 flex justify-between items-center">
-                                <span className="font-bold">Total Benefit</span>
-                                <span className="text-2xl font-black">USD 772.50</span>
+                                <p className="font-bold">Total Benefit</p>
+                                <div className='flex flex-col justify-center items-end'>
+                                    <p className="text-2xl font-black">USD 772.50</p>
+                                    <p className="text-[10px] font-normal opacity-70">+ taxes</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -664,7 +675,7 @@ const Cia = () => {
                                     <div className="p-6 rounded-2xl border border-gray-100 bg-gradient-to-b from-gray-50/50 to-transparent">
                                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Annual Renewal</p>
                                         <div className="flex items-baseline gap-2">
-                                            <span className="text-3xl font-black text-gray-900">INR 4,000</span>
+                                            <span className="text-3xl font-black text-gray-900">INR 4,500</span>
                                             <span className="text-sm font-medium text-gray-500">+ 18% GST</span>
                                         </div>
                                     </div>
@@ -702,110 +713,122 @@ const Cia = () => {
                     </div>
                 </div>
 
-
-                {/* Training Program Details */}
-                <div className="max-w-7xl mx-auto py-8 md:py-16 px-4 bg-gray-50/50 rounded-[3rem]">
+                {/* Excellence in Training Design */}
+                <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                            <span className="text-brand-blue font-normal italic">Training</span> Program Details
+                            Excellence in <span className="text-brand-blue font-normal italic">Training Design</span>
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            {
-                                title: "Program Duration",
-                                desc: "Complete your CIA Certification within 7-8 months",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {/* Timeline & Schedule Group */}
+                        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="bg-indigo-600 rounded-[2rem] p-6 text-white shadow-xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                ),
-                                color: "blue"
-                            },
-                            {
-                                title: "Batch Schedule",
-                                desc: "Part 1 - May & June, Part 2 - July & Aug, Part 3 - Sep & Oct",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                </div>
+                                <h3 className="text-xl font-bold mb-2">Completion Timeline</h3>
+                                <p className="text-indigo-100 text-sm leading-relaxed">
+                                    A structured 7-8 months journey designed for consistent preparation and success in the CIA designation.
+                                    <span className="block mt-4 text-white font-bold">Standard Cycle: May — October</span>
+                                </p>
+                            </div>
+
+                            {/* Batch Calendar */}
+                            <div className="bg-gray-900 rounded-[2rem] p-6 shadow-xl relative overflow-hidden group">
+                                <div className="absolute bottom-0 right-0 w-32 h-32 bg-brand-blue/20 rounded-full -mb-16 -mr-16 blur-3xl"></div>
+                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
                                     </svg>
-                                ),
-                                color: "indigo"
-                            },
-                            {
-                                title: "Live Classes",
-                                desc: "15-20 live classes per part, 3 hours each (weekend mornings, 7:00 AM - 10:00 AM IST)",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-4">Strategic Batch Cycles</h3>
+                                <div className="space-y-2">
+                                    {[
+                                        { part: "PART 1", date: "May & June" },
+                                        { part: "PART 2", date: "July & Aug" },
+                                        { part: "PART 3", date: "Sep & Oct" }
+                                    ].map((b, i) => (
+                                        <div key={i} className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
+                                            <span className="text-gray-400 text-[10px] font-bold font-mono">{b.part}</span>
+                                            <span className="text-white text-xs font-semibold">{b.date}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-purple-800 rounded-[2rem] p-6 text-white relative overflow-hidden flex flex-col justify-between group">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
+                            <div>
+                                <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                     </svg>
-                                ),
-                                color: "purple"
-                            },
-                            {
-                                title: "Class Recordings",
-                                desc: "Recordings uploaded within 24-48 hours after each class",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                    </svg>
-                                ),
-                                color: "cyan"
-                            },
-                            {
-                                title: "LMS Access",
-                                desc: "Access to LMS Portal with recorded sessions, PPT notes, and MCQs (no validity period)",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                ),
-                                color: "teal"
-                            },
-                            {
-                                title: "Expert Faculty",
-                                desc: "Guidance from top CIA faculty in India, Mr. Arpit Garg",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                                    </svg>
-                                ),
-                                color: "emerald"
-                            },
-                            {
-                                title: "Gleim Software",
-                                desc: "Access to Gleim software with soft copies of books and over 1000 MCQs (18 months validity)",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                    </svg>
-                                ),
-                                color: "orange"
-                            },
-                            {
-                                title: "Full Support",
-                                desc: "End-to-end support until you clear all exams",
-                                icon: (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                ),
-                                color: "rose"
-                            },
-                        ].map((item, index) => (
-                            <div
-                                key={index}
-                                className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-                            >
-                                <div className={`w-14 h-14 rounded-2xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    {item.icon}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                                <h3 className="text-xl font-bold mb-3 tracking-tight">Session Breakdown</h3>
                             </div>
-                        ))}
+
+                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 space-y-3">
+                                <div className="flex justify-between items-center border-b border-white/10 pb-1.5">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 1</span>
+                                    <span className="font-bold text-base">60-70 Hours</span>
+                                </div>
+                                <div className="flex justify-between items-center border-b border-white/10 pb-1.5">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 2</span>
+                                    <span className="font-bold text-base">80-90 Hours</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Part 3</span>
+                                    <span className="font-bold text-base">40-50 Hours</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Resources Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:col-span-3">
+                            {[
+                                {
+                                    title: "LMS Portal",
+                                    desc: "Infinite access to recordings, PPTs, and topic-wise MCQs.",
+                                    icon: "M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+                                    color: "teal"
+                                },
+                                {
+                                    title: "Expert Mentorship",
+                                    desc: "Direct guidance from Mr. Arpit Garg, India's top CIA faculty.",
+                                    icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+                                    color: "emerald"
+                                },
+                                {
+                                    title: "Gleim Premium",
+                                    desc: "18 months of software access with 1000+ relevant MCQs.",
+                                    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+                                    color: "orange"
+                                },
+                                {
+                                    title: "Success Support",
+                                    desc: "End-to-end assistance until you clear all your CIA exams.",
+                                    icon: "M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+                                    color: "rose"
+                                }
+                            ].map((item, index) => (
+                                <div key={index} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                                    <div className={`w-10 h-10 rounded-xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-4`}>
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={item.icon} />
+                                        </svg>
+                                    </div>
+                                    <h4 className="font-bold text-gray-900 text-base mb-2">{item.title}</h4>
+                                    <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
