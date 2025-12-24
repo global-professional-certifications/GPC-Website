@@ -17,7 +17,7 @@ const DescriptiveRight = ({
                         <img
                             src={image}
                             alt={imageAlt}
-                            className="w-full h-auto md:w-[30vw] md:h-auto object-contain"
+                            className="w-full h-auto md:w-[30vw] md:h-auto object-contain rounded-lg"
                         />
                     </div>
 
