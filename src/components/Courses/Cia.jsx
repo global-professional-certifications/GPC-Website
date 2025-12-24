@@ -24,9 +24,46 @@ import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import learningPartner from "../../assets/Learning_partner.jpg";
+import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
+import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
+import internalAudit from "../../assets/cia/internal-audit.webp";
+import ciaCertification from "../../assets/cia/cia-certification.webp";
+import WhyGPC from '../DescriptiveSection/WhyGPC';
+import faqImage from "../../assets/our-mission-1.webp";
+import FAQDisplay from "../FAQDisplay.jsx";
 
 
 
+const courseFaqs = [
+    {
+        question:
+            "Is earning CIA certification beneficial in India?",
+        answer:
+            "Yes, earning a CIA certification in India is beneficial for any candidate as it provides a global recognition and that can create global exposure in the job market.",
+    },
+    {
+        question:
+            "Do you need a CA or MBA degree for CIA certification completion?",
+        answer:
+            "It is not required to have a CA or MBA degree to complete CIA certification. The Institute of Internal Audit (IIA) suggests that individuals can become eligible for CIA certification with Bachelors’, Masters’ or no degree as well when they have required relevant experience.",
+    },
+    {
+        question:
+            "Is it possible to prepare for the CIA exams online from India?",
+        answer:
+            "Yes, you can prepare for the CIA exams online as per your flexibility. Global Professional Certifications provide online CIA training classes in India for both Indian and global students. We use US Gleim content that is the updated syllabus content for CIA exams.",
+    },
+    {
+        question: "Do you need training programs to pass the CIA exams? ",
+        answer:
+            "Experienced CIA certification training providers in India can give you better guidance for successfully completing CIA exams instead of doing everything on your own. You will be able to get US Gleim content, give mock tests, feedback from the experts and many more other helps.",
+    },
+    {
+        question: "Can you prepare for CIA certification while working?  ",
+        answer:
+            "Yes, you can work as a full-timer and prepare for CIA certifications. CIA courses are designed for professionals, and many individuals can participate in them while working.",
+    },
+];
 
 const testimonials = [
     {
@@ -210,6 +247,8 @@ const Cia = () => {
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
                     <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
                 </div>
+
+
                 <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
                     <Card
                         title="CIA All 3 Parts with Gleim Content"
@@ -234,8 +273,51 @@ const Cia = () => {
                         imageStyle={"pt-8"} />
                 </div>
 
+                {/* What is Internal Auditing? */}
+
+                <DescriptiveLeft
+                    titleStart="What is "
+                    highlight="Internal Auditing?"
+                    titleEnd=""
+                    description="The Institute of Internal Auditors (IIA) mentions that “Internal auditing is an independent, objective assurance and consulting activity for adding value and improving an organization's operations”. In simpler terms, it is possible to build a systematic approach while evaluating organizational risks, so that risk management, control, and governance processes can become effective."
+                    image={internalAudit}
+                    imageAlt="Internal Auditing?"
+                />
+
+                {/* Why CIA Certification? */}
+
+                <DescriptiveBullets
+                    titleStart="Why"
+                    highlight="CIA"
+                    titleEnd="Certification?"
+                    image={ciaCertification}
+                    imageAlt="Why CIA Certification?"
+                    description=""
+                    points={[
+                        {
+                            title: "Global Recognition:",
+                            text:
+                                "Certified Internal Auditor (CIA) certification is necessary for internal auditors because it is the only globally accepted certification to become an internal auditor.",
+                        },
+                        {
+                            title: "Skill Enhancement:",
+                            text:
+                                "CIA certification globally and in India helps professionals to build proficiency in compliance, audit standards and fraud detection.",
+                        },
+                        {
+                            title: "Competitive Edge:",
+                            text:
+                                "Based on IIA's Internal Audit Compensation study, CIA certified professionals earn 40% more than non-certified internal auditors.",
+                        },
+                    ]}
+                />
+
+                {/* Why GPC? */}
+
+                <WhyGPC />
+
                 {/* Download Brochure CTA */}
-                <div className="mt-20 md:mt-32 lg:mt-20 px-6 md:px-16 lg:px-12 py-8">
+                <div className="mt-20 md:mt-12 px-6 md:px-16 lg:px-12 py-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
                         {/* Image Section */}
                         <div className="w-full md:w-1/2 flex justify-center">
@@ -270,7 +352,52 @@ const Cia = () => {
                     </div>
                 </div>
 
-                <div className="py-16 md:py-20 w-full px-4">
+                {/* Accreditation */}
+                <div className="py-20 md:py-16 px-6 mx-12 my-4 md:px-16">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
+                        {/* Left Content */}
+                        <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
+                            <h2 className="text-2xl md:text-4xl font-bold leading-snug">
+                                <span className="text-brand-blue font-normal italic">
+                                    IIA India
+                                </span>{" "}
+                                Authorized Training Partner
+                            </h2>
+                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                Mr. Mukundan K.V, CEO of IIA India, presents the official
+                                accreditation certificate to Arpit Garg, GPC mentor marking
+                                Global Professional Certifications as an
+                                <span className="font-semibold">
+                                    {" "}
+                                    IIA India Authorized Learning Partner
+                                </span>
+                            </p>
+                            <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
+                                <a
+                                    href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+                                >
+                                    Watch Video
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Right Image */}
+                        <div className="flex justify-center md:justify-end w-80 md:w-full lg:w-1/2">
+                            <img
+                                src={learningPartner}
+                                alt="IIA India Certification Ceremony"
+                                className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* CIA All Parts */}
+
+                <div className="py-16 md:py-16 w-full px-4">
                     <div className="max-w-6xl mx-auto">
 
                         {/* Content Card */}
@@ -367,7 +494,7 @@ const Cia = () => {
                 {/* Exam Structure */}
 
                 <div className="max-w-6xl mx-auto py-16 px-4">
-                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">CIA <span className="text-brand-blue font-normal italic">Exam </span>Structure</h2>
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">CIA <span className="text-brand-blue font-normal italic">Exam </span>Structure</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {/* Part 1 */}
@@ -479,9 +606,101 @@ const Cia = () => {
                     </div>
                 </div>
 
+                {/* CIA Course Eligibility */}
+
+                <div className="py-24 md:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-poppins">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-20">
+                            <h3 className="text-2xl md:text-4xl font-bold mb-6">
+                                CIA Course <span className="text-brand-blue font-normal italic">Eligibility</span>
+                            </h3>
+                            <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-inter">
+                                The Institute of Internal Auditors (IIA) offers multiple pathways for candidates to become a Certified Internal Auditor based on their current qualifications
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                            {[
+                                {
+                                    id: "01",
+                                    category: "Bachelor’s Degree Holder",
+                                    education: "Completed bachelor’s degree from an accredited institution.",
+                                    experience: "2 years of internal audit or related professional experience.",
+                                    notes: "Standard pathway for most audit professionals.",
+                                },
+                                {
+                                    id: "02",
+                                    category: "Master’s Degree Holder",
+                                    education: "Completed master’s degree from an accredited institution.",
+                                    experience: "1 year of internal audit or related professional experience.",
+                                    notes: "Accelerated experience requirement for higher degrees.",
+                                },
+                                {
+                                    id: "03",
+                                    category: "Professional Cert. Holder",
+                                    education: "Active CA, CPA, or other recognized professional certification.",
+                                    experience: "Experience requirements may be waived or reduced per IIA rules.",
+                                    notes: "Direct entry pathway for qualified professionals.",
+                                },
+                                {
+                                    id: "04",
+                                    category: "Information Systems Auditor",
+                                    education: "Holding an active CISA certification in good standing.",
+                                    experience: "Experience requirement as per standard IIA definitions.",
+                                    notes: "Ideal for IT audit and security specialists.",
+                                },
+                                {
+                                    id: "05",
+                                    category: "Student / No Degree",
+                                    education: "Currently enrolled students or candidates without a degree.",
+                                    experience: "Must clear the Internal Auditor Practitioner (IAP) exam first.",
+                                    notes: "Start your CIA journey early while completing studies.",
+                                }
+                            ].map((item, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`relative flex flex-col gap-6 group ${idx === 4 ? 'md:col-span-2 md:max-w-2xl' : ''}`}
+                                >
+                                    <div className="flex items-center gap-6">
+                                        <span className="text-4xl md:text-6xl font-black text-slate-100 group-hover:text-brand-blue/10 transition-colors duration-500">
+                                            {item.id}
+                                        </span>
+                                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors duration-300">
+                                            {item.category}
+                                        </h4>
+                                    </div>
+
+                                    <div className="pl-0 md:pl-20 space-y-8">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-slate-50 pl-8 group-hover:border-brand-blue/30 transition-colors">
+                                            <div className="space-y-2">
+                                                <h5 className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.2em]">Education</h5>
+                                                <p className="text-sm text-gray-600 font-inter leading-relaxed">
+                                                    {item.education}
+                                                </p>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <h5 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Experience</h5>
+                                                <p className="text-sm text-gray-600 font-inter leading-relaxed font-semibold">
+                                                    {item.experience}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="pl-8 flex items-center gap-3">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-brand-blue/40"></div>
+                                            <p className="text-xs text-slate-400 italic font-inter font-medium leading-relaxed">
+                                                {item.notes}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 {/* Exam Logistics */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4">
-                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
                         Exam <span className="text-brand-blue font-normal italic">Logistics</span>
                     </h2>
 
@@ -539,52 +758,11 @@ const Cia = () => {
                     </div>
                 </div>
 
-                {/* Accreditation */}
-                <div className="py-20 md:py-16 px-6 mx-12 my-4 md:px-16">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
-                        {/* Left Content */}
-                        <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
-                            <h2 className="text-2xl md:text-4xl font-bold leading-snug">
-                                <span className="text-brand-blue font-normal italic">
-                                    IIA India
-                                </span>{" "}
-                                Authorized Training Partner
-                            </h2>
-                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                Mr. Mukundan K.V, CEO of IIA India, presents the official
-                                accreditation certificate to Arpit Garg, GPC mentor marking
-                                Global Professional Certifications as an
-                                <span className="font-semibold">
-                                    {" "}
-                                    IIA India Authorized Learning Partner
-                                </span>
-                            </p>
-                            <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
-                                <a
-                                    href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-                                >
-                                    Watch Video
-                                </a>
-                            </div>
-                        </div>
 
-                        {/* Right Image */}
-                        <div className="flex justify-center md:justify-end w-80 md:w-full lg:w-1/2">
-                            <img
-                                src={learningPartner}
-                                alt="IIA India Certification Ceremony"
-                                className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
-                            />
-                        </div>
-                    </div>
-                </div>
 
                 {/* Fees and Membership Benefits */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
-                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
+                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12">
                         Fees and Membership<span className="text-brand-blue font-normal italic"> Benefits</span>
                     </h3>
 
@@ -1050,6 +1228,29 @@ const Cia = () => {
                                 Read More Blogs
                             </button>
                         </NavLink>
+                    </div>
+                </div>
+
+                {/* FAQ Section */}
+
+                <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
+                    <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
+                        {/* Image Section */}
+                        <div className="w-full lg:w-2/5 flex justify-center items-center relative">
+                            <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
+
+                            {/* Main Image */}
+                            <img
+                                src={faqImage}
+                                alt="FAQ illustration"
+                                className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+                            />
+                        </div>
+
+                        {/* Questions Dropdown Section */}
+                        <div className="w-full lg:w-3/5">
+                            <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />
+                        </div>
                     </div>
                 </div>
             </div >
