@@ -1,5 +1,5 @@
 ﻿import React, { useEffect } from 'react';
-import heroGirl from '../../assets/hero-girl.webp';
+import heroGirl from '../../assets/home/hero-girl.webp';
 import { Link } from 'react-router-dom';
 import { height } from "../Notifications/NotificationBanner";
 
@@ -37,9 +37,9 @@ const Hero = () => {
                     </h1>
 
                     {/* Subheading (H2) */}
-                    <h2 className="mt-4 text-base md:text-base lg:text-lg text-gray-200 leading-relaxed">
-                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led, industry-accredited courses<span className='font-bold text-orange-400'> (including CIA, CRMA, IAP, and CISA)</span> designed for aspiring and experienced professionals in risk assurance and advisory.
-                    </h2>
+                    <p className="mt-4 text-base md:text-base lg:text-lg text-gray-200 leading-relaxed">
+                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led,<span className='font-bold text-orange-400'>{" "}industry-accredited CIA, CRMA, IAP, and CISA courses{" "}</span>designed for aspiring and experienced professionals in risk assurance and advisory.
+                    </p>
 
                     {/* CTA Button */}
                     <div className="mt-8">

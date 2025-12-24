@@ -56,8 +56,8 @@ export default function Companies() {
         <>
             <div className="sm:pt-4 md:pt-24 pb-8 md:pb-20 mb-10 md:mb-20 md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center overflow-x-hidden">
                 <div className="flex flex-col gap-2 justify-center items-center p-4 mb-20">
-                    <p className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
-                    </p>
+                    <h2 className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
+                    </h2>
                     <p className="text-xs md:text-base lg:text-lg font-poppins text-center text-gray-600 mt-6 md:max-w-xl lg:max-w-6xl">
                         Trusted by professionals from top multinational corporations for CIA, CISA, CRMA, and IAP certifications
                     </p>

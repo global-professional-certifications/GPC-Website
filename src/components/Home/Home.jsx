@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import Hero from "../Hero/Hero";
 import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
-import learningPartner from "../../assets/Learning_partner.jpg";
 import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
 import { client } from "../../lib/sanity/client";
@@ -12,11 +11,17 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import FAQDisplay from "../FAQDisplay.jsx";
 import Countdown from "react-countdown";
 import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
+import { motion } from "framer-motion";
+import { Users, GraduationCap, BookCheck } from "lucide-react";
+import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
+import DescriptiveRight from "../DescriptiveSection/DescriptiveRight";
+import YouTubeCarousel from "../YouTubeCarousel/YouTubeCarousel";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
+  faUsers,
   faCalendarDays,
   faCertificate,
   faStar,
@@ -27,6 +32,7 @@ import {
   faQuoteRight,
   faRobot,
   faHandshake,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
@@ -35,13 +41,13 @@ import cia from "../../assets/cia-logo.png";
 import cisa from "../../assets/cisa-logo-1.png";
 import crma from "../../assets/crma-logo-1.png";
 import iap from "../../assets/iap-logo.png";
-import choose from "../../assets/exam-3.png";
-import flowchartWeb from "../../assets/how-it-works.png";
-import flowchartMobile1 from "../../assets/how-it-works-1.png";
-import flowchartMobile2 from "../../assets/how-it-works-2.png";
+import choose from "../../assets/home/why-choose-global-professional-certifications.webp";
+import flowchartWeb from "../../assets/home/how-it-works.webp";
+import flowchartMobile1 from "../../assets/home/how-it-works-1.webp";
+import flowchartMobile2 from "../../assets/home/how-it-works-2.webp";
 import faqImage from "../../assets/our-mission-1.webp";
-import testimonialCover from "../../assets/testimonial-cover.png";
-import brochureCover from "../../assets/brochure-cover.png";
+import testimonialCover from "../../assets/home/testimonial-cover.webp";
+import brochureCover from "../../assets/home/cia-brochure.webp";
 import pinkyTestimonial from "../../assets/pinky-photo.jpg";
 import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
 import starwinTestimonial from "../../assets/testimonial-2.png";
@@ -50,6 +56,8 @@ import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
 import annoucement1 from "../../assets/orientation-announcement.png";
 import annoucement2 from "../../assets/batch-announcement.webp";
+import descriptionImage1 from "../../assets/home/global-platform.webp";
+import descriptionImage2 from "../../assets/home/global-community.webp";
 
 const courseFaqs = [
   {
@@ -135,6 +143,28 @@ const testimonials = [
 
 const eventDate = new Date("2025-12-06T11:30:00");
 
+const Counter = ({ target }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return <span>{count.toLocaleString()}+</span>;
+};
+
 export default function Home() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [latestBlogs, setLatestBlogs] = useState([]);
@@ -192,8 +222,8 @@ export default function Home() {
         <CelebrationOverlay onComplete={handleCelebrationComplete} />
       )}
       <MetaTags
-        title="Global Professional Certifications - Advance Your Career"
-        description="Get globally recognized with our CIA certification courses. Join 100+ professionals who have advanced their careers through our expert-led programs"
+        title="Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
+        description=" Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. "
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
       <div className="bg-gray-50 transition-colors duration-300">
@@ -205,55 +235,64 @@ export default function Home() {
           <Hero />
 
           {/* Stats Section */}
-          <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 md:-bottom-14 flex items-center justify-center gap-6 sm:gap-10 md:gap-12 bg-white shadow-lg rounded-xl sm:rounded-2xl px-4 md:px-16 lg:px-16 py-6 md:py-8 lg:py-8 text-center z-10 w-auto scale-90 md:scale-100 lg:scale-100">
-            {/* Students */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <FontAwesomeIcon
-                icon={faUser}
-                className="text-brand-purple text-lg sm:text-xl md:text-2xl bg-gray-200 rounded-lg p-2"
-              />
-              <div className="text-left">
-                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
-                  1500+
-                </p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
-                  Professionals
-                </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-x-0 -bottom-6 md:-bottom-12 z-20 flex justify-center px-4"
+          >
+            <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-xl px-5 md:px-6 py-2 md:py-5 border border-gray-100/50 flex flex-row items-stretch md:items-center gap-2 md:gap-0 text-center min-w-[280px] md:min-w-[600px] pt-3">
+              {/* Professionals */}
+              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-brand-purple/10 flex items-center justify-center text-brand-purple flex-shrink-0">
+                  <Users size={16} className="md:w-8 md:h-8" />
+                </div>
+                <div className="flex flex-col gap-0 text-left text-nowrap">
+                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
+                    <Counter target={1500} />
+                  </p>
+                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
+                    Professionals
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Certifications */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <FontAwesomeIcon
-                icon={faCertificate}
-                className="text-red-600 text-lg sm:text-xl md:text-2xl bg-yellow-200 rounded-lg p-2"
-              />
-              <div className="text-left">
-                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
-                  250+
-                </p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
-                  CIAs
-                </p>
-              </div>
-            </div>
+              <div className="hidden md:block w-px h-5 bg-gray-200"></div>
 
-            {/* Rating */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-yellow-300 text-lg sm:text-xl md:text-2xl bg-blue-300 rounded-lg p-2"
-              />
-              <div className="text-left">
-                <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
-                  5/5
-                </p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
-                  Rating
-                </p>
+              {/* Teaching Experience */}
+              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue flex-shrink-0">
+                  <GraduationCap size={16} className="md:w-8 md:h-8" />
+                </div>
+                <div className="flex flex-col gap-0 text-left text-nowrap">
+                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
+                    <Counter target={5} />
+                  </p>
+                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
+                    Years of Teaching <br />Experience
+                  </p>
+                </div>
+              </div>
+
+              <div className="hidden md:block w-px h-5 bg-gray-200"></div>
+
+              {/* Batches */}
+              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600 flex-shrink-0">
+                  <BookCheck size={16} className="md:w-8 md:h-8" />
+                </div>
+                <div className="flex flex-col gap-0 text-left text-nowrap">
+                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
+                    <Counter target={25} />
+                  </p>
+                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
+                    Batches Completed
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
 
@@ -359,13 +398,13 @@ export default function Home() {
 
         {/* Popular Courses Card Section */}
 
-        <div className="my-10 px-2 mt-2 md:px-12 lg:px-20">
-          <p className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
+        <div className="my-10 px-2 mt-2 mb-20 md:px-12 lg:px-20">
+          <h2 className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
             Explore Our{" "}
             <span className="text-brand-blue font-normal italic">
               Flagship Certification Programs
             </span>
-          </p>
+          </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
             <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
@@ -474,6 +513,30 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Desc 1 */}
+
+        <DescriptiveLeft
+          titleStart="Offering a Global Platform for"
+          highlight="Finance Professionals"
+          titleEnd=""
+          description="Global Professional Certifications provides a global platform for commerce professionals who want to grow in the risk management, audit and advisory domains. We offer globally recognized, expert-led online CIA, CISA, CRMA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
+          image={descriptionImage1}
+          imageAlt="Global Platform"
+        />
+
+        {/* Desc 2 */}
+
+        <DescriptiveRight
+          titleStart="Become a Part of the"
+          highlight="Global Community"
+          titleEnd=""
+          description="Join our events to become a part of the thriving global professional network. Stay updated with the latest risk management, audit and advisory trends and connect with industry experts."
+          image={descriptionImage2}
+          imageAlt="Global Community"
+          buttonText="Visit Our Events"
+          buttonLink="events"
+        />
+
         {/* Download Brochure CTA */}
 
         <div className="mt-20 md:mt-32 lg:mt-20 px-6 md:px-16 lg:px-12 py-8">
@@ -489,13 +552,13 @@ export default function Home() {
 
             {/* Text Section */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
-              <p className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 max-w-[300px] md:max-w-xl lg:max-w-xl">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 max-w-[300px] md:max-w-xl lg:max-w-xl">
                 Download Our{" "}
                 <span className="text-brand-blue font-normal italic">
                   Comprehensive
                 </span>{" "}
                 CIA Course Brochure
-              </p>
+              </h2>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0">
                 Unlock global career opportunities as a Certified Internal
                 Auditor (CIA) with Global Professional Certifications (GPC). Get
@@ -519,12 +582,12 @@ export default function Home() {
         <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
           {/* Heading */}
           <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
-            <p className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
+            <h2 className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
               Why Choose{" "}
               <span className="text-brand-blue font-normal italic">
                 Global Professional Certifications?
               </span>
-            </p>
+            </h2>
           </div>
 
           {/* Main Flex Layout */}
@@ -565,7 +628,7 @@ export default function Home() {
               <div className="bg-brand-blue w-[60%] md:w-[90%] lg:w-[90%] h-full rounded-3xl absolute rotate-6 shadow-lg"></div>
               <img
                 src={choose}
-                alt="Why Choose GPC"
+                alt="Why Choose Global Professional Certifications"
                 className="w-[60%] md:w-[90%] lg:w-[90%] rounded-3xl relative z-10 shadow-xl"
               />
             </div>
@@ -608,13 +671,13 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-center items-center  gap-10 lg:gap-28 lg:my-12 lg:mx-4 p-12 md:p-18 pb-[90px]">
             {/* Left Text Section */}
             <div className="flex flex-col max-w-xl text-center md:text-left">
-              <p className="text-2xl md:text-4xl font-bold leading-snug px-2 lg:px-8">
+              <h2 className="text-2xl md:text-4xl font-bold leading-snug px-2 lg:px-8">
                 Hear What{" "}
                 <span className="text-brand-blue font-normal italic">
                   Our Mentor
                 </span>{" "}
                 Has To Say About This Course
-              </p>
+              </h2>
 
               {/* Buttons */}
               <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 lg:gap-6 mt-8 px-2 lg:px-8">
@@ -643,9 +706,9 @@ export default function Home() {
             <div className="md:max-w-lg text-center md:text-left px-4 md:px-0">
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                 At Global Professional Certifications (GPC), we are dedicated to
-                empowering professionals worldwide by providing top-tier
+                empowering professionals worldwide by providing top-tier CIA, CISA, CRMA and IAP
                 certification programs that unlock career growth, enhance
-                expertise, and elevate industry standards
+                expertise, and elevate industry standards.
               </p>
             </div>
           </div>
@@ -659,57 +722,15 @@ export default function Home() {
           <div className="h-[180px] md:h-[350px] mt-4 md:mt-32 lg:mt-32 bg-brand-blue w-full"></div>
         </div>
 
-        {/* Accreditation */}
-        <div className="py-20 px-6 mx-12 my-4 md:my-10 md:px-16">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
-            {/* Left Content */}
-            <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
-              <p className="text-2xl md:text-4xl font-bold leading-snug">
-                <span className="text-brand-blue font-normal italic">
-                  IIA India
-                </span>{" "}
-                Authorized Training Partner
-              </p>
-              <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                Mr. Mukundan K.V, CEO of IIA India, presents the official
-                accreditation certificate to Arpit Garg, GPC mentor marking
-                Global Professional Certifications as an
-                <span className="font-semibold">
-                  {" "}
-                  IIA India Authorized Learning Partner
-                </span>
-              </p>
-              <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
-                <a
-                  href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-                >
-                  Watch Video
-                </a>
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="flex justify-center md:justify-end w-80 md:w-full lg:w-1/2">
-              <img
-                src={learningPartner}
-                alt="IIA India Certification Ceremony"
-                className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
-              />
-            </div>
-          </div>
-        </div>
 
         {/* How it works? */}
 
-        <div className="w-full mb-8">
+        <div className="w-full mb-8 mt-20">
           <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-            <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">
+            <h2 className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">
               How It{" "}
               <span className="text-brand-blue font-normal italic">Works?</span>
-            </p>
+            </h2>
             <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6">
               Your Success Path, Simplified
               <br />
@@ -738,13 +759,13 @@ export default function Home() {
         {/* People Image Display */}
         <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
           <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-            <p className="text-2xl md:text-4xl text-center font-bold">
+            <h2 className="text-2xl md:text-4xl text-center font-bold">
               What Our{" "}
               <span className="text-brand-blue font-normal italic">
                 Learners{" "}
               </span>
               Say
-            </p>
+            </h2>
             <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
               Discover how Global Professional Certifications' expert-led
               programs empower professionals to achieve global certification and
@@ -820,7 +841,7 @@ export default function Home() {
         <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
           <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
             <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
-              Learning Resources &amp; <span className="text-brand-blue font-normal italic">Blogs</span>
+              <h2> Learning Resources &amp; <span className="text-brand-blue font-normal italic">Blogs</span></h2>
             </Link>
             <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
               Explore expert insights and latest trends in audit, risk, and
@@ -861,7 +882,7 @@ export default function Home() {
 
                 <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
                   <div>
-                    <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue group-hover:underline">
+                    <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue">
                       {blog.title}
                     </h3>
                     <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
@@ -891,6 +912,9 @@ export default function Home() {
             </NavLink>
           </div>
         </div>
+
+        {/* YouTube Videos Section
+        <YouTubeCarousel /> */}
 
         {/* FAQ Section */}
 
@@ -922,9 +946,9 @@ export default function Home() {
             <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-8 lg:gap-12">
               {/* Text Content */}
               <div className="text-center md:text-left mb-6 md:mb-0">
-                <p className="text-white text-lg md:text-2xl lg:text-4xl font-bold">
+                <h3 className="text-white text-lg md:text-2xl lg:text-4xl font-bold">
                   Ready to advance your career?
-                </p>
+                </h3>
                 <p className="text-gray-200 text-xs md:text-sm lg:text-base mt-2">
                   Enroll now and become part of a global network of successful
                   professionals

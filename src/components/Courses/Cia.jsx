@@ -1,23 +1,19 @@
 ﻿import React, { useEffect, useState } from 'react';
-import heroGirl from '../../assets/hero-girl.webp';
 import { Link, NavLink } from 'react-router-dom';
 import examOne from "../../assets/exam-1.webp";
 import examTwo from "../../assets/exam-2.webp";
 import examThree from "../../assets/exam-3.webp";
 import examFour from "../../assets/exam-4.webp";
 import Card from '../Card/Card';
-import { SiGoogleclassroom } from "react-icons/si";
-import { IoBookOutline } from "react-icons/io5";
-import { CgNotes } from "react-icons/cg";
 import { FaArrowRightLong } from "react-icons/fa6";
-import ciaHero from "../../assets/cia-hero.jpg";
+import ciaHero from "../../assets/cia/cia-hero.webp";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faQuoteLeft, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import brochureCover from "../../assets/brochure-cover.png";
-import testimonialCover from "../../assets/testimonial-cover.png";
+import brochureCover from "../../assets/home/cia-brochure.webp";
+import testimonialCover from "../../assets/home/testimonial-cover.webp";
 import pinkyTestimonial from "../../assets/pinky-photo.jpg";
 import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
 import starwinTestimonial from "../../assets/testimonial-2.png";
@@ -27,6 +23,7 @@ import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
 import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
+import learningPartner from "../../assets/Learning_partner.jpg";
 
 
 
@@ -72,12 +69,6 @@ const testimonials = [
 
 const Cia = () => {
     const [latestBlogs, setLatestBlogs] = useState([]);
-
-    useEffect(() => {
-        // Preload the hero image when the component mounts
-        const img = new Image();
-        img.src = heroGirl;
-    }, []);
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -373,7 +364,6 @@ const Cia = () => {
                     </div>
                 </div>
 
-
                 {/* Exam Structure */}
 
                 <div className="max-w-6xl mx-auto py-16 px-4">
@@ -489,7 +479,6 @@ const Cia = () => {
                     </div>
                 </div>
 
-
                 {/* Exam Logistics */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4">
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-12 text-gray-800">
@@ -550,6 +539,48 @@ const Cia = () => {
                     </div>
                 </div>
 
+                {/* Accreditation */}
+                <div className="py-20 md:py-16 px-6 mx-12 my-4 md:px-16">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
+                        {/* Left Content */}
+                        <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
+                            <h2 className="text-2xl md:text-4xl font-bold leading-snug">
+                                <span className="text-brand-blue font-normal italic">
+                                    IIA India
+                                </span>{" "}
+                                Authorized Training Partner
+                            </h2>
+                            <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
+                                Mr. Mukundan K.V, CEO of IIA India, presents the official
+                                accreditation certificate to Arpit Garg, GPC mentor marking
+                                Global Professional Certifications as an
+                                <span className="font-semibold">
+                                    {" "}
+                                    IIA India Authorized Learning Partner
+                                </span>
+                            </p>
+                            <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
+                                <a
+                                    href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+                                >
+                                    Watch Video
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Right Image */}
+                        <div className="flex justify-center md:justify-end w-80 md:w-full lg:w-1/2">
+                            <img
+                                src={learningPartner}
+                                alt="IIA India Certification Ceremony"
+                                className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 {/* Fees and Membership Benefits */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
