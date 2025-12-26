@@ -8,12 +8,12 @@ const DescriptiveBullets = ({
     imageAlt,
 }) => {
     return (
-        <section className="px-6 md:px-12 lg:px-20 py-12 ">
+        <section className="px-6 md:px-12 lg:px-20 py-16 ">
             <div className="container mx-auto">
-                <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12">
+                <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
 
                     {/* Image */}
-                    <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
+                    <div className="w-full md:w-[45%] flex justify-center lg:justify-start">
                         <img
                             src={image}
                             alt={imageAlt}
@@ -22,7 +22,7 @@ const DescriptiveBullets = ({
                     </div>
 
                     {/* Text */}
-                    <div className="w-full lg:w-1/2 text-left flex flex-col gap-6">
+                    <div className="w-full md:w-[55%] text-left flex flex-col gap-6">
                         <h2 className="text-2xl md:text-4xl font-bold leading-tight">
                             {titleStart}{" "}
                             <span className="text-brand-blue font-normal italic">
@@ -36,7 +36,7 @@ const DescriptiveBullets = ({
                         </p>
 
                         {/* Bullet Points */}
-                        <ul className="list-disc list-inside text-gray-800 text-xs md:text-base font-poppins leading-relaxed space-y-3">
+                        <ul className="list-disc list-inside text-gray-800 text-xs md:text-base font-poppins leading-relaxed space-y-">
                             {points.map((point, index) => (
                                 <li key={index}>
 
