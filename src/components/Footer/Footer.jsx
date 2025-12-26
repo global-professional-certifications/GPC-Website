@@ -153,7 +153,7 @@ export default function Footer() {
 
                 {/* COPYRIGHT */}
                 <p className="text-sm text-center text-gray-400">
-                    ┬⌐ {new Date().getFullYear()} Global Professional Certifications. All Rights Reserved.
+                    © {new Date().getFullYear()} Global Professional Certifications. All Rights Reserved.
                 </p>
             </div>
         </footer>

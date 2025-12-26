@@ -6,6 +6,7 @@ import examThree from "../../assets/exam-3.webp";
 import examFour from "../../assets/exam-4.webp";
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
+import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
 import ciaHero from "../../assets/cia/cia-hero.webp";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
@@ -26,11 +27,13 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
+import ProcessFlow from "../DescriptiveSection/ProcessFLow";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import ciaCertification from "../../assets/cia/cia-certification.webp";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import faqImage from "../../assets/our-mission-1.webp";
 import FAQDisplay from "../FAQDisplay.jsx";
+import ciaCareer from "../../assets/cia/career-option.webp";
 
 
 
@@ -491,6 +494,77 @@ const Cia = () => {
                     </div>
                 </div>
 
+                {/* Career Options */}
+
+                <DescriptiveBullets
+                    titleStart="Career Options after"
+                    highlight="CIA Certification"
+                    titleEnd="Completion"
+                    image={ciaCareer}
+                    imageAlt="Why CIA Certification?"
+                    description="You can become eligible for multiple job roles after successful CIA certificate completion. Typical career opportunities after CIA course completion are the following: "
+                    points={[
+                        {
+                            title: "Senior Internal Auditor:",
+                            text:
+                                "~₹12–20 LPA (industry average mid-level with certification impact)",
+                        },
+                        {
+                            title: "Risk Manager:",
+                            text:
+                                "~₹10–18 LPA (career progression role after internal audit)",
+                        },
+                        {
+                            title: "Chief Audit Executive:",
+                            text:
+                                "~₹35 LPA+ (senior leadership role)",
+                        },
+                        {
+                            title: "Internal Auditor:",
+                            text:
+                                "~₹8–15 LPA (mid-level with CIA) ",
+                        },
+                        {
+                            title: "Internal Audit Manager / Head of Internal Audit:",
+                            text:
+                                "~₹15–30 LPA+ (senior manager roles)",
+                        },
+                    ]}
+                />
+
+                {/* Flowchart */}
+                <ProcessFlow
+                    titleStart="Process of"
+                    highlight="Becoming Certified"
+                    titleEnd="CIA"
+                    steps={[
+                        {
+                            title: "Apply for the Program",
+                            icon: FaFileAlt,
+                            description:
+                                "Choose and apply for one of the top CIA certification courses in India.",
+                        },
+                        {
+                            title: "Get Trained with Expert Faculty",
+                            icon: FaChalkboardTeacher,
+                            description:
+                                "Get quality training from industry experts by gathering practical knowledge in online classes.",
+                        },
+                        {
+                            title: "Diligent Practice",
+                            icon: FaClipboardCheck,
+                            description:
+                                "Practice with mock tests, MCQs and USA Gleim content provided by our CIA exam preparation program in India.",
+                        },
+                        {
+                            title: "Get Certified",
+                            icon: FaCertificate,
+                            description:
+                                "Pass all three parts of CIA successfully to get globally recognized CIA certification.",
+                        },
+                    ]}
+                />
+
                 {/* Exam Structure */}
 
                 <div className="max-w-6xl mx-auto py-16 px-4">
@@ -759,7 +833,6 @@ const Cia = () => {
                 </div>
 
 
-
                 {/* Fees and Membership Benefits */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
                     <h3 className="text-center text-2xl md:text-4xl font-bold mb-12">
@@ -770,11 +843,11 @@ const Cia = () => {
                     <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-gray-50 border-b border-gray-200">
-                                    <th className="px-8 py-6 text-gray-500 font-semibold uppercase tracking-wider text-sm">Exam / Fee Type</th>
-                                    <th className="px-8 py-6 text-gray-800 font-bold text-center">IIA Members</th>
-                                    <th className="px-8 py-6 text-gray-800 font-bold text-center">Non-Members</th>
-                                    <th className="px-8 py-6 text-brand-blue font-bold text-center bg-blue-50">Savings</th>
+                                <tr className="bg-brand-blue border-b border-gray-200">
+                                    <th className="px-8 py-6 text-gray-200 font-bold">Exam / Fee Type</th>
+                                    <th className="px-8 py-6 text-gray-200 font-bold text-center">IIA Members</th>
+                                    <th className="px-8 py-6 text-gray-200 font-bold text-center">Non-Members</th>
+                                    <th className="px-8 py-6 font-bold text-gray-200 text-center">Savings</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
