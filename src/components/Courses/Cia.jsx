@@ -22,7 +22,7 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-import ProcessFlow from "../DescriptiveSection/ProcessFlow.jsx";
+import ProcessFlow from "../DescriptiveSection/ProcessFlow";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import ciaCertification from "../../assets/cia/cia-certification.webp";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
