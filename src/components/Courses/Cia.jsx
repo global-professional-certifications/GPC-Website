@@ -6,7 +6,7 @@ import examThree from "../../assets/exam-3.webp";
 import examFour from "../../assets/exam-4.webp";
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
-import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
+import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
 import ciaHero from "../../assets/cia/cia-hero.webp";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
@@ -21,21 +21,22 @@ import starwinTestimonial from "../../assets/testimonial-2.png";
 import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
 import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
+
 import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
+
 import learningPartner from "../../assets/Learning_partner.jpg";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-import ProcessFlow from "../DescriptiveSection/ProcessFLow";
+import ProcessFlow from "../DescriptiveSection/ProcessFlow";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import ciaCertification from "../../assets/cia/cia-certification.webp";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import faqImage from "../../assets/our-mission-1.webp";
 import FAQDisplay from "../FAQDisplay.jsx";
 import ciaCareer from "../../assets/cia/career-option.webp";
-
-
+import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 
 const courseFaqs = [
     {
@@ -65,45 +66,6 @@ const courseFaqs = [
         question: "Can you prepare for CIA certification while working?  ",
         answer:
             "Yes, you can work as a full-timer and prepare for CIA certifications. CIA courses are designed for professionals, and many individuals can participate in them while working.",
-    },
-];
-
-const testimonials = [
-    {
-        quote: "Highly recommend Arpit Garg's CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
-        name: "Pinky Agarwal",
-        title: "Head Internal Audit, Emami Limited",
-        image: pinkyTestimonial,
-    },
-    {
-        quote: "Arpit Garg's CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
-        name: "Akshdeep Singh",
-        title: "Manager, KPMG",
-        image: akshdeepTestimonial,
-    },
-    {
-        quote: "Attending Arpit Garg's CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
-        name: "Starwin PJ",
-        title: "AVP, Wells Fargo",
-        image: starwinTestimonial,
-    },
-    {
-        quote: "Arpit Garg's CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
-        name: "Wajiha Ansari",
-        title: "Auditor, Grant Thornton Bahrain",
-        image: wajihaTestimonial,
-    },
-    {
-        quote: "I owe my CIA Challenge Exam success to Arpit Garg's exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship highly recommended!",
-        name: "Ramakrishna Mude",
-        title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
-        image: ramakrishnaTestimonial,
-    },
-    {
-        quote: "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg's mentorship, strategy, and insights his guidance made it possible!",
-        name: "Unmesh Upadhye",
-        title: "Assistant Vice President, State Bank of India",
-        image: unmeshTestimonial,
     },
 ];
 
@@ -538,6 +500,7 @@ const Cia = () => {
                     titleStart="Process of"
                     highlight="Becoming Certified"
                     titleEnd="CIA"
+                    subHeading=""
                     steps={[
                         {
                             title: "Apply for the Program",
@@ -826,7 +789,34 @@ const Cia = () => {
 
                 {/* Why GPC? */}
 
-                <WhyGPC />
+                <WhyGPC
+                    subHeading="Global Professional Certifications is one of the best CIA training providers in India for the following reasons:"
+                    items={[
+                        {
+                            icon: <FaGlobe className="text-white text-2xl" />,
+                            title: "Globally Acknowledged",
+                            description:
+                                "CIA certifications of Global Professional Certifications are IIA registered which gives global recognition to the candidates creating higher earning potential.",
+                        },
+                        {
+                            icon: <FaUserCheck className="text-white text-2xl" />,
+                            title: "One-on-one Support",
+                            description:
+                                "Complete support for your certification journey to ensure candidate success at each step.",
+                        },
+                        {
+                            icon: <FaChalkboardTeacher className="text-white text-2xl" />,
+                            title: "Industry-expert Mentors",
+                            description:
+                                "Experienced CIA training provider in India who gives industry relevant practical insights necessary for modern professionals.",
+                        },
+                        {
+                            icon: <FaClock className="text-white text-2xl" />,
+                            title: "Attending Flexibility",
+                            description:
+                                "Flexibility to join weekend online classes with 100% recording sessions for learning the important concepts at your pace.",
+                        },
+                    ]} />
 
 
                 {/* Fees and Membership Benefits */}
@@ -1157,71 +1147,8 @@ const Cia = () => {
                     </div>
                 </div>
 
-                {/* People Image Display */}
-                <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
-                    <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-                        <h2 className="text-2xl md:text-4xl text-center font-bold">
-                            What Our{" "}
-                            <span className="text-brand-blue font-normal italic">
-                                Learners{" "}
-                            </span>
-                            Say
-                        </h2>
-                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
-                            Discover how Global Professional Certifications' expert-led
-                            programs empower professionals to achieve global certification and
-                            career growth
-                        </p>
-                    </div>
-                    <img
-                        src={testimonialCover}
-                        alt="Testimonial Cover"
-                        className="scale-100 md:scale-90"
-                    />
-                </div>
-
-                {/* Feedback Cards */}
-                <div className="py-8 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
-                    {/* Top Quote Icon */}
-                    <FontAwesomeIcon
-                        icon={faQuoteLeft}
-                        className="hidden md:block lg:block mb-8 text-3xl text-black md:text-5xl"
-                    />
-
-                    {/* Testimonials Container */}
-                    <div className="overflow-x-auto">
-                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
-                            {testimonials.map((testimonial, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-                                >
-                                    <div className="flex-1 flex items-start">
-                                        <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
-                                            "{testimonial.quote}"
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center justify-start gap-4 pt-6 mt-6 border-t border-gray-200">
-                                        <img
-                                            src={testimonial.image}
-                                            alt={testimonial.name}
-                                            className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue aspect-square"
-                                        />
-
-                                        <div>
-                                            <p className="font-medium font-poppins  text-gray-900 text-xs md:text-sm lg:text-sm">
-                                                {testimonial.name}
-                                            </p>
-                                            <p className="text-xs md:text-sm lg:text-sm font-poppins text-gray-600">
-                                                {testimonial.title}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                {/* Testimonials Section */}
+                <TestimonialsShowcase />
 
                 {/* Blog Section */}
                 <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
@@ -1302,7 +1229,7 @@ const Cia = () => {
 
                 {/* FAQ Section */}
 
-                <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
+                <div className="mt-32 px-8 pb-16 lg:px-20">
                     <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
                         {/* Image Section */}
                         <div className="w-full lg:w-2/5 flex justify-center items-center relative">
