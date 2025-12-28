@@ -7,7 +7,7 @@ import MetaTags from '../MetaTags';
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-import ProcessFlow from "../DescriptiveSection/ProcessFlow";
+import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
@@ -391,7 +391,7 @@ const Cisa = () => {
           ]} />
 
         {/* Flowchart */}
-        <ProcessFlow
+        <DescriptiveFlowchart
           titleStart="Process of"
           highlight="Becoming Certified"
           titleEnd="CISA"

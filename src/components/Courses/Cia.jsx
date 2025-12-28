@@ -22,14 +22,14 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-import ProcessFlow from "../DescriptiveSection/ProcessFlow";
+import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import ciaCertification from "../../assets/cia/cia-certification.webp";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import faqImage from "../../assets/our-mission-1.webp";
-import FAQDisplay from "../FAQDisplay.jsx";
+import FAQDisplay from "../FAQDisplay";
 import ciaCareer from "../../assets/cia/career-option.webp";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
+import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 
 const courseFaqs = [
     {
@@ -489,7 +489,7 @@ const Cia = () => {
                 />
 
                 {/* Flowchart */}
-                <ProcessFlow
+                <DescriptiveFlowchart
                     titleStart="Process of"
                     highlight="Becoming Certified"
                     titleEnd="CIA"
