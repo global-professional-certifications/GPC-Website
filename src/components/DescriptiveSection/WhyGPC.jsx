@@ -7,7 +7,7 @@ const WhyGPC = () => {
 
         {/* Heading */}
         <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
-          Why <span className="text-brand-blue italic font-normal">Global Professional Certifications?</span>
+          Why <span className="text-brand-blue italic font-normal"><a href="/">Global Professional Certifications?</a></span>
         </h2>
 
         <p className="mt-4 text-gray-600 text-xs md:text-base max-w-3xl mx-auto font-poppins">
@@ -57,7 +57,7 @@ const WhyGPC = () => {
           </div>
 
           {/* Item 4 */}
-          <div className="flex flex-col justify-start items-center gap-3 border-2 border-brand-blue p-4 rounded-lg bg-gray-100">
+          <div className="flex flex-col justify-start items-center gap-3 border-2 border-brand-blue p-4 rounded-lg">
             <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-brand-blue shadow-sm">
               <FaClock className="text-white text-2xl" />
             </div>

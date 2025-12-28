@@ -307,9 +307,9 @@ const FAQ = () => {
                 <h2 className="text-base sm:text-lg md:text-xl mt-16 mb-4 p-2 text-white font-semibold border border-white rounded text-center">
                     Frequently Asked Questions
                 </h2>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl mb-4 font-bold text-white text-center">
+                <p className="text-2xl sm:text-3xl md:text-5xl mb-4 font-bold text-white text-center">
                     Have Questions? <span className="text-orange-500">Check Here</span>
-                </h1>
+                </p>
                 <p className="text-sm sm:text-base md:text-lg text-white max-w-full sm:max-w-xl text-center">
                     Find answers to common queries about Global Professional Certification, our Courses, Success Stories and more.
                 </p>

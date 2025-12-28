@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
 import cisaHero from "../../assets/cisa-hero.jpg";
-
+import MetaTags from '../MetaTags';
+import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
+import internalAudit from "../../assets/cia/internal-audit.webp";
 
 
 const Cisa = () => {
@@ -25,16 +27,12 @@ const Cisa = () => {
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
+      <MetaTags
+        title="Best CISA Certification in India | Global Professional Certifications"
+        description="Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
+        canonicalUrl="https://globalprofessionalcertifications.com/courses/cisa"
+      />
       <Helmet>
-        <title>CISA Certification - Global Professional Certifications</title>
-        <meta
-          name="description"
-          content="Become a certified expert in IT auditing and risk management with our globally recognized CISA certification course."
-        />
-        <link
-          rel="canonical"
-          href="https://globalprofessionalcertifications.com/courses/cisa"
-        />
         <script type="application/ld+json">
           {JSON.stringify(cisaSchema)}
         </script>
@@ -47,9 +45,16 @@ const Cisa = () => {
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
-                Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit</span> Expert with CISA
+                Become a Globally Recognized{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit Expert{" "}</span>with CISA Certification
               </h1>
-              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">Pass the CISA certification with ISACA aligned training. Master<span className='font-bold text-orange-400'> IT auditing, risk assessment, and cybersecurity with recorded classes, MCQs, and mentorship</span> from India's top CISA faculty—Arpit Garg.</h2>
+              <p className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
+                <ul className='list-disc pl-3'>
+                  <li>ISACA aligned CISA certification training program </li>
+                  <li>Recorded classes, MCQs and experienced mentorship </li>
+                  <li>Master IT auditing, cybersecurity and risk assessment </li>
+                  <li>Get guidance from India’s top CISA faculty – Arpit Garg </li>
+                </ul>
+              </p>
             </div>
 
             <div className="mt-6">
@@ -73,24 +78,18 @@ const Cisa = () => {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        {/* About Section */}
-        <section className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h3 className="text-2xl md:text-5xl font-semibold text-brand-blue mb-4 md:mb-8">
-            About the CISA Course
-          </h3>
-          <p className="text-gray-700 text-md md:text-xl mb-4">
-            Become a certified expert in information systems auditing with our CISA course. This comprehensive program prepares you for the CISA certification exam, covering IT audit, control, and assurance.
-          </p>
-          <p className="text-gray-700 text-md md:text-xl mb-4">
-            Gain expertise in assessing and evaluating IT systems, identifying risks, and ensuring compliance with industry standards.
-          </p>
-          <div className="bg-blue-50 border-l-4 border-brand-blue p-2 md:p-4 rounded">
-            <p className="text-gray-800 text-md md:text-xl">
-              Upon completion, participants will be equipped to excel in IT auditing roles, ensuring robust system security and compliance.
-            </p>
-          </div>
-        </section>
+      <main className="py-12 bg-gray-50">
+
+        {/* What is Internal Auditing? */}
+
+        <DescriptiveLeft
+          titleStart="What is "
+          highlight="Certified Information Systems Auditor (CISA)?"
+          titleEnd=""
+          description="Certified Information Systems Auditor or CISA is a globally recognized auditing program by ISACA. Individuals are able to excel in auditing, assessing, monitoring and controlling the information technology systems and business systems of an organization with this certification knowledge. Candidates need to pass five key domains to successfully complete the CISA certification program. It is necessary to prepare properly and have thorough guidance for successful completion. Many aspiring auditors have been able to become successful during their certification completion journey with the help of top CISA learning programs in India. These programs provide professional guidance that increases their chance of becoming successful. "
+          image={internalAudit}
+          imageAlt="Internal Auditing?"
+        />
 
         {/* Course Highlights Section */}
         <section className="bg-white rounded-lg shadow-lg p-8 mb-8">

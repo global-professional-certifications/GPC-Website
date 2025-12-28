@@ -9,20 +9,20 @@ const DescriptiveLeft = ({
     buttonLink,
 }) => {
     return (
-        <section className="px-6 md:px-12 lg:px-20 py-12 bg-brand-blue">
+        <section className="px-6 md:px-12 lg:px-20 py-12 bg-gray-50">
             <div className="container mx-auto">
                 <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-8 lg:gap-12">
                     {/* Text */}
                     <div className="w-full lg:w-1/2 text-left flex flex-col gap-6">
-                        <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
+                        <h2 className="text-2xl md:text-4xl font-bold leading-tight">
                             {titleStart}{" "}
-                            <span className="text-orange-300 font-normal italic">
+                            <span className="text-brand-blue font-normal italic">
                                 {highlight}
                             </span>
                             {titleEnd}
                         </h2>
 
-                        <p className="text-gray-300 text-xs md:text-base font-poppins leading-relaxed">
+                        <p className="text-gray-800 text-xs md:text-base font-poppins leading-relaxed">
                             {description}
                         </p>
 

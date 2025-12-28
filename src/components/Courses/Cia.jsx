@@ -246,36 +246,6 @@ const Cia = () => {
 
             <div className="bg-gray-50 pt-6 md:pt-16 pb-16">
 
-                <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-24">
-                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
-                    <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
-                </div>
-
-
-                <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-24">
-                    <Card
-                        title="CIA All 3 Parts with Gleim Content"
-                        image={examOne}
-                        text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                        price={58999}
-                        enrollLink="https://rzp.io/rzp/CIASessions"
-                        imageStyle={"pt-4"} />
-                    <Card
-                        title="CIA Part 1 with Gleim Content"
-                        image={examTwo}
-                        text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                        imageStyle={"pt-12"} />
-                    <Card
-                        title="CIA Part 2 with Gleim Content"
-                        image={examThree}
-                        text={"Strengthen your skills in risk management, governance, and control processes"} />
-                    <Card
-                        title="CIA Part 3 with Gleim Content"
-                        image={examFour}
-                        text={"Gain expertise in business acumen, financial management, and data analytics"}
-                        imageStyle={"pt-8"} />
-                </div>
-
                 {/* What is Internal Auditing? */}
 
                 <DescriptiveLeft
@@ -315,9 +285,40 @@ const Cia = () => {
                     ]}
                 />
 
-                {/* Why GPC? */}
+                {/* Course Cards */}
 
-                <WhyGPC />
+                <div className='container mx-auto'>
+                    <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-12">
+                        <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
+                        <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
+                    </div>
+
+
+                    <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-12">
+                        <Card
+                            title="CIA All 3 Parts with Gleim Content"
+                            image={examOne}
+                            text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
+                            price={58999}
+                            enrollLink="https://rzp.io/rzp/CIASessions"
+                            imageStyle={"pt-4"} />
+                        <Card
+                            title="CIA Part 1 with Gleim Content"
+                            image={examTwo}
+                            text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
+                            imageStyle={"pt-12"} />
+                        <Card
+                            title="CIA Part 2 with Gleim Content"
+                            image={examThree}
+                            text={"Strengthen your skills in risk management, governance, and control processes"} />
+                        <Card
+                            title="CIA Part 3 with Gleim Content"
+                            image={examFour}
+                            text={"Gain expertise in business acumen, financial management, and data analytics"}
+                            imageStyle={"pt-8"} />
+                    </div>
+                </div>
+
 
                 {/* Download Brochure CTA */}
                 <div className="mt-20 md:mt-12 px-6 md:px-16 lg:px-12 py-8">
@@ -682,92 +683,83 @@ const Cia = () => {
 
                 {/* CIA Course Eligibility */}
 
-                <div className="py-24 md:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-poppins">
+                <div className="py-16 px-4 sm:px-6 lg:px-8 font-poppins">
                     <div className="max-w-6xl mx-auto">
-                        <div className="text-center mb-20">
-                            <h3 className="text-2xl md:text-4xl font-bold mb-6">
+                        <div className="text-center mb-12">
+                            <h2 className="text-2xl md:text-4xl font-bold mb-6">
                                 CIA Course <span className="text-brand-blue font-normal italic">Eligibility</span>
-                            </h3>
-                            <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-inter">
-                                The Institute of Internal Auditors (IIA) offers multiple pathways for candidates to become a Certified Internal Auditor based on their current qualifications
-                            </p>
+                            </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-                            {[
-                                {
-                                    id: "01",
-                                    category: "Bachelor’s Degree Holder",
-                                    education: "Completed bachelor’s degree from an accredited institution.",
-                                    experience: "2 years of internal audit or related professional experience.",
-                                    notes: "Standard pathway for most audit professionals.",
-                                },
-                                {
-                                    id: "02",
-                                    category: "Master’s Degree Holder",
-                                    education: "Completed master’s degree from an accredited institution.",
-                                    experience: "1 year of internal audit or related professional experience.",
-                                    notes: "Accelerated experience requirement for higher degrees.",
-                                },
-                                {
-                                    id: "03",
-                                    category: "Professional Cert. Holder",
-                                    education: "Active CA, CPA, or other recognized professional certification.",
-                                    experience: "Experience requirements may be waived or reduced per IIA rules.",
-                                    notes: "Direct entry pathway for qualified professionals.",
-                                },
-                                {
-                                    id: "04",
-                                    category: "Information Systems Auditor",
-                                    education: "Holding an active CISA certification in good standing.",
-                                    experience: "Experience requirement as per standard IIA definitions.",
-                                    notes: "Ideal for IT audit and security specialists.",
-                                },
-                                {
-                                    id: "05",
-                                    category: "Student / No Degree",
-                                    education: "Currently enrolled students or candidates without a degree.",
-                                    experience: "Must clear the Internal Auditor Practitioner (IAP) exam first.",
-                                    notes: "Start your CIA journey early while completing studies.",
-                                }
-                            ].map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`relative flex flex-col gap-6 group ${idx === 4 ? 'md:col-span-2 md:max-w-2xl' : ''}`}
-                                >
-                                    <div className="flex items-center gap-6">
-                                        <span className="text-4xl md:text-6xl font-black text-slate-100 group-hover:text-brand-blue/10 transition-colors duration-500">
-                                            {item.id}
-                                        </span>
-                                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors duration-300">
-                                            {item.category}
-                                        </h4>
-                                    </div>
-
-                                    <div className="pl-0 md:pl-20 space-y-8">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-l-2 border-slate-50 pl-8 group-hover:border-brand-blue/30 transition-colors">
-                                            <div className="space-y-2">
-                                                <h5 className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.2em]">Education</h5>
-                                                <p className="text-sm text-gray-600 font-inter leading-relaxed">
-                                                    {item.education}
-                                                </p>
-                                            </div>
-                                            <div className="space-y-2">
-                                                <h5 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Experience</h5>
-                                                <p className="text-sm text-gray-600 font-inter leading-relaxed font-semibold">
-                                                    {item.experience}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="pl-8 flex items-center gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-brand-blue/40"></div>
-                                            <p className="text-xs text-slate-400 italic font-inter font-medium leading-relaxed">
-                                                {item.notes}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                        {/* Eligibility Table */}
+                        <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                            <table className="w-full text-left border-collapse min-w-[800px]">
+                                <thead>
+                                    <tr className="bg-brand-blue border-b border-gray-200">
+                                        <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                                            <h3 className="m-0 text-inherit font-inherit">Candidate Category</h3>
+                                        </th>
+                                        <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                                            <h3 className="m-0 text-inherit font-inherit">Education Requirement</h3>
+                                        </th>
+                                        <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                                            <h3 className="m-0 text-inherit font-inherit">Experience Needed</h3>
+                                        </th>
+                                        <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                                            <h3 className="m-0 text-inherit font-inherit">Key Notes</h3>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {[
+                                        {
+                                            category: "Bachelor’s Degree Holder",
+                                            education: "Completed bachelor’s degree from an accredited institution.",
+                                            experience: "2 years of internal audit or related professional experience.",
+                                            notes: "Standard pathway for most audit professionals.",
+                                        },
+                                        {
+                                            category: "Master’s Degree Holder",
+                                            education: "Completed master’s degree from an accredited institution.",
+                                            experience: "1 year of internal audit or related professional experience.",
+                                            notes: "Accelerated experience requirement for higher degrees.",
+                                        },
+                                        {
+                                            category: "Professional Cert. Holder",
+                                            education: "Active CA, CPA, or other recognized professional certification.",
+                                            experience: "Experience requirements may be waived or reduced per IIA rules.",
+                                            notes: "Direct entry pathway for qualified professionals.",
+                                        },
+                                        {
+                                            category: "Information Systems Auditor",
+                                            education: "Holding an active CISA certification in good standing.",
+                                            experience: "Experience requirement as per standard IIA definitions.",
+                                            notes: "Ideal for IT audit and security specialists.",
+                                        },
+                                        {
+                                            category: "Student / No Degree",
+                                            education: "Currently enrolled students or candidates without a degree.",
+                                            experience: "Must clear the Internal Auditor Practitioner (IAP) exam first.",
+                                            notes: "Start your CIA journey early while completing studies.",
+                                        }
+                                    ].map((item, idx) => (
+                                        <tr key={idx} className="hover:bg-blue-50/30 transition-colors">
+                                            <td className="px-6 py-5 text-sm font-bold text-gray-900">
+                                                <p className="m-0">{item.category}</p>
+                                            </td>
+                                            <td className="px-6 py-5 text-sm text-gray-600 leading-relaxed font-inter">
+                                                <p className="m-0">{item.education}</p>
+                                            </td>
+                                            <td className="px-6 py-5 text-sm font-semibold text-brand-blue leading-relaxed font-inter">
+                                                <p className="m-0">{item.experience}</p>
+                                            </td>
+                                            <td className="px-6 py-5 text-xs text-slate-400 italic font-medium font-inter">
+                                                <p className="m-0">{item.notes}</p>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -832,12 +824,16 @@ const Cia = () => {
                     </div>
                 </div>
 
+                {/* Why GPC? */}
+
+                <WhyGPC />
+
 
                 {/* Fees and Membership Benefits */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
-                    <h3 className="text-center text-2xl md:text-4xl font-bold mb-12">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
                         Fees and Membership<span className="text-brand-blue font-normal italic"> Benefits</span>
-                    </h3>
+                    </h2>
 
                     {/* Desktop Comparison Table */}
                     <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white">
