@@ -12,9 +12,9 @@ const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
 
     return (
         <div className="bg-gray-50 px-2 md:px-0 pl-0 md:pl-20 rounded-2xl">
-            <p className="text-3xl font-bold text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-10">
                 Frequently Asked <span className="text-brand-blue font-normal italic">Questions</span>
-            </p>
+            </h2>
 
             <div className="max-w-4xl mx-auto">
                 {faqs.slice(0, showCount).map((faq, index) => (

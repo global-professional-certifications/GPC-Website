@@ -517,7 +517,7 @@ export default function Home() {
 
         <DescriptiveLeft
           titleStart="Offering a Global Platform for"
-          highlight="Finance Professionals"
+          highlight="GRC Professionals"
           titleEnd=""
           description="Global Professional Certifications provides a global platform for commerce professionals who want to grow in the risk management, audit and advisory domains. We offer globally recognized, expert-led online CIA, CISA, CRMA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
           image={descriptionImage1}

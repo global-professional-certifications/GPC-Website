@@ -1,4 +1,4 @@
-const ProcessFlow = ({ titleStart, highlight, titleEnd, steps }) => {
+const DescriptiveFlowchart = ({ titleStart, highlight, titleEnd, subHeading, steps }) => {
     return (
         <section className="px-6 md:px-12 lg:px-20 py-16 bg-gray-50 relative overflow-hidden">
             <div className="container mx-auto relative z-10">
@@ -11,6 +11,12 @@ const ProcessFlow = ({ titleStart, highlight, titleEnd, steps }) => {
                         </span>
                         {titleEnd}
                     </h2>
+
+                    {subHeading && (
+                        <p className="mt-4 text-gray-600 text-xs md:text-base max-w-3xl mx-auto font-poppins">
+                            {subHeading}
+                        </p>
+                    )}
                 </div>
 
                 {/* Flow Container */}
@@ -56,4 +62,4 @@ const ProcessFlow = ({ titleStart, highlight, titleEnd, steps }) => {
     );
 };
 
-export default ProcessFlow;
+export default DescriptiveFlowchart;
