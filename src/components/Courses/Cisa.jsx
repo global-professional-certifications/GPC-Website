@@ -7,7 +7,7 @@ import MetaTags from '../MetaTags';
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import internalAudit from "../../assets/cia/internal-audit.webp";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-import ProcessFlow from "../DescriptiveSection/ProcessFlow";
+import ProcessFlow from "../DescriptiveSection/ProcessFlow.jsx";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
@@ -19,14 +19,12 @@ import {
   FaChalkboardTeacher, FaPenFancy, FaCertificate,
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faCertificate, faStar, faQuoteLeft, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import faqImage from "../../assets/our-mission-1.webp";
 import FAQDisplay from "../FAQDisplay.jsx";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 import ciaCertification from "../../assets/cia/cia-certification.webp";
-import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
-import cisaLogo from "../../assets/cisa-logo-1.png";
 
 const courseFaqs = [
   {
