@@ -2,15 +2,22 @@
 import { Link, NavLink } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
-import cisaHero from "../../assets/cisa-hero.jpg";
 import MetaTags from '../MetaTags';
+
+import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
+import cisa from "../../assets/courses/cisa/what-is-cisa.webp";
+import applyCisa from "../../assets/courses/cisa/apply-for-cisa.webp";
+import faqImage from "../../assets/faq.webp";
+
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
-import internalAudit from "../../assets/cia/internal-audit.webp";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
 import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
+import FAQDisplay from "../FAQDisplay.jsx";
+import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
+
 import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
@@ -20,11 +27,8 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import faqImage from "../../assets/our-mission-1.webp";
-import FAQDisplay from "../FAQDisplay.jsx";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
-import ciaCertification from "../../assets/cia/cia-certification.webp";
 import { FaArrowRightLong } from "react-icons/fa6";
+
 
 const courseFaqs = [
   {
@@ -153,7 +157,7 @@ const Cisa = () => {
           highlight="Certified Information Systems Auditor (CISA)?"
           titleEnd=""
           description="Certified Information Systems Auditor or CISA is a globally recognized auditing program by ISACA. Individuals are able to excel in auditing, assessing, monitoring and controlling the information technology systems and business systems of an organization with this certification knowledge. Candidates need to pass five key domains to successfully complete the CISA certification program. It is necessary to prepare properly and have thorough guidance for successful completion. Many aspiring auditors have been able to become successful during their certification completion journey with the help of top CISA learning programs in India. These programs provide professional guidance that increases their chance of becoming successful. "
-          image={internalAudit}
+          image={cisa}
           imageAlt="Internal Auditing?"
         />
 
@@ -163,7 +167,7 @@ const Cisa = () => {
           titleStart="Who Should Apply for"
           highlight="CISA"
           titleEnd="Certification?"
-          image={ciaCertification}
+          image={applyCisa}
           imageAlt="Why CIA Certification?"
           description="The List of people who should consider applying for CISA certification classes in India: "
           points={[

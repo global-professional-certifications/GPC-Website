@@ -1,6 +1,6 @@
 const DescriptiveFlowchart = ({ titleStart, highlight, titleEnd, subHeading, steps }) => {
     return (
-        <section className="px-6 md:px-12 lg:px-20 py-16 bg-gray-50 relative overflow-hidden">
+        <section className="px-6 md:px-12 lg:px-20 py-12 bg-gray-50 relative overflow-hidden">
             <div className="container mx-auto relative z-10">
                 {/* Heading */}
                 <div className="text-center mb-16">

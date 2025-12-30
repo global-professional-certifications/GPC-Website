@@ -4,11 +4,11 @@ import MetaTags from "../MetaTags";
 import CoursesSEO from "./CoursesSEO";
 
 // images import
-import coursesPhoto from "../../assets/Courses-photo-1.png";
-import cisaLogo from "../../assets/cisa-logo-1.png";
-import ciaLogo from "../../assets/cia-logo.webp";
-import iapLogo from "../../assets/iap-logo-cropped.webp";
-import crmaLogoOne from "../../assets/crma-logo-1.png";
+import coursesHero from "../../assets/courses/courses-hero.webp";
+import cisaLogo from "../../assets/courses/cisa-logo.webp";
+import ciaLogo from "../../assets/courses/cia-logo.webp";
+import iapLogo from "../../assets/courses/iap-logo.webp";
+import crmaLogo from "../../assets/courses/crma-logo.webp";
 
 
 export default function CoursesOverview() {
@@ -27,7 +27,7 @@ export default function CoursesOverview() {
 
   useEffect(() => {
     const img = new Image();
-    img.src = coursesPhoto;
+    img.src = coursesHero;
   }, []);
 
   return (
@@ -73,8 +73,8 @@ export default function CoursesOverview() {
               <div className="relative lg:max-w-6xl p-2 transform lg:scale-110">
                 <img
                   className="h-[350px] md:h-[450px] rounded-md"
-                  src={coursesPhoto}
-                  alt="homepage hero"
+                  src={coursesHero}
+                  alt="courses hero"
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function CoursesOverview() {
         />
         <Card
           title="Certification in Risk Management Assurance"
-          image={crmaLogoOne}
+          image={crmaLogo}
           text="Advance your risk career with our CRMA course on assurance, governance, and mitigation"
           price={29500}
           linkTo="/courses/crma"
