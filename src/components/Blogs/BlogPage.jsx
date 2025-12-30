@@ -67,7 +67,7 @@ const BlogPage = () => {
         <>
             <div className="relative min-h-screen w-full">
                 <div class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
-                <div className='flex flex-col justify-start mt-36 mx-6 md:mx-52 lg:mx-52 px-4 md:px-24 lg:px-24'>
+                <div className='flex flex-col justify-start mt-36 mx-6 md:mx-24 px-4 md:px-24 lg:px-24'>
 
                     {/* Blog Title */}
                     <h1 className='text-3xl font-bold py-4'>{title}</h1>

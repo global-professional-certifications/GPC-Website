@@ -104,7 +104,7 @@ const Navbar = ({ topOffset = 0 }) => {
                         }
                         onClick={() => setIsCoursesDropdownOpen(false)}
                       >
-                        <img src={course.logo} alt={course.name} className="border border-gray-300 rounded-lg w-16 h-16 object-contain p-2 bg-white" />
+                        <img src={course.logo} alt={course.name} loading="lazy" className="border border-gray-300 rounded-lg w-16 h-16 object-contain p-2 bg-white" />
                         <div>
                           <span className="font-semibold text-gray-900">{course.name}</span>
                           <p className="text-xs text-gray-600">({course.fullname})</p>

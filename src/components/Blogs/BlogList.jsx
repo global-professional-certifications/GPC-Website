@@ -45,7 +45,7 @@ const BlogList = () => {
     return (
         <div className='relative min-h-screen w-full'>
             <div class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
-            <div className="mt-20 pb-20 pt-32 px-6 lg:px-52 mx-auto">
+            <div className="mt-20 pb-20 pt-32 px-6 lg:px-32 mx-auto">
                 <div className="flex flex-col justify-center items-center text-center">
                     <h1 className="md:text-5xl lg:text-5xl text-3xl font-extrabold text-gray-900 mb-6">
                         Blog & Expert Insights

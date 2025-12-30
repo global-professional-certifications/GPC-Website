@@ -410,6 +410,7 @@ export default function Home() {
                 <img
                   src={cia}
                   alt="CIA Course"
+                  loading="lazy"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
@@ -436,6 +437,7 @@ export default function Home() {
                 <img
                   src={cisa}
                   alt="CISA Course"
+                  loading="lazy"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
@@ -462,6 +464,7 @@ export default function Home() {
                 <img
                   src={crma}
                   alt="CRMA Course"
+                  loading="lazy"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
@@ -488,6 +491,7 @@ export default function Home() {
                 <img
                   src={iap}
                   alt="IAP Course"
+                  loading="lazy"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
@@ -544,6 +548,7 @@ export default function Home() {
               <img
                 src={brochureCover}
                 alt="Brochure"
+                loading="lazy"
                 className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
               />
             </div>
@@ -627,6 +632,7 @@ export default function Home() {
               <img
                 src={choose}
                 alt="Why Choose Global Professional Certifications"
+                loading="lazy"
                 className="w-[60%] md:w-[90%] lg:w-[90%] rounded-3xl relative z-10 shadow-xl"
               />
             </div>
@@ -739,15 +745,17 @@ export default function Home() {
             <img
               src={flowchartWeb}
               alt="How it works flowchart"
+              loading="lazy"
               className="w-[90vw] h-auto mx-auto scale-110"
             />
           </div>
           <div className="mx-4 block md:hidden lg:hidden">
             <div className="w-full h-auto mx-auto">
-              <img src={flowchartMobile1} alt="How it works flowchart" />
+              <img src={flowchartMobile1} alt="How it works flowchart" loading="lazy" />
               <img
                 src={flowchartMobile2}
                 alt="How it works flowchart"
+                loading="lazy"
                 className="-translate-y-8"
               />
             </div>
@@ -773,6 +781,7 @@ export default function Home() {
           <img
             src={testimonialCover}
             alt="Testimonial Cover"
+            loading="lazy"
             className="scale-100 md:scale-90"
           />
         </div>
