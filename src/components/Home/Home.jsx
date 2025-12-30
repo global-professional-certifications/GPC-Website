@@ -37,15 +37,15 @@ import {
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 // images import
-import cia from "../../assets/cia-logo.png";
-import cisa from "../../assets/cisa-logo-1.png";
-import crma from "../../assets/crma-logo-1.png";
-import iap from "../../assets/iap-logo.png";
+import cia from "../../assets/courses/cia-logo.webp";
+import cisa from "../../assets/courses/cisa-logo.webp";
+import crma from "../../assets/courses/crma-logo.webp";
+import iap from "../../assets/courses/iap-logo.webp";
 import choose from "../../assets/home/why-choose-global-professional-certifications.webp";
 import flowchartWeb from "../../assets/home/how-it-works.webp";
 import flowchartMobile1 from "../../assets/home/how-it-works-1.webp";
 import flowchartMobile2 from "../../assets/home/how-it-works-2.webp";
-import faqImage from "../../assets/our-mission-1.webp";
+import faqImage from "../../assets/faq.webp";
 import testimonialCover from "../../assets/home/testimonial-cover.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
 import pinkyTestimonial from "../../assets/pinky-photo.jpg";
@@ -54,8 +54,6 @@ import starwinTestimonial from "../../assets/testimonial-2.png";
 import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
 import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
-import annoucement1 from "../../assets/orientation-announcement.png";
-import annoucement2 from "../../assets/batch-announcement.webp";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
 

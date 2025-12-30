@@ -19,11 +19,10 @@ import iiaBengaluruBanner from "../../assets/iia-bengaluru-banner.webp";
 import iiaMumbaiBanner from "../../assets/iia-mumbai-banner.webp";
 import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.webp"
 import agmIiaDelhiChapter from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-events.webp"
-import eventThumbnail from '../../assets/event-thumbnail.png'
 import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages } from "../../../eventImages";
-import heroImage from '../../assets/event-hero-image-1.png'
-import heroImageMobile from '../../assets/event-hero.jpg'
-import faqImage from "../../assets/our-mission-1.webp";
+import heroImage from '../../assets/events/event-hero.webp'
+import heroImageMobile from '../../assets/events/event-hero-mobile.webp'
+import faqImage from "../../assets/faq.webp";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -162,15 +161,6 @@ export default function Events() {
 
     };
 
-    const eventDate = new Date("2025-11-15T18:59:59");
-    const eventCard = {
-        title: "In Conversation with the IIA India CEO",
-        date: "15",
-        month: "Nov",
-        time: "To be announced",
-        venue: "To be announced",
-        thumbnail: eventThumbnail
-    }
 
     return (
         <>

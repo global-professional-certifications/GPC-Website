@@ -8,7 +8,7 @@ const DescriptiveGridCards = ({
     cards = [],
 }) => {
     return (
-        <section className="px-6 bg-gray-50 md:px-12 lg:px-20 py-20">
+        <section className="px-6 bg-gray-50 md:px-12 lg:px-20 py-12">
             <div className="container mx-auto flex flex-col items-center text-center gap-12">
 
                 {/* Heading */}

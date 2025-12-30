@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
-import crmaHero from "../../assets/crma-hero.jpg";
+import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 
 
 const Crma = () => {

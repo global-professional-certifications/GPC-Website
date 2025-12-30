@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
-import iapHero from "../../assets/iap-hero.jpg";
+import iapHero from "../../assets/courses/iap/iap-hero.webp";
 
 
 const Iap = () => {

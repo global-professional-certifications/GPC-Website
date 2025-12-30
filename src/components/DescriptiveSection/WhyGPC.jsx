@@ -1,8 +1,10 @@
+import { motion } from 'framer-motion';
+
 const WhyGPC = ({ subHeading, items }) => {
   return (
-    <section className="px-6 md:px-12 lg:px-20 py-16 bg-gray-50">
-      <div className="container mx-auto text-center">
+    <section className="relative px-6 md:px-12 lg:px-20 py-16 bg-gray-50 overflow-hidden">
 
+      <div className="container mx-auto text-center relative z-10">
         {/* Heading */}
         <h2 className="text-2xl md:text-4xl font-bold leading-tight">
           Why{" "}
@@ -20,28 +22,28 @@ const WhyGPC = ({ subHeading, items }) => {
         {/* Grid */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {items.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex flex-col justify-start items-center gap-3 border-2 border-brand-blue p-4 rounded-lg"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="group flex flex-col justify-start items-center gap-3 bg-white/40 backdrop-blur-md border border-white/60 p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] transition-all duration-300"
             >
-              {/* Icon */}
-              <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-brand-blue shadow-sm">
+              {/* Icon Container */}
+              <div className="w-16 h-16 flex items-center justify-center rounded-xl bg-brand-blue shadow-lg group-hover:scale-110 transition-transform duration-300">
                 {item.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-gray-900 mt-2">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-600 text-sm font-poppins">
+              <p className="text-gray-600 text-sm font-poppins leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
