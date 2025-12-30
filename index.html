@@ -1,13 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Global Professional Certifications</title>
-    <link rel="icon" type="image/png" href="/logo.png" />
-    
-    <!-- Website Schema -->
-    <script type="application/ld+json">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Professional Certifications</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Poppins:wght@100..900&display=swap"
+    rel="stylesheet">
+
+  <!-- Preload LCP Image -->
+  <link rel="preload" as="image" href="/src/assets/home/hero-girl.webp">
+
+  <!-- Website Schema -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -21,8 +37,8 @@
     }
     </script>
 
-    <!-- Organization Schema -->
-    <script type="application/ld+json">
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -37,22 +53,31 @@
     }
     </script>
 
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+</head>
 
-<!-- Zoho SalesIQ Chatbot -->
-<script>
-  window.$zoho = window.$zoho || {};
-  $zoho.salesiq = $zoho.salesiq || {
-    ready: function () { }
-  };
-</script>
-<script id="zsiqscript"
-  src="https://salesiq.zohopublic.in/widget?wc=siqf35804132e65c49b7d29d4a0685cd42d624236b97d32b42c0c692f0601766c17f529b5932a53b4ef8a440086e89cf8ae"
-  defer>
-</script>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 
-  </body>
+  <!-- Zoho SalesIQ Chatbot - Deferred -->
+  <script>
+    window.$zoho = window.$zoho || {};
+    $zoho.salesiq = $zoho.salesiq || {
+      ready: function () { }
+    };
+
+    // Defer script loading until after heavy initial rendering
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var s = document.createElement("script");
+        s.id = "zsiqscript";
+        s.src = "https://salesiq.zohopublic.in/widget?wc=siqf35804132e65c49b7d29d4a0685cd42d624236b97d32b42c0c692f0601766c17f529b5932a53b4ef8a440086e89cf8ae";
+        s.defer = true;
+        document.body.appendChild(s);
+      }, 2000); // 2 second delay after window load
+    });
+  </script>
+
+</body>
+
 </html>
