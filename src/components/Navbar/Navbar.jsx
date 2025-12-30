@@ -2,10 +2,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../assets/logo-2.png";
-import cisaLogo from "../../assets/cisa-logo-1.png";
-import ciaLogo from "../../assets/cia-logo.png";
-import iapLogo from "../../assets/iap-logo.png";
-import crmaLogo from "../../assets/crma-logo-1.png";
+import cisaLogo from "../../assets/courses/cisa-logo.webp";
+import ciaLogo from "../../assets/courses/cia-logo.webp";
+import iapLogo from "../../assets/courses/iap-logo.webp";
+import crmaLogo from "../../assets/courses/crma-logo.webp";
 
 const coursesOptions = [
   { name: "CIA", fullname: "Certified Internal Auditor", logo: ciaLogo },

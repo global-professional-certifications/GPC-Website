@@ -1,35 +1,36 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import examOne from "../../assets/exam-1.webp";
-import examTwo from "../../assets/exam-2.webp";
-import examThree from "../../assets/exam-3.webp";
-import examFour from "../../assets/exam-4.webp";
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import ciaHero from "../../assets/cia/cia-hero.webp";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import brochureCover from "../../assets/home/cia-brochure.webp";
 
 import { client } from "../../lib/sanity/client";
 import { getRecentPosts } from "../../lib/sanity/queries";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 
-import learningPartner from "../../assets/Learning_partner.jpg";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
 import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
-import internalAudit from "../../assets/cia/internal-audit.webp";
-import ciaCertification from "../../assets/cia/cia-certification.webp";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
-import faqImage from "../../assets/our-mission-1.webp";
-import FAQDisplay from "../FAQDisplay";
-import ciaCareer from "../../assets/cia/career-option.webp";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
+import FAQDisplay from "../FAQDisplay";
+
+import examOne from "../../assets/courses/cia/exam-1.webp";
+import examTwo from "../../assets/courses/cia/exam-2.webp";
+import examThree from "../../assets/courses/cia/exam-3.webp";
+import examFour from "../../assets/courses/cia/exam-4.webp";
+import ciaHero from "../../assets/courses/cia/cia-hero.webp";
+import brochureCover from "../../assets/home/cia-brochure.webp";
+import learningPartner from "../../assets/Learning_partner.jpg";
+import internalAudit from "../../assets/courses/cia/internal-audit.webp";
+import ciaCertification from "../../assets/courses/cia/cia-certification.webp";
+import faqImage from "../../assets/faq.webp";
+import ciaCareer from "../../assets/courses/cia/career-option.webp";
 
 const courseFaqs = [
     {

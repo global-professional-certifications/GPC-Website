@@ -12,10 +12,10 @@ import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
 import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
 import testimonialCover from "../../assets/home/testimonial-cover.webp";
 
-import cia from "../../assets/cia-logo.png";
-import cisa from "../../assets/cisa-logo-1.png";
-import crma from "../../assets/crma-logo-1.png";
-import iap from "../../assets/iap-logo.png";
+import cia from "../../assets/courses/cia-logo.webp";
+import cisa from "../../assets/courses/cisa-logo.webp";
+import crma from "../../assets/courses/crma-logo.webp";
+import iap from "../../assets/courses/iap-logo.webp";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
