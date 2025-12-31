@@ -1,15 +1,10 @@
-﻿import React, { useEffect } from 'react';
+﻿import React from 'react';
 import heroGirl from '../../assets/home/hero-girl.webp';
 import { Link } from 'react-router-dom';
 import { height } from "../Notifications/NotificationBanner";
 
 
 const Hero = () => {
-    useEffect(() => {
-        // Preload hero image for faster rendering
-        const img = new Image();
-        img.src = heroGirl;
-    }, []);
 
     // Adjust top padding dynamically based on notification banner
     const paddingTop = ((16 + (height ? height - 4 : 0)) * 4).toString();

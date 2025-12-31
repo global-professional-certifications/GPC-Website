@@ -14,16 +14,22 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react')) {
-              return 'vendor-react';
-            }
-            if (id.includes('@material-tailwind') || id.includes('@heroicons') || id.includes('framer-motion')) {
-              return 'vendor-ui';
+            // Group React and core UI libraries together to prevent context issues
+            if (
+              id.includes('react') ||
+              id.includes('react-dom') ||
+              id.includes('react-router-dom') ||
+              id.includes('@material-tailwind') ||
+              id.includes('framer-motion') ||
+              id.includes('motion') ||
+              id.includes('@heroicons')
+            ) {
+              return 'vendor-core';
             }
             if (id.includes('sanity')) {
               return 'vendor-sanity';
             }
-            return 'vendor-others';
+            return 'vendor-libs';
           }
         }
       }
