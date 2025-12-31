@@ -4,18 +4,8 @@ import MetaTags from '../MetaTags';
 import useScrollAnimation from '../Hooks/useScrollAnimation';
 import { FaGraduationCap, FaHandshake, FaChartLine, FaRocket, FaStar, FaUsers, FaCheckCircle, FaTrophy } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
-import pinkyTestimonial from "../../assets/pinky-photo.jpg";
-import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
-import starwinTestimonial from "../../assets/testimonial-2.png";
-import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
-import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
-import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
-import testimonialCover from "../../assets/home/testimonial-cover.webp";
-
-import cia from "../../assets/courses/cia-logo.webp";
-import cisa from "../../assets/courses/cisa-logo.webp";
-import crma from "../../assets/courses/crma-logo.webp";
-import iap from "../../assets/courses/iap-logo.webp";
+import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
+import CoursesShowcase from "../Courses/CoursesShowcase";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,93 +59,43 @@ const Journey = () => {
 
     const milestones = [
         {
-            date: 'December 2023',
+            date: 'December 2024',
             title: 'Brand Launch',
             description: 'The inception of Global Professional Certifications with a vision to redefine audit training.',
             icon: <FaRocket />,
         },
         {
-            date: 'January 2024',
+            date: 'January 2025',
             title: 'First Batch Launch',
             description: 'Successfully kicked off our very first CIA batch, setting the foundation for future success.',
             icon: <FaGraduationCap />,
         },
         {
-            date: 'March 2024',
+            date: 'March 2025',
             title: 'IIA India Partnership',
             description: 'Formed a strategic alliance with IIA India, strengthening our commitment to quality education.',
             icon: <FaHandshake />,
         },
         {
-            date: 'June 2024',
+            date: 'June 2025',
             title: 'Expanding Horizons',
             description: 'Broadened our course offerings to include CISA and other specialized audit certifications.',
             icon: <FaStar />,
         },
         {
-            date: 'September 2024',
+            date: 'September 2025',
             title: 'Milestone Achievement',
             description: 'Reached a significant student base, validating our student-centric teaching approach.',
             icon: <FaChartLine />,
         },
         {
-            date: 'December 2024',
+            date: 'December 2025',
             title: 'One Year Strong',
             description: 'Celebrating a year of impact, growth, and the success of our global student community.',
             icon: <FaRocket />,
         },
     ];
 
-    const testimonials = [
-        {
-            quote:
-                "Highly recommend Arpit Garg's CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
-            name: "Pinky Agarwal",
-            title: "Head Internal Audit, Emami Limited",
-            image: pinkyTestimonial,
-        },
-        {
-            quote:
-                "Arpit Garg's CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
-            name: "Akshdeep Singh",
-            title: "Manager, KPMG",
-            image: akshdeepTestimonial,
-        },
-        {
-            quote:
-                "Attending Arpit Garg's CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
-            name: "Starwin PJ",
-            title: "AVP, Wells Fargo",
-            image: starwinTestimonial,
-        },
-        {
-            quote:
-                "Arpit Garg's CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
-            name: "Wajiha Ansari",
-            title: "Auditor, Grant Thornton Bahrain",
-            image: wajihaTestimonial,
-        },
-        {
-            quote:
-                "I owe my CIA Challenge Exam success to Arpit Garg's exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship highly recommended!",
-            name: "Ramakrishna Mude",
-            title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
-            image: ramakrishnaTestimonial,
-        },
-        {
-            quote:
-                "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg's mentorship, strategy, and insights his guidance made it possible!",
-            name: "Unmesh Upadhye",
-            title: "Assistant Vice President, State Bank of India",
-            image: unmeshTestimonial,
-        },
-        // {
-        //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit Gargs exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
-        //     name: "Prateek Bhatia",
-        //     title: "Group Head of Internal Audit, Cravia Group",
-        //     image: feedbackPerson
-        // },
-    ];
 
     return (
         <>
@@ -165,7 +105,7 @@ const Journey = () => {
                 canonicalUrl="https://globalprofessionalcertifications.com/journey-celebration"
             />
 
-            <div className="bg-gray-50 min-h-screen font-sans text-gray-800">
+            <div className="bg-gray-50 min-h-screen font-sans text-gray-800 mt-[64px]">
                 {/* Hero Section */}
                 <section
                     className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 lg:px-24 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white"
@@ -210,7 +150,7 @@ const Journey = () => {
                         className={`relative z-10 max-w-5xl mx-auto text-center scroll-reveal ${isHeroVisible ? 'scroll-reveal-active' : ''}`}
                     >
 
-                        <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight mb-8 drop-shadow-lg pt-8">
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight mb-8 drop-shadow-lg">
                             Celebrating 1 Year of Building <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-yellow-200 to-orange-300">
                                 Future Internal Auditors
@@ -429,204 +369,16 @@ const Journey = () => {
                     </div>
                 </section>
 
-                {/* People Image Display */}
-                <div className="w-full mx-auto mt-6 md:mt-8 lg:mt-12">
-                    <div className="flex flex-col gap-4 justify-center items-center p-4 mb-4">
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl text-center font-black text-gray-900 leading-tight">
-                            Students Who Have {" "}
-                            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                Trusted Us{" "}
-                            </span>
-                            In This Journey
-                        </h2>
-                        <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"></div>
-                    </div>
-                    <img
-                        src={testimonialCover}
-                        alt="Testimonial Cover"
-                        className="w-full max-w-6xl mx-auto opacity-90 scale-100 md:scale-95"
-                    />
-                </div>
-
-                {/* Feedback Cards */}
-
-                <div className="py-12 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
-                    {/* Top Quote Icon */}
-                    <FontAwesomeIcon
-                        icon={faQuoteLeft}
-                        className="hidden md:block lg:block mb-8 text-3xl text-black md:text-5xl"
-                    />
-
-                    {/* Testimonials Container */}
-                    <div className="overflow-x-auto">
-                        <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
-                            {testimonials.map((testimonial, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-                                >
-                                    <div className="flex-1 flex items-start">
-                                        <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
-                                            "{testimonial.quote}"
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center justify-start gap-4 pt-6 mt-6 border-t border-gray-200">
-                                        <img
-                                            src={testimonial.image}
-                                            alt={testimonial.name}
-                                            className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue aspect-square"
-                                        />
-
-                                        <div>
-                                            <p className="font-medium font-poppins  text-gray-900 text-xs md:text-sm lg:text-sm">
-                                                {testimonial.name}
-                                            </p>
-                                            <p className="text-xs md:text-sm lg:text-sm font-poppins text-gray-600">
-                                                {testimonial.title}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Bottom CTA and Quote Icon */}
-                    <div className="flex justify-center md:justify-between lg:justify-between mt-2 md:mt-8 lg:mt-8 items-center">
-                        <NavLink to="/success" className="mt-2">
-                            <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
-                                Read More Success Stories
-                            </button>
-                        </NavLink>
-                        <FontAwesomeIcon
-                            icon={faQuoteRight}
-                            className="hidden md:block lg:block text-3xl text-black md:text-5xl"
-                        />
-                    </div>
-                </div>
+                <TestimonialsShowcase />
 
                 {/* Popular Courses Card Section */}
-
-                <div className='flex flex-col gap-3 py-6 px-8 md:px-20'>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 leading-tight">
-                        We Aim To{" "}
-                        <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                            Serve You Continuously
-                        </span>
-                    </h2>
-                    <h3 className='text-sm md:text-lg lg:text-xl font-poppins leading-relaxed text-gray-600 font-medium'>
-                        Our Other Flagship Certification Courses
-                    </h3>
-                    <div className="w-16 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full mb-1"></div>
-                </div>
-
-                <div className="my-10 px-2 mt-2 md:px-12 lg:px-20 pb-32">
-
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
-                        <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-                            <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                                <img
-                                    src={cia}
-                                    alt="CIA Course"
-                                    className="max-h-full max-w-full object-contain"
-                                />
-                            </div>
-                            <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                                <div>
-                                    <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                                        Certified Internal Auditor (CIA)
-                                    </p>
-                                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                                        Master the complete CIA exam with expert guidance and
-                                        comprehensive study materials
-                                    </p>
-                                </div>
-                                <NavLink to="/courses/cia">
-                                    <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                                        View Course
-                                    </button>
-                                </NavLink>
-                            </div>
-                        </div>
-
-                        <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-                            <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                                <img
-                                    src={cisa}
-                                    alt="CISA Course"
-                                    className="max-h-full max-w-full object-contain"
-                                />
-                            </div>
-                            <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                                <div>
-                                    <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                                        Certified Information Systems Auditor (CISA)
-                                    </p>
-                                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                                        Become a certified expert in IT auditing and risk management
-                                        with our comprehensive CISA course
-                                    </p>
-                                </div>
-                                <NavLink to="/courses/cisa">
-                                    <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                                        View Course
-                                    </button>
-                                </NavLink>
-                            </div>
-                        </div>
-
-                        <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-                            <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                                <img
-                                    src={crma}
-                                    alt="CRMA Course"
-                                    className="max-h-full max-w-full object-contain"
-                                />
-                            </div>
-                            <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                                <div>
-                                    <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                                        Certification in Risk Management Assurance (CRMA)
-                                    </p>
-                                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                                        Advance your risk career with our CRMA course on assurance,
-                                        governance, and mitigation
-                                    </p>
-                                </div>
-                                <NavLink to="/courses/crma">
-                                    <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                                        View Course
-                                    </button>
-                                </NavLink>
-                            </div>
-                        </div>
-
-                        <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-                            <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                                <img
-                                    src={iap}
-                                    alt="IAP Course"
-                                    className="max-h-full max-w-full object-contain"
-                                />
-                            </div>
-                            <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                                <div>
-                                    <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                                        Internal Audit Practitioner (IAP)
-                                    </p>
-                                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                                        Kickstart your CIA journey with our IAP course covering
-                                        audit fundamentals and risk assessment
-                                    </p>
-                                </div>
-                                <NavLink to="/courses/iap">
-                                    <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                                        View Course
-                                    </button>
-                                </NavLink>
-                            </div>
-                        </div>
-                    </div>
+                <div className='mb-32'>
+                    <CoursesShowcase
+                        titleStart="Our Other"
+                        highlight="Flagship Certification"
+                        titleEnd="Courses"
+                        courses={["CIA", "CISA", "CRMA", "IAP"]}
+                    />
                 </div>
 
 
