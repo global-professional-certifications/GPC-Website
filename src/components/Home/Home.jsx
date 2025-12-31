@@ -5,57 +5,37 @@ import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
 import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
-import { client } from "../../lib/sanity/client";
-import { getRecentPosts } from "../../lib/sanity/queries";
-import { urlFor } from "../../lib/sanity/imageBuilder";
+
 import FAQDisplay from "../FAQDisplay.jsx";
-import Countdown from "react-countdown";
 import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
 import { motion } from "framer-motion";
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveRight from "../DescriptiveSection/DescriptiveRight";
-import YouTubeCarousel from "../YouTubeCarousel/YouTubeCarousel";
+import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
+import BlogCall from "../Blogs/BlogCall";
+import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
-  faUsers,
-  faCalendarDays,
-  faCertificate,
-  faStar,
   faArrowUpRightFromSquare,
   faGlobe,
   faChalkboardTeacher,
-  faQuoteLeft,
-  faQuoteRight,
   faRobot,
   faHandshake,
-  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 // images import
-import cia from "../../assets/courses/cia-logo.webp";
-import cisa from "../../assets/courses/cisa-logo.webp";
-import crma from "../../assets/courses/crma-logo.webp";
-import iap from "../../assets/courses/iap-logo.webp";
 import choose from "../../assets/home/why-choose-global-professional-certifications.webp";
 import flowchartWeb from "../../assets/home/how-it-works.webp";
 import flowchartMobile1 from "../../assets/home/how-it-works-1.webp";
 import flowchartMobile2 from "../../assets/home/how-it-works-2.webp";
 import faqImage from "../../assets/faq.webp";
-import testimonialCover from "../../assets/home/testimonial-cover.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
-import pinkyTestimonial from "../../assets/pinky-photo.jpg";
-import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
-import starwinTestimonial from "../../assets/testimonial-2.png";
-import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
-import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
-import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
+
 
 const courseFaqs = [
   {
@@ -88,58 +68,6 @@ const courseFaqs = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "Highly recommend Arpit Garg's CIA Challenge Exam Prep Course - his clarity, passion, and expertise simplify complex topics and keep you focused, disciplined, and confident throughout.",
-    name: "Pinky Agarwal",
-    title: "Head Internal Audit, Emami Limited",
-    image: pinkyTestimonial,
-  },
-  {
-    quote:
-      "Arpit Garg's CIA Challenge Exam Crash Course helped me clear the exam on my first attempt in just 2 months. Structured weekend sessions built my confidence to succeed.",
-    name: "Akshdeep Singh",
-    title: "Manager, KPMG",
-    image: akshdeepTestimonial,
-  },
-  {
-    quote:
-      "Attending Arpit Garg's CIA Challenge Exam Crash Course was exceptional. His clear, interactive teaching made complex topics simple and key concepts easy to grasp",
-    name: "Starwin PJ",
-    title: "AVP, Wells Fargo",
-    image: starwinTestimonial,
-  },
-  {
-    quote:
-      "Arpit Garg's CIA Crash Course was a game-changer. His intuitive teaching and mentorship built my confidence. The LMS flexibility and weekend sessions made learning achievable and inspiring.",
-    name: "Wajiha Ansari",
-    title: "Auditor, Grant Thornton Bahrain",
-    image: wajihaTestimonial,
-  },
-  {
-    quote:
-      "I owe my CIA Challenge Exam success to Arpit Garg's exceptional guidance. His clarity, structure, and topic-wise MCQs built my confidence. Truly grateful for his mentorship highly recommended!",
-    name: "Ramakrishna Mude",
-    title: "Head of Technology Audit, Digital Bank in Abu Dhabi",
-    image: ramakrishnaTestimonial,
-  },
-  {
-    quote:
-      "Passing all three parts of the CIA exam was a journey of growth and grit. Thanks to Arpit Garg's mentorship, strategy, and insights his guidance made it possible!",
-    name: "Unmesh Upadhye",
-    title: "Assistant Vice President, State Bank of India",
-    image: unmeshTestimonial,
-  },
-  // {
-  //     quote: "Passing the CIA Challenge Exam was a major milestone, thanks to Arpit Gargs exceptional program. His crisp teaching, focused material, and MCQs clarified concepts and built confidence. Highly recommended!",
-  //     name: "Prateek Bhatia",
-  //     title: "Group Head of Internal Audit, Cravia Group",
-  //     image: feedbackPerson
-  // },
-];
-
-const eventDate = new Date("2025-12-06T11:30:00");
 
 const Counter = ({ target }) => {
   const [count, setCount] = useState(0);
@@ -165,7 +93,6 @@ const Counter = ({ target }) => {
 
 export default function Home() {
   const [showCelebration, setShowCelebration] = useState(false);
-  const [latestBlogs, setLatestBlogs] = useState([]);
   const anniversaryRef = useRef(null);
   const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
 
@@ -203,17 +130,7 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const data = await client.fetch(getRecentPosts);
-        setLatestBlogs(data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
-    fetchBlogs();
-  }, []);
+
   return (
     <>
       {showCelebration && (
@@ -292,7 +209,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-
 
 
         {/* 1-Year Anniversary Celebration Section */}
@@ -396,124 +312,11 @@ export default function Home() {
 
         {/* Popular Courses Card Section */}
 
-        <div className="my-10 px-2 mt-2 mb-20 md:px-12 lg:px-20">
-          <h2 className="text-2xl md:text-4xl lg:text-4xl pl-4 pr-24 text-left mb-12 font-bold text-gray-900">
-            Explore Our{" "}
-            <span className="text-brand-blue font-normal italic">
-              Flagship Certification Programs
-            </span>
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-              <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                <img
-                  src={cia}
-                  alt="CIA Course"
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                <div>
-                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                    Certified Internal Auditor (CIA)
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Master the complete CIA exam with expert guidance and
-                    comprehensive study materials
-                  </p>
-                </div>
-                <NavLink to="/courses/cia">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                    View Course
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-              <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                <img
-                  src={cisa}
-                  alt="CISA Course"
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                <div>
-                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                    Certified Information Systems Auditor (CISA)
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Become a certified expert in IT auditing and risk management
-                    with our comprehensive CISA course
-                  </p>
-                </div>
-                <NavLink to="/courses/cisa">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                    View Course
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-              <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                <img
-                  src={crma}
-                  alt="CRMA Course"
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                <div>
-                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                    Certification in Risk Management Assurance (CRMA)
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Advance your risk career with our CRMA course on assurance,
-                    governance, and mitigation
-                  </p>
-                </div>
-                <NavLink to="/courses/crma">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                    View Course
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl h-full">
-              <div className="relative w-full h-28 md:h-48 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
-                <img
-                  src={iap}
-                  alt="IAP Course"
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <div className="px-6 py-4 flex flex-col flex-1 justify-between">
-                <div>
-                  <p className="text-sm md:text-xl font-bold mb-2 text-gray-900">
-                    Internal Audit Practitioner (IAP)
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mb-4">
-                    Kickstart your CIA journey with our IAP course covering
-                    audit fundamentals and risk assessment
-                  </p>
-                </div>
-                <NavLink to="/courses/iap">
-                  <button className="w-full py-2 px-4 rounded-lg bg-brand-blue text-white font-semibold shadow-md transition-all duration-300 hover:bg-brand-purple hover:scale-105">
-                    View Course
-                  </button>
-                </NavLink>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CoursesShowcase
+          titleStart="Explore Our"
+          highlight="Flagship Certification Programs"
+          titleEnd=""
+          courses={["CIA", "CISA", "CRMA", "IAP"]} />
 
         {/* Desc 1 */}
 
@@ -762,163 +565,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* People Image Display */}
-        <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
-          <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
-            <h2 className="text-2xl md:text-4xl text-center font-bold">
-              What Our{" "}
-              <span className="text-brand-blue font-normal italic">
-                Learners{" "}
-              </span>
-              Say
-            </h2>
-            <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-6 px-8 md:px-0 lg:px-0">
-              Discover how Global Professional Certifications' expert-led
-              programs empower professionals to achieve global certification and
-              career growth
-            </p>
-          </div>
-          <img
-            src={testimonialCover}
-            alt="Testimonial Cover"
-            loading="lazy"
-            className="scale-100 md:scale-90"
-          />
-        </div>
-
-        {/* Feedback Cards */}
-
-        <div className="py-8 bg-gray-50 px-6 lg:px-16 mx-auto md:mx-6 lg:mx-6">
-          {/* Top Quote Icon */}
-          <FontAwesomeIcon
-            icon={faQuoteLeft}
-            className="hidden md:block lg:block mb-8 text-3xl text-black md:text-5xl"
-          />
-
-          {/* Testimonials Container */}
-          <div className="overflow-x-auto">
-            <div className="flex flex-row lg:grid lg:grid-cols-3 gap-6 md:gap-8 lg:gap-8 py-10 mx-0 lg:mx-10">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between min-h-[280px] min-w-[260px] md:min-w-[300px] lg:min-w-0 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-                >
-                  <div className="flex-1 flex items-start">
-                    <p className="text-black text-base md:text-lg lg:text-lg font-poppins font-medium">
-                      "{testimonial.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-start gap-4 pt-6 mt-6 border-t border-gray-200">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-brand-blue aspect-square"
-                    />
-
-                    <div>
-                      <p className="font-medium font-poppins  text-gray-900 text-xs md:text-sm lg:text-sm">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-xs md:text-sm lg:text-sm font-poppins text-gray-600">
-                        {testimonial.title}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom CTA and Quote Icon */}
-          <div className="flex justify-center md:justify-between lg:justify-between mt-2 md:mt-8 lg:mt-8 items-center">
-            <NavLink to="/success" className="mt-2">
-              <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
-                Read More Success Stories
-              </button>
-            </NavLink>
-            <FontAwesomeIcon
-              icon={faQuoteRight}
-              className="hidden md:block lg:block text-3xl text-black md:text-5xl"
-            />
-          </div>
-        </div>
+        {/* Testimonials Section */}
+        <TestimonialsShowcase />
 
         {/* Blog Section */}
 
-        <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
-          <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
-            <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
-              <h2> Learning Resources &amp; <span className="text-brand-blue font-normal italic">Blogs</span></h2>
-            </Link>
-            <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
-              Explore expert insights and latest trends in audit, risk, and
-              professional certification on our blog
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {latestBlogs.map((blog) => (
-              <Link
-                key={blog._id}
-                to={`/blogs/${blog.slug.current || blog.slug}`}
-                aria-label={`Read blog: ${blog.title}`}
-                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 h-[380px] md:h-[520px]"
-              >
-                <img
-                  src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
-                  alt={blog.title}
-                  className="w-full h-36 md:h-56 object-cover"
-                />
-
-                <div className="w-full flex justify-between items-center p-4 md:p-6">
-                  <div className="flex justify-center items-center gap-2">
-                    <FontAwesomeIcon
-                      icon={faCalendarDays}
-                      className="text-blue-400"
-                    />
-                    <div className="text-xs md:text-sm text-gray-600">
-                      {new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
-                    </div>
-                  </div>
-                  <div className="flex justify-center items-center gap-2">
-                    <FontAwesomeIcon icon={faUser} className="text-blue-400" />
-                    <div className="text-xs md:text-sm text-gray-600">
-                      {blog.author}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
-                  <div>
-                    <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue">
-                      {blog.title}
-                    </h3>
-                    <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
-                      {blog.excerpt}
-                    </p>
-                  </div>
-
-                  <div className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit mt-8">
-                    <span className="md:text-base text-sm pl-2 text-gray-700">
-                      Read Full Blog
-                    </span>
-                    <FontAwesomeIcon
-                      icon={faArrowUpRightFromSquare}
-                      className="text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2"
-                    />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex justify-center items-center mt-12">
-            <NavLink to="/success">
-              <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
-                Read More Blogs
-              </button>
-            </NavLink>
-          </div>
-        </div>
+        <BlogCall />
 
         {/* YouTube Videos Section
         <YouTubeCarousel /> */}
