@@ -17,10 +17,10 @@ import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCards
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
 import FAQDisplay from "../FAQDisplay.jsx";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
+import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
+import BlogCall from "../Blogs/BlogCall";
 
-import { client } from "../../lib/sanity/client";
-import { getRecentPosts } from "../../lib/sanity/queries";
-import { urlFor } from "../../lib/sanity/imageBuilder";
+
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
   FaChalkboardTeacher, FaPenFancy, FaCertificate,
@@ -65,20 +65,6 @@ const courseFaqs = [
 
 
 const Cisa = () => {
-
-  const [latestBlogs, setLatestBlogs] = useState([]);
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const data = await client.fetch(getRecentPosts);
-        setLatestBlogs(data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
-    fetchBlogs();
-  }, []);
 
   const cisaSchema = {
     "@context": "https://schema.org",
@@ -439,10 +425,10 @@ const Cisa = () => {
               <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
                 {/* Content Side */}
                 <div className="flex-1 text-center lg:text-left space-y-4">
-                  <h2 className="text-orange-300 font-normal italic text-2xl md:text-4xl leading-tight">
+                  <h2 className="text-yellow-500 font-normal italic text-2xl md:text-4xl leading-tight">
                     Certified Informations Systems Auditor
                   </h2>
-                  <p className="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
+                  <p className="text-gray-100 text-base md:text-lg max-w-2xl leading-relaxed">
                     Become a certified expert in IT auditing and risk management with our comprehensive CISA course.
                   </p>
                 </div>
@@ -473,84 +459,19 @@ const Cisa = () => {
           </div>
         </div>
 
+        {/* Testimonials */}
         <TestimonialsShowcase />
 
+        {/* Other Courses Cards */}
+        <CoursesShowcase
+          titleStart=""
+          highlight="Global Professional Certifications"
+          titleEnd="Other Courses"
+          courses={["CIA", "CRMA", "IAP"]} />
+
         {/* Blog Section */}
-        <div className="px-6 lg:px-24 w-full mt-6 md:mt-12">
-          <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
-            <Link to="/blogs" aria-label="View Learning Resources and Blogs" className="text-2xl md:text-4xl lg:text-4xl text-center font-bold hover:underline hover:text-brand-blue transition-colors">
-              <h2>
-                Learning Resources & <span className="text-brand-blue font-normal italic">Blogs</span></h2>
-            </Link>
-            <p className="text-xs md:text-base text-center md:text-left lg:text-base font-poppins leading-relaxed max-w-lg text-gray-600 mt-6">
-              Explore expert insights and latest trends in audit, risk, and
-              professional certification on our blog
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {latestBlogs.map((blog) => (
-              <Link
-                key={blog._id}
-                to={`/blogs/${blog.slug.current || blog.slug}`}
-                aria-label={`Read blog: ${blog.title}`}
-                className="group block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200 h-[380px] md:h-[520px]"
-              >
-                <img
-                  src={blog.mainImage ? urlFor(blog.mainImage).url() : ''}
-                  alt={blog.title}
-                  className="w-full h-36 md:h-56 object-cover"
-                />
 
-                <div className="w-full flex justify-between items-center p-4 md:p-6">
-                  <div className="flex justify-center items-center gap-2">
-                    <FontAwesomeIcon
-                      icon={faCalendarDays}
-                      className="text-blue-400"
-                    />
-                    <div className="text-xs md:text-sm text-gray-600">
-                      {new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
-                    </div>
-                  </div>
-                  <div className="flex justify-center items-center gap-2">
-                    <FontAwesomeIcon icon={faUser} className="text-blue-400" />
-                    <div className="text-xs md:text-sm text-gray-600">
-                      {blog.author}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 md:px-6 flex flex-col justify-between pb-6 h-[150px] md:h-[240px]">
-                  <div>
-                    <h3 className="text-base md:text-xl leading-tight md:leading-tight lg:leading-tight font-semibold text-gray-800 mb-2 line-clamp-3 group-hover:text-brand-blue group-hover:underline">
-                      {blog.title}
-                    </h3>
-                    <p className="text-gray-500 md:text-sm lg:text-sm text-xs line-clamp-2 md:line-clamp-3">
-                      {blog.excerpt}
-                    </p>
-                  </div>
-
-                  <div className="inline-flex justify-start items-center gap-2 p-1 border border-brand-purple rounded-full w-fit mt-8">
-                    <span className="md:text-base text-sm pl-2 text-gray-700">
-                      Read Full Blog
-                    </span>
-                    <FontAwesomeIcon
-                      icon={faArrowUpRightFromSquare}
-                      className="text-white text-xs md:text-sm bg-brand-blue h-2 w-2 md:h-4 md:w-4 rounded-full p-1 md:p-2"
-                    />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex justify-center items-center mt-12">
-            <NavLink to="/blogs">
-              <button className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300">
-                Read More Blogs
-              </button>
-            </NavLink>
-          </div>
-        </div>
+        <BlogCall />
 
         {/* FAQ Section */}
 
