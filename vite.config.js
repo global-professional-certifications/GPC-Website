@@ -9,24 +9,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react')) {
-              return 'vendor-react';
-            }
-            if (id.includes('@material-tailwind') || id.includes('@heroicons') || id.includes('framer-motion')) {
-              return 'vendor-ui';
-            }
-            if (id.includes('sanity')) {
-              return 'vendor-sanity';
-            }
-            return 'vendor-others';
-          }
-        }
-      }
-    }
+    sourcemap: false
   }
 })
