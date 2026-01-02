@@ -42,7 +42,16 @@ import riskman from "../../assets/Companies/Riskman.png"
 // importing marquee
 import Marquee from "../Marquee/Marquee";
 
-export default function Companies() {
+
+const CompaniesShowcase = (
+    {
+        titleStart,
+        highlightOne,
+        titleEnd,
+        highlightTwo,
+        description
+    }
+) => {
 
     const companiesOne = [jpMorganChase, atlas, gitlab, kpmg, suzlon, wellsFargo, hpLogo, pwcLogo, eyLogo, luthra]
 
@@ -53,13 +62,22 @@ export default function Companies() {
     const companiesFour = [rblBank, londonStockExchange, orix, truLogo, emami, hsbc, gspu, equitas]
 
     return (
-        <>
-            <div className="sm:pt-4 md:pt-24 pb-10 mb-10 md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center overflow-x-hidden">
-                <div className="flex flex-col gap-2 justify-center items-center p-4 mb-20">
-                    <h2 className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
+        <section className="px-6 bg-gray-50 md:px-12 lg:px-20 py-12">
+            <div className="md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center overflow-x-hidden">
+                {/* Heading */}
+                <div className="max-w-4xl text-center mb-12">
+                    <h2 className="text-2xl md:text-4xl font-bold leading-tight text-gray-900 mb-6">
+                        {titleStart}{" "}
+                        <span className="text-brand-blue font-normal italic">
+                            {highlightOne}{" "}
+                        </span>
+                        {titleEnd}{" "}
+                        <span className="text-brand-blue font-normal italic">
+                            {highlightTwo}
+                        </span>
                     </h2>
-                    <p className="text-xs md:text-base lg:text-lg font-poppins text-center text-gray-600 mt-6 md:max-w-xl lg:max-w-6xl">
-                        Trusted by professionals from top multinational corporations for CIA, CISA, CRMA, and IAP certifications
+                    <p className="max-w-3xl mx-auto text-gray-600 text-xs md:text-base font-poppins leading-relaxed">
+                        {description}
                     </p>
                 </div>
                 <div className="container mx-auto">
@@ -83,6 +101,8 @@ export default function Companies() {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
-}
+};
+
+export default CompaniesShowcase;
