@@ -2,16 +2,24 @@
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
+import MetaTags from '../MetaTags';
+import { FaArrowRightLong } from "react-icons/fa6";
 
 import FAQDisplay from "../FAQDisplay.jsx";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
-import { FaArrowRightLong } from "react-icons/fa6";
-
+import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
+import DescriptiveBullets from '../DescriptiveSection/DescriptiveBullets.jsx';
+import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
+import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft.jsx';
+import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
+import crmaBenefits from "../../assets/courses/crma/crma-benefits.webp";
+import crmaAbout from "../../assets/courses/crma/about-crma.webp";
+
 
 const courseFaqs = [
   {
@@ -64,16 +72,12 @@ const Crma = () => {
 
   return (
     <>
+      <MetaTags
+        title="CRMA Certification - Global Professional Certifications"
+        description="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
+        canonicalUrl="https://globalprofessionalcertifications.com/courses/crma"
+      />
       <Helmet>
-        <title>CRMA Certification - Global Professional Certifications</title>
-        <meta
-          name="description"
-          content="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
-        />
-        <link
-          rel="canonical"
-          href="https://globalprofessionalcertifications.com/courses/crma"
-        />
         <script type="application/ld+json">
           {JSON.stringify(crmaSchema)}
         </script>
@@ -88,9 +92,9 @@ const Crma = () => {
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                 Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified Risk Management Assurance </span> Professional (CRMA)
               </h1>
-              <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">
+              <p className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed">
                 Elevate your risk management career with IIA's CRMA certification. Master <span className='font-bold text-orange-400'>enterprise risk assessment, governance frameworks, and assurance methodologies</span> through expert-led training, comprehensive study materials, and end-to-end exam support.
-              </h2>
+              </p>
             </div>
 
             <div className="mt-6">
@@ -116,11 +120,11 @@ const Crma = () => {
       {/* Main Content */}
       <main className="py-12 bg-gray-50">
 
-        {/* About Section - Professional Redesign */}
-        <section className="mb-20 max-w-5xl mx-auto px-6">
+        {/* About Section - Professional Redesign
+        <section className="mb-20 mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              About the <span className="text-brand-blue font-normal italic">CRMA Course</span>
+              About the <span className="text-brand-blue font-normal italic">CRMA</span> Course
             </h2>
           </div>
           <div className="bg-white rounded-[2rem] border border-gray-100 p-8 md:p-12 shadow-sm">
@@ -138,10 +142,22 @@ const Crma = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+
+        {/* About the CRMA Course */}
+
+        <DescriptiveLeft
+          titleStart="About the "
+          highlight="CRMA"
+          titleEnd="Course"
+          description="Elevate your risk management skills with our Certification in Risk Management Assurance (CRMA) course. This program prepares you for the CRMA certification exam, focusing on risk management principles, assurance, and governance. Gain expertise in identifying, assessing, and mitigating risks, and enhance your career prospects in risk management and assurance. Our structured curriculum ensures you master the core competencies required to succeed. Upon completion, participants will be equipped to excel in risk management roles, providing valuable assurance to organizations."
+          image={crmaAbout}
+          imageAlt="About the CRMA Course"
+        />
+
 
         {/* Course Highlights Section - Professional Grid */}
-        <section className="mb-20 max-w-6xl mx-auto px-6">
+        <section className="mb-20 mx-auto py-12 px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Course <span className="text-brand-blue font-normal italic">Highlights</span>
@@ -155,14 +171,204 @@ const Crma = () => {
               "Enroll with us and get our end-to-end support till you clear all your exams"
             ].map((item, index) => (
               <div key={index} className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
+                <div className="p-2 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-brand-blue" />
                 </div>
-                <p className="text-gray-700 text-lg font-medium leading-normal">{item}</p>
+                <p className="text-gray-800 text-base font-normal font-poppins">{item}</p>
               </div>
             ))}
           </div>
         </section>
+
+        {/* CRMA Course Benefits */}
+
+        <DescriptiveGridCardsBlue
+          titleStart="CRMA Course"
+          highlight="Benefits"
+          titleEnd=""
+          description=""
+          cards={[
+            {
+              text: "Professionals in India and globally become proficient in risk management assessment and assurance with the help of the CRMA certification.",
+            },
+            {
+              text: "Expertise in control assurance, risk identification, and mitigation helps enhance credibility with leadership, stakeholders, and audit committees.",
+            },
+            {
+              text: "You can get better career opportunities with CRMA certification in roles such as compliance advisor, risk manager, or internal audit leader.",
+            },
+            {
+              text: "In terms of salary potential, certified professionals stay ahead of non-certified peers and gain higher earning opportunities.",
+            },
+            {
+              text: "Individuals improve their skill sets, learn best practices, and gain practical understanding of organizational risk frameworks.",
+            },
+          ]}
+        />
+
+        {/* Who Will Get Benefits from This Course? */}
+
+        <DescriptiveBullets
+          titleStart="Who Will Get"
+          highlight="Benefits"
+          titleEnd="from This Course?"
+          image={crmaBenefits}
+          imageAlt="Who Will Benefit from CRMA Course"
+          description="Candidates from the following category will get the most benefits from this course:"
+          points={[
+            {
+              title: "Risk management professionals",
+              text: "who want to evaluate and improve organizational risk frameworks",
+            },
+            {
+              title: "Internal auditors",
+              text: "responsible for improving assurance over governance processes and risk management",
+            },
+            {
+              title: "Compliance, assurance, and governance team members",
+              text: "involved in control assessments",
+            },
+            {
+              title: "Audit committee members",
+              text: "seeking deeper knowledge into risk assurance for advising leadership",
+            },
+            {
+              title: "Executive leaders and managers",
+              text: "responsible for overseeing organizational risk oversight and reporting",
+            },
+            {
+              title: "Compliance and audit function heads",
+              text: "preparing for strategic risk discussions",
+            },
+            {
+              title: "Professionals preparing for the CRMA exam",
+              text: "to increase their risk and assurance expertise",
+            },
+            {
+              title: "Aspiring career changers",
+              text: "aiming to enter internal audit and risk governance roles",
+            },
+          ]}
+        />
+
+        {/* Course Objectives */}
+
+        <DescriptiveGridCards
+          titleStart="Course"
+          highlight="Objectives"
+          titleEnd=""
+          description="The CRMA (Certification in Risk Management) Course helps individuals improve evaluation, assurance, and advisory skills for organizational risk management processes. This course aims to:"
+          cards={[
+            {
+              title: "",
+              text:
+                "Create strong enterprise risk management and governance structure understanding",
+            },
+            {
+              title: "",
+              text:
+                "Provide separate assurance for main risk processes",
+            },
+            {
+              title: "",
+              text:
+                "Evaluate and improve risk management frameworks",
+            },
+            {
+              title: "",
+              text:
+                "Advise audit committees and senior management",
+            },
+            {
+              title: "",
+              text:
+                "Support board-level oversight and create informed decision-making",
+            },
+          ]}
+        />
+
+        {/* CRMA Course Eligibility */}
+
+        <div className="py-16 px-4 sm:px-6 lg:px-8 font-poppins">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6">
+                CRMA Course{" "}
+                <span className="text-brand-blue font-normal italic">
+                  Eligibility
+                </span>
+              </h2>
+            </div>
+
+            {/* Eligibility Table */}
+            <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+              <table className="w-full text-left border-collapse min-w-[700px]">
+                <thead>
+                  <tr className="bg-brand-blue border-b border-gray-200">
+                    <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                      <h3 className="m-0">Eligibility Category</h3>
+                    </th>
+                    <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                      <h3 className="m-0">Requirements</h3>
+                    </th>
+                    <th className="px-6 py-4 text-sm font-bold text-gray-200">
+                      <h3 className="m-0">Notes</h3>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody className="divide-y divide-gray-200">
+                  {[
+                    {
+                      category: "Master’s Degree (or equivalent or higher)",
+                      requirement:
+                        "Must hold a master’s or equivalent degree; can apply and sit for exam; 1-year internal audit or equivalent experience required to complete certification.",
+                      notes:
+                        "Higher education reduces the required work experience.",
+                    },
+                    {
+                      category: "Bachelor’s Degree (or equivalent)",
+                      requirement:
+                        "Requires bachelor’s or equivalent; eligible to apply and take exam; requires 2 years internal audit or relevant experience to complete.",
+                      notes:
+                        "Experience can include risk, compliance, and audit-related disciplines.",
+                    },
+                    {
+                      category: "Active Internal Audit Practitioner (IAP)",
+                      requirement:
+                        "IAP designation holders may apply; must pass exams and provide 5 years internal audit or equivalent experience.",
+                      notes:
+                        "Experience equivalent includes quality assurance, risk management, and controls.",
+                    },
+                    {
+                      category: "Without Degree",
+                      requirement:
+                        "Candidates with 5 years of internal audit or equivalent experience may apply and sit for the exam; must complete the full experience requirement.",
+                      notes:
+                        "Equivalent experience accepted from related assurance or risk roles.",
+                    },
+                  ].map((item, idx) => (
+                    <tr
+                      key={idx}
+                      className="hover:bg-blue-50/30 transition-colors"
+                    >
+                      <td className="px-6 py-5 text-sm font-bold text-gray-900">
+                        <p className="m-0">{item.category}</p>
+                      </td>
+                      <td className="px-6 py-5 text-sm text-gray-600 leading-relaxed font-inter">
+                        <p className="m-0">{item.requirement}</p>
+                      </td>
+                      <td className="px-6 py-5 text-xs text-slate-400 italic font-medium font-inter">
+                        <p className="m-0">{item.notes}</p>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
 
         {/* Enrollment Section - Matching CISA Design */}
         <div className="py-16 w-full px-4" id="enrollment">
@@ -212,11 +418,22 @@ const Crma = () => {
         <TestimonialsShowcase />
 
         {/* Other Courses Cards */}
-        <CoursesShowcase
-          titleStart=""
-          highlight="Global Professional Certifications"
-          titleEnd="Other Courses"
-          courses={["CIA", "CISA", "IAP"]} />
+        <div className='w-full flex justify-center'>
+          <CoursesShowcase
+            titleStart=""
+            highlight="Global Professional Certifications"
+            titleEnd="Other Courses"
+            courses={["CIA", "CISA", "IAP"]} />
+        </div>
+
+        {/* Companies */}
+        <CompaniesShowcase
+          titleStart="Placement Opportunities after"
+          highlightOne="CIA Certification"
+          titleEnd="with"
+          highlightTwo="Global Professional Certifications"
+          description="Trusted by professionals from top multinational corporations for CIA certifications in India"
+        />
 
         {/* Blog Section */}
 
