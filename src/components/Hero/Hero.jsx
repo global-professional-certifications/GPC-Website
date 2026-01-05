@@ -6,8 +6,10 @@ import { height } from "../Notifications/NotificationBanner";
 
 const Hero = () => {
 
-    // Adjust top padding dynamically based on notification banner
-    const paddingTop = ((16 + (height ? height - 4 : 0)) * 4).toString();
+    // Adjust top padding dynamically based on notification banner and event bar
+    // Standard hero padding (16) + Notification banner offset (8) + Event countdown bar offset (16)
+    const paddingTop = ((16 + (height ? height - 4 : 0) + 16) * 4).toString();
+
 
     return (
         <section
