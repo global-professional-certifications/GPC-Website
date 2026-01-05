@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet-async';
 import FAQDisplay from "../FAQDisplay.jsx";
 import Countdown from "react-countdown";
 import EventCarousel from "../Carousels/EventCarousel";
+import EventCard from "./EventCard";
+
 
 // images import
 import iiaEvent from "../../assets/iia-event.jpeg";
@@ -23,6 +25,7 @@ import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaH
 import heroImage from '../../assets/events/event-hero.webp'
 import heroImageMobile from '../../assets/events/event-hero-mobile.webp'
 import faqImage from "../../assets/faq.webp";
+import upcomingEventsImage from "../../assets/events/iia-bombay-poster.webp";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -100,9 +103,6 @@ export default function Events() {
         }
     }, [])
 
-    // to lock scroll and listen for escape key when modal is open
-
-    // absolute top-1 right-2
 
     useEffect(() => {
         if (activeEvent) {
@@ -244,146 +244,74 @@ export default function Events() {
 
             </section>
 
-            {/* Upcoming Events Countdown */}
+            {/* Upcoming Events Section */}
 
-            {false && (
-                < section className="bg-black w-full py-16 md:py-24 px-6 md:px-32" >
-                    <div className="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] w-full h-auto rounded-3xl border border-brand-blue ring-1 ring-gray-200 shadow-gray-200 shadow-3xl px-12 md:px-24 py-8 md:py-16">
-                        <div className="w-full text-white flex flex-col jsutify-center items-center md:items-start gap-2 mb-2 md:mb-12">
-                            <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold">Upcoming <span className="text-[#FFD700] font-normal italic">Events</span>
-                            </h2>
-                            <p className="text-xs md:text-base lg:text-base max-w-2xl font-light text-gray-300 font-poppins mt-2 text-center md:text-left">
-                                Stay ahead with the latest industry updates! <span className="hidden md:block">Our globally recognized sessions are designed to guide you at every step.</span>
-                            </p>
-                        </div>
-                        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-12 pt-8">
-                            <div className="flex flex-col justify-between items-center bg-white w-[300px] md:w-[450px] h-auto rounded-3xl shadow-2xl shadow-black">
-                                <div className="w-full h-44 md:h-64 rounded-3xl shadow-black/40 shadow-lg">
-                                    <img src={eventCard.thumbnail} alt="" className="w-full h-full object-cover rounded-2xl" />
-                                </div>
-                                <div className="flex flex-col justify-center p-6 text-gray-800">
-                                    <p className="text-left text-lg leading-tight md:text-3xl mb-4 md:mb-2 font-bold">{eventCard.title}</p>
-
-                                    <div className="flex justify-start items-stretch gap-8 md:mt-2 px-2 md:px-4">
-                                        {/* date */}
-
-                                        <div className="flex flex-col justify-center items-center">
-                                            <p className="text-sm md:text-2xl font-light">{eventCard.month}</p>
-                                            <p className="text-3xl md:text-5xl font-bold">{eventCard.date}</p>
-                                        </div>
-
-                                        {/* line */}
-
-                                        <div className="h-auto w-0.5 md:w-[1.5px] bg-gray-800"></div>
-
-                                        {/* location and time */}
-
-                                        <div className="flex flex-col justify-center gap-2">
-                                            <div className="flex justify-start">
-                                                <div>
-                                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                                                </div>
-                                                <p className="pl-2 text-sm md:text-base">{eventCard.venue}</p>
-                                            </div>
-                                            <div className="flex justify-start">
-                                                <div>
-                                                    <FontAwesomeIcon icon={faClock} className="font-light" />
-                                                </div>
-                                                <p className="pl-2 text-sm md:text-base">{eventCard.time}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div className="flex flex-col gap-1 md:gap-8 justify-center items-center">
-                                <p className="text-2xl md:text-4xl font-light text-[#FFD700]">Event starts in</p>
-                                <div className="p-2">
-                                    <Countdown
-                                        date={eventDate}
-                                        renderer={({ days, hours, minutes, seconds }) => (
-                                            <div className="text-white flex justify-center items-center gap-1 md:gap-2">
-                                                <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
-                                                    <p className="font-bold text-base md:text-2xl">{days}</p>
-                                                    <p className="text-[8px] md:text-xs font-light">Days</p>
-                                                </div>
-                                                <p className="text-3xl md:text-5xl font-bold">:</p>
-                                                <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
-                                                    <p className="font-bold text-base md:text-2xl">{hours}</p>
-                                                    <p className="text-[8px] md:text-xs font-light">Hours</p>
-                                                </div>
-                                                <p className="text-3xl md:text-5xl font-bold">:</p>
-                                                <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
-                                                    <p className="font-bold text-base md:text-2xl">{minutes}</p>
-                                                    <p className="text-[8px] md:text-xs font-light">Minutes</p>
-                                                </div>
-                                                <p className="text-3xl md:text-5xl font-bold">:</p>
-                                                <div className="p-6 md:p-4 h-12 w-12 md:h-20 md:w-20 flex flex-col justify-center items-center border-2 border-gray-400 rounded-xl md:rounded-2xl shadow-xl shadow-gray-800">
-                                                    <p className="font-bold text-base md:text-2xl">{seconds}</p>
-                                                    <p className="text-[8px] md:text-xs font-light">Seconds</p>
-                                                </div>
-                                            </div>
-                                        )}
-                                    />
-
-                                </div>
-                                <p className="text-xs px-2 md:px-6 md:text-base  leading-tight font-thin text-white text-center max-w-xl mt-6 md:mt-12">Join an exclusive live session with Mr. Mukundan KV, CEO of The Institute of Internal Auditors (IIA), where you can ask questions, get direct feedback, and gain insights on the future of internal auditing.
-                                    A rare opportunity to engage with global leadership and understand where the profession is heading next.</p>
-                                <a
-                                    href=""
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-fit border-2 border-gray-400 text-white text-sm sm:text-base py-2 px-5 sm:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 mt-6 md:mt-0"
-                                >
-                                    Register Now
-                                </a>
-                            </div>
-
-                        </div>
+            <section id="upcoming-event" className="w-full py-16 md:py-24 px-6 md:px-16">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            Upcoming <span className="text-brand-blue font-normal italic">Events</span>
+                        </h2>
+                        <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins">
+                            Join us for exclusive sessions and networking opportunities with industry leaders
+                        </p>
                     </div>
-                </section>
-            )}
+
+                    {/* Example Event Card - Replace with your actual event data */}
+                    <EventCard
+                        image={upcomingEventsImage}
+                        title="IIA Bombay Chapter International Conference 2026"
+                        description="Global Professional Certifications is proud to be a Learning Partner for the IIA Bombay Chapter’s flagship international event. Join us at Taj the Trees, Vikhroli, to explore the evolving landscape of internal auditing."
+                        targetDate="2026-01-08T09:00:00"
+                        buttonText="Register Now"
+                        buttonLink="https://zfrmz.in/au1XcoFBbjvBs5iuy4TI"
+                        imageAlt="IIA Annual Conference"
+                        venue="Taj the Trees – Vikhroli, Mumbai"
+                        date="8th – 9th January 2026"
+                     />
+                </div>
+            </section>
+
 
             {/* Our Event Presence */}
 
-            < section className="w-full pb-10 px-6 md:px-16 lg:px-24 xl:px-32 pt-16" >
+            < section className="w-full pb-10 px-6 md:px-16 pt-16" >
                 <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
 
                     {/* Image Section */}
-                    <div className="w-full h-auto md:h-[700px] lg:w-1/2 flex justify-center">
+                    <div className="w-full lg:w-1/3 flex justify-center">
                         <img
                             src={iiaEvent}
                             alt="Event image"
-                            className="rounded-2xl w-auto h-full object-cover shadow-lg"
+                            className="rounded-2xl w-full h-auto object-cover shadow-lg"
                         />
                     </div>
 
                     {/* Text Section */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-start gap-8">
+                    <div className="w-full lg:w-2/3 flex flex-col justify-start gap-4">
 
                         {/* Heading + Paragraph */}
                         <div>
-                            <h3 className="text-2xl md:text-4xl lg:text-4xl font-bold text-center lg:text-left leading-snug">
+                            <h3 className="text-2xl md:text-4xl lg:text-4xl font-bold text-center lg:text-left leading-tight">
                                 Our Event Presence:{" "}
                                 <span className="text-brand-blue font-normal italic">Why It Matters</span>
                             </h3>
                             <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mt-6 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 px-4 md:px-0">
-                                At Global Professional Certifications, we don't just talk about growth — we live it. Our active presence at industry-leading conferences, training programs, and networking forums across the globe reflects our commitment to staying ahead of the curve and bringing real-world insights to the professionals we serve.
+                                At Global Professional Certifications, we don't just talk about growth, we live it. Our active presence at industry-leading conferences, training programs, and networking forums across the globe reflects our commitment to staying ahead of the curve and bringing real-world insights to the professionals we serve.
                             </p>
                         </div>
 
                         {/* Two-column grid */}
-                        <div className="flex justify-center lg:justify-start gap-4 md:gap-12 py-6 md:py-8">
+                        <div className="flex justify-center lg:justify-start gap-4 md:gap-8 py-4">
                             <div className="flex flex-col items-center gap-4">
-                                <FaHandshakeAngle className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
+                                <FaHandshakeAngle className="h-14 w-14 md:h-16 md:w-16 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
                                 <p className="text-sm sm:text-base md:text-lg font-semibold font-poppins text-center lg:text-left">
                                     Listen to our Mentor
                                 </p>
                             </div>
                             <div className="h-auto w-[1.2px] md:w-[1.5px] bg-gray-400"></div>
                             <div className="flex flex-col items-center gap-4">
-                                <MdTipsAndUpdates className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
+                                <MdTipsAndUpdates className="h-14 w-14 md:h-16 md:w-16 bg-[#EFECFF] p-3 rounded-xl text-brand-blue" />
                                 <p className="text-sm sm:text-base md:text-lg font-semibold font-poppins text-center lg:text-left">
                                     Get latest updates
                                 </p>
@@ -399,7 +327,7 @@ export default function Events() {
                         <div className="flex justify-center lg:justify-start">
                             <Link
                                 to="/contact"
-                                className="bg-brand-blue text-white text-sm sm:text-base md:text-lg py-3 px-6 rounded-full hover:bg-brand-purple transition-all duration-300 shadow-md"
+                                className="bg-brand-blue text-white text-sm md:text-base py-3 px-6 rounded-full hover:bg-brand-purple transition-all duration-300 shadow-md"
                             >
                                 Contact Us
                             </Link>
