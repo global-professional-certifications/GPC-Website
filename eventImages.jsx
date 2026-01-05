@@ -1,4 +1,4 @@
-import iiaBombayOne from "./src/assets/iia-bombay/IIA-bombay-1.jpeg"
+
 import iiaBombayFive from "./src/assets/iia-bombay/IIA-bombay-5.jpg"
 import iiaBombayNine from "./src/assets/iia-bombay/IIA-bombay-9.jpg"
 
@@ -41,8 +41,7 @@ import iiaDelhiChapterEleven from "./src/assets/AGM-IIA-Delhi/AGM-IIA-Delhi-11.w
 
 
 export const iiaBombayImages = [
-        iiaBombayOne,
-        iiaBombayFive,
+                iiaBombayFive,
         iiaBombayNine,
     ]
 
