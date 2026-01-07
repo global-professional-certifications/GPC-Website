@@ -241,7 +241,7 @@ import MetaTags from "../MetaTags";
 export default function PrivacyPolicy() {
     return (
         <>
-            <MetaTags 
+            <MetaTags
                 title="Privacy Policy – Global Professional Certifications"
                 description="Understand how we protect your data and privacy as you use our platform and enroll in our courses."
                 canonicalUrl="https://globalprofessionalcertifications.com/privacy"

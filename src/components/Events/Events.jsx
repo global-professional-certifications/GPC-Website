@@ -268,7 +268,7 @@ export default function Events() {
                         imageAlt="IIA Annual Conference"
                         venue="Taj the Trees – Vikhroli, Mumbai"
                         date="8th – 9th January 2026"
-                     />
+                    />
                 </div>
             </section>
 

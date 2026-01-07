@@ -17,7 +17,7 @@ const DescriptiveLeft = ({
                         <h2 className="text-2xl md:text-4xl font-bold leading-tight">
                             {titleStart}{" "}
                             <span className="text-brand-blue font-normal italic">
-                                {highlight}
+                                {highlight}{" "}
                             </span>
                             {titleEnd}
                         </h2>

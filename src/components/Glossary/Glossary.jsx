@@ -124,7 +124,7 @@ const Glossary = () => {
         "mainEntityOfPage": { "@type": "WebPage", "@id": "https://globalprofessionalcertifications.com/glossary" },
         "datePublished": "2025-10-07",
         "dateModified": "2025-10-07"
-    }; 
+    };
 
     return (
         <>
