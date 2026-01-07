@@ -2,15 +2,27 @@
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
+import MetaTags from '../MetaTags';
 
 import FAQDisplay from "../FAQDisplay.jsx";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
+import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
+import DescriptiveBullets from '../DescriptiveSection/DescriptiveBullets.jsx';
+import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
+import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft.jsx';
+import WhyGPC from '../DescriptiveSection/WhyGPC.jsx';
+import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart.jsx';
+import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
+
 import { FaArrowRightLong } from "react-icons/fa6";
+import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefcase, FaUserCheck, FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
 
 import iapHero from "../../assets/courses/iap/iap-hero.webp";
 import faqImage from "../../assets/faq.webp";
+import iapAbout from "../../assets/courses/iap/about-iap-course.webp";
+
 
 const courseFaqs = [
   {
@@ -62,16 +74,12 @@ const Iap = () => {
 
   return (
     <>
+      <MetaTags
+        title="IAP Certification - Global Professional Certifications"
+        description="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
+        canonicalUrl="https://globalprofessionalcertifications.com/courses/iap"
+      />
       <Helmet>
-        <title>IAP Certification - Global Professional Certifications</title>
-        <meta
-          name="description"
-          content="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
-        />
-        <link
-          rel="canonical"
-          href="https://globalprofessionalcertifications.com/courses/iap"
-        />
         <script type="application/ld+json">
           {JSON.stringify(iapSchema)}
         </script>
@@ -84,11 +92,11 @@ const Iap = () => {
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
-                Start Your Internal Audit Career:<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600"> Get IAP Certified</span>
+                Start Your Internal Audit Career With{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">IAP Certification</span>
               </h1>
-              <h2 className="mt-4 text-base md:text-lg text-gray-200 max-w-2xl leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-gray-200 max-w-2xl leading-relaxed">
                 New to internal auditing? The IAP certification is your ideal first step. Master audit essentials like<span className='font-bold text-orange-400'> risk assessment, planning, fieldwork, and reporting</span> with IIA-approved training from expert instructor Arpit Garg. Build the foundation for your CIA journey
-              </h2>
+              </p>
             </div>
 
             <div className="mt-6">
@@ -113,7 +121,8 @@ const Iap = () => {
 
       {/* Main Content */}
       <main className="py-12 bg-gray-50">
-        {/* About Section - Professional Redesign */}
+
+        {/* About Section - Professional Redesign 
         <section className="mb-20 max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -135,33 +144,213 @@ const Iap = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>*/}
+
+        {/* About the IAP Course */}
+
+        <DescriptiveLeft
+          titleStart="About the "
+          highlight="IAP"
+          titleEnd="Course"
+          description="The Internal Audit Practitioner designation is a great way to demonstrate internal audit aptitude. Active Internal Audit Practitioners opens a new pathway to the Certified Internal Auditor (CIA) designation, the only globally recognized certification for internal audit practitioners around the world. Develop the skills and knowledge to perform effective internal audits with our Internal Audit Practitioner Course. This comprehensive program covers internal audit fundamentals, risk assessment, audit planning, fieldwork, and reporting. Ideal for internal auditors, risk management professionals, and accountants seeking to enhance their audit skills and advance their careers. Upon completion, participants will be equipped to conduct internal audits, identify risks, and provide valuable insights to stakeholders."
+          image={iapAbout}
+          imageAlt="About the IAP Course"
+        />
 
         {/* Course Highlights Section - Professional Grid */}
-        <section className="mb-20 max-w-6xl mx-auto px-6">
+        <section className="mb-20 mx-auto py-12 px-6 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Course <span className="text-brand-blue font-normal italic">Highlights</span>
             </h2>
           </div>
+
           <div className="grid md:grid-cols-2 gap-6">
             {[
               "Complete everything in recorded class itself - detailed discussion of every topic, Mock Tests, MCQs discussion",
               "Get access to LMS Portal which includes recorded sessions + PPT notes + MCQs (with no validity period)",
               "Get guidance from one of the best IAP faculty in India, Mr. Arpit Garg",
-              "Enroll with us and get our end-to-end support till you clear all your exams"
+              "Enroll with us and get our end-to-end support till you clear all your exams",
             ].map((item, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-start gap-4"
+              >
+                <div className="p-2 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
                   <div className="w-2.5 h-2.5 rounded-full bg-brand-blue" />
                 </div>
-                <p className="text-gray-700 text-lg font-medium leading-normal">{item}</p>
+
+                <p className="text-gray-800 text-base font-normal font-poppins leading-relaxed">
+                  {item}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Enrollment Section - Matching CISA Design */}
+        {/* Why Should You Choose IAP */}
+        <DescriptiveGridCardsBlue
+          titleStart="Why Should You Choose"
+          highlight="IAP Certification"
+          titleEnd=""
+          description="IAP (Internal Audit Practitioner) certification provides employment benefits in your early internal audit career for the following reasons:"
+          cards={[
+            {
+              title: "Audit Journey Kick-start",
+              text:
+                "The IAP course is tailored for students and early professionals to provide foundational auditing knowledge that builds confidence at the beginning of their audit careers.",
+            },
+            {
+              title: "Foundational Skill Strengthening",
+              text:
+                "This course delivers a core understanding of globally accepted Internal Audit Standards, making skillsets relevant to real-world audit scenarios.",
+            },
+            {
+              title: "Faster Path to CIA",
+              text:
+                "The IAP certification is equivalent to the CIA Part 1 exam, helping candidates move one step closer to achieving the CIA certification.",
+            },
+            {
+              title: "Broader Professional Experience",
+              text:
+                "The IAP course complements other financial competency programs, including CISA learning courses in India, enhancing overall professional exposure.",
+            },
+          ]}
+        />
+
+        {/* Course Eligibility */}
+        <section className="px-6 py-20 bg-gray-50">
+          <div className="container mx-auto">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+
+              {/* Left Column: Heading */}
+              <div className="w-full lg:w-1/3 lg:sticky lg:top-32">
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <h2 className="text-2xl md:text-4xl font-bold leading-tight text-gray-900 mb-6">
+                      Course <span className="text-brand-blue font-normal italic">Eligibility</span>
+                    </h2>
+                    <p className="text-gray-600 text-sm md:text-base font-poppins leading-relaxed">
+                      The IAP certification course is designed to be accessible and suitable for a wide range of aspirants, including the following:
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Eligibility Cards */}
+              <div className="w-full lg:w-2/3 grid grid-cols-1 gap-6">
+
+                {/* Eligibility 1 */}
+                <div className="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-brand-blue flex flex-col md:flex-row gap-6 items-start hover:shadow-lg transition-all duration-300">
+                  <div className="bg-blue-50 p-4 rounded-2xl text-brand-blue">
+                    <FaUserGraduate size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Students</h3>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
+                      This course is suitable for students who want to gain a core understanding of professional practices and internal audit principles.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Eligibility 2 */}
+                <div className="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-brand-purple flex flex-col md:flex-row gap-6 items-start hover:shadow-lg transition-all duration-300">
+                  <div className="bg-purple-50 p-4 rounded-2xl text-brand-purple">
+                    <FaBriefcase size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Beginning Level Professionals</h3>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
+                      IAP certification in India and globally improves the scope of employment for entry-level auditor roles.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Eligibility 3 */}
+                <div className="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-orange-500 flex flex-col md:flex-row gap-6 items-start hover:shadow-lg transition-all duration-300">
+                  <div className="bg-orange-50 p-4 rounded-2xl text-orange-500">
+                    <FaUserCheck size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Without Degree Professionals</h3>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
+                      Professionals without any degree can opt for this course as no professional or educational prerequisites are there before enrolling.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <WhyGPC
+          subHeading="Global Professional Certifications is a one-stop destination for your Internal Audit Practitioner (IAP) preparations. Here are why aspiring auditors choose our course:"
+          items={[
+            {
+              icon: <FaGlobe className="text-white text-2xl" />,
+              title: "Worldwide Recognition",
+              description:
+                "Our IAP certification is IIA-registered, providing international credibility and recognition to candidates throughout their career journey.",
+            },
+            {
+              icon: <FaHandsHelping className="text-white text-2xl" />,
+              title: "Individual Attention",
+              description:
+                "We provide personalized support to every candidate, helping build confidence and ensuring a smooth and guided learning experience.",
+            },
+            {
+              icon: <FaUserTie className="text-white text-2xl" />,
+              title: "Expert Guidance",
+              description:
+                "Our experienced IAP training provider, Mr. Arpit Garg, brings real-world industry insights to help you excel in your internal audit career.",
+            },
+            {
+              icon: <FaLaptop className="text-white text-2xl" />,
+              title: "Study Flexibility",
+              description:
+                "Working professionals can attend weekend live classes or learn through recorded sessions, offering complete flexibility in course preparation.",
+            },
+          ]}
+        />
+
+        {/* Flowchart */}
+        <DescriptiveFlowchart
+          titleStart="Process of"
+          highlight="Becoming Certified"
+          titleEnd="IAP"
+          subHeading=""
+          steps={[
+            {
+              title: "Apply for the Course",
+              icon: FaFileAlt,
+              description:
+                "Select the best IAP certification course in India with Global Professional Certifications.",
+            },
+            {
+              title: "Training from Expert Mentors",
+              icon: FaChalkboardTeacher,
+              description:
+                "Get continuous training from veteran professionals to learn the foundational risk principles.",
+            },
+            {
+              title: "Constant Practice",
+              icon: FaClipboardCheck,
+              description:
+                "Practice continuously with our relevant study materials, MCQs, and mock tests to prepare for the IAP exam.",
+            },
+            {
+              title: "Certification Completion",
+              icon: FaCertificate,
+              description:
+                "Pass the 150-minute exam with 125 MCQs to earn the globally recognized IAP certification.",
+            },
+          ]}
+        />
+
+
+        {/* Enrollment Section */}
         <div className="py-16 w-full px-4" id="enrollment">
           <div className="max-w-5xl mx-auto">
             <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-white/5">
@@ -205,8 +394,14 @@ const Iap = () => {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <TestimonialsShowcase />
+        {/* Companies */}
+        <CompaniesShowcase
+          titleStart="Placement Opportunities after"
+          highlightOne="IAP Certification"
+          titleEnd="with"
+          highlightTwo="Global Professional Certifications"
+          description="Trusted by professionals from top multinational corporations for CIA certifications in India"
+        />
 
         {/* Other Courses Cards */}
         <CoursesShowcase

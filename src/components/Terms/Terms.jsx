@@ -138,7 +138,7 @@ import MetaTags from "../MetaTags";
 export default function Terms() {
     return (
         <>
-            <MetaTags 
+            <MetaTags
                 title="Terms & Conditions – Global Professional Certifications"
                 description="Read our terms and conditions outlining course access, use of services, and user responsibilities."
                 canonicalUrl="https://globalprofessionalcertifications.com/terms"

@@ -6,12 +6,12 @@ const WhyGPC = ({ subHeading, items }) => {
 
       <div className="container mx-auto text-center relative z-10">
         {/* Heading */}
-        <h2 className="text-2xl md:text-4xl font-bold leading-tight">
+        <a href="/"><h2 className="text-2xl md:text-4xl font-bold leading-tight">
           Why{" "}
           <span className="text-brand-blue font-normal italic">
             Global Professional Certifications?
           </span>
-        </h2>
+        </h2></a>
 
         {subHeading && (
           <p className="mt-4 text-gray-600 text-xs md:text-base max-w-3xl mx-auto font-poppins">

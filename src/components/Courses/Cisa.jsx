@@ -8,6 +8,8 @@ import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
 import cisa from "../../assets/courses/cisa/what-is-cisa.webp";
 import applyCisa from "../../assets/courses/cisa/apply-for-cisa.webp";
 import faqImage from "../../assets/faq.webp";
+import cisaAbout from "../../assets/courses/cisa/about-cisa-course.webp";
+
 
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
@@ -16,9 +18,9 @@ import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
 import FAQDisplay from "../FAQDisplay.jsx";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
+import CompaniesShowcase from "../Companies/CompaniesShowcase";
 
 
 import {
@@ -215,6 +217,48 @@ const Cisa = () => {
             },
           ]}
         />
+
+        {/* About the CISA course */}
+        
+        <DescriptiveLeft
+          titleStart="About the "
+          highlight="CISA"
+          titleEnd="Course"
+          description="Become a certified expert in information systems auditing with our CISA course. This comprehensive program prepares you for the CISA certification exam, covering IT audit, control, and assurance. Gain expertise in assessing and evaluating IT systems, identifying risks, and ensuring compliance with industry standards. Upon completion, participants will be equipped to excel in IT auditing roles, ensuring robust system security and compliance."
+          image={cisaAbout}
+          imageAlt="About the CISA Course"
+        />
+
+        {/* Course Highlights Section - Professional Grid */}
+        <section className="mx-auto py-12 px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Course <span className="text-brand-blue font-normal italic">Highlights</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "Complete everything in recorded class itself – detailed discussion of every topic, Mock Tests, MCQs discussion",
+              "Get access to LMS Portal which includes recorded sessions + PPT notes + MCQs (with no validity period)",
+              "Get guidance from one of the best CISA faculty in India, Mr. Arpit Garg",
+              "Enroll with us and get our end-to-end support till you clear all your exams",
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-start gap-4"
+              >
+                <div className="p-2 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-blue" />
+                </div>
+
+                <p className="text-gray-800 text-base font-normal font-poppins leading-relaxed">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
 
         {/* Certification Eligibility */}
@@ -459,8 +503,14 @@ const Cisa = () => {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <TestimonialsShowcase />
+        {/* Companies */}
+        <CompaniesShowcase
+          titleStart="Placement Opportunities after"
+          highlightOne="CISA Certification"
+          titleEnd="with"
+          highlightTwo="Global Professional Certifications"
+          description="Trusted by professionals from top multinational corporations for CISA certifications in India"
+        />
 
         {/* Other Courses Cards */}
         <CoursesShowcase
@@ -468,6 +518,7 @@ const Cisa = () => {
           highlight="Global Professional Certifications"
           titleEnd="Other Courses"
           courses={["CIA", "CRMA", "IAP"]} />
+
 
         {/* Blog Section */}
 

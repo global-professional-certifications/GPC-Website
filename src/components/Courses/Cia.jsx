@@ -17,6 +17,7 @@ import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 import FAQDisplay from "../FAQDisplay";
 import CoursesShowcase from "../Courses/CoursesShowcase";
 import BlogCall from "../Blogs/BlogCall";
+import CompaniesShowcase from "../Companies/CompaniesShowcase";
 
 import examOne from "../../assets/courses/cia/exam-1.webp";
 import examTwo from "../../assets/courses/cia/exam-2.webp";
@@ -801,7 +802,8 @@ const Cia = () => {
                 {/* Fees and Membership Benefits */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
-                        Fees and Membership<span className="text-brand-blue font-normal italic"> Benefits</span>
+                        Fees and Membership
+                        <span className="text-brand-blue font-normal italic"> Benefits</span>
                     </h2>
 
                     {/* Desktop Comparison Table */}
@@ -809,156 +811,89 @@ const Cia = () => {
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-brand-blue border-b border-gray-200">
-                                    <th className="px-8 py-6 text-gray-200 font-bold">Exam / Fee Type</th>
-                                    <th className="px-8 py-6 text-gray-200 font-bold text-center">IIA Members</th>
-                                    <th className="px-8 py-6 text-gray-200 font-bold text-center">Non-Members</th>
-                                    <th className="px-8 py-6 font-bold text-gray-200 text-center">Savings</th>
+                                    <th className="px-8 py-6">
+                                        <h3 className="text-gray-200 font-bold">Exam / Fee Type</h3>
+                                    </th>
+                                    <th className="px-8 py-6 text-center">
+                                        <h3 className="text-gray-200 font-bold">IIA Members</h3>
+                                    </th>
+                                    <th className="px-8 py-6 text-center">
+                                        <h3 className="text-gray-200 font-bold">Non-Members</h3>
+                                    </th>
+                                    <th className="px-8 py-6 text-center">
+                                        <h3 className="text-gray-200 font-bold">Savings</h3>
+                                    </th>
                                 </tr>
                             </thead>
+
                             <tbody className="divide-y divide-gray-100">
                                 {[
                                     { label: "Application Fee", member: 90, nonMember: 240 },
-                                    { label: "Part 1 Exam Fee", member: 232.50, nonMember: 445 },
+                                    { label: "Part 1 Exam Fee", member: 232.5, nonMember: 445 },
                                     { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
                                     { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
                                 ].map((row, idx) => (
                                     <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-8 py-5 text-gray-700 font-medium">{row.label}</td>
-                                        <td className="px-8 py-5 text-gray-800 font-bold text-center">USD {row.member} <span className="text-[10px] font-normal text-gray-400">+ taxes</span></td>
-                                        <td className="px-8 py-5 text-gray-500 text-center">USD {row.nonMember} <span className="text-[10px] font-normal text-gray-400">+ taxes</span></td>
-                                        <td className="px-8 py-5 text-green-600 font-bold text-center bg-blue-50/50">USD {row.nonMember - row.member}</td>
+                                        <td className="px-8 py-5">
+                                            <p className="text-gray-700 font-medium">{row.label}</p>
+                                        </td>
+                                        <td className="px-8 py-5 text-center">
+                                            <p className="text-gray-800 font-bold">
+                                                USD {row.member}{" "}
+                                                <span className="text-[10px] font-normal text-gray-400">
+                                                    + taxes
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td className="px-8 py-5 text-center">
+                                            <p className="text-gray-500">
+                                                USD {row.nonMember}{" "}
+                                                <span className="text-[10px] font-normal text-gray-400">
+                                                    + taxes
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <td className="px-8 py-5 text-center bg-blue-50/50">
+                                            <p className="text-green-600 font-bold">
+                                                USD {row.nonMember - row.member}
+                                            </p>
+                                        </td>
                                     </tr>
                                 ))}
-                                <tr className="bg-gray-50/80 font-bold">
-                                    <td className="px-8 py-6 text-gray-800">Total Certification Cost</td>
-                                    <td className="px-8 py-6 text-brand-blue text-2xl text-center">USD 742.50 <span className="text-xs font-normal text-gray-400">+ taxes</span></td>
-                                    <td className="px-8 py-6 text-gray-500 text-center">USD 1,515 <span className="text-xs font-normal text-gray-400">+ taxes</span></td>
-                                    <td className="px-8 py-6 text-green-600 text-2xl text-center bg-blue-50">USD 772.50</td>
+
+                                <tr className="bg-gray-50/80">
+                                    <td className="px-8 py-6">
+                                        <p className="text-gray-800 font-bold">
+                                            Total Certification Cost
+                                        </p>
+                                    </td>
+                                    <td className="px-8 py-6 text-center">
+                                        <p className="text-brand-blue text-2xl font-bold">
+                                            USD 742.50{" "}
+                                            <span className="text-xs font-normal text-gray-400">
+                                                + taxes
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td className="px-8 py-6 text-center">
+                                        <p className="text-gray-500">
+                                            USD 1,515{" "}
+                                            <span className="text-xs font-normal text-gray-400">
+                                                + taxes
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td className="px-8 py-6 text-center bg-blue-50">
+                                        <p className="text-green-600 text-2xl font-bold">
+                                            USD 772.50
+                                        </p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    {/* Mobile Comparison View */}
-                    <div className="md:hidden space-y-4">
-                        {[
-                            { label: "Application Fee", member: 90, nonMember: 240 },
-                            { label: "Part 1 Exam Fee", member: 232.50, nonMember: 445 },
-                            { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
-                            { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
-                        ].map((row, idx) => (
-                            <div key={idx} className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                                <h4 className="font-bold text-gray-800 mb-4">{row.label}</h4>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-blue-50 rounded-lg p-3">
-                                        <p className="text-xs text-brand-blue font-bold uppercase mb-1">Member</p>
-                                        <p className="text-gray-800 font-bold text-lg">USD {row.member} <span className="text-[10px] font-normal text-gray-500">+ taxes</span></p>
-                                    </div>
-                                    <div className="bg-gray-50 rounded-lg p-3">
-                                        <p className="text-xs text-gray-500 font-bold uppercase mb-1">Non-Member</p>
-                                        <p className="text-gray-600 font-bold text-lg">USD {row.nonMember} <span className="text-[10px] font-normal text-gray-500">+ taxes</span></p>
-                                    </div>
-                                </div>
-                                <div className="mt-3 flex justify-between items-center text-sm">
-                                    <span className="text-gray-500 italic">Total Savings with Membership</span>
-                                    <span className="text-green-600 font-bold">USD {row.nonMember - row.member}</span>
-                                </div>
-                            </div>
-                        ))}
-                        <div className="bg-brand-blue rounded-xl p-6 text-white shadow-lg">
-                            <h4 className="font-bold text-lg mb-4 text-center">Total Certification Value</h4>
-                            <div className="flex flex-col gap-4 mb-4">
-                                <div className="flex justify-between items-center">
-                                    <p className="opacity-80">IIA Member Cost</p>
-                                    <div className='flex flex-col justify-center items-end'>
-                                        <p className="font-bold text-xl text-right">USD 742.50</p>
-                                        <p className="text-[10px] font-normal opacity-70">+ taxes</p>
-                                    </div>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <p className="opacity-80">Non-Member Cost</p>
-                                    <div className='flex flex-col justify-center items-end'>
-                                        <p className="font-bold text-xl text-right">USD 1,515.00</p>
-                                        <p className="text-[10px] font-normal opacity-70">+ taxes</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="border-t border-white/20 pt-4 flex justify-between items-center">
-                                <p className="font-bold">Total Benefit</p>
-                                <div className='flex flex-col justify-center items-end'>
-                                    <p className="text-2xl font-black">USD 772.50</p>
-                                    <p className="text-[10px] font-normal opacity-70">+ taxes</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Membership & Notes Section */}
-                    <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* IIA Membership Details */}
-                        <div className="lg:col-span-2 bg-white rounded-3xl p-8 border border-gray-100 shadow-2xl shadow-blue-500/5 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
-
-                            <div className="relative z-10">
-                                <div className="flex items-center gap-4 mb-8">
-                                    <div className="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                        </svg>
-                                    </div>
-                                    <h2 className="text-xl md:text-2xl font-bold text-gray-800">
-                                        IIA India Membership Details
-                                    </h2>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="p-6 rounded-2xl border border-blue-100 bg-gradient-to-b from-blue-50/50 to-transparent">
-                                        <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-2">New Enrollment</p>
-                                        <div className="flex items-baseline gap-2">
-                                            <span className="text-3xl font-black text-gray-900">INR 6,500</span>
-                                            <span className="text-sm font-medium text-gray-500">+ 18% GST</span>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 rounded-2xl border border-gray-100 bg-gradient-to-b from-gray-50/50 to-transparent">
-                                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Annual Renewal</p>
-                                        <div className="flex items-baseline gap-2">
-                                            <span className="text-3xl font-black text-gray-900">INR 4,500</span>
-                                            <span className="text-sm font-medium text-gray-500">+ 18% GST</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Important Notes */}
-                        <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                            <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-lg bg-yellow-400/20 flex items-center justify-center text-yellow-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                    </svg>
-                                </div>
-                                Important Notes
-                            </h3>
-                            <ul className="space-y-4">
-                                {[
-                                    "Fees are subject to change as per IIA guidelines.",
-                                    "Membership must be active at the time of exam registration to avail discounts.",
-                                    "Applicable taxes (GST) will be calculated during the final checkout."
-                                ].map((note, i) => (
-                                    <li key={i} className="flex items-start gap-3">
-                                        <div className="mt-1.5 shrink-0">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-brand-blue"></div>
-                                        </div>
-                                        <p className="text-sm leading-relaxed text-gray-600 font-medium">
-                                            {note}
-                                        </p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
                 </div>
+
 
                 {/* Excellence in Training Design */}
                 <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8">
@@ -1128,6 +1063,17 @@ const Cia = () => {
 
                 {/* Testimonials Section */}
                 <TestimonialsShowcase />
+
+
+                {/* Companies */}
+                <CompaniesShowcase
+                    titleStart="Placement Opportunities after"
+                    highlightOne="CIA Certification"
+                    titleEnd="with"
+                    highlightTwo="Global Professional Certifications"
+                    description="Trusted by professionals from top multinational corporations for CIA certifications in India"
+                />
+
 
                 {/* Other Courses Cards */}
                 <CoursesShowcase
