@@ -15,6 +15,7 @@ import DescriptiveRight from "../DescriptiveSection/DescriptiveRight";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
+import YouTubeCarousel from "../YouTubeCarousel/YouTubeCarousel";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -572,12 +573,12 @@ export default function Home() {
 
         <BlogCall />
 
-        {/* YouTube Videos Section
-        <YouTubeCarousel /> */}
+        {/* YouTube Videos Section*/}
+        <YouTubeCarousel />
 
         {/* FAQ Section */}
 
-        <div className="mt-32 px-8 pb-40 md:pb-[220px] lg:px-20">
+        <div className="mt-24 px-8 pb-40 md:pb-[220px] lg:px-20">
           <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
             {/* Image Section */}
             <div className="w-full lg:w-2/5 flex justify-center items-center relative">
