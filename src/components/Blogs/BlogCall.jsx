@@ -27,7 +27,7 @@ const BlogCall = () => {
     }, []);
 
     return (
-        <div className="px-6 md:px-16 w-full mt-6 md:mt-12">
+        <div className="px-6 md:px-16 w-full py-12">
             {/* Heading */}
             <div className="flex flex-col gap-2 justify-center items-center md:justify-start md:items-start p-4 mb-12">
                 <Link
