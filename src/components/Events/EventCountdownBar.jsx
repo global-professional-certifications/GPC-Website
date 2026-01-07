@@ -57,36 +57,37 @@ const EventCountdownBar = ({
             {/* Subtle animated background pulse */}
             <div className="absolute -left-20 -top-20 w-64 h-64 bg-brand-purple/20 rounded-full blur-3xl animate-pulse-slow"></div>
 
-            <div className="max-w-screen-xl mx-auto px-4 md:px-8 py-2.5 md:py-3.5 flex items-center justify-between relative z-10">
+            <div className="max-w-screen-xl mx-auto px-3 md:px-8 py-2 md:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative z-10">
                 {/* Left: Event Info */}
-                <div className="flex items-center gap-3 md:gap-4 flex-1">
-                    <div className="bg-white/10 p-2 md:p-2.5 rounded-lg border border-white/20 hidden sm:flex items-center justify-center transform hover:rotate-12 transition-transform duration-300">
-                        <FaCalendarAlt className="text-brand-contrast text-lg md:text-xl" />
+                <div className="flex items-center gap-2 md:gap-4 flex-1 w-full sm:w-auto">
+                    <div className="bg-white/10 p-1.5 md:p-2.5 rounded-lg border border-white/20 flex items-center justify-center transform hover:rotate-12 transition-transform duration-300">
+                        <FaCalendarAlt className="text-brand-contrast text-base md:text-xl" />
                     </div>
-                    <div className="flex flex-col">
-                        <p className="text-[9px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-brand-contrast/90 mb-0.5">{tagText}</p>
-                        <h3 className="text-sm md:text-lg font-bold font-poppins leading-relaxed tracking-tight drop-shadow-sm max-w-[140px] xs:max-w-[200px] md:max-w-md">
+                    <div className="flex flex-col flex-1 min-w-0">
+                        <p className="text-[8px] md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold text-brand-contrast/90 mb-0.5">{tagText}</p>
+                        <h3 className="text-xs md:text-lg font-bold font-poppins leading-tight md:leading-relaxed tracking-tight drop-shadow-sm truncate">
                             {eventName}
                         </h3>
                     </div>
                 </div>
 
                 {/* Center: Countdown */}
-                <div className="flex justify-center items-center bg-black/30 backdrop-blur-sm rounded-2xl px-3 md:px-6 py-1 mx-2 border border-white/10 shadow-inner">
+                <div className="flex justify-center items-center bg-black/30 backdrop-blur-sm rounded-xl md:rounded-2xl px-2 md:px-6 py-1 mx-0 sm:mx-2 border border-white/10 shadow-inner">
                     <span className="hidden lg:inline-block text-[11px] font-bold uppercase tracking-widest text-white/60 mr-4 border-r border-white/10 pr-4">Starts In</span>
                     <Countdown date={targetDate} renderer={renderer} />
                 </div>
 
                 {/* Right: Action */}
-                <div className="flex justify-end flex-initial md:flex-1 pl-2">
+                <div className="flex justify-end flex-initial sm:flex-1 w-full sm:w-auto sm:pl-2">
                     <Link
                         to={`/events#${buttonLink}`}
-                        className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white 
+                        className="inline-flex items-center justify-center w-full sm:w-auto px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-base font-semibold text-white 
                         rounded-lg shadow-lg transition-all duration-300 
                         bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
                         hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
                     >
-                        {buttonText}
+                        <span className="hidden sm:inline">{buttonText}</span>
+                        <span className="sm:hidden">View Event</span>
                     </Link>
                 </div>
             </div>

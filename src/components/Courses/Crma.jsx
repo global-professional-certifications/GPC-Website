@@ -4,9 +4,9 @@ import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
 import MetaTags from '../MetaTags';
 import { FaArrowRightLong } from "react-icons/fa6";
+import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop } from "react-icons/fa";
 
 import FAQDisplay from "../FAQDisplay.jsx";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
 import DescriptiveGridCardsBlue from '../DescriptiveSection/DescriptiveGridCardsBlue.jsx';
@@ -14,6 +14,8 @@ import DescriptiveBullets from '../DescriptiveSection/DescriptiveBullets.jsx';
 import DescriptiveGridCards from '../DescriptiveSection/DescriptiveGridCards.jsx';
 import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft.jsx';
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
+import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
+import WhyGPC from '../DescriptiveSection/WhyGPC';
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
@@ -119,30 +121,6 @@ const Crma = () => {
 
       {/* Main Content */}
       <main className="py-12 bg-gray-50">
-
-        {/* About Section - Professional Redesign
-        <section className="mb-20 mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              About the <span className="text-brand-blue font-normal italic">CRMA</span> Course
-            </h2>
-          </div>
-          <div className="bg-white rounded-[2rem] border border-gray-100 p-8 md:p-12 shadow-sm">
-            <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-              <p>
-                Elevate your risk management skills with our <span className="font-semibold text-gray-900">Certification in Risk Management Assurance (CRMA)</span> course. This program prepares you for the CRMA certification exam, focusing on risk management principles, assurance, and governance.
-              </p>
-              <p>
-                Gain expertise in identifying, assessing, and mitigating risks, and enhance your career prospects in risk management and assurance. Our structured curriculum ensures you master the core competencies required to succeed.
-              </p>
-              <div className="bg-brand-blue/5 border-l-4 border-brand-blue p-6 rounded-r-xl mt-8">
-                <p className="text-brand-dark font-medium italic">
-                  "Upon completion, participants will be equipped to excel in risk management roles, providing valuable assurance to organizations."
-                </p>
-              </div>
-            </div>
-          </div>
-        </section> */}
 
         {/* About the CRMA Course */}
 
@@ -250,6 +228,71 @@ const Crma = () => {
             },
           ]}
         />
+
+        <WhyGPC
+          subHeading="Global Professional Certifications provides experienced guidance for your Certification in Risk Management Assurance (CRMA) preparations. Here are why professionals choose our course:"
+          items={[
+            {
+              icon: <FaGlobe className="text-white text-2xl" />,
+              title: "Recognized Worldwide",
+              description:
+                "We are an IIA-registered partner, and this provides global recognition to professionals in their careers.",
+            },
+            {
+              icon: <FaHandsHelping className="text-white text-2xl" />,
+              title: "Individual Attention",
+              description:
+                "Our course provides one-on-one support to you during your certification journey to ensure smooth completion.",
+            },
+            {
+              icon: <FaUserTie className="text-white text-2xl" />,
+              title: "Experienced Mentorship",
+              description:
+                "Get guidance from industry experts to hone your practical knowledge and grow higher in your career.",
+            },
+            {
+              icon: <FaLaptop className="text-white text-2xl" />,
+              title: "Flexible Study Timing",
+              description:
+                "We provide weekend online classes and 100% recorded classes to provide you with flexible study timing.",
+            },
+          ]}
+        />
+
+        {/* Process Flowchart */}
+        <DescriptiveFlowchart
+          titleStart="Process of"
+          highlight="Becoming Certified"
+          titleEnd="CRMA"
+          subHeading=""
+          steps={[
+            {
+              title: "Course Application Submission",
+              icon: FaClipboardList,
+              description:
+                "Choose and apply for the best CRMA certification training program in India with Global Professional Certifications.",
+            },
+            {
+              title: "Training from Industry Professionals",
+              icon: FaChalkboardTeacher,
+              description:
+                "Learn industry-relevant skills from expert mentors during this course and get trained.",
+            },
+            {
+              title: "Continuous Practice",
+              icon: FaPenFancy,
+              description:
+                "Practice constantly with our study materials, mock tests, and MCQs and get ready for the CRMA exam.",
+            },
+            {
+              title: "Certification Completion",
+              icon: FaCertificate,
+              description:
+                "Pass the 150-minute exam with 125 MCQs to achieve the globally recognized CRMA certification.",
+            },
+          ]}
+        />
+
 
         {/* Course Objectives */}
 
@@ -370,7 +413,7 @@ const Crma = () => {
         </div>
 
 
-        {/* Enrollment Section - Matching CISA Design */}
+        {/* Enrollment Section */}
         <div className="py-16 w-full px-4" id="enrollment">
           <div className="max-w-5xl mx-auto">
             <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-white/5">
@@ -414,8 +457,15 @@ const Crma = () => {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <TestimonialsShowcase />
+
+        {/* Companies */}
+        <CompaniesShowcase
+          titleStart="Placement Opportunities after"
+          highlightOne="CRMA Certification"
+          titleEnd="with"
+          highlightTwo="Global Professional Certifications"
+          description="Trusted by professionals from top multinational corporations for CIA certifications in India"
+        />
 
         {/* Other Courses Cards */}
         <div className='w-full flex justify-center'>
@@ -426,22 +476,13 @@ const Crma = () => {
             courses={["CIA", "CISA", "IAP"]} />
         </div>
 
-        {/* Companies */}
-        <CompaniesShowcase
-          titleStart="Placement Opportunities after"
-          highlightOne="CIA Certification"
-          titleEnd="with"
-          highlightTwo="Global Professional Certifications"
-          description="Trusted by professionals from top multinational corporations for CIA certifications in India"
-        />
-
         {/* Blog Section */}
 
         <BlogCall />
 
         {/* FAQ Section */}
 
-        <div className="mt-32 px-8 pb-12 md:pb-16 lg:px-20">
+        <div className="px-8 py-12 lg:px-20">
           <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
             {/* Image Section */}
             <div className="w-full lg:w-2/5 flex justify-center items-center relative">
