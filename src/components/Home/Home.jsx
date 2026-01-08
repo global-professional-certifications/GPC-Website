@@ -301,24 +301,6 @@ export default function Home() {
           </div>
         </section>
 
-
-        {/* Batch Announcement */}
-        {/* Upcoming section temporarily hidden - no active announcements */}
-
-        {/* Company Marquee Section */}
-
-        <div className="scale-90 sm:scale-95 md:scale-100 transition-transform duration-300">
-          <Companies />
-        </div>
-
-        {/* Popular Courses Card Section */}
-
-        <CoursesShowcase
-          titleStart="Explore Our"
-          highlight="Flagship Certification Programs"
-          titleEnd=""
-          courses={["CIA", "CISA", "CRMA", "IAP"]} />
-
         {/* Desc 1 */}
 
         <DescriptiveLeft
@@ -329,6 +311,15 @@ export default function Home() {
           image={descriptionImage1}
           imageAlt="Global Platform"
         />
+
+        {/* Batch Announcement */}
+        {/* Upcoming section temporarily hidden - no active announcements */}
+
+        {/* Company Marquee Section */}
+
+        <div className="scale-90 sm:scale-95 md:scale-100 transition-transform duration-300">
+          <Companies />
+        </div>
 
         {/* Desc 2 */}
 
@@ -345,15 +336,15 @@ export default function Home() {
 
         {/* Download Brochure CTA */}
 
-        <div className="mt-20 md:mt-32 lg:mt-20 px-6 md:px-16 lg:px-12 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+        <div className="px-6 md:px-16 lg:px-12 py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 ">
             {/* Image Section */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img
                 src={brochureCover}
                 alt="Brochure"
                 loading="lazy"
-                className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
+                className="w-64 md:w-[22rem] h-auto object-contain"
               />
             </div>
 
@@ -388,7 +379,7 @@ export default function Home() {
 
         <div className="py-6 sm:py-12 bg-gray-50 relative overflow-hidden">
           {/* Heading */}
-          <div className="text-center mt-4 md:mt-16 mb-12 sm:mb-20 px-4 md:px-12">
+          <div className="text-center px-4 md:px-12">
             <h2 className="font-bold text-2xl md:text-4xl leading-snug text-gray-900">
               Why Choose{" "}
               <span className="text-brand-blue font-normal italic">
@@ -473,10 +464,19 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Popular Courses Card Section */}
+
+        <CoursesShowcase
+          titleStart="Explore Our"
+          highlight="Flagship Certification Programs"
+          titleEnd=""
+          courses={["CIA", "CISA", "CRMA", "IAP"]} />
+
+
         {/* Video Section */}
-        <div className="relative w-full overflow-visible mt-4 lg:mt-14">
+        <div className="relative w-full overflow-hidden">
           {/* Top White Section */}
-          <div className="flex flex-col lg:flex-row justify-center items-center  gap-10 lg:gap-28 lg:my-12 lg:mx-4 p-12 md:p-18 pb-[90px]">
+          <div className="flex flex-col lg:flex-row justify-center items-center  gap-10 lg:gap-28 lg:my-12 lg:mx-4 p- pb-[90px]">
             {/* Left Text Section */}
             <div className="flex flex-col max-w-xl text-center md:text-left">
               <h2 className="text-2xl md:text-4xl font-bold leading-snug px-2 lg:px-8">
@@ -530,11 +530,10 @@ export default function Home() {
           <div className="h-[180px] md:h-[350px] mt-4 md:mt-32 lg:mt-32 bg-brand-blue w-full"></div>
         </div>
 
-
         {/* How it works? */}
 
-        <div className="w-full mb-8 mt-20">
-          <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
+        <div className="w-full py-12">
+          <div className="flex flex-col gap-2 justify-center items-center mb-12">
             <h2 className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">
               How It{" "}
               <span className="text-brand-blue font-normal italic">Works?</span>

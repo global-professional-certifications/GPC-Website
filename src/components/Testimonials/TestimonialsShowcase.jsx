@@ -52,8 +52,8 @@ const TestimonialsShowcase = () => {
     return (
         <>
             {/* People Image Display */}
-            <div className="w-full mx-auto mt-16 md:mt-24 lg:mt-12">
-                <div className="flex flex-col gap-2 justify-center items-center p-4 mb-12">
+            <div className="w-full mx-auto py-16">
+                <div className="flex flex-col gap-2 justify-center items-center mb-12">
                     <h2 className="text-2xl md:text-4xl text-center font-bold">
                         What Our{" "}
                         <span className="text-brand-blue font-normal italic">Learners </span>
