@@ -4,7 +4,7 @@ import { height } from '../Notifications/NotificationBanner';
 import { Helmet } from 'react-helmet-async';
 import MetaTags from '../MetaTags';
 import { FaArrowRightLong } from "react-icons/fa6";
-import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop } from "react-icons/fa";
+import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaClipboardList, FaChalkboardTeacher, FaPenFancy, FaCertificate } from "react-icons/fa";
 
 import FAQDisplay from "../FAQDisplay.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
