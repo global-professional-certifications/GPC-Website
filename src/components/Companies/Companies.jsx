@@ -54,7 +54,7 @@ export default function Companies() {
 
     return (
         <>
-            <div className="sm:pt-4 md:pt-24 pb-10 mb-10 md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center overflow-x-hidden">
+            <div className="py-12 md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center overflow-x-hidden">
                 <div className="flex flex-col gap-2 justify-center items-center p-4 mb-20">
                     <h2 className="text-2xl md:text-4xl font-bold text-center">Join Thousands of <span className="text-brand-blue font-normal italic">Professionals</span> from <span className="text-brand-blue font-normal italic">Leading Companies</span>
                     </h2>
