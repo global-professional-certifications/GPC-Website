@@ -13,10 +13,10 @@ const Hero = () => {
 
     return (
         <section
-            className="relative min-h-screen flex items-center justify-center bg-brand-blue sm:pt-24 transition-colors duration-300"
+            className="relative min-h-screen md:h-[60vh] lg:h-full flex items-center justify-center bg-brand-blue transition-colors duration-300"
             style={{ paddingTop: `${paddingTop}px` }}
         >
-            <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col lg:flex-row md:items-start lg:items-center gap-10">
+            <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col lg:flex-row md:items-start lg:items-center gap-10 pt-24 md:pt-12">
 
                 {/* --- Left: Text Section --- */}
                 <div className="w-full md:w-full lg:w-1/2 lg:max-w-3xl text-left">
