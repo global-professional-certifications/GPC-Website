@@ -16,6 +16,7 @@ import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 import YouTubeCarousel from "../YouTubeCarousel/YouTubeCarousel";
+import MentorShowcase from "../About/MentorShowcase.jsx";
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -564,6 +565,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* About Mentor */}
+        <MentorShowcase />
 
         {/* Testimonials Section */}
         <TestimonialsShowcase />

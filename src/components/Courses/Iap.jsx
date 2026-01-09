@@ -15,6 +15,7 @@ import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft.jsx';
 import WhyGPC from '../DescriptiveSection/WhyGPC.jsx';
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart.jsx';
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
+import MentorShowcase from "../About/MentorShowcase.jsx";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefcase, FaUserCheck, FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
@@ -348,6 +349,9 @@ const Iap = () => {
             },
           ]}
         />
+
+        {/* About Mentor */}
+        <MentorShowcase />
 
 
         {/* Enrollment Section */}

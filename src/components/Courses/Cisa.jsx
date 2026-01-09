@@ -21,6 +21,7 @@ import FAQDisplay from "../FAQDisplay.jsx";
 import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
 import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
+import MentorShowcase from "../About/MentorShowcase.jsx";
 
 
 import {
@@ -219,7 +220,7 @@ const Cisa = () => {
         />
 
         {/* About the CISA course */}
-        
+
         <DescriptiveLeft
           titleStart="About the "
           highlight="CISA"
@@ -424,6 +425,10 @@ const Cisa = () => {
             },
           ]} />
 
+        {/* About Mentor */}
+        <MentorShowcase />
+
+
         {/* Flowchart */}
         <DescriptiveFlowchart
           titleStart="Process of"
@@ -502,6 +507,7 @@ const Cisa = () => {
             </div>
           </div>
         </div>
+
 
         {/* Companies */}
         <CompaniesShowcase

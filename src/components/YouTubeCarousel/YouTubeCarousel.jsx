@@ -10,7 +10,7 @@ const extractVideoId = (url) => {
     return (match && match[7].length === 11) ? match[7] : null;
 };
 
-const YouTubeCarousel = ({ videos, channelUrl }) => {
+const YouTubeCarousel = ({ videos }) => {
     const scrollContainerRef = useRef(null);
 
     const defaultVideos = [
@@ -152,7 +152,7 @@ const YouTubeCarousel = ({ videos, channelUrl }) => {
                 {/* CTA */}
                 <div className="mt-12 text-center">
                     <a
-                        href={channelUrl}
+                        href="https://www.youtube.com/@global-professional-cert"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-3 bg-brand-blue text-white py-3 px-8 rounded-full hover:bg-brand-purple transition shadow-lg"

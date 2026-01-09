@@ -18,6 +18,8 @@ import FAQDisplay from "../FAQDisplay";
 import CoursesShowcase from "../Courses/CoursesShowcase";
 import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
+import MentorShowcase from "../About/MentorShowcase.jsx";
+
 
 import examOne from "../../assets/courses/cia/exam-1.webp";
 import examTwo from "../../assets/courses/cia/exam-2.webp";
@@ -894,6 +896,8 @@ const Cia = () => {
                     </div>
                 </div>
 
+                {/* About Mentor */}
+                <MentorShowcase />
 
                 {/* Excellence in Training Design */}
                 <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8">
@@ -1060,6 +1064,7 @@ const Cia = () => {
                         </div>
                     </div>
                 </div>
+
 
                 {/* Testimonials Section */}
                 <TestimonialsShowcase />

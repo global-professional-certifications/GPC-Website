@@ -2,95 +2,126 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbWorldWww } from "react-icons/tb";
-import arpitGarg from "../../assets/arpit-garg.webp";
+import arpitGarg from "../../assets/about/arpit-garg.webp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const MentorShowcase = () => {
     return (
-        <section className="bg-gradient-to-b from-gray-50 to-white py-20">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <section className="bg-brand-blue py-16 px-6 md:px-20">
+            <div className="md:hidden">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Our{" "}
+                    <span className="text-brand-blue font-normal italic">
+                        Experienced
+                    </span>{" "}
+                    Course Mentor
+                </h2>
 
-                {/* Heading (UNCHANGED intent & style) */}
-                <div className="text-center mb-20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Our Experienced Course{" "}
-                        <span className="text-brand-blue font-normal italic">
-                            Mentor
-                        </span>
-                    </h2>
-                    <p className="max-w-3xl mx-auto text-gray-600 text-xs md:text-base font-poppins leading-relaxed">
-                        Learn from industry experts and gain real-world skills that drive success
-                    </p>
-                </div>
+                <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
+                    Learn from industry experts and gain real-world skills that drive success
+                </p>
+            </div>
 
-                {/* Card */}
-                <div className="bg-white rounded-[2rem] shadow-2xl border border-gray-100 max-w-5xl mx-auto overflow-hidden">
-                    <div className="flex flex-col md:flex-row">
+            <div className="max-w-6xl mx-auto">
+                <div className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
 
-                        {/* Image */}
-                        <div className="md:w-2/5 relative">
-                            <img
-                                src={arpitGarg}
-                                alt="Arpit Garg"
-                                className="w-full h-full object-cover object-top"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
-                        </div>
+                    {/* Decorative background accents */}
+                    <div className="absolute -top-24 -left-24 w-72 h-72 bg-brand-blue/10 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-blue/5 rounded-full blur-3xl" />
 
-                        {/* Content */}
-                        <div className="md:w-3/5 p-10 md:p-14 flex flex-col justify-center">
+                    <div className="relative z-10 flex flex-col-reverse md:flex-row items-center gap-6 md:gap-16 px-8 py-8 md:py-14 md:px-16">
 
-                            {/* Name */}
-                            <div className="mb-6">
-                                <h3 className="text-3xl md:text-4xl font-extrabold text-brand-dark mb-2">
-                                    Arpit Garg
-                                </h3>
-                                <p className="text-brand-blue font-semibold tracking-wide text-sm uppercase">
-                                    CA, CIA, CRMA, CISA
+                        {/* LEFT CONTENT */}
+                        <div className="w-full md:w-[65%]">
+                            <div className="hidden md:block">
+                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                    Our{" "}
+                                    <span className="text-brand-blue font-normal italic">
+                                        Experienced
+                                    </span>{" "}
+                                    Course Mentor
+                                </h2>
+                                <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
+                                    Learn from industry experts and gain real-world skills that drive success
                                 </p>
                             </div>
 
-                            {/* Role & Bio */}
-                            <div className="space-y-5 mb-10">
-                                <h4 className="text-xl font-bold text-gray-800">
-                                    Co-founding Partner, Riskman
-                                </h4>
-                                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                                    A visionary faculty and the architect of success for{" "}
+                            <div className="space-y-3 md:space-y-6">
+
+                                {/* NAME + ICONS ROW */}
+                                <div className="flex items-start justify-between flex-wrap gap-y-4">
+
+                                    {/* Name */}
+                                    <div className="flex flex-col">
+                                        <p className="text-2xl md:text-3xl font-semibold text-brand-dark leading-tight">
+                                            Mr. Arpit Garg
+                                        </p>
+                                        <p className="text-xs md:text-sm tracking-widest text-brand-blue">
+                                            (CA, CIA, CISA, CRMA)
+                                        </p>
+                                    </div>
+
+                                    {/* Icons */}
+                                    <div className="flex items-start gap-2 md:gap-4 md:pr-24">
+                                        <Link
+                                            to="https://www.linkedin.com/in/arpit-garg-88070560"
+                                            target="_blank"
+                                            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faLinkedin}
+                                                className="text-xl md:text-2xl"
+                                            />
+                                        </Link>
+
+                                        <Link
+                                            to="mailto:cia@globalprofessionalcertifications.com"
+                                            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                        >
+                                            <HiOutlineMail className="text-xl md:text-2xl" />
+                                        </Link>
+
+                                        <Link
+                                            to="https://www.riskman.in/"
+                                            target="_blank"
+                                            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                        >
+                                            <TbWorldWww className="text-xl md:text-2xl" />
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                <p className="text-[12px] md:text-base font-poppins font-semibold text-gray-900">
+                                    <span className="font-normal text-gray-600">Co-founding Partner,</span> RiskMan Consulting
+                                </p>
+
+                                <div className="h-px w-24 bg-brand-blue/30" />
+
+                                <p className="text-sm md:text-base font-poppins text-gray-600 leading-relaxed max-w-xl">
+                                    A faculty and the architect of success for{" "}
                                     <span className="font-bold text-brand-dark">1500+</span>{" "}
                                     professionals. Renowned for redefining audit excellence with
                                     clarity, structure, and strategic insight.
                                 </p>
                             </div>
+                        </div>
 
-                            {/* Actions */}
-                            <div className="flex flex-wrap items-center gap-6">
-                                <Link
-                                    to="https://www.linkedin.com/in/arpit-garg-88070560"
-                                    target="_blank"
-                                    className="bg-brand-blue text-white px-8 py-3 rounded-xl font-semibold tracking-wide hover:bg-brand-purple transition-all duration-300 shadow-lg hover:scale-105"
-                                >
-                                    View LinkedIn
-                                </Link>
-
-                                <div className="flex items-center gap-4">
-                                    <Link
-                                        to="mailto:cia@globalprofessionalcertifications.com"
-                                        className="p-3 rounded-full border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-300"
-                                    >
-                                        <HiOutlineMail className="w-5 h-5" />
-                                    </Link>
-
-                                    <Link
-                                        to="https://www.riskman.in/"
-                                        target="_blank"
-                                        className="p-3 rounded-full border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-300"
-                                    >
-                                        <TbWorldWww className="w-5 h-5" />
-                                    </Link>
-                                </div>
+                        {/* RIGHT IMAGE */}
+                        <div className="w-full md:w-[35%] relative flex justify-center">
+                            <div className="absolute inset-0 flex justify-center items-center">
+                                <div className="w-full h-64 md:w-80 md:h-80 bg-brand-blue/20 rounded-full blur-3xl" />
                             </div>
 
+                            <div className="relative z-10">
+                                <img
+                                    src={arpitGarg}
+                                    alt="Arpit Garg"
+                                    className="w-68 h-68 md:w-96 lg:w-[360px] object-cover"
+                                />
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
