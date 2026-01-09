@@ -16,6 +16,7 @@ import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft.jsx';
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
+import MentorShowcase from "../About/MentorShowcase.jsx";
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
@@ -229,70 +230,6 @@ const Crma = () => {
           ]}
         />
 
-        <WhyGPC
-          subHeading="Global Professional Certifications provides experienced guidance for your Certification in Risk Management Assurance (CRMA) preparations. Here are why professionals choose our course:"
-          items={[
-            {
-              icon: <FaGlobe className="text-white text-2xl" />,
-              title: "Recognized Worldwide",
-              description:
-                "We are an IIA-registered partner, and this provides global recognition to professionals in their careers.",
-            },
-            {
-              icon: <FaHandsHelping className="text-white text-2xl" />,
-              title: "Individual Attention",
-              description:
-                "Our course provides one-on-one support to you during your certification journey to ensure smooth completion.",
-            },
-            {
-              icon: <FaUserTie className="text-white text-2xl" />,
-              title: "Experienced Mentorship",
-              description:
-                "Get guidance from industry experts to hone your practical knowledge and grow higher in your career.",
-            },
-            {
-              icon: <FaLaptop className="text-white text-2xl" />,
-              title: "Flexible Study Timing",
-              description:
-                "We provide weekend online classes and 100% recorded classes to provide you with flexible study timing.",
-            },
-          ]}
-        />
-
-        {/* Process Flowchart */}
-        <DescriptiveFlowchart
-          titleStart="Process of"
-          highlight="Becoming Certified"
-          titleEnd="CRMA"
-          subHeading=""
-          steps={[
-            {
-              title: "Course Application Submission",
-              icon: FaClipboardList,
-              description:
-                "Choose and apply for the best CRMA certification training program in India with Global Professional Certifications.",
-            },
-            {
-              title: "Training from Industry Professionals",
-              icon: FaChalkboardTeacher,
-              description:
-                "Learn industry-relevant skills from expert mentors during this course and get trained.",
-            },
-            {
-              title: "Continuous Practice",
-              icon: FaPenFancy,
-              description:
-                "Practice constantly with our study materials, mock tests, and MCQs and get ready for the CRMA exam.",
-            },
-            {
-              title: "Certification Completion",
-              icon: FaCertificate,
-              description:
-                "Pass the 150-minute exam with 125 MCQs to achieve the globally recognized CRMA certification.",
-            },
-          ]}
-        />
-
 
         {/* Course Objectives */}
 
@@ -412,6 +349,72 @@ const Crma = () => {
           </div>
         </div>
 
+        <WhyGPC
+          subHeading="Global Professional Certifications provides experienced guidance for your Certification in Risk Management Assurance (CRMA) preparations. Here are why professionals choose our course:"
+          items={[
+            {
+              icon: <FaGlobe className="text-white text-2xl" />,
+              title: "Recognized Worldwide",
+              description:
+                "We are an IIA-registered partner, and this provides global recognition to professionals in their careers.",
+            },
+            {
+              icon: <FaHandsHelping className="text-white text-2xl" />,
+              title: "Individual Attention",
+              description:
+                "Our course provides one-on-one support to you during your certification journey to ensure smooth completion.",
+            },
+            {
+              icon: <FaUserTie className="text-white text-2xl" />,
+              title: "Experienced Mentorship",
+              description:
+                "Get guidance from industry experts to hone your practical knowledge and grow higher in your career.",
+            },
+            {
+              icon: <FaLaptop className="text-white text-2xl" />,
+              title: "Flexible Study Timing",
+              description:
+                "We provide weekend online classes and 100% recorded classes to provide you with flexible study timing.",
+            },
+          ]}
+        />
+
+        {/* About Mentor */}
+        <MentorShowcase />
+
+        {/* Process Flowchart */}
+        <DescriptiveFlowchart
+          titleStart="Process of"
+          highlight="Becoming Certified"
+          titleEnd="CRMA"
+          subHeading=""
+          steps={[
+            {
+              title: "Course Application Submission",
+              icon: FaClipboardList,
+              description:
+                "Choose and apply for the best CRMA certification training program in India with Global Professional Certifications.",
+            },
+            {
+              title: "Training from Industry Professionals",
+              icon: FaChalkboardTeacher,
+              description:
+                "Learn industry-relevant skills from expert mentors during this course and get trained.",
+            },
+            {
+              title: "Continuous Practice",
+              icon: FaPenFancy,
+              description:
+                "Practice constantly with our study materials, mock tests, and MCQs and get ready for the CRMA exam.",
+            },
+            {
+              title: "Certification Completion",
+              icon: FaCertificate,
+              description:
+                "Pass the 150-minute exam with 125 MCQs to achieve the globally recognized CRMA certification.",
+            },
+          ]}
+        />
 
         {/* Enrollment Section */}
         <div className="py-16 w-full px-4" id="enrollment">
