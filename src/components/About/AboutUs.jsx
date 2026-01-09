@@ -46,7 +46,7 @@ export default function AboutUs() {
             </section>
 
             {/* Our Mission Section - Sober & Elegant */}
-            <section className="py-16 md:py-24 bg-gray-50">
+            <section className="py-16 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-6 lg:px-12">
 
                     {/* Standardized Heading - NO ANIMATION */}
@@ -105,7 +105,7 @@ export default function AboutUs() {
             </section>
 
             {/* Our Vision Section - Sober & Elegant */}
-            <section className="py-16 md:py-24 bg-brand-blue">
+            <section className="py-16 bg-brand-blue">
                 <div className="max-w-6xl mx-auto px-6 lg:px-12">
 
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -139,7 +139,7 @@ export default function AboutUs() {
             </section>
 
             {/* What Sets Us Apart - Compact Bento Grid */}
-            <section className="py-16 md:py-24 bg-gray-50">
+            <section className="py-16 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-6 lg:px-12">
 
                     {/* Bento Heading */}
