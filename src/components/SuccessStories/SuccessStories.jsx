@@ -614,13 +614,11 @@ export default function SuccessStories() {
                     What Our Students Say
                 </h2>
             </div>
-
             <SuccessTestimonials stories={imageStories} start={0} end={8} />
-            <ExamTestimonials />
-            <h2 className="font-display text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue py-12 px-4 bg-gray-50">
-                More Success Stories
-            </h2>
             <SuccessTestimonials stories={imageStories} start={8} end={20} />
+
+
+            <ExamTestimonials />
 
 
         </>
