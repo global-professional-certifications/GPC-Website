@@ -30,7 +30,7 @@ export default function Layout() {
             <ScrollToTop />
             <NotificationBanner />
             <Navbar topOffset={"12"} /> {/* height of notification banner */}
-            {isHomePage && (
+            {/* {isHomePage && (
                 <EventCountdownBar
                     eventName="IIA Bombay Chapter 2026"
                     targetDate="2026-01-08T11:00:00"
@@ -38,7 +38,7 @@ export default function Layout() {
                     buttonText="Check Event"
                     buttonLink="upcoming-event"
                 />
-            )}
+            )} */}
             <Outlet />
             <Footer />
         </>
