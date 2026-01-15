@@ -70,12 +70,12 @@ const GtmTrainings = () => {
 
 
 
-            <div className="bg-gray-50">
+            <div className="bg-gray-50 pt-20">
                 {/* Introduction */}
                 <DescriptiveLeft
                     titleStart="What are "
-                    highlight="GTM Training Programmes?"
-                    description="GPC's Go-To-Market (GTM) Corporate Training Programs offer a comprehensive suite of 30 specialized courses designed to enhance the skills and competencies of internal audit practitioners at all levels. Our curriculum is tailored to bridge the gap between traditional auditing and the demands of the modern, technology-driven business landscape."
+                    highlight="Global Training Modules?"
+                    description="GTM (Global Training Modules) are globally standardized professional training programs developed by The Institute of Internal Auditors (IIA) and delivered in India by IIA India. These programs follow the Global Internal Audit Standards and the IPPF framework, ensuring the same content quality, structure, and rigor as IIA trainings offered internationally. GTMs cover a wide range of areas including internal auditing, risk-based auditing, IT and cybersecurity, fraud, compliance, ERM, AI in audit, quality assurance, and essential soft skills, and they are widely recognized by audit committees, senior management, and internal audit leaders for CPE and professional development."
                     image={internalAudit}
                 />
 

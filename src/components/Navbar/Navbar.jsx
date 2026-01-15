@@ -20,7 +20,7 @@ const coursesOptions = [
 
 const corporateOptions = [
   {
-    name: "GTM Trainings",
+    name: "IIA Global Training Modules",
     fullname: "Specialized Corporate Training Programmes",
     link: "/corporate/gtm-trainings"
   },
