@@ -11,9 +11,10 @@ import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart';
 import DescriptiveLeft from '../DescriptiveSection/DescriptiveLeft';
 
 // Assets
-import internalAudit from "../../assets/courses/cia/internal-audit.webp";
+import qaip from "../../assets/corporate/qaip.webp";
 import learningPartner from "../../assets/Learning_partner.jpg";
-import ciaHero from "../../assets/courses/cia/cia-hero.webp";
+import qaipHero from "../../assets/corporate/qaip-hero.webp";
+import brochure from "../../assets/corporate/qaip-brochure.pdf";
 
 
 
@@ -74,7 +75,7 @@ const Qaip = () => {
                     <div className="relative mx-auto lg:max-w-6xl">
                         <img
                             className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block"
-                            src={ciaHero}
+                            src={qaipHero}
                             alt="IIA Quality Assessment"
                             loading="lazy"
                         />
@@ -84,14 +85,14 @@ const Qaip = () => {
 
 
             {/* Content Section */}
-            <div className="bg-gray-50">
+            <div className="bg-gray-50 pb-16">
 
                 {/* Introduction */}
                 <DescriptiveLeft
                     titleStart="What is "
                     highlight="QAIP?"
                     description="The Quality Assurance and Improvement Program (QAIP) is an in-depth evaluation of an internal audit function's methodologies, effectiveness, and alignment with mandatory guidance and leading practices. Based on IIA Quality Services' progressive knowledge of IIA methodology — the Quality Assessment Manual — our external quality assessment evaluates levels of conformance to the Standards and goes beyond to provide for continuous improvement of your internal audit activity to the level of strategic business partner and valued contributor."
-                    image={internalAudit}
+                    image={qaip}
                 />
 
                 {/* Why Quality Assessments - Key Benefits */}
@@ -145,13 +146,17 @@ const Qaip = () => {
                         {/* Left Content */}
                         <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
                             <h2 className="text-2xl md:text-4xl font-bold leading-snug">
+                                Check the{" "}
                                 <span className="text-brand-blue font-normal italic">
-                                    IIA India
+                                    IIA India's
                                 </span>{" "}
-                                Authorized Training Partner
+                                Brochure for{" "}
+                                <span className="text-brand-blue font-normal italic">
+                                    EQA
+                                </span>
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                Mr. Mukundan K.V, CEO of IIA India, presents the official
+                                <span className='text-black font-semibold'>Mr. Mukundan K.V, CEO of IIA India,</span> presents the official
                                 accreditation certificate to Arpit Garg, GPC mentor marking
                                 Global Professional Certifications as an
                                 <span className="font-semibold">
@@ -161,12 +166,12 @@ const Qaip = () => {
                             </p>
                             <div className="flex justify-center md:justify-start items-center gap-6 mt-2">
                                 <a
-                                    href="https://youtu.be/CvzJ_SFD45Y?si=Qow7Di56YcGFjXjz"
+                                    href={brochure}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 md:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
                                 >
-                                    Watch Video
+                                    Get Brochure
                                 </a>
                             </div>
                         </div>
@@ -349,7 +354,7 @@ const Qaip = () => {
                 </div>
 
                 {/* Partnership CTA - Text Left, Button Right */}
-                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 mb-12">
+                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4">
                     <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
                         {/* Decorative background element */}
                         <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>

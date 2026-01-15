@@ -9,11 +9,10 @@ import { height } from '../Notifications/NotificationBanner';
 
 
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
-import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
-
 import internalAudit from "../../assets/courses/cia/internal-audit.webp";
 import learningPartner from "../../assets/Learning_partner.jpg";
-import ciaHero from "../../assets/courses/cia/cia-hero.webp";
+import gtmHero from "../../assets/corporate/gtm-hero.webp";
+import gtm from "../../assets/corporate/gtm.webp"
 
 
 
@@ -60,7 +59,7 @@ const GtmTrainings = () => {
                     <div className="relative mx-auto lg:max-w-6xl">
                         <img
                             className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block"
-                            src={ciaHero}
+                            src={gtmHero}
                             alt="Professional Development Programs"
                             loading="lazy"
                         />
@@ -70,13 +69,13 @@ const GtmTrainings = () => {
 
 
 
-            <div className="bg-gray-50 pt-20">
+            <div className="bg-gray-50 py-20">
                 {/* Introduction */}
                 <DescriptiveLeft
                     titleStart="What are "
                     highlight="Global Training Modules?"
                     description="GTM (Global Training Modules) are globally standardized professional training programs developed by The Institute of Internal Auditors (IIA) and delivered in India by IIA India. These programs follow the Global Internal Audit Standards and the IPPF framework, ensuring the same content quality, structure, and rigor as IIA trainings offered internationally. GTMs cover a wide range of areas including internal auditing, risk-based auditing, IT and cybersecurity, fraud, compliance, ERM, AI in audit, quality assurance, and essential soft skills, and they are widely recognized by audit committees, senior management, and internal audit leaders for CPE and professional development."
-                    image={internalAudit}
+                    image={gtm}
                 />
 
                 {/* Categories Grid */}
@@ -117,7 +116,7 @@ const GtmTrainings = () => {
                                 Authorized Training Partner
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                Mr. Mukundan K.V, CEO of IIA India, presents the official
+                               <span className='text-black font-semibold'>Mr. Mukundan K.V, CEO of IIA India,</span> presents the official
                                 accreditation certificate to Arpit Garg, GPC mentor marking
                                 Global Professional Certifications as an
                                 <span className="font-semibold">

@@ -312,7 +312,7 @@ const Cia = () => {
                                 Authorized Training Partner
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                Mr. Mukundan K.V, CEO of IIA India, presents the official
+                                <span className='text-black font-semibold'>Mr. Mukundan K.V, CEO of IIA India,</span> presents the official
                                 accreditation certificate to Arpit Garg, GPC mentor marking
                                 Global Professional Certifications as an
                                 <span className="font-semibold">
