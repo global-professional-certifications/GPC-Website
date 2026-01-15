@@ -1,15 +1,15 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
+import MegaMenu from "./MegaMenu";
+
 import logo from "../../assets/logo-2.png";
 import cisaLogo from "../../assets/courses/cisa-logo.webp";
 import ciaLogo from "../../assets/courses/cia-logo.webp";
 import iapLogo from "../../assets/courses/iap-logo.webp";
 import crmaLogo from "../../assets/courses/crma-logo.webp";
-import internalAudit from "../../assets/courses/cia/internal-audit.webp";
-import MegaMenu from "./MegaMenu";
-import ciaHero from "../../assets/courses/cia/cia-hero.webp";
-
+import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
+import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
 
 const coursesOptions = [
   { name: "CIA", fullname: "Certified Internal Auditor", logo: ciaLogo, link: "/courses/cia" },
@@ -135,7 +135,8 @@ const Navbar = ({ topOffset = 0 }) => {
                   items={coursesOptions}
                   isOpen={isCoursesDropdownOpen}
                   showItemLogos={true}
-                  panelImage={ciaHero}
+                  panelImage={coursesPanelImage}
+                  onClose={() => setIsCoursesDropdownOpen(false)}
                 />
               </div>
             ) : item === "Corporate" ? (
@@ -162,7 +163,8 @@ const Navbar = ({ topOffset = 0 }) => {
                   items={corporateOptions}
                   isOpen={isCorporateDropdownOpen}
                   showItemLogos={false}
-                  panelImage={internalAudit}
+                  panelImage={corporatePanelImage}
+                  onClose={() => setIsCorporateDropdownOpen(false)}
                 />
               </div>
             ) : (

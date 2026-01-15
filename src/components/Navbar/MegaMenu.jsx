@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null }) => {
+const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onClose }) => {
     const location = useLocation();
 
     return (
@@ -12,6 +12,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null }) =
         max-w-[1200px]
         bg-white
         z-50
+        shadow-lg
         transition-all duration-300 ease-out transform origin-top
         ${isOpen
                     ? "opacity-100 scale-100 translate-y-0 pointer-events-auto mt-0"
@@ -30,6 +31,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null }) =
                             <Link
                                 key={index}
                                 to={item.link}
+                                onClick={() => onClose && onClose()}
                                 className={`
                 group flex items-center gap-4
                 px-5 py-3
@@ -59,14 +61,12 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null }) =
                 </div>
 
                 {/* RIGHT – Visual Panel (Full-Bleed Image) */}
-                <div className="col-span-2 relative overflow-hidden bg-gray-100 border-l border-gray-200">
+                <div className="col-span-2 overflow-hidden bg-gray-100 border-l border-gray-200">
                     <img
                         src={panelImage}
                         alt="Program visual"
-                        className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+                        className=" w-full h-full object-cover"
                     />
-                    {/* Subtle gradient overlay to tie it to the left side */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#f8faff] via-transparent to-transparent opacity-40"></div>
                 </div>
             </div>
         </div>
