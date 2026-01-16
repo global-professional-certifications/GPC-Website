@@ -9,7 +9,6 @@ import { height } from '../Notifications/NotificationBanner';
 
 
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
-import internalAudit from "../../assets/courses/cia/internal-audit.webp";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import gtmHero from "../../assets/corporate/gtm-hero.webp";
 import gtm from "../../assets/corporate/gtm.webp"
@@ -259,7 +258,7 @@ const GtmTrainings = () => {
                                 </p>
                             </div>
                             <Link
-                                to="/contact"
+                                to="https://forms.zohopublic.in/globalprofessionalcertificat1/form/SimpleContactUs/formperma/UZgkfg0mt8KJh2ccgdqvzWV8DwJUTKuKwSXWALn-nyU"
                                 className="group flex-shrink-0 inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/20"
                             >
                                 Request a Consultation

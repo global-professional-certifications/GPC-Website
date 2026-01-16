@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
-import { Helmet } from "react-helmet-async";
+import { SchemaMarkup, getFAQSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
 
 const faqs = [
     {
@@ -221,81 +221,25 @@ const FAQ = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Frequently Asked Questions - Global Professional Certifications",
-        "description": "Find answers to the most common questions about CIA, CISA, CRMA, and other audit certifications offered by Global Professional Certifications.",
-        "image": "https://globalprofessionalcertifications.com/logo.png",
-        "author": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "url": "https://globalprofessionalcertifications.com"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://globalprofessionalcertifications.com/logo.png"
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://globalprofessionalcertifications.com/faq"
-        }
-    };
+    // FAQ Schema with all FAQs
+    const faqSchema = getFAQSchema(faqs);
 
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What certifications or training does Global Professional Certifications offer for global professionals?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include: Certified Internal Auditor (CIA) – the gold standard for internal auditing and risk assurance globally. Certified Information Systems Auditor (CISA) – for IT audit, cyber risk, and information security professionals. Certification in Risk Management Assurance (CRMA) – for expertise in governance, risk, and control. Internal Auditor Practitioner (IAP) – foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How can Global Professional Certifications help me become a Certified Internal Auditor or Risk Assurance professional?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "With Global Professional Certifications, you receive structured learning modules, live mentoring from industry leaders, and access to exam-focused material for CIA, CISA, CRMA, and IAP. Our support covers all aspects—exam registration guidance, personalized doubt-clearing sessions, mock exams, and career readiness programs. We are an IIA India Authorized Learning Partner, ensuring you benefit from the latest study resources and international best practices. Our alumni work at top corporates worldwide, and our placement support connects you with leading employers in audit, assurance, and risk management."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Who should pursue CIA, CISA, CRMA, or IAP courses?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "These certifications are ideal for graduates, working professionals, auditors, accountants, and risk advisors who seek career advancement in internal audit, IT audit, or enterprise risk management. If you wish to stand out in global risk governance roles, secure jobs in top corporates or consulting, or deepen your expertise in controls and assurance, Global Professional Certifications offers the gateway to your professional growth."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is the difference between CIA, CISA, CRMA, and IAP certifications?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "CIA (Certified Internal Auditor): Validates expertise in internal audit, governance, risk management, and controls; globally recognized by auditors, corporates, and consulting firms. CISA (Certified Information Systems Auditor): International credential for IT audit, information systems assurance, cybersecurity, and data protection roles. CRMA (Certification in Risk Management Assurance): Specialization in risk assurance, focusing on governance, internal control, and risk consulting. IAP (Internal Auditor Practitioner): Entry-level course for beginners aiming to build foundational audit knowledge and pursue further certifications."
-                }
-            }
-        ]
-    };
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "FAQ", url: "https://globalprofessionalcertifications.com/faq" }
+    ]);
 
+    // WebPage Schema
+    const webPageSchema = getWebPageSchema({
+        name: "Frequently Asked Questions - Global Professional Certifications",
+        description: "Find answers to the most common questions about CIA, CISA, CRMA, and other audit certifications offered by Global Professional Certifications.",
+        url: "https://globalprofessionalcertifications.com/faq"
+    });
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(articleSchema)}
-                </script>
-                <script type="application/ld+json">
-                    {JSON.stringify(faqSchema)}
-                </script>
-            </Helmet>
+            <SchemaMarkup schema={[faqSchema, breadcrumbSchema, webPageSchema]} />
             <MetaTags
                 title="Frequently Asked Questions (FAQs) | Global Professional Certifications"
                 description="Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career."

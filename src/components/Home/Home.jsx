@@ -5,7 +5,7 @@ import Companies from "../Companies/Companies";
 import VideoSection from "../VideoSection/VideoSection";
 import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
-
+import { Helmet } from "react-helmet-async";
 import FAQDisplay from "../FAQDisplay.jsx";
 import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
 import { motion } from "framer-motion";
@@ -132,12 +132,47 @@ export default function Home() {
     };
   }, []);
 
+  // Homepage schemas
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Global Professional Certifications",
+    "alternateName": "GPC",
+    "url": "https://globalprofessionalcertifications.com",
+    "description": "Leading institute for CIA, CISA, CRMA, and IAP certification training in India",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://globalprofessionalcertifications.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": courseFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
 
   return (
     <>
       {showCelebration && (
         <CelebrationOverlay onComplete={handleCelebrationComplete} />
       )}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
       <MetaTags
         title="Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
         description=" Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. "

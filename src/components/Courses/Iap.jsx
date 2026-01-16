@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
-import { Helmet } from 'react-helmet-async';
 import MetaTags from '../MetaTags';
 
 import FAQDisplay from "../FAQDisplay.jsx";
@@ -16,6 +15,8 @@ import WhyGPC from '../DescriptiveSection/WhyGPC.jsx';
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart.jsx';
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 import MentorShowcase from "../About/MentorShowcase.jsx";
+
+import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefcase, FaUserCheck, FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
@@ -59,19 +60,25 @@ const Iap = () => {
 
   const marginTop = 68 + (4 * (height ? height : 0))
 
-  const iapSchema = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Internal Audit Practitioner (IAP)",
-    "description":
-      "Start your auditing career with the Internal Audit Practitioner (IAP) course by Global Professional Certifications. Learn essential auditing principles, ethics, and best practices recognized globally.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Global Professional Certifications",
-      "sameAs": "https://globalprofessionalcertifications.com",
-    },
-    "url": "https://globalprofessionalcertifications.com/courses/iap",
-  };
+  // Comprehensive Course Schema
+  const iapSchema = getCourseSchema({
+    name: "Internal Audit Practitioner (IAP) Certification Course",
+    description: "Start your auditing career with the Internal Audit Practitioner (IAP) course. Learn essential auditing principles, ethics, and best practices recognized globally. Foundation for CIA certification.",
+    price: "23600",
+    enrollUrl: "https://rzp.io/rzp/C7jUKuC",
+    credential: "Internal Audit Practitioner (IAP)",
+    occupationalCategory: "Entry-Level Internal Auditor, Audit Associate, Risk Analyst"
+  });
+
+  // Breadcrumb Schema
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://globalprofessionalcertifications.com" },
+    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
+    { name: "IAP", url: "https://globalprofessionalcertifications.com/courses/iap" }
+  ]);
+
+  // FAQ Schema
+  const faqSchema = getFAQSchema(courseFaqs);
 
   return (
     <>
@@ -80,11 +87,7 @@ const Iap = () => {
         description="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/iap"
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(iapSchema)}
-        </script>
-      </Helmet>
+      <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema]} />
 
       {/* Header */}
 

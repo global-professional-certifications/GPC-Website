@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import MetaTags from "../MetaTags";
 import { motion } from "motion/react";
 import { RxCross1 } from "react-icons/rx";
-import { Helmet } from 'react-helmet-async';
 import FAQDisplay from "../FAQDisplay.jsx";
 import EventCarousel from "../Carousels/EventCarousel";
 import UpcomingEventCard from "./UpcomingEventCard";
-
+import { SchemaMarkup, getEventSchema, getBreadcrumbSchema, getFAQSchema, getWebPageSchema } from "../Schema";
 
 // images import
 import iiaEvent from "../../assets/events/iia-event.webp";
@@ -219,40 +218,36 @@ export default function Events() {
         return () => window.removeEventListener("resize", handleResize)
     }, [window.innerWidth])
 
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Upcoming Events by Global Professional Certifications",
-        "description": "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
-        "author": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://globalprofessionalcertifications.com/logo.png"
-            }
-        },
-        "url": "https://globalprofessionalcertifications.com/events",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://globalprofessionalcertifications.com/events"
-        },
-        "datePublished": "2025-10-07",
-        "dateModified": "2025-10-07"
+    // Generate event schemas for all events
+    const allEvents = [...events2026Data, ...events2025Data];
+    const eventSchemas = allEvents.map(event => getEventSchema({
+        name: event.eventName,
+        description: event.description,
+        startDate: event.date,
+        location: event.location,
+        url: `https://globalprofessionalcertifications.com/events#${event.id}`,
+        image: event.img
+    }));
 
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Events", url: "https://globalprofessionalcertifications.com/events" }
+    ]);
 
-    };
+    // FAQ Schema for events page
+    const faqSchema = getFAQSchema(courseFaqs);
 
+    // WebPage Schema
+    const webPageSchema = getWebPageSchema({
+        name: "Upcoming Certification Events & Webinars - GPC",
+        description: "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
+        url: "https://globalprofessionalcertifications.com/events"
+    });
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-            </Helmet>
+            <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema]} />
             <MetaTags
                 title="Upcoming Certification Events & Webinars - GPC"
                 description="Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."
