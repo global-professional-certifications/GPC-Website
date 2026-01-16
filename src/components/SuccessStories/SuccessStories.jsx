@@ -6,7 +6,7 @@ import { GiConqueror } from "react-icons/gi";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
 
-import { Helmet } from 'react-helmet-async';
+import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getReviewSchema, getAggregateRatingSchema } from "../Schema";
 
 // Hero Images
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png"
@@ -201,80 +201,30 @@ export default function SuccessStories() {
         };
     }, []);
 
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Success Stories of Global Professional Certifications",
-        "description": "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications.",
-        "author": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://globalprofessionalcertifications.com/logo.png"
-            }
-        },
-        "url": "https://globalprofessionalcertifications.com/success",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://globalprofessionalcertifications.com/success"
-        },
-        "datePublished": "2025-10-07",
-        "dateModified": "2025-10-07"
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Success Stories", url: "https://globalprofessionalcertifications.com/success" }
+    ]);
 
-    };
+    // WebPage Schema  
+    const webPageSchema = getWebPageSchema({
+        name: "CIA Exam Success Stories – Real Achievements",
+        description: "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications.",
+        url: "https://globalprofessionalcertifications.com/success"
+    });
 
-    // const [loadedVideoIndexes, setLoadedVideoIndexes] = useState(
-    //     Array(testimonialVideos.length).fill(false)
-    // )
-    // const [loadedWrittenIndexes, setLoadedWrittenIndexes] = useState(
-    //     Array(writtenTestimonials.length).fill(false)
-    // )
-
-    // const handleVideoThumbnailClick = (index) => {
-    //     setLoadedVideoIndexes((prev) => {
-    //         const updated = [...prev];
-    //         updated[index] = true;
-    //         return updated;
-    //     });
-    // };
-    // const handleWrittenThumbnailClick = (index) => {
-    //     setLoadedWrittenIndexes((prev) => {
-    //         const updated = [...prev];
-    //         updated[index] = true;
-    //         return updated;
-    //     });
-    // };
-
-    // const videoRefs = useRef(testimonialVideos.map(() => React.createRef()));
-    // const writtenRefs = useRef(writtenTestimonials.map(() => React.createRef()));
-
-    // const handleVideoPlay = (currentIndex) => {
-    //     videoRefs.current.forEach((ref, index) => {
-    //         if (index !== currentIndex && ref.current) {
-    //             ref.current.pause(); // Pause all other videos
-    //         }
-    //     });
-    // };
-    // const handleWrittenPlay = (currentIndex) => {
-    //     writtenRefs.current.forEach((ref, index) => {
-    //         if (index !== currentIndex && ref.current) {
-    //             ref.current.pause(); // Pause all other videos
-    //         }
-    //     });
-    // };
+    // Aggregate Rating Schema for GPC courses
+    const aggregateRatingSchema = getAggregateRatingSchema({
+        ratingValue: "4.9",
+        reviewCount: "150",
+        bestRating: "5",
+        worstRating: "1"
+    });
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(articleSchema)}
-                </script>
-            </Helmet>
+            <SchemaMarkup schema={[breadcrumbSchema, webPageSchema, aggregateRatingSchema]} />
             <MetaTags
                 title="CIA Exam Success Stories – Real Achievements"
                 description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."

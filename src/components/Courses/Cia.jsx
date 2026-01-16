@@ -5,7 +5,6 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
 import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
-import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,6 +19,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
+import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
 
 import examOne from "../../assets/courses/cia/exam-1.webp";
 import examTwo from "../../assets/courses/cia/exam-2.webp";
@@ -44,7 +44,7 @@ const courseFaqs = [
         question:
             "Do you need a CA or MBA degree for CIA certification completion?",
         answer:
-            "It is not required to have a CA or MBA degree to complete CIA certification. The Institute of Internal Audit (IIA) suggests that individuals can become eligible for CIA certification with Bachelors’, Masters’ or no degree as well when they have required relevant experience.",
+            "It is not required to have a CA or MBA degree to complete CIA certification. The Institute of Internal Audit (IIA) suggests that individuals can become eligible for CIA certification with Bachelors', Masters' or no degree as well when they have required relevant experience.",
     },
     {
         question:
@@ -66,31 +66,34 @@ const courseFaqs = [
 
 const Cia = () => {
 
+    // Comprehensive Course Schema
+    const ciaSchema = getCourseSchema({
+        name: "Certified Internal Auditor (CIA) Certification Course",
+        description: "Master the complete CIA exam with expert guidance and comprehensive study materials. All 3 parts with Gleim content, live weekend classes, and 1000+ MCQs.",
+        price: "58999",
+        enrollUrl: "https://rzp.io/rzp/CIASessions",
+        credential: "Certified Internal Auditor (CIA)",
+        occupationalCategory: "Internal Auditor, Risk Management Professional",
+        courseWorkload: "PT60-70H (Part 1), PT80-90H (Part 2), PT40-50H (Part 3)"
+    });
 
-    const ciaSchema = {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Certified Internal Auditor (CIA)",
-        "description": "The CIA course provides professional certification for internal auditors to enhance auditing skills and career credibility.",
-        "provider": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "url": "https://globalprofessionalcertifications.com",
-            "logo": "https://globalprofessionalcertifications.com/logo.png"
-        }
-    };
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
+        { name: "CIA", url: "https://globalprofessionalcertifications.com/courses/cia" }
+    ]);
+
+    // FAQ Schema
+    const faqSchema = getFAQSchema(courseFaqs);
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(ciaSchema)}
-                </script>
-            </Helmet>
+            <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema]} />
 
             <MetaTags
                 title="Become Certified Internal Auditor | Join CIA Certification Training Course in India"
-                description="Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India’s leading CIA certification training providers."
+                description="Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India's leading CIA certification training providers."
                 canonicalUrl="https://globalprofessionalcertifications.com/courses/cia"
             />
 

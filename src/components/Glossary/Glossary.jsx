@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MetaTags from "../MetaTags";
 import { height } from "../Notifications/NotificationBanner";
-import { Helmet } from 'react-helmet-async';
+import { SchemaMarkup, getDefinedTermSetSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
 
 const glossary = [
     { term: "Audit", definition: "Systematic review of records and controls to ensure compliance, accuracy, and integrity in an organization. Global Professional Certifications delivers world-class audit training for global risk and compliance careers." },
@@ -95,47 +95,28 @@ const Glossary = () => {
         return acc;
     }, {});
 
-    const glossarySchema = {
-        "@context": "https://schema.org",
-        "@type": "DefinedTermSet",
-        "name": "Glossary of Terms - Global Professional Certifications",
-        "description": "A glossary of terms related to CIA, CISA, CRMA, and IAP certifications.",
-        "url": "https://globalprofessionalcertifications.com/glossary",
-        "hasDefinedTerm": [
-            { "@type": "DefinedTerm", "name": "CIA", "description": "Certified Internal Auditor - professional certification for internal auditors." },
-            { "@type": "DefinedTerm", "name": "CISA", "description": "Certified Information Systems Auditor - certification for auditing and control of information systems." },
-            { "@type": "DefinedTerm", "name": "CRMA", "description": "Certified Risk Management Auditor - certification for auditors specializing in risk management." },
-            { "@type": "DefinedTerm", "name": "IAP", "description": "Internal Audit Practitioner - entry-level certification for aspiring internal auditors." }
-        ]
-    };
+    // Generate DefinedTermSet schema with all glossary terms
+    const glossarySchema = getDefinedTermSetSchema(glossary.map(item => ({
+        term: item.term,
+        definition: item.definition
+    })));
 
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Glossary of Terms for CIA, CISA, CRMA, and IAP Certifications",
-        "description": "This glossary explains key terms and concepts related to CIA, CISA, CRMA, and IAP certifications.",
-        "author": { "@type": "Organization", "name": "Global Professional Certifications" },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "logo": { "@type": "ImageObject", "url": "https://globalprofessionalcertifications.com/logo.png" }
-        },
-        "url": "https://globalprofessionalcertifications.com/glossary",
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://globalprofessionalcertifications.com/glossary" },
-        "datePublished": "2025-10-07",
-        "dateModified": "2025-10-07"
-    };
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Glossary", url: "https://globalprofessionalcertifications.com/glossary" }
+    ]);
+
+    // WebPage Schema
+    const webPageSchema = getWebPageSchema({
+        name: "Certification Glossary | Key Terms for Auditors & Risk Professionals",
+        description: "Explore definitions of essential terms in risk management, internal audit, and advisory careers from Global Professional Certifications.",
+        url: "https://globalprofessionalcertifications.com/glossary"
+    });
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(articleSchema)}
-                </script>
-                <script type="application/ld+json">
-                    {JSON.stringify(glossarySchema)}
-                </script>
-            </Helmet>
+            <SchemaMarkup schema={[glossarySchema, breadcrumbSchema, webPageSchema]} />
             <MetaTags
                 title="Certification Glossary | Key Terms for Auditors & Risk Professionals"
                 description="Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications."

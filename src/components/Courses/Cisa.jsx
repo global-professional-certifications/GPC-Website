@@ -1,7 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
-import { Helmet } from 'react-helmet-async';
 import MetaTags from '../MetaTags';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
@@ -23,6 +22,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
+import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
 
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
@@ -69,19 +69,25 @@ const courseFaqs = [
 
 const Cisa = () => {
 
-  const cisaSchema = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Certified Information Systems Auditor (CISA)",
-    "description":
-      "Become a certified expert in IT auditing and risk management with our comprehensive CISA course by Global Professional Certifications.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Global Professional Certifications",
-      "sameAs": "https://globalprofessionalcertifications.com",
-    },
-    "url": "https://globalprofessionalcertifications.com/courses/cisa",
-  };
+  // Comprehensive Course Schema
+  const cisaSchema = getCourseSchema({
+    name: "Certified Information Systems Auditor (CISA) Certification Course",
+    description: "Become a certified expert in IT auditing and risk management with our comprehensive CISA course. Master IT audit, control, and assurance with ISACA-aligned training.",
+    price: "17700",
+    enrollUrl: "https://rzp.io/rzp/VuvF84x",
+    credential: "Certified Information Systems Auditor (CISA)",
+    occupationalCategory: "IT Auditor, Cybersecurity Professional, Information Security Specialist"
+  });
+
+  // Breadcrumb Schema
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://globalprofessionalcertifications.com" },
+    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
+    { name: "CISA", url: "https://globalprofessionalcertifications.com/courses/cisa" }
+  ]);
+
+  // FAQ Schema
+  const faqSchema = getFAQSchema(courseFaqs);
 
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
@@ -91,11 +97,7 @@ const Cisa = () => {
         description="Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/cisa"
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(cisaSchema)}
-        </script>
-      </Helmet>
+      <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema]} />
 
 
       {/* Header */}
