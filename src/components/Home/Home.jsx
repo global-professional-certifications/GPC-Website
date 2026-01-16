@@ -37,7 +37,7 @@ import faqImage from "../../assets/faq.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
-
+import ciaAchieverImage from "../../assets/home/cia-achievers.webp"
 
 const courseFaqs = [
   {
@@ -500,6 +500,12 @@ export default function Home() {
           </div>
         </div>
 
+        {/* CIA image */}
+        <section className=" w-full px-4 py-8 md:px-10 md:py-16 flex justify-center items-center bg-brand-blue">
+          <img src={ciaAchieverImage} alt="CIA Achievers Image" className="object-cover rounded-xl" />
+        </section>
+
+
         {/* Popular Courses Card Section */}
 
         <CoursesShowcase
@@ -508,11 +514,10 @@ export default function Home() {
           titleEnd=""
           courses={["CIA", "CISA", "CRMA", "IAP"]} />
 
-
         {/* Video Section */}
         <div className="relative w-full overflow-hidden">
           {/* Top White Section */}
-          <div className="flex flex-col lg:flex-row justify-center items-center  gap-10 lg:gap-28 lg:my-12 lg:mx-4 p- pb-[90px]">
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-28 lg:my-12 lg:mx-4 px-8 py-12 pb-[90px]">
             {/* Left Text Section */}
             <div className="flex flex-col max-w-xl text-center md:text-left">
               <h2 className="text-2xl md:text-4xl font-bold leading-snug px-2 lg:px-8">
@@ -558,7 +563,7 @@ export default function Home() {
           </div>
 
           {/* Floating Video */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-[65%] md:top-[45%] lg:top-[35%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[60%] md:top-[45%] lg:top-[40%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
             <VideoSection />
           </div>
 
