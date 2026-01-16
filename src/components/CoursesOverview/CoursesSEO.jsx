@@ -1,61 +1,45 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import { SchemaMarkup, getCourseListSchema, getBreadcrumbSchema } from "../Schema";
 
 const CoursesSEO = () => {
-    const coursesSchema = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": [
-            {
-                "@type": "Course",
-                "name": "Certified Internal Auditor (CIA)",
-                "description": "Professional certification for internal auditors to enhance auditing skills.",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Global Professional Certifications",
-                    "sameAs": "https://globalprofessionalcertifications.com"
-                }
-            },
-            {
-                "@type": "Course",
-                "name": "Certified Risk Management Auditor (CRMA)",
-                "description": "Certification for auditors specializing in risk management and internal controls.",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Global Professional Certifications",
-                    "sameAs": "https://globalprofessionalcertifications.com"
-                }
-            },
-            {
-                "@type": "Course",
-                "name": "Certified Information Systems Auditor (CISA)",
-                "description": "Certification for auditing, control, and security of information systems.",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Global Professional Certifications",
-                    "sameAs": "https://globalprofessionalcertifications.com"
-                }
-            },
-            {
-                "@type": "Course",
-                "name": "Internal Audit Practitioner (IAP)",
-                "description": "Entry-level certification for aspiring internal auditors.",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Global Professional Certifications",
-                    "sameAs": "https://globalprofessionalcertifications.com"
-                }
-            }
-        ]
-    };
+    // Course List Schema with pricing
+    const coursesSchema = getCourseListSchema([
+        {
+            name: "Certified Internal Auditor (CIA) - All 3 Parts with Gleim Content",
+            url: "https://globalprofessionalcertifications.com/courses/cia",
+            description: "Master internal auditing with comprehensive CIA certification training. All 3 parts with Gleim content and live weekend classes.",
+            price: "58999"
+        },
+        {
+            name: "Certified Information Systems Auditor (CISA)",
+            url: "https://globalprofessionalcertifications.com/courses/cisa",
+            description: "Become a certified IT audit expert with ISACA-aligned CISA certification training.",
+            price: "17700"
+        },
+        {
+            name: "Internal Audit Practitioner (IAP)",
+            url: "https://globalprofessionalcertifications.com/courses/iap",
+            description: "Start your internal audit career with foundational IAP certification. Gateway to CIA.",
+            price: "23600"
+        },
+        {
+            name: "Certification in Risk Management Assurance (CRMA)",
+            url: "https://globalprofessionalcertifications.com/courses/crma",
+            description: "Master risk management and assurance with IIA-aligned CRMA certification training.",
+            price: "29500"
+        }
+    ]);
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" }
+    ]);
 
     return (
-        <Helmet>
-            <script type="application/ld+json">
-                {JSON.stringify(coursesSchema, null, 2)}
-            </script>
-        </Helmet>
+        <SchemaMarkup schema={[coursesSchema, breadcrumbSchema]} />
     );
 };
 
 export default CoursesSEO;
+

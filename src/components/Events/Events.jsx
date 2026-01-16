@@ -6,25 +6,24 @@ import { Link } from "react-router-dom";
 import MetaTags from "../MetaTags";
 import { motion } from "motion/react";
 import { RxCross1 } from "react-icons/rx";
-import { Helmet } from 'react-helmet-async';
 import FAQDisplay from "../FAQDisplay.jsx";
 import EventCarousel from "../Carousels/EventCarousel";
 import UpcomingEventCard from "./UpcomingEventCard";
-
+import { SchemaMarkup, getEventSchema, getBreadcrumbSchema, getFAQSchema, getWebPageSchema } from "../Schema";
 
 // images import
-import iiaEvent from "../../assets/iia-event.jpeg";
+import iiaEvent from "../../assets/events/iia-event.webp";
 import wofaBanner from "../../assets/wofa-banner.webp";
 import iiaKolkataBanner from "../../assets/iia-kolkata-banner.webp";
 import iiaBengaluruBanner from "../../assets/iia-bengaluru-banner.webp";
 import iiaMumbaiBanner from "../../assets/iia-mumbai-banner.webp";
 import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.webp"
 import agmIiaDelhiChapter from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-events.webp"
-import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages } from "../../../eventImages";
+import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages, iiaBombay2026Images } from "./eventImages.jsx";
 import heroImage from '../../assets/events/event-hero.webp'
 import heroImageMobile from '../../assets/events/event-hero-mobile.webp'
 import faqImage from "../../assets/faq.webp";
-import upcomingEventsImage from "../../assets/events/iia-bombay-poster.webp";
+import iiaBombay26Cover from "../../assets/iia-bombay-26/iiabombay2026-image7.jpg"
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,6 +81,10 @@ export default function Events() {
         {
             id: "delhi",
             title: "AGM IIA Delhi",
+        },
+        {
+            id: "bombay26",
+            title: "IIA Mumbai 2026",
         }
     ]
 
@@ -92,9 +95,92 @@ export default function Events() {
         wofa: wofaImages,
         hyderabad: iiaHyderabadImages,
         delhi: agmIIADelhiChapterImages,
+        bombay26: iiaBombay2026Images
     }
 
+    // 2026 Events Data - Single source of truth
+    const events2026Data = [
+        {
+            id: "bombay26",
+            eventName: "IIA Mumbai 2026",
+            img: iiaBombay26Cover,
+            title: "At the IIA Mumbai Chapter event, we engaged with audit leaders and professionals to explore the future of internal auditing and governance excellence.",
+            location: "Vikhroli, Mumbai, India",
+            date: "8th & 9th January 2026",
+            description: "The event brought together industry experts and practitioners, fostering meaningful discussions on emerging audit practices and regulatory frameworks in today's evolving business landscape.",
+            buttonLink: "bombay26", // Gallery ID for See More Images
+        },
+    ]
+
+    // 2025 Events Data - Single source of truth
+    const events2025Data = [
+        {
+            id: "hyderabad",
+            eventName: "IIA Hyderabad",
+            img: iiaHyderabadOne,
+            title: "At the IIA Hyderabad Chapter event, we connected with insightful audit professionals to exchange perspectives on the evolving landscape of internal audit and risk management.",
+            location: "Hyderabad, Telengana, India",
+            date: "24th May 2025",
+            description: "A convergence of ideas and expertise, the event underscored the evolving role of auditors in a rapidly changing world.",
+            buttonLink: "hyderabad", // Gallery ID for See More Images
+        },
+        {
+            id: "wofa",
+            eventName: "WOFA 2025",
+            img: wofaBanner,
+            title: "We were proud to be a part of WOFA 2025, where leaders and changemakers came together to drive innovation and empowerment.",
+            location: "New Delhi, India",
+            date: "31st Jan 2025 - 2nd Feb 2025",
+            description: "From powerful discussions to meaningful connections, the event was a celebration of global collaboration and forward thinking.",
+            buttonLink: "wofa", // Gallery ID for See More Images
+        },
+        {
+            id: "kolkata",
+            eventName: "IIA Kolkata",
+            img: iiaKolkataBanner,
+            title: "We engaged with leading internal audit professionals at the IIA Kolkata Chapter event, exploring emerging trends in governance and risk.",
+            location: "Kolkata, West Bengal, India",
+            date: "10th Feb 2025",
+            description: "The sessions fostered meaningful dialogue and highlighted the evolving role of auditors in today's dynamic landscape.",
+            buttonLink: "kolkata", // Gallery ID for See More Images
+        },
+        {
+            id: "bangalore",
+            eventName: "IIA Bangalore",
+            img: iiaBengaluruBanner,
+            title: "At the IIA Bengaluru Chapter conference, we participated in insightful discussions on innovation in internal auditing.",
+            location: "Bengaluru, Karnataka, India",
+            date: "19th Feb 2025",
+            description: "The event brought together experts and thought leaders, creating a powerful platform for knowledge exchange and collaboration.",
+            buttonLink: "bangalore", // Gallery ID for See More Images
+        },
+        {
+            id: "mumbai",
+            eventName: "IIA Mumbai",
+            img: iiaMumbaiBanner,
+            title: "The IIA Mumbai Chapter event was a hub of ideas and industry insights, focused on enhancing audit excellence.",
+            location: "Mumbai, Maharashtra, India",
+            date: "5th March 2025",
+            description: "We connected with professionals driving change and shared in the mission to elevate internal audit practices across sectors.",
+            buttonLink: "mumbai", // Gallery ID for See More Images
+        },
+        {
+            id: "delhi",
+            eventName: "AGM IIA Delhi",
+            img: agmIiaDelhiChapter,
+            title: "At the AGM IIA Delhi Chapter, we collaborated with audit experts to discuss advancements and strategies for elevating internal audit practices.",
+            location: "New Delhi, India",
+            date: "18th July 2025",
+            description: "The AGM IIA Delhi Chapter united audit professionals to share insights and strategies, advancing the future of internal auditing.",
+            buttonLink: "delhi", // Gallery ID for See More Images
+        },
+    ]
+
     const [activeEvent, setActiveEvent] = useState(null)
+
+    // Dynamic years array - add new years here as needed
+    const availableYears = ['2026', '2025']
+    const [activeYear, setActiveYear] = useState(availableYears[0]) // Default to most recent year
 
     const handleEscapeKey = useCallback((event) => {
         if (event.key === "Escape") {
@@ -132,40 +218,36 @@ export default function Events() {
         return () => window.removeEventListener("resize", handleResize)
     }, [window.innerWidth])
 
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Upcoming Events by Global Professional Certifications",
-        "description": "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
-        "author": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Global Professional Certifications",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://globalprofessionalcertifications.com/logo.png"
-            }
-        },
-        "url": "https://globalprofessionalcertifications.com/events",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://globalprofessionalcertifications.com/events"
-        },
-        "datePublished": "2025-10-07",
-        "dateModified": "2025-10-07"
+    // Generate event schemas for all events
+    const allEvents = [...events2026Data, ...events2025Data];
+    const eventSchemas = allEvents.map(event => getEventSchema({
+        name: event.eventName,
+        description: event.description,
+        startDate: event.date,
+        location: event.location,
+        url: `https://globalprofessionalcertifications.com/events#${event.id}`,
+        image: event.img
+    }));
 
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Events", url: "https://globalprofessionalcertifications.com/events" }
+    ]);
 
-    };
+    // FAQ Schema for events page
+    const faqSchema = getFAQSchema(courseFaqs);
 
+    // WebPage Schema
+    const webPageSchema = getWebPageSchema({
+        name: "Upcoming Certification Events & Webinars - GPC",
+        description: "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
+        url: "https://globalprofessionalcertifications.com/events"
+    });
 
     return (
         <>
-            <Helmet>
-                <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-            </Helmet>
+            <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema]} />
             <MetaTags
                 title="Upcoming Certification Events & Webinars - GPC"
                 description="Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."
@@ -176,7 +258,7 @@ export default function Events() {
 
             {/* Desktop Version */}
 
-            <section className="hidden lg:block relative w-screen h-screen overflow-hidden">
+            <section className="hidden lg:block relative w-full h-screen overflow-hidden">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center mt-16"
@@ -247,11 +329,11 @@ export default function Events() {
 
             {/* Our Event Presence */}
 
-            < section className="w-full pb-10 px-6 md:px-16 pt-16" >
-                <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
+            < section className="w-full pb-10 px-6 md:px-16 pt-16 bg-gray-50" >
+                <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-32 px-0 lg:px-12">
 
                     {/* Image Section */}
-                    <div className="w-full lg:w-1/3 flex justify-center">
+                    <div className="w-full lg:w-[45%] flex justify-center">
                         <img
                             src={iiaEvent}
                             alt="Event image"
@@ -260,7 +342,7 @@ export default function Events() {
                     </div>
 
                     {/* Text Section */}
-                    <div className="w-full lg:w-2/3 flex flex-col justify-start gap-4">
+                    <div className="w-full lg:w-[55%] flex flex-col justify-start gap-4">
 
                         {/* Heading + Paragraph */}
                         <div>
@@ -325,35 +407,248 @@ export default function Events() {
 
             {/* Past Events */}
 
-            <section id="past-section" className="bg-white">
+            <section id="past-section" className="bg-gray-50">
                 <div className="flex flex-col items-center max-w-[77rem] mx-auto gap-6 py-4 md:py-16">
 
+                    {/* Heading */}
                     <div className="flex flex-col gap-2 justify-center items-center p-4 md:mb-6">
-                        <p className="text-2xl md:text-4xl lg:text-4xl text-center font-bold">
+                        <p className="text-2xl md:text-4xl text-center font-bold">
                             A Look Back: <span className="text-brand-blue font-normal italic">Past Events</span>
                         </p>
                         <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-3xl text-center text-gray-600 mt-6 px-8 md:px-0">
-                            Explore highlights from our flagship events, including IIA Hyderabad, WOFA 2025, and more
+                            Explore highlights from our flagship events across the years
                         </p>
                     </div>
 
-                    {!isMobile ? (
-                        <div className="max-w-[1000px] flex justify-center gap-3 py-8 px-14 rounded-full border border-gray-300 bg-white shadow-md text-[#141418] mb-10">
-                            {events.map((evt) => {
-                                return (
-                                    <button
-                                        key={evt.id}
-                                        onClick={() => setActiveEvent(evt.id)}
-                                        className="px-4 py-2 rounded-full bg-[#F0F0F0] hover:bg-brand-purple hover:text-gray-50 font-bold transition duration-300 ease-in-out"
-                                    >
-                                        {evt.title}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    ) : null}
+                    {/* Year Toggle - Clean Segmented Control */}
+                    <div className="relative inline-flex items-center bg-gray-100 p-1 rounded-full shadow-sm mb-8">
+                        {/* Sliding Background Indicator */}
+                        <motion.div
+                            className="absolute top-1 bottom-1 rounded-full bg-white shadow-md"
+                            initial={false}
+                            animate={{
+                                left: `${(availableYears.indexOf(activeYear) / availableYears.length) * 100}%`,
+                                width: `${100 / availableYears.length}%`
+                            }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 30
+                            }}
+                        />
 
-                    {activeEvent && (
+                        {/* Toggle Buttons */}
+                        {availableYears.map((year) => (
+                            <button
+                                key={year}
+                                onClick={() => setActiveYear(year)}
+                                className={`relative z-10 px-8 py-2.5 rounded-full font-semibold text-base transition-colors duration-200 min-w-[110px] ${activeYear === year
+                                    ? 'text-brand-blue'
+                                    : 'text-gray-500 hover:text-gray-700'
+                                    }`}
+                            >
+                                {year}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Events Content by Year */}
+                    <div className="w-full">
+                        {/* 2026 Events */}
+                        {activeYear === '2026' && (
+                            <div className="animate-fadeIn">
+                                {/* Desktop View */}
+                                <div className="hidden lg:flex flex-col gap-6 w-full">
+                                    {events2026Data.map((event) => (
+                                        <div key={event.id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
+                                            <div className="flex flex-col md:flex-row gap-8 w-full h-[16rem] items-center">
+                                                {event.isPlaceholder ? (
+                                                    <div className="w-full md:w-1/3">
+                                                        <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl p-8 flex items-center justify-center h-64">
+                                                            <p className="text-6xl font-bold text-brand-blue">2026</p>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <img src={event.img} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
+                                                )}
+
+                                                <div className="flex flex-col gap-4">
+                                                    <div className="inline-flex items-center gap-2 w-fit">
+                                                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-full border border-brand-blue/20">
+                                                            {event.eventName}
+                                                        </span>
+                                                    </div>
+
+                                                    <h5 className="text-2xl font-bold">
+                                                        {event.title}
+                                                    </h5>
+                                                    <p className="text-gray-600 text-base">
+                                                        {event.description}
+                                                    </p>
+                                                    <div className="flex justify-start items-center gap-4 flex-wrap">
+                                                        <div className="flex justify-center items-center gap-2">
+                                                            <IoLocationOutline className="h-6 w-6 text-gray-600" />
+                                                            <p className="text-gray-600">{event.location}</p>
+                                                        </div>
+                                                        <div className="flex justify-center items-center gap-2">
+                                                            <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
+                                                            <p className="text-gray-600">{event.date}</p>
+                                                        </div>
+
+                                                        {!event.isPlaceholder && (
+                                                            <button
+                                                                onClick={() => setActiveEvent(event.id)}
+                                                                className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-fit ml-auto"
+                                                            >
+                                                                See More Images
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Mobile View */}
+                                <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
+                                    {events2026Data.map((evt) => (
+                                        <div
+                                            key={evt.id}
+                                            className="min-w-[85%] md:min-w-[55%] snap-center p-4 pb-0 border border-gray-300 shadow-lg rounded-xl flex flex-col bg-white overflow-hidden"
+                                        >
+                                            {evt.isPlaceholder ? (
+                                                <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg p-8 flex items-center justify-center h-48 mb-4">
+                                                    <p className="text-5xl font-bold text-brand-blue">2026</p>
+                                                </div>
+                                            ) : (
+                                                <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
+                                            )}
+                                            <div className="flex flex-col gap-2 pb-4">
+                                                <div>
+                                                    <div className="inline-flex items-center gap-2 w-fit">
+                                                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-semibold rounded-full border border-brand-blue/20">
+                                                            {evt.eventName}
+                                                        </span>
+                                                    </div>
+
+                                                    <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.title}</h5>
+                                                    <p className="text-sm text-gray-600">{evt.description}</p>
+
+                                                    <div className="flex flex-col gap-2 justify-start text-sm mt-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <IoLocationOutline className="h-5 w-5 text-gray-600" />
+                                                            <p className="text-gray-600">{evt.location}</p>
+                                                        </div>
+                                                        <div className="flex items-center gap-2 pl-0.5">
+                                                            <FontAwesomeIcon icon={faCalendar} className="h-4 w-4 text-gray-600 text-sm" />
+                                                            <p className="text-gray-600">{evt.date}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    onClick={() => setActiveEvent(evt.id)}
+                                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full mt-2"
+                                                >
+                                                    See More Images
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* 2025 Events */}
+                        {activeYear === '2025' && (
+                            <div className="animate-fadeIn">
+                                {/* Desktop View */}
+                                <div className="hidden lg:flex flex-col gap-6 w-full">
+                                    {events2025Data.map((event) => (
+                                        <div key={event.id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
+                                            <div className="flex flex-col md:flex-row gap-8 w-full h-[16rem] items-center">
+                                                <img src={event.img} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
+
+                                                <div className="flex flex-col gap-4">
+                                                    {/* Event Name Badge */}
+                                                    <div className="inline-flex items-center gap-2 w-fit">
+                                                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-full border border-brand-blue/20">
+                                                            {event.eventName}
+                                                        </span>
+                                                    </div>
+
+                                                    <h5 className="text-2xl font-bold">
+                                                        {event.title}
+                                                    </h5>
+                                                    <p className="text-gray-600 text-base">
+                                                        {event.description}
+                                                    </p>
+                                                    <div className="flex justify-start items-center gap-4 flex-wrap">
+                                                        <div className="flex justify-center items-center gap-2">
+                                                            <IoLocationOutline className="h-6 w-6 text-gray-600" />
+                                                            <p className="text-gray-600">{event.location}</p>
+                                                        </div>
+                                                        <div className="flex justify-center items-center gap-2">
+                                                            <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
+                                                            <p className="text-gray-600">{event.date}</p>
+                                                        </div>
+
+                                                        <button
+                                                            onClick={() => setActiveEvent(event.id)}
+                                                            className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-fit ml-auto"
+                                                        >
+                                                            See More Images
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Mobile Carousel */}
+                                <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
+                                    {events2025Data.map((evt) => (
+                                        <div
+                                            key={evt.id}
+                                            className="min-w-[85%] md:min-w-[55%] snap-center p-4 pb-0 border border-gray-300 shadow-lg rounded-xl flex flex-col bg-white overflow-hidden"
+                                        >
+                                            <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
+                                            <div className="flex flex-col gap-2 pb-4">
+                                                {/* Event Name Badge */}
+                                                <div className="inline-flex items-center gap-2 w-fit">
+                                                    <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-semibold rounded-full border border-brand-blue/20">
+                                                        {evt.eventName}
+                                                    </span>
+                                                </div>
+
+                                                <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.title}</h5>
+                                                <div className="flex flex-col gap-2 justify-start item-center text-sm">
+                                                    <div className="flex items-center gap-2 mt-2">
+                                                        <IoLocationOutline className="h-5 w-5 text-gray-600" />
+                                                        <p className="text-gray-600">{evt.location}</p>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 pl-0.5">
+                                                        <FontAwesomeIcon icon={faCalendar} className="h-4 w-4 text-gray-600 text-sm" />
+                                                        <p className="text-gray-600">{evt.date}</p>
+                                                    </div>
+                                                    <button
+                                                        onClick={() => setActiveEvent(evt.id)}
+                                                        className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full mt-2"
+                                                    >
+                                                        See More Images
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Image Modal */}
+                    {!isMobile && activeEvent && (
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -367,7 +662,7 @@ export default function Events() {
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <button
-                                    className="absolute top-1 right-2 text-xl font-bold p-2 rounded-full bg-gray-200 text-red-700 hover:scale-110 transition duration-300 ease-in-out"
+                                    className="absolute top-1 right-2 text-xl font-bold p-2 rounded-full bg-gray-200 text-red-700 hover:scale-110 transition duration-300 ease-in-out z-10"
                                     onClick={() => setActiveEvent(null)}
                                     aria-label="Close"
                                 >
@@ -383,180 +678,36 @@ export default function Events() {
                         </motion.div>
                     )}
 
-                    {/*  Desktop  */}
-
-                    <div className="hidden lg:flex flex-col gap-6 w-full">
-                        {[
-                            {
-                                id: "hyderabad",
-                                img: iiaHyderabadOne,
-                                title:
-                                    "At the IIA Hyderabad Chapter event, we connected with insightful audit professionals to exchange perspectives on the evolving landscape of internal audit and risk management.",
-                                loc: "Hyderabad, Telengana, India",
-                                date: "24th May 2025",
-                                desc: "A convergence of ideas and expertise, the event underscored the evolving role of auditors in a rapidly changing world.",
-                            },
-                            {
-                                id: "wofa",
-                                img: wofaBanner,
-                                title:
-                                    "We were proud to be a part of WOFA 2025, where leaders and changemakers came together to drive innovation and empowerment.",
-                                loc: "New Delhi, India",
-                                date: "31st Jan 2025 - 2nd Feb 2025",
-                                desc: "From powerful discussions to meaningful connections, the event was a celebration of global collaboration and forward thinking.",
-                            },
-                            {
-                                id: "kolkata",
-                                img: iiaKolkataBanner,
-                                title:
-                                    "We engaged with leading internal audit professionals at the IIA Kolkata Chapter event, exploring emerging trends in governance and risk.",
-                                loc: "Kolkata, West Bengal, India",
-                                date: "10th Feb 2025",
-                                desc: "The sessions fostered meaningful dialogue and highlighted the evolving role of auditors in today's dynamic landscape.",
-                            },
-                            {
-                                id: "bangalore",
-                                img: iiaBengaluruBanner,
-                                title:
-                                    "At the IIA Bengaluru Chapter conference, we participated in insightful discussions on innovation in internal auditing.",
-                                loc: "Bengaluru, Karnataka, India",
-                                date: "19th Feb 2025",
-                                desc: "The event brought together experts and thought leaders, creating a powerful platform for knowledge exchange and collaboration.",
-                            },
-                            {
-                                id: "mumbai",
-                                img: iiaMumbaiBanner,
-                                title:
-                                    "The IIA Mumbai Chapter event was a hub of ideas and industry insights, focused on enhancing audit excellence.",
-                                loc: "Mumbai, Maharashtra, India",
-                                date: "5th March 2025",
-                                desc: "We connected with professionals driving change and shared in the mission to elevate internal audit practices across sectors.",
-                            },
-                            {
-                                id: "delhi",
-                                img: agmIiaDelhiChapter,
-                                title:
-                                    "At the AGM IIA Delhi Chapter, we collaborated with audit experts to discuss advancements and strategies for elevating internal audit practices.",
-                                loc: "New Delhi, India",
-                                date: "18th July 2025",
-                                desc: "The AGM IIA Delhi Chapter united audit professionals to share insights and strategies, advancing the future of internal auditing.",
-                            },
-                        ].map((event) => (
-                            <div key={event.id} className="p-12 border border-gray-300 shadow-lg rounded-xl w-full">
-                                <div className="flex flex-col md:flex-row gap-8 w-full h-[18rem] items-center">
-                                    <img src={event.img} className="rounded-xl w-auto h-[16rem]" />
-
-                                    <div className="flex flex-col gap-4">
-                                        <h5 className="text-3xl font-bold">
-                                            {event.title}
-                                        </h5>
-                                        <p className="text-gray-600 text-base">
-                                            {event.desc}
-                                        </p>
-                                        <div className="flex justify-start items-center gap-10">
-                                            <div className="flex justify-center items-center gap-2">
-                                                <IoLocationOutline className="h-6 w-6 text-gray-600" />
-                                                <p className="text-gray-600">{event.loc}</p>
-                                            </div>
-                                            <div className="flex justify-center items-center gap-2">
-                                                <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
-                                                <p className="text-gray-600">{event.date}</p>
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            onClick={() => setActiveEvent(event.id)}
-                                            className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-fit"
-                                        >
-                                            See More Images
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-
-                    {/* Mobile Carousel */}
-                    <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
-                        {[
-                            {
-                                id: "hyderabad",
-                                img: iiaHyderabadOne,
-                                location: "Hyderabad, Telengana, India",
-                                date: "24th May 2025",
-                                desc: "At the IIA Hyderabad Chapter event, we connected with insightful audit professionals to exchange perspectives on the evolving landscape of internal audit and risk management.",
-                                text: "A convergence of ideas and expertise, the event underscored the evolving role of auditors in a rapidly changing world.",
-                            },
-                            {
-                                id: "wofa",
-                                img: wofaBanner,
-                                location: "New Delhi, India",
-                                date: "31st Jan 2025 - 2nd Feb 2025",
-                                desc: "We were proud to be a part of WOFA 2025, where leaders and changemakers came together to drive innovation and empowerment.",
-                                text: "From powerful discussions to meaningful connections, the event was a celebration of global collaboration and forward thinking.",
-                            },
-                            {
-                                id: "kolkata",
-                                img: iiaKolkataBanner,
-                                location: "Kolkata, West Bengal, India",
-                                date: "10th Feb 2025",
-                                desc: "We engaged with leading internal audit professionals at the IIA Kolkata Chapter event, exploring emerging trends in governance and risk.",
-                                text: "The sessions fostered meaningful dialogue and highlighted the evolving role of auditors in today's dynamic landscape.",
-                            },
-                            {
-                                id: "bangalore",
-                                img: iiaBengaluruBanner,
-                                location: "Bengaluru, Karnataka, India",
-                                date: "19th Feb 2025",
-                                desc: "At the IIA Bengaluru Chapter conference, we participated in insightful discussions on innovation in internal auditing.",
-                                text: "The event brought together experts and thought leaders, creating a powerful platform for knowledge exchange and collaboration.",
-                            },
-                            {
-                                id: "mumbai",
-                                img: iiaMumbaiBanner,
-                                location: "Mumbai, Maharashtra, India",
-                                date: "5th March 2025",
-                                desc: "The IIA Mumbai Chapter event was a hub of ideas and industry insights, focused on enhancing audit excellence.",
-                                text: "We connected with professionals driving change and shared in the mission to elevate internal audit practices across sectors.",
-                            },
-                            {
-                                id: "delhi",
-                                img: agmIiaDelhiChapter,
-                                location: "New Delhi, India",
-                                date: "18th July 2025",
-                                desc: "At the AGM IIA Delhi Chapter, we collaborated with audit experts to discuss advancements and strategies for elevating internal audit practices.",
-                                text: "The AGM IIA Delhi Chapter united audit professionals to share insights and strategies, advancing the future of internal auditing.",
-                            },
-                        ].map((evt) => (
+                    {/* Mobile Image Modal */}
+                    {isMobile && activeEvent && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.7 }}
+                            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/40"
+                            onClick={() => setActiveEvent(null)}
+                        >
                             <div
-                                key={evt.id}
-                                className="min-w-[85%] md:min-w-[55%] snap-center p-4 border border-gray-300 shadow-lg rounded-xl flex flex-col gap-4 bg-white"
+                                className="relative w-full h-[600px] max-w-6xl my-auto"
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover" loading='lazy' />
-                                <div className="flex flex-col justify-between h-[240px] md:h-[280px] gap-2">
-                                    <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.desc}</h5>
-                                    <div className="flex flex-col gap-2 justify-start item-center text-sm">
-                                        <div className="flex items-center gap-2 mt-4">
-                                            <IoLocationOutline className="h-5 w-5 text-gray-600" />
-                                            <p className="text-gray-600">{evt.location}</p>
-                                        </div>
-                                        <div className="flex items-center gap-2 pl-0.5">
-                                            <FontAwesomeIcon icon={faCalendar} className="h-4 w-4 text-gray-600 text-sm" />
-                                            <p className="text-gray-600">{evt.date}</p>
-                                        </div>
-                                        <button
-                                            onClick={() => setActiveEvent(evt.id)}
-                                            className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full"
-                                        >
-                                            See More Images
-                                        </button>
-                                    </div>
+                                <button
+                                    className="absolute top-1 right-2 text-xl font-bold p-2 rounded-full bg-gray-200 text-red-700 hover:scale-110 transition duration-300 ease-in-out z-10"
+                                    onClick={() => setActiveEvent(null)}
+                                    aria-label="Close"
+                                >
+                                    <RxCross1 />
+                                </button>
 
-                                </div>
+                                <h2 className="md:text-4xl text-center font-semibold mb-12 text-gray-50">
+                                    {events.find((e) => e.id === activeEvent)?.title}
+                                </h2>
+
+                                <EventCarousel images={imageMap[activeEvent]} />
                             </div>
-                        ))}
-                    </div>
+                        </motion.div>
+                    )}
 
                 </div>
             </section>

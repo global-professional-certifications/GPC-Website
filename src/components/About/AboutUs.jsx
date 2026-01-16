@@ -7,10 +7,33 @@ import MetaTags from "../MetaTags";
 import { Users, GraduationCap, BookCheck, Award, Target, ShieldCheck, Globe } from "lucide-react";
 import MentorShowcase from "./MentorShowcase";
 import { PiBrain } from "react-icons/pi";
+import { SchemaMarkup, getBreadcrumbSchema, getAboutPageSchema, getPersonSchema } from "../Schema";
 
 export default function AboutUs() {
+    // About Page Schema
+    const aboutPageSchema = getAboutPageSchema({
+        name: "About Global Professional Certifications",
+        description: "Learn how GPC empowers professionals with globally recognized CIA, CISA, CRMA, and IAP certifications and expert-driven learning.",
+        url: "https://globalprofessionalcertifications.com/about"
+    });
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "About Us", url: "https://globalprofessionalcertifications.com/about" }
+    ]);
+
+    // Mentor Person Schema
+    const mentorSchema = getPersonSchema({
+        name: "Arpit Garg",
+        title: "Lead Instructor",
+        description: "Founding Partner of RiskMan Consulting and certified CIA, CISA, CRMA, and IAP professional. Recognized as one of India's leading educators for internal audit certifications by IIA India.",
+        image: "https://globalprofessionalcertifications.com/assets/arpit-garg-mentor.webp"
+    });
+
     return (
         <div className="bg-gray-50">
+            <SchemaMarkup schema={[aboutPageSchema, breadcrumbSchema, mentorSchema]} />
             <MetaTags
                 title="About Global Professional Certifications"
                 description="Learn how we empower professionals with globally recognized certifications and expert-driven learning."

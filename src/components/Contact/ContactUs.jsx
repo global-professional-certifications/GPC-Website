@@ -6,6 +6,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { TiArrowRight } from "react-icons/ti";
+import { SchemaMarkup, getContactPageSchema, getLocalBusinessSchema, getBreadcrumbSchema } from "../Schema";
 
 export default function ContactUs() {
     // List of courses for checkboxes
@@ -17,8 +18,31 @@ export default function ContactUs() {
         "CRMA",
     ];
 
+    // Contact Page Schema
+    const contactPageSchema = getContactPageSchema({
+        name: "Contact Global Professional Certifications",
+        description: "Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals.",
+        url: "https://globalprofessionalcertifications.com/contact"
+    });
+
+    // Local Business Schema
+    const localBusinessSchema = getLocalBusinessSchema({
+        name: "Global Professional Certifications",
+        description: "Leading institute for CIA, CISA, CRMA, and IAP certification training. Expert-led programs for audit and risk professionals.",
+        address: "Innov8 Building, Orchid Centre, Golf course road, Gurugram, Haryana, India - 122022",
+        phone: "+91 87360 83099",
+        email: "cia@globalprofessionalcertifications.com"
+    });
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: "Home", url: "https://globalprofessionalcertifications.com" },
+        { name: "Contact Us", url: "https://globalprofessionalcertifications.com/contact" }
+    ]);
+
     return (
         <>
+            <SchemaMarkup schema={[contactPageSchema, localBusinessSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Contact Us - Global Professional Certifications"
                 description="Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."

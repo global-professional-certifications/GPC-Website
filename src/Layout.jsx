@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import NotificationBanner from "./components/Notifications/NotificationBanner";
 import EventCountdownBar from "./components/Events/EventCountdownBar";
 import ScrollToHash from "./ScrollToHash";
+import { SchemaMarkup, getOrganizationSchema } from "./components/Schema";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -26,6 +27,7 @@ export default function Layout() {
 
     return (
         <>
+            <SchemaMarkup schema={getOrganizationSchema()} />
             <ScrollToHash />
             <ScrollToTop />
             <NotificationBanner />

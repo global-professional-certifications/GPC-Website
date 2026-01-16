@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
-import { Helmet } from 'react-helmet-async';
 import MetaTags from '../MetaTags';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaClipboardList, FaChalkboardTeacher, FaPenFancy, FaCertificate } from "react-icons/fa";
@@ -17,6 +16,8 @@ import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import MentorShowcase from "../About/MentorShowcase.jsx";
+
+import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
@@ -57,21 +58,26 @@ const courseFaqs = [
 
 const Crma = () => {
   const marginTop = (68 + (4 * (height ? height : 0))).toString()
-  console.log(marginTop)
 
-  const crmaSchema = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Certification in Risk Management Assurance (CRMA)",
-    "description":
-      "Advance your career in risk management and assurance with the CRMA course by Global Professional Certifications. Learn governance, risk, and control strategies from experts.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Global Professional Certifications",
-      "sameAs": "https://globalprofessionalcertifications.com",
-    },
-    "url": "https://globalprofessionalcertifications.com/courses/crma",
-  };
+  // Comprehensive Course Schema
+  const crmaSchema = getCourseSchema({
+    name: "Certification in Risk Management Assurance (CRMA)",
+    description: "Advance your career in risk management and assurance with the CRMA course. Learn governance, risk, and control strategies from experts with IIA-aligned training.",
+    price: "29500",
+    enrollUrl: "https://rzp.io/rzp/hjuC9dj",
+    credential: "Certification in Risk Management Assurance (CRMA)",
+    occupationalCategory: "Risk Manager, Compliance Advisor, Internal Audit Leader"
+  });
+
+  // Breadcrumb Schema
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://globalprofessionalcertifications.com" },
+    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
+    { name: "CRMA", url: "https://globalprofessionalcertifications.com/courses/crma" }
+  ]);
+
+  // FAQ Schema
+  const faqSchema = getFAQSchema(courseFaqs);
 
   return (
     <>
@@ -80,11 +86,7 @@ const Crma = () => {
         description="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/crma"
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(crmaSchema)}
-        </script>
-      </Helmet>
+      <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema]} />
 
       {/* Header */}
 
