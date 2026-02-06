@@ -38,7 +38,7 @@ const COURSE_DATA = {
 
 const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
   return (
-    <section className="w-full py-12 px-12 flex justify-center">
+    <section className="w-full py-12 px-8 flex justify-center">
       <div className="w-full max-w-7xl">
 
         <h2 className="text-2xl md:text-4xl mb-16 font-bold text-gray-900 text-center">
@@ -48,12 +48,12 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
         </h2>
 
         {/* Grid wrapper to center cards */}
-        <div className="flex justify-center">
+        <div className="w-full">
           <div
-            className={`grid gap-6 
-              grid-cols-1 
-              sm:grid-cols-2 
+            className={`grid gap-4 md:gap-6 
+              grid-cols-2 
               lg:grid-cols-${courses.length >= 4 ? "4" : courses.length}
+              max-w-5xl mx-auto
             `}
           >
             {courses.map((key) => {
@@ -63,9 +63,9 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
               return (
                 <div
                   key={key}
-                  className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl w-[260px]"
+                  className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-md transition-all duration-300 hover:shadow-xl"
                 >
-                  <div className="relative w-full h-36 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-4">
+                  <div className="relative w-full h-24 md:h-36 flex justify-center items-center overflow-hidden rounded-t-xl bg-gray-50 p-3 md:p-4">
                     <img
                       src={course.image}
                       alt={course.name}
@@ -74,18 +74,18 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
                     />
                   </div>
 
-                  <div className="px-5 py-4 flex flex-col flex-1 justify-between">
+                  <div className="px-3 md:px-5 py-3 md:py-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <p className="text-base font-bold mb-2 text-gray-900">
+                      <p className="text-xs md:text-base font-bold mb-1 md:mb-2 text-gray-900 line-clamp-2">
                         {course.name}
                       </p>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-[10px] md:text-sm text-gray-600 mb-2 md:mb-4 line-clamp-2 md:line-clamp-3">
                         {course.description}
                       </p>
                     </div>
 
                     <NavLink to={course.link}>
-                      <button className="w-full py-2 rounded-lg bg-brand-blue text-white font-semibold transition-all duration-300 hover:bg-brand-purple hover:scale-105">
+                      <button className="w-full py-1.5 md:py-2 text-xs md:text-base rounded-lg bg-brand-blue text-white font-semibold transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                         View Course
                       </button>
                     </NavLink>
