@@ -323,7 +323,7 @@ export default function SuccessStories() {
                                 {/* Video Testimonials Section - Only show if has content */}
                                 {videoStories.length > 0 && (
                                     <>
-                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold text-center">
                                             Hear from those who made it!
                                         </div>
 
@@ -449,7 +449,7 @@ export default function SuccessStories() {
                                 {/* Written Testimonials Section - Only show if has content */}
                                 {writtenStories.length > 0 && (
                                     <>
-                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold text-center">
                                             Read their journey!
                                         </div>
 
@@ -583,7 +583,7 @@ export default function SuccessStories() {
             {/* Mobile Screenshots Section - Only show if has content */}
             {imageStories.length > 0 && (
                 <>
-                    <div className="mx-auto text-center py-12 md:py-20 bg-gray-50 px-4">
+                    <div className="mx-auto text-center py-6 bg-gray-50 px-4">
                         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
                             What Our Students Say
                         </h2>
