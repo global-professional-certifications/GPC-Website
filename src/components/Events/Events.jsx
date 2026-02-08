@@ -1,4 +1,4 @@
-﻿import React, { useState, useCallback, useEffect, act } from "react";
+﻿import React, { useState, useCallback, useEffect } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
@@ -11,24 +11,18 @@ import EventCarousel from "../Carousels/EventCarousel";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { SchemaMarkup, getEventSchema, getBreadcrumbSchema, getFAQSchema, getWebPageSchema } from "../Schema";
 
-// images import
+// Sanity imports
+import { client } from "../../lib/sanity/client";
+
+// images import (static assets for hero/about sections)
 import iiaEvent from "../../assets/events/iia-event.webp";
-import wofaBanner from "../../assets/wofa-banner.webp";
-import iiaKolkataBanner from "../../assets/iia-kolkata-banner.webp";
-import iiaBengaluruBanner from "../../assets/iia-bengaluru-banner.webp";
-import iiaMumbaiBanner from "../../assets/iia-mumbai-banner.webp";
-import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.webp"
-import agmIiaDelhiChapter from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-7-events.webp"
-import { iiaBangaloreImages, iiaKolkataImages, iiaBombayImages, wofaImages, iiaHyderabadImages, agmIIADelhiChapterImages, iiaBombay2026Images } from "./eventImages.jsx";
 import heroImage from '../../assets/events/event-hero.webp'
 import heroImageMobile from '../../assets/events/event-hero-mobile.webp'
 import faqImage from "../../assets/faq.webp";
-import iiaBombay26Cover from "../../assets/iia-bombay-26/iiabombay2026-image7.jpg"
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 
 const courseFaqs = [
@@ -56,131 +50,68 @@ const courseFaqs = [
 
 
 export default function Events() {
+    // Sanity data state
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [availableYears, setAvailableYears] = useState([]);
+    const [activeYear, setActiveYear] = useState(null);
+    const [activeEvent, setActiveEvent] = useState(null);
 
-    const events = [
-        {
-            id: "hyderabad",
-            title: "IIA Hyderabad",
-        },
-        {
-            id: "wofa",
-            title: "WOFA 2025",
-        },
-        {
-            id: "kolkata",
-            title: "IIA Kolkata",
-        },
-        {
-            id: "bangalore",
-            title: "IIA Bangalore",
-        },
-        {
-            id: "mumbai",
-            title: "IIA Mumbai",
-        },
-        {
-            id: "delhi",
-            title: "AGM IIA Delhi",
-        },
-        {
-            id: "bombay26",
-            title: "IIA Mumbai 2026",
-        }
-    ]
+    // Fetch past events from Sanity
+    // Year toggles are dynamically generated - adding events with new years (2027, 2028, etc.)
+    // will automatically create new toggle buttons on the frontend
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                // Fetch past events (supports both old "event" and new "pastEvent" types)
+                const query = `*[(_type == "pastEvent" || _type == "event") && isActive == true && defined(year)] | order(year desc, order asc) {
+                    _id,
+                    eventName,
+                    "slug": slug.current,
+                    title,
+                    description,
+                    location,
+                    date,
+                    year,
+                    "coverImage": coverImage.asset->url,
+                    "galleryImages": galleryImages[].asset->url,
+                    order
+                }`;
+                const data = await client.fetch(query);
+                console.log("Fetched past events:", data);
+                setEvents(data);
 
-    const imageMap = {
-        mumbai: iiaBombayImages,
-        bangalore: iiaBangaloreImages,
-        kolkata: iiaKolkataImages,
-        wofa: wofaImages,
-        hyderabad: iiaHyderabadImages,
-        delhi: agmIIADelhiChapterImages,
-        bombay26: iiaBombay2026Images
-    }
+                // Extract unique years and sort descending (filter out null/undefined)
+                const years = [...new Set(data.map(e => e.year).filter(y => y !== null && y !== undefined))].sort((a, b) => b - a);
+                setAvailableYears(years.map(y => String(y)));
 
-    // 2026 Events Data - Single source of truth
-    const events2026Data = [
-        {
-            id: "bombay26",
-            eventName: "IIA Mumbai 2026",
-            img: iiaBombay26Cover,
-            title: "At the IIA Mumbai Chapter event, we engaged with audit leaders and professionals to explore the future of internal auditing and governance excellence.",
-            location: "Vikhroli, Mumbai, India",
-            date: "8th & 9th January 2026",
-            description: "The event brought together industry experts and practitioners, fostering meaningful discussions on emerging audit practices and regulatory frameworks in today's evolving business landscape.",
-            buttonLink: "bombay26", // Gallery ID for See More Images
-        },
-    ]
+                // Set default active year to most recent
+                if (years.length > 0) {
+                    setActiveYear(String(years[0]));
+                }
+            } catch (error) {
+                console.error("Error fetching events:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchEvents();
+    }, []);
 
-    // 2025 Events Data - Single source of truth
-    const events2025Data = [
-        {
-            id: "hyderabad",
-            eventName: "IIA Hyderabad",
-            img: iiaHyderabadOne,
-            title: "At the IIA Hyderabad Chapter event, we connected with insightful audit professionals to exchange perspectives on the evolving landscape of internal audit and risk management.",
-            location: "Hyderabad, Telengana, India",
-            date: "24th May 2025",
-            description: "A convergence of ideas and expertise, the event underscored the evolving role of auditors in a rapidly changing world.",
-            buttonLink: "hyderabad", // Gallery ID for See More Images
-        },
-        {
-            id: "wofa",
-            eventName: "WOFA 2025",
-            img: wofaBanner,
-            title: "We were proud to be a part of WOFA 2025, where leaders and changemakers came together to drive innovation and empowerment.",
-            location: "New Delhi, India",
-            date: "31st Jan 2025 - 2nd Feb 2025",
-            description: "From powerful discussions to meaningful connections, the event was a celebration of global collaboration and forward thinking.",
-            buttonLink: "wofa", // Gallery ID for See More Images
-        },
-        {
-            id: "kolkata",
-            eventName: "IIA Kolkata",
-            img: iiaKolkataBanner,
-            title: "We engaged with leading internal audit professionals at the IIA Kolkata Chapter event, exploring emerging trends in governance and risk.",
-            location: "Kolkata, West Bengal, India",
-            date: "10th Feb 2025",
-            description: "The sessions fostered meaningful dialogue and highlighted the evolving role of auditors in today's dynamic landscape.",
-            buttonLink: "kolkata", // Gallery ID for See More Images
-        },
-        {
-            id: "bangalore",
-            eventName: "IIA Bangalore",
-            img: iiaBengaluruBanner,
-            title: "At the IIA Bengaluru Chapter conference, we participated in insightful discussions on innovation in internal auditing.",
-            location: "Bengaluru, Karnataka, India",
-            date: "19th Feb 2025",
-            description: "The event brought together experts and thought leaders, creating a powerful platform for knowledge exchange and collaboration.",
-            buttonLink: "bangalore", // Gallery ID for See More Images
-        },
-        {
-            id: "mumbai",
-            eventName: "IIA Mumbai",
-            img: iiaMumbaiBanner,
-            title: "The IIA Mumbai Chapter event was a hub of ideas and industry insights, focused on enhancing audit excellence.",
-            location: "Mumbai, Maharashtra, India",
-            date: "5th March 2025",
-            description: "We connected with professionals driving change and shared in the mission to elevate internal audit practices across sectors.",
-            buttonLink: "mumbai", // Gallery ID for See More Images
-        },
-        {
-            id: "delhi",
-            eventName: "AGM IIA Delhi",
-            img: agmIiaDelhiChapter,
-            title: "At the AGM IIA Delhi Chapter, we collaborated with audit experts to discuss advancements and strategies for elevating internal audit practices.",
-            location: "New Delhi, India",
-            date: "18th July 2025",
-            description: "The AGM IIA Delhi Chapter united audit professionals to share insights and strategies, advancing the future of internal auditing.",
-            buttonLink: "delhi", // Gallery ID for See More Images
-        },
-    ]
+    // Get events for active year
+    const eventsForYear = events.filter(e => String(e.year) === activeYear);
 
-    const [activeEvent, setActiveEvent] = useState(null)
+    // Get gallery images for active event
+    const getGalleryImages = (eventSlug) => {
+        const event = events.find(e => e.slug === eventSlug);
+        return event?.galleryImages || [];
+    };
 
-    // Dynamic years array - add new years here as needed
-    const availableYears = ['2026', '2025']
-    const [activeYear, setActiveYear] = useState(availableYears[0]) // Default to most recent year
+    // Get event title for modal
+    const getEventTitle = (eventSlug) => {
+        const event = events.find(e => e.slug === eventSlug);
+        return event?.eventName || '';
+    };
 
     const handleEscapeKey = useCallback((event) => {
         if (event.key === "Escape") {
@@ -204,29 +135,14 @@ export default function Events() {
         }
     }, [activeEvent, handleEscapeKey])
 
-    // detects if the window is in mobile view or desktop view
-    // let windowSize = window.innerWidth
-
-    const [isMobile, setIsMobile] = useState(false)
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-
-        handleResize()
-        window.addEventListener("resize", handleResize)
-        return () => window.removeEventListener("resize", handleResize)
-    }, [window.innerWidth])
-
-    // Generate event schemas for all events
-    const allEvents = [...events2026Data, ...events2025Data];
-    const eventSchemas = allEvents.map(event => getEventSchema({
+    // Generate event schemas for all events from Sanity
+    const eventSchemas = events.map(event => getEventSchema({
         name: event.eventName,
         description: event.description,
         startDate: event.date,
         location: event.location,
-        url: `https://globalprofessionalcertifications.com/events#${event.id}`,
-        image: event.img
+        url: `https://globalprofessionalcertifications.com/events#${event.slug}`,
+        image: event.coverImage
     }));
 
     // Breadcrumb Schema
@@ -325,7 +241,10 @@ export default function Events() {
 
             </section>
 
-            {/* <UpcomingEventCard /> */}
+            {/* Upcoming Event Section - Auto-populated from Sanity */}
+            <section className="bg-gray-50">
+                <UpcomingEventCard />
+            </section>
 
             {/* Our Event Presence */}
 
@@ -421,56 +340,61 @@ export default function Events() {
                     </div>
 
                     {/* Year Toggle - Clean Segmented Control */}
-                    <div className="relative inline-flex items-center bg-gray-100 p-1 rounded-full shadow-sm mb-8">
-                        {/* Sliding Background Indicator */}
-                        <motion.div
-                            className="absolute top-1 bottom-1 rounded-full bg-white shadow-md"
-                            initial={false}
-                            animate={{
-                                left: `${(availableYears.indexOf(activeYear) / availableYears.length) * 100}%`,
-                                width: `${100 / availableYears.length}%`
-                            }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 30
-                            }}
-                        />
+                    {availableYears.length > 0 && (
+                        <div className="relative inline-flex items-center bg-gray-100 p-1 rounded-full shadow-sm mb-8">
+                            {/* Sliding Background Indicator */}
+                            <motion.div
+                                className="absolute top-1 bottom-1 rounded-full bg-white shadow-md"
+                                initial={false}
+                                animate={{
+                                    left: `${(availableYears.indexOf(activeYear) / availableYears.length) * 100}%`,
+                                    width: `${100 / availableYears.length}%`
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 30
+                                }}
+                            />
 
-                        {/* Toggle Buttons */}
-                        {availableYears.map((year) => (
-                            <button
-                                key={year}
-                                onClick={() => setActiveYear(year)}
-                                className={`relative z-10 px-8 py-2.5 rounded-full font-semibold text-base transition-colors duration-200 min-w-[110px] ${activeYear === year
-                                    ? 'text-brand-blue'
-                                    : 'text-gray-500 hover:text-gray-700'
-                                    }`}
-                            >
-                                {year}
-                            </button>
-                        ))}
-                    </div>
+                            {/* Toggle Buttons */}
+                            {availableYears.map((year) => (
+                                <button
+                                    key={year}
+                                    onClick={() => setActiveYear(year)}
+                                    className={`relative z-10 px-8 py-2.5 rounded-full font-semibold text-base transition-colors duration-200 min-w-[110px] ${activeYear === year
+                                        ? 'text-brand-blue'
+                                        : 'text-gray-500 hover:text-gray-700'
+                                        }`}
+                                >
+                                    {year}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Events Content by Year */}
                     <div className="w-full">
-                        {/* 2026 Events */}
-                        {activeYear === '2026' && (
+                        {loading || !activeYear ? (
+                            <div className="flex justify-center items-center py-20">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
+                            </div>
+                        ) : events.length === 0 ? (
+                            <div className="text-center py-20 text-gray-500">
+                                <p className="text-lg">No events available</p>
+                            </div>
+                        ) : eventsForYear.length === 0 ? (
+                            <div className="text-center py-20 text-gray-500">
+                                <p className="text-lg">No events found for {activeYear}</p>
+                            </div>
+                        ) : (
                             <div className="animate-fadeIn">
                                 {/* Desktop View */}
                                 <div className="hidden lg:flex flex-col gap-6 w-full">
-                                    {events2026Data.map((event) => (
-                                        <div key={event.id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
+                                    {eventsForYear.map((event) => (
+                                        <div key={event._id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
                                             <div className="flex flex-col md:flex-row gap-8 w-full h-[16rem] items-center">
-                                                {event.isPlaceholder ? (
-                                                    <div className="w-full md:w-1/3">
-                                                        <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl p-8 flex items-center justify-center h-64">
-                                                            <p className="text-6xl font-bold text-brand-blue">2026</p>
-                                                        </div>
-                                                    </div>
-                                                ) : (
-                                                    <img src={event.img} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
-                                                )}
+                                                <img src={event.coverImage} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
 
                                                 <div className="flex flex-col gap-4">
                                                     <div className="inline-flex items-center gap-2 w-fit">
@@ -495,9 +419,9 @@ export default function Events() {
                                                             <p className="text-gray-600">{event.date}</p>
                                                         </div>
 
-                                                        {!event.isPlaceholder && (
+                                                        {event.galleryImages && event.galleryImages.length > 0 && (
                                                             <button
-                                                                onClick={() => setActiveEvent(event.id)}
+                                                                onClick={() => setActiveEvent(event.slug)}
                                                                 className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-fit ml-auto"
                                                             >
                                                                 See More Images
@@ -512,18 +436,12 @@ export default function Events() {
 
                                 {/* Mobile View */}
                                 <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
-                                    {events2026Data.map((evt) => (
+                                    {eventsForYear.map((evt) => (
                                         <div
-                                            key={evt.id}
+                                            key={evt._id}
                                             className="min-w-[85%] md:min-w-[55%] snap-center p-4 pb-0 border border-gray-300 shadow-lg rounded-xl flex flex-col bg-white overflow-hidden"
                                         >
-                                            {evt.isPlaceholder ? (
-                                                <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg p-8 flex items-center justify-center h-48 mb-4">
-                                                    <p className="text-5xl font-bold text-brand-blue">2026</p>
-                                                </div>
-                                            ) : (
-                                                <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
-                                            )}
+                                            <img src={evt.coverImage} alt={evt.eventName} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
                                             <div className="flex flex-col gap-2 pb-4">
                                                 <div>
                                                     <div className="inline-flex items-center gap-2 w-fit">
@@ -546,99 +464,14 @@ export default function Events() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button
-                                                    onClick={() => setActiveEvent(evt.id)}
-                                                    className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full mt-2"
-                                                >
-                                                    See More Images
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* 2025 Events */}
-                        {activeYear === '2025' && (
-                            <div className="animate-fadeIn">
-                                {/* Desktop View */}
-                                <div className="hidden lg:flex flex-col gap-6 w-full">
-                                    {events2025Data.map((event) => (
-                                        <div key={event.id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
-                                            <div className="flex flex-col md:flex-row gap-8 w-full h-[16rem] items-center">
-                                                <img src={event.img} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
-
-                                                <div className="flex flex-col gap-4">
-                                                    {/* Event Name Badge */}
-                                                    <div className="inline-flex items-center gap-2 w-fit">
-                                                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-full border border-brand-blue/20">
-                                                            {event.eventName}
-                                                        </span>
-                                                    </div>
-
-                                                    <h5 className="text-2xl font-bold">
-                                                        {event.title}
-                                                    </h5>
-                                                    <p className="text-gray-600 text-base">
-                                                        {event.description}
-                                                    </p>
-                                                    <div className="flex justify-start items-center gap-4 flex-wrap">
-                                                        <div className="flex justify-center items-center gap-2">
-                                                            <IoLocationOutline className="h-6 w-6 text-gray-600" />
-                                                            <p className="text-gray-600">{event.location}</p>
-                                                        </div>
-                                                        <div className="flex justify-center items-center gap-2">
-                                                            <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
-                                                            <p className="text-gray-600">{event.date}</p>
-                                                        </div>
-
-                                                        <button
-                                                            onClick={() => setActiveEvent(event.id)}
-                                                            className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-fit ml-auto"
-                                                        >
-                                                            See More Images
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Mobile Carousel */}
-                                <div className="lg:hidden flex overflow-x-auto gap-6 px-4 py-6 mb-4 scrollbar-hide snap-x snap-mandatory w-full">
-                                    {events2025Data.map((evt) => (
-                                        <div
-                                            key={evt.id}
-                                            className="min-w-[85%] md:min-w-[55%] snap-center p-4 pb-0 border border-gray-300 shadow-lg rounded-xl flex flex-col bg-white overflow-hidden"
-                                        >
-                                            <img src={evt.img} alt={evt.id} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
-                                            <div className="flex flex-col gap-2 pb-4">
-                                                {/* Event Name Badge */}
-                                                <div className="inline-flex items-center gap-2 w-fit">
-                                                    <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-semibold rounded-full border border-brand-blue/20">
-                                                        {evt.eventName}
-                                                    </span>
-                                                </div>
-
-                                                <h5 className="text-base md:text-xl font-semibold text-gray-800 leading-tight">{evt.title}</h5>
-                                                <div className="flex flex-col gap-2 justify-start item-center text-sm">
-                                                    <div className="flex items-center gap-2 mt-2">
-                                                        <IoLocationOutline className="h-5 w-5 text-gray-600" />
-                                                        <p className="text-gray-600">{evt.location}</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 pl-0.5">
-                                                        <FontAwesomeIcon icon={faCalendar} className="h-4 w-4 text-gray-600 text-sm" />
-                                                        <p className="text-gray-600">{evt.date}</p>
-                                                    </div>
+                                                {evt.galleryImages && evt.galleryImages.length > 0 && (
                                                     <button
-                                                        onClick={() => setActiveEvent(evt.id)}
+                                                        onClick={() => setActiveEvent(evt.slug)}
                                                         className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-lg hover:bg-brand-purple hover:scale-105 transition-all duration-300 w-full mt-2"
                                                     >
                                                         See More Images
                                                     </button>
-                                                </div>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
@@ -647,65 +480,74 @@ export default function Events() {
                         )}
                     </div>
 
-                    {/* Image Modal */}
-                    {!isMobile && activeEvent && (
+                    {/* Image Gallery Modal */}
+                    {activeEvent && (
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.7 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/40"
+                            transition={{ duration: 0.3 }}
+                            className="fixed inset-0 z-50 flex items-center justify-center"
                             onClick={() => setActiveEvent(null)}
                         >
-                            <div
-                                className="relative w-full h-[600px] max-w-6xl my-auto"
+                            {/* Backdrop */}
+                            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+                            {/* Modal Content */}
+                            <motion.div
+                                initial={{ scale: 0.95, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.95, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="relative w-full h-full max-w-7xl mx-auto flex flex-col py-4 md:py-8 px-2 md:px-4"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <button
-                                    className="absolute top-1 right-2 text-xl font-bold p-2 rounded-full bg-gray-200 text-red-700 hover:scale-110 transition duration-300 ease-in-out z-10"
-                                    onClick={() => setActiveEvent(null)}
-                                    aria-label="Close"
-                                >
-                                    <RxCross1 />
-                                </button>
+                                {/* Header */}
+                                <div className="flex items-center justify-between mb-4 md:mb-6 px-2 md:px-4">
+                                    {/* Event Title */}
+                                    <div className="flex-1">
+                                        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white text-center">
+                                            {getEventTitle(activeEvent)}
+                                        </h2>
+                                        <p className="text-gray-400 text-sm md:text-base text-center mt-1">
+                                            Event Gallery
+                                        </p>
+                                    </div>
 
-                                <h2 className="md:text-4xl text-center font-semibold mb-12 text-gray-50">
-                                    {events.find((e) => e.id === activeEvent)?.title}
-                                </h2>
+                                    {/* Close Button */}
+                                    <button
+                                        className="absolute top-4 right-4 md:top-6 md:right-6
+                                                   w-10 h-10 md:w-12 md:h-12
+                                                   flex items-center justify-center
+                                                   bg-white/10 hover:bg-white/20
+                                                   backdrop-blur-sm
+                                                   rounded-full
+                                                   text-white hover:text-red-400
+                                                   transition-all duration-300 hover:scale-110
+                                                   border border-white/20
+                                                   z-50"
+                                        onClick={() => setActiveEvent(null)}
+                                        aria-label="Close gallery"
+                                    >
+                                        <RxCross1 className="w-5 h-5 md:w-6 md:h-6" />
+                                    </button>
+                                </div>
 
-                                <EventCarousel images={imageMap[activeEvent]} />
-                            </div>
-                        </motion.div>
-                    )}
+                                {/* Carousel Container */}
+                                <div className="flex-1 flex items-center justify-center overflow-hidden">
+                                    <EventCarousel
+                                        images={getGalleryImages(activeEvent)}
+                                        eventName={getEventTitle(activeEvent)}
+                                    />
+                                </div>
 
-                    {/* Mobile Image Modal */}
-                    {isMobile && activeEvent && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.7 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/40"
-                            onClick={() => setActiveEvent(null)}
-                        >
-                            <div
-                                className="relative w-full h-[600px] max-w-6xl my-auto"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <button
-                                    className="absolute top-1 right-2 text-xl font-bold p-2 rounded-full bg-gray-200 text-red-700 hover:scale-110 transition duration-300 ease-in-out z-10"
-                                    onClick={() => setActiveEvent(null)}
-                                    aria-label="Close"
-                                >
-                                    <RxCross1 />
-                                </button>
-
-                                <h2 className="md:text-4xl text-center font-semibold mb-12 text-gray-50">
-                                    {events.find((e) => e.id === activeEvent)?.title}
-                                </h2>
-
-                                <EventCarousel images={imageMap[activeEvent]} />
-                            </div>
+                                {/* Footer hint */}
+                                <div className="text-center mt-4 md:mt-6">
+                                    <p className="text-gray-500 text-xs md:text-sm">
+                                        Press <kbd className="px-2 py-1 bg-white/10 rounded text-gray-400">ESC</kbd> or click outside to close
+                                    </p>
+                                </div>
+                            </motion.div>
                         </motion.div>
                     )}
 

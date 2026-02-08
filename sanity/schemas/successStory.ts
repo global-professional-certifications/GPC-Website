@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'successStory',
@@ -12,15 +12,24 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'course',
+      title: 'Course',
+      type: 'reference',
+      to: [{ type: 'testimonialCourse' }],
+      validation: (Rule) => Rule.required(),
+      description: 'Select the course this testimonial belongs to',
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
       options: {
         list: [
-          {title: 'Video Testimonial', value: 'video'},
-          {title: 'Written Testimonial', value: 'written'},
-          {title: 'Image Testimonial', value: 'image'},
+          { title: 'Video Testimonial', value: 'video' },
+          { title: 'Written Testimonial', value: 'written' },
+          { title: 'Image Testimonial', value: 'image' },
         ],
+        layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -40,19 +49,40 @@ export default defineType({
       options: {
         accept: 'video/*',
       },
-      validation: (Rule) => Rule.required(),
+      description: 'Upload video for video/written testimonials',
     }),
     defineField({
       name: 'order',
       title: 'Order',
       type: 'number',
+      initialValue: 0,
     }),
+  ],
+  orderings: [
+    {
+      title: 'Course, then Order',
+      name: 'courseOrder',
+      by: [
+        { field: 'course.name', direction: 'asc' },
+        { field: 'order', direction: 'asc' },
+      ],
+    },
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'category',
+      courseName: 'course.name',
+      category: 'category',
       media: 'thumbnail',
+    },
+    prepare({ title, courseName, category, media }) {
+      const courseLabel = courseName || 'No Course';
+      const categoryLabel = category === 'video' ? 'Video' : category === 'written' ? 'Written' : 'Image';
+      return {
+        title,
+        subtitle: `${courseLabel} - ${categoryLabel}`,
+        media,
+      };
     },
   },
 })

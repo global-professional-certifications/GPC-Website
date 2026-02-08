@@ -6,6 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './Layout.jsx';
 import { Analytics } from "@vercel/analytics/react"
+import { LayoutProvider } from './contexts/LayoutContext.jsx'
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home/Home.jsx'));
@@ -70,10 +71,12 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
     <HelmetProvider>
-      <>
-        <RouterProvider router={router} />
-        <Analytics />
-      </>
+      <LayoutProvider>
+        <>
+          <RouterProvider router={router} />
+          <Analytics />
+        </>
+      </LayoutProvider>
     </HelmetProvider>
   </ThemeProvider>
 )

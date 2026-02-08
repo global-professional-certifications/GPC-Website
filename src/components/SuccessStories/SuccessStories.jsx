@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { client } from "../../lib/sanity/client";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import { GiConqueror } from "react-icons/gi";
@@ -26,44 +26,100 @@ import { FaChevronRight } from "react-icons/fa";
 // Helper function to handle negative modulo correctly
 const safeModulo = (n, m) => ((n % m) + m) % m;
 
+// Course Toggle Component - horizontal toggle buttons
+const CourseToggle = ({ courses, activeCourse, setActiveCourse }) => {
+    if (courses.length === 0) return null;
+
+    return (
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {courses.map((course) => (
+                <button
+                    key={course._id}
+                    onClick={() => setActiveCourse(course.slug)}
+                    className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-sm md:text-base transition-all duration-300
+                        ${activeCourse === course.slug
+                            ? 'bg-brand-blue text-white shadow-lg scale-105'
+                            : 'bg-white text-gray-700 hover:bg-gray-100 hover:text-brand-blue border border-gray-300'
+                        }`}
+                >
+                    {course.name}
+                </button>
+            ))}
+        </div>
+    );
+};
+
 export default function SuccessStories() {
+    // Dynamic courses from Sanity
+    const [courses, setCourses] = useState([]);
+    const [activeCourse, setActiveCourse] = useState(null);
 
-    const [videoStories, setVideoStories] = useState([]);
-    const [writtenStories, setWrittenStories] = useState([]);
-    const [imageStories, setImageStories] = useState([]);
+    // All stories from Sanity
+    const [allStories, setAllStories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    // Fetch courses on mount - only courses that have at least one testimonial
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                // Get courses that have at least one testimonial
+                const query = `*[_type == "testimonialCourse" && isActive == true] | order(order asc) {
+                    _id,
+                    name,
+                    fullName,
+                    "slug": slug.current,
+                    "testimonialCount": count(*[_type == "successStory" && course._ref == ^._id])
+                }`;
+                const data = await client.fetch(query);
+                // Filter to only show courses with testimonials
+                const coursesWithContent = data.filter(c => c.testimonialCount > 0);
+                console.log("Fetched courses with content:", coursesWithContent);
+                setCourses(coursesWithContent);
+                if (coursesWithContent.length > 0) {
+                    setActiveCourse(coursesWithContent[0].slug);
+                }
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+        fetchCourses();
+    }, []);
+
+    // Fetch all stories on mount
     useEffect(() => {
         const fetchStories = async () => {
             try {
                 const query = `*[_type == "successStory"] | order(order asc) {
                     _id,
                     name,
+                    "courseSlug": course->slug.current,
+                    "courseName": course->name,
                     category,
                     "thumbnailUrl": thumbnail.asset->url,
                     "videoUrl": video.asset->url
                 }`;
                 const data = await client.fetch(query);
-
                 console.log("Fetched success stories:", data);
-                console.log("Total stories:", data.length);
-
-                const videoData = data.filter(story => story.category === 'video');
-                const writtenData = data.filter(story => story.category === 'written');
-                const imageData = data.filter(story => story.category === 'image');
-
-                console.log("Video stories:", videoData.length, videoData);
-                console.log("Written stories:", writtenData.length, writtenData);
-                console.log("Image stories:", imageData.length, imageData);
-
-                setVideoStories(videoData);
-                setWrittenStories(writtenData);
-                setImageStories(imageData);
+                setAllStories(data);
             } catch (error) {
                 console.error("Error fetching success stories:", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchStories();
     }, []);
+
+    // Filter stories by active course
+    const courseStories = useMemo(() => {
+        if (!activeCourse) return [];
+        return allStories.filter(story => story.courseSlug === activeCourse);
+    }, [allStories, activeCourse]);
+
+    // Derived filtered data
+    const videoStories = useMemo(() => courseStories.filter(s => s.category === 'video'), [courseStories]);
+    const writtenStories = useMemo(() => courseStories.filter(s => s.category === 'written'), [courseStories]);
+    const imageStories = useMemo(() => courseStories.filter(s => s.category === 'image'), [courseStories]);
 
     const heroImages = [
         agmIiaDelhiChapterOne,
@@ -80,51 +136,20 @@ export default function SuccessStories() {
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Reset carousel indices when course changes
+    useEffect(() => {
+        setCurrentVideoIndex(0);
+        setCurrentIndex(0);
+        setActiveVideoIndex(null);
+        setActiveWrittenIndex(null);
+    }, [activeCourse]);
+
     // Refs to manage video playback
     const videoRefs = useRef({});
     const writtenVideoRefs = useRef({});
 
-    const handlePrev = () => {
-        setCurrentVideoIndex((prev) => prev - 1);
-    };
-
-    const handleNext = () => {
-        setCurrentVideoIndex((prev) => prev + 1);
-    };
-
-    const handleWrittenPrev = () => {
-        setCurrentIndex((prev) => prev - 1);
-    };
-
-    const handleWrittenNext = () => {
-        setCurrentIndex((prev) => prev + 1);
-    };
-
-    // Handle infinite loop for video carousel
-    useEffect(() => {
-        if (videoStories.length > 0) {
-            if (currentVideoIndex >= videoStories.length) {
-                setTimeout(() => setCurrentVideoIndex(0), 300);
-            } else if (currentVideoIndex < 0) {
-                setTimeout(() => setCurrentVideoIndex(videoStories.length - 1), 300);
-            }
-        }
-    }, [currentVideoIndex, videoStories.length]);
-
-    // Handle infinite loop for written carousel
-    useEffect(() => {
-        if (writtenStories.length > 0) {
-            if (currentIndex >= writtenStories.length) {
-                setTimeout(() => setCurrentIndex(0), 300);
-            } else if (currentIndex < 0) {
-                setTimeout(() => setCurrentIndex(writtenStories.length - 1), 300);
-            }
-        }
-    }, [currentIndex, writtenStories.length]);
-
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0)
     const [isAnimating, setIsAnimating] = useState(true)
-    // const timeoutRef = useRef(null)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -135,17 +160,6 @@ export default function SuccessStories() {
     }, []);
 
     useEffect(() => {
-        // if (currentHeroIndex === heroImages.length) {
-        // // Temporarily disable animation
-        //     setTimeout(() => {
-        //     setIsAnimating(false);
-        //     setCurrentHeroIndex(0);
-        // }, 501); // Wait for slide transition to finish
-        // } 
-        // else {
-        //     setIsAnimating(true);
-        // }
-
         if (currentHeroIndex === heroImages.length) {
             setCurrentHeroIndex(0);
         }
@@ -161,31 +175,7 @@ export default function SuccessStories() {
         return () => window.removeEventListener("resize", handleResize)
     }, [window.innerWidth])
 
-    // Handle infinite loop for video carousel
-    useEffect(() => {
-        if (videoStories.length > 0) {
-            if (currentVideoIndex >= videoStories.length) {
-                setTimeout(() => setCurrentVideoIndex(0), 300);
-            } else if (currentVideoIndex < 0) {
-                setTimeout(() => setCurrentVideoIndex(videoStories.length - 1), 300);
-            }
-        }
-    }, [currentVideoIndex, videoStories.length]);
-
-    // Handle infinite loop for written carousel
-    useEffect(() => {
-        if (writtenStories.length > 0) {
-            if (currentIndex >= writtenStories.length) {
-                setTimeout(() => setCurrentIndex(0), 300);
-            } else if (currentIndex < 0) {
-                setTimeout(() => setCurrentIndex(writtenStories.length - 1), 300);
-            }
-        }
-    }, [currentIndex, writtenStories.length]);
-
-
     const sectionRef = useRef(null);
-
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -232,7 +222,6 @@ export default function SuccessStories() {
             />
 
             {/* Hero Section  */}
-
             <section className={`min-h-screen w-full bg-brand-blue flex items-center justify-center px-4 sm:px-6 md:px-8 pt-${height.toString()}`}>
                 <div className="w-full max-w-7xl mx-auto py-20 md:py-24 flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-0 items-center pl-0 lg:pl-12 mt-12">
                     {/* Left Content */}
@@ -286,286 +275,323 @@ export default function SuccessStories() {
             </section>
 
 
+            {/* Testimonials Section - Toggle Layout */}
+            <section id="testimonials" ref={sectionRef} className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <div className="text-center mb-8">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl text-brand-blue font-bold">
+                            Success Stories
+                        </h2>
+                        <p className="text-gray-600 mt-2 text-sm md:text-base">
+                            Hear from our successful alumni across different certification programs
+                        </p>
+                    </div>
 
-            <section ref={sectionRef} className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto">
-                    <div className="bg-[url('assets/bg.jpg')] border border-gray-300 rounded-xl shadow-lg p-6 md:p-10">
-                        <div className="flex flex-col justify-center items-center space-y-6">
-                            <h3 className="text-2xl sm:text-3xl md:text-4xl text-brand-blue font-bold text-center">
-                                Celebrating Our CIA Champions!{" "}
-                                {!isMobile && <span><GiConqueror className="inline h-12 w-12 md:h-16 md:w-16 text-brand-dark" /></span>}
-                            </h3>
-                            <p className="text-lg sm:text-xl md:text-2xl text-brand-blue font-bold text-center px-4">
-                                Join the Legacy of Success with Our Elite Alumni!
-                            </p>
-                            <hr className="border-2 border-solid border-gray-300 w-5/6" />
+                    {/* Course Toggle */}
+                    <div className="mb-8">
+                        <CourseToggle
+                            courses={courses}
+                            activeCourse={activeCourse}
+                            setActiveCourse={setActiveCourse}
+                        />
+                    </div>
 
-                            <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
-                                Hear from those who made it!
+                    {/* Content Area */}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeCourse}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {/* Course Header */}
+                            <div className="bg-gradient-to-r from-brand-blue to-brand-purple px-6 py-5 md:px-8 md:py-6 rounded-t-2xl text-white text-center">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold flex items-center justify-center gap-3">
+                                    {courses.find(c => c.slug === activeCourse)?.name || 'Course'} Champions
+                                    <GiConqueror className="h-8 w-8 md:h-10 md:w-10 text-yellow-300" />
+                                </h3>
+                                <p className="text-white/80 mt-1 text-sm md:text-base">
+                                    Join the Legacy of Success with Our Elite Alumni!
+                                </p>
                             </div>
 
-                            {/* Video Testimonials */}
-                            <div className="relative flex flex-col items-center w-full pt-6">
-                                <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
-                                    <motion.div
-                                        className="flex gap-2 md:gap-4"
-                                        animate={{
-                                            x: `${-(currentVideoIndex * (isMobile ? 208 : 216))}px`
-                                        }}
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    >
-                                        {videoStories.length > 0 && [...videoStories, ...videoStories, ...videoStories].map((story, index) => {
-                                            const actualIndex = index % videoStories.length;
-                                            const isActive = activeVideoIndex === actualIndex;
-                                            const uniqueKey = `video-${index}`;
-                                            // Only render video for the FIRST matching instance
-                                            const shouldRenderVideo = isActive && (index < videoStories.length || (activeVideoIndex >= videoStories.length && index >= videoStories.length && index < videoStories.length * 2) || (activeVideoIndex >= videoStories.length * 2 && index >= videoStories.length * 2));
+                            {/* Content */}
+                            <div className="bg-white border border-gray-200 border-t-0 rounded-b-2xl p-4 md:p-6 lg:p-8 space-y-8">
 
-                                            return (
-                                                <div
-                                                    key={uniqueKey}
-                                                    className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                {/* Video Testimonials Section - Only show if has content */}
+                                {videoStories.length > 0 && (
+                                    <>
+                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                            Hear from those who made it!
+                                        </div>
+
+                                        <div className="relative flex flex-col items-center w-full pt-6">
+                                            {/* Container for 5 videos */}
+                                            <div className="overflow-hidden w-full max-w-[280px] sm:max-w-[400px] md:max-w-[1080px]">
+                                                <motion.div
+                                                    className="flex gap-2 md:gap-4"
+                                                    animate={{
+                                                        x: `${-(currentVideoIndex * (isMobile ? 288 : 216))}px`
+                                                    }}
+                                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                 >
-                                                    {shouldRenderVideo ? (
-                                                        <video
-                                                            ref={(el) => {
-                                                                if (el) {
-                                                                    videoRefs.current[uniqueKey] = el;
-                                                                    // Autoplay when video element is created
-                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
-                                                                }
-                                                            }}
-                                                            src={story.videoUrl}
-                                                            className="w-full h-full object-contain rounded-lg"
-                                                            controls
-                                                            playsInline
-                                                            onPlay={() => {
-                                                                // Pause all other videos when this one plays
-                                                                Object.entries(videoRefs.current).forEach(([key, video]) => {
-                                                                    if (key !== uniqueKey && video) {
-                                                                        video.pause();
-                                                                    }
-                                                                });
-                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                            }}
-                                                        />
-                                                    ) : (
-                                                        <div
-                                                            className="absolute inset-0"
-                                                            onClick={() => {
-                                                                // Pause all videos first
-                                                                Object.values(videoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                                setActiveVideoIndex(actualIndex);
-                                                                setActiveWrittenIndex(null);
-                                                            }}
-                                                        >
-                                                            <img
-                                                                src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${actualIndex + 1}`}
-                                                                className="w-full h-full object-cover rounded-lg"
-                                                            />
-                                                            <div className="absolute rounded-lg bottom-3 left-3">
-                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                    ▶
-                                                                </button>
+                                                    {videoStories.map((story, index) => {
+                                                        const isActive = activeVideoIndex === index;
+                                                        const uniqueKey = `video-${activeCourse}-${index}`;
+
+                                                        return (
+                                                            <div
+                                                                key={uniqueKey}
+                                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                                            >
+                                                                {isActive ? (
+                                                                    <video
+                                                                        ref={(el) => {
+                                                                            if (el) {
+                                                                                videoRefs.current[uniqueKey] = el;
+                                                                                el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                            }
+                                                                        }}
+                                                                        src={story.videoUrl}
+                                                                        className="w-full h-full object-contain rounded-lg"
+                                                                        controls
+                                                                        playsInline
+                                                                        onPlay={() => {
+                                                                            Object.entries(videoRefs.current).forEach(([key, video]) => {
+                                                                                if (key !== uniqueKey && video) {
+                                                                                    video.pause();
+                                                                                }
+                                                                            });
+                                                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                        }}
+                                                                    />
+                                                                ) : (
+                                                                    <div
+                                                                        className="absolute inset-0"
+                                                                        onClick={() => {
+                                                                            Object.values(videoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                            setActiveVideoIndex(index);
+                                                                            setActiveWrittenIndex(null);
+                                                                        }}
+                                                                    >
+                                                                        <img
+                                                                            src={story.thumbnailUrl}
+                                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                                            className="w-full h-full object-cover rounded-lg"
+                                                                        />
+                                                                        <div className="absolute rounded-lg bottom-3 left-3">
+                                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                                ▶
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
                                                             </div>
-                                                        </div>
-                                                    )}
+                                                        );
+                                                    })}
+                                                </motion.div>
+                                            </div>
+
+                                            {/* Carousel Arrows - only show if more than 5 videos */}
+                                            {videoStories.length > 5 && (
+                                                <div className="flex justify-center gap-3 items-center w-full mt-6">
+                                                    <button
+                                                        type="button"
+                                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        disabled={currentVideoIndex === 0}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            Object.values(videoRefs.current).forEach((video) => {
+                                                                if (video) video.pause();
+                                                            });
+                                                            setActiveVideoIndex(null);
+                                                            setCurrentVideoIndex(prev => Math.max(0, prev - 1));
+                                                        }}
+                                                        aria-label="Previous video"
+                                                    >
+                                                        <FaChevronLeft />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        disabled={currentVideoIndex >= videoStories.length - 5}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            Object.values(videoRefs.current).forEach((video) => {
+                                                                if (video) video.pause();
+                                                            });
+                                                            setActiveVideoIndex(null);
+                                                            setCurrentVideoIndex(prev => Math.min(videoStories.length - 5, prev + 1));
+                                                        }}
+                                                        aria-label="Next video"
+                                                    >
+                                                        <FaChevronRight />
+                                                    </button>
                                                 </div>
-                                            );
-                                        })}
-                                    </motion.div>
-                                </div>
+                                            )}
+                                        </div>
 
-                                {/* Carousel Arrows */}
-                                <div className="flex justify-center gap-3 items-center w-full mt-6">
-                                    <button
-                                        type="button"
-                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            // Pause all videos when navigating
-                                            Object.values(videoRefs.current).forEach((video) => {
-                                                if (video) video.pause();
-                                            });
-                                            setActiveVideoIndex(null);
-                                            handlePrev();
-                                        }}
-                                        aria-label="Previous video"
-                                    >
-                                        <FaChevronLeft />
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            // Pause all videos when navigating
-                                            Object.values(videoRefs.current).forEach((video) => {
-                                                if (video) video.pause();
-                                            });
-                                            setActiveVideoIndex(null);
-                                            handleNext();
-                                        }}
-                                        aria-label="Next video"
-                                    >
-                                        <FaChevronRight />
-                                    </button>
-                                </div>
-                            </div>
+                                        <hr className="border-2 border-solid border-gray-300 w-5/6 mx-auto" />
+                                    </>
+                                )}
 
-                            <hr className="border-2 border-solid border-gray-300 w-5/6" />
+                                {/* Written Testimonials Section - Only show if has content */}
+                                {writtenStories.length > 0 && (
+                                    <>
+                                        <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
+                                            Read their journey!
+                                        </div>
 
-                            <div className="px-4 py-2 md:px-6 md:py-3 bg-[#EFECFF] text-brand-blue border border-brand-blue rounded-lg text-lg md:text-2xl font-bold">
-                                Read their journey!
-                            </div>
-
-                            {/* Written Testimonials */}
-                            <div className="relative flex flex-col items-center w-full pt-6">
-                                <div className="overflow-hidden w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[860px]">
-                                    <motion.div
-                                        className="flex gap-2 md:gap-4"
-                                        animate={{
-                                            x: `${-(currentIndex * (isMobile ? 208 : 216))}px`
-                                        }}
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    >
-                                        {writtenStories.length > 0 && [...writtenStories, ...writtenStories, ...writtenStories].map((story, index) => {
-                                            const actualIndex = index % writtenStories.length;
-                                            const isActive = activeWrittenIndex === actualIndex;
-                                            const uniqueKey = `written-${index}`;
-                                            // Only render video for the FIRST matching instance
-                                            const shouldRenderVideo = isActive && (index < writtenStories.length || (activeWrittenIndex >= writtenStories.length && index >= writtenStories.length && index < writtenStories.length * 2) || (activeWrittenIndex >= writtenStories.length * 2 && index >= writtenStories.length * 2));
-
-                                            return (
-                                                <div
-                                                    key={uniqueKey}
-                                                    className="relative h-[350px] w-[200px] flex-shrink-0"
+                                        <div className="relative flex flex-col items-center w-full pt-6">
+                                            {/* Container for 5 videos */}
+                                            <div className="overflow-hidden w-full max-w-[280px] sm:max-w-[400px] md:max-w-[1080px]">
+                                                <motion.div
+                                                    className="flex gap-2 md:gap-4"
+                                                    animate={{
+                                                        x: `${-(currentIndex * (isMobile ? 288 : 216))}px`
+                                                    }}
+                                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                 >
-                                                    {shouldRenderVideo ? (
-                                                        <video
-                                                            ref={(el) => {
-                                                                if (el) {
-                                                                    writtenVideoRefs.current[uniqueKey] = el;
-                                                                    // Autoplay when video element is created
-                                                                    el.play().catch(err => console.log('Autoplay prevented:', err));
-                                                                }
-                                                            }}
-                                                            src={story.videoUrl}
-                                                            className="w-full h-full object-contain rounded-lg"
-                                                            controls
-                                                            playsInline
-                                                            onPlay={() => {
-                                                                // Pause all other videos when this one plays
-                                                                Object.entries(writtenVideoRefs.current).forEach(([key, video]) => {
-                                                                    if (key !== uniqueKey && video) {
-                                                                        video.pause();
-                                                                    }
-                                                                });
-                                                                Object.values(videoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                            }}
-                                                        />
-                                                    ) : (
-                                                        <div
-                                                            className="absolute top-0 left-0 w-full h-full cursor-pointer rounded-lg overflow-hidden"
-                                                            onClick={() => {
-                                                                // Pause all videos first
-                                                                Object.values(videoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                                Object.values(writtenVideoRefs.current).forEach((video) => {
-                                                                    if (video) video.pause();
-                                                                });
-                                                                setActiveWrittenIndex(actualIndex);
-                                                                setActiveVideoIndex(null);
-                                                            }}
-                                                        >
-                                                            <img
-                                                                src={story.thumbnailUrl}
-                                                                alt={`Thumbnail for video ${actualIndex + 1}`}
-                                                                className="w-full h-full object-cover rounded-lg"
-                                                            />
-                                                            <div className="absolute bottom-3 left-3">
-                                                                <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
-                                                                    ▶
-                                                                </button>
+                                                    {writtenStories.map((story, index) => {
+                                                        const isActive = activeWrittenIndex === index;
+                                                        const uniqueKey = `written-${activeCourse}-${index}`;
+
+                                                        return (
+                                                            <div
+                                                                key={uniqueKey}
+                                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                                            >
+                                                                {isActive ? (
+                                                                    <video
+                                                                        ref={(el) => {
+                                                                            if (el) {
+                                                                                writtenVideoRefs.current[uniqueKey] = el;
+                                                                                el.play().catch(err => console.log('Autoplay prevented:', err));
+                                                                            }
+                                                                        }}
+                                                                        src={story.videoUrl}
+                                                                        className="w-full h-full object-contain rounded-lg"
+                                                                        controls
+                                                                        playsInline
+                                                                        onPlay={() => {
+                                                                            Object.entries(writtenVideoRefs.current).forEach(([key, video]) => {
+                                                                                if (key !== uniqueKey && video) {
+                                                                                    video.pause();
+                                                                                }
+                                                                            });
+                                                                            Object.values(videoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                        }}
+                                                                    />
+                                                                ) : (
+                                                                    <div
+                                                                        className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                                                                        onClick={() => {
+                                                                            Object.values(videoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                                if (video) video.pause();
+                                                                            });
+                                                                            setActiveWrittenIndex(index);
+                                                                            setActiveVideoIndex(null);
+                                                                        }}
+                                                                    >
+                                                                        <img
+                                                                            src={story.thumbnailUrl}
+                                                                            alt={`Thumbnail for video ${index + 1}`}
+                                                                            className="w-full h-full object-cover rounded-lg"
+                                                                        />
+                                                                        <div className="absolute bottom-3 left-3">
+                                                                            <button className="bg-white/90 text-black px-3 py-1.5 rounded-full text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+                                                                                ▶
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
                                                             </div>
-                                                        </div>
-                                                    )}
+                                                        );
+                                                    })}
+                                                </motion.div>
+                                            </div>
+
+                                            {/* Carousel Arrows - only show if more than 5 videos */}
+                                            {writtenStories.length > 5 && (
+                                                <div className="flex justify-center gap-3 items-center w-full mt-4">
+                                                    <button
+                                                        type="button"
+                                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        disabled={currentIndex === 0}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                if (video) video.pause();
+                                                            });
+                                                            setActiveWrittenIndex(null);
+                                                            setCurrentIndex(prev => Math.max(0, prev - 1));
+                                                        }}
+                                                        aria-label="Previous story"
+                                                    >
+                                                        <FaChevronLeft />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        disabled={currentIndex >= writtenStories.length - 5}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            Object.values(writtenVideoRefs.current).forEach((video) => {
+                                                                if (video) video.pause();
+                                                            });
+                                                            setActiveWrittenIndex(null);
+                                                            setCurrentIndex(prev => Math.min(writtenStories.length - 5, prev + 1));
+                                                        }}
+                                                        aria-label="Next story"
+                                                    >
+                                                        <FaChevronRight />
+                                                    </button>
                                                 </div>
-                                            );
-                                        })}
-                                    </motion.div>
-                                </div>
+                                            )}
+                                        </div>
+                                    </>
+                                )}
 
-                                <div className="flex justify-center gap-3 items-center w-full mt-6">
-                                    <button
-                                        type="button"
-                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            // Pause all videos when navigating
-                                            Object.values(writtenVideoRefs.current).forEach((video) => {
-                                                if (video) video.pause();
-                                            });
-                                            setActiveWrittenIndex(null);
-                                            handleWrittenPrev();
-                                        }}
-                                        aria-label="Previous story"
-                                    >
-                                        <FaChevronLeft />
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="p-2 md:p-3 rounded-full bg-brand-dark text-white hover:bg-brand-purple transition duration-300 ease-in-out"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            // Pause all videos when navigating
-                                            Object.values(writtenVideoRefs.current).forEach((video) => {
-                                                if (video) video.pause();
-                                            });
-                                            setActiveWrittenIndex(null);
-                                            handleWrittenNext();
-                                        }}
-                                        aria-label="Next story"
-                                    >
-                                        <FaChevronRight />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <p className="text-sm sm:text-base md:text-lg text-gray-800 text-center max-w-3xl font-semibold px-4 pt-4">
-                                Join a growing network of accomplished CIA professionals who began their journey with us. Through discipline,
-                                dedication, and our expert support, they turned their goals into success stories. Now, it's your turn to take the
-                                first step.
+                            <p className="text-sm sm:text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto font-medium pt-4 leading-relaxed">
+                                Join a growing network of accomplished {courses.find(c => c.slug === activeCourse)?.name || 'certified'} professionals who began their journey with us. Through discipline and expert support, they turned their goals into success stories.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
+                </AnimatePresence>
                 </div>
             </section>
 
 
-
-            <div className="mx-auto text-center py-12 md:py-20 bg-gray-50 px-4">
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
-                    What Our Students Say
-                </h2>
-            </div>
-            <SuccessTestimonials stories={imageStories} start={0} end={8} />
-            <SuccessTestimonials stories={imageStories} start={8} end={20} />
+            {/* Mobile Screenshots Section - Only show if has content */}
+            {imageStories.length > 0 && (
+                <>
+                    <div className="mx-auto text-center py-12 md:py-20 bg-gray-50 px-4">
+                        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
+                            What Our Students Say
+                        </h2>
+                    </div>
+                    <SuccessTestimonials stories={imageStories} start={0} end={8} activeCourse={activeCourse} />
+                    <SuccessTestimonials stories={imageStories} start={8} end={20} activeCourse={activeCourse} />
+                </>
+            )}
 
 
             <ExamTestimonials />
@@ -575,10 +601,15 @@ export default function SuccessStories() {
     );
 }
 
-const SuccessTestimonials = ({ stories, start, end }) => {
+const SuccessTestimonials = ({ stories, start, end, activeCourse }) => {
     const displayedTestimonials = stories.slice(start, end);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isMobileView, setIsMobileView] = useState(false);
+
+    // Reset index when course changes
+    useEffect(() => {
+        setCurrentImageIndex(0);
+    }, [activeCourse]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -590,21 +621,11 @@ const SuccessTestimonials = ({ stories, start, end }) => {
     }, []);
 
     const handleImagePrev = () => {
-        console.log('Prev clicked, current index:', currentImageIndex);
-        setCurrentImageIndex((prev) => {
-            const newIndex = prev - 1;
-            console.log('New index:', newIndex);
-            return newIndex;
-        });
+        setCurrentImageIndex((prev) => prev - 1);
     };
 
     const handleImageNext = () => {
-        console.log('Next clicked, current index:', currentImageIndex);
-        setCurrentImageIndex((prev) => {
-            const newIndex = prev + 1;
-            console.log('New index:', newIndex);
-            return newIndex;
-        });
+        setCurrentImageIndex((prev) => prev + 1);
     };
 
     const cardWidth = isMobileView ? 280 : 250;
@@ -633,7 +654,7 @@ const SuccessTestimonials = ({ stories, start, end }) => {
                         >
                             {[...displayedTestimonials, ...displayedTestimonials, ...displayedTestimonials].map((testimonial, index) => (
                                 <div
-                                    key={index}
+                                    key={`${activeCourse}-${index}`}
                                     className={`relative overflow-hidden transition-transform transform hover:scale-105 flex-shrink-0 ${isMobileView ? 'w-[280px]' : 'w-[250px]'}`}
                                 >
                                     <img
@@ -696,7 +717,7 @@ const ExamTestimonials = () => {
         {
             name: "Starwin PJ",
             designation: "AVP | Wells Fargo",
-            text: "Attended the “CIA Challenge Exam” crash course conducted by Mr. Arpit, and it was truly an outstanding learning experience. The sessions were thoughtfully structured, covering the entire syllabus with a perfect balance of depth and clarity. The interactive approach ensured key topics were highlighted.",
+            text: "Attended the 'CIA Challenge Exam' crash course conducted by Mr. Arpit, and it was truly an outstanding learning experience. The sessions were thoughtfully structured, covering the entire syllabus with a perfect balance of depth and clarity. The interactive approach ensured key topics were highlighted.",
             image: testimonialTwo,
         },
     ];
