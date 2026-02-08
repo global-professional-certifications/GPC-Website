@@ -6,6 +6,7 @@ import NotificationBanner from "./components/Notifications/NotificationBanner";
 import EventCountdownBar from "./components/Events/EventCountdownBar";
 import ScrollToHash from "./ScrollToHash";
 import { SchemaMarkup, getOrganizationSchema } from "./components/Schema";
+import { useLayout, LAYOUT_HEIGHTS } from "./contexts/LayoutContext";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -23,7 +24,16 @@ const ScrollToTop = () => {
 
 export default function Layout() {
     const { pathname } = useLocation();
+    const {
+        upcomingEvent,
+        showCountdownBar,
+        handleCountdownComplete,
+        loading
+    } = useLayout();
+
+    // Show countdown bar on homepage if there's an active upcoming event
     const isHomePage = pathname === "/";
+    const shouldShowCountdown = isHomePage && showCountdownBar && upcomingEvent && !loading;
 
     return (
         <>
@@ -31,17 +41,18 @@ export default function Layout() {
             <ScrollToHash />
             <ScrollToTop />
             <NotificationBanner />
-            <Navbar topOffset={"12"} /> {/* height of notification banner */}
-            {/* {isHomePage && (
+            <Navbar topOffset={12} showCountdownBar={shouldShowCountdown} />
+            {shouldShowCountdown && upcomingEvent && (
                 <EventCountdownBar
-                    eventName="IIA Bombay Chapter 2026"
-                    targetDate="2026-01-08T11:00:00"
+                    eventName={upcomingEvent.eventName}
+                    targetDate={upcomingEvent.eventStartDateTime}
                     tagText="Upcoming Event"
-                    buttonText="Check Event"
-                    buttonLink="upcoming-event"
+                    buttonText="View Event"
+                    buttonLink="/events#upcoming-event"
+                    onComplete={handleCountdownComplete}
                 />
-            )} */}
-            <Outlet />
+            )}
+            <Outlet context={{ showCountdownBar: shouldShowCountdown }} />
             <Footer />
         </>
     );

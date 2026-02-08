@@ -119,16 +119,24 @@ const Navbar = ({ topOffset = 0 }) => {
                 onMouseEnter={handleCoursesMouseEnter}
                 onMouseLeave={handleCoursesMouseLeave}
               >
-                {/* Courses Button */}
-                <button
-                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 dark:text-white hover:text-brand-blue transition group"
+                {/* Courses Link - Clickable to go to /courses */}
+                <NavLink
+                  to="/courses"
+                  onClick={() => setIsCoursesDropdownOpen(false)}
+                  className={({ isActive }) =>
+                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
+                  }
                 >
-                  {item}
-                  <FaChevronDown
-                    className={`text-[10px] transition-transform duration-300 ${isCoursesDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
-                  />
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
-                </button>
+                  {({ isActive }) => (
+                    <>
+                      {item}
+                      <FaChevronDown
+                        className={`text-[10px] transition-transform duration-300 ${isCoursesDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
+                      />
+                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-blue transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </>
+                  )}
+                </NavLink>
 
                 {/* MegaMenu for Courses */}
                 <MegaMenu
@@ -172,11 +180,15 @@ const Navbar = ({ topOffset = 0 }) => {
                 key={index}
                 to={item.toLowerCase()}
                 className={({ isActive }) =>
-                  `relative text-[15px] font-medium text-gray-800 dark:text-white hover:text-brand-blue transition group`
+                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
                 }
               >
-                {item === "Success" ? "Success Stories" : item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
+                {({ isActive }) => (
+                  <>
+                    {item === "Success" ? "Success Stories" : item}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-blue transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                  </>
+                )}
               </NavLink>
             )
           )}
