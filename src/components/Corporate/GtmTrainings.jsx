@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faClock, faRocket, faShieldHalved, faBrain, faScaleBalanced } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { height } from '../Notifications/NotificationBanner';
 
 
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
@@ -25,8 +24,8 @@ const GtmTrainings = () => {
             />
 
             {/* Hero Section */}
-            <div className="md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 pt-24">
-                <div className="md:py-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+            <div className="flex justify-center items-center bg-brand-blue py-24">
+                <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center md:justify-center md:items-center gap-0 md:gap-12 px-8 md:px-24">
                     {/* Left Content */}
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
@@ -115,7 +114,7 @@ const GtmTrainings = () => {
                                 Authorized Training Partner
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                               <span className='text-black font-semibold'>Mr. Mukundan K.V, CEO of IIA India,</span> presents the official
+                                <span className='text-black font-semibold'>Mr. Mukundan K.V, CEO of IIA India,</span> presents the official
                                 accreditation certificate to Arpit Garg, GPC mentor marking
                                 Global Professional Certifications as an
                                 <span className="font-semibold">

@@ -6,8 +6,8 @@ const LayoutContext = createContext(null);
 // Constants for layout heights (in pixels)
 export const LAYOUT_HEIGHTS = {
     NOTIFICATION_BAR: 48, // h-12 = 48px
-    NAVBAR: 64, // h-16 = 64px (typical navbar height)
-    COUNTDOWN_BAR: 60, // approximate height of countdown bar
+    NAVBAR: 64, // md:px-8 px-0 + inner py-2 + logo/links ... actually it's about 64px
+    COUNTDOWN_BAR: 0, // Currently disabled in Layout.jsx
 };
 
 export function LayoutProvider({ children }) {

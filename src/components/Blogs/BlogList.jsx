@@ -6,7 +6,6 @@ import { urlFor } from '../../lib/sanity/imageBuilder'
 import MetaTags from '../MetaTags'
 import BlogFilters from './BlogFilters'
 import { Calendar, User, ArrowRight, Tag, Search, X } from 'lucide-react'
-import { height } from '../Notifications/NotificationBanner'
 
 const BlogList = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -116,9 +115,9 @@ const BlogList = () => {
                 canonicalUrl="https://globalprofessionalcertifications.com/blogs"
             />
 
-            <div className='relative min-h-screen pt-36 w-full bg-gray-50'>
+            <div className='relative pt-12 min-h-screen w-full bg-gray-50'>
                 {/* Hero Section */}
-                <div className={`pt-[${100 + height}px] pb-6 px-4 lg:px-16 max-w-6xl mx-auto`}>
+                <div className="pb-6 px-4 lg:px-16 max-w-6xl mx-auto">
                     <div className="flex flex-col justify-center items-center text-center mb-6">
                         <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-semibold mb-3">
                             📚 Knowledge Hub
