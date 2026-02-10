@@ -305,7 +305,7 @@ const Navbar = ({ topOffset = 0 }) => {
               ) : (
                 <NavLink
                   onClick={() => setIsOpen(false)}
-                  to={item === "Success" ? "/success-stories" : item === "Blogs" ? "/blogs" : item.toLowerCase()}
+                  to={item === "Success" ? "/success" : item === "Blogs" ? "/blogs" : item.toLowerCase()}
                   className={({ isActive }) =>
                     `block w-full py-3 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
                     } hover:text-brand-purple transition-colors`
