@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldHalved, faMagnifyingGlassChart, faCheckDouble, faUserTie, faHandshake, faAward, faStar, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { height } from '../Notifications/NotificationBanner';
 
 
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart';
@@ -30,11 +29,9 @@ const Qaip = () => {
 
             {/* Hero Section */}
             <div
-                className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(
-                    16 + (height ? height - 4 : 0)
-                ).toString()}`}
+                className="flex justify-center items-center bg-brand-blue py-24"
             >
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+                <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     {/* Left Content */}
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">

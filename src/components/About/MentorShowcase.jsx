@@ -10,15 +10,15 @@ const MentorShowcase = () => {
     return (
         <section className="bg-brand-blue py-16 px-6 md:px-20">
             <div className="md:hidden">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-white md:text-gray-900 mb-4">
                     Our{" "}
-                    <span className="text-brand-blue font-normal italic">
+                    <span className="text-orange-300 md:text-brand-blue font-normal italic">
                         Experienced
                     </span>{" "}
                     Course Mentor
                 </h2>
 
-                <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
+                <p className="text-gray-300 md:text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
                     Learn from industry experts and gain real-world skills that drive success
                 </p>
             </div>

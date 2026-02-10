@@ -4,7 +4,6 @@ import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
 import MetaTags from '../MetaTags';
-import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -101,8 +100,8 @@ const Cia = () => {
 
             {/* Hero Section */}
 
-            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+            <div className="flex justify-center items-center bg-brand-blue py-28">
+                <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 md:gap-12 px-8 md:px-24">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -191,7 +190,7 @@ const Cia = () => {
                 </div>
             </div>
 
-            <div className="bg-gray-50 pt-6 md:pt-16 pb-16">
+            <div className="bg-gray-50 pt-16">
 
                 {/* What is Internal Auditing? */}
 

@@ -1,6 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { height } from '../Notifications/NotificationBanner';
 import MetaTags from '../MetaTags';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
@@ -89,7 +88,6 @@ const Cisa = () => {
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
 
-  const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
       <MetaTags
@@ -101,8 +99,8 @@ const Cisa = () => {
 
 
       {/* Header */}
-      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+      <div className="flex justify-center items-center bg-brand-blue py-28">
+        <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 md:gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">

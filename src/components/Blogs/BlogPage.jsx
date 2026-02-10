@@ -7,7 +7,6 @@ import PortableTextRenderer from './PortableTextRenderer'
 import MetaTags from '../MetaTags'
 import { SchemaMarkup, getBlogPostingSchema, getBreadcrumbSchema } from '../Schema'
 import { Calendar, User, ArrowRight, ArrowLeft, Tag, Share2, Linkedin, Twitter, Facebook, Link2, CheckCircle2 } from 'lucide-react'
-import { height } from '../Notifications/NotificationBanner'
 
 const BlogPage = () => {
     const { slug } = useParams()
@@ -68,7 +67,7 @@ const BlogPage = () => {
 
     if (!post) {
         return (
-            <div className={`relative min-h-screen w-full flex flex-col justify-center items-center bg-gray-50 pt-[${80 + height}px]`}>
+            <div className="relative min-h-screen w-full flex flex-col justify-center items-center bg-gray-50">
                 <p className="text-xl font-semibold text-gray-800 mb-2">Article not found</p>
                 <Link to="/blogs" className="text-brand-blue font-medium flex items-center gap-1 hover:underline">
                     <ArrowLeft className="w-4 h-4" /> Back to Blog
@@ -116,9 +115,9 @@ const BlogPage = () => {
                 canonicalUrl={`https://globalprofessionalcertifications.com/blogs/${slug}`}
             />
 
-            <div className="relative min-h-screen w-full bg-gray-50 pt-36">
+            <div className="relative min-h-screen w-full bg-gray-50 py-12">
                 {/* Header with proper spacing */}
-                <div className={`pt-[${80 + height}px] pb-6 px-12 max-w-5xl mx-auto`}>
+                <div className="pb-6 px-12 max-w-5xl mx-auto">
                     {/* Back Button */}
                     <Link
                         to="/blogs"

@@ -1,22 +1,15 @@
 ﻿import React from 'react';
 import heroGirl from '../../assets/home/hero-girl.webp';
 import { Link } from 'react-router-dom';
-import { height } from "../Notifications/NotificationBanner";
 
 
 const Hero = () => {
 
-    // Adjust top padding dynamically based on notification banner and event bar
-    // Standard hero padding (16) + Notification banner offset (8) + Event countdown bar offset (16)
-    const paddingTop = ((16 + (height ? height - 4 : 0) + 4) * 4).toString();
-
-
     return (
         <section
-            className="relative min-h-screen md:h-[60vh] lg:h-full flex items-center justify-center bg-brand-blue transition-colors duration-300"
-            style={{ paddingTop: `${paddingTop}px` }}
+            className="relative min-h-screen md:h-[60vh] lg:h-full flex items-center justify-center bg-brand-blue transition-colors duration-300 pt-16 md:pt-0"
         >
-            <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 flex flex-col lg:flex-row md:items-start lg:items-center gap-10 pt-10 md:pt-8">
+            <div className="container mx-auto px-6 flex flex-col lg:flex-row md:items-start lg:items-center gap-10">
 
                 {/* --- Left: Text Section --- */}
                 <div className="w-full md:w-full lg:w-1/2 lg:max-w-3xl text-left">

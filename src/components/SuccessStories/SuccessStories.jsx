@@ -4,7 +4,7 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import { GiConqueror } from "react-icons/gi";
 
 import MetaTags from "../MetaTags";
-import { height } from "../Notifications/NotificationBanner";
+
 
 import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getReviewSchema, getAggregateRatingSchema } from "../Schema";
 
@@ -222,8 +222,8 @@ export default function SuccessStories() {
             />
 
             {/* Hero Section  */}
-            <section className={`min-h-screen w-full bg-brand-blue flex items-center justify-center px-4 sm:px-6 md:px-8 pt-${height.toString()}`}>
-                <div className="w-full max-w-7xl mx-auto py-20 md:py-24 flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-0 items-center pl-0 lg:pl-12 mt-12">
+            <section className="w-full bg-brand-blue flex items-center justify-center px-4 sm:px-6 md:px-8">
+                <div className="w-full max-w-7xl mx-auto py-20 md:py-24 flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-0 items-center pl-0 lg:pl-12">
                     {/* Left Content */}
                     <div className="w-full flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-2xl">
@@ -570,12 +570,12 @@ export default function SuccessStories() {
                                     </>
                                 )}
 
-                            <p className="text-sm sm:text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto font-medium pt-4 leading-relaxed">
-                                Join a growing network of accomplished {courses.find(c => c.slug === activeCourse)?.name || 'certified'} professionals who began their journey with us. Through discipline and expert support, they turned their goals into success stories.
-                            </p>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
+                                <p className="text-sm sm:text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto font-medium pt-4 leading-relaxed">
+                                    Join a growing network of accomplished {courses.find(c => c.slug === activeCourse)?.name || 'certified'} professionals who began their journey with us. Through discipline and expert support, they turned their goals into success stories.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </section>
 

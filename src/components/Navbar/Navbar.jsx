@@ -36,6 +36,11 @@ const Navbar = ({ topOffset = 0 }) => {
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   const [isCorporateDropdownOpen, setIsCorporateDropdownOpen] = useState(false);
   const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
+
+  // Mobile specific states
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
+
   const coursesDropdownRef = useRef(null);
   const corporateDropdownRef = useRef(null);
   const authDropdownRef = useRef(null);
@@ -239,39 +244,71 @@ const Navbar = ({ topOffset = 0 }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 right-0 w-[65vw] bg-white dark:bg-gray-900 shadow-xl transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white dark:bg-gray-900 shadow-xl overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
-        <ul className="flex flex-col items-center py-4 space-y-3">
+        <ul className="flex flex-col py-6 space-y-2 px-6">
           {["Courses", "Corporate", "Events", "About", "Success", "Contact", "Blogs"].map((item, index) => (
-            <li key={index} className="w-full text-center">
-              {item === "Corporate" ? (
+            <li key={index} className="w-full border-b border-gray-100 dark:border-gray-800 last:border-0">
+              {item === "Courses" ? (
                 <div className="w-full">
-                  <div className="block w-full py-2 text-lg font-medium text-brand-dark">
-                    Corporate
+                  <button
+                    onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                    className="flex items-center justify-between w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
+                  >
+                    Courses
+                    <FaChevronDown className={`text-xs transition-transform duration-300 ${mobileCoursesOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${mobileCoursesOpen ? "max-h-96 opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
+                    <div className="flex flex-col space-y-2 pl-4 border-l-2 border-brand-light/20 ml-1">
+                      {coursesOptions.map((course, idx) => (
+                        <NavLink
+                          key={idx}
+                          to={course.link}
+                          onClick={() => setIsOpen(false)}
+                          className={({ isActive }) =>
+                            `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                          }
+                        >
+                          {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                        </NavLink>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-col space-y-1 px-4 mt-1">
-                    {corporateOptions.map((corp, idx) => (
-                      <NavLink
-                        key={idx}
-                        to={corp.link}
-                        onClick={() => setIsOpen(false)}
-                        className={({ isActive }) =>
-                          `block py-1.5 text-sm font-medium ${isActive ? "text-brand-purple" : "text-gray-600"} hover:text-brand-purple`
-                        }
-                      >
-                        {corp.name}
-                      </NavLink>
-                    ))}
+                </div>
+              ) : item === "Corporate" ? (
+                <div className="w-full">
+                  <button
+                    onClick={() => setMobileCorporateOpen(!mobileCorporateOpen)}
+                    className="flex items-center justify-between w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
+                  >
+                    Corporate
+                    <FaChevronDown className={`text-xs transition-transform duration-300 ${mobileCorporateOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${mobileCorporateOpen ? "max-h-48 opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
+                    <div className="flex flex-col space-y-2 pl-4 border-l-2 border-brand-light/20 ml-1">
+                      {corporateOptions.map((corp, idx) => (
+                        <NavLink
+                          key={idx}
+                          to={corp.link}
+                          onClick={() => setIsOpen(false)}
+                          className={({ isActive }) =>
+                            `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                          }
+                        >
+                          {corp.name}
+                        </NavLink>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ) : (
                 <NavLink
                   onClick={() => setIsOpen(false)}
-                  to={item === "Courses" ? "/courses" : item.toLowerCase()}
+                  to={item === "Success" ? "/success-stories" : item === "Blogs" ? "/blogs" : item.toLowerCase()}
                   className={({ isActive }) =>
-                    `block w-full py-2 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
-                    } hover:text-brand-purple`
+                    `block w-full py-3 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
+                    } hover:text-brand-purple transition-colors`
                   }
                 >
                   {item === "Success" ? "Success Stories" : item}
@@ -281,18 +318,18 @@ const Navbar = ({ topOffset = 0 }) => {
           ))}
 
           {/* Mobile Login / Signup */}
-          <li className="flex flex-col items-center space-y-2 mt-3 px-6 w-full">
+          <li className="flex flex-col space-y-3 pt-6 mt-2">
             <a
               href="https://learn.globalprofessionalcertifications.com/learn/account/signin"
               target="_blank"
-              className="w-full text-center text-white bg-brand-blue hover:bg-brand-purple font-medium rounded-lg text-sm px-4 py-2 transition-all duration-300"
+              className="w-full text-center text-brand-blue border border-brand-blue hover:bg-brand-blue hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 transition-all duration-300"
             >
               Log In
             </a>
             <a
               href="https://learn.globalprofessionalcertifications.com/learn/account/signup?"
               target="_blank"
-              className="w-full text-center text-white bg-brand-gray hover:bg-brand-dark font-medium rounded-lg text-sm px-4 py-2 transition-all duration-300"
+              className="w-full text-center text-white bg-brand-blue hover:bg-brand-purple font-medium rounded-lg text-sm px-4 py-2.5 transition-all duration-300 shadow-md"
             >
               Sign Up
             </a>

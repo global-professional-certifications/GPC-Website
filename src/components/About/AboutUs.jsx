@@ -41,8 +41,8 @@ export default function AboutUs() {
             />
 
             {/* Hero Section - UNTOUCHED as requested */}
-            <section className="bg-brand-blue py-16 sm:py-20 lg:py-24 relative md:min-h-[70vh] md:flex md:justify-center md:items-center">
-                <div className="w-full mt-20 max-w-[70rem] px-4 sm:px-6 lg:px-12 mx-auto">
+            <section className="bg-brand-blue pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 relative md:min-h-[70vh] md:flex md:justify-center md:items-center">
+                <div className="w-full max-w-[70rem] px-4 sm:px-6 lg:px-12 mx-auto">
                     <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-12 items-center">
                         <div className="w-full flex flex-col justify-start lg:items-start items-center gap-6">
                             <div className="w-full flex flex-col lg:items-start items-center gap-4">
