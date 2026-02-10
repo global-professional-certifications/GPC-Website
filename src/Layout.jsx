@@ -28,7 +28,8 @@ export default function Layout() {
         upcomingEvent,
         showCountdownBar,
         handleCountdownComplete,
-        loading
+        loading,
+        topOffset
     } = useLayout();
 
     // Show countdown bar on homepage if there's an active upcoming event
@@ -52,7 +53,9 @@ export default function Layout() {
                     onComplete={handleCountdownComplete}
                 />
             )}
-            <Outlet context={{ showCountdownBar: shouldShowCountdown }} />
+            <div style={{ paddingTop: `${topOffset}px` }} className="min-h-screen">
+                <Outlet context={{ showCountdownBar: shouldShowCountdown }} />
+            </div>
             <Footer />
         </>
     );

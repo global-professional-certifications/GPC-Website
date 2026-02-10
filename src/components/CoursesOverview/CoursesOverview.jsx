@@ -41,10 +41,10 @@ export default function CoursesOverview() {
 
 
       {/* Hero */}
-      <section className="md:h-screen flex justify-center items-center bg-brand-blue pt-6 md:pt-16">
-        <div className="flex flex-col-reverse md:flex-col lg:flex-row md:py-32 pt-12 md:pt-32 pb-10 mx-auto md:max-w-7xl md:px-24 lg:px-8 md:flex mt-16 px-8">
-          <div className="max-w-sm md:max-w-2xl mx-auto md:mr-12 md:mt-16">
-            <div className="relative max-w-xl mt-8">
+      <section className="flex justify-center items-center bg-brand-blue py-12">
+        <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 gap-12 px-8 md:px-24">
+          <div className="max-w-sm md:max-w-2xl mx-auto">
+            <div className="relative max-w-xl">
               <h1 className="mt-6 text-2xl md:text-4xl font-bold leading-tight text-white">
                 Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Global Audit</span> Excellence
               </h1>

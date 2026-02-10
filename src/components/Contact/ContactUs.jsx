@@ -1,6 +1,5 @@
 ﻿import React from "react";
 import MetaTags from "../MetaTags";
-import { height } from "../Notifications/NotificationBanner";
 import { GrLocation } from "react-icons/gr";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
@@ -48,7 +47,7 @@ export default function ContactUs() {
                 description="Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."
                 canonicalUrl="https://globalprofessionalcertifications.com/contact"
             />
-            <section className={`relative z-10 bg-gray-50 dark:bg-dark py-20 lg:py-[${120 + (4 * height)}px] w-full mt-12 md:mt-0`}>
+            <section className="relative z-10 bg-gray-50 dark:bg-dark pt-8 lg:pt-12 pb-12 lg:pb-20 w-full">
                 <div className="mx-auto lg:max-w-[75rem]">
                     <div className="lg:flex lg:justify-center lg:items-center">
                         <div className="w-full px-4 lg:w-1/2 xl:w-6/12">

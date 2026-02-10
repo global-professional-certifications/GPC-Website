@@ -174,18 +174,18 @@ export default function Events() {
 
             {/* Desktop Version */}
 
-            <section className="hidden lg:block relative w-full h-screen overflow-hidden">
+            <section className="hidden lg:block relative w-full h-[80vh] overflow-hidden">
                 {/* Background Image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center mt-16"
+                    className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${heroImage})` }}
                     loading="lazy"
                 ></div>
 
 
                 {/* Content */}
-                <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-20 space-y-6 mt-8">
-                    <h1 className="mt-6 text-xl md:text-6xl font-bold leading-tight text-white">
+                <div className="relative z-10 flex flex-col justify-center items-start h-full px-12 md:px-20 space-y-6">
+                    <h1 className="text-xl md:text-6xl font-bold leading-tight text-white">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                             Connect.
                         </span>
@@ -217,8 +217,8 @@ export default function Events() {
 
             {/* Mobile Version */}
 
-            <section className="flex flex-col justify-center items-center lg:hidden bg-brand-blue pb-12 mt-16">
-                <div className="flex flex-col justify-center items-center text-white pt-24 px-8">
+            <section className="flex flex-col justify-center items-center lg:hidden bg-brand-blue pb-12">
+                <div className="flex flex-col justify-center items-center text-white pt-10 px-8">
                     <h1 className="text-2xl md:text-4xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
                     <h2 className="text-xs md:text-base font-light text-gray-300 font-poppins mt-4 text-center px-0 md:px-20">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
                 </div>
@@ -248,7 +248,7 @@ export default function Events() {
 
             {/* Our Event Presence */}
 
-            < section className="w-full pb-10 px-6 md:px-16 pt-16 bg-gray-50" >
+            <section className="w-full pb-10 px-6 md:px-16 pt-16 bg-gray-50" >
                 <div className="flex flex-col flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-32 px-0 lg:px-12">
 
                     {/* Image Section */}
@@ -557,7 +557,7 @@ export default function Events() {
 
             {/* FAQ Section */}
 
-            < div className="pt-16 md:pt-32 lg:pt-16 px-8 pb-40 md:pb-[220px] lg:px-24 bg-gray-50" >
+            <div className="pt-16 md:pt-32 lg:pt-16 px-8 pb-40 md:pb-[220px] lg:px-24 bg-gray-50" >
                 <div className="flex flex-col lg:flex-row items-center gap-20 md:gap-12">
 
                     {/* Image Section */}
@@ -587,7 +587,7 @@ export default function Events() {
 
             {/* Radial Gradient Banner */}
 
-            < div className="relative" >
+            <div className="relative" >
                 <div className="absolute left-1/2 -translate-x-1/2 -top-28 z-20 h-56 sm:h-32 md:h-56 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] rounded-2xl py-2 md:py-8 w-full max-w-3xl flex items-center justify-center scale-90 md:scale-100">
                     <div className="flex flex-col md:flex-row justify-between items-center mx-8 gap-4 md:gap-12">
                         {/* Text Content */}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MetaTags from "../MetaTags";
-import { height } from "../Notifications/NotificationBanner";
+
 import { SchemaMarkup, getDefinedTermSetSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
 
 const glossary = [

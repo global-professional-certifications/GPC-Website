@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import MetaTags from "../MetaTags";
-import { height } from "../Notifications/NotificationBanner";
+
 import { SchemaMarkup, getFAQSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
 
 const faqs = [
@@ -247,7 +247,7 @@ const FAQ = () => {
             />
 
             {/* Hero Section */}
-            <section className={`h-[50vh] sm:h-[50vh] md:h-[60vh] flex flex-col justify-center items-center bg-brand-blue px-4 sm:px-6 md:px-8 md:pt-${height.toString()}`}>
+            <section className="h-[50vh] sm:h-[50vh] md:h-[60vh] flex flex-col justify-center items-center bg-brand-blue px-4 sm:px-6 md:px-8 md:pt-20">
                 <h2 className="text-base sm:text-lg md:text-xl mt-16 mb-4 p-2 text-white font-semibold border border-white rounded text-center">
                     Frequently Asked Questions
                 </h2>
