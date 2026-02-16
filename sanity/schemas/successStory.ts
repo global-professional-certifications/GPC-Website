@@ -35,12 +35,13 @@ export default defineType({
     }),
     defineField({
       name: 'thumbnail',
-      title: 'Thumbnail',
+      title: 'Thumbnail / Image',
       type: 'image',
       options: {
         hotspot: true,
       },
       validation: (Rule) => Rule.required(),
+      description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
     }),
     defineField({
       name: 'video',
@@ -50,6 +51,7 @@ export default defineType({
         accept: 'video/*',
       },
       description: 'Upload video for video/written testimonials',
+      hidden: ({ document }) => document?.category === 'image',
     }),
     defineField({
       name: 'order',

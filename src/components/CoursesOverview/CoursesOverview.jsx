@@ -2,6 +2,7 @@
 import Card from "../Card/Card";
 import MetaTags from "../MetaTags";
 import CoursesSEO from "./CoursesSEO";
+import useCurrency from "../../hooks/useCurrency";
 
 // images import
 import coursesHero from "../../assets/courses/courses-hero.webp";
@@ -9,6 +10,7 @@ import cisaLogo from "../../assets/courses/cisa-logo.webp";
 import ciaLogo from "../../assets/courses/cia-logo.webp";
 import iapLogo from "../../assets/courses/iap-logo.webp";
 import crmaLogo from "../../assets/courses/crma-logo.webp";
+import PaymentMethodDropdown from "../Courses/PaymentMethodDropdown";
 
 
 export default function CoursesOverview() {
@@ -29,6 +31,14 @@ export default function CoursesOverview() {
     const img = new Image();
     img.src = coursesHero;
   }, []);
+
+  const { currency, loading, setCurrency } = useCurrency();
+
+  if (loading) {
+    return <p>"Detecting Location..."</p>
+  }
+
+
 
   return (
     <>
@@ -82,50 +92,64 @@ export default function CoursesOverview() {
         </div>
       </section>
 
-      {/* Courses cards in single row */}
-      <h1 id="courses" className="text-2xl md:text-4xl font-bold text-brand-blue mb-10 text-center mt-10 md:mt-24">
-        COURSES WE OFFER
-      </h1>
-      <div className="md:m-20 lg:m-8 grid grid-cols-1 md:grid-cols-2 justify-items-center lg:flex lg:flex-row lg:justify-center lg:items-center gap-6 md:gap-0 lg:gap-6 items-center mb-10 md:mb-24">
+      {/* Header and Dropdown*/}
+      <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-0 md:justify-between items-center px-4 md:px-12 mt-20 mb-4">
+        <h1 id="courses" className="text-2xl md:text-4xl font-bold">
+          <span className="text-brand-blue font-normal italic">
+            Courses{" "}
+          </span>
+          We Offer
+        </h1>
+
+        <div>
+          <PaymentMethodDropdown
+            currency={currency}
+            setCurrency={setCurrency}
+          />
+        </div>
+      </div>
+
+
+      <div className="px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center lg:flex lg:flex-row lg:justify-center lg:items-center gap-6 md:gap-6 md:gap-y-12 lg:gap-6 items-center mb-10 md:mb-32">
         <Card
           title="CIA all 3 Parts with Gleim Content"
           image={ciaLogo}
           text="Master the complete CIA exam with expert guidance and comprehensive study materials"
-          price={58999}
+          currency={currency}
+          price={currency === "INR" ? 58999 : 700}
           linkTo="/courses/cia"
-          enrollLink="https://rzp.io/rzp/CIASessions"
-          imageStyle="object-cover w-full"
-          gst="(Including GST)"
+          enrollLink={currency === "INR" ? "https://rzp.io/rzp/CIASessions" : ""}
+          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
         />
         <Card
           title="Certified Informations Systems Auditor (CISA)"
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
-          price={17700}
+          currency={currency}
+          price={currency === "INR" ? 17700 : 250}
           linkTo="/courses/cisa"
-          enrollLink="https://rzp.io/rzp/VuvF84x"
-          imageStyle="object-cover w-full"
-          gst="(Including GST)"
+          enrollLink={currency === "INR" ? "https://rzp.io/rzp/VuvF84x" : ""}
+          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
         />
         <Card
           title="Internal Audit Practioner (IAP)"
           image={iapLogo}
           text="Kickstart your CIA journey with our IAP course—covering audit fundamentals and risk assessment"
-          price={23600}
+          currency={currency}
+          price={currency === "INR" ? 23600 : 300}
           linkTo="/courses/iap"
-          enrollLink="https://rzp.io/rzp/C7jUKuC"
-          imageStyle="object-contain"
-          gst="(Including GST)"
+          enrollLink={currency === "INR" ? "https://rzp.io/rzp/C7jUKuC" : ""}
+          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
         />
         <Card
           title="Certification in Risk Management Assurance"
           image={crmaLogo}
           text="Advance your risk career with our CRMA course on assurance, governance, and mitigation"
-          price={29500}
+          currency={currency}
+          price={currency === "INR" ? 29500 : 350}
           linkTo="/courses/crma"
-          enrollLink="https://rzp.io/rzp/hjuC9dj"
-          imageStyle="object-contain"
-          gst="(Including GST)"
+          enrollLink={currency === "INR" ? "https://rzp.io/rzp/hjuC9dj" : ""}
+          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
         />
       </div>
     </>
