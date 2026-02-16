@@ -29,3 +29,5 @@ Unused Files/
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*.local
