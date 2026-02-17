@@ -115,7 +115,7 @@ export const structure: StructureResolver = (S, context) => {
             S.listItem()
                 .title('Events')
                 .child(() =>
-                    // Fetch years from both old "event" and new "pastEvent" types
+                    // Fetch years from past event documents
                     client.fetch(`*[(_type == "pastEvent" || _type == "event") && defined(year)] { year } | order(year desc)`).then((events: { year: number }[]) => {
                         const years: number[] = [...new Set(events.map((e) => e.year).filter((y): y is number => y !== null && y !== undefined))].sort((a, b) => b - a)
 
@@ -133,7 +133,7 @@ export const structure: StructureResolver = (S, context) => {
                                             .defaultOrdering([{ field: 'eventStartDateTime', direction: 'asc' }])
                                     ),
 
-                                // 2. Past Events - with year subfolders (shows both legacy 'event' and new 'pastEvent' types)
+                                // 2. Past Events - with year subfolders
                                 S.listItem()
                                     .title('Past Events')
                                     .id('past-events')

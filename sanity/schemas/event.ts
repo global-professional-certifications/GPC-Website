@@ -117,7 +117,7 @@ export default defineType({
         },
         prepare({ title, subtitle, media, year }) {
             return {
-                title: `[Legacy] ${title}`,
+                title: title,
                 subtitle: `${year} - ${subtitle}`,
                 media: media,
             }
