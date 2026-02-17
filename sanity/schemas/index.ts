@@ -11,6 +11,7 @@ import upcomingEvent from './upcomingEvent'
 import pastEvent from './pastEvent'
 import event from './event'
 
+
 // Custom block content types
 import inlineCTA from './blockContent/inlineCTA'
 import youtube from './blockContent/youtube'
