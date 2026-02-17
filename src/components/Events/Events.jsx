@@ -63,7 +63,7 @@ export default function Events() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                // Fetch past events (supports both old "event" and new "pastEvent" types)
+                // Fetch past events (includes legacy event documents)
                 const query = `*[(_type == "pastEvent" || _type == "event") && isActive == true && defined(year)] | order(year desc, order asc) {
                     _id,
                     eventName,
@@ -393,31 +393,42 @@ export default function Events() {
                                 <div className="hidden lg:flex flex-col gap-6 w-full">
                                     {eventsForYear.map((event) => (
                                         <div key={event._id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
-                                            <div className="flex flex-col md:flex-row gap-8 w-full h-[16rem] items-center">
-                                                <img src={event.coverImage} className="rounded-xl w-auto h-[16rem] object-cover" alt={event.title} />
+                                            <div className="flex flex-row gap-8 w-full h-[16rem]">
+                                                <img src={event.coverImage} className="rounded-xl w-[24rem] h-[16rem] object-cover flex-shrink-0" alt={event.title} />
 
-                                                <div className="flex flex-col gap-4">
-                                                    <div className="inline-flex items-center gap-2 w-fit">
-                                                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-full border border-brand-blue/20">
-                                                            {event.eventName}
-                                                        </span>
+                                                <div className="flex flex-col justify-between flex-1 min-w-0 py-1">
+                                                    {/* Top: Badge + Title + Description */}
+                                                    <div className="flex flex-col gap-3">
+                                                        <div className="inline-flex items-center gap-2 w-fit">
+                                                            <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-full border border-brand-blue/20">
+                                                                {event.eventName}
+                                                            </span>
+                                                        </div>
+
+                                                        <h5 className="text-2xl font-bold leading-tight">
+                                                            {event.title}
+                                                        </h5>
+                                                        {event.description && (
+                                                            <p className="text-gray-600 text-base ">
+                                                                {event.description}
+                                                            </p>
+                                                        )}
                                                     </div>
 
-                                                    <h5 className="text-2xl font-bold">
-                                                        {event.title}
-                                                    </h5>
-                                                    <p className="text-gray-600 text-base">
-                                                        {event.description}
-                                                    </p>
-                                                    <div className="flex justify-start items-center gap-4 flex-wrap">
-                                                        <div className="flex justify-center items-center gap-2">
-                                                            <IoLocationOutline className="h-6 w-6 text-gray-600" />
-                                                            <p className="text-gray-600">{event.location}</p>
-                                                        </div>
-                                                        <div className="flex justify-center items-center gap-2">
-                                                            <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
-                                                            <p className="text-gray-600">{event.date}</p>
-                                                        </div>
+                                                    {/* Bottom: Location, Date, Button - always pinned to bottom */}
+                                                    <div className="flex justify-start items-center gap-4 flex-wrap mt-auto">
+                                                        {event.location && (
+                                                            <div className="flex justify-center items-center gap-2">
+                                                                <IoLocationOutline className="h-6 w-6 text-gray-600 flex-shrink-0" />
+                                                                <p className="text-gray-600">{event.location}</p>
+                                                            </div>
+                                                        )}
+                                                        {event.date && (
+                                                            <div className="flex justify-center items-center gap-2">
+                                                                <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-gray-600 text-sm" />
+                                                                <p className="text-gray-600">{event.date}</p>
+                                                            </div>
+                                                        )}
 
                                                         {event.galleryImages && event.galleryImages.length > 0 && (
                                                             <button
