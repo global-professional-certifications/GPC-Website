@@ -3,7 +3,6 @@ import { Link, NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import useCurrency from "../../hooks/useCurrency";
-import PaymentMethodDropdown from "./PaymentMethodDropdown";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
 import MetaTags from '../MetaTags';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -67,21 +66,21 @@ const courseFaqs = [
 
 const Cia = () => {
 
-    const { currency, loading, setCurrency } = useCurrency();
+    const { currency, loading } = useCurrency();
 
-    // Price/link constants based on currency
-    const allPartsPrice = currency === "INR" ? "58,999" : "700";
-    const eachPartPrice = currency === "INR" ? "23,599" : "300";
-    const allPartsEnrollLink = currency === "INR" ? "https://rzp.io/rzp/CIASessions" : "";
-    const eachPartEnrollLink = currency === "INR" ? "https://rzp.io/rzp/iFUFvKph" : "";
-    const currencySymbol = currency === "INR" ? "₹" : "$";
-    const taxLabel = currency === "INR" ? "Including GST" : "Tax Included";
+    // Price/link constants
+    const allPartsPrice = "58,999";
+    const eachPartPrice = "23,599";
+    const allPartsEnrollLink = "https://rzp.io/rzp/CIASessions";
+    const eachPartEnrollLink = "https://rzp.io/rzp/iFUFvKph";
+    const currencySymbol = "₹";
+    const taxLabel = "Including GST";
 
     // Comprehensive Course Schema
     const ciaSchema = getCourseSchema({
         name: "Certified Internal Auditor (CIA) Certification Course",
         description: "Master the complete CIA exam with expert guidance and comprehensive study materials. All 3 parts with Gleim content, live weekend classes, and 1000+ MCQs.",
-        price: currency === "INR" ? "58999" : "700",
+        price: "58999",
         enrollUrl: allPartsEnrollLink,
         credential: "Certified Internal Auditor (CIA)",
         occupationalCategory: "Internal Auditor, Risk Management Professional",
@@ -249,47 +248,43 @@ const Cia = () => {
                     <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-12">
                         <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-0 md:justify-between items-center mb-8 mt-16">
                             <h2 className="text-center md:text-left text-2xl md:text-4xl font-bold">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
-                            <PaymentMethodDropdown currency={currency} setCurrency={setCurrency} />
                         </div>
                         <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
                     </div>
 
 
-                    <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-12">
+                    <div className="flex md:justify-center md:flex-row flex-col gap-4 items-center md:w-full md:mb-12">
                         <Card
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                            currency={currency}
-                            price={currency === "INR" ? 58999 : 700}
+                            price="58,999"
                             enrollLink={allPartsEnrollLink}
-                            gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
-                            imageStyle={"pt-4"} />
+                            gst="(Including GST)"
+                            imageStyle={"pt-12"} />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                            currency={currency}
-                            price={currency === "INR" ? 23599 : 300}
+                            price="23,599"
                             enrollLink={eachPartEnrollLink}
-                            gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
-                            imageStyle={"pt-12"} />
+                            gst="(Including GST)"
+                            imageStyle={"pt-16"} />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
-                            currency={currency}
-                            price={currency === "INR" ? 23599 : 300}
+                            price="23,599"
                             enrollLink={eachPartEnrollLink}
-                            gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"} />
+                            gst="(Including GST)"
+                            imageStyle={"pt-4"} />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
-                            currency={currency}
-                            price={currency === "INR" ? 23599 : 300}
+                            price="23,599"
                             enrollLink={eachPartEnrollLink}
-                            gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
+                            gst="(Including GST)"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
@@ -832,100 +827,6 @@ const Cia = () => {
                     ]} />
 
 
-                {/* Fees and Membership Benefits */}
-                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
-                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
-                        Fees and Membership
-                        <span className="text-brand-blue font-normal italic"> Benefits</span>
-                    </h2>
-
-                    {/* Desktop Comparison Table */}
-                    <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white">
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="bg-brand-blue border-b border-gray-200">
-                                    <th className="px-8 py-6">
-                                        <h3 className="text-gray-200 font-bold">Exam / Fee Type</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">IIA Members</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">Non-Members</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">Savings</h3>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody className="divide-y divide-gray-100">
-                                {[
-                                    { label: "Application Fee", member: 90, nonMember: 240 },
-                                    { label: "Part 1 Exam Fee", member: 232.5, nonMember: 445 },
-                                    { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
-                                    { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
-                                ].map((row, idx) => (
-                                    <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-8 py-5">
-                                            <p className="text-gray-700 font-medium">{row.label}</p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center">
-                                            <p className="text-gray-800 font-bold">
-                                                USD {row.member}{" "}
-                                                <span className="text-[10px] font-normal text-gray-400">
-                                                    + taxes
-                                                </span>
-                                            </p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center">
-                                            <p className="text-gray-500">
-                                                USD {row.nonMember}{" "}
-                                                <span className="text-[10px] font-normal text-gray-400">
-                                                    + taxes
-                                                </span>
-                                            </p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center bg-blue-50/50">
-                                            <p className="text-green-600 font-bold">
-                                                USD {row.nonMember - row.member}
-                                            </p>
-                                        </td>
-                                    </tr>
-                                ))}
-
-                                <tr className="bg-gray-50/80">
-                                    <td className="px-8 py-6">
-                                        <p className="text-gray-800 font-bold">
-                                            Total Certification Cost
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center">
-                                        <p className="text-brand-blue text-2xl font-bold">
-                                            USD 742.50{" "}
-                                            <span className="text-xs font-normal text-gray-400">
-                                                + taxes
-                                            </span>
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center">
-                                        <p className="text-gray-500">
-                                            USD 1,515{" "}
-                                            <span className="text-xs font-normal text-gray-400">
-                                                + taxes
-                                            </span>
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center bg-blue-50">
-                                        <p className="text-green-600 text-2xl font-bold">
-                                            USD 772.50
-                                        </p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
                 {/* About Mentor */}
                 <MentorShowcase />

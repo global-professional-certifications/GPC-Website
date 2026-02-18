@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import useCurrency from "../../hooks/useCurrency";
-import PaymentMethodDropdown from "./PaymentMethodDropdown";
 import MetaTags from '../MetaTags';
 
 import FAQDisplay from "../FAQDisplay.jsx";
@@ -59,19 +58,19 @@ const courseFaqs = [
 ];
 const Iap = () => {
 
-  const { currency, loading, setCurrency } = useCurrency();
+  const { currency, loading } = useCurrency();
 
-  // Price/link constants based on currency
-  const coursePrice = currency === "INR" ? "23,600" : "300";
-  const enrollLink = currency === "INR" ? "https://rzp.io/rzp/C7jUKuC" : "";
-  const currencySymbol = currency === "INR" ? "₹" : "$";
-  const taxLabel = currency === "INR" ? "Including GST" : "Tax Included";
+  // Price/link constants
+  const coursePrice = "23,600";
+  const enrollLink = "https://rzp.io/rzp/C7jUKuC";
+  const currencySymbol = "₹";
+  const taxLabel = "Including GST";
 
   // Comprehensive Course Schema
   const iapSchema = getCourseSchema({
     name: "Internal Audit Practitioner (IAP) Certification Course",
     description: "Start your auditing career with the Internal Audit Practitioner (IAP) course. Learn essential auditing principles, ethics, and best practices recognized globally. Foundation for CIA certification.",
-    price: currency === "INR" ? "23600" : "300",
+    price: "23600",
     enrollUrl: enrollLink,
     credential: "Internal Audit Practitioner (IAP)",
     occupationalCategory: "Entry-Level Internal Auditor, Audit Associate, Risk Analyst"
@@ -384,7 +383,6 @@ const Iap = () => {
 
                 {/* Pricing/Action Side */}
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
-                  <PaymentMethodDropdown currency={currency} setCurrency={setCurrency} />
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
                     <p className="text-white text-xl md:text-3xl font-black mb-1">{currencySymbol} {coursePrice}</p>

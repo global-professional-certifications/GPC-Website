@@ -1,7 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useCurrency from "../../hooks/useCurrency";
-import PaymentMethodDropdown from "./PaymentMethodDropdown";
 import MetaTags from '../MetaTags';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
@@ -70,19 +69,19 @@ const courseFaqs = [
 
 const Cisa = () => {
 
-  const { currency, loading, setCurrency } = useCurrency();
+  const { currency, loading } = useCurrency();
 
-  // Price/link constants based on currency
-  const coursePrice = currency === "INR" ? "17,700" : "250";
-  const enrollLink = currency === "INR" ? "https://rzp.io/rzp/VuvF84x" : "";
-  const currencySymbol = currency === "INR" ? "₹" : "$";
-  const taxLabel = currency === "INR" ? "Including GST" : "Tax Included";
+  // Price/link constants
+  const coursePrice = "17,700";
+  const enrollLink = "https://rzp.io/rzp/VuvF84x";
+  const currencySymbol = "₹";
+  const taxLabel = "Including GST";
 
   // Comprehensive Course Schema
   const cisaSchema = getCourseSchema({
     name: "Certified Information Systems Auditor (CISA) Certification Course",
     description: "Become a certified expert in IT auditing and risk management with our comprehensive CISA course. Master IT audit, control, and assurance with ISACA-aligned training.",
-    price: currency === "INR" ? "17700" : "250",
+    price: "17700",
     enrollUrl: enrollLink,
     credential: "Certified Information Systems Auditor (CISA)",
     occupationalCategory: "IT Auditor, Cybersecurity Professional, Information Security Specialist"
@@ -494,7 +493,6 @@ const Cisa = () => {
 
                 {/* Pricing/Action Side */}
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
-                  <PaymentMethodDropdown currency={currency} setCurrency={setCurrency} />
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
                     <p className="text-white text-xl md:text-3xl font-black mb-1">{currencySymbol} {coursePrice}</p>

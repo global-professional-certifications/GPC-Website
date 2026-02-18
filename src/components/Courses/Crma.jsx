@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import useCurrency from "../../hooks/useCurrency";
-import PaymentMethodDropdown from "./PaymentMethodDropdown";
 import MetaTags from '../MetaTags';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaClipboardList, FaChalkboardTeacher, FaPenFancy, FaCertificate } from "react-icons/fa";
@@ -59,19 +58,19 @@ const courseFaqs = [
 
 const Crma = () => {
 
-  const { currency, loading, setCurrency } = useCurrency();
+  const { currency, loading } = useCurrency();
 
-  // Price/link constants based on currency
-  const coursePrice = currency === "INR" ? "29,500" : "350";
-  const enrollLink = currency === "INR" ? "https://rzp.io/rzp/hjuC9dj" : "";
-  const currencySymbol = currency === "INR" ? "₹" : "$";
-  const taxLabel = currency === "INR" ? "Including GST" : "Tax Included";
+  // Price/link constants
+  const coursePrice = "29,500";
+  const enrollLink = "https://rzp.io/rzp/hjuC9dj";
+  const currencySymbol = "₹";
+  const taxLabel = "Including GST";
 
   // Comprehensive Course Schema
   const crmaSchema = getCourseSchema({
     name: "Certification in Risk Management Assurance (CRMA)",
     description: "Advance your career in risk management and assurance with the CRMA course. Learn governance, risk, and control strategies from experts with IIA-aligned training.",
-    price: currency === "INR" ? "29500" : "350",
+    price: "29500",
     enrollUrl: enrollLink,
     credential: "Certification in Risk Management Assurance (CRMA)",
     occupationalCategory: "Risk Manager, Compliance Advisor, Internal Audit Leader"
@@ -446,7 +445,6 @@ const Crma = () => {
 
                 {/* Pricing/Action Side */}
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
-                  <PaymentMethodDropdown currency={currency} setCurrency={setCurrency} />
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
                     <p className="text-white text-xl md:text-3xl font-black mb-1">{currencySymbol} {coursePrice}</p>
