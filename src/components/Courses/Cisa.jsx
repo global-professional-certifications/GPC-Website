@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import useCurrency from "../../hooks/useCurrency";
+import { height } from '../Notifications/NotificationBanner';
 import MetaTags from '../MetaTags';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
@@ -69,20 +69,12 @@ const courseFaqs = [
 
 const Cisa = () => {
 
-  const { currency, loading } = useCurrency();
-
-  // Price/link constants
-  const coursePrice = "17,700";
-  const enrollLink = "https://rzp.io/rzp/VuvF84x";
-  const currencySymbol = "₹";
-  const taxLabel = "Including GST";
-
   // Comprehensive Course Schema
   const cisaSchema = getCourseSchema({
     name: "Certified Information Systems Auditor (CISA) Certification Course",
     description: "Become a certified expert in IT auditing and risk management with our comprehensive CISA course. Master IT audit, control, and assurance with ISACA-aligned training.",
     price: "17700",
-    enrollUrl: enrollLink,
+    enrollUrl: "https://rzp.io/rzp/VuvF84x",
     credential: "Certified Information Systems Auditor (CISA)",
     occupationalCategory: "IT Auditor, Cybersecurity Professional, Information Security Specialist"
   });
@@ -97,6 +89,7 @@ const Cisa = () => {
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
 
+  const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
       <MetaTags
@@ -108,8 +101,8 @@ const Cisa = () => {
 
 
       {/* Header */}
-      <div className="flex justify-center items-center bg-brand-blue py-28">
-        <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 md:gap-12 px-8 md:px-24">
+      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
+        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -495,13 +488,13 @@ const Cisa = () => {
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
-                    <p className="text-white text-xl md:text-3xl font-black mb-1">{currencySymbol} {coursePrice}</p>
-                    <p className="text-orange-400 text-xs italic">{taxLabel}</p>
+                    <p className="text-white text-xl md:text-3xl font-black mb-1">INR 17,700</p>
+                    <p className="text-orange-400 text-xs italic">Including GST</p>
                   </div>
 
                   <Link
-                    to={enrollLink || "#"}
-                    target={enrollLink ? "_blank" : undefined}
+                    to="https://rzp.io/rzp/VuvF84x"
+                    target="_blank"
                     className="w-full group inline-flex items-center justify-center py-3 text-base font-bold text-white rounded-2xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/25"
                   >
                     Enroll Now

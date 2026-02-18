@@ -2,9 +2,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
-import useCurrency from "../../hooks/useCurrency";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
 import MetaTags from '../MetaTags';
+import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -66,22 +66,12 @@ const courseFaqs = [
 
 const Cia = () => {
 
-    const { currency, loading } = useCurrency();
-
-    // Price/link constants
-    const allPartsPrice = "58,999";
-    const eachPartPrice = "23,599";
-    const allPartsEnrollLink = "https://rzp.io/rzp/CIASessions";
-    const eachPartEnrollLink = "https://rzp.io/rzp/iFUFvKph";
-    const currencySymbol = "₹";
-    const taxLabel = "Including GST";
-
     // Comprehensive Course Schema
     const ciaSchema = getCourseSchema({
         name: "Certified Internal Auditor (CIA) Certification Course",
         description: "Master the complete CIA exam with expert guidance and comprehensive study materials. All 3 parts with Gleim content, live weekend classes, and 1000+ MCQs.",
         price: "58999",
-        enrollUrl: allPartsEnrollLink,
+        enrollUrl: "https://rzp.io/rzp/CIASessions",
         credential: "Certified Internal Auditor (CIA)",
         occupationalCategory: "Internal Auditor, Risk Management Professional",
         courseWorkload: "PT60-70H (Part 1), PT80-90H (Part 2), PT40-50H (Part 3)"
@@ -111,8 +101,8 @@ const Cia = () => {
 
             {/* Hero Section */}
 
-            <div className="flex justify-center items-center bg-brand-blue py-28">
-                <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 md:gap-12 px-8 md:px-24">
+            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
+                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -130,8 +120,8 @@ const Cia = () => {
 
                         <div className="mt-6">
                             <Link
-                                to={allPartsEnrollLink || "#"}
-                                target={allPartsEnrollLink ? '_blank' : undefined}
+                                to="https://rzp.io/rzp/CIASessions"
+                                target='blank'
                                 title=""
                                 className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
                                 role="button"
@@ -201,7 +191,7 @@ const Cia = () => {
                 </div>
             </div>
 
-            <div className="bg-gray-50 pt-16">
+            <div className="bg-gray-50 pt-6 md:pt-16 pb-16">
 
                 {/* What is Internal Auditing? */}
 
@@ -246,9 +236,7 @@ const Cia = () => {
 
                 <div className='container mx-auto'>
                     <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-12">
-                        <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-0 md:justify-between items-center mb-8 mt-16">
-                            <h2 className="text-center md:text-left text-2xl md:text-4xl font-bold">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
-                        </div>
+                        <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
                         <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
                     </div>
 
@@ -258,33 +246,22 @@ const Cia = () => {
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                            price="58,999"
-                            enrollLink={allPartsEnrollLink}
-                            gst="(Including GST)"
-                            imageStyle={"pt-12"} />
+                            price={58999}
+                            enrollLink="https://rzp.io/rzp/CIASessions"
+                            imageStyle={"pt-4"} />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                            price="23,599"
-                            enrollLink={eachPartEnrollLink}
-                            gst="(Including GST)"
-                            imageStyle={"pt-16"} />
+                            imageStyle={"pt-12"} />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
-                            text={"Strengthen your skills in risk management, governance, and control processes"}
-                            price="23,599"
-                            enrollLink={eachPartEnrollLink}
-                            gst="(Including GST)"
-                            imageStyle={"pt-4"} />
+                            text={"Strengthen your skills in risk management, governance, and control processes"} />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
-                            price="23,599"
-                            enrollLink={eachPartEnrollLink}
-                            gst="(Including GST)"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
@@ -449,8 +426,8 @@ const Cia = () => {
                                     </div>
 
                                     <Link
-                                        to={allPartsEnrollLink || "#"}
-                                        target={allPartsEnrollLink ? "_blank" : undefined}
+                                        to={"https://rzp.io/rzp/CIASessions"}
+                                        target="_blank"
                                         className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white 
                         rounded-lg shadow-lg transition-all duration-300 
                         bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
@@ -958,11 +935,11 @@ const Cia = () => {
                             <div className="max-w-3xl mx-auto mb-8">
                                 <div className="p-5 md:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner">
                                     <p className="text-lg md:text-2xl font-bold text-white mb-3">
-                                        Enroll for all 3 parts along with Gleim content for <span className="text-orange-400">{currencySymbol}{allPartsPrice}</span> only
+                                        Enroll for all 3 parts along with Gleim content for <span className="text-orange-400">₹58,999</span> only
                                     </p>
                                     <div className="w-12 h-0.5 bg-orange-400/30 mx-auto mb-3 rounded-full"></div>
                                     <p className="text-base md:text-lg text-gray-300">
-                                        Or each part for <span className="text-white font-semibold">{currencySymbol}{eachPartPrice}</span> only
+                                        Or each part for <span className="text-white font-semibold">₹23,599</span> only
                                     </p>
                                 </div>
                             </div>
@@ -973,8 +950,8 @@ const Cia = () => {
 
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                                 <Link
-                                    to={allPartsEnrollLink || "#"}
-                                    target={allPartsEnrollLink ? "_blank" : undefined}
+                                    to="https://rzp.io/rzp/CIASessions"
+                                    target="_blank"
                                     className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/20"
                                 >
                                     Enroll for All Parts
@@ -983,8 +960,8 @@ const Cia = () => {
                                     </svg>
                                 </Link>
                                 <Link
-                                    to={eachPartEnrollLink || "#"}
-                                    target={eachPartEnrollLink ? "_blank" : undefined}
+                                    to="https://rzp.io/rzp/iFUFvKph"
+                                    target="_blank"
                                     className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-white/10 backdrop-blur-sm border border-white-20 hover:bg-white/20 hover:scale-105"
                                 >
                                     Enroll for Each Part
