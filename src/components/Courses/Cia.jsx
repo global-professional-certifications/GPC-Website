@@ -241,7 +241,7 @@ const Cia = () => {
                     </div>
 
 
-                    <div className="flex md:justify-center md:flex-row flex-col gap-4 md:gap-0 items-center md:w-full md:mb-12">
+                    <div className="flex md:justify-center md:flex-row flex-col gap-4 items-center md:w-full md:mb-12">
                         <Card
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
@@ -804,100 +804,6 @@ const Cia = () => {
                     ]} />
 
 
-                {/* Fees and Membership Benefits */}
-                <div className="max-w-6xl mx-auto py-8 md:py-16 px-4 font-inter">
-                    <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
-                        Fees and Membership
-                        <span className="text-brand-blue font-normal italic"> Benefits</span>
-                    </h2>
-
-                    {/* Desktop Comparison Table */}
-                    <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-xl bg-white">
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="bg-brand-blue border-b border-gray-200">
-                                    <th className="px-8 py-6">
-                                        <h3 className="text-gray-200 font-bold">Exam / Fee Type</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">IIA Members</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">Non-Members</h3>
-                                    </th>
-                                    <th className="px-8 py-6 text-center">
-                                        <h3 className="text-gray-200 font-bold">Savings</h3>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody className="divide-y divide-gray-100">
-                                {[
-                                    { label: "Application Fee", member: 90, nonMember: 240 },
-                                    { label: "Part 1 Exam Fee", member: 232.5, nonMember: 445 },
-                                    { label: "Part 2 Exam Fee", member: 210, nonMember: 415 },
-                                    { label: "Part 3 Exam Fee", member: 210, nonMember: 415 },
-                                ].map((row, idx) => (
-                                    <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-8 py-5">
-                                            <p className="text-gray-700 font-medium">{row.label}</p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center">
-                                            <p className="text-gray-800 font-bold">
-                                                USD {row.member}{" "}
-                                                <span className="text-[10px] font-normal text-gray-400">
-                                                    + taxes
-                                                </span>
-                                            </p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center">
-                                            <p className="text-gray-500">
-                                                USD {row.nonMember}{" "}
-                                                <span className="text-[10px] font-normal text-gray-400">
-                                                    + taxes
-                                                </span>
-                                            </p>
-                                        </td>
-                                        <td className="px-8 py-5 text-center bg-blue-50/50">
-                                            <p className="text-green-600 font-bold">
-                                                USD {row.nonMember - row.member}
-                                            </p>
-                                        </td>
-                                    </tr>
-                                ))}
-
-                                <tr className="bg-gray-50/80">
-                                    <td className="px-8 py-6">
-                                        <p className="text-gray-800 font-bold">
-                                            Total Certification Cost
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center">
-                                        <p className="text-brand-blue text-2xl font-bold">
-                                            USD 742.50{" "}
-                                            <span className="text-xs font-normal text-gray-400">
-                                                + taxes
-                                            </span>
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center">
-                                        <p className="text-gray-500">
-                                            USD 1,515{" "}
-                                            <span className="text-xs font-normal text-gray-400">
-                                                + taxes
-                                            </span>
-                                        </p>
-                                    </td>
-                                    <td className="px-8 py-6 text-center bg-blue-50">
-                                        <p className="text-green-600 text-2xl font-bold">
-                                            USD 772.50
-                                        </p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
                 {/* About Mentor */}
                 <MentorShowcase />
