@@ -253,15 +253,21 @@ const Cia = () => {
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
+                            price={23599}
+                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
                             imageStyle={"pt-12"} />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
-                            text={"Strengthen your skills in risk management, governance, and control processes"} />
+                            text={"Strengthen your skills in risk management, governance, and control processes"}
+                            price={23599}
+                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
+                            price={23599}
+                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
