@@ -248,26 +248,30 @@ const Cia = () => {
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
                             price={58999}
                             enrollLink="https://rzp.io/rzp/CIASessions"
-                            imageStyle={"pt-4"} />
+                            imageStyle={"pt-4"}
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
                             price={23599}
                             enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
-                            imageStyle={"pt-12"} />
+                            imageStyle={"pt-12"}
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
                             price={23599}
-                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view" />
+                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
                             price={23599}
                             enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
+                            gst="(Including GST)"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
