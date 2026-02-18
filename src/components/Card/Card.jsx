@@ -5,47 +5,65 @@ import { Link } from "react-router-dom";
 export default function Card({
   image,
   title,
-  currency,
   price,
   text,
   linkTo,
   enrollLink,
-  gst
+  gst,
+  imageStyle = ""
 }) {
   return (
-    <div
-      className="relative mt-4 md:mt-6 w-[20rem] md:w-[20rem] h-full flex-col rounded-lg border border-gray-300 bg-white shadow-lg hover:shadow-xl transition-shadow"
-    >
-      <div className="relative mx-3 mt-3 flex justify-center h-40 items-center overflow-hidden rounded-lg">
+    <div className="group relative mt-4 md:mt-6 w-[18rem] min-h-[26rem] flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden">
+
+      {/* IMAGE SECTION */}
+      <div
+        className={`relative mx-4 mt-4 flex h-52 items-center justify-center overflow-hidden rounded-xl bg-gray-50 ${imageStyle}`}
+      >
         <Link to={linkTo}>
-          <img src={image} alt={title} className="object-contain h-40 w-40" />
+          <img
+            src={image}
+            alt={title}
+            className="h-auto w-full object-contain transition-transform duration-500 group-hover:scale-105"
+          />
         </Link>
       </div>
-      <div className="mt-4 px-5 pb-5 flex flex-col">
-        <div className="flex flex-col mb-4">
-          <Link to={linkTo}>
-            <h3 className="text-xl font-bold tracking-tight text-brand-dark">{title}</h3>
-          </Link>
-          <p className="pt-2 text-sm text-brand-gray overflow-hidden">
-            {text}
-          </p>
-        </div>
-        <div className="flex justify-between items-end">
-          <div className="flex flex-col text-sm justify-center">
-            <p>
-              <span className="font-bold text-xl md:text-lg text-gray-800">
-                {currency === "INR" ? `₹${price}` : `$${price}`}
-              </span>
-            </p>
-            <p className="text-xs text-brand-gray">{gst}</p>
+
+      {/* CONTENT */}
+      <div className="flex flex-col flex-1 px-5 pt-4 pb-5">
+
+        {/* TITLE */}
+        <Link to={linkTo}>
+          <h3 className="text-xl font-bold text-gray-900 leading-snug min-h-[3.5rem] group-hover:text-brand-blue transition-colors">
+            {title}
+          </h3>
+        </Link>
+
+        {/* DESCRIPTION */}
+        <p className="mt-2 text-sm text-gray-600 leading-relaxed min-h-[4.5rem]">
+          {text}
+        </p>
+
+        {/* FOOTER */}
+        <div className="mt-auto flex justify-between items-end border-t border-gray-100 pt-4">
+
+          {/* PRICE */}
+          <div className="flex flex-col">
+            <span className="text-xl font-extrabold text-gray-900">
+              ₹{price}
+            </span>
+            <span className="text-xs text-gray-500 mt-1">
+              {gst}
+            </span>
           </div>
+
+          {/* BUTTON */}
           <Link
             to={enrollLink}
             target="_blank"
-            className="flex items-center justify-center rounded-md bg-brand-blue px-4 py-2 text-center font-medium text-white hover:bg-brand-purple focus:outline-none focus:ring-4 focus:ring-blue-300"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-brand-purple hover:shadow-lg active:scale-95"
           >
             Enroll Now
-            <FaArrowRightLong className="ml-2 h-4 w-4" />
+            <FaArrowRightLong className="h-4 w-4" />
           </Link>
         </div>
       </div>

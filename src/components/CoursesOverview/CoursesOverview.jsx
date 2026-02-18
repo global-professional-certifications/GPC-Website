@@ -10,7 +10,6 @@ import cisaLogo from "../../assets/courses/cisa-logo.webp";
 import ciaLogo from "../../assets/courses/cia-logo.webp";
 import iapLogo from "../../assets/courses/iap-logo.webp";
 import crmaLogo from "../../assets/courses/crma-logo.webp";
-import PaymentMethodDropdown from "../Courses/PaymentMethodDropdown";
 
 
 export default function CoursesOverview() {
@@ -32,7 +31,7 @@ export default function CoursesOverview() {
     img.src = coursesHero;
   }, []);
 
-  const { currency, loading, setCurrency } = useCurrency();
+  const { currency, loading } = useCurrency();
 
   if (loading) {
     return <p>"Detecting Location..."</p>
@@ -92,21 +91,14 @@ export default function CoursesOverview() {
         </div>
       </section>
 
-      {/* Header and Dropdown*/}
-      <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-0 md:justify-between items-center px-4 md:px-12 mt-20 mb-4">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-center items-center px-4 md:px-12 mt-20 mb-4">
         <h1 id="courses" className="text-2xl md:text-4xl font-bold">
           <span className="text-brand-blue font-normal italic">
             Courses{" "}
           </span>
           We Offer
         </h1>
-
-        <div>
-          <PaymentMethodDropdown
-            currency={currency}
-            setCurrency={setCurrency}
-          />
-        </div>
       </div>
 
 
@@ -115,41 +107,41 @@ export default function CoursesOverview() {
           title="CIA all 3 Parts with Gleim Content"
           image={ciaLogo}
           text="Master the complete CIA exam with expert guidance and comprehensive study materials"
-          currency={currency}
-          price={currency === "INR" ? 58999 : 700}
+          currency="INR"
+          price="58,999"
           linkTo="/courses/cia"
-          enrollLink={currency === "INR" ? "https://rzp.io/rzp/CIASessions" : ""}
-          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
+          enrollLink="https://rzp.io/rzp/CIASessions"
+          gst="(Including GST)"
         />
         <Card
           title="Certified Informations Systems Auditor (CISA)"
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
-          currency={currency}
-          price={currency === "INR" ? 17700 : 250}
+          currency="INR"
+          price="17,700"
           linkTo="/courses/cisa"
-          enrollLink={currency === "INR" ? "https://rzp.io/rzp/VuvF84x" : ""}
-          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
+          enrollLink="https://rzp.io/rzp/VuvF84x"
+          gst="(Including GST)"
         />
         <Card
           title="Internal Audit Practioner (IAP)"
           image={iapLogo}
           text="Kickstart your CIA journey with our IAP course—covering audit fundamentals and risk assessment"
-          currency={currency}
-          price={currency === "INR" ? 23600 : 300}
+          currency="INR"
+          price="23,600"
           linkTo="/courses/iap"
-          enrollLink={currency === "INR" ? "https://rzp.io/rzp/C7jUKuC" : ""}
-          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
+          enrollLink="https://rzp.io/rzp/C7jUKuC"
+          gst="(Including GST)"
         />
         <Card
           title="Certification in Risk Management Assurance"
           image={crmaLogo}
           text="Advance your risk career with our CRMA course on assurance, governance, and mitigation"
-          currency={currency}
-          price={currency === "INR" ? 29500 : 350}
+          currency="INR"
+          price="29,500"
           linkTo="/courses/crma"
-          enrollLink={currency === "INR" ? "https://rzp.io/rzp/hjuC9dj" : ""}
-          gst={currency === "INR" ? "(Including GST)" : "(Tax Included)"}
+          enrollLink="https://rzp.io/rzp/hjuC9dj"
+          gst="(Including GST)"
         />
       </div>
     </>
