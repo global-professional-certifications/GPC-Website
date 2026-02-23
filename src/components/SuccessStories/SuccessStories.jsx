@@ -583,7 +583,7 @@ export default function SuccessStories() {
             {/* Mobile Screenshots Section - Only show if has content */}
             {imageStories.length > 0 && (
                 <>
-                    <div className="mx-auto text-center py-6 bg-gray-50 px-4">
+                    <div className="mx-auto text-center bg-gray-50 px-4">
                         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
                             What Our Students Say
                         </h2>
@@ -594,7 +594,10 @@ export default function SuccessStories() {
             )}
 
 
-            <ExamTestimonials />
+
+            {activeCourse === 'cia' && <ExamTestimonials />}
+
+
 
 
         </>
@@ -656,7 +659,7 @@ const SuccessTestimonials = ({ stories, start, end, activeCourse }) => {
     }
 
     return (
-        <section className="py-8 md:py-12 bg-gray-50">
+        <section className="py-8 md:pt-12 md:pb-24 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="relative flex flex-col items-center">
                     {/* Carousel Container */}
@@ -780,7 +783,7 @@ const ExamTestimonials = () => {
     ];
 
     return (
-        <section id="testimonials" aria-label="What our customers are saying" className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+        <section id="cia-exam-results" aria-label="What our students are saying" className="bg-gray-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mx-auto max-w-2xl text-center mb-12 md:mb-16">
                     <h2 className="font-display text-2xl sm:text-3xl font-bold text-brand-blue">
