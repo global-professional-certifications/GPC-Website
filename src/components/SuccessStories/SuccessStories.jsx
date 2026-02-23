@@ -329,11 +329,11 @@ export default function SuccessStories() {
 
                                         <div className="relative flex flex-col items-center w-full pt-6">
                                             {/* Container for videos */}
-                                            <div className="overflow-hidden w-full max-w-[280px] sm:max-w-[400px] md:max-w-[1080px]">
+                                            <div className="overflow-hidden w-full max-w-[320px] sm:max-w-[400px] md:max-w-[1080px]">
                                                 <motion.div
-                                                    className={`flex gap-2 md:gap-4 ${(isMobile ? videoStories.length <= 1 : videoStories.length <= 5) ? 'justify-center' : ''}`}
+                                                    className={`flex gap-4 md:gap-4 ${(isMobile ? videoStories.length <= 1 : videoStories.length <= 5) ? 'justify-center' : ''}`}
                                                     animate={{
-                                                        x: (isMobile ? videoStories.length <= 1 : videoStories.length <= 5) ? 0 : `${-(currentVideoIndex * (isMobile ? 288 : 216))}px`
+                                                        x: (isMobile ? videoStories.length <= 1 : videoStories.length <= 5) ? 0 : `${-(currentVideoIndex * (isMobile ? 216 : 216))}px`
                                                     }}
                                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                 >
@@ -344,7 +344,7 @@ export default function SuccessStories() {
                                                         return (
                                                             <div
                                                                 key={uniqueKey}
-                                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                                                className="relative h-[320px] md:h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
                                                             >
                                                                 {isActive ? (
                                                                     <video
@@ -455,11 +455,11 @@ export default function SuccessStories() {
 
                                         <div className="relative flex flex-col items-center w-full pt-6">
                                             {/* Container for written testimonials */}
-                                            <div className="overflow-hidden w-full max-w-[280px] sm:max-w-[400px] md:max-w-[1080px]">
+                                            <div className="overflow-hidden w-full max-w-[320px] sm:max-w-[400px] md:max-w-[1080px]">
                                                 <motion.div
-                                                    className={`flex gap-2 md:gap-4 ${(isMobile ? writtenStories.length <= 1 : writtenStories.length <= 5) ? 'justify-center' : ''}`}
+                                                    className={`flex gap-4 md:gap-4 ${(isMobile ? writtenStories.length <= 1 : writtenStories.length <= 5) ? 'justify-center' : ''}`}
                                                     animate={{
-                                                        x: (isMobile ? writtenStories.length <= 1 : writtenStories.length <= 5) ? 0 : `${-(currentIndex * (isMobile ? 288 : 216))}px`
+                                                        x: (isMobile ? writtenStories.length <= 1 : writtenStories.length <= 5) ? 0 : `${-(currentIndex * (isMobile ? 216 : 216))}px`
                                                     }}
                                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                 >
@@ -470,7 +470,7 @@ export default function SuccessStories() {
                                                         return (
                                                             <div
                                                                 key={uniqueKey}
-                                                                className="relative h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
+                                                                className="relative h-[320px] md:h-[350px] w-[200px] flex-shrink-0 cursor-pointer"
                                                             >
                                                                 {isActive ? (
                                                                     <video
@@ -647,8 +647,8 @@ const SuccessTestimonials = ({ stories, start, end, activeCourse }) => {
         setCurrentImageIndex((prev) => prev + 1);
     };
 
-    const cardWidth = isMobileView ? 280 : 250;
-    const gap = isMobileView ? 16 : 24;
+    const cardWidth = isMobileView ? 180 : 250;
+    const gap = isMobileView ? 12 : 24;
     // How many cards fit in the visible container without scrolling
     const maxVisible = isMobileView ? 1 : 4;
     const fitsWithoutScroll = displayedTestimonials.length <= maxVisible;
@@ -677,13 +677,13 @@ const SuccessTestimonials = ({ stories, start, end, activeCourse }) => {
                             {(fitsWithoutScroll ? displayedTestimonials : [...displayedTestimonials, ...displayedTestimonials, ...displayedTestimonials]).map((testimonial, index) => (
                                 <div
                                     key={`${activeCourse}-${index}`}
-                                    className={`relative overflow-hidden transition-transform transform hover:scale-105 flex-shrink-0 cursor-pointer ${isMobileView ? 'w-[280px]' : 'w-[250px]'}`}
+                                    className={`relative overflow-hidden transition-transform transform hover:scale-105 flex-shrink-0 cursor-pointer ${isMobileView ? 'w-[180px]' : 'w-[250px]'}`}
                                     onClick={() => setSelectedImage({ url: testimonial.thumbnailUrl, name: testimonial.name || `Success story ${index + 1}` })}
                                 >
                                     <img
                                         src={testimonial.thumbnailUrl}
                                         alt={testimonial.name || `Success story ${index + 1}`}
-                                        className="w-full h-auto object-contain py-4"
+                                        className="w-full h-auto object-contain py-2"
                                     />
                                 </div>
                             ))}
@@ -793,27 +793,27 @@ const ExamTestimonials = () => {
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {testimonials.map((testimonial, index) => (
                         <li key={index}>
-                            <figure className="relative border border-gray-300 rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10 h-full flex flex-col">
+                            <figure className="relative border border-gray-300 rounded-2xl bg-white p-4 md:p-6 shadow-xl shadow-slate-900/10 h-full flex flex-col">
                                 <svg
                                     aria-hidden="true"
                                     width="105"
                                     height="78"
-                                    className="absolute left-6 top-6 fill-slate-100"
+                                    className="absolute left-6 top-6 fill-slate-100 hidden md:block"
                                 >
                                     <path d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616..." />
                                 </svg>
                                 <blockquote className="relative flex-1">
-                                    <p className="text-base md:text-lg text-slate-900">{testimonial.text}</p>
+                                    <p className="text-sm md:text-lg text-slate-900">{testimonial.text}</p>
                                 </blockquote>
-                                <figcaption className="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                <figcaption className="relative mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
                                     <div>
-                                        <div className="font-display text-base text-slate-900">{testimonial.name}</div>
-                                        <div className="font-display text-sm text-brand-gray">{testimonial.designation}</div>
+                                        <div className="font-display text-sm md:text-base text-slate-900">{testimonial.name}</div>
+                                        <div className="font-display text-xs md:text-sm text-brand-gray">{testimonial.designation}</div>
                                     </div>
                                     <div className="overflow-hidden rounded-full bg-slate-50 flex-shrink-0">
                                         <img
                                             alt=""
-                                            className="h-14 w-14 object-cover"
+                                            className="h-10 w-10 md:h-14 md:w-14 object-cover"
                                             src={testimonial.image}
                                         />
                                     </div>
