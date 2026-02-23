@@ -119,9 +119,6 @@ const BlogList = () => {
                 {/* Hero Section */}
                 <div className="pb-6 px-4 lg:px-16 max-w-6xl mx-auto">
                     <div className="flex flex-col justify-center items-center text-center mb-6">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-semibold mb-3">
-                            📚 Knowledge Hub
-                        </span>
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                             Blog & Expert <span className="text-brand-blue">Insights</span>
                         </h1>
@@ -180,7 +177,7 @@ const BlogList = () => {
                                 className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
                             >
                                 <div className="grid md:grid-cols-2 gap-0">
-                                    <div className="relative h-48 md:h-64 overflow-hidden">
+                                    <div className="relative w-full h-auto overflow-hidden">
                                         <img
                                             src={featured.mainImage ? urlFor(featured.mainImage).width(600).url() : ''}
                                             alt={featured.mainImage?.alt || featured.title}

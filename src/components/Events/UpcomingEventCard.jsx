@@ -2,10 +2,10 @@ import EventCard from "./EventCard";
 import { useLayout } from "../../contexts/LayoutContext";
 
 const UpcomingEventCard = () => {
-    const { upcomingEvent, loading } = useLayout();
+    const { upcomingEvents, loading } = useLayout();
 
-    // Don't render if no upcoming event or still loading
-    if (loading || !upcomingEvent) {
+    // Don't render if still loading or no upcoming events
+    if (loading || !upcomingEvents || upcomingEvents.length === 0) {
         return null;
     }
 
@@ -21,17 +21,22 @@ const UpcomingEventCard = () => {
                     </p>
                 </div>
 
-                <EventCard
-                    image={upcomingEvent.coverImage}
-                    title={upcomingEvent.title}
-                    description={upcomingEvent.description}
-                    targetDate={upcomingEvent.eventStartDateTime}
-                    buttonText={upcomingEvent.registrationButtonText || "Register Now"}
-                    buttonLink={upcomingEvent.registrationLink || "/events"}
-                    imageAlt={upcomingEvent.eventName}
-                    venue={upcomingEvent.venue}
-                    date={upcomingEvent.date}
-                />
+                <div className="flex flex-col gap-10">
+                    {upcomingEvents.map((event) => (
+                        <EventCard
+                            key={event._id}
+                            image={event.coverImage}
+                            title={event.title}
+                            description={event.description}
+                            targetDate={event.eventStartDateTime}
+                            buttonText={event.registrationButtonText || "Register Now"}
+                            buttonLink={event.registrationLink || "/events"}
+                            imageAlt={event.eventName}
+                            venue={event.venue}
+                            date={event.date}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );
