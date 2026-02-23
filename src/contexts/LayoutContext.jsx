@@ -11,6 +11,7 @@ export const LAYOUT_HEIGHTS = {
 };
 
 export function LayoutProvider({ children }) {
+    const [upcomingEvents, setUpcomingEvents] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState(null);
     const [showCountdownBar, setShowCountdownBar] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -20,7 +21,8 @@ export function LayoutProvider({ children }) {
         const fetchUpcomingEvent = async () => {
             try {
                 // Fetch active upcoming event
-                const query = `*[_type == "upcomingEvent" && isActive == true] | order(eventStartDateTime asc)[0] {
+                // Fetch all active upcoming events separated by start date
+                const query = `*[_type == "upcomingEvent" && isActive == true] | order(eventStartDateTime asc) {
                     _id,
                     eventName,
                     title,
@@ -35,13 +37,33 @@ export function LayoutProvider({ children }) {
 
                 const data = await client.fetch(query);
 
-                if (data) {
-                    setUpcomingEvent(data);
-                    // Show countdown bar if the event start time is in the future
+                if (data && data.length > 0) {
                     const now = new Date();
-                    const startDate = new Date(data.eventStartDateTime);
-                    setShowCountdownBar(startDate > now);
+                    // Filter out truly past events (safety check)
+                    const validEvents = data.filter(event => new Date(event.eventStartDateTime) > now);
+
+                    if (validEvents.length > 0) {
+                        setUpcomingEvents(validEvents);
+
+                        // the first event is the closest one since they are ordered ascending
+                        const closestEvent = validEvents[0];
+                        setUpcomingEvent(closestEvent);
+
+                        const startDate = new Date(closestEvent.eventStartDateTime);
+
+                        // Calculate difference in days
+                        const diffTime = Math.abs(startDate - now);
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                        // Show countdown bar only if the event is strictly within the next 15 days
+                        setShowCountdownBar(diffDays <= 15);
+                    } else {
+                        setUpcomingEvents([]);
+                        setUpcomingEvent(null);
+                        setShowCountdownBar(false);
+                    }
                 } else {
+                    setUpcomingEvents([]);
                     setUpcomingEvent(null);
                     setShowCountdownBar(false);
                 }
@@ -78,6 +100,7 @@ export function LayoutProvider({ children }) {
     const countdownBarTopOffset = LAYOUT_HEIGHTS.NOTIFICATION_BAR + LAYOUT_HEIGHTS.NAVBAR;
 
     const value = {
+        upcomingEvents,
         upcomingEvent,
         showCountdownBar,
         setShowCountdownBar,
