@@ -12,6 +12,30 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'string',
+      description: 'E.g. Grant Thornton, Deloitte, EY',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+      description: 'City or Country — e.g. Bengaluru, Dubai',
+    }),
+    defineField({
+      name: 'designation',
+      title: 'Role / Designation',
+      type: 'string',
+      description: 'e.g. Internal Audit Specialist',
+    }),
+    defineField({
+      name: 'batch',
+      title: 'Batch',
+      type: 'string',
+      description: 'e.g. BATCH 2023-A',
+    }),
+    defineField({
       name: 'course',
       title: 'Course',
       type: 'reference',
