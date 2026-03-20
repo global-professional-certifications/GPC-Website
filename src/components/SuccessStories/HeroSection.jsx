@@ -86,7 +86,7 @@ const GPCSuccessHero = () => {
         // Global wrapper applies Inter, sans-serif at 400 weight for everything
         <div
             className="bg-[#FFFFFF] w-full overflow-x-hidden flex flex-col text-slate-800"
-            style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 400 }}
+            style={{ fontWeight: 400 }}
         >
 
             {/* ========================================================= */}
@@ -139,11 +139,10 @@ const GPCSuccessHero = () => {
 
                         <h1
                             className="text-[40px] md:text-[52px] lg:text-[64px] leading-[0.9] font-black text-[#2D1B69] tracking-[-0.02em] flex flex-col items-center"
-                            style={{ fontFamily: "'Playfair Display', serif" }}
                         >
                             <span>Real people.</span>
                             <span>Real careers.</span>
-                            <span className="font-bold italic text-[#B89838] text-[32px] md:text-[42px] lg:text-[50px] mt-1 lg:mt-1.5 pr-2 lg:pr-4">Transformed.</span>
+                            <span className="font-normal italic text-[#B89838] text-[32px] md:text-[42px] lg:text-[50px] mt-1 lg:mt-1.5 pr-2 lg:pr-4">Transformed.</span>
                         </h1>
 
                         <p className="text-slate-600 font-medium text-[13px] md:text-[14px] max-w-sm mx-auto mt-4 md:mt-5 leading-relaxed px-2">
@@ -191,7 +190,7 @@ const GPCSuccessHero = () => {
                                         >
                                             <span
                                                 className="text-white font-black select-none"
-                                                style={{ fontSize: '90px', fontFamily: "'Outfit', sans-serif", opacity: 0.85, letterSpacing: '-4px' }}
+                                                style={{ fontSize: '90px', opacity: 0.85, letterSpacing: '-4px' }}
                                             >
                                                 {student.initials}
                                             </span>

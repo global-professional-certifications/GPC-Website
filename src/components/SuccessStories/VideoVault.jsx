@@ -11,7 +11,7 @@ const cardVideoGradients = [
 // ── Small grid video card
 const GridCard = ({ video, index }) => (
   <div
-    className="relative rounded-[16px] overflow-hidden flex flex-col h-full border border-white/[0.04] transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#C9A227]/10 hover:-translate-y-1 hover:border-white/[0.1] bg-[#1A182E]"
+    className="relative rounded-[16px] overflow-hidden flex flex-col h-full border border-black transition-all duration-300 hover:scale-[1.02] hover:border-transparent hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1 bg-white"
     style={{ aspectRatio: '10/16' }}
   >
     {/* Video Area */}
@@ -27,7 +27,6 @@ const GridCard = ({ video, index }) => (
           fontWeight: 600,
           color: 'rgba(255,255,255,0.035)',
           letterSpacing: '-2px',
-          fontFamily: "'Playfair Display', serif",
           transform: 'translateY(15%)', // sits slightly lower in the video box
         }}
       >
@@ -51,9 +50,9 @@ const GridCard = ({ video, index }) => (
     </div>
 
     {/* Name + role footer */}
-    <div className="px-5 py-4 bg-[#211E36] border-t border-white/[0.04] shrink-0 min-h-[70px] flex flex-col justify-center">
-      <h4 className="text-white text-[14px] font-extrabold leading-tight mb-1">{video.name}</h4>
-      <p className="text-white/40 text-[10px] sm:text-[11px] font-medium leading-tight">{video.role}</p>
+    <div className="px-5 py-4 bg-white border-t border-gray-100 shrink-0 min-h-[70px] flex flex-col justify-center">
+      <h4 className="text-gray-900 text-[14px] font-extrabold leading-tight mb-1">{video.name}</h4>
+      <p className="text-gray-500 text-[10px] sm:text-[11px] font-medium leading-tight">{video.role}</p>
     </div>
   </div>
 );
@@ -61,7 +60,7 @@ const GridCard = ({ video, index }) => (
 // ── Hero card (large left card)
 const HeroCard = ({ hero }) => (
   <div
-    className="relative rounded-[20px] overflow-hidden flex flex-col row-span-2 h-full bg-[#1A182E] border border-white/[0.04] transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:shadow-[#D1A639]/10 hover:border-white/[0.1]"
+    className="relative rounded-[20px] overflow-hidden flex flex-col row-span-2 h-full bg-white border border-black transition-all duration-300 hover:scale-[1.01] hover:border-transparent hover:shadow-2xl hover:shadow-black/20"
   >
     {/* Video Area */}
     <div className="flex-1 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#1C1635] to-[#120D23]">
@@ -73,7 +72,6 @@ const HeroCard = ({ hero }) => (
           fontWeight: 600,
           color: 'rgba(255,255,255,0.03)',
           letterSpacing: '-6px',
-          fontFamily: "'Playfair Display', serif",
           transform: 'translateY(15%)'
         }}
       >
@@ -105,10 +103,10 @@ const HeroCard = ({ hero }) => (
     </div>
 
     {/* Bottom info */}
-    <div className="p-6 md:p-8 shrink-0 bg-[#211E36] border-t border-white/[0.04] min-h-[160px] flex flex-col justify-center">
-      <h3 className="text-white text-[20px] md:text-[24px] font-extrabold leading-tight tracking-tight mb-2">{hero.name}</h3>
+    <div className="p-6 md:p-8 shrink-0 bg-white border-t border-gray-100 min-h-[160px] flex flex-col justify-center">
+      <h3 className="text-gray-900 text-[20px] md:text-[24px] font-extrabold leading-tight tracking-tight mb-2">{hero.name}</h3>
       <p className="text-[#D1A639] text-[11px] font-extrabold uppercase tracking-[0.15em] mb-4">{hero.role}</p>
-      <p className="text-white/60 text-[13px] md:text-[14px] leading-relaxed">"{hero.quote}"</p>
+      <p className="text-gray-600 text-[13px] md:text-[14px] leading-relaxed">"{hero.quote}"</p>
     </div>
   </div>
 );
@@ -125,10 +123,7 @@ const VideoVault = ({ tabs: propTabs, vaultData: propVaultData } = {}) => {
   const data = allData[activeTab] || Object.values(allData)[0];
 
   return (
-    <section
-      className="w-full py-16 md:py-20 px-4 md:px-8"
-      style={{ backgroundColor: '#0E0B1F', fontFamily: "'Outfit', sans-serif" }}
-    >
+    <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-gray-50">
       <div className="max-w-[1240px] mx-auto">
 
         {/* ── Header row ── */}
@@ -137,25 +132,22 @@ const VideoVault = ({ tabs: propTabs, vaultData: propVaultData } = {}) => {
             {/* Label */}
             <div className="flex items-center gap-3 mb-2">
               <div className="h-[1px] w-8 bg-[#D1A639]" />
-              <span className="text-[#D1A639] text-[10px] font-extrabold uppercase tracking-[0.2em]">
-                VIDEO STORIES
-              </span>
             </div>
             {/* Heading */}
             <h2
-              className="text-white text-3xl md:text-[44px] font-extrabold leading-tight mb-3"
-              style={{ fontFamily: "'Outfit', sans-serif", letterSpacing: '-1px' }}
+              className="text-gray-900 text-3xl md:text-[44px] font-extrabold leading-tight mb-3"
+              style={{ letterSpacing: '-1px' }}
             >
               The Video{' '}
               <span
-                className="italic font-bold"
-                style={{ color: '#D1A639', fontFamily: "'Playfair Display', serif", letterSpacing: '0px' }}
+                className="font-normal italic"
+                style={{ color: '#D1A639', letterSpacing: '0px' }}
               >
                 Vault
               </span>
             </h2>
             {/* Subtitle */}
-            <p className="text-white/40 text-[14px] md:text-[15px] max-w-lg leading-relaxed">
+            <p className="text-gray-500 text-[14px] md:text-[15px] max-w-lg leading-relaxed">
               Raw, unfiltered experiences from professionals who transformed their careers. See how they mastered their certifications with GPC.
             </p>
           </div>
@@ -170,7 +162,7 @@ const VideoVault = ({ tabs: propTabs, vaultData: propVaultData } = {}) => {
         </div>
 
         {/* ── Course tabs ── */}
-        <div className="relative border-b border-white/5 mb-8">
+        <div className="relative border-b border-gray-200 mb-8">
           <div className="flex gap-8">
             {tabs.map(tab => (
               <button
@@ -178,7 +170,7 @@ const VideoVault = ({ tabs: propTabs, vaultData: propVaultData } = {}) => {
                 onClick={() => setActiveTab(tab.slug)}
                 className="pb-4 text-[13px] transition-colors relative"
                 style={{
-                  color: activeTab === tab.slug ? '#ffffff' : 'rgba(255,255,255,0.4)',
+                  color: activeTab === tab.slug ? '#111827' : '#6B7280',
                 }}
               >
                 <span className="font-extrabold">{tab.label}</span>

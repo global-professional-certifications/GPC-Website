@@ -26,10 +26,7 @@ const FeaturedCard = ({ story }) => (
       className="relative w-[200px] flex-shrink-0 flex flex-col justify-between p-5"
       style={{ background: story.avatarBg }}
     >
-      <span
-        className="text-white/10 text-[80px] font-black absolute bottom-2 left-2 select-none pointer-events-none leading-none"
-        style={{ fontFamily: "'Outfit', sans-serif" }}
-      >
+      <span className="text-white/10 text-[80px] font-black absolute bottom-2 left-2 select-none pointer-events-none leading-none">
         {story.initials}
       </span>
       <div className="relative z-10">
@@ -41,8 +38,8 @@ const FeaturedCard = ({ story }) => (
       </div>
       <div className="relative z-10 mt-auto">
         <Avatar initials={story.initials} bg="rgba(255,255,255,0.15)" size="md" />
-        <p className="text-white font-bold text-[15px] mt-2 leading-tight">{story.name}</p>
-        <p className="text-white/60 text-[11px] mt-0.5">{story.location}</p>
+        <p className="text-white font-bold text-[15px] mt-2 leading-tight font-poppins">{story.name}</p>
+        <p className="text-white/60 text-[11px] mt-0.5 font-poppins">{story.location}</p>
       </div>
     </div>
 
@@ -51,7 +48,7 @@ const FeaturedCard = ({ story }) => (
       <p className="text-[11px] font-bold text-[#2D1B69] uppercase tracking-wide mb-3">
         {story.tag}
       </p>
-      <p className="text-gray-800 text-[15px] md:text-[16px] leading-relaxed mb-4 font-medium">
+      <p className="text-gray-800 text-[15px] md:text-[16px] leading-relaxed mb-4 font-medium font-poppins">
         {story.quote}
       </p>
       <a
@@ -72,16 +69,13 @@ const GridCard = ({ story }) => (
       className="relative w-[155px] flex-shrink-0 flex flex-col justify-between p-4"
       style={{ background: story.avatarBg, minHeight: '140px' }}
     >
-      <span
-        className="text-white/10 text-[56px] font-black absolute bottom-1 left-1 select-none pointer-events-none leading-none"
-        style={{ fontFamily: "'Outfit', sans-serif" }}
-      >
+      <span className="text-white/10 text-[56px] font-black absolute bottom-1 left-1 select-none pointer-events-none leading-none">
         {story.initials}
       </span>
       <div className="relative z-10 mt-auto">
         <Avatar initials={story.initials} bg="rgba(255,255,255,0.15)" size="sm" />
-        <p className="text-white font-bold text-[13px] mt-2 leading-tight">{story.name}</p>
-        <p className="text-white/60 text-[10px] mt-0.5">{story.location}</p>
+        <p className="text-white font-bold text-[13px] mt-2 leading-tight font-poppins">{story.name}</p>
+        <p className="text-white/60 text-[10px] mt-0.5 font-poppins">{story.location}</p>
       </div>
     </div>
 
@@ -91,7 +85,7 @@ const GridCard = ({ story }) => (
         <p className="text-[10px] font-bold text-[#2D1B69] uppercase tracking-wide mb-2">
           {story.tag}
         </p>
-        <p className="text-gray-600 text-[12px] leading-relaxed">{story.excerpt}</p>
+        <p className="text-gray-600 text-[12px] leading-relaxed font-poppins">{story.excerpt}</p>
       </div>
       <a
         href={story.link}
@@ -142,10 +136,7 @@ const WrittenStories = ({
     : grid.filter(s => s.tag?.toLowerCase().includes(activeTab));
 
   return (
-    <section
-      className="w-full py-16 md:py-20 px-4 md:px-8"
-      style={{ backgroundColor: '#F5F4F1', fontFamily: "'Outfit', sans-serif" }}
-    >
+    <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-gray-50">
       <div className="max-w-[1200px] mx-auto">
 
         {/* ── Header row ── */}
@@ -154,22 +145,19 @@ const WrittenStories = ({
             {/* Label */}
             <div className="flex items-center gap-3 mb-3">
               <div className="h-[1.5px] w-8 bg-[#C9A227]" />
-              <span className="text-[#C9A227] text-[10px] font-bold uppercase tracking-[0.2em]">
-                Written Stories
-              </span>
             </div>
             {/* Heading */}
             <h2 className="text-gray-900 text-3xl md:text-4xl font-semibold leading-tight">
               Read their{' '}
               <span
-                className="italic font-semibold"
-                style={{ color: '#C9A227', fontFamily: "'Playfair Display', serif" }}
+                className="font-normal italic"
+                style={{ color: '#C9A227' }}
               >
                 journey
               </span>
             </h2>
             {/* Subtitle */}
-            <p className="text-gray-500 text-sm mt-2 max-w-md leading-relaxed">
+            <p className="text-gray-500 text-sm mt-2 max-w-md leading-relaxed font-poppins">
               Deep-dive into the paths our alumni walked — the doubt, the grind,<br className="hidden md:block" />
               and the moment everything changed.
             </p>

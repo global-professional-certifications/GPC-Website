@@ -37,7 +37,7 @@ const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
   const testimonials = propTestimonials || voicesOfExcellenceData;
 
   return (
-    <div style={{ fontFamily: "'Outfit', sans-serif" }} className="w-full">
+    <div className="w-full">
       {/* Top Section - Light Background */}
       <section className="bg-[#F5F4F1] py-16 md:py-24 px-4 w-full">
         <div className="max-w-[1200px] mx-auto flex flex-col items-center">
@@ -51,7 +51,7 @@ const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
               CIA CHALLENGE EXAM TRAINING
             </span>
             
-            <h2 className="text-[#0F172A] text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-[#0F172A] text-4xl md:text-5xl font-bold mb-4">
               Voices of Excellence
             </h2>
             
@@ -76,7 +76,6 @@ const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
         <div className="max-w-[900px] mx-auto relative z-10 flex flex-col items-center">
           <h2 
             className="text-white text-4xl md:text-[54px] font-bold leading-[1.15] mb-6"
-            style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Your name could be <span className="italic font-normal opacity-90">next on<br/>this page</span>
           </h2>

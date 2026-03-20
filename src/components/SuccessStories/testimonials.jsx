@@ -81,7 +81,7 @@ const Testimonials = ({ courses, activeCourse, setActiveCourse, stories }) => {
                 {/* ── Heading ── */}
                 <h2 className="text-center text-3xl md:text-4xl font-semibold text-gray-900 leading-tight mb-3">
                     Where Ambition Meets<br />
-                    <span className="italic font-semibold" style={{ color: '#C9A227', fontFamily: "'Playfair Display', serif" }}>Certification</span>
+                    <span className="font-normal italic" style={{ color: '#C9A227' }}>Certification</span>
                 </h2>
 
                 {/* ── Subtitle ── */}
