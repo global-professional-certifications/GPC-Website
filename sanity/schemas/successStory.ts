@@ -58,6 +58,24 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'image',
+      title: 'Student Photo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Used for the Wall of Excellence (Circular Photo).',
+    }),
+    defineField({
+      name: 'companyLogo',
+      title: 'Company Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Used for the Wall of Excellence cards.',
+    }),
+    defineField({
       name: 'thumbnail',
       title: 'Thumbnail / Image',
       type: 'image',

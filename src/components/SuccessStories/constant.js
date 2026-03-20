@@ -1,6 +1,7 @@
 // heroData.js
 import arpitSir from "../../assets/arpit-garg.png"
 import akshdeepSingh from "../../assets/akshdeep-singh.png"
+
 export const heroData = {
   title: {
     line1: "Real people.",
@@ -34,104 +35,139 @@ export const heroData = {
 
 export const examTestimonialsData = [
   {
-    name: "Akshdeep Singh",
-    company: "Allstate",
-    location: "Bengaluru",
-    role: "Internal Audit Specialist",
-    batch: "BATCH 2023-A",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Wajiha Ansari",
-    company: "Grant Thornton",
-    location: "Bahrain",
-    role: "IT Audit Manager",
-    batch: "BATCH 2022-C",
-    courseSlug: 'cisa'
-  },
-  {
-    name: "Rahul Kumar",
-    company: "Grant Thornton",
-    location: "Delhi",
-    role: "Senior Associate",
-    batch: "BATCH 2023-B",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Chahat Bhatia",
-    company: "B2B Consulting",
-    location: "Gurugram",
-    role: "Compliance Head",
-    batch: "BATCH 2023-A",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Vijay Sharma",
-    company: "Raymond Eng",
-    location: "Bangalore",
-    role: "IS Auditor",
-    batch: "BATCH 2022-D",
-    courseSlug: 'cisa'
-  },
-  {
-    name: "Nitin Rawat",
-    company: "HeidelbergCement",
-    location: "Gurugram",
-    role: "Finance Controller",
-    batch: "BATCH 2023-C",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Simranjeet Kaur",
-    company: "LichtBlick SE",
-    location: "Germany",
-    role: "Risk Analyst",
-    batch: "BATCH 2022-A",
-    courseSlug: 'cisa'
-  },
-  {
-    name: "Divya Mehta",
-    company: "PwC",
-    location: "Hyderabad",
-    role: "Audit Consultant",
-    batch: "BATCH 2022-A",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Shakti Sharma",
-    company: "EY",
-    location: "Delhi",
-    role: "Risk Advisory",
-    batch: "BATCH 2023-B",
-    courseSlug: 'cia'
-  },
-  {
-    name: "Md Danish",
-    company: "Sobha Realty",
-    location: "Dubai",
-    role: "Information Security",
-    batch: "BATCH 2022-C",
-    courseSlug: 'cisa'
-  },
-  {
-    name: "Priya Kapoor",
+    name: "Rahul Sharma",
     company: "Deloitte",
-    location: "Mumbai",
-    role: "Senior Auditor",
-    batch: "BATCH 2023-A",
-    courseSlug: 'cia'
+    location: "Mumbai, India",
+    role: "Senior Consultant",
+    batch: "CLEARED 2023",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/deloitte.com"
   },
   {
-    name: "Amarendra Babu",
+    name: "Jessica Chen",
+    company: "KPMG",
+    location: "Singapore",
+    role: "IT Audit Manager",
+    batch: "CLEARED 2022",
+    courseSlug: 'cisa',
+    courseName: 'CISA',
+    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/kpmg.com"
+  },
+  {
+    name: "Michael Obi",
+    company: "EY",
+    location: "London, UK",
+    role: "Risk Advisor",
+    batch: "CLEARED 2023",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/ey.com"
+  },
+  {
+    name: "Sarah Miller",
+    company: "PwC",
+    location: "New York, USA",
+    role: "Internal Auditor",
+    batch: "CLEARED 2023",
+    courseSlug: 'acca',
+    courseName: 'ACCA',
+    imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/pwc.com"
+  },
+  {
+    name: "Anita Rao",
     company: "Grant Thornton",
-    location: "Bengaluru",
-    role: "Assurance Manager",
-    batch: "BATCH 2023-C",
-    courseSlug: 'cia'
+    location: "Bengaluru, India",
+    role: "Compliance Lead",
+    batch: "CLEARED 2022",
+    courseSlug: 'cma',
+    courseName: 'CMA',
+    imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/grantthornton.global"
+  },
+  {
+    name: "David Park",
+    company: "BDO",
+    location: "Seoul, Korea",
+    role: "Assurance Associate",
+    batch: "CLEARED 2023",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/bdo.com"
+  },
+  {
+    name: "Emma Wilson",
+    company: "Morgan Stanley",
+    location: "Dubai, UAE",
+    role: "Audit VP",
+    batch: "CLEARED 2023",
+    courseSlug: 'cisa',
+    courseName: 'CISA',
+    imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/morganstanley.com"
+  },
+  {
+    name: "Arjun Mehta",
+    company: "Goldman Sachs",
+    location: "Mumbai, India",
+    role: "Compliance Analyst",
+    batch: "CLEARED 2023",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/goldmansachs.com"
+  },
+  {
+    name: "Fatima Al-Sayed",
+    company: "HSBC",
+    location: "Riyadh, KSA",
+    role: "Internal Controls",
+    batch: "CLEARED 2022",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/hsbc.com"
+  },
+  {
+    name: "Elena Rodriguez",
+    company: "Santander",
+    location: "Madrid, Spain",
+    role: "Audit Lead",
+    batch: "CLEARED 2023",
+    courseSlug: 'cisa',
+    courseName: 'CISA',
+    imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/santander.com"
+  },
+  {
+    name: "Thomas Muller",
+    company: "BMW Group",
+    location: "Munich, Germany",
+    role: "Financial Risk",
+    batch: "CLEARED 2023",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/bmwgroup.com"
+  },
+  {
+    name: "Akiro Tanaka",
+    company: "Toyota",
+    location: "Tokyo, Japan",
+    role: "Internal Audit",
+    batch: "CLEARED 2022",
+    courseSlug: 'cia',
+    courseName: 'CIA',
+    imageUrl: "https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=256&h=256&auto=format&fit=crop",
+    companyLogo: "https://logo.clearbit.com/toyota.com"
   }
 ];
 
-// ── Video Vault dummy data (replace with Sanity later) ──────────────────────
 export const videoVaultTabs = [
   { slug: 'cia',  label: 'CIA',  count: 47 },
   { slug: 'cisa', label: 'CISA', count: 23 },
@@ -184,7 +220,6 @@ export const videoVaultData = {
   },
 };
 
-// ── Written Stories dummy data (replace with Sanity later) ──────────────────
 export const writtenStoriesTabs = [
   { slug: 'all',           label: 'All' },
   { slug: 'cia-challenge', label: 'CIA Challenge' },
@@ -241,15 +276,6 @@ export const writtenStoriesGrid = [
   },
 ];
 
-// ── Hero Section – Student Slideshow Dummy Data (replace with Sanity later) ─
-// Each entry maps to the fields shown in the student ring:
-//   image       → photo URL / imported asset (swap for Sanity image)
-//   name        → displayed below the ring
-//   designation → displayed below the name
-//   company     → shown in the "Placed at" bubble
-//   courseTag   → label on the top-left badge  (e.g. "CIA CLEARED")
-//   attempt     → text on the top-left badge   (e.g. "1st Attempt")
-//   quote       → italic text in the dark quote card
 export const heroStudents = [
   {
     image: akshdeepSingh,
@@ -271,7 +297,7 @@ export const heroStudents = [
     company: 'Deloitte',
     courseTag: 'CISA CLEARED',
     attempt: '1st Attempt',
-    quote: '"GPC\'s practice tests were exactly what I needed to stay consistent from Bahrain."',
+    quote: "GPC's practice tests were exactly what I needed to stay consistent from Bahrain.",
   },
   {
     image: null,
@@ -282,7 +308,7 @@ export const heroStudents = [
     company: 'Grant Thornton',
     courseTag: 'CIA CLEARED',
     attempt: '2nd Attempt',
-    quote: '"Balancing a new job in Berlin and CIA prep — GPC made it possible."',
+    quote: "Balancing a new job in Berlin and CIA prep — GPC made it possible.",
   },
   {
     image: null,
@@ -293,7 +319,7 @@ export const heroStudents = [
     company: 'PwC',
     courseTag: 'CISA CLEARED',
     attempt: '1st Attempt',
-    quote: '"From engineering to IT audit at 34 — GPC bridged the knowledge gap perfectly."',
+    quote: "From engineering to IT audit at 34 — GPC bridged the knowledge gap perfectly.",
   },
   {
     image: null,
@@ -304,31 +330,30 @@ export const heroStudents = [
     company: 'KPMG',
     courseTag: 'CMA CLEARED',
     attempt: '1st Attempt',
-    quote: '"CMA with GPC was the catalyst for my promotion at KPMG."',
+    quote: "CMA with GPC was the catalyst for my promotion at KPMG.",
   },
 ];
 
-// ── Voices of Excellence dummy data (replace with Sanity later) ─────────────
 export const voicesOfExcellenceData = [
   {
     quote: "For anyone preparing for the CIA Challenge Exam, I cannot recommend the Prep Course enough. This program is designed to simplify the learning process and help you stay disciplined with your studies. Arpit Garg, who led the sessions, brought an incredible level of dedication, passion, enthusiasm and expertise to the table.",
     name: "Pinky Agarwal",
     designation: "Head Internal Audit | Emami Limited",
     initials: "PA",
-    avatarBg: "#2D1B69" // dark purple
+    avatarBg: "#2D1B69"
   },
   {
     quote: "The CIA Challenge Exam Crash Course, offered and delivered by faculty member Arpit Garg, played a key role in helping me clear the CIA Challenge Exam on my first attempt after just 2 months of preparation. The crash course sessions, held over weekends, were well-planned, thorough, and provided attendees with opportunities.",
     name: "Akshdeep Singh",
     designation: "Manager | KPMG",
     initials: "AS",
-    avatarBg: "#0F172A" // dark slate
+    avatarBg: "#0F172A"
   },
   {
     quote: "Attended the 'CIA Challenge Exam' crash course conducted by Mr. Arpit, and it was truly an outstanding learning experience. The sessions were thoughtfully structured, covering the entire syllabus with a perfect balance of depth and clarity. The interactive approach ensured key topics were highlighted.",
     name: "Starwin PJ",
     designation: "AVP | Wells Fargo",
     initials: "SP",
-    avatarBg: "#B48B31" // gold/mustard
+    avatarBg: "#B48B31"
   }
 ];
