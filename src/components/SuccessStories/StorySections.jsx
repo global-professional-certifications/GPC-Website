@@ -261,10 +261,16 @@ export const VideoVault = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-            title="The Video"
-            highlight="Vault"
-            subtitle="Raw, unfiltered experiences from professionals who transformed their careers. See how they mastered their certifications with GPC."
-          />
+  title="The Video"
+  highlight="Vault"
+  subtitle={
+    <>
+      Raw, unfiltered experiences from professionals who transformed their careers.
+      <br />
+      See how they mastered their certifications with GPC.
+    </>
+  }
+/>
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -416,7 +422,16 @@ export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: p
   const featured = propFeatured || writtenStoriesFeatured;
   const grid = propGrid || writtenStoriesGrid;
   const [activeTab, setActiveTab] = useState('all');
+  const [visibleLimit, setVisibleLimit] = useState(2);
   const filteredGrid = activeTab === 'all' ? grid : grid.filter(s => s.tag?.toLowerCase().includes(activeTab));
+
+  // Reset pagination when tab changes
+  useEffect(() => {
+    setVisibleLimit(2);
+  }, [activeTab]);
+
+  const visibleGrid = filteredGrid.slice(0, visibleLimit);
+  const canViewMore = filteredGrid.length > visibleLimit;
 
   return (
     <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-gray-50">
@@ -425,11 +440,9 @@ export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: p
           <SectionHeader
             title="Read their"
             highlight="journey"
-            subtitle="Deep-dive into the paths our alumni walked — the doubt, the grind, and the moment everything changed. Discover how expert guidance transformed their careers."
+            subtitle="Deep-dive into the paths our alumni walked : the doubt, the grind, and the moment everything changed. Discover how expert guidance transformed their careers."
           />
-          <a href="#" className="text-brand-blue text-sm font-bold flex items-center gap-2 hover:opacity-80 transition-opacity whitespace-nowrap bg-brand-blue/5 px-4 py-2 rounded-lg mb-8 md:mb-0">
-            View all {totalCount} stories →
-          </a>
+          
         </div>
         <div className="flex flex-wrap gap-2 mb-8">
           {tabs.map(tab => (
@@ -440,17 +453,18 @@ export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: p
         </div>
         <WrittenFeaturedCard story={featured} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {filteredGrid.map((story, i) => <WrittenGridCard key={i} story={story} />)}
-          <a href="#" className="flex items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 p-8 text-center transition-all duration-300 hover:bg-white hover:border-brand-blue hover:shadow-md cursor-pointer group">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-brand-blue/5 text-brand-blue flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              </div>
-              <p className="text-gray-900 font-bold text-lg mb-1 transition-colors group-hover:text-brand-blue">View all {totalCount} stories</p>
-              <p className="text-gray-500 text-xs font-poppins max-w-[180px]">Filter by course, location and professional background.</p>
-            </div>
-          </a>
+          {visibleGrid.map((story, i) => <WrittenGridCard key={i} story={story} />)}
         </div>
+        {canViewMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setVisibleLimit(prev => Math.min(filteredGrid.length, prev + 2))}
+              className="bg-brand-blue text-white text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-brand-purple transition-all duration-300 font-semibold shadow-md active:scale-95"
+            >
+              View More →
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -483,7 +497,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
       <section className="bg-[#FAF9F6] py-20 px-4 w-full">
         <div className="max-w-[1200px] mx-auto flex flex-col items-center">
           <div className="text-center mb-16 max-w-3xl">
-            <span className="inline-block px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue bg-brand-blue/5 mb-6 border border-brand-blue/10">GLOBAL IMPACT</span>
+            
             <SectionHeader title="Voices of" highlight="Excellence" subtitle="Feedback from our global community of CIA professionals who have achieved their certification goals through our structured mentoring and comprehensive training program." centered />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
@@ -491,21 +505,21 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
           </div>
         </div>
       </section>
-      <section className="bg-brand-blue py-24 px-4 w-full text-center relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-orange-500/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
-        <div className="max-w-[1000px] mx-auto relative z-10 flex flex-col items-center">
-          <h2 className="text-white text-3xl md:text-6xl font-bold leading-[1.1] mb-8">
-            Your name could be <span className="text-orange-400 font-normal italic">next on this page</span>
-          </h2>
-          <p className="text-gray-200 text-[15px] md:text-lg font-medium max-w-2xl mb-12 leading-relaxed opacity-90 font-poppins">Join 1,200+ professionals who have accelerated their careers through GPC's globally recognized certification programs and expert mentorship.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16 w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-bold px-10 py-4 rounded-xl transition-all shadow-xl hover:scale-105 active:scale-95 text-[15px] md:text-base">Explore Certification Programs</button>
-            <button className="w-full sm:w-auto bg-transparent border-2 border-white/20 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all text-[15px] md:text-base">Talk to an Advisor</button>
-          </div>
-          <div className="flex flex-col items-center gap-3">
-            <div className="flex text-orange-400 text-2xl gap-1 drop-shadow-sm">{[1, 2, 3, 4, 5].map(i => <span key={i}>★</span>)}</div>
-            <p className="text-white/40 text-[11px] font-bold tracking-[0.2em] uppercase">RATED 4.9/5 BY OUR GLOBAL ALUMNI</p>
+      <section className="w-full relative py-14 px-4 mb-[-80px] z-10">
+        <div className="mx-auto w-full max-w-[1000px] bg-gradient-to-b from-[#100b2d] via-[#1f1a63] to-[#2d178f] rounded-[30px] shadow-[0_20px_50px_-18px_rgba(15,23,42,0.55)] border border-white/10 overflow-hidden relative translate-y-6">
+          <div className="absolute top-0 right-0 w-[360px] h-[360px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#bf410a]/8 rounded-full blur-[90px] translate-y-1/2 -translate-x-1/2" />
+          <div className="relative z-10 py-14 px-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+            <div className="flex-1">
+              <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight mb-4">
+                Your name could be <span className="text-orange-400 font-normal italic">next on this page</span>
+              </h2>
+              <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed opacity-95 font-poppins">Join 1,200+ professionals who have accelerated their careers through GPC's globally recognized certification programs and expert mentorship.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
+              <a href="/courses" className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl text-white font-bold px-8 py-3 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95 text-base text-center">Explore</a>
+              <a href="/contact" className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 font-bold px-8 py-3 rounded-xl transition-all text-base text-center">Talk to Us</a>
+            </div>
           </div>
         </div>
       </section>

@@ -59,17 +59,9 @@ const championsData = [
 
 const GPCSuccessHero = () => {
     const [activeCategory, setActiveCategory] = useState('ALL');
-    const [studentIdx, setStudentIdx] = useState(0);
 
-    // Auto-cycle students every 3 seconds
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setStudentIdx(prev => (prev + 1) % heroStudents.length);
-        }, 3000);
-        return () => clearInterval(timer);
-    }, []);
-
-    const student = heroStudents[studentIdx];
+    // Static student (Akshdeep Singh) instead of slideshow
+    const student = heroStudents.find(s => s.name === 'Akshdeep Singh') || heroStudents[0];
 
     // Independent floating animations for all four bubbles
     const floatTopRight = { animate: { y: [0, -8, 0], x: [0, 4, 0], transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut" } } };
@@ -161,7 +153,7 @@ const GPCSuccessHero = () => {
                                 <AnimatePresence mode="sync">
                                     {student.image ? (
                                         <motion.img
-                                            key={`img-${studentIdx}`}
+                                            key="img-static"
                                             src={student.image}
                                             alt={student.name}
                                             className="absolute inset-0 w-full h-full object-cover"
@@ -172,7 +164,7 @@ const GPCSuccessHero = () => {
                                         />
                                     ) : (
                                         <motion.div
-                                            key={`avatar-${studentIdx}`}
+                                            key="avatar-static"
                                             className="absolute inset-0 w-full h-full flex items-center justify-center"
                                             style={{ background: student.avatarBg }}
                                             initial={{ opacity: 0 }}
@@ -195,7 +187,7 @@ const GPCSuccessHero = () => {
                             <motion.div {...floatTopLeft} className="absolute -top-2 -left-2 md:-left-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[100px] md:min-w-[120px]">
                                 <AnimatePresence mode="sync">
                                     <motion.div
-                                        key={`badge-${studentIdx}`}
+                                        key="badge-static"
                                         className="absolute inset-0 flex flex-col items-center justify-center"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -215,7 +207,7 @@ const GPCSuccessHero = () => {
                             <motion.div {...floatMiddleRight} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-20 bg-white px-4 md:px-5 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[150px]">
                                 <AnimatePresence mode="sync">
                                     <motion.div
-                                        key={`company-${studentIdx}`}
+                                        key="company-static"
                                         className="absolute inset-0 flex flex-col items-center justify-center"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -235,7 +227,7 @@ const GPCSuccessHero = () => {
                             <div className="absolute -bottom-12 right-0 md:-right-2 z-30 bg-[#2D1B69] text-white rounded-2xl shadow-2xl w-[190px] md:w-[300px] min-h-[65px] flex items-center justify-center">
                                 <AnimatePresence mode="sync">
                                     <motion.div
-                                        key={`quote-${studentIdx}`}
+                                        key="quote-static"
                                         className="absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4 text-center"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -254,7 +246,7 @@ const GPCSuccessHero = () => {
                         <div className="mt-16 md:mt-20 flex flex-col items-center justify-center relative w-full" style={{ minHeight: '60px' }}>
                             <AnimatePresence mode="sync">
                                 <motion.div
-                                    key={`name-${studentIdx}`}
+                                    key="name-static"
                                     className="absolute inset-0 flex flex-col items-center justify-start"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -269,20 +261,6 @@ const GPCSuccessHero = () => {
                             </AnimatePresence>
 
                             {/* Dot indicators */}
-                            <div className="flex justify-center gap-1.5 mt-10">
-                                {heroStudents.map((_, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => setStudentIdx(i)}
-                                        className="rounded-full transition-all duration-300 border border-white/20"
-                                        style={{
-                                            width: i === studentIdx ? '18px' : '6px',
-                                            height: '6px',
-                                            backgroundColor: i === studentIdx ? '#F97316' : 'rgba(255,255,255,0.3)',
-                                        }}
-                                    />
-                                ))}
-                            </div>
                         </div>
                     </div>
                 </div>
