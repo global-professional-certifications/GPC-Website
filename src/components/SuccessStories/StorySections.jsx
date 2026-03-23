@@ -417,54 +417,164 @@ const WrittenGridCard = ({ story }) => (
   </div>
 );
 
-export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: propGrid, totalCount = 48 } = {}) => {
-  const tabs = propTabs || writtenStoriesTabs;
-  const featured = propFeatured || writtenStoriesFeatured;
-  const grid = propGrid || writtenStoriesGrid;
-  const [activeTab, setActiveTab] = useState('all');
-  const [visibleLimit, setVisibleLimit] = useState(2);
-  const filteredGrid = activeTab === 'all' ? grid : grid.filter(s => s.tag?.toLowerCase().includes(activeTab));
+export const WrittenStories = ({ allStories, courses }) => {
+  // Build tabs from courses that have written testimonials
+  const tabs = useMemo(() => {
+    const writtenStories = allStories?.filter(s => s.category === 'written') || [];
+    const totalCount = writtenStories.length;
+    
+    if (!courses || courses.length === 0) return writtenStoriesTabs.filter(t => (writtenStoriesGrid.length > 0));
+    
+    const courseTabs = courses
+      .map(c => ({
+        label: c.name,
+        name: c.name,
+        slug: c.slug,
+        count: writtenStories.filter(s => {
+          const storySlug = (s.courseSlug || '').toLowerCase().trim();
+          return storySlug === c.slug.toLowerCase().trim();
+        }).length || 0
+      }))
+      .filter(tab => tab.count > 0); // Hide empty tabs
+
+    if (totalCount === 0) return [];
+    return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }, ...courseTabs];
+  }, [courses, allStories]);
+
+  const [activeTab, setActiveTab] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [visibleLimit, setVisibleLimit] = useState(8);
+
+  // Set initial active tab
+  useEffect(() => {
+    if (tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0].slug);
+    }
+  }, [tabs, activeTab]);
+
+  // Derived current written stories from Sanity
+  const currentStories = useMemo(() => {
+    if (!allStories || !activeTab) return [];
+    const activeSlug = activeTab.toLowerCase().trim();
+    return allStories
+      .filter(s => {
+        const storySlug = (s.courseSlug || '').toLowerCase().trim();
+        return (activeSlug === 'all' || storySlug === activeSlug) && s.category === 'written';
+      })
+      .map(s => ({
+        ...s,
+        initials: getInitials(s.name),
+      }));
+  }, [allStories, activeTab]);
 
   // Reset pagination when tab changes
   useEffect(() => {
-    setVisibleLimit(2);
+    setVisibleLimit(8);
   }, [activeTab]);
 
-  const visibleGrid = filteredGrid.slice(0, visibleLimit);
-  const canViewMore = filteredGrid.length > visibleLimit;
+  // Handle fallback to dummy data if no Sanity data
+  const isSanityData = currentStories.length > 0;
+  const displayHero = isSanityData ? currentStories[0] : writtenStoriesFeatured;
+  const displayGridAll = isSanityData ? currentStories.slice(1) : writtenStoriesGrid;
+
+  const first8Grid = useMemo(() => displayGridAll.slice(0, 8), [displayGridAll]);
+  const extraGridVisible = useMemo(() => displayGridAll.slice(8, 8 + (visibleLimit - 8)), [displayGridAll, visibleLimit]);
+
+  const handleCardClick = (story) => {
+    // Both VideoVault and WrittenStories can open videos if available
+    setSelectedVideo(story);
+  };
 
   return (
-    <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-gray-50">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+    <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-gray-50 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
             title="Read their"
             highlight="journey"
-            subtitle="Deep-dive into the paths our alumni walked : the doubt, the grind, and the moment everything changed. Discover how expert guidance transformed their careers."
+            subtitle={
+              <>
+                Raw, unfiltered experiences from professionals who transformed their careers.
+                <br />
+                See how they mastered their certifications with GPC.
+              </>
+            }
           />
-          
         </div>
-        <div className="flex flex-wrap gap-2 mb-8">
-          {tabs.map(tab => (
-            <button key={tab.slug} onClick={() => setActiveTab(tab.slug)} className={`px-5 py-1.5 rounded-full text-[13px] font-semibold border transition-all duration-200 ${activeTab === tab.slug ? 'bg-brand-blue text-white border-brand-blue' : 'bg-white text-gray-700 border-gray-300 hover:border-brand-blue'}`}>
-              {tab.label}
-            </button>
+
+        {/* Course Tabs */}
+        <div className="relative border-b border-gray-100 mb-10">
+          <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
+            {tabs.map(tab => (
+              <button
+                key={tab.slug}
+                onClick={() => setActiveTab(tab.slug)}
+                className="pb-4 text-[13px] transition-colors relative whitespace-nowrap uppercase tracking-widest font-bold"
+                style={{ color: activeTab === tab.slug ? '#111827' : '#6B7280' }}
+              >
+                {tab.name || tab.label}
+                <span className="ml-2 font-medium opacity-60">· {tab.count}</span>
+                {activeTab === tab.slug && <span className="absolute -bottom-[1px] left-0 right-0 h-[3px] bg-brand-blue" />}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Hero + Grid Layout (Duplicate of VideoVault) */}
+        <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start">
+          {/* Featured Hero Card */}
+          <div className="hidden lg:block lg:col-span-2 lg:row-span-2 h-full">
+            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
+          </div>
+
+          {/* First 8 Grid Cards */}
+          {first8Grid.map((story, i) => (
+            <div key={story._id || i} className="hidden lg:block lg:col-span-1 h-full">
+              <VideoGridCard video={story} index={i} onClick={handleCardClick} />
+            </div>
           ))}
+
+          {/* Load More Grid Cards */}
+          <AnimatePresence>
+            {extraGridVisible.map((story, i) => (
+              <motion.div
+                key={story._id || `extra-${i}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="hidden lg:block lg:col-span-1 h-full"
+              >
+                <VideoGridCard video={story} index={i + 8} onClick={handleCardClick} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {/* Mobile Layout */}
+          <div className="col-span-2 grid grid-cols-2 gap-4 lg:hidden">
+            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
+            {displayGridAll.map((story, i) => (
+              <VideoGridCard key={story._id || i} video={story} index={i} onClick={handleCardClick} />
+            ))}
+          </div>
         </div>
-        <WrittenFeaturedCard story={featured} />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {visibleGrid.map((story, i) => <WrittenGridCard key={i} story={story} />)}
-        </div>
-        {canViewMore && (
-          <div className="mt-8 flex justify-center">
+
+        {/* View More Button */}
+        {displayGridAll.length > visibleLimit && (
+          <div className="mt-16 flex justify-center">
             <button
-              onClick={() => setVisibleLimit(prev => Math.min(filteredGrid.length, prev + 2))}
-              className="bg-brand-blue text-white text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-brand-purple transition-all duration-300 font-semibold shadow-md active:scale-95"
+              onClick={() => setVisibleLimit(prev => prev + 6)}
+              className="group relative px-10 py-4 bg-brand-blue text-white rounded-full font-bold overflow-hidden shadow-xl hover:shadow-brand-blue/40 transition-all active:scale-95"
             >
-              View More →
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span className="relative flex items-center gap-2">
+                VIEW MORE STORIES <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
+              </span>
             </button>
           </div>
         )}
+
+        {/* Video Modal */}
+        <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
       </div>
     </section>
   );
@@ -505,24 +615,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
           </div>
         </div>
       </section>
-      <section className="w-full relative py-14 px-4 mb-[-80px] z-10">
-        <div className="mx-auto w-full max-w-[1000px] bg-gradient-to-b from-[#100b2d] via-[#1f1a63] to-[#2d178f] rounded-[30px] shadow-[0_20px_50px_-18px_rgba(15,23,42,0.55)] border border-white/10 overflow-hidden relative translate-y-6">
-          <div className="absolute top-0 right-0 w-[360px] h-[360px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#bf410a]/8 rounded-full blur-[90px] translate-y-1/2 -translate-x-1/2" />
-          <div className="relative z-10 py-14 px-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-            <div className="flex-1">
-              <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight mb-4">
-                Your name could be <span className="text-orange-400 font-normal italic">next on this page</span>
-              </h2>
-              <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed opacity-95 font-poppins">Join 1,200+ professionals who have accelerated their careers through GPC's globally recognized certification programs and expert mentorship.</p>
-            </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
-              <a href="/courses" className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl text-white font-bold px-8 py-3 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95 text-base text-center">Explore</a>
-              <a href="/contact" className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 font-bold px-8 py-3 rounded-xl transition-all text-base text-center">Talk to Us</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 };

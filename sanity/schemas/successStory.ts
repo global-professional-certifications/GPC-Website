@@ -86,6 +86,22 @@ export default defineType({
       description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
     }),
     defineField({
+      name: 'quote',
+      title: 'Testimonial Quote',
+      type: 'text',
+      rows: 4,
+      description: 'The main testimonial quote — displayed on written testimonial cards.',
+      hidden: ({ document }) => document?.category !== 'written',
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Short Excerpt',
+      type: 'text',
+      rows: 2,
+      description: 'A short excerpt for the grid card preview (1-2 sentences).',
+      hidden: ({ document }) => document?.category !== 'written',
+    }),
+    defineField({
       name: 'video',
       title: 'Video File',
       type: 'file',
