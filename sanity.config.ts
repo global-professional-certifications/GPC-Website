@@ -21,6 +21,17 @@ const initialValueTemplates: Template[] = [
       category: params.category,
     }),
   },
+  {
+    id: 'wallOfExcellence-with-course',
+    title: 'Wall of Excellence with Course',
+    schemaType: 'wallOfExcellence',
+    parameters: [
+      { name: 'courseId', type: 'string' },
+    ],
+    value: (params: { courseId: string }) => ({
+      course: { _type: 'reference', _ref: params.courseId },
+    }),
+  },
 ]
 
 export default defineConfig({

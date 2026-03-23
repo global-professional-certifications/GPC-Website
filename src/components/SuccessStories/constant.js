@@ -27,7 +27,7 @@ export const heroData = {
 
   rightCircle: {
     name: "Akshdeep Singh",
-    role: "Internal Audit, KPMG",
+    role: "Manager, KPMG",
     tag: "CIA Cleared",
     image: akshdeepSingh
   }
@@ -169,7 +169,7 @@ export const examTestimonialsData = [
 ];
 
 export const videoVaultTabs = [
-  { slug: 'cia',  label: 'CIA',  count: 47 },
+  { slug: 'cia', label: 'CIA', count: 47 },
   { slug: 'cisa', label: 'CISA', count: 23 },
 ];
 
@@ -182,20 +182,20 @@ export const videoVaultData = {
     hero: {
       name: 'Akshdeep Singh',
       role: 'INTERNAL AUDIT MANAGER',
-      quote: '"The structured approach at GPC made passing the CIA exam on my first attempt a reality."',
+      quote: "The structured approach at GPC made passing the CIA exam on my first attempt a reality.",
       initials: 'AS',
       duration: '4:12',
       tag: 'CIA HERO',
     },
     grid: [
-      mkVideo('Rahul K',     'Internal Auditor',  '2:45', 'RK',  'cia'),
-      mkVideo('Chahat B',    'Compliance Lead',   '1:50', 'CB',  'cia'),
-      mkVideo('Nitin R',     'Sr. Associate',     '3:12', 'NR',  'cia'),
-      mkVideo('Divya M',     'Junior Auditor',    '2:20', 'DM',  'cia'),
-      mkVideo('Shakti S',    'Controller',        '1:58', 'SS',  'cia'),
-      mkVideo('Amarendra B', 'Risk Analyst',      '3:40', 'AB',  'cia'),
-      mkVideo('Priya K',     'Financial Auditor', '2:15', 'PK',  'cia'),
-      mkVideo('Arjun T',     'Audit Consultant',  '4:05', 'AT',  'cia'),
+      mkVideo('Rahul K', 'Internal Auditor', '2:45', 'RK', 'cia'),
+      mkVideo('Chahat B', 'Compliance Lead', '1:50', 'CB', 'cia'),
+      mkVideo('Nitin R', 'Sr. Associate', '3:12', 'NR', 'cia'),
+      mkVideo('Divya M', 'Junior Auditor', '2:20', 'DM', 'cia'),
+      mkVideo('Shakti S', 'Controller', '1:58', 'SS', 'cia'),
+      mkVideo('Amarendra B', 'Risk Analyst', '3:40', 'AB', 'cia'),
+      mkVideo('Priya K', 'Financial Auditor', '2:15', 'PK', 'cia'),
+      mkVideo('Arjun T', 'Audit Consultant', '4:05', 'AT', 'cia'),
     ],
   },
   cisa: {
@@ -208,23 +208,23 @@ export const videoVaultData = {
       tag: 'CISA HERO',
     },
     grid: [
-      mkVideo('Vijay S',      'IS Auditor',          '2:10', 'VS',  'cisa'),
-      mkVideo('Simranjeet K', 'Risk Analyst',        '1:45', 'SK',  'cisa'),
-      mkVideo('Md Danish',    'Information Security','2:55', 'MD',  'cisa'),
-      mkVideo('Reshma P',     'IT Consultant',       '3:05', 'RP',  'cisa'),
-      mkVideo('Karan M',      'Cyber Analyst',       '2:30', 'KM',  'cisa'),
-      mkVideo('Sonal G',      'GRC Specialist',      '1:55', 'SG',  'cisa'),
-      mkVideo('Deepak V',     'IT Auditor',          '3:20', 'DV',  'cisa'),
-      mkVideo('Preeti J',     'Compliance Lead',     '2:40', 'PJ',  'cisa'),
+      mkVideo('Vijay S', 'IS Auditor', '2:10', 'VS', 'cisa'),
+      mkVideo('Simranjeet K', 'Risk Analyst', '1:45', 'SK', 'cisa'),
+      mkVideo('Md Danish', 'Information Security', '2:55', 'MD', 'cisa'),
+      mkVideo('Reshma P', 'IT Consultant', '3:05', 'RP', 'cisa'),
+      mkVideo('Karan M', 'Cyber Analyst', '2:30', 'KM', 'cisa'),
+      mkVideo('Sonal G', 'GRC Specialist', '1:55', 'SG', 'cisa'),
+      mkVideo('Deepak V', 'IT Auditor', '3:20', 'DV', 'cisa'),
+      mkVideo('Preeti J', 'Compliance Lead', '2:40', 'PJ', 'cisa'),
     ],
   },
 };
 
 export const writtenStoriesTabs = [
-  { slug: 'all',           label: 'All' },
+  { slug: 'all', label: 'All' },
   { slug: 'cia-challenge', label: 'CIA Challenge' },
-  { slug: 'cia-partwise',  label: 'CIA Partwise' },
-  { slug: 'cisa',          label: 'CISA' },
+  { slug: 'cia-partwise', label: 'CIA Partwise' },
+  { slug: 'cisa', label: 'CISA' },
 ];
 
 export const writtenStoriesFeatured = {
@@ -282,11 +282,11 @@ export const heroStudents = [
     initials: 'AS',
     avatarBg: 'linear-gradient(135deg, #2D1B69 0%, #4c2a8a 100%)',
     name: 'Akshdeep Singh',
-    designation: 'Internal Audit',
+    designation: 'Manager',
     company: 'KPMG',
     courseTag: 'CIA CLEARED',
     attempt: '1st Attempt',
-    quote: '"The structured curriculum and mentorship were game-changers."',
+    quote: "The structured curriculum and mentorship were game-changers.",
   },
   {
     image: null,

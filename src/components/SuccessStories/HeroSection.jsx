@@ -148,119 +148,59 @@ const GPCSuccessHero = () => {
                         <div className="relative">
                             <div className="absolute inset-[-12px] md:inset-[-18px] rounded-full border-[1.5px] border-dashed border-white/20" />
 
-                            {/* Photo / Avatar ring — crossfade with mode="sync" + absolute children */}
+                            {/* Photo / Avatar ring — No animations here as requested */}
                             <div className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-[10px] md:border-[12px] border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden relative z-10 bg-brand-blue/50">
-                                <AnimatePresence mode="sync">
-                                    {student.image ? (
-                                        <motion.img
-                                            key="img-static"
-                                            src={student.image}
-                                            alt={student.name}
-                                            className="absolute inset-0 w-full h-full object-cover"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.7, ease: 'easeInOut' }}
-                                        />
-                                    ) : (
-                                        <motion.div
-                                            key="avatar-static"
-                                            className="absolute inset-0 w-full h-full flex items-center justify-center"
-                                            style={{ background: student.avatarBg }}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.7, ease: 'easeInOut' }}
+                                {student.image ? (
+                                    <img
+                                        src={student.image}
+                                        alt={student.name}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div
+                                        className="absolute inset-0 w-full h-full flex items-center justify-center"
+                                        style={{ background: student.avatarBg }}
+                                    >
+                                        <span
+                                            className="text-white font-black select-none"
+                                            style={{ fontSize: '90px', opacity: 0.85, letterSpacing: '-4px' }}
                                         >
-                                            <span
-                                                className="text-white font-black select-none"
-                                                style={{ fontSize: '90px', opacity: 0.85, letterSpacing: '-4px' }}
-                                            >
-                                                {student.initials}
-                                            </span>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                            {student.initials}
+                                        </span>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Top-left badge: course + attempt */}
                             <motion.div {...floatTopLeft} className="absolute -top-2 -left-2 md:-left-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[100px] md:min-w-[120px]">
-                                <AnimatePresence mode="sync">
-                                    <motion.div
-                                        key="badge-static"
-                                        className="absolute inset-0 flex flex-col items-center justify-center"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                    >
-                                        <p className="text-[8px] md:text-[9px] text-[#059669] uppercase tracking-wide mb-0.5 font-bold">{student.courseTag}</p>
-                                        <p className="text-[13px] md:text-[15px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.attempt}</p>
-                                    </motion.div>
-                                </AnimatePresence>
-                                {/* invisible placeholder so the container keeps its size */}
-                                <p className="text-[8px] invisible">X</p>
-                                <p className="text-[13px] invisible">X</p>
+                                <p className="text-[8px] md:text-[9px] text-[#059669] uppercase tracking-wide mb-0.5 font-bold">{student.courseTag}</p>
+                                <p className="text-[13px] md:text-[15px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.attempt}</p>
                             </motion.div>
 
                             {/* Right bubble: placed at company */}
                             <motion.div {...floatMiddleRight} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-20 bg-white px-4 md:px-5 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[150px]">
-                                <AnimatePresence mode="sync">
-                                    <motion.div
-                                        key="company-static"
-                                        className="absolute inset-0 flex flex-col items-center justify-center"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                    >
-                                        <p className="text-[8px] md:text-[9px] text-black uppercase tracking-wide mb-0.5 font-bold">Works AT</p>
-                                        <p className="text-[16px] md:text-[18px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.company}</p>
-                                    </motion.div>
-                                </AnimatePresence>
-                                {/* invisible placeholder */}
-                                <p className="text-[8px] invisible">X</p>
-                                <p className="text-[18px] invisible">X</p>
+                                <p className="text-[8px] md:text-[9px] text-black uppercase tracking-wide mb-0.5 font-bold">Works AT</p>
+                                <p className="text-[16px] md:text-[18px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.company}</p>
                             </motion.div>
 
                             {/* Quote card */}
                             <div className="absolute -bottom-12 right-0 md:-right-2 z-30 bg-[#2D1B69] text-white rounded-2xl shadow-2xl w-[190px] md:w-[300px] min-h-[65px] flex items-center justify-center">
-                                <AnimatePresence mode="sync">
-                                    <motion.div
-                                        key="quote-static"
-                                        className="absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4 text-center"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                    >
-                                        <p className="text-[9px] md:text-sm leading-relaxed italic font-medium">
-                                            "{student.quote}"
-                                        </p>
-                                    </motion.div>
-                                </AnimatePresence>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4 text-center">
+                                    <p className="text-[9px] md:text-sm leading-relaxed italic font-medium">
+                                        "{student.quote}"
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Name + designation — fixed height to prevent stats from jumping */}
+                        {/* Name + designation */}
                         <div className="mt-16 md:mt-20 flex flex-col items-center justify-center relative w-full" style={{ minHeight: '60px' }}>
-                            <AnimatePresence mode="sync">
-                                <motion.div
-                                    key="name-static"
-                                    className="absolute inset-0 flex flex-col items-center justify-start"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                >
-                                    <h4 className="text-[16px] md:text-[18px] font-bold text-white">{student.name}</h4>
-                                    <p className="text-[12px] md:text-[13px] text-gray-300">
-                                        {student.designation}, <span className="font-bold text-white">{student.company}</span>
-                                    </p>
-                                </motion.div>
-                            </AnimatePresence>
-
-                            {/* Dot indicators */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-start">
+                                <h4 className="text-[16px] md:text-[18px] font-bold text-white">{student.name}</h4>
+                                <p className="text-[12px] md:text-[13px] text-gray-300">
+                                    {student.designation}, <span className="font-bold text-white">{student.company}</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
