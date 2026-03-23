@@ -12,6 +12,30 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'string',
+      description: 'E.g. Grant Thornton, Deloitte, EY',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+      description: 'City or Country — e.g. Bengaluru, Dubai',
+    }),
+    defineField({
+      name: 'designation',
+      title: 'Role / Designation',
+      type: 'string',
+      description: 'e.g. Internal Audit Specialist',
+    }),
+    defineField({
+      name: 'batch',
+      title: 'Batch',
+      type: 'string',
+      description: 'e.g. BATCH 2023-A',
+    }),
+    defineField({
       name: 'course',
       title: 'Course',
       type: 'reference',
@@ -34,6 +58,24 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'image',
+      title: 'Student Photo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Used for the Wall of Excellence (Circular Photo).',
+    }),
+    defineField({
+      name: 'companyLogo',
+      title: 'Company Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Used for the Wall of Excellence cards.',
+    }),
+    defineField({
       name: 'thumbnail',
       title: 'Thumbnail / Image',
       type: 'image',
@@ -42,6 +84,22 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
       description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
+    }),
+    defineField({
+      name: 'quote',
+      title: 'Testimonial Quote',
+      type: 'text',
+      rows: 4,
+      description: 'The main testimonial quote — displayed on written testimonial cards.',
+      hidden: ({ document }) => document?.category !== 'written',
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Short Excerpt',
+      type: 'text',
+      rows: 2,
+      description: 'A short excerpt for the grid card preview (1-2 sentences).',
+      hidden: ({ document }) => document?.category !== 'written',
     }),
     defineField({
       name: 'video',

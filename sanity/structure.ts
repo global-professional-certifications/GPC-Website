@@ -40,7 +40,64 @@ export const structure: StructureResolver = (S, context) => {
 
                                 S.divider(),
 
-                                // Dynamic Course Items
+                                // ─── Wall of Excellence Section ───
+                                S.listItem()
+                                    .title('Wall of Excellence')
+                                    .id('wall-of-excellence')
+                                    .child(
+                                        S.list()
+                                            .title('Wall of Excellence')
+                                            .items([
+                                                // + Add New Entry (all courses)
+                                                S.listItem()
+                                                    .title('+ Add New Entry')
+                                                    .id('wall-add-new')
+                                                    .schemaType('wallOfExcellence')
+                                                    .child(
+                                                        S.documentTypeList('wallOfExcellence')
+                                                            .title('All Wall of Excellence Entries')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                // All Entries
+                                                S.listItem()
+                                                    .title('All Entries')
+                                                    .id('wall-all')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('All Wall of Excellence Entries')
+                                                            .schemaType('wallOfExcellence')
+                                                            .filter('_type == "wallOfExcellence"')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
+                                                // Course-wise sub-sections
+                                                ...courses.map((course: { _id: string; name: string }) =>
+                                                    S.listItem()
+                                                        .title(course.name)
+                                                        .id(`wall-${course._id}`)
+                                                        .child(
+                                                            S.documentList()
+                                                                .title(`${course.name} — Wall of Excellence`)
+                                                                .schemaType('wallOfExcellence')
+                                                                .filter('_type == "wallOfExcellence" && course._ref == $courseId')
+                                                                .params({ courseId: course._id })
+                                                                .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                                .initialValueTemplates([
+                                                                    S.initialValueTemplateItem('wallOfExcellence-with-course', {
+                                                                        courseId: course._id,
+                                                                    })
+                                                                ])
+                                                        )
+                                                ),
+                                            ])
+                                    ),
+
+                                S.divider(),
+
+                                // Dynamic Course Items (existing testimonials)
                                 ...courses.map((course: { _id: string; name: string }) =>
                                     S.listItem()
                                         .title(course.name)
