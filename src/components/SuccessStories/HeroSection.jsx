@@ -85,87 +85,79 @@ const GPCSuccessHero = () => {
     return (
         // Global wrapper applies Inter, sans-serif at 400 weight for everything
         <div
-            className="bg-[#FFFFFF] w-full overflow-x-hidden flex flex-col text-slate-800"
+            className="bg-brand-blue w-full overflow-x-hidden flex flex-col text-white pt-16 md:pt-20 pb-24"
             style={{ fontWeight: 400 }}
         >
 
-            {/* ========================================================= */}
-            {/* 1. MAIN HERO + STATS WRAPPER */}
-            {/* ========================================================= */}
-            <div className="min-h-screen flex flex-col justify-between">
+
+            <div className="flex flex-col justify-between">
 
                 {/* MAIN HERO SECTION */}
-                <div className="flex-1 max-w-[1400px] mx-auto w-full px-4 md:px-8 pt-6 lg:pt-8 pb-4 flex flex-col lg:flex-row items-start justify-center gap-12 lg:gap-4">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full px-4 md:px-8 pt-6 lg:pt-8 pb-4 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-8">
 
                     {/* --- LEFT RING: MENTOR SECTION --- */}
-                    <div className="relative w-full lg:flex-1 flex flex-col items-center pt-10">
+                    <div className="relative w-full lg:flex-1 flex flex-col items-center">
                         <div className="relative">
-                            <div className="absolute inset-[-12px] md:inset-[-18px] rounded-full border-[1.5px] border-dashed border-slate-200" />
-                            <div className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-[10px] md:border-[12px] border-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] overflow-hidden relative z-10 bg-slate-50">
+                            <div className="absolute inset-[-12px] md:inset-[-18px] rounded-full border-[1.5px] border-dashed border-white/20" />
+                            <div className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-[10px] md:border-[12px] border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden relative z-10 bg-brand-blue/50">
                                 <img src={arpitGarg} alt="Arpit Garg" className="w-full h-full object-cover" />
                             </div>
 
-                            <motion.div {...floatTopRight} className="absolute -top-2 -right-2 md:-right-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] border border-slate-50 min-w-[110px] md:min-w-[130px]">
-                                <p className="text-[8px] md:text-[9px] text-[#F59E0B] uppercase tracking-wide mb-0.5">TOP MENTOR</p>
-                                <p className="text-[13px] md:text-[15px] font-extrabold text-[#2D1B69] leading-tight tracking-tight">Corporate Finance</p>
+                            <motion.div {...floatTopRight} className="absolute -top-2 -right-2 md:-right-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-xl border border-white/10 min-w-[110px] md:min-w-[130px]">
+                                <p className="text-[8px] md:text-[9px] text-orange-600 uppercase tracking-wide mb-0.5">TOP MENTOR</p>
+                                <p className="text-[13px] md:text-[15px] font-extrabold text-brand-blue leading-tight tracking-tight">Corporate Finance</p>
                             </motion.div>
 
-                            <motion.div {...floatMiddleLeft} className="absolute left-[-15px] md:left-[-25px] top-1/2 -translate-y-1/2 z-20 bg-white px-3 py-1.5 md:py-2 rounded-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] border border-slate-50 text-[10px] md:text-[11px] font-bold text-[#2D1B69]">
+                            <motion.div {...floatMiddleLeft} className="absolute left-[-15px] md:left-[-25px] top-1/2 -translate-y-1/2 z-20 bg-white px-3 py-1.5 md:py-2 rounded-xl shadow-xl border border-white/10 text-[10px] md:text-[11px] font-bold text-brand-blue">
                                 15+ Yrs Exp.
                             </motion.div>
 
-                            <motion.div {...floatBottomRight} className="absolute bottom-5 md:bottom-8 -right-2 md:-right-4 bg-white px-4 py-2 md:py-2.5 rounded-full shadow-xl border border-slate-50 z-20 flex items-center gap-1.5 text-[12px] md:text-[14px] font-extrabold text-slate-800 tracking-tight">
-                                4.9 <span className="text-[#F59E0B] text-[15px] md:text-[17px] leading-none mb-0.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3))' }}>★</span>
+                            <motion.div {...floatBottomRight} className=" text-brand-blue absolute bottom-5 md:bottom-8 -right-2 md:-right-4 bg-white px-4 py-2 md:py-2.5 rounded-full shadow-xl border border-white/10 z-20 flex items-center gap-1.5 text-[12px] md:text-[14px] font-extrabold text-slate-800 tracking-tight">
+                                5/5 <span className="text-[#F59E0B] text-[15px] md:text-[17px] leading-none mb-0.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3))' }}>★</span>
                             </motion.div>
 
-                            <div className="absolute -bottom-6 left-0 md:left-2 z-30 bg-[#2D1B69] text-white p-3 md:p-4 rounded-2xl shadow-2xl w-[180px] md:w-[220px]">
-                                <p className="text-[9px] md:text-[10px] leading-relaxed italic">
+                            <div className="absolute -bottom-12 left-0 z-30 bg-[#2D1B69] text-center text-white p-3 md:p-3 rounded-2xl shadow-2xl w-[180px] md:w-[280px]">
+                                <p className="text-[9px] md:text-sm leading-relaxed italic">
                                     "The goal isn't just a certificate; it's a career transformation."
                                 </p>
                             </div>
                         </div>
 
                         <div className="mt-16 md:mt-20 text-center">
-                            <h4 className="text-[15px] md:text-[16px] font-extrabold text-[#2D1B69]">Arpit Garg</h4>
-                            <p className="text-[11px] md:text-[12px] text-slate-500">Lead Mentor, GPC</p>
+                            <h4 className="text-[16px] md:text-[18px] font-bold text-white">Arpit Garg</h4>
+                            <p className="text-[12px] md:text-[13px] text-gray-300">Lead Mentor, GPC</p>
                         </div>
                     </div>
 
                     {/* --- CENTER: TYPOGRAPHY & HEADLINES --- */}
                     <div className="w-full lg:flex-[1.2] text-center z-10 flex flex-col items-center">
-                        <span className="bg-[#FAF5E6] text-[#B89838] px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] mb-4 md:mb-5">
-                            HALL OF CHAMPIONS
-                        </span>
-
                         <h1
-                            className="text-[40px] md:text-[52px] lg:text-[64px] leading-[0.9] font-black text-[#2D1B69] tracking-[-0.02em] flex flex-col items-center"
+                            className="text-3xl md:text-6xl font-bold leading-tight text-white flex flex-col items-center"
                         >
-                            <span>Real people.</span>
-                            <span>Real careers.</span>
-                            <span className="font-normal italic text-[#B89838] text-[32px] md:text-[42px] lg:text-[50px] mt-1 lg:mt-1.5 pr-2 lg:pr-4">Transformed.</span>
+                            <span>Real <span className="text-orange-400">people.</span></span>
+                            <span><span className="text-orange-400">Real</span> careers.</span>
                         </h1>
-
-                        <p className="text-slate-600 font-medium text-[13px] md:text-[14px] max-w-sm mx-auto mt-4 md:mt-5 leading-relaxed px-2">
-                            Join thousands of professionals who breached their career glass ceilings through GPC's specialized guidance and global curriculum.
+                        <p className="mt-4 text-base sm:text-sm md:text-base text-gray-200 max-w-lg leading-relaxed">
+                            Join thousands of professionals who breached their career glass ceilings through <span className='font-bold text-orange-400'>Global Professional Certifications'</span> specialized guidance and global curriculum.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row justify-center gap-3 mt-5 md:mt-6 w-full px-4 sm:px-0">
-                            <button className="bg-[#2D1B69] text-white px-6 md:px-7 py-2.5 md:py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-shadow text-[13px] md:text-[14px]">
-                                Explore Stories →
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 md:mt-10 w-full px-4 sm:px-0">
+                            <button className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl">
+                                Explore Stories
                             </button>
-                            <button className="bg-white border-[1.5px] border-slate-200 px-6 md:px-7 py-2.5 md:py-3 rounded-xl font-bold text-slate-700 flex items-center justify-center gap-2 shadow-sm hover:bg-slate-50 transition-colors text-[13px] md:text-[14px]">
-                                <span className="text-[#F59E0B] text-lg leading-none">▶</span> Watch Videos
+                            <button className="bg-transparent border-2 border-white/30 px-8 py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2 hover:bg-white/10 transition-all hover:scale-105 text-lg shadow-lg">
+                                Watch Videos
                             </button>
                         </div>
                     </div>
 
                     {/* --- RIGHT RING: STUDENT SECTION (SLIDESHOW) --- */}
-                    <div className="relative w-full lg:flex-1 flex flex-col items-center mt-10 lg:mt-0 pt-10">
+                    <div className="relative w-full lg:flex-1 flex flex-col items-center mt-12 lg:mt-0">
                         <div className="relative">
-                            <div className="absolute inset-[-12px] md:inset-[-18px] rounded-full border-[1.5px] border-dashed border-slate-200" />
+                            <div className="absolute inset-[-12px] md:inset-[-18px] rounded-full border-[1.5px] border-dashed border-white/20" />
 
                             {/* Photo / Avatar ring — crossfade with mode="sync" + absolute children */}
-                            <div className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-[10px] md:border-[12px] border-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] overflow-hidden relative z-10 bg-slate-50">
+                            <div className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-[10px] md:border-[12px] border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] overflow-hidden relative z-10 bg-brand-blue/50">
                                 <AnimatePresence mode="sync">
                                     {student.image ? (
                                         <motion.img
@@ -200,7 +192,7 @@ const GPCSuccessHero = () => {
                             </div>
 
                             {/* Top-left badge: course + attempt */}
-                            <motion.div {...floatTopLeft} className="absolute -top-2 -left-2 md:-left-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] border border-slate-50 text-center min-w-[100px] md:min-w-[120px]">
+                            <motion.div {...floatTopLeft} className="absolute -top-2 -left-2 md:-left-6 z-20 bg-white px-3 md:px-4 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[100px] md:min-w-[120px]">
                                 <AnimatePresence mode="sync">
                                     <motion.div
                                         key={`badge-${studentIdx}`}
@@ -210,7 +202,7 @@ const GPCSuccessHero = () => {
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.5, ease: 'easeInOut' }}
                                     >
-                                        <p className="text-[8px] md:text-[9px] text-[#059669] uppercase tracking-wide mb-0.5">{student.courseTag}</p>
+                                        <p className="text-[8px] md:text-[9px] text-[#059669] uppercase tracking-wide mb-0.5 font-bold">{student.courseTag}</p>
                                         <p className="text-[13px] md:text-[15px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.attempt}</p>
                                     </motion.div>
                                 </AnimatePresence>
@@ -220,7 +212,7 @@ const GPCSuccessHero = () => {
                             </motion.div>
 
                             {/* Right bubble: placed at company */}
-                            <motion.div {...floatMiddleRight} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-8 z-20 bg-white px-4 md:px-5 py-2.5 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] border border-slate-50 text-center min-w-[90px] md:min-w-[110px]">
+                            <motion.div {...floatMiddleRight} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-20 bg-white px-4 md:px-5 py-2.5 rounded-2xl shadow-xl border border-white/10 text-center min-w-[150px]">
                                 <AnimatePresence mode="sync">
                                     <motion.div
                                         key={`company-${studentIdx}`}
@@ -230,7 +222,7 @@ const GPCSuccessHero = () => {
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.5, ease: 'easeInOut' }}
                                     >
-                                        <p className="text-[8px] md:text-[9px] text-black uppercase tracking-wide mb-0.5">PLACED AT</p>
+                                        <p className="text-[8px] md:text-[9px] text-black uppercase tracking-wide mb-0.5 font-bold">Works AT</p>
                                         <p className="text-[16px] md:text-[18px] font-extrabold text-[#2D1B69] leading-none tracking-tight">{student.company}</p>
                                     </motion.div>
                                 </AnimatePresence>
@@ -240,7 +232,7 @@ const GPCSuccessHero = () => {
                             </motion.div>
 
                             {/* Quote card */}
-                            <div className="absolute -bottom-6 right-0 md:-right-2 z-30 bg-[#2D1B69] text-white rounded-2xl shadow-2xl w-[190px] md:w-[230px] min-h-[52px] flex items-center justify-center">
+                            <div className="absolute -bottom-12 right-0 md:-right-2 z-30 bg-[#2D1B69] text-white rounded-2xl shadow-2xl w-[190px] md:w-[300px] min-h-[65px] flex items-center justify-center">
                                 <AnimatePresence mode="sync">
                                     <motion.div
                                         key={`quote-${studentIdx}`}
@@ -250,7 +242,7 @@ const GPCSuccessHero = () => {
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.5, ease: 'easeInOut' }}
                                     >
-                                        <p className="text-[9px] md:text-[10px] leading-relaxed italic">
+                                        <p className="text-[9px] md:text-sm leading-relaxed italic font-medium">
                                             "{student.quote}"
                                         </p>
                                     </motion.div>
@@ -269,9 +261,9 @@ const GPCSuccessHero = () => {
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                                 >
-                                    <h4 className="text-[15px] md:text-[16px] font-extrabold text-[#2D1B69]">{student.name}</h4>
-                                    <p className="text-[11px] md:text-[12px] text-slate-500">
-                                        {student.designation}, <span className="font-bold text-slate-700">{student.company}</span>
+                                    <h4 className="text-[16px] md:text-[18px] font-bold text-white">{student.name}</h4>
+                                    <p className="text-[12px] md:text-[13px] text-gray-300">
+                                        {student.designation}, <span className="font-bold text-white">{student.company}</span>
                                     </p>
                                 </motion.div>
                             </AnimatePresence>
@@ -282,11 +274,11 @@ const GPCSuccessHero = () => {
                                     <button
                                         key={i}
                                         onClick={() => setStudentIdx(i)}
-                                        className="rounded-full transition-all duration-300"
+                                        className="rounded-full transition-all duration-300 border border-white/20"
                                         style={{
                                             width: i === studentIdx ? '18px' : '6px',
                                             height: '6px',
-                                            backgroundColor: i === studentIdx ? '#2D1B69' : '#CBD5E1',
+                                            backgroundColor: i === studentIdx ? '#F97316' : 'rgba(255,255,255,0.3)',
                                         }}
                                     />
                                 ))}
@@ -295,77 +287,8 @@ const GPCSuccessHero = () => {
                     </div>
                 </div>
 
-                {/* --- BOTTOM STATS STRIP --- */}
-                {/* 
-                <div className="bg-[#2D1B69] py-6 md:py-8 w-full relative z-20 mt-auto">
-                    <div className="w-full max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-                        <div className="flex-1 text-white flex flex-col items-center">
-                            <h2 className="text-[32px] md:text-[38px] font-bold leading-none"><AnimatedCounter end={1200} suffix="+" /></h2>
-                            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-[#A78BFA] mt-1.5">CHAMPIONS</p>
-                        </div>
-                        <div className="w-px self-stretch bg-white/20" />
-                        <div className="flex-1 text-white flex flex-col items-center">
-                            <h2 className="text-[32px] md:text-[38px] font-bold leading-none"><AnimatedCounter end={94} suffix="%" /></h2>
-                            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-[#A78BFA] mt-1.5">PASS RATE</p>
-                        </div>
-                        <div className="w-px self-stretch bg-white/20" />
-                        <div className="flex-1 text-white flex flex-col items-center">
-                            <h2 className="text-[32px] md:text-[38px] font-bold leading-none"><AnimatedCounter end={38} suffix="+" /></h2>
-                            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-[#A78BFA] mt-1.5">COUNTRIES</p>
-                        </div>
-                        <div className="w-px self-stretch bg-white/20" />
-                        <div className="flex-1 text-white flex flex-col items-center">
-                            <h2 className="text-[32px] md:text-[38px] font-bold leading-none"><AnimatedCounter end={42} suffix="%" /></h2>
-                            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-[#A78BFA] mt-1.5">SALARY HIKE</p>
-                        </div>
-                    </div>
-                </div>
-                */}
-
             </div>
-
-            {/* ========================================================= */}
-            {/* 2. ORGANISATIONS MARQUEE (RUNNING EFFECT) */}
-            {/* ========================================================= */}
-            <div className="bg-[#F8F9FA] py-10 md:py-12 w-full overflow-hidden flex flex-col items-center relative z-10">
-                <p className="text-center text-[10px] md:text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8 md:mb-10">
-                    Our Alumni Now Work At World-Class Organisations
-                </p>
-
-                <div className="flex overflow-hidden relative w-full max-w-[1600px]">
-                    <style>{`
-                        @keyframes marquee-infinite {
-                            0% { transform: translateX(0%); }
-                            100% { transform: translateX(-50%); }
-                        }
-                        .animate-marquee-infinite {
-                            animation: marquee-infinite 35s linear infinite;
-                        }
-                        .animate-marquee-infinite:hover {
-                            animation-play-state: paused;
-                        }
-                    `}</style>
-                    <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#F8F9FA] to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#F8F9FA] to-transparent z-10 pointer-events-none" />
-
-                    <div className="flex whitespace-nowrap items-center gap-4 md:gap-6 px-4 animate-marquee-infinite">
-                        {[...alumniCompanies, ...alumniCompanies].map((company, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center justify-center min-w-[180px] md:min-w-[220px] h-[60px] md:h-[70px] bg-white border border-slate-200 shadow-[0_4px_12px_rgba(0,0,0,0.03)] rounded-xl md:rounded-2xl shrink-0 transition-shadow hover:shadow-[0_6px_16px_rgba(0,0,0,0.06)]"
-                            >
-                                <span className="text-[13px] md:text-[15px] font-bold text-slate-400 tracking-wider">
-                                    {company}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
+        </div >
     );
 };
 

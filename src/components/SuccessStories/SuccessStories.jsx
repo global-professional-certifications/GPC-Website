@@ -3,17 +3,13 @@ import { client } from "../../lib/sanity/client";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 
 import MetaTags from "../MetaTags";
-import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getReviewSchema, getAggregateRatingSchema } from "../Schema";
+import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getAggregateRatingSchema } from "../Schema";
 
-import  HeroSection  from "./HeroSection";
-import Testimonials from "./testimonials";
-import VideoVault from "./VideoVault";
-import WrittenStories from "./WrittenStories";
-import VoicesOfExcellence from "./VoicesOfExcellence";
-
-import { VideoWrittenStories } from "./VideoWrittenStories";
-import { SuccessTestimonials } from "./SuccessTestimonials";
-import { ExamTestimonials } from "./ExamTestimonials";
+// Consolidated Components
+import HeroSection from "./HeroSection";
+import WallOfExcellence from "./WallOfExcellence";
+import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
+import CompaniesShowcase from "../Companies/CompaniesShowcase";
 
 export default function SuccessStories() {
     // Dynamic courses from Sanity
@@ -55,7 +51,7 @@ export default function SuccessStories() {
     useEffect(() => {
         const fetchStories = async () => {
             try {
-                const query = `*[_type == "successStory"] | order(order asc) {
+                const query = `*[_type == "successStory"] | order(_createdAt desc) {
                     _id,
                     name,
                     company,
@@ -66,7 +62,9 @@ export default function SuccessStories() {
                     "courseName": course->name,
                     category,
                     "thumbnailUrl": thumbnail.asset->url,
-                    "videoUrl": video.asset->url
+                    "videoUrl": video.asset->url,
+                    "imageUrl": image.asset->url,
+                    "companyLogo": companyLogo.asset->url
                 }`;
                 const data = await client.fetch(query);
                 console.log("Fetched success stories:", data);
@@ -134,43 +132,30 @@ export default function SuccessStories() {
 
             <HeroSection />
 
-            <VideoVault />
+            {/* Companies */}
+            <section className="py-12 bg-gray-50">
+                <CompaniesShowcase
+                    titleStart="Our"
+                    highlightOne="Alumni"
+                    titleEnd="Works At"
+                />
+            </section>
+
+            <VideoVault 
+                allStories={allStories} 
+                courses={courses} 
+            />
 
             <WrittenStories />
 
-            <Testimonials 
-                courses={courses} 
-                activeCourse={activeCourse} 
-                setActiveCourse={setActiveCourse} 
-                stories={courseStories} 
+            <WallOfExcellence
+                courses={courses}
+                activeCourse={activeCourse}
+                setActiveCourse={setActiveCourse}
+                stories={courseStories}
             />
 
             <VoicesOfExcellence />
-
-            {/* Note: Video Vault sections are temporarily hidden as per user instructions
-            <VideoWrittenStories 
-                courses={courses} 
-                activeCourse={activeCourse} 
-                setActiveCourse={setActiveCourse} 
-                videoStories={videoStories} 
-                writtenStories={writtenStories} 
-                isMobile={isMobile} 
-            />
-
-            {imageStories.length > 0 && (
-                <>
-                    <div className="mx-auto text-center bg-gray-50 px-4 mt-8 md:mt-12">
-                        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-blue">
-                            What Our Students Say
-                        </h2>
-                    </div>
-                    <SuccessTestimonials stories={imageStories} start={0} end={8} activeCourse={activeCourse} />
-                    <SuccessTestimonials stories={imageStories} start={8} end={20} activeCourse={activeCourse} />
-                </>
-            )}
-
-            {activeCourse === 'cia' && <ExamTestimonials />}
-            */}
 
         </>
     );
