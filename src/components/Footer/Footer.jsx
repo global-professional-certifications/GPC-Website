@@ -9,7 +9,7 @@ import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-
 
 export default function Footer() {
     return (
-        <footer className="font-sans bg-black text-white pb-8 pt-12 transition-colors duration-300">
+        <footer className="font-sans bg-black text-white pb-16 pt-16 transition-colors duration-300">
             <div className="px-6 mx-auto max-w-7xl">
                 {/* GRID SECTION */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12">

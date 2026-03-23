@@ -67,13 +67,10 @@ const WallOfExcellence = ({ courses, activeCourse, setActiveCourse, stories }) =
             
             <div className="max-w-[1400px] mx-auto px-4 flex flex-col items-center relative z-10">
                 <div className="flex items-center gap-3 mb-5">
-                    <div className="h-[1.5px] w-10 bg-[#D4AF37]" />
-                    <span className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.2em]">Wall of Excellence</span>
-                    <div className="h-[1.5px] w-10 bg-[#D4AF37]" />
                 </div>
                 <h2 className="text-center text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                    Where Ambition Meets<br />
-                    <span className="text-brand-blue font-normal italic">Certification</span>
+                    Wall of <span className="text-brand-blue font-normal italic"> Excellence</span>
+                    
                 </h2>
                 <p className="text-center text-sm md:text-base text-gray-500 mb-10 max-w-lg">Real professionals. Real companies. Real results — across CIA, CISA, CMA & ACCA.</p>
                 <div className="inline-flex items-center p-1 rounded-full mb-12 overflow-x-auto max-w-full no-scrollbar" style={{ backgroundColor: '#E2E5EF' }}>
