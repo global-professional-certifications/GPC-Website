@@ -16,7 +16,7 @@ import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 export default function SuccessStories() {
     // Dynamic courses from Sanity
     const [courses, setCourses] = useState([]);
-    const [activeCourse, setActiveCourse] = useState(null);
+    const [activeCourse, setActiveCourse] = useState('all');
 
     // All stories from Sanity
     const [allStories, setAllStories] = useState([]);
@@ -43,7 +43,7 @@ export default function SuccessStories() {
         const fetchCourses = async () => {
             try {
                 // Get courses that have at least one testimonial
-                const query = `*[_type == "testimonialCourse" && isActive == true] | order(order asc) {
+                const query = `*[_type == "testimonialCourse" && isActive != false] | order(order asc) {
                     _id,
                     name,
                     fullName,
@@ -93,6 +93,8 @@ export default function SuccessStories() {
             } catch (error) {
                 console.error("Error fetching success stories:", error);
             } finally {
+                // We keep loading handled here, but wait for courses too if possible
+                // For now, let's just make sure it sets false
                 setLoading(false);
             }
         };
@@ -165,6 +167,14 @@ export default function SuccessStories() {
         bestRating: "5",
         worstRating: "1"
     });
+
+    if (loading && allStories.length === 0) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
+            </div>
+        );
+    }
 
     return (
         <>

@@ -186,16 +186,17 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
-    return courses
+    return (courses || [])
       .map(c => ({
         label: c.name,
-        slug: c.slug,
+        slug: c?.slug || '',
         count: allStories?.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          return storySlug === c.slug.toLowerCase().trim() && s.category === 'video';
+          const targetSlug = (c?.slug || '').toLowerCase().trim();
+          return storySlug === targetSlug && s.category === 'video';
         }).length || 0
       }))
-      .filter(tab => tab.count > 0); // Hide empty tabs
+      .filter(tab => tab.slug && tab.count > 0); // Hide empty or missing tabs
   }, [courses, allStories]);
 
   const [activeTab, setActiveTab] = useState(null);
@@ -204,8 +205,8 @@ export const VideoVault = ({ allStories, courses, settings }) => {
 
   // Set initial active tab
   useEffect(() => {
-    if (tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0].slug);
+    if (tabs && tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0]?.slug);
     }
   }, [tabs, activeTab]);
 
@@ -214,7 +215,7 @@ export const VideoVault = ({ allStories, courses, settings }) => {
     if (!allStories || !activeTab) return [];
     
     // Normalize and filter
-    const activeSlug = activeTab.toLowerCase().trim();
+    const activeSlug = (activeTab || '').toLowerCase().trim();
     const filtered = allStories
       .filter(s => {
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
@@ -429,13 +430,14 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
       .map(c => ({
         label: c.name,
         name: c.name,
-        slug: c.slug,
+        slug: c?.slug || '',
         count: writtenStories.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          return storySlug === c.slug.toLowerCase().trim();
+          const targetSlug = (c?.slug || '').toLowerCase().trim();
+          return storySlug === targetSlug;
         }).length || 0
       }))
-      .filter(tab => tab.count > 0); // Hide empty tabs
+      .filter(tab => tab.slug && tab.count > 0); // Hide empty tabs
 
     if (totalCount === 0) return [];
     return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }, ...courseTabs];
@@ -447,15 +449,15 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
 
   // Set initial active tab
   useEffect(() => {
-    if (tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0].slug);
+    if (tabs && tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0]?.slug);
     }
   }, [tabs, activeTab]);
 
   // Derived current written stories from Sanity
   const currentStories = useMemo(() => {
     if (!allStories || !activeTab) return [];
-    const activeSlug = activeTab.toLowerCase().trim();
+    const activeSlug = (activeTab || '').toLowerCase().trim();
     return allStories
       .filter(s => {
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
