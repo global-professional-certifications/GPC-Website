@@ -10,7 +10,6 @@ import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getAggregateRating
 import HeroSection from "./HeroSection";
 import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
-import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 
 
@@ -162,15 +161,6 @@ export default function SuccessStories() {
             />
 
             <HeroSection />
-
-            {/* Companies */}
-            <section className="py-12 bg-gray-50">
-                <CompaniesShowcase
-                    titleStart="Our"
-                    highlightOne="Alumni"
-                    titleEnd="Works At"
-                />
-            </section>
 
             <VideoVault
                 allStories={allStories}
