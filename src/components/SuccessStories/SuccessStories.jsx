@@ -10,26 +10,40 @@ import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getAggregateRating
 import HeroSection from "./HeroSection";
 import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
-import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 
 
 export default function SuccessStories() {
     // Dynamic courses from Sanity
     const [courses, setCourses] = useState([]);
-    const [activeCourse, setActiveCourse] = useState(null);
+    const [activeCourse, setActiveCourse] = useState('all');
 
     // All stories from Sanity
     const [allStories, setAllStories] = useState([]);
     const [wallOfExcellenceEntries, setWallOfExcellenceEntries] = useState([]);
+    const [pageSettings, setPageSettings] = useState(null);
     const [loading, setLoading] = useState(true);
+ 
+    // Fetch page settings (titles, subtitles)
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const query = `*[_type == "successPageSettings"][0]`;
+                const data = await client.fetch(query);
+                setPageSettings(data);
+            } catch (error) {
+                console.error("Error fetching page settings:", error);
+            }
+        };
+        fetchSettings();
+    }, []);
 
     // Fetch courses on mount - only courses that have at least one testimonial
     useEffect(() => {
         const fetchCourses = async () => {
             try {
                 // Get courses that have at least one testimonial
-                const query = `*[_type == "testimonialCourse" && isActive == true] | order(order asc) {
+                const query = `*[_type == "testimonialCourse" && isActive != false] | order(order asc) {
                     _id,
                     name,
                     fullName,
@@ -79,6 +93,8 @@ export default function SuccessStories() {
             } catch (error) {
                 console.error("Error fetching success stories:", error);
             } finally {
+                // We keep loading handled here, but wait for courses too if possible
+                // For now, let's just make sure it sets false
                 setLoading(false);
             }
         };
@@ -152,6 +168,14 @@ export default function SuccessStories() {
         worstRating: "1"
     });
 
+    if (loading && allStories.length === 0) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
+            </div>
+        );
+    }
+
     return (
         <>
             <SchemaMarkup schema={[breadcrumbSchema, webPageSchema, aggregateRatingSchema]} />
@@ -163,23 +187,16 @@ export default function SuccessStories() {
 
             <HeroSection />
 
-            {/* Companies */}
-            <section className="py-12 bg-gray-50">
-                <CompaniesShowcase
-                    titleStart="Our"
-                    highlightOne="Alumni"
-                    titleEnd="Works At"
-                />
-            </section>
-
             <VideoVault
                 allStories={allStories}
                 courses={courses}
+                settings={pageSettings}
             />
-
+ 
             <WrittenStories
                 allStories={allStories}
                 courses={courses}
+                settings={pageSettings}
             />
 
             <WallOfExcellence
