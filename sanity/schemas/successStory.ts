@@ -16,24 +16,28 @@ export default defineType({
       title: 'Company',
       type: 'string',
       description: 'E.g. Grant Thornton, Deloitte, EY',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'location',
       title: 'Location',
       type: 'string',
       description: 'City or Country — e.g. Bengaluru, Dubai',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'designation',
       title: 'Role / Designation',
       type: 'string',
       description: 'e.g. Internal Audit Specialist',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'batch',
       title: 'Batch',
       type: 'string',
       description: 'e.g. BATCH 2023-A',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'course',
@@ -56,16 +60,17 @@ export default defineType({
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
-      description: 'Select where this testimonial will appear on the Success Stories page.',
+      description: 'Select where this testimonial will appear.',
     }),
     defineField({
       name: 'image',
-      title: 'Student Photo',
+      title: 'Student Photo (Circular)',
       type: 'image',
       options: {
         hotspot: true,
       },
-      description: 'Used for the Wall of Excellence (Circular Photo).',
+      description: 'Used for the Wall of Excellence.',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'companyLogo',
@@ -75,32 +80,17 @@ export default defineType({
         hotspot: true,
       },
       description: 'Used for the Wall of Excellence cards.',
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
     defineField({
       name: 'thumbnail',
-      title: 'Thumbnail / Image',
+      title: 'Testimonial Image / Thumbnail',
       type: 'image',
       options: {
         hotspot: true,
       },
       validation: (Rule) => Rule.required(),
-      description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
-    }),
-    defineField({
-      name: 'quote',
-      title: 'Testimonial Quote',
-      type: 'text',
-      rows: 4,
-      description: 'The main testimonial quote — displayed on written testimonial cards.',
-      hidden: ({ document }) => document?.category !== 'written',
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Short Excerpt',
-      type: 'text',
-      rows: 2,
-      description: 'A short excerpt for the grid card preview (1-2 sentences).',
-      hidden: ({ document }) => document?.category !== 'written',
+      description: 'Upload the 1:1 image testimonial or the video thumbnail.',
     }),
     defineField({
       name: 'video',
@@ -109,14 +99,35 @@ export default defineType({
       options: {
         accept: 'video/*',
       },
-      description: 'Upload video for video/written testimonials',
-      hidden: ({ document }) => document?.category === 'image',
+      description: 'Upload video ONLY for Video Vault testimonials.',
+      hidden: ({ document }) => document?.category !== 'video',
+      validation: (Rule) => Rule.custom((value, context) => {
+        if (context.document?.category === 'video' && !value) {
+          return 'Video is required for video testimonials';
+        }
+        return true;
+      }),
+    }),
+    defineField({
+      name: 'quote',
+      title: 'Testimonial Quote',
+      type: 'text',
+      rows: 4,
+      hidden: true,
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Short Excerpt',
+      type: 'text',
+      rows: 2,
+      hidden: true,
     }),
     defineField({
       name: 'order',
       title: 'Order',
       type: 'number',
       initialValue: 0,
+      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
   ],
   orderings: [

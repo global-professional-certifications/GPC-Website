@@ -1,6 +1,13 @@
-// heroData.js
 import arpitSir from "../../assets/arpit-garg.png"
 import akshdeepSingh from "../../assets/akshdeep-singh.png"
+import wt1 from '../../assets/written-testimonial/1.png';
+import wt2 from '../../assets/written-testimonial/2.png';
+import wt3 from '../../assets/written-testimonial/3.png';
+import wt4 from '../../assets/written-testimonial/4.png';
+import wt5 from '../../assets/written-testimonial/5.png';
+import wt6 from '../../assets/written-testimonial/6.png';
+import wt7 from '../../assets/written-testimonial/7.png';
+import wt8 from '../../assets/written-testimonial/8.png';
 
 export const heroData = {
   title: {
@@ -239,41 +246,23 @@ export const writtenStoriesFeatured = {
 };
 
 export const writtenStoriesGrid = [
-  {
-    initials: 'WA', name: 'Wajiha Ansari', location: 'Manama, Bahrain',
-    avatarBg: 'linear-gradient(145deg, #0f2d4a 0%, #1a4068 100%)',
-    tag: 'CISA',
-    excerpt: 'Preparing from Bahrain while managing a demanding role… she shares her strategy for consistency.',
-    link: '#',
-  },
-  {
-    initials: 'VS', name: 'Vijay Singhal', location: 'Gurugram, India',
-    avatarBg: 'linear-gradient(145deg, #2d1b69 0%, #3b2080 100%)',
-    tag: 'Career Pivot',
-    excerpt: 'A career pivot from engineering to internal audit at 34 was daunting until the right mentorship.',
-    link: '#',
-  },
-  {
-    initials: 'SK', name: 'Simranjeet Kaur', location: 'Berlin, Germany',
-    avatarBg: 'linear-gradient(145deg, #0f2d4a 0%, #1a4068 100%)',
-    tag: 'CISA',
-    excerpt: 'Clearing CISA from Germany across time zones while managing her family life and new job.',
-    link: '#',
-  },
-  {
-    initials: 'AD', name: 'Ananya Das', location: 'KPMG · Delhi',
-    avatarBg: 'linear-gradient(145deg, #0a3d2e 0%, #145c44 100%)',
-    tag: 'CMA Cleared',
-    excerpt: 'How CMA became the catalyst for a major promotion at KPMG. Navigating complex financial modules was a challenge…',
-    link: '#',
-  },
-  {
-    initials: 'RJ', name: 'Rohan Joshi', location: 'Deloitte · Pune',
-    avatarBg: 'linear-gradient(145deg, #5a1a1a 0%, #7a2828 100%)',
-    tag: 'ACCA Cleared',
-    excerpt: 'The ACCA journey is a marathon, not a sprint. Here\'s how I managed to clear 4 papers in a single year at Deloitte.',
-    link: '#',
-  },
+  { _id: 'd1', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt1, category: 'written', courseSlug: 'cia' },
+  { _id: 'd2', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt2, category: 'written', courseSlug: 'cia' },
+  { _id: 'd3', name: 'GPC Candidate', courseName: 'CISA', thumbnailUrl: wt3, category: 'written', courseSlug: 'cisa' },
+  { _id: 'd4', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt4, category: 'written', courseSlug: 'cia' },
+  { _id: 'd5', name: 'GPC Candidate', courseName: 'CISA', thumbnailUrl: wt5, category: 'written', courseSlug: 'cisa' },
+  { _id: 'd6', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt6, category: 'written', courseSlug: 'cia' },
+  { _id: 'd7', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt7, category: 'written', courseSlug: 'cia' },
+  { _id: 'd8', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt8, category: 'written', courseSlug: 'cia' },
+  // Second set for density
+  { _id: 'd9', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt1, category: 'written', courseSlug: 'cia' },
+  { _id: 'd10', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt2, category: 'written', courseSlug: 'cia' },
+  { _id: 'd11', name: 'GPC Candidate', courseName: 'CISA', thumbnailUrl: wt3, category: 'written', courseSlug: 'cisa' },
+  { _id: 'd12', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt4, category: 'written', courseSlug: 'cia' },
+  { _id: 'd13', name: 'GPC Candidate', courseName: 'CISA', thumbnailUrl: wt5, category: 'written', courseSlug: 'cisa' },
+  { _id: 'd14', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt6, category: 'written', courseSlug: 'cia' },
+  { _id: 'd15', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt7, category: 'written', courseSlug: 'cia' },
+  { _id: 'd16', name: 'GPC Candidate', courseName: 'CIA', thumbnailUrl: wt8, category: 'written', courseSlug: 'cia' },
 ];
 
 export const heroStudents = [
