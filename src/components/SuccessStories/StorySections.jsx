@@ -182,7 +182,7 @@ const getInitials = (name) => {
   return name.substring(0, 2).toUpperCase();
 };
 
-export const VideoVault = ({ allStories, courses }) => {
+export const VideoVault = ({ allStories, courses, settings }) => {
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
@@ -261,16 +261,16 @@ export const VideoVault = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-  title="The Video"
-  highlight="Vault"
-  subtitle={
-    <>
-      Raw, unfiltered experiences from professionals who transformed their careers.
-      <br />
-      See how they mastered their certifications with GPC.
-    </>
-  }
-/>
+            title={settings?.videoVaultTitle || "The Video"}
+            highlight={settings?.videoVaultHighlight || "Vault"}
+            subtitle={settings?.videoVaultSubtitle || (
+              <>
+                Raw, unfiltered experiences from professionals who transformed their careers.
+                <br />
+                See how they mastered their certifications with GPC.
+              </>
+            )}
+          />
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -417,7 +417,7 @@ const WrittenGridCard = ({ story }) => (
   </div>
 );
 
-export const WrittenStories = ({ allStories, courses }) => {
+export const WrittenStories = ({ allStories, courses, settings }) => {
   // Build tabs from courses that have written testimonials
   const tabs = useMemo(() => {
     const writtenStories = allStories?.filter(s => s.category === 'written') || [];
@@ -490,15 +490,15 @@ export const WrittenStories = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-            title="Read their"
-            highlight="journey"
-            subtitle={
+            title={settings?.writtenStoriesTitle || "Read their"}
+            highlight={settings?.writtenStoriesHighlight || "journey"}
+            subtitle={settings?.writtenStoriesSubtitle || (
               <>
                 Raw, unfiltered experiences from professionals who transformed their careers.
                 <br />
                 See how they mastered their certifications with GPC.
               </>
-            }
+            )}
           />
         </div>
 

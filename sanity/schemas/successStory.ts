@@ -49,13 +49,14 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Video Testimonial', value: 'video' },
-          { title: 'Written Testimonial', value: 'written' },
-          { title: 'Image Testimonial', value: 'image' },
+          { title: 'Video Testimonial (Video Vault)', value: 'video' },
+          { title: 'Written Testimonial (Read Their Journey)', value: 'written' },
+          { title: 'Image Testimonial (Mobile Screenshots)', value: 'image' },
         ],
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
+      description: 'Select where this testimonial will appear on the Success Stories page.',
     }),
     defineField({
       name: 'image',

@@ -21,7 +21,22 @@ export default function SuccessStories() {
     // All stories from Sanity
     const [allStories, setAllStories] = useState([]);
     const [wallOfExcellenceEntries, setWallOfExcellenceEntries] = useState([]);
+    const [pageSettings, setPageSettings] = useState(null);
     const [loading, setLoading] = useState(true);
+ 
+    // Fetch page settings (titles, subtitles)
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const query = `*[_type == "successPageSettings"][0]`;
+                const data = await client.fetch(query);
+                setPageSettings(data);
+            } catch (error) {
+                console.error("Error fetching page settings:", error);
+            }
+        };
+        fetchSettings();
+    }, []);
 
     // Fetch courses on mount - only courses that have at least one testimonial
     useEffect(() => {
@@ -165,11 +180,13 @@ export default function SuccessStories() {
             <VideoVault
                 allStories={allStories}
                 courses={courses}
+                settings={pageSettings}
             />
-
+ 
             <WrittenStories
                 allStories={allStories}
                 courses={courses}
+                settings={pageSettings}
             />
 
             <WallOfExcellence

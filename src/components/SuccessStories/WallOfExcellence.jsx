@@ -139,7 +139,7 @@ const WallOfExcellence = ({ courses, activeCourse, setActiveCourse, stories, wal
                                                         <img
                                                             src={story.companyLogo}
                                                             alt={story.company}
-                                                            className="h-full max-w-[110px] object-contain transition-all duration-500 group-hover:scale-110"
+                                                            className="h-full max-w-[110px] object-contain transition-all duration-500"
                                                         />
                                                     ) : (
                                                         <span className="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase italic">
@@ -167,19 +167,10 @@ const WallOfExcellence = ({ courses, activeCourse, setActiveCourse, stories, wal
                                             {/* Certification Badge — Premium Redesign */}
                                             <div className="mt-auto w-full">
                                                 <div
-                                                    className="relative flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-2xl transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-md"
-                                                    style={{
-                                                        background: badge.bg,
-                                                        color: badge.text,
-                                                        boxShadow: `0 2px 12px ${badge.glow}`,
-                                                    }}
+                                                    className="relative flex items-center justify-center gap-1 w-full px-3 py-2.5 rounded-2xl transition-all duration-300 bg-brand-blue text-white group-hover:scale-[1.03] group-hover:shadow-md"
                                                 >
-                                                    <span className="text-sm leading-none">{badge.icon}</span>
-                                                    <span className="text-[11px] md:text-xs font-extrabold uppercase tracking-wider leading-none">
-                                                        {story.courseName || courseSlug.toUpperCase()}
-                                                    </span>
-                                                    <span className="text-[9px] font-bold uppercase tracking-widest opacity-70 leading-none">
-                                                        Cleared
+                                                    <span className="text-[12px] md:text-[13px] font-bold uppercase tracking-wider leading-none">
+                                                        {(story.courseName || courseSlug.toUpperCase())} Cleared
                                                     </span>
                                                 </div>
                                             </div>

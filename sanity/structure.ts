@@ -29,13 +29,15 @@ export const structure: StructureResolver = (S, context) => {
                         S.list()
                             .title('Success Stories')
                             .items([
-                                // Add New Course
+                                // ─── Page Settings ───
                                 S.listItem()
-                                    .title('Add New Course')
+                                    .title('Edit Section Titles')
+                                    .icon(() => '⚙️')
                                     .child(
-                                        S.documentTypeList('testimonialCourse')
-                                            .title('Manage Courses')
-                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                        S.document()
+                                            .schemaType('successPageSettings')
+                                            .documentId('successPageSettings')
+                                            .title('Edit Section Titles')
                                     ),
 
                                 S.divider(),
@@ -97,18 +99,27 @@ export const structure: StructureResolver = (S, context) => {
 
                                 S.divider(),
 
-                                // Dynamic Course Items (existing testimonials)
-                                ...courses.map((course: { _id: string; name: string }) =>
-                                    S.listItem()
-                                        .title(course.name)
-                                        .id(course._id)
-                                        .child(
-                                            S.list()
-                                                .title(course.name)
-                                                .items([
-                                                    // Video Testimonials
+                                // ─── Video Testimonials (Video Vault) ───
+                                S.listItem()
+                                    .title('Video Testimonials (Video Vault)')
+                                    .id('video-testimonials-category')
+                                    .child(
+                                        S.list()
+                                            .title('Video Testimonials by Course')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Courses')
+                                                    .child(
+                                                        S.documentTypeList('testimonialCourse')
+                                                            .title('Manage Courses')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                S.divider(),
+                                                ...courses.map((course: { _id: string; name: string }) =>
                                                     S.listItem()
-                                                        .title('Video Testimonials')
+                                                        .title(course.name)
+                                                        .id(`video-${course._id}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${course.name} - Video Testimonials`)
@@ -122,11 +133,32 @@ export const structure: StructureResolver = (S, context) => {
                                                                         category: 'video'
                                                                     })
                                                                 ])
-                                                        ),
+                                                        )
+                                                )
+                                            ])
+                                    ),
 
-                                                    // Written Testimonials
+                                // ─── Written Testimonials (Read Journey) ───
+                                S.listItem()
+                                    .title('Written Testimonials (Read Journey)')
+                                    .id('written-testimonials-category')
+                                    .child(
+                                        S.list()
+                                            .title('Written Testimonials by Course')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Courses')
+                                                    .child(
+                                                        S.documentTypeList('testimonialCourse')
+                                                            .title('Manage Courses')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                S.divider(),
+                                                ...courses.map((course: { _id: string; name: string }) =>
                                                     S.listItem()
-                                                        .title('Written Testimonials')
+                                                        .title(course.name)
+                                                        .id(`written-${course._id}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${course.name} - Written Testimonials`)
@@ -140,11 +172,32 @@ export const structure: StructureResolver = (S, context) => {
                                                                         category: 'written'
                                                                     })
                                                                 ])
-                                                        ),
+                                                        )
+                                                )
+                                            ])
+                                    ),
 
-                                                    // Mobile Screenshots
+                                // ─── Mobile Screenshots ───
+                                S.listItem()
+                                    .title('Mobile Screenshots')
+                                    .id('mobile-screenshots-category')
+                                    .child(
+                                        S.list()
+                                            .title('Mobile Screenshots by Course')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Courses')
+                                                    .child(
+                                                        S.documentTypeList('testimonialCourse')
+                                                            .title('Manage Courses')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                S.divider(),
+                                                ...courses.map((course: { _id: string; name: string }) =>
                                                     S.listItem()
-                                                        .title('Mobile Screenshots')
+                                                        .title(course.name)
+                                                        .id(`mobile-${course._id}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${course.name} - Mobile Screenshots`)
@@ -158,10 +211,10 @@ export const structure: StructureResolver = (S, context) => {
                                                                         category: 'image'
                                                                     })
                                                                 ])
-                                                        ),
-                                                ])
-                                        )
-                                ),
+                                                        )
+                                                )
+                                            ])
+                                    ),
                             ])
                     )
                 ),
