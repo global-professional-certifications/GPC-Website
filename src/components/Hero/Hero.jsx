@@ -42,8 +42,6 @@ const Hero = () => {
                         >
                             Explore Our Programs
                         </Link>
-                        <Link to>
-                        </Link>
                     </div>
                 </div>
 

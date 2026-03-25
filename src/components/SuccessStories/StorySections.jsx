@@ -182,20 +182,27 @@ const getInitials = (name) => {
   return name.substring(0, 2).toUpperCase();
 };
 
-export const VideoVault = ({ allStories, courses }) => {
+export const VideoVault = ({ allStories, courses, settings }) => {
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
-    return courses
+    
+    const courseTabs = (courses || [])
+      .filter(c => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video'))))
       .map(c => ({
         label: c.name,
-        slug: c.slug,
+        slug: c?.slug || '',
         count: allStories?.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          return storySlug === c.slug.toLowerCase().trim() && s.category === 'video';
+          const targetSlug = (c?.slug || '').toLowerCase().trim();
+          return storySlug === targetSlug && s.category === 'video';
         }).length || 0
       }))
-      .filter(tab => tab.count > 0); // Hide empty tabs
+      .filter(tab => tab.slug && tab.count > 0); // Hide empty or missing tabs
+
+    const totalVideoCount = allStories?.filter(s => s.category === 'video').length || 0;
+    if (totalVideoCount === 0) return [];
+    return [{ label: 'ALL', slug: 'all', count: totalVideoCount }, ...courseTabs];
   }, [courses, allStories]);
 
   const [activeTab, setActiveTab] = useState(null);
@@ -204,8 +211,8 @@ export const VideoVault = ({ allStories, courses }) => {
 
   // Set initial active tab
   useEffect(() => {
-    if (tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0].slug);
+    if (tabs && tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0]?.slug);
     }
   }, [tabs, activeTab]);
 
@@ -214,11 +221,13 @@ export const VideoVault = ({ allStories, courses }) => {
     if (!allStories || !activeTab) return [];
     
     // Normalize and filter
-    const activeSlug = activeTab.toLowerCase().trim();
+    const activeSlug = (activeTab || '').toLowerCase().trim();
     const filtered = allStories
       .filter(s => {
+        if (s.category !== 'video') return false;
+        if (activeSlug === 'all') return true;
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
-        return storySlug === activeSlug && s.category === 'video';
+        return storySlug === activeSlug;
       })
       .map(s => ({
         ...s,
@@ -261,16 +270,16 @@ export const VideoVault = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-  title="The Video"
-  highlight="Vault"
-  subtitle={
-    <>
-      Raw, unfiltered experiences from professionals who transformed their careers.
-      <br />
-      See how they mastered their certifications with GPC.
-    </>
-  }
-/>
+            title={settings?.videoVaultTitle || "The Video"}
+            highlight={settings?.videoVaultHighlight || "Vault"}
+            subtitle={settings?.videoVaultSubtitle || (
+              <>
+                Raw, unfiltered experiences from professionals who transformed their careers.
+                <br />
+                See how they mastered their certifications with GPC.
+              </>
+            )}
+          />
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -417,7 +426,7 @@ const WrittenGridCard = ({ story }) => (
   </div>
 );
 
-export const WrittenStories = ({ allStories, courses }) => {
+export const WrittenStories = ({ allStories, courses, settings }) => {
   // Build tabs from courses that have written testimonials
   const tabs = useMemo(() => {
     const writtenStories = allStories?.filter(s => s.category === 'written') || [];
@@ -425,17 +434,19 @@ export const WrittenStories = ({ allStories, courses }) => {
     
     if (!courses || courses.length === 0) return writtenStoriesTabs.filter(t => (writtenStoriesGrid.length > 0));
     
-    const courseTabs = courses
+    const courseTabs = (courses || [])
+      .filter(c => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written'))))
       .map(c => ({
         label: c.name,
         name: c.name,
-        slug: c.slug,
+        slug: c?.slug || '',
         count: writtenStories.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          return storySlug === c.slug.toLowerCase().trim();
+          const targetSlug = (c?.slug || '').toLowerCase().trim();
+          return storySlug === targetSlug;
         }).length || 0
       }))
-      .filter(tab => tab.count > 0); // Hide empty tabs
+      .filter(tab => tab.slug && tab.count > 0); // Hide empty tabs
 
     if (totalCount === 0) return [];
     return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }, ...courseTabs];
@@ -447,15 +458,15 @@ export const WrittenStories = ({ allStories, courses }) => {
 
   // Set initial active tab
   useEffect(() => {
-    if (tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0].slug);
+    if (tabs && tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0]?.slug);
     }
   }, [tabs, activeTab]);
 
   // Derived current written stories from Sanity
   const currentStories = useMemo(() => {
     if (!allStories || !activeTab) return [];
-    const activeSlug = activeTab.toLowerCase().trim();
+    const activeSlug = (activeTab || '').toLowerCase().trim();
     return allStories
       .filter(s => {
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
@@ -490,15 +501,15 @@ export const WrittenStories = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-            title="Read their"
-            highlight="journey"
-            subtitle={
+            title={settings?.writtenStoriesTitle || "Read their"}
+            highlight={settings?.writtenStoriesHighlight || "journey"}
+            subtitle={settings?.writtenStoriesSubtitle || (
               <>
                 Raw, unfiltered experiences from professionals who transformed their careers.
                 <br />
                 See how they mastered their certifications with GPC.
               </>
-            }
+            )}
           />
         </div>
 

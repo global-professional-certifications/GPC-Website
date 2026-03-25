@@ -16,24 +16,28 @@ export default defineType({
       title: 'Company',
       type: 'string',
       description: 'E.g. Grant Thornton, Deloitte, EY',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'location',
       title: 'Location',
       type: 'string',
       description: 'City or Country — e.g. Bengaluru, Dubai',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'designation',
       title: 'Role / Designation',
       type: 'string',
       description: 'e.g. Internal Audit Specialist',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'batch',
       title: 'Batch',
       type: 'string',
       description: 'e.g. BATCH 2023-A',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'course',
@@ -49,13 +53,14 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Video Testimonial', value: 'video' },
-          { title: 'Written Testimonial', value: 'written' },
-          { title: 'Image Testimonial', value: 'image' },
+          { title: 'Video Testimonial (Video Vault)', value: 'video' },
+          { title: 'Written Testimonial (Read Their Journey)', value: 'written' },
+          { title: 'Image Testimonial (Mobile Screenshots)', value: 'image' },
         ],
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
+      description: 'Select where this testimonial will appear on the Success Stories page.',
     }),
     defineField({
       name: 'image',
@@ -65,6 +70,7 @@ export default defineType({
         hotspot: true,
       },
       description: 'Used for the Wall of Excellence (Circular Photo).',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'companyLogo',
@@ -74,6 +80,7 @@ export default defineType({
         hotspot: true,
       },
       description: 'Used for the Wall of Excellence cards.',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'thumbnail',
@@ -91,7 +98,7 @@ export default defineType({
       type: 'text',
       rows: 4,
       description: 'The main testimonial quote — displayed on written testimonial cards.',
-      hidden: ({ document }) => document?.category !== 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
     }),
     defineField({
       name: 'excerpt',
@@ -99,7 +106,7 @@ export default defineType({
       type: 'text',
       rows: 2,
       description: 'A short excerpt for the grid card preview (1-2 sentences).',
-      hidden: ({ document }) => document?.category !== 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
     }),
     defineField({
       name: 'video',
