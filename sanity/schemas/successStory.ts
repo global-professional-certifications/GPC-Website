@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { CourseSelect } from '../components/CourseSelect'
 
 export default defineType({
   name: 'successStory',
@@ -45,7 +46,10 @@ export default defineType({
       type: 'reference',
       to: [{ type: 'testimonialCourse' }],
       validation: (Rule) => Rule.required(),
-      description: 'Select the course this testimonial belongs to',
+      description: 'Select the course this testimonial belongs to (Automatically filtered by category).',
+      components: {
+        input: CourseSelect
+      }
     }),
     defineField({
       name: 'category',
