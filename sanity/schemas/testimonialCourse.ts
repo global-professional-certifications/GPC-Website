@@ -43,17 +43,31 @@ export default defineType({
             initialValue: true,
             description: 'Only active courses show on frontend',
         }),
+        defineField({
+            name: 'category',
+            title: 'Course Section',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Video Testimonials (Video Vault)', value: 'video' },
+                    { title: 'Written Testimonials (Read Journey)', value: 'written' },
+                    { title: 'Mobile Screenshots', value: 'image' },
+                    { title: 'Wall of Excellence', value: 'wallOfExcellence' },
+                ],
+            },
+            description: 'This uniquely defines which section this course tab belongs to.',
+        }),
     ],
     preview: {
         select: {
             title: 'name',
-            subtitle: 'fullName',
             isActive: 'isActive',
+            category: 'category',
         },
-        prepare({ title, subtitle, isActive }) {
+        prepare({ title, isActive, category }) {
             return {
-                title: isActive ? title : `${title} (inactive)`,
-                subtitle: subtitle || '',
+                title,
+                subtitle: `${category ? `[${category.toUpperCase()}] ` : ''}${isActive ? 'Active' : 'Inactive'}`,
             }
         },
     },
