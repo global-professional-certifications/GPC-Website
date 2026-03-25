@@ -110,6 +110,20 @@ export const structure: StructureResolver = (S, context) => {
                                                                 ])
                                                         )
                                                 ),
+                                                
+                                                S.divider(),
+
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('wall-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Wall Entries')
+                                                            .schemaType('wallOfExcellence')
+                                                            .filter('_type == "wallOfExcellence" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
                                             ])
                                     ),
 
@@ -137,6 +151,17 @@ export const structure: StructureResolver = (S, context) => {
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                                 S.divider(),
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('video-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Video Testimonials')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "video" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
                                                 ...courses.filter((c: any) => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
@@ -181,6 +206,17 @@ export const structure: StructureResolver = (S, context) => {
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                                 S.divider(),
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('written-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Written Testimonials')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "written" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
                                                 ...courses.filter((c: any) => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
@@ -209,7 +245,7 @@ export const structure: StructureResolver = (S, context) => {
                                     .id('mobile-screenshots-category')
                                     .child(
                                         S.list()
-                                            .title('Mobile Screenshots by Course')
+                                            .title('Mobile Screenshots')
                                             .items([
                                                 // Add New Course shortcut
                                                 S.listItem()
@@ -224,26 +260,35 @@ export const structure: StructureResolver = (S, context) => {
                                                             ])
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
+                                                
                                                 S.divider(),
-                                                ...courses.filter((c: any) => c.category === 'image' || (!c.category && (!c.sections || c.sections.includes('image')))).map((course: { _id: string; name: string }) =>
-                                                    S.listItem()
-                                                        .title(course.name)
-                                                        .id(`mobile-${course._id}`)
-                                                        .child(
-                                                            S.documentList()
-                                                                .title(`${course.name} - Mobile Screenshots`)
-                                                                .schemaType('successStory')
-                                                                .filter('_type == "successStory" && course._ref == $courseId && category == "image"')
-                                                                .params({ courseId: course._id })
-                                                                .defaultOrdering([{ field: 'order', direction: 'asc' }])
-                                                                .initialValueTemplates([
-                                                                    S.initialValueTemplateItem('successStory-with-course-and-category', {
-                                                                        courseId: course._id,
-                                                                        category: 'image'
-                                                                    })
-                                                                ])
-                                                        )
-                                                )
+
+                                                // All Entries
+                                                S.listItem()
+                                                    .title('All Mobile Screenshots')
+                                                    .id('mobile-all')
+                                                    .schemaType('successStory')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('All Mobile Screenshots')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "image"')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('image-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Mobile Screenshots')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "image" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
                                             ])
                                     ),
                             ])

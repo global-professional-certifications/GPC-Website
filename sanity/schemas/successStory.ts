@@ -45,7 +45,12 @@ export default defineType({
       title: 'Course',
       type: 'reference',
       to: [{ type: 'testimonialCourse' }],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.custom((value, context) => {
+        if (['video', 'written'].includes(context.document?.category as string) && !value) {
+          return 'Course is required for Video and Written testimonials'
+        }
+        return true
+      }),
       description: 'Select the course this testimonial belongs to (Automatically filtered by category).',
       components: {
         input: CourseSelect
@@ -102,7 +107,7 @@ export default defineType({
       type: 'text',
       rows: 4,
       description: 'The main testimonial quote — displayed on written testimonial cards.',
-      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
+      hidden: ({ document }) => ['image', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'excerpt',
@@ -110,7 +115,7 @@ export default defineType({
       type: 'text',
       rows: 2,
       description: 'A short excerpt for the grid card preview (1-2 sentences).',
-      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
+      hidden: ({ document }) => ['image', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'video',

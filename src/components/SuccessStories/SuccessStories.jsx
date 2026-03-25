@@ -10,7 +10,10 @@ import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getAggregateRating
 import HeroSection from "./HeroSection";
 import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
+import MobileGallery from "./MobileGallery";
+
+import testimonialCover from "../../assets/home/testimonial-cover.webp";
+
 
 
 export default function SuccessStories() {
@@ -23,7 +26,7 @@ export default function SuccessStories() {
     const [wallOfExcellenceEntries, setWallOfExcellenceEntries] = useState([]);
     const [pageSettings, setPageSettings] = useState(null);
     const [loading, setLoading] = useState(true);
- 
+
     // Fetch page settings (titles, subtitles)
     useEffect(() => {
         const fetchSettings = async () => {
@@ -134,10 +137,10 @@ export default function SuccessStories() {
         return allStories.filter(story => story.courseSlug === activeCourse);
     }, [allStories, activeCourse]);
 
-    // Derived filtered data
-    const videoStories = useMemo(() => courseStories.filter(s => s.category === 'video'), [courseStories]);
-    const writtenStories = useMemo(() => courseStories.filter(s => s.category === 'written'), [courseStories]);
-    const imageStories = useMemo(() => courseStories.filter(s => s.category === 'image'), [courseStories]);
+    // Derived filtered data straight from allStories (prevents filtering bug if activeCourse changes)
+    const videoStories = useMemo(() => allStories.filter(s => s.category === 'video'), [allStories]);
+    const writtenStories = useMemo(() => allStories.filter(s => s.category === 'written'), [allStories]);
+    const imageStories = useMemo(() => allStories.filter(s => s.category === 'image').slice(0, 4), [allStories]);
 
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
@@ -194,7 +197,7 @@ export default function SuccessStories() {
                 courses={courses}
                 settings={pageSettings}
             />
- 
+
             <WrittenStories
                 allStories={allStories}
                 courses={courses}
@@ -202,16 +205,42 @@ export default function SuccessStories() {
             />
 
             <WallOfExcellence
-                courses={courses}
-                activeCourse={activeCourse}
-                setActiveCourse={setActiveCourse}
-                stories={courseStories}
+                stories={allStories}
                 wallEntries={wallOfExcellenceEntries}
             />
 
-            <section className="pb-32 bg-gray-50">
-                {/* Testimonials Section */}
-                <TestimonialsShowcase />
+            {/* Whatsapp Message Showcase */}
+            <section className="bg-gray-50 pb-24 md:pb-64 overflow-hidden">
+
+                {/* People Image Display & Headings */}
+                <div className="w-full max-w-[1280px] mx-auto pt-16 px-4 md:px-8 flex flex-col items-center">
+
+                    {/* Centered Cover Image */}
+                    <img
+                        src={testimonialCover}
+                        alt="Testimonial Cover"
+                        className="w-full max-w-[1200px] h-auto object-contain mx-auto mb-8 md:mb-12"
+                    />
+
+                    {/* Section Headings */}
+                    <div className="flex flex-col gap-2 justify-center items-center mb-8 md:mb-12 w-full">
+                        <h2 className="text-2xl md:text-4xl text-center font-bold">
+                            What Our{" "}
+                            <span className="text-brand-blue font-normal italic">Learners </span>
+                            Say
+                        </h2>
+                        <p className="text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl md:max-w-2xl lg:max-w-2xl text-center text-gray-600 mt-4 md:mt-6 px-4 md:px-0">
+                            Discover how Global Professional Certifications' expert-led programs
+                            empower professionals to achieve global certification and career
+                            growth
+                        </p>
+                    </div>
+
+                </div>
+
+                {/* Mobile Gallery Grid */}
+                <MobileGallery images={imageStories} />
+
             </section>
 
             {/* Radial Gradient Banner */}

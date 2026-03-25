@@ -156,17 +156,6 @@ const VideoModal = ({ video, onClose }) => {
           </div>
         )}
 
-        {/* Info Overlay (Visible on Hover/Always depending on state) */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 pt-20 bg-gradient-to-t from-black via-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          <h3 className="text-white text-xl md:text-2xl font-bold mb-1">{video.name}</h3>
-          <p className="text-[#D1A639] text-xs md:text-sm font-extrabold uppercase tracking-widest">
-            {video.role || video.designation || 'Professional'}
-          </p>
-          {video.company && (
-            <p className="text-white/60 text-xs mt-1">{video.company}</p>
-          )}
-          {video.quote && <p className="text-white/70 text-sm mt-3 leading-relaxed italic line-clamp-2">"{video.quote}"</p>}
-        </div>
       </div>
 
       {/* Background Click to Close */}
