@@ -16,28 +16,28 @@ export default defineType({
       title: 'Company',
       type: 'string',
       description: 'E.g. Grant Thornton, Deloitte, EY',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'location',
       title: 'Location',
       type: 'string',
       description: 'City or Country — e.g. Bengaluru, Dubai',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'designation',
       title: 'Role / Designation',
       type: 'string',
       description: 'e.g. Internal Audit Specialist',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'batch',
       title: 'Batch',
       type: 'string',
       description: 'e.g. BATCH 2023-A',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'course',
@@ -60,17 +60,17 @@ export default defineType({
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
-      description: 'Select where this testimonial will appear.',
+      description: 'Select where this testimonial will appear on the Success Stories page.',
     }),
     defineField({
       name: 'image',
-      title: 'Student Photo (Circular)',
+      title: 'Student Photo',
       type: 'image',
       options: {
         hotspot: true,
       },
-      description: 'Used for the Wall of Excellence.',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      description: 'Used for the Wall of Excellence (Circular Photo).',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'companyLogo',
@@ -80,17 +80,33 @@ export default defineType({
         hotspot: true,
       },
       description: 'Used for the Wall of Excellence cards.',
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string),
     }),
     defineField({
       name: 'thumbnail',
-      title: 'Testimonial Image / Thumbnail',
+      title: 'Thumbnail / Image',
       type: 'image',
       options: {
         hotspot: true,
       },
       validation: (Rule) => Rule.required(),
-      description: 'Upload the 1:1 image testimonial or the video thumbnail.',
+      description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
+    }),
+    defineField({
+      name: 'quote',
+      title: 'Testimonial Quote',
+      type: 'text',
+      rows: 4,
+      description: 'The main testimonial quote — displayed on written testimonial cards.',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Short Excerpt',
+      type: 'text',
+      rows: 2,
+      description: 'A short excerpt for the grid card preview (1-2 sentences).',
+      hidden: ({ document }) => ['video', 'written'].includes(document?.category as string), // Hide for both video and written now
     }),
     defineField({
       name: 'video',
@@ -99,35 +115,14 @@ export default defineType({
       options: {
         accept: 'video/*',
       },
-      description: 'Upload video ONLY for Video Vault testimonials.',
-      hidden: ({ document }) => document?.category !== 'video',
-      validation: (Rule) => Rule.custom((value, context) => {
-        if (context.document?.category === 'video' && !value) {
-          return 'Video is required for video testimonials';
-        }
-        return true;
-      }),
-    }),
-    defineField({
-      name: 'quote',
-      title: 'Testimonial Quote',
-      type: 'text',
-      rows: 4,
-      hidden: true,
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Short Excerpt',
-      type: 'text',
-      rows: 2,
-      hidden: true,
+      description: 'Upload video for video/written testimonials',
+      hidden: ({ document }) => document?.category === 'image',
     }),
     defineField({
       name: 'order',
       title: 'Order',
       type: 'number',
       initialValue: 0,
-      hidden: ({ document }) => document?.category === 'video' || document?.category === 'written',
     }),
   ],
   orderings: [

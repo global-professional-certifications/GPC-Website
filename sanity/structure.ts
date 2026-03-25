@@ -25,7 +25,7 @@ export const structure: StructureResolver = (S, context) => {
             S.listItem()
                 .title('Success Stories')
                 .child(() =>
-                    client.fetch(`*[_type == "testimonialCourse"] | order(order asc) { _id, name }`).then((courses) =>
+                    client.fetch(`*[_type == "testimonialCourse"] | order(order asc) { _id, name, sections, category }`).then((courses) =>
                         S.list()
                             .title('Success Stories')
                             .items([
@@ -50,6 +50,22 @@ export const structure: StructureResolver = (S, context) => {
                                         S.list()
                                             .title('Wall of Excellence')
                                             .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Wall Courses')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Manage Wall Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "wallOfExcellence"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-wall')
+                                                            ])
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
                                                 // + Add New Entry (all courses)
                                                 S.listItem()
                                                     .title('+ Add New Entry')
@@ -76,7 +92,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 S.divider(),
 
                                                 // Course-wise sub-sections
-                                                ...courses.map((course: { _id: string; name: string }) =>
+                                                ...courses.filter((c: any) => c.category === 'wallOfExcellence' || (!c.category && (!c.sections || c.sections.includes('wallOfExcellence')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
                                                         .id(`wall-${course._id}`)
@@ -109,14 +125,19 @@ export const structure: StructureResolver = (S, context) => {
                                             .items([
                                                 // Add New Course shortcut
                                                 S.listItem()
-                                                    .title('+ Add/Manage Courses')
+                                                    .title('+ Add/Manage Video Courses')
                                                     .child(
-                                                        S.documentTypeList('testimonialCourse')
-                                                            .title('Manage Courses')
+                                                        S.documentList()
+                                                            .title('Manage Video Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "video"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-video')
+                                                            ])
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                                 S.divider(),
-                                                ...courses.map((course: { _id: string; name: string }) =>
+                                                ...courses.filter((c: any) => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
                                                         .id(`video-${course._id}`)
@@ -148,14 +169,19 @@ export const structure: StructureResolver = (S, context) => {
                                             .items([
                                                 // Add New Course shortcut
                                                 S.listItem()
-                                                    .title('+ Add/Manage Courses')
+                                                    .title('+ Add/Manage Written Courses')
                                                     .child(
-                                                        S.documentTypeList('testimonialCourse')
-                                                            .title('Manage Courses')
+                                                        S.documentList()
+                                                            .title('Manage Written Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "written"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-written')
+                                                            ])
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                                 S.divider(),
-                                                ...courses.map((course: { _id: string; name: string }) =>
+                                                ...courses.filter((c: any) => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
                                                         .id(`written-${course._id}`)
@@ -187,14 +213,19 @@ export const structure: StructureResolver = (S, context) => {
                                             .items([
                                                 // Add New Course shortcut
                                                 S.listItem()
-                                                    .title('+ Add/Manage Courses')
+                                                    .title('+ Add/Manage Mobile Courses')
                                                     .child(
-                                                        S.documentTypeList('testimonialCourse')
-                                                            .title('Manage Courses')
+                                                        S.documentList()
+                                                            .title('Manage Mobile Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "image"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-image')
+                                                            ])
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                                 S.divider(),
-                                                ...courses.map((course: { _id: string; name: string }) =>
+                                                ...courses.filter((c: any) => c.category === 'image' || (!c.category && (!c.sections || c.sections.includes('image')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
                                                         .id(`mobile-${course._id}`)

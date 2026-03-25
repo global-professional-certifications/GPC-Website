@@ -186,7 +186,9 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
-    return (courses || [])
+    
+    const courseTabs = (courses || [])
+      .filter(c => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video'))))
       .map(c => ({
         label: c.name,
         slug: c?.slug || '',
@@ -197,6 +199,10 @@ export const VideoVault = ({ allStories, courses, settings }) => {
         }).length || 0
       }))
       .filter(tab => tab.slug && tab.count > 0); // Hide empty or missing tabs
+
+    const totalVideoCount = allStories?.filter(s => s.category === 'video').length || 0;
+    if (totalVideoCount === 0) return [];
+    return [{ label: 'ALL', slug: 'all', count: totalVideoCount }, ...courseTabs];
   }, [courses, allStories]);
 
   const [activeTab, setActiveTab] = useState(null);
@@ -218,8 +224,10 @@ export const VideoVault = ({ allStories, courses, settings }) => {
     const activeSlug = (activeTab || '').toLowerCase().trim();
     const filtered = allStories
       .filter(s => {
+        if (s.category !== 'video') return false;
+        if (activeSlug === 'all') return true;
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
-        return storySlug === activeSlug && s.category === 'video';
+        return storySlug === activeSlug;
       })
       .map(s => ({
         ...s,
@@ -397,142 +405,56 @@ const WrittenFeaturedCard = ({ story }) => (
   </div>
 );
 
-const ImageTestimonialCard = ({ story, index, onClick }) => {
-  // Logic to determine card size for a beautiful 6-column asymmetric grid
-  const getSpanClass = (i) => {
-    const mod = i % 12;
-    if (mod === 0) return 'lg:col-span-2 lg:row-span-2 shadow-lg'; // Large square
-    if (mod === 5) return 'lg:col-span-2 lg:row-span-2 shadow-lg'; // Another large square staggered
-    if (mod === 8) return 'lg:col-span-1 lg:row-span-2 shadow-md'; // Tall rectangle
-    return 'lg:col-span-1 lg:row-span-1 shadow-sm'; // Standard small square
-  };
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      whileHover={{ 
-        y: -10, 
-        scale: 1.03,
-        transition: { duration: 0.3 } 
-      }}
-      onClick={() => onClick(index)}
-      className={`relative cursor-pointer group overflow-hidden rounded-2xl bg-gray-50 transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-200/40 ${getSpanClass(index)}`}
-    >
-      <img
-        src={story.thumbnailUrl || "/api/placeholder/400/400"}
-        alt={story.name}
-        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-      />
-      {/* Premium subtle inner shadow on hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </motion.div>
-  );
-};
-
-const ImageModal = ({ isOpen, stories, currentIndex, onClose, onPrev, onNext }) => {
-  if (!isOpen || !stories || stories.length === 0) return null;
-
-  const current = stories[currentIndex];
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/80 backdrop-blur-md"
-        onClick={onClose}
-      >
-        {/* Close Button UI - Premium */}
-        <button
-          onClick={onClose}
-          className="absolute top-6 right-6 text-white/60 hover:text-white transition-all z-[110] p-3 bg-white/10 rounded-full border border-white/20 backdrop-blur-lg hover:rotate-90"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* Navigation - Better Visuals */}
-        <button
-          onClick={(e) => { e.stopPropagation(); onPrev(); }}
-          className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all z-[110] border border-white/10 backdrop-blur-md group"
-        >
-          <svg className="w-8 h-8 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        <button
-          onClick={(e) => { e.stopPropagation(); onNext(); }}
-          className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all z-[110] border border-white/10 backdrop-blur-md group"
-        >
-          <svg className="w-8 h-8 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          className="relative max-w-xl w-full aspect-square bg-black rounded-3xl overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-white/10"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <img
-            src={current.thumbnailUrl}
-            alt={current.name}
-            className="w-full h-full object-cover"
-          />
-          {/* Minimal Elegant Info Bar */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 pt-16 bg-gradient-to-t from-black via-black/60 to-transparent text-white">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="h-0.5 w-8 bg-brand-blue" />
-              <p className="text-brand-blue font-bold text-[10px] uppercase tracking-[0.3em]">Success Journey</p>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold font-outfit">{current.name}</h3>
-            <p className="text-white/60 font-poppins text-sm mt-1">{current.courseName || 'GPC Alumni'}</p>
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+const WrittenGridCard = ({ story }) => (
+  <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col transition-all hover:shadow-md group">
+    <div className="p-6 flex flex-col h-full">
+      <div className="flex items-center gap-4 mb-6">
+        <Avatar initials={story.initials} bg={story.avatarBg} size="md" />
+        <div>
+          <h4 className="text-gray-900 font-bold text-base leading-tight">{story.name}</h4>
+          <p className="text-gray-500 text-xs font-poppins">{story.location}</p>
+        </div>
+      </div>
+      <div className="mb-6 flex-grow">
+        <p className="text-[10px] font-bold text-brand-blue uppercase tracking-widest mb-2">{story.tag}</p>
+        <p className="text-gray-600 text-sm leading-relaxed font-poppins line-clamp-3">{story.excerpt}</p>
+      </div>
+      <a href={story.link} className="text-brand-blue text-sm font-bold flex items-center gap-2 mt-auto border-t border-gray-50 pt-4 hover:opacity-80 transition-opacity">
+        Read journey <span>→</span>
+      </a>
+    </div>
+  </div>
+);
 
 export const WrittenStories = ({ allStories, courses, settings }) => {
-  // Use dummy data directly for testing as requested
-  const targetStories = writtenStoriesGrid;
-
   // Build tabs from courses that have written testimonials
   const tabs = useMemo(() => {
-    const totalCount = targetStories.length;
-
-    if (!courses || courses.length === 0) return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }];
-
-    const courseTabs = courses
+    const writtenStories = allStories?.filter(s => s.category === 'written') || [];
+    const totalCount = writtenStories.length;
+    
+    if (!courses || courses.length === 0) return writtenStoriesTabs.filter(t => (writtenStoriesGrid.length > 0));
+    
+    const courseTabs = (courses || [])
+      .filter(c => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written'))))
       .map(c => ({
         label: c.name,
         name: c.name,
         slug: c?.slug || '',
-        count: targetStories.filter(s => {
+        count: writtenStories.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
           const targetSlug = (c?.slug || '').toLowerCase().trim();
           return storySlug === targetSlug;
         }).length || 0
       }))
-      .filter(tab => tab.slug && tab.count > 0);
+      .filter(tab => tab.slug && tab.count > 0); // Hide empty tabs
 
     if (totalCount === 0) return [];
     return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }, ...courseTabs];
-  }, [courses, targetStories]);
+  }, [courses, allStories]);
 
   const [activeTab, setActiveTab] = useState(null);
-  const [modalIndex, setModalIndex] = useState(-1);
-  const [visibleLimit, setVisibleLimit] = useState(18);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [visibleLimit, setVisibleLimit] = useState(8);
 
   // Set initial active tab
   useEffect(() => {
@@ -541,114 +463,129 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
     }
   }, [tabs, activeTab]);
 
-  // Derived current written stories
+  // Derived current written stories from Sanity
   const currentStories = useMemo(() => {
-    if (!activeTab) return [];
+    if (!allStories || !activeTab) return [];
     const activeSlug = (activeTab || '').toLowerCase().trim();
-    return targetStories
+    return allStories
       .filter(s => {
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
-        return (activeSlug === 'all' || storySlug === activeSlug);
-      });
-  }, [targetStories, activeTab]);
+        return (activeSlug === 'all' || storySlug === activeSlug) && s.category === 'written';
+      })
+      .map(s => ({
+        ...s,
+        initials: getInitials(s.name),
+      }));
+  }, [allStories, activeTab]);
 
   // Reset pagination when tab changes
   useEffect(() => {
-    setVisibleLimit(18);
+    setVisibleLimit(8);
   }, [activeTab]);
 
-  const displayedStories = currentStories.slice(0, visibleLimit);
+  // Handle fallback to dummy data if no Sanity data
+  const isSanityData = currentStories.length > 0;
+  const displayHero = isSanityData ? currentStories[0] : writtenStoriesFeatured;
+  const displayGridAll = isSanityData ? currentStories.slice(1) : writtenStoriesGrid;
 
-  const handlePrev = () => {
-    setModalIndex(prev => (prev > 0 ? prev - 1 : currentStories.length - 1));
-  };
+  const first8Grid = useMemo(() => displayGridAll.slice(0, 8), [displayGridAll]);
+  const extraGridVisible = useMemo(() => displayGridAll.slice(8, 8 + (visibleLimit - 8)), [displayGridAll, visibleLimit]);
 
-  const handleNext = () => {
-    setModalIndex(prev => (prev < currentStories.length - 1 ? prev + 1 : 0));
+  const handleCardClick = (story) => {
+    // Both VideoVault and WrittenStories can open videos if available
+    setSelectedVideo(story);
   };
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 md:px-10 bg-[#FAF9F6] relative overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
-      <div className="max-w-[1600px] mx-auto relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 px-2">
+    <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-gray-50 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
             title={settings?.writtenStoriesTitle || "Read their"}
             highlight={settings?.writtenStoriesHighlight || "journey"}
             subtitle={settings?.writtenStoriesSubtitle || (
               <>
-                Unfiltered experiences from professionals who transformed their careers.
-                <br className="hidden md:block" />
-                Witness the impact of structured mentoring and dedication.
+                Raw, unfiltered experiences from professionals who transformed their careers.
+                <br />
+                See how they mastered their certifications with GPC.
               </>
             )}
           />
-          <div className="hidden lg:flex items-center gap-3 text-brand-blue/40 font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-            <span className="h-px w-12 bg-brand-blue/20" />
-            Bento Grid Gallery
+        </div>
+
+        {/* Course Tabs */}
+        <div className="relative border-b border-gray-100 mb-10">
+          <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
+            {tabs.map(tab => (
+              <button
+                key={tab.slug}
+                onClick={() => setActiveTab(tab.slug)}
+                className="pb-4 text-[13px] transition-colors relative whitespace-nowrap uppercase tracking-widest font-bold"
+                style={{ color: activeTab === tab.slug ? '#111827' : '#6B7280' }}
+              >
+                {tab.name || tab.label}
+                <span className="ml-2 font-medium opacity-60">· {tab.count}</span>
+                {activeTab === tab.slug && <span className="absolute -bottom-[1px] left-0 right-0 h-[3px] bg-brand-blue" />}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Course Tabs - Glassmorphism style */}
-        <div className="flex gap-4 md:gap-8 overflow-x-auto pb-6 no-scrollbar mb-12 border-b border-gray-100">
-          {tabs.map(tab => (
+        {/* Hero + Grid Layout (Duplicate of VideoVault) */}
+        <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start">
+          {/* Featured Hero Card */}
+          <div className="hidden lg:block lg:col-span-2 lg:row-span-2 h-full">
+            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
+          </div>
+
+          {/* First 8 Grid Cards */}
+          {first8Grid.map((story, i) => (
+            <div key={story._id || i} className="hidden lg:block lg:col-span-1 h-full">
+              <VideoGridCard video={story} index={i} onClick={handleCardClick} />
+            </div>
+          ))}
+
+          {/* Load More Grid Cards */}
+          <AnimatePresence>
+            {extraGridVisible.map((story, i) => (
+              <motion.div
+                key={story._id || `extra-${i}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="hidden lg:block lg:col-span-1 h-full"
+              >
+                <VideoGridCard video={story} index={i + 8} onClick={handleCardClick} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {/* Mobile Layout */}
+          <div className="col-span-2 grid grid-cols-2 gap-4 lg:hidden">
+            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
+            {displayGridAll.map((story, i) => (
+              <VideoGridCard key={story._id || i} video={story} index={i} onClick={handleCardClick} />
+            ))}
+          </div>
+        </div>
+
+        {/* View More Button */}
+        {displayGridAll.length > visibleLimit && (
+          <div className="mt-16 flex justify-center">
             <button
-              key={tab.slug}
-              onClick={() => setActiveTab(tab.slug)}
-              className="group relative pb-2 text-[13px] transition-all whitespace-nowrap uppercase tracking-widest font-bold flex items-center gap-2"
-              style={{ color: activeTab === tab.slug ? '#111827' : '#9CA3AF' }}
+              onClick={() => setVisibleLimit(prev => prev + 6)}
+              className="group relative px-10 py-4 bg-brand-blue text-white rounded-full font-bold overflow-hidden shadow-xl hover:shadow-brand-blue/40 transition-all active:scale-95"
             >
-              {tab.name || tab.label}
-              <span className={`px-2 py-0.5 rounded-full text-[10px] border transition-all ${activeTab === tab.slug ? 'bg-brand-blue text-white border-brand-blue' : 'bg-transparent text-gray-400 border-gray-200 group-hover:border-gray-300'}`}>
-                {tab.count}
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span className="relative flex items-center gap-2">
+                VIEW MORE STORIES <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
               </span>
-              {activeTab === tab.slug && (
-                <motion.span 
-                  layoutId="activeTabUnderline"
-                  className="absolute -bottom-[1px] left-0 right-10 h-[2px] bg-brand-blue" 
-                />
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* High-Density Asymmetric Image Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 lg:gap-5 grid-flow-dense auto-rows-[minmax(150px,auto)]">
-          {displayedStories.map((story, i) => (
-            <ImageTestimonialCard
-              key={story._id || i}
-              story={story}
-              index={i}
-              onClick={(index) => setModalIndex(index)}
-            />
-          ))}
-        </div>
-
-        {/* View More Button - Premium Minimalist */}
-        {currentStories.length > visibleLimit && (
-          <div className="mt-24 flex justify-center">
-            <button
-              onClick={() => setVisibleLimit(prev => prev + 18)}
-              className="group relative px-12 py-5 bg-white text-gray-900 border border-gray-200 rounded-full font-bold tracking-widest text-xs overflow-hidden transition-all hover:border-brand-blue hover:text-brand-blue shadow-sm hover:shadow-xl active:scale-95"
-            >
-              <span className="relative z-10">LOAD MORE SUCCESS JOURNEYS</span>
-              <div className="absolute inset-0 bg-brand-blue/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </button>
           </div>
         )}
 
-        {/* Modal Viewer */}
-        <ImageModal
-          isOpen={modalIndex >= 0}
-          stories={currentStories}
-          currentIndex={modalIndex}
-          onClose={() => setModalIndex(-1)}
-          onPrev={handlePrev}
-          onNext={handleNext}
-        />
+        {/* Video Modal */}
+        <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
       </div>
     </section>
   );

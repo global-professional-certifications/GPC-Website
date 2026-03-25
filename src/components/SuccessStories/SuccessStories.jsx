@@ -48,6 +48,8 @@ export default function SuccessStories() {
                     name,
                     fullName,
                     "slug": slug.current,
+                    "sections": coalesce(sections, ['video', 'written', 'image', 'wallOfExcellence']),
+                    "category": category,
                     "testimonialCount": count(*[_type == "successStory" && course._ref == ^._id]),
                     "wallCount": count(*[_type == "wallOfExcellence" && course._ref == ^._id])
                 }`;

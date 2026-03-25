@@ -41,7 +41,7 @@ const WallOfExcellence = ({ courses, activeCourse, setActiveCourse, stories, wal
             allData.map(s => (s.courseSlug || '').toLowerCase().trim()).filter(Boolean)
         );
         const courseTabs = (courses || [])
-            .filter(c => c.slug && courseSlugsWithEntries.has(c.slug.toLowerCase().trim()))
+            .filter(c => (c.category === 'wallOfExcellence' || (!c.category && (!c.sections || c.sections.includes('wallOfExcellence')))) && c.slug && courseSlugsWithEntries.has(c.slug.toLowerCase().trim()))
             .map(c => ({ name: c.name, slug: c.slug }));
 
         // Only show ALL tab if there are entries
