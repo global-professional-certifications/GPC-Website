@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { CourseSelect } from '../components/CourseSelect'
 
 export default defineType({
   name: 'wallOfExcellence',
@@ -49,6 +50,12 @@ export default defineType({
       to: [{ type: 'testimonialCourse' }],
       validation: (Rule) => Rule.required(),
       description: 'Select the certification cleared (CIA, CISA, CMA, etc.)',
+      options: {
+        customCategory: 'wallOfExcellence'
+      } as any,
+      components: {
+        input: CourseSelect
+      }
     }),
     defineField({
       name: 'order',
