@@ -86,14 +86,20 @@ export default function SuccessStories() {
                     category,
                     quote,
                     excerpt,
-                    "thumbnailUrl": thumbnail.asset->url,
+                    thumbnail,
                     "videoUrl": video.asset->url,
-                    "imageUrl": image.asset->url,
-                    "companyLogo": companyLogo.asset->url
+                    image,
+                    companyLogo
                 }`;
                 const data = await client.fetch(query);
                 console.log("Fetched success stories:", data);
-                setAllStories(data);
+                const processed = data.map(story => ({
+                    ...story,
+                    thumbnailUrl: story.thumbnail ? urlFor(story.thumbnail).url() : null,
+                    imageUrl: story.image ? urlFor(story.image).url() : null,
+                    companyLogo: story.companyLogo ? urlFor(story.companyLogo).url() : null,
+                }));
+                setAllStories(processed);
             } catch (error) {
                 console.error("Error fetching success stories:", error);
             } finally {
@@ -114,14 +120,19 @@ export default function SuccessStories() {
                     name,
                     company,
                     designation,
-                    "imageUrl": photo.asset->url,
-                    "companyLogo": companyLogo.asset->url,
+                    photo,
+                    companyLogo,
                     "courseSlug": course->slug.current,
                     "courseName": course->name
                 }`;
                 const data = await client.fetch(query);
                 console.log("Fetched Wall of Excellence entries:", data);
-                setWallOfExcellenceEntries(data);
+                const processed = data.map(entry => ({
+                    ...entry,
+                    imageUrl: entry.photo ? urlFor(entry.photo).url() : null,
+                    companyLogo: entry.companyLogo ? urlFor(entry.companyLogo).url() : null,
+                }));
+                setWallOfExcellenceEntries(processed);
             } catch (error) {
                 console.error("Error fetching Wall of Excellence entries:", error);
             }
