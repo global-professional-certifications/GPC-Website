@@ -11,7 +11,6 @@ import HeroSection from "./HeroSection";
 import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
 import MobileGallery from "./MobileGallery";
-
 import testimonialCover from "../../assets/home/testimonial-cover.webp";
 
 

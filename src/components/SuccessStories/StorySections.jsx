@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   videoVaultTabs,
   videoVaultData,
@@ -49,7 +50,7 @@ const cardVideoGradients = [
   'linear-gradient(160deg, #181938 0%, #181335 100%)',
 ];
 
-const VideoGridCard = ({ video, index, onClick }) => (
+export const VideoGridCard = ({ video, index, onClick }) => (
   <div
     onClick={() => onClick?.(video)}
     className="relative rounded-[20px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl cursor-pointer group h-full"
@@ -114,7 +115,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
   </div>
 );
 
-const VideoModal = ({ video, onClose }) => {
+export const VideoModal = ({ video, onClose }) => {
   if (!video) return null;
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 backdrop-blur-lg transition-all p-4 md:p-6 select-none animate-in fade-in duration-300">
@@ -172,10 +173,12 @@ const getInitials = (name) => {
 };
 
 export const VideoVault = ({ allStories, courses, settings }) => {
+  const totalVideoCount = useMemo(() => allStories?.filter(s => s.category === 'video').length || 0, [allStories]);
+
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
-    
+
     const courseTabs = (courses || [])
       .filter(c => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video'))))
       .map(c => ({
@@ -189,10 +192,9 @@ export const VideoVault = ({ allStories, courses, settings }) => {
       }))
       .filter(tab => tab.slug && tab.count > 0); // Hide empty or missing tabs
 
-    const totalVideoCount = allStories?.filter(s => s.category === 'video').length || 0;
     if (totalVideoCount === 0) return [];
     return [{ label: 'ALL', slug: 'all', count: totalVideoCount }, ...courseTabs];
-  }, [courses, allStories]);
+  }, [courses, allStories, totalVideoCount]);
 
   const [activeTab, setActiveTab] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -208,7 +210,7 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   // Derived current data from Sanity
   const currentVideos = useMemo(() => {
     if (!allStories || !activeTab) return [];
-    
+
     // Normalize and filter
     const activeSlug = (activeTab || '').toLowerCase().trim();
     const filtered = allStories
@@ -222,13 +224,13 @@ export const VideoVault = ({ allStories, courses, settings }) => {
         ...s,
         initials: getInitials(s.name),
       }));
-    
+
     // Debugging logs to help identify Sanity data mismatches
     console.log(`[VideoVault] Tab: ${activeTab} | Found: ${filtered.length} videos`);
     if (activeTab === 'cisa' || filtered.length === 0) {
       console.log(`[VideoVault] Available courseSlugs in stories:`, [...new Set(allStories.map(s => s.courseSlug))]);
     }
-    
+
     return filtered;
   }, [allStories, activeTab]);
 
@@ -255,9 +257,9 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-white overflow-hidden">
+    <section id="video-vault" className="w-full py-16 md:py-24 px-4 md:px-8 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4 relative">
           <SectionHeader
             title={settings?.videoVaultTitle || "The Video"}
             highlight={settings?.videoVaultHighlight || "Vault"}
@@ -269,6 +271,14 @@ export const VideoVault = ({ allStories, courses, settings }) => {
               </>
             )}
           />
+          <div className="md:mb-8 mb-4">
+            <Link
+              to="/video-gallery"
+              className="text-brand-blue font-semibold text-[14px] md:text-[15px] flex items-center gap-2 hover:text-blue-500 transition-all w-fit group border-[0.5px] border-brand-blue/30 rounded-full px-5 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.12)] hover:border-brand-blue/50 hover:-translate-y-[1px]"
+            >
+              View all {totalVideoCount} videos <span className="group-hover:translate-x-1 transition-transform text-lg leading-none">→</span>
+            </Link>
+          </div>
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -310,53 +320,6 @@ export const VideoVault = ({ allStories, courses, settings }) => {
           </div>
         </div>
 
-        {/* Expanded Content with Smooth Slide Animation */}
-        <AnimatePresence initial={false}>
-          {visibleLimit > 8 && extraGridVisible.length > 0 && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start mt-[24px]">
-                {extraGridVisible.map((video, i) => (
-                  <div key={`extra-${i}`} className="col-span-1 h-full">
-                    <VideoGridCard video={video} index={i + 8} onClick={handleVideoClick} />
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Dynamic Expansion Actions */}
-        {(currentVideos.length > 1 + visibleLimit || visibleLimit > 8) && (
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6"
-          >
-            {currentVideos.length > 1 + visibleLimit && (
-              <button
-                onClick={() => setVisibleLimit(prev => prev + 12)}
-                className="bg-brand-blue text-white text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-brand-purple transition-all duration-300 font-semibold shadow-md active:scale-95"
-              >
-                See more videos
-              </button>
-            )}
-            
-            {visibleLimit > 8 && (
-              <button
-                onClick={() => setVisibleLimit(8)}
-                className="bg-white border-2 border-brand-blue text-brand-blue text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-gray-50 transition-all duration-300 font-semibold active:scale-95"
-              >
-                Collapse Gallery
-              </button>
-            )}
-          </motion.div>
-        )}
       </div>
       <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
     </section>
@@ -420,9 +383,9 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
   const tabs = useMemo(() => {
     const writtenStories = allStories?.filter(s => s.category === 'written') || [];
     const totalCount = writtenStories.length;
-    
+
     if (!courses || courses.length === 0) return writtenStoriesTabs.filter(t => (writtenStoriesGrid.length > 0));
-    
+
     const courseTabs = (courses || [])
       .filter(c => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written'))))
       .map(c => ({
@@ -607,7 +570,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
       <section className="bg-[#FAF9F6] py-20 px-4 w-full">
         <div className="max-w-[1200px] mx-auto flex flex-col items-center">
           <div className="text-center mb-16 max-w-3xl">
-            
+
             <SectionHeader title="Voices of" highlight="Excellence" subtitle="Feedback from our global community of CIA professionals who have achieved their certification goals through our structured mentoring and comprehensive training program." centered />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
@@ -615,7 +578,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
           </div>
         </div>
       </section>
-      
+
     </div>
   );
 };
