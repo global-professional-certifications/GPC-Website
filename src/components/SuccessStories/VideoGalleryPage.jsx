@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { client } from "../../lib/sanity/client";
+import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from "react-router-dom";
 import MetaTags from "../MetaTags";
 
@@ -33,16 +34,19 @@ export default function VideoGalleryPage() {
                     category,
                     quote,
                     excerpt,
-                    "thumbnailUrl": thumbnail.asset->url,
+                    thumbnail,
                     "videoUrl": video.asset->url,
-                    "imageUrl": image.asset->url,
-                    "companyLogo": companyLogo.asset->url
+                    image,
+                    companyLogo
                 }`;
                 const data = await client.fetch(query);
 
                 const processedVideos = data.map(s => ({
                     ...s,
-                    initials: getInitials(s.name)
+                    initials: getInitials(s.name),
+                    thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
+                    imageUrl: s.image ? urlFor(s.image).url() : null,
+                    companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
                 }));
 
                 setVideos(processedVideos);
