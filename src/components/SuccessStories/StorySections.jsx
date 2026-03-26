@@ -312,17 +312,15 @@ export const VideoVault = ({ allStories, courses, settings }) => {
             </div>
           ))}
 
-          {/* Mobile Hero */}
-          <div className="block lg:hidden col-span-2 mb-4">
-            <VideoHeroCard hero={displayHero} onClick={handleVideoClick} />
-          </div>
-          {/* Mobile Grid (First 6) */}
-          <div className="lg:hidden grid grid-cols-2 gap-[16px] col-span-2">
-            {first8Grid.slice(0, 6).map((video, i) => (
-              <div key={`m-${i}`} className="h-full">
-                <VideoGridCard video={video} index={i} onClick={handleVideoClick} />
-              </div>
-            ))}
+          {/* Mobile Horizontal Scroll Row */}
+          <div className="lg:hidden col-span-2">
+            <div className="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 pb-2">
+              {[displayHero, ...currentGridAll].filter(Boolean).slice(0, 8).map((video, i) => (
+                <div key={video?._id || `m-${i}`} className="flex-none w-[44vw] snap-start">
+                  <VideoGridCard video={video} index={i} onClick={handleVideoClick} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -534,12 +532,15 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
             ))}
           </AnimatePresence>
 
-          {/* Mobile Layout */}
-          <div className="col-span-2 grid grid-cols-2 gap-4 lg:hidden">
-            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
-            {displayGridAll.map((story, i) => (
-              <VideoGridCard key={story._id || i} video={story} index={i} onClick={handleCardClick} />
-            ))}
+          {/* Mobile Horizontal Scroll Row */}
+          <div className="lg:hidden col-span-2">
+            <div className="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 pb-2">
+              {[displayHero, ...displayGridAll].filter(Boolean).slice(0, 8).map((story, i) => (
+                <div key={story?._id || `m-${i}`} className="flex-none w-[44vw] snap-start">
+                  <VideoGridCard video={story} index={i} onClick={handleCardClick} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

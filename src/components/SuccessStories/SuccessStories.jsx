@@ -220,7 +220,7 @@ export default function SuccessStories() {
             />
 
             {/* Whatsapp Message Showcase */}
-            <section className="bg-gray-50 pb-24 md:pb-64 overflow-hidden">
+            <section className="bg-gray-50 pb-40 md:pb-64 overflow-hidden">
 
                 {/* People Image Display & Headings */}
                 <div className="w-full max-w-[1280px] mx-auto pt-16 px-4 md:px-8 flex flex-col items-center">
