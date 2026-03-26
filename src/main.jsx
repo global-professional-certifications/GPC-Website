@@ -31,6 +31,7 @@ const Journey = lazy(() => import('./components/Journey/Journey.jsx'));
 const Qaip = lazy(() => import('./components/Corporate/Qaip.jsx'));
 const GtmTrainings = lazy(() => import('./components/Corporate/GtmTrainings.jsx'));
 const VideoGalleryPage = lazy(() => import('./components/SuccessStories/VideoGalleryPage.jsx'));
+const WrittenGalleryPage = lazy(() => import('./components/SuccessStories/WrittenGalleryPage.jsx'));
 
 // Loading component
 const PageLoader = () => (
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
         <Route path="glossary" element={<Suspense fallback={<PageLoader />}><Glossary /></Suspense>} />
         <Route path="success" element={<Suspense fallback={<PageLoader />}><SuccessStories /></Suspense>} />
         <Route path="video-gallery" element={<Suspense fallback={<PageLoader />}><VideoGalleryPage /></Suspense>} />
+        <Route path="written-gallery" element={<Suspense fallback={<PageLoader />}><WrittenGalleryPage /></Suspense>} />
         <Route path="our-journey" element={<Suspense fallback={<PageLoader />}><Journey /></Suspense>} />
         <Route path="courses" element={<Suspense fallback={<PageLoader />}><CoursesOverview /></Suspense>} />
         <Route path="courses/cia" element={<Suspense fallback={<PageLoader />}><Cia /></Suspense>} />

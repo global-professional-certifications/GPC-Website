@@ -16,11 +16,11 @@ import {
 
 const SectionHeader = ({ title, highlight, subtitle, centered = false }) => (
   <div className={`mb-8 ${centered ? 'text-center mx-auto' : 'text-left'} max-w-3xl`}>
-    <h2 className="text-gray-900 text-3xl md:text-5xl font-bold leading-tight mb-4">
+    <h2 className="text-gray-900 text-2xl md:text-4xl font-bold leading-tight mb-4">
       {title} <span className="text-brand-blue font-normal italic relative">{highlight}</span>
     </h2>
     {subtitle && (
-      <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
+      <p className="text-gray-600 text-xs md:text-base lg:text-base leading-relaxed font-poppins mt-4 md:mt-6">
         {subtitle}
       </p>
     )}
@@ -50,7 +50,9 @@ const cardVideoGradients = [
   'linear-gradient(160deg, #181938 0%, #181335 100%)',
 ];
 
-export const VideoGridCard = ({ video, index, onClick }) => (
+export const VideoGridCard = ({ video, index, onClick }) => {
+  if (!video) return null;
+  return (
   <div
     onClick={() => onClick?.(video)}
     className="relative rounded-[20px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl cursor-pointer group h-full"
@@ -80,9 +82,11 @@ export const VideoGridCard = ({ video, index, onClick }) => (
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
     </div>
   </div>
-);
+)};
 
-const VideoHeroCard = ({ hero, onClick }) => (
+const VideoHeroCard = ({ hero, onClick }) => {
+  if (!hero) return null;
+  return (
   <div
     onClick={() => onClick?.(hero)}
     className="relative rounded-[28px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl cursor-pointer group h-full"
@@ -113,7 +117,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
     </div>
   </div>
-);
+)};
 
 export const VideoModal = ({ video, onClose }) => {
   if (!video) return null;
@@ -200,10 +204,12 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [visibleLimit, setVisibleLimit] = useState(8);
 
-  // Set initial active tab
+  // Sync activeTab with dynamic tabs safely
   useEffect(() => {
-    if (tabs && tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0]?.slug);
+    if (tabs && tabs.length > 0) {
+      if (!activeTab || !tabs.find(t => t.slug === activeTab)) {
+        setActiveTab(tabs[0].slug);
+      }
     }
   }, [tabs, activeTab]);
 
@@ -330,7 +336,9 @@ export const VideoVault = ({ allStories, courses, settings }) => {
 // WRITTEN STORIES COMPONENTS
 // =============================================================================
 
-const WrittenFeaturedCard = ({ story }) => (
+const WrittenFeaturedCard = ({ story }) => {
+  if (!story) return null;
+  return (
   <div className="flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-8 transition-all hover:shadow-md">
     <div className="relative w-full md:w-[300px] flex-shrink-0 flex flex-col justify-center items-center p-8 text-center" style={{ background: story.avatarBg }}>
       <div className="absolute top-4 right-4">
@@ -355,9 +363,11 @@ const WrittenFeaturedCard = ({ story }) => (
       </div>
     </div>
   </div>
-);
+)};
 
-const WrittenGridCard = ({ story }) => (
+export const WrittenGridCard = ({ story }) => {
+  if (!story) return null;
+  return (
   <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col transition-all hover:shadow-md group">
     <div className="p-6 flex flex-col h-full">
       <div className="flex items-center gap-4 mb-6">
@@ -376,9 +386,11 @@ const WrittenGridCard = ({ story }) => (
       </a>
     </div>
   </div>
-);
+)};
 
 export const WrittenStories = ({ allStories, courses, settings }) => {
+  const totalWrittenCount = useMemo(() => allStories?.filter(s => s.category === 'written').length || 0, [allStories]);
+
   // Build tabs from courses that have written testimonials
   const tabs = useMemo(() => {
     const writtenStories = allStories?.filter(s => s.category === 'written') || [];
@@ -408,10 +420,12 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [visibleLimit, setVisibleLimit] = useState(8);
 
-  // Set initial active tab
+  // Sync activeTab with dynamic tabs safely
   useEffect(() => {
-    if (tabs && tabs.length > 0 && !activeTab) {
-      setActiveTab(tabs[0]?.slug);
+    if (tabs && tabs.length > 0) {
+      if (!activeTab || !tabs.find(t => t.slug === activeTab)) {
+        setActiveTab(tabs[0].slug);
+      }
     }
   }, [tabs, activeTab]);
 
@@ -449,9 +463,9 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-gray-50 overflow-hidden">
+    <section id="written-stories" className="w-full py-16 md:py-24 px-4 md:px-8 bg-gray-50 overflow-hidden">
       <div className="max-w-[1280px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
           <SectionHeader
             title={settings?.writtenStoriesTitle || "Read their"}
             highlight={settings?.writtenStoriesHighlight || "journey"}
@@ -463,6 +477,14 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
               </>
             )}
           />
+          <div className="md:mb-8 mb-4">
+            <Link
+              to="/written-gallery"
+              className="text-brand-blue font-semibold text-[14px] md:text-[15px] flex items-center gap-2 hover:text-blue-500 transition-all w-fit group border-[0.5px] border-brand-blue/30 rounded-full px-5 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.12)] hover:border-brand-blue/50 hover:-translate-y-[1px]"
+            >
+              View all {totalWrittenCount} stories <span className="group-hover:translate-x-1 transition-transform text-lg leading-none">→</span>
+            </Link>
+          </div>
         </div>
 
         {/* Course Tabs */}
