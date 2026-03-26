@@ -9,15 +9,17 @@ import { SchemaMarkup, getOrganizationSchema } from "./components/Schema";
 import { useLayout, LAYOUT_HEIGHTS } from "./contexts/LayoutContext";
 
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
+    const { pathname, hash } = useLocation();
 
     useLayoutEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant"
-        });
-    }, [pathname]);
+        if (!hash) {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "instant"
+            });
+        }
+    }, [pathname, hash]);
 
     return null;
 };
