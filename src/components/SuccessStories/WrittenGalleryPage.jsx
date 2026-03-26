@@ -134,9 +134,18 @@ export default function WrittenGalleryPage() {
                     </div>
                 )}
 
-                <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start">
+                {/* Desktop Grid */}
+                <div className="hidden lg:grid gap-[24px] lg:grid-cols-6 items-start">
                     {filteredStories.map((story, idx) => (
                         <div key={story._id || idx} className="col-span-1 h-full">
+                            <VideoGridCard video={story} index={idx} onClick={setSelectedVideo} />
+                        </div>
+                    ))}
+                </div>
+                {/* Mobile Horizontal Scroll */}
+                <div className="lg:hidden flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-4 px-4 pb-2">
+                    {filteredStories.map((story, idx) => (
+                        <div key={story._id || idx} className="flex-none w-[40vw] snap-start">
                             <VideoGridCard video={story} index={idx} onClick={setSelectedVideo} />
                         </div>
                     ))}
