@@ -21,6 +21,41 @@ const initialValueTemplates: Template[] = [
       category: params.category,
     }),
   },
+  {
+    id: 'wallOfExcellence-with-course',
+    title: 'Wall of Excellence with Course',
+    schemaType: 'wallOfExcellence',
+    parameters: [
+      { name: 'courseId', type: 'string' },
+    ],
+    value: (params: { courseId: string }) => ({
+      course: { _type: 'reference', _ref: params.courseId },
+    }),
+  },
+  {
+    id: 'testimonialCourse-video',
+    title: 'Video Course',
+    schemaType: 'testimonialCourse',
+    value: { category: 'video' },
+  },
+  {
+    id: 'testimonialCourse-written',
+    title: 'Written Course',
+    schemaType: 'testimonialCourse',
+    value: { category: 'written' },
+  },
+  {
+    id: 'testimonialCourse-image',
+    title: 'Image Course',
+    schemaType: 'testimonialCourse',
+    value: { category: 'image' },
+  },
+  {
+    id: 'testimonialCourse-wall',
+    title: 'Wall Course',
+    schemaType: 'testimonialCourse',
+    value: { category: 'wallOfExcellence' },
+  },
 ]
 
 export default defineConfig({

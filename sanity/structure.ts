@@ -25,33 +25,147 @@ export const structure: StructureResolver = (S, context) => {
             S.listItem()
                 .title('Success Stories')
                 .child(() =>
-                    client.fetch(`*[_type == "testimonialCourse"] | order(order asc) { _id, name }`).then((courses) =>
+                    client.fetch(`*[_type == "testimonialCourse"] | order(order asc) { _id, name, sections, category }`).then((courses) =>
                         S.list()
                             .title('Success Stories')
                             .items([
-                                // Add New Course
+                                // ─── Page Settings ───
                                 S.listItem()
-                                    .title('Add New Course')
+                                    .title('Edit Section Titles')
+                                    .icon(() => '⚙️')
                                     .child(
-                                        S.documentTypeList('testimonialCourse')
-                                            .title('Manage Courses')
-                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                        S.document()
+                                            .schemaType('successPageSettings')
+                                            .documentId('successPageSettings')
+                                            .title('Edit Section Titles')
                                     ),
 
                                 S.divider(),
 
-                                // Dynamic Course Items
-                                ...courses.map((course: { _id: string; name: string }) =>
-                                    S.listItem()
-                                        .title(course.name)
-                                        .id(course._id)
-                                        .child(
-                                            S.list()
-                                                .title(course.name)
-                                                .items([
-                                                    // Video Testimonials
+                                // ─── Wall of Excellence Section ───
+                                S.listItem()
+                                    .title('Wall of Excellence')
+                                    .id('wall-of-excellence')
+                                    .child(
+                                        S.list()
+                                            .title('Wall of Excellence')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Wall Courses')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Manage Wall Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "wallOfExcellence"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-wall')
+                                                            ])
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
+                                                // + Add New Entry (all courses)
+                                                S.listItem()
+                                                    .title('+ Add New Entry')
+                                                    .id('wall-add-new')
+                                                    .schemaType('wallOfExcellence')
+                                                    .child(
+                                                        S.documentTypeList('wallOfExcellence')
+                                                            .title('All Wall of Excellence Entries')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                // All Entries
+                                                S.listItem()
+                                                    .title('All Entries')
+                                                    .id('wall-all')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('All Wall of Excellence Entries')
+                                                            .schemaType('wallOfExcellence')
+                                                            .filter('_type == "wallOfExcellence"')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
+                                                // Course-wise sub-sections
+                                                ...courses.filter((c: any) => c.category === 'wallOfExcellence' || (!c.category && (!c.sections || c.sections.includes('wallOfExcellence')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
-                                                        .title('Video Testimonials')
+                                                        .title(course.name)
+                                                        .id(`wall-${course._id}`)
+                                                        .child(
+                                                            S.documentList()
+                                                                .title(`${course.name} — Wall of Excellence`)
+                                                                .schemaType('wallOfExcellence')
+                                                                .filter('_type == "wallOfExcellence" && course._ref == $courseId')
+                                                                .params({ courseId: course._id })
+                                                                .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                                .initialValueTemplates([
+                                                                    S.initialValueTemplateItem('wallOfExcellence-with-course', {
+                                                                        courseId: course._id,
+                                                                    })
+                                                                ])
+                                                        )
+                                                ),
+                                                
+                                                S.divider(),
+
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('wall-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Wall Entries')
+                                                            .schemaType('wallOfExcellence')
+                                                            .filter('_type == "wallOfExcellence" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                            ])
+                                    ),
+
+                                S.divider(),
+
+                                // ─── Video Testimonials (Video Vault) ───
+                                S.listItem()
+                                    .title('Video Testimonials (Video Vault)')
+                                    .id('video-testimonials-category')
+                                    .child(
+                                        S.list()
+                                            .title('Video Testimonials by Course')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Video Courses')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Manage Video Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "video"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-video')
+                                                            ])
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                S.divider(),
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('video-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Video Testimonials')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "video" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                ...courses.filter((c: any) => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video')))).map((course: { _id: string; name: string }) =>
+                                                    S.listItem()
+                                                        .title(course.name)
+                                                        .id(`video-${course._id}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${course.name} - Video Testimonials`)
@@ -65,11 +179,48 @@ export const structure: StructureResolver = (S, context) => {
                                                                         category: 'video'
                                                                     })
                                                                 ])
-                                                        ),
+                                                        )
+                                                )
+                                            ])
+                                    ),
 
-                                                    // Written Testimonials
+                                // ─── Written Testimonials (Read Journey) ───
+                                S.listItem()
+                                    .title('Written Testimonials (Read Journey)')
+                                    .id('written-testimonials-category')
+                                    .child(
+                                        S.list()
+                                            .title('Written Testimonials by Course')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Written Courses')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Manage Written Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "written"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-written')
+                                                            ])
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                S.divider(),
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('written-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Written Testimonials')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "written" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                ...courses.filter((c: any) => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
-                                                        .title('Written Testimonials')
+                                                        .title(course.name)
+                                                        .id(`written-${course._id}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${course.name} - Written Testimonials`)
@@ -83,28 +234,63 @@ export const structure: StructureResolver = (S, context) => {
                                                                         category: 'written'
                                                                     })
                                                                 ])
-                                                        ),
+                                                        )
+                                                )
+                                            ])
+                                    ),
 
-                                                    // Mobile Screenshots
-                                                    S.listItem()
-                                                        .title('Mobile Screenshots')
-                                                        .child(
-                                                            S.documentList()
-                                                                .title(`${course.name} - Mobile Screenshots`)
-                                                                .schemaType('successStory')
-                                                                .filter('_type == "successStory" && course._ref == $courseId && category == "image"')
-                                                                .params({ courseId: course._id })
-                                                                .defaultOrdering([{ field: 'order', direction: 'asc' }])
-                                                                .initialValueTemplates([
-                                                                    S.initialValueTemplateItem('successStory-with-course-and-category', {
-                                                                        courseId: course._id,
-                                                                        category: 'image'
-                                                                    })
-                                                                ])
-                                                        ),
-                                                ])
-                                        )
-                                ),
+                                // ─── Mobile Screenshots ───
+                                S.listItem()
+                                    .title('Mobile Screenshots')
+                                    .id('mobile-screenshots-category')
+                                    .child(
+                                        S.list()
+                                            .title('Mobile Screenshots')
+                                            .items([
+                                                // Add New Course shortcut
+                                                S.listItem()
+                                                    .title('+ Add/Manage Mobile Courses')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Manage Mobile Courses')
+                                                            .schemaType('testimonialCourse')
+                                                            .filter('_type == "testimonialCourse" && category == "image"')
+                                                            .initialValueTemplates([
+                                                                S.initialValueTemplateItem('testimonialCourse-image')
+                                                            ])
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                                
+                                                S.divider(),
+
+                                                // All Entries
+                                                S.listItem()
+                                                    .title('All Mobile Screenshots')
+                                                    .id('mobile-all')
+                                                    .schemaType('successStory')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('All Mobile Screenshots')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "image"')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+
+                                                S.divider(),
+
+                                                // Drafts / Unassigned
+                                                S.listItem()
+                                                    .title('⚠️ Drafts / Unassigned')
+                                                    .id('image-unassigned')
+                                                    .child(
+                                                        S.documentList()
+                                                            .title('Unassigned Mobile Screenshots')
+                                                            .schemaType('successStory')
+                                                            .filter('_type == "successStory" && category == "image" && !defined(course._ref)')
+                                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                                    ),
+                                            ])
+                                    ),
                             ])
                     )
                 ),

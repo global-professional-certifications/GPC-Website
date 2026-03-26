@@ -10,6 +10,8 @@ import popup from './popup'
 import upcomingEvent from './upcomingEvent'
 import pastEvent from './pastEvent'
 import event from './event'
+import wallOfExcellence from './wallOfExcellence'
+import successPageSettings from './successPageSettings'
 
 
 // Custom block content types
@@ -32,6 +34,8 @@ export const schemaTypes = [
     upcomingEvent,
     pastEvent,
     event,
+    wallOfExcellence,
+    successPageSettings,
 
     // Custom block content
     inlineCTA,
