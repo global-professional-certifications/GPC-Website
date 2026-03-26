@@ -202,7 +202,6 @@ export const VideoVault = ({ allStories, courses, settings }) => {
 
   const [activeTab, setActiveTab] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [visibleLimit, setVisibleLimit] = useState(8);
 
   // Sync activeTab with dynamic tabs safely
   useEffect(() => {
@@ -240,11 +239,6 @@ export const VideoVault = ({ allStories, courses, settings }) => {
     return filtered;
   }, [allStories, activeTab]);
 
-  // Reset pagination when tab changes
-  useEffect(() => {
-    setVisibleLimit(8);
-  }, [activeTab]);
-
   // If no real data, fallback to dummy data from constants
   const displayHero = currentVideos.length > 0
     ? currentVideos[0]
@@ -256,7 +250,6 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   }, [currentVideos, activeTab]);
 
   const first8Grid = useMemo(() => currentGridAll.slice(0, 8), [currentGridAll]);
-  const extraGridVisible = useMemo(() => currentGridAll.slice(8, 8 + (visibleLimit - 8)), [currentGridAll, visibleLimit]);
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
@@ -416,7 +409,6 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
 
   const [activeTab, setActiveTab] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [visibleLimit, setVisibleLimit] = useState(8);
 
   // Sync activeTab with dynamic tabs safely
   useEffect(() => {
@@ -442,18 +434,12 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
       }));
   }, [allStories, activeTab]);
 
-  // Reset pagination when tab changes
-  useEffect(() => {
-    setVisibleLimit(8);
-  }, [activeTab]);
-
   // Handle fallback to dummy data if no Sanity data
   const isSanityData = currentStories.length > 0;
   const displayHero = isSanityData ? currentStories[0] : writtenStoriesFeatured;
   const displayGridAll = isSanityData ? currentStories.slice(1) : writtenStoriesGrid;
 
   const first8Grid = useMemo(() => displayGridAll.slice(0, 8), [displayGridAll]);
-  const extraGridVisible = useMemo(() => displayGridAll.slice(8, 8 + (visibleLimit - 8)), [displayGridAll, visibleLimit]);
 
   const handleCardClick = (story) => {
     // Both VideoVault and WrittenStories can open videos if available
@@ -517,21 +503,6 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
             </div>
           ))}
 
-          {/* Load More Grid Cards */}
-          <AnimatePresence>
-            {extraGridVisible.map((story, i) => (
-              <motion.div
-                key={story._id || `extra-${i}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="hidden lg:block lg:col-span-1 h-full"
-              >
-                <VideoGridCard video={story} index={i + 8} onClick={handleCardClick} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-
           {/* Mobile Horizontal Scroll Row */}
           <div className="lg:hidden col-span-2">
             <div className="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 pb-2">
@@ -543,21 +514,6 @@ export const WrittenStories = ({ allStories, courses, settings }) => {
             </div>
           </div>
         </div>
-
-        {/* View More Button */}
-        {displayGridAll.length > visibleLimit && (
-          <div className="mt-16 flex justify-center">
-            <button
-              onClick={() => setVisibleLimit(prev => prev + 6)}
-              className="group relative px-10 py-4 bg-brand-blue text-white rounded-full font-bold overflow-hidden shadow-xl hover:shadow-brand-blue/40 transition-all active:scale-95"
-            >
-              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative flex items-center gap-2">
-                VIEW MORE STORIES <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </button>
-          </div>
-        )}
 
         {/* Video Modal */}
         <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
