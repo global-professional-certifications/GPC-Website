@@ -13,16 +13,16 @@ const getInitials = (name) => {
     return name.substring(0, 2).toUpperCase();
 };
 
-export default function VideoGalleryPage() {
-    const [videos, setVideos] = useState([]);
+export default function WrittenGalleryPage() {
+    const [stories, setStories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedVideo, setSelectedVideo] = useState(null);
     const [activeTab, setActiveTab] = useState('all');
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
     useEffect(() => {
-        const fetchVideos = async () => {
+        const fetchStories = async () => {
             try {
-                const query = `*[_type == "successStory" && category == "video"] | order(_createdAt desc) {
+                const query = `*[_type == "successStory" && category == "written"] | order(_createdAt desc) {
                     _id,
                     name,
                     company,
@@ -41,7 +41,7 @@ export default function VideoGalleryPage() {
                 }`;
                 const data = await client.fetch(query);
 
-                const processedVideos = data.map(s => ({
+                const processedStories = data.map(s => ({
                     ...s,
                     initials: getInitials(s.name),
                     thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
@@ -49,39 +49,35 @@ export default function VideoGalleryPage() {
                     companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
                 }));
 
-                setVideos(processedVideos);
+                setStories(processedStories);
             } catch (error) {
-                console.error("Error fetching video stories:", error);
+                console.error("Error fetching written stories:", error);
             } finally {
                 setLoading(false);
             }
         };
-        fetchVideos();
+        fetchStories();
     }, []);
 
-    // Build tabs from fetched videos (ALL + one per course)
+    // Build tabs from fetched stories (ALL + one per course)
     const tabs = useMemo(() => {
-        if (videos.length === 0) return [];
+        if (stories.length === 0) return [];
         const courseMap = new Map();
-        videos.forEach(v => {
-            const slug = (v.courseSlug || '').toLowerCase().trim();
-            const name = v.courseName || slug;
+        stories.forEach(s => {
+            const slug = (s.courseSlug || '').toLowerCase().trim();
+            const name = s.courseName || slug;
             if (!slug) return;
             if (!courseMap.has(slug)) courseMap.set(slug, { label: name, slug, count: 0 });
             courseMap.get(slug).count += 1;
         });
         const courseTabs = Array.from(courseMap.values());
-        return [{ label: 'ALL', slug: 'all', count: videos.length }, ...courseTabs];
-    }, [videos]);
+        return [{ label: 'ALL', slug: 'all', count: stories.length }, ...courseTabs];
+    }, [stories]);
 
-    const filteredVideos = useMemo(() => {
-        if (activeTab === 'all') return videos;
-        return videos.filter(v => (v.courseSlug || '').toLowerCase().trim() === activeTab);
-    }, [videos, activeTab]);
-
-    const handleVideoClick = (video) => {
-        setSelectedVideo(video);
-    };
+    const filteredStories = useMemo(() => {
+        if (activeTab === 'all') return stories;
+        return stories.filter(s => (s.courseSlug || '').toLowerCase().trim() === activeTab);
+    }, [stories, activeTab]);
 
     if (loading) {
         return (
@@ -94,24 +90,24 @@ export default function VideoGalleryPage() {
     return (
         <div className="min-h-screen bg-white flex flex-col">
             <MetaTags
-                title="Hear from our Students - GPC Video Gallery"
-                description="Watch success stories and testimonials from our students."
+                title="Written Testimonials - GPC Success Stories"
+                description="Read written testimonials and success stories from our students who transformed their careers."
             />
             <section className="w-full pt-8 pb-16 px-4 md:px-8 max-w-[1280px] mx-auto flex-1">
                 <div className="mb-8 md:mb-12">
                     <Link
                         to="/success"
-                        onClick={() => sessionStorage.setItem("scrollToTarget", "video-vault")}
+                        onClick={() => sessionStorage.setItem("scrollToTarget", "written-stories")}
                         className="text-brand-blue font-medium hover:text-blue-500 hover:-translate-x-1 flex items-center gap-2 w-fit mb-6 transition-all duration-300"
                     >
                         ← Back
                     </Link>
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-gray-900 text-3xl md:text-5xl font-bold leading-tight mb-4">
-                            Hear from our <span className="text-brand-blue font-normal italic relative">Students</span>
+                            Read their <span className="text-brand-blue font-normal italic relative">journeys</span>
                         </h1>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
-                            Discover inspiring video testimonials from professionals who transformed their careers.
+                            Inspiring stories from professionals who transformed their careers with GPC.
                         </p>
                     </div>
                 </div>
@@ -139,14 +135,15 @@ export default function VideoGalleryPage() {
                 )}
 
                 <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start">
-                    {filteredVideos.map((video, idx) => (
-                        <div key={video._id || idx} className="col-span-1 h-full">
-                            <VideoGridCard video={video} index={idx} onClick={handleVideoClick} />
+                    {filteredStories.map((story, idx) => (
+                        <div key={story._id || idx} className="col-span-1 h-full">
+                            <VideoGridCard video={story} index={idx} onClick={setSelectedVideo} />
                         </div>
                     ))}
                 </div>
-                {filteredVideos.length === 0 && (
-                    <div className="text-center text-gray-500 py-12">No videos available at the moment.</div>
+
+                {filteredStories.length === 0 && (
+                    <div className="text-center text-gray-500 py-12">No stories available at the moment.</div>
                 )}
             </section>
 

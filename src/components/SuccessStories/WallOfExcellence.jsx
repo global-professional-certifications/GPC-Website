@@ -44,10 +44,10 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
     return (
         <section className="w-full py-16 md:py-24 px-12 font-sans relative overflow-hidden bg-brand-blue">
             <div className="max-w-[1400px] mx-auto px-4 flex flex-col items-center relative z-10">
-                <h2 className="text-center text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+                <h2 className="text-center text-2xl md:text-4xl font-bold text-white leading-tight mb-4">
                     Wall of <span className="text-orange-300 font-normal italic"> Excellence</span>
                 </h2>
-                <p className="text-center text-sm md:text-base text-blue-100 mb-10 max-w-lg">Real professionals. Real companies. Real results.</p>
+                <p className="text-center text-xs md:text-base lg:text-base text-blue-100 mb-10 max-w-lg">Real professionals. Real companies. Real results.</p>
 
 
 
