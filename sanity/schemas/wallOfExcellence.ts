@@ -45,17 +45,19 @@ export default defineType({
     }),
     defineField({
       name: 'course',
-      title: 'Course / Certification Cleared',
-      type: 'reference',
-      to: [{ type: 'testimonialCourse' }],
-      validation: (Rule) => Rule.required(),
-      description: 'Select the certification cleared (CIA, CISA, CMA, etc.)',
-      options: {
-        customCategory: 'wallOfExcellence'
-      } as any,
-      components: {
-        input: CourseSelect
-      }
+      title: 'Courses / Certifications Cleared',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'testimonialCourse' }],
+          options: {
+            filter: 'category == "wallOfExcellence"'
+          }
+        }
+      ],
+      validation: (Rule) => Rule.required().min(1),
+      description: 'Select one or more certifications cleared (CIA, CISA, CMA, etc.)',
     }),
     defineField({
       name: 'order',
@@ -75,14 +77,16 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      courseName: 'course.name',
+      courseName0: 'course.0.name',
+      legacyCourseName: 'course.name',
       designation: 'designation',
       media: 'photo',
     },
-    prepare({ title, courseName, designation, media }) {
+    prepare({ title, courseName0, legacyCourseName, designation, media }) {
+      const displayCourse = courseName0 || legacyCourseName || 'No Course'
       return {
         title: title || 'Unnamed',
-        subtitle: `${courseName || 'No Course'} — ${designation || 'No Designation'}`,
+        subtitle: `${displayCourse} — ${designation || 'No Designation'}`,
         media,
       }
     },
