@@ -38,11 +38,14 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
     const tabs = useMemo(() => {
         const courseMap = new Map();
         displayStories.forEach(s => {
-            const slug = (s.courseSlug || '').toLowerCase().trim();
-            const name = s.courseName || slug.toUpperCase();
-            if (!slug) return;
-            if (!courseMap.has(slug)) courseMap.set(slug, { slug, name, count: 0 });
-            courseMap.get(slug).count += 1;
+            const coursesArray = s.courses?.length > 0 ? s.courses : (s.courseSlug ? [{ slug: s.courseSlug, name: s.courseName }] : []);
+            coursesArray.forEach(c => {
+                const slug = (c.slug || '').toLowerCase().trim();
+                const name = c.name || slug.toUpperCase();
+                if (!slug) return;
+                if (!courseMap.has(slug)) courseMap.set(slug, { slug, name, count: 0 });
+                courseMap.get(slug).count += 1;
+            });
         });
         const courseTabs = Array.from(courseMap.values());
         if (courseTabs.length <= 1) return []; // No tabs needed for single course
@@ -53,9 +56,10 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
     const interleavedAll = useMemo(() => {
         const groups = new Map();
         displayStories.forEach(s => {
-            const slug = (s.courseSlug || 'unknown').toLowerCase().trim();
-            if (!groups.has(slug)) groups.set(slug, []);
-            groups.get(slug).push(s);
+            const coursesArray = s.courses?.length > 0 ? s.courses : (s.courseSlug ? [{ slug: s.courseSlug, name: s.courseName }] : [{ slug: 'unknown', name: 'UNKNOWN' }]);
+            const firstSlug = (coursesArray[0]?.slug || 'unknown').toLowerCase().trim();
+            if (!groups.has(firstSlug)) groups.set(firstSlug, []);
+            groups.get(firstSlug).push(s);
         });
         const queues = Array.from(groups.values());
         const result = [];
@@ -74,7 +78,10 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
     // Filter stories by active tab
     const filteredStories = useMemo(() => {
         if (activeTab === 'all') return interleavedAll;
-        return displayStories.filter(s => (s.courseSlug || '').toLowerCase().trim() === activeTab);
+        return displayStories.filter(s => {
+            const coursesArray = s.courses?.length > 0 ? s.courses : (s.courseSlug ? [{ slug: s.courseSlug, name: s.courseName }] : []);
+            return coursesArray.some(c => (c.slug || '').toLowerCase().trim() === activeTab);
+        });
     }, [displayStories, interleavedAll, activeTab]);
 
     // Reset to page 1 when tab changes
@@ -198,7 +205,12 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                                             <div className="mt-auto w-full">
                                                 <div className="relative flex items-center justify-center w-full px-1 py-1.5 md:px-3 md:py-2.5 rounded-xl md:rounded-2xl transition-all duration-300 bg-brand-blue text-white group-hover:scale-[1.03] group-hover:shadow-md">
                                                     <span className="text-[7px] md:text-[10px] font-bold uppercase tracking-normal md:tracking-wider leading-tight text-center">
-                                                        {(story.courseName || courseSlug.toUpperCase())} Cleared
+                                                        {(() => {
+                                                            const cList = (story.courses?.length > 0 ? story.courses : [{ name: story.courseName || courseSlug.toUpperCase() }]).map(c => c.name);
+                                                            if (cList.length === 1) return `${cList[0]} Cleared`;
+                                                            const last = cList.pop();
+                                                            return `${cList.join(', ')} & ${last} Cleared`;
+                                                        })()}
                                                     </span>
                                                 </div>
                                             </div>
