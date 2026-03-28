@@ -122,8 +122,10 @@ export default function SuccessStories() {
                     designation,
                     photo,
                     companyLogo,
-                    "courseSlug": course->slug.current,
-                    "courseName": course->name
+                    "courses": coalesce(
+                        course[]->{ "slug": slug.current, "name": name },
+                        [course->{ "slug": slug.current, "name": name }]
+                    )
                 }`;
                 const data = await client.fetch(query);
                 console.log("Fetched Wall of Excellence entries:", data);

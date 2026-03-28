@@ -29,7 +29,7 @@ const initialValueTemplates: Template[] = [
       { name: 'courseId', type: 'string' },
     ],
     value: (params: { courseId: string }) => ({
-      course: { _type: 'reference', _ref: params.courseId },
+      course: [{ _type: 'reference', _ref: params.courseId }],
     }),
   },
   {
