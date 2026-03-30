@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Layout from './Layout.jsx';
 import { Analytics } from "@vercel/analytics/react"
 import { LayoutProvider } from './contexts/LayoutContext.jsx'
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home/Home.jsx'));
@@ -79,6 +80,7 @@ createRoot(document.getElementById('root')).render(
         <>
           <RouterProvider router={router} />
           <Analytics />
+          <SpeedInsights />
         </>
       </LayoutProvider>
     </HelmetProvider>
