@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
 
-import logo from "../../assets/logo-2.png";
+import logo from "../../assets/navbar/gpc-navbar-logo.png";
 import cisaLogo from "../../assets/courses/cisa-logo.webp";
 import ciaLogo from "../../assets/courses/cia-logo.webp";
 import iapLogo from "../../assets/courses/iap-logo.webp";
@@ -109,7 +109,7 @@ const Navbar = ({ topOffset = 0 }) => {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <div className="transform scale-150 md:scale-130 transition-transform duration-300">
-            <img src={logo} className="w-32 h-auto object-contain" alt="GPC logo" />
+            <img src={logo} className="w-24 h-auto object-contain" alt="GPC logo" />
           </div>
         </Link>
 
