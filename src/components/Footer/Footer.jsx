@@ -1,7 +1,7 @@
 ﻿import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
-import logoOne from "../../assets/logo-1.png";
+import footerLogo from "../../assets/gpc-footer-logo.png";
 import wappLogo from "../../assets/Gpc_Whatsapp_Community_qr.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -18,9 +18,9 @@ export default function Footer() {
                     <div className="lg:col-span-2">
                         <Link to="/" className="inline-block">
                             <img
-                                src={logoOne}
+                                src={footerLogo}
                                 alt="Global Professional Certifications logo"
-                                className="h-26 sm:h-28 w-auto object-contain -ml-6"
+                                className="h-20 w-auto object-contain"
                             />
                         </Link>
 
