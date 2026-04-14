@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { client } from '../lib/sanity/client';
+import { urlFor } from '../lib/sanity/imageBuilder';
 
 const LayoutContext = createContext(null);
 
@@ -32,15 +33,20 @@ export function LayoutProvider({ children }) {
                     eventStartDateTime,
                     registrationLink,
                     registrationButtonText,
-                    "coverImage": coverImage.asset->url
+                    coverImage
                 }`;
 
                 const data = await client.fetch(query);
 
                 if (data && data.length > 0) {
                     const now = new Date();
-                    // Filter out truly past events (safety check)
-                    const validEvents = data.filter(event => new Date(event.eventStartDateTime) > now);
+                    // Process images and filter out truly past events (safety check)
+                    const validEvents = data
+                        .filter(event => new Date(event.eventStartDateTime) > now)
+                        .map(event => ({
+                            ...event,
+                            coverImageUrl: event.coverImage ? urlFor(event.coverImage).url() : null
+                        }));
 
                     if (validEvents.length > 0) {
                         setUpcomingEvents(validEvents);
