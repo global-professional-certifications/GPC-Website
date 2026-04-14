@@ -25,7 +25,7 @@ const UpcomingEventCard = () => {
                     {upcomingEvents.map((event) => (
                         <EventCard
                             key={event._id}
-                            image={event.coverImage}
+                            image={event.coverImageUrl}
                             title={event.title}
                             description={event.description}
                             targetDate={event.eventStartDateTime}

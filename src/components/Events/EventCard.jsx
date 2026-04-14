@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { urlFor } from "../../lib/sanity/imageBuilder";
 
 const EventCard = ({
     image,
@@ -17,6 +18,11 @@ const EventCard = ({
     venue,
     date,
 }) => {
+    // Generate image URL with hotspot support if image is a Sanity object
+    const imageUrl = image && typeof image === 'object' 
+        ? urlFor(image).url() 
+        : image;
+
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             return (
@@ -58,7 +64,7 @@ const EventCard = ({
                     <div className="absolute inset-0 bg-gradient-to-t from-[#100e28] via-transparent to-transparent md:hidden z-10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#100e28] hidden md:block z-10 opacity-80" />
                     <img
-                        src={image}
+                        src={imageUrl}
                         alt={imageAlt}
                         className="w-full h-full object-cover"
                     />
