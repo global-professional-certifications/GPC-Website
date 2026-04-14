@@ -102,6 +102,17 @@ export default defineType({
       description: 'For video/written testimonials this is the preview thumbnail. For image testimonials this is the main image.',
     }),
     defineField({
+      name: 'gallery',
+      title: 'Gallery Images',
+      type: 'array',
+      options: {
+        layout: 'grid',
+      },
+      of: [{ type: 'image', options: { hotspot: true } }],
+      description: 'Additional screenshots or images for this story.',
+      hidden: ({ document }) => document?.category !== 'image',
+    }),
+    defineField({
       name: 'quote',
       title: 'Testimonial Quote',
       type: 'text',
