@@ -174,7 +174,7 @@ export default function Home() {
         </script>
       </Helmet>
       <MetaTags
-        title="Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
+        title="Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
         description=" Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. "
         canonicalUrl="https://globalprofessionalcertifications.com/"
       />
