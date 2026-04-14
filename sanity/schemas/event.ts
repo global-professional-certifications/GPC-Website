@@ -86,6 +86,9 @@ export default defineType({
             name: 'galleryImages',
             title: 'Gallery Images',
             type: 'array',
+            options: {
+                layout: 'grid',
+            },
             of: [
                 {
                     type: 'image',
