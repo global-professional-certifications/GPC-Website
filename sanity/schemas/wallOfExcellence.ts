@@ -56,8 +56,8 @@ export default defineType({
           }
         }
       ],
-      validation: (Rule) => Rule.required().min(1),
-      description: 'Select one or more certifications cleared (CIA, CISA, CMA, etc.)',
+      validation: (Rule) => Rule.required().min(1).error('At least one course must be selected to avoid the entry appearing in "Unassigned"'),
+      description: 'Select one or more certifications cleared (CIA, CISA, CMA, etc.). If none are selected, this entry will appear in the "⚠️ Drafts / Unassigned" folder in the sidebar.',
     }),
     defineField({
       name: 'order',
