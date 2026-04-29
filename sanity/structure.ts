@@ -100,7 +100,7 @@ export const structure: StructureResolver = (S, context) => {
                                                             S.documentList()
                                                                 .title(`${course.name} — Wall of Excellence`)
                                                                 .schemaType('wallOfExcellence')
-                                                                .filter('_type == "wallOfExcellence" && course._ref == $courseId')
+                                                                .filter('_type == "wallOfExcellence" && ($courseId == course._ref || $courseId in course[]._ref)')
                                                                 .params({ courseId: course._id })
                                                                 .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                                 .initialValueTemplates([
@@ -121,7 +121,7 @@ export const structure: StructureResolver = (S, context) => {
                                                         S.documentList()
                                                             .title('Unassigned Wall Entries')
                                                             .schemaType('wallOfExcellence')
-                                                            .filter('_type == "wallOfExcellence" && !defined(course._ref)')
+                                                            .filter('_type == "wallOfExcellence" && !defined(course._ref) && (!defined(course) || count(course) == 0)')
                                                             .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                     ),
                                             ])
@@ -389,5 +389,40 @@ export const structure: StructureResolver = (S, context) => {
                 .title('Popups')
                 .schemaType('popup')
                 .child(S.documentTypeList('popup').title('Popups')),
+
+            S.divider(),
+
+            // ─── Data Maintenance (Future Proofing) ───
+            S.listItem()
+                .title('🛠️ Data Maintenance')
+                .child(
+                    S.list()
+                        .title('Data Maintenance')
+                        .items([
+                            S.listItem()
+                                .title('Legacy Wall Formats (Needs Fix)')
+                                .child(
+                                    S.documentList()
+                                        .title('Entries with Single Reference (Fix by re-selecting course)')
+                                        .schemaType('wallOfExcellence')
+                                        .filter('_type == "wallOfExcellence" && defined(course._ref)')
+                                ),
+                            S.listItem()
+                                .title('Stories Missing Thumbnail')
+                                .child(
+                                    S.documentList()
+                                        .title('Missing Thumbnails')
+                                        .schemaType('successStory')
+                                        .filter('_type == "successStory" && !defined(thumbnail)')
+                                ),
+                            S.listItem()
+                                .title('Broken Course References')
+                                .child(
+                                    S.documentList()
+                                        .title('Broken References')
+                                        .filter('defined(course._ref) && !defined(*[_id == ^.course._ref][0])')
+                                )
+                        ])
+                ),
         ])
 }
