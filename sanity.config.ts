@@ -5,6 +5,9 @@ import { codeInput } from '@sanity/code-input'
 import { schemaTypes } from './sanity/schemas'
 import { apiVersion, dataset, projectId } from './sanity/env'
 import { structure } from './sanity/structure'
+import { MoveToCourseAction } from './sanity/actions/MoveToCourseAction'
+import { MoveToCategoryAction } from './sanity/actions/MoveToCategoryAction'
+import BulkMover from './sanity/tools/BulkMover'
 
 // Initial value templates for pre-filling course and category when adding testimonials
 const initialValueTemplates: Template[] = [
@@ -64,7 +67,19 @@ export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
-  plugins: [structureTool({ structure }), visionTool(), codeInput()],
+  plugins: [
+    structureTool({ structure }), 
+    visionTool(), 
+    codeInput()
+  ],
+  tools: (prev) => [
+    ...prev,
+    {
+      name: 'bulk-mover',
+      title: 'Bulk Operations',
+      component: BulkMover,
+    },
+  ],
   schema: {
     types: schemaTypes,
     templates: (prev) => [...prev, ...initialValueTemplates],
@@ -88,6 +103,12 @@ export default defineConfig({
 
         return orderedActions
       }
+
+      // Add Move actions to Success Story and Wall of Excellence
+      if (['successStory', 'wallOfExcellence'].includes(context.schemaType)) {
+        return [...prev, MoveToCourseAction, MoveToCategoryAction].filter(Boolean)
+      }
+
       return prev
     },
   },
