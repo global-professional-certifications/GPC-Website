@@ -33,6 +33,8 @@ const Qaip = lazy(() => import('./components/Corporate/Qaip.jsx'));
 const GtmTrainings = lazy(() => import('./components/Corporate/GtmTrainings.jsx'));
 const VideoGalleryPage = lazy(() => import('./components/SuccessStories/VideoGalleryPage.jsx'));
 const WrittenGalleryPage = lazy(() => import('./components/SuccessStories/WrittenGalleryPage.jsx'));
+// const Upcoming = lazy(() => import('./components/Upcoming/Upcoming.jsx'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound.jsx'));
 
 // Loading component
 const PageLoader = () => (
@@ -68,6 +70,8 @@ const router = createBrowserRouter(
         <Route path="corporate/gtm-trainings" element={<Suspense fallback={<PageLoader />}><GtmTrainings /></Suspense>} />
         <Route path="blogs" element={<Suspense fallback={<PageLoader />}><BlogList /></Suspense>} />
         <Route path="blogs/:slug" element={<Suspense fallback={<PageLoader />}><BlogPage /></Suspense>} />
+        {/* <Route path="upcoming" element={<Suspense fallback={<PageLoader />}><Upcoming /></Suspense>} /> */}
+        <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
       </Route>
     </>
   )
