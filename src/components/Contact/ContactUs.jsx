@@ -55,20 +55,20 @@ export default function ContactUs() {
                                 <span className="px-3 py-1.5 bg-[#EFECFF] text-[#5033FF] w-[12rem] border border-[#5033FF] rounded-lg text-sm font-bold hover:text-brand-purple hover:border-brand-purple transition duration-300">
                                     Contact Us
                                 </span>
-                                <h2 className="mt-4 text-brand-blue dark:text-white mb-4 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+                                <h1 className="mt-4 text-brand-blue dark:text-white mb-4 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                                     GET IN TOUCH WITH US
-                                </h2>
-                                <p className="text-xl leading-relaxed text-brand-dark dark:text-dark-6 mb-9">
+                                </h1>
+                                <h2 className="text-xl leading-relaxed text-brand-dark dark:text-dark-6 mb-9">
                                     Send us a message, we will text back!
-                                </p>
+                                </h2>
                                 <div className="mb-8 flex justify-center items-center w-full max-w-[370px]">
                                     <div className="bg-primary/5 text-brand-blue shadow-lg border border-gray-200 mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded sm:h-[70px] sm:max-w-[70px]">
                                         <GrLocation size={32} className="hover:text-brand-purple transition duration-300" />
                                     </div>
                                     <div className="w-full">
-                                        <h4 className="mb-1 text-xl text-dark dark:text-white">
+                                        <h3 className="mb-1 text-xl text-dark dark:text-white">
                                             <span className="font-bold">Our Location</span> <span><TiArrowRight className="inline-block" /></span> <span className="text-sm italic hover:text-brand-purple hover:underline"><Link to="https://maps.app.goo.gl/iJx6qe41EeEeG1vY8" target="_blank">View on map</Link></span>
-                                        </h4>
+                                        </h3>
                                         <p className="text-sm text-body-color dark:text-dark-6">
                                             Innov8 Building, Orchid Centre, Golf course road, Gurugram, Haryana, India - 122022
                                         </p>
@@ -79,9 +79,9 @@ export default function ContactUs() {
                                         <FiPhoneCall size={32} className="hover:text-brand-purple transition duration-300" />
                                     </div>
                                     <div className="w-full">
-                                        <h4 className="text-xl font-bold text-dark dark:text-white">
+                                        <h3 className="text-xl font-bold text-dark dark:text-white">
                                             Phone Number
-                                        </h4>
+                                        </h3>
                                         <p className="text-sm text-body-color dark:text-dark-6">
                                             (+91) 87360 83099
                                         </p>
@@ -92,9 +92,9 @@ export default function ContactUs() {
                                         <MdOutlineEmail size={32} className="hover:text-brand-purple transition duration-300" />
                                     </div>
                                     <div className="w-full">
-                                        <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
+                                        <h3 className="mb-1 text-xl font-bold text-dark dark:text-white">
                                             Email Address
-                                        </h4>
+                                        </h3>
                                         <p className="text-sm text-body-color dark:text-dark-6">
                                             <a href="mailto:cia@globalprofessionalcertifications.com?subject=Inquiry&body=Hi there, I would like to know more about..." className="hover:underline hover:text-brand-blue">
                                                 cia@globalprofessionalcertifications.com
