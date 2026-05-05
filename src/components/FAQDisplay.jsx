@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
 
     return (
         <div className="bg-gray-50 px-2 md:px-0 pl-0 md:pl-20 rounded-2xl">
-            <h2 className="text-3xl font-bold text-center mb-10">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
                 Frequently Asked <span className="text-brand-blue font-normal italic">Questions</span>
             </h2>
 
