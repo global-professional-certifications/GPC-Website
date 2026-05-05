@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
@@ -103,7 +103,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-${topOffset} bg-white backdrop-blur-md shadow-sm px-0 md:px-8 transition-all duration-300`}
+      className={`fixed w-full z-50 top-${topOffset} bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-all duration-300`}
     >
       <div className="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
@@ -115,7 +115,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8 font-poppins">
-          {["Courses", "Events", "About", "Success", "Corporate", "Contact", "Blogs"].map((item, index) =>
+          {["Courses", "Upcoming", "Events", "About", "Success", "Corporate", "Contact", "Blogs"].map((item, index) =>
             item === "Courses" ? (
               <div
                 key={index}
@@ -248,7 +248,7 @@ const Navbar = ({ topOffset = 0 }) => {
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
-          {["Courses", "Corporate", "Events", "About", "Success", "Contact", "Blogs"].map((item, index) => (
+          {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs"].map((item, index) => (
             <li key={index} className="w-full border-b border-gray-100 dark:border-gray-800 last:border-0">
               {item === "Courses" ? (
                 <div className="w-full">
