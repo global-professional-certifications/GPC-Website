@@ -10,8 +10,8 @@ import { Helmet } from 'react-helmet-async';
 const SchemaMarkup = ({ schema }) => {
     if (!schema) return null;
 
-    // Handle array of schemas
-    const schemas = Array.isArray(schema) ? schema : [schema];
+    // Handle array of schemas and filter out falsy values
+    const schemas = (Array.isArray(schema) ? schema : [schema]).filter(Boolean);
 
     return (
         <Helmet>
