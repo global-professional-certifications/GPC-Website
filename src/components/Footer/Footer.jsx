@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
 import footerLogo from "../../assets/gpc-footer-logo.png";
@@ -20,6 +20,9 @@ export default function Footer() {
                             <img
                                 src={footerLogo}
                                 alt="Global Professional Certifications logo"
+                                width="200"
+                                height="80"
+                                loading="lazy"
                                 className="h-20 w-auto object-contain"
                             />
                         </Link>
