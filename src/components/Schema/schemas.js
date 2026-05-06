@@ -60,18 +60,10 @@ export const getWebSiteSchema = () => ({
 
 /**
  * Breadcrumb Schema Generator
+ * @deprecated Use BreadcrumbsSEO component instead which generates this dynamically.
  * @param {Array} items - Array of {name, url} objects
  */
-export const getBreadcrumbSchema = (items) => ({
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.url
-    }))
-});
+export const getBreadcrumbSchema = (items) => null;
 
 /**
  * Course Schema Generator

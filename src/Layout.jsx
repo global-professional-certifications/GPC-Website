@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import NotificationBanner from "./components/Notifications/NotificationBanner";
 import EventCountdownBar from "./components/Events/EventCountdownBar";
 import ScrollToHash from "./ScrollToHash";
-import { SchemaMarkup, getOrganizationSchema } from "./components/Schema";
+import { SchemaMarkup, getOrganizationSchema, BreadcrumbsSEO } from "./components/Schema";
 import { useLayout, LAYOUT_HEIGHTS } from "./contexts/LayoutContext";
 
 const ScrollToTop = () => {
@@ -41,6 +41,7 @@ export default function Layout() {
     return (
         <>
             <SchemaMarkup schema={getOrganizationSchema()} />
+            <BreadcrumbsSEO />
             <ScrollToHash />
             <ScrollToTop />
             <NotificationBanner />
