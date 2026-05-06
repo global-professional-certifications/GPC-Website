@@ -503,7 +503,7 @@ export default function Home() {
 
         {/* CIA image */}
         <section className=" w-full px-4 py-8 md:px-10 md:py-16 flex justify-center items-center bg-brand-blue">
-          <img src={ciaAchieverImage} alt="CIA Achievers Image" loading="lazy" className="object-cover rounded-xl" />
+          <img src={ciaAchieverImage} alt="CIA Achievers Image" width="1200" height="400" loading="lazy" className="object-cover rounded-xl" />
         </section>
 
 
@@ -633,6 +633,8 @@ export default function Home() {
                 src={faqImage}
                 alt="FAQ illustration"
                 loading="lazy"
+                width="500"
+                height="500"
                 className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
               />
             </div>
