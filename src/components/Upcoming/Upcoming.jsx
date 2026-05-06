@@ -203,12 +203,6 @@ const Upcoming = () => {
                 {/* Left: Thumbnail — narrower */}
                 <div className="w-full lg:w-1/3 relative min-h-[220px] overflow-hidden">
                   <img src={orientationCover} alt="Live Orientation" className="absolute inset-0 w-full h-full" />
-
-
-                  <div className="absolute bottom-5 left-5 flex items-center gap-2 text-white font-bold text-[10px] uppercase tracking-[0.15em] drop-shadow-lg">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse drop-shadow-md" />
-                    Live Session
-                  </div>
                 </div>
 
                 {/* Right: Content — wider */}
