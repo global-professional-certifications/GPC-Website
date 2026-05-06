@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import heroGirl from '../../assets/home/hero-girl.webp';
 import { Link } from 'react-router-dom';
 
@@ -51,6 +51,7 @@ const Hero = () => {
                         <img
                             src={heroGirl}
                             alt="Professional woman representing certifications"
+                            fetchPriority="high"
                             className="w-full h-auto max-h-[500px] object-cover pb-8"
                         />
 

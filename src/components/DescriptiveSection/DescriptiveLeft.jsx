@@ -43,6 +43,7 @@ const DescriptiveLeft = ({
                         <img
                             src={image}
                             alt={imageAlt}
+                            loading="lazy"
                             className="w-full h-auto md:w-[35vw] md:h-auto object-contain rounded-lg"
                         />
                     </div>
