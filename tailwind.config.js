@@ -53,7 +53,7 @@ export default withMT({
       },
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [],
   safelist: [
     'sm:pt-[96px]',
     'sm:pt-24',

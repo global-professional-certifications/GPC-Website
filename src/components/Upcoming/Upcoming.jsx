@@ -24,6 +24,13 @@ const upcomingBatches = [
     description: "Start your CIA journey with our comprehensive Part 1 batch covering all fundamental audit concepts and the IPPF framework.",
     date: "May 23, 2026",
     enrollLink: "https://zurl.co/OTtVH",
+  },
+  {
+    id: 3,
+    name: "CIA Challenge Batch In Collaboration With IIA Bombay",
+    description: "The IIA Bombay Chapter presents a high-impact CIA Challenge Crash Course (2026), now enhanced with premium Gleim study materials. Led by Mr. Arpit Garg, this weekend live batch is designed to help you build strong concepts, focus on revision, and master exam-ready MCQ practice.",
+    date: "May 23, 2026",
+    enrollLink: "https://rzp.io/rzp/9AticWKJ",
   }
 ];
 
@@ -109,7 +116,7 @@ const Upcoming = () => {
 
       {/* ═══════════ UPCOMING BATCHES ═══════════ */}
       <section id="batches" className="py-16 md:py-20 bg-transparent">
-        <div className="max-w-7xl mx-auto px-3 md:px-4">
+        <div className="max-w-7xl mx-auto px-4">
 
           {/* Section Header */}
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 space-y-3">
@@ -145,7 +152,7 @@ const Upcoming = () => {
                   </div>
                 </div>
 
-                <h3 className="text-xl md:text-4xl font-extrabold text-gray-900 mb-3">
+                <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-3">
                   {batch.name}
                 </h3>
 
@@ -157,8 +164,8 @@ const Upcoming = () => {
                   <div className="bg-gray-50 rounded-xl px-4 py-3 flex items-center gap-3">
                     <FaCalendarAlt className="text-brand-purple text-sm md:text-xl flex-shrink-0" />
                     <div>
-                      <p className="text-[9px] md:text-sm text-gray-400 uppercase font-bold tracking-wider">Starts On</p>
-                      <p className="text-gray-800 text-sm md:text-lg font-semibold">{batch.date}</p>
+                      <p className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Starts On</p>
+                      <p className="text-gray-800 text-sm md:text-base font-semibold">{batch.date}</p>
                     </div>
                   </div>
                 </div>

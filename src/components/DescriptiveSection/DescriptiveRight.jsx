@@ -17,6 +17,7 @@ const DescriptiveRight = ({
                         <img
                             src={image}
                             alt={imageAlt}
+                            loading="lazy"
                             className="w-full h-auto md:w-[30vw] md:h-auto object-contain rounded-lg"
                         />
                     </div>

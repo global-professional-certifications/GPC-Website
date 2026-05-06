@@ -60,11 +60,6 @@ export const generateBreadcrumbSchema = (pathname, baseUrl = BASE_URL) => {
     // Ignore trailing slashes
     const cleanPathname = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
     
-    // Don't generate breadcrumb for homepage (already handled by WebSite schema usually, and length=1 is redundant)
-    if (cleanPathname === '/' || cleanPathname === '') {
-        return null;
-    }
-
     const pathSegments = cleanPathname.split('/').filter(Boolean);
     
     // Start with Home

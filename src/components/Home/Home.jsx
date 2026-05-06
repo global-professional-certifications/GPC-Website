@@ -310,6 +310,7 @@ export default function Home() {
                     src="https://www.youtube.com/embed/WgA9VzD06kY"
                     title="One Year of GPC | A Journey of Growth, Learning & Cre..."
                     frameBorder="0"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
@@ -502,7 +503,7 @@ export default function Home() {
 
         {/* CIA image */}
         <section className=" w-full px-4 py-8 md:px-10 md:py-16 flex justify-center items-center bg-brand-blue">
-          <img src={ciaAchieverImage} alt="CIA Achievers Image" className="object-cover rounded-xl" />
+          <img src={ciaAchieverImage} alt="CIA Achievers Image" loading="lazy" className="object-cover rounded-xl" />
         </section>
 
 
@@ -631,6 +632,7 @@ export default function Home() {
               <img
                 src={faqImage}
                 alt="FAQ illustration"
+                loading="lazy"
                 className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
               />
             </div>
