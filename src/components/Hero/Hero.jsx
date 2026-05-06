@@ -52,6 +52,8 @@ const Hero = () => {
                             src={heroGirl}
                             alt="Professional woman representing certifications"
                             fetchPriority="high"
+                            width="453"
+                            height="468"
                             className="w-full h-auto max-h-[500px] object-cover pb-8"
                         />
 
