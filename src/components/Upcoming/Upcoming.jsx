@@ -6,7 +6,7 @@ import FAQDisplay from "../FAQDisplay.jsx";
 
 // Assets
 import faqImage from "../../assets/faq.webp";
-import orientationCover from "../../assets/orientation-cover.png";
+import orientationCover from "../../assets/upcoming-orientation.png";
 
 // --- DATA CONSTANTS ---
 
@@ -202,22 +202,7 @@ const Upcoming = () => {
 
                 {/* Left: Thumbnail — narrower */}
                 <div className="w-full lg:w-1/3 relative min-h-[220px] overflow-hidden">
-                  <img src={orientationCover} alt="Live Orientation" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-brand-blue/40 mix-blend-multiply" />
-                  
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.08 }}
-                      className="relative z-10 w-16 h-16 rounded-full bg-white/15 border border-white/25 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-orange-500 hover:border-orange-400 transition-all duration-400 shadow-lg"
-                    >
-                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1.5" />
-                    </motion.div>
-                  </div>
-
-                  <div className="absolute bottom-5 left-5 flex items-center gap-2 text-white font-bold text-[10px] uppercase tracking-[0.15em] drop-shadow-lg">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse drop-shadow-md" />
-                    Live Session
-                  </div>
+                  <img src={orientationCover} alt="Live Orientation" className="absolute inset-0 w-full h-full" />
                 </div>
 
                 {/* Right: Content — wider */}
@@ -231,6 +216,11 @@ const Upcoming = () => {
                     <p className="text-gray-500 text-[15px] font-light leading-relaxed mb-7">
                       A vital introductory session to understand the course structure, exam patterns, and the roadmap to becoming a Certified Internal Auditor.
                     </p>
+
+                    <div className="flex items-center gap-2 text-brand-blue font-bold text-[10px] uppercase tracking-[0.15em] drop-shadow-lg">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse drop-shadow-md" />
+                      Live Session
+                    </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-y-4">
                       <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
