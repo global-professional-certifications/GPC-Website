@@ -7,7 +7,7 @@ import akshdeepTestimonial from "../../assets/akshdeep-singh.png";
 import starwinTestimonial from "../../assets/testimonial-2.png";
 import wajihaTestimonial from "../../assets/Wajiha-Ansari.png";
 import ramakrishnaTestimonial from "../../assets/Ramakrishna-Mude.jpeg";
-import unmeshTestimonial from "../../assets/Unmesh-Upadhye.png";
+import unmeshTestimonial from "../../assets/Unmesh-Upadhye.webp";
 
 const testimonials = [
     {

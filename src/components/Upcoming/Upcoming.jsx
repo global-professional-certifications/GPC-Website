@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React from 'react';
+import { m } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import FAQDisplay from "../FAQDisplay.jsx";
@@ -72,7 +72,7 @@ const Upcoming = () => {
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-56 h-56 bg-brand-purple/10 rounded-full blur-3xl" />
         <div className="max-w-5xl mx-auto px-3 md:px-4 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <m.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <p className="inline-block px-4 py-1.5 bg-white/10 border border-white/15 text-orange-400 text-[11px] md:text-xs rounded-full font-bold tracking-[0.25em] uppercase mb-6">
               Upcoming Batches and Announcements
             </p>
@@ -82,7 +82,7 @@ const Upcoming = () => {
             <p className="text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-2xl mx-auto">
               Stay ahead with our upcoming events, live webinars, and expertly designed courses — crafted to help you learn, grow, and take the next step in your journey.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -119,19 +119,19 @@ const Upcoming = () => {
         <div className="max-w-7xl mx-auto px-4">
 
           {/* Section Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 space-y-3">
+          <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 space-y-3">
             <h2 className="text-2xl md:text-4xl font-bold text-center">
               Upcoming <span className="text-brand-blue font-normal italic">Batches</span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-[15px] font-light leading-relaxed">
               Secure your spot in our upcoming certification batches and accelerate your professional journey with industry experts.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {upcomingBatches.map((batch, index) => (
-              <motion.div
+              <m.div
                 key={batch.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +175,7 @@ const Upcoming = () => {
                     Enroll Now <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -186,17 +186,17 @@ const Upcoming = () => {
         <div className="max-w-7xl mx-auto px-3 md:px-4">
 
           {/* Section Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 space-y-3">
+          <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 space-y-3">
             <h2 className="text-2xl md:text-4xl font-bold text-center">
               Live <span className="text-brand-blue font-normal italic">Orientation</span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-[15px] font-light leading-relaxed">
               Get a head start before the batch begins. Join our free orientation to meet your mentor, understand the exam strategy, and plan your preparation.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Card — Full width, no hover */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+          <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="bg-gray-50 border border-gray-300 overflow-hidden">
               <div className="flex flex-col lg:flex-row">
 
@@ -242,7 +242,7 @@ const Upcoming = () => {
 
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -256,7 +256,7 @@ const Upcoming = () => {
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
 
             <div className="w-full lg:w-5/12">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -270,11 +270,11 @@ const Upcoming = () => {
                     Expert-Led Session
                   </span>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
             <div className="w-full lg:w-7/12">
-              <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              <m.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                 <p className="text-orange-400 font-bold tracking-[0.25em] uppercase text-[11px] mb-3">Global Webinar Series</p>
                 <h2 className="text-2xl md:text-4xl font-extrabold text-white leading-tight mb-6">
                   Mastering <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Internal Audit:</span> Risk-Based Planning for 2026
@@ -309,7 +309,7 @@ const Upcoming = () => {
                     Reserve Your Seat
                   </button>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
           </div>
@@ -333,7 +333,7 @@ const Upcoming = () => {
       {/* ═══════════ STAY TUNED / SUBSCRIBE ═══════════ */}
       <section id="subscribe" className="bg-brand-blue py-14 md:py-16">
         <div className="max-w-7xl mx-auto px-3 md:px-12">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col lg:flex-row items-center justify-between gap-8">
 
             {/* Text */}
             <div className="w-full lg:w-2/3 text-center lg:text-left">
@@ -352,7 +352,7 @@ const Upcoming = () => {
               </a>
             </div>
 
-          </motion.div>
+          </m.div>
         </div>
       </section>
 

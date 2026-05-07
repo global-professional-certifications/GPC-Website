@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 
 export default function AnniversaryCelebration() {
     const [show, setShow] = useState(false)
@@ -31,7 +31,7 @@ export default function AnniversaryCelebration() {
     return (
         <AnimatePresence>
             {show && (
-                <motion.div
+                <m.div
                     className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -40,7 +40,7 @@ export default function AnniversaryCelebration() {
                 >
                     {/* Simple Confetti */}
                     {confetti.map((item) => (
-                        <motion.div
+                        <m.div
                             key={`confetti-${item.id}`}
                             className={`absolute ${item.size} rounded-sm`}
                             style={{
@@ -66,7 +66,7 @@ export default function AnniversaryCelebration() {
                             }}
                         />
                     ))}
-                </motion.div>
+                </m.div>
             )}
         </AnimatePresence>
     )

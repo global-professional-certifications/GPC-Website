@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+﻿import { Link } from 'react-router-dom';
+import { m } from 'framer-motion';
 import { Home, ArrowLeft } from 'lucide-react';
 
 const NotFound = () => {
@@ -12,7 +12,7 @@ const NotFound = () => {
             </div>
 
             <div className="max-w-3xl w-full text-center relative z-10">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -20,9 +20,9 @@ const NotFound = () => {
                     <h1 className="text-[120px] md:text-[180px] font-black leading-none bg-gradient-to-r from-brand-blue via-brand-purple to-brand-blue bg-[length:200%_auto] bg-clip-text text-transparent animate-pulse-slow">
                         404
                     </h1>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -33,9 +33,9 @@ const NotFound = () => {
                     <p className="text-lg text-brand-gray dark:text-gray-400 mb-10 max-w-lg mx-auto">
                         The page you are looking for might have been moved, deleted, or never existed in this dimension. Let's get you back on track.
                     </p>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -56,20 +56,20 @@ const NotFound = () => {
                         <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
                         Go Back
                     </button>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 1 }}
                     className="mt-16 text-sm text-brand-gray/50 dark:text-gray-500 font-medium tracking-widest uppercase"
                 >
                     Global Professional Certifications
-                </motion.div>
+                </m.div>
             </div>
 
             {/* Subtle floating shapes for extra premium feel */}
-            <motion.div
+            <m.div
                 animate={{
                     y: [0, -20, 0],
                     rotate: [0, 10, 0]
@@ -82,9 +82,9 @@ const NotFound = () => {
                 className="absolute top-1/4 right-[15%] hidden lg:block"
             >
                 <div className="w-12 h-12 border-2 border-brand-purple/20 rounded-lg rotate-12" />
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
                 animate={{
                     y: [0, 20, 0],
                     rotate: [0, -10, 0]
@@ -98,7 +98,7 @@ const NotFound = () => {
                 className="absolute bottom-1/4 left-[15%] hidden lg:block"
             >
                 <div className="w-16 h-16 border-2 border-brand-blue/20 rounded-full" />
-            </motion.div>
+            </m.div>
         </div>
     );
 };

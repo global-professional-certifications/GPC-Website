@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+﻿import React, { useState, useMemo, useEffect } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { examTestimonialsData } from './constant';
 
 const getInitials = (name) => {
@@ -135,7 +135,7 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                                 const role = story.role || story.designation || '';
 
                                 return (
-                                    <motion.div
+                                    <m.div
                                         key={story._id || `${activeTab}-${index}`}
                                         initial={{ opacity: 0, y: 15 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -215,17 +215,17 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </m.div>
                                 );
                             })
                         ) : (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 className="col-span-full text-center text-gray-500 py-20 bg-white/50 rounded-3xl border-2 border-dashed border-gray-200"
                             >
                                 No success stories found for this certification yet.
-                            </motion.div>
+                            </m.div>
                         )}
                     </AnimatePresence>
                 </div>

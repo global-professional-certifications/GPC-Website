@@ -5,6 +5,16 @@ import { Link } from "react-router-dom";
 const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
     const [openIndex, setOpenIndex] = useState(null);
     const contentRefs = useRef([]);
+    const heightsRef = useRef({});
+
+    // Cache scrollHeights after paint — avoids forced reflow during render
+    useEffect(() => {
+        contentRefs.current.forEach((el, i) => {
+            if (el) {
+                heightsRef.current[i] = el.scrollHeight;
+            }
+        });
+    });
 
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -42,7 +52,7 @@ const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
                             style={{
                                 maxHeight:
                                     openIndex === index
-                                        ? `${contentRefs.current[index]?.scrollHeight}px`
+                                        ? `${heightsRef.current[index] ?? 'auto'}px`
                                         : "0px",
                             }}
                         >
