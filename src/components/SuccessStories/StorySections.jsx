@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+﻿import React, { useState, useMemo, useEffect } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   videoVaultTabs,

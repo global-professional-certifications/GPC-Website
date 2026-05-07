@@ -4,7 +4,7 @@ export default function VideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const videoId = "2FWaO_Cf0eg";
-  const youtubeThumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const youtubeThumbnail = "/thumbnails/2FWaO_Cf0eg.jpg";
 
   return (
     <div className="flex justify-center items-center px-4 md:px-0 relative z-10">

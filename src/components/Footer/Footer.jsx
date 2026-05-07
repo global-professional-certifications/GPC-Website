@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineYoutube, AiOutlineInstagram, AiOutlineLinkedin } from "react-icons/ai";
-import footerLogo from "../../assets/gpc-footer-logo.png";
+import footerLogo from "../../assets/gpc-footer-logo.webp";
 import wappLogo from "../../assets/Gpc_Whatsapp_Community_qr.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";

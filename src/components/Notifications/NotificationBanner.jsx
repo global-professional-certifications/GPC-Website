@@ -6,16 +6,15 @@ import { motion } from "motion/react";
 export default function NotificationBanner() {
 
 
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768)
         }
 
-        handleResize()
         window.addEventListener("resize", handleResize)
         return () => window.removeEventListener("resize", handleResize)
-    }, [window.innerWidth])
+    }, [])
 
     return (
         <div className="fixed top-0 left-0 w-screen bg-brand-blue text-white flex items-center justify-center text-center h-12 z-50 transition-colors duration-300">

@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { ThemeProvider } from "@material-tailwind/react";
+import { LazyMotion, domAnimation } from 'framer-motion';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './Layout.jsx';
@@ -78,7 +78,7 @@ const router = createBrowserRouter(
 )
 
 createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
+  <LazyMotion features={domAnimation}>
     <HelmetProvider>
       <LayoutProvider>
         <>
@@ -88,5 +88,5 @@ createRoot(document.getElementById('root')).render(
         </>
       </LayoutProvider>
     </HelmetProvider>
-  </ThemeProvider>
+  </LazyMotion>
 )

@@ -15,7 +15,7 @@ import deloitteLogo from "../../assets/Companies/Deloitte.png";
 import deutscheBankLogo from "../../assets/Companies/Deutsche-Bank.png";
 import courseraLogo from "../../assets/Companies/Coursera.png"
 import pwcLogo from "../../assets/Companies/PWC.png";
-import comptrollerLogo from "../../assets/Companies/Comptroller.png";
+import comptrollerLogo from "../../assets/Companies/Comptroller.webp";
 import eatonLogo from "../../assets/Companies/Eaton.png"
 import cognizantLogo from "../../assets/Companies/Cognizant.png"
 import hexawareLogo from "../../assets/Companies/Hexaware.png"

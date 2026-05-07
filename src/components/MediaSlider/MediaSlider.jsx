@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+﻿import React, { useEffect, useRef, useState } from "react";
+import { m, AnimatePresence } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
@@ -82,7 +82,7 @@ export default function MediaSlider({
                     const isCenter = d === 0;
 
                     return (
-                        <motion.div
+                        <m.div
                             key={i}
                             className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 rounded-lg overflow-hidden shadow-lg"
                             initial={{ opacity: 0 }}
@@ -123,7 +123,7 @@ export default function MediaSlider({
                                     height={height}
                                 />
                             )}
-                        </motion.div>
+                        </m.div>
                     );
                 })}
             </div>
@@ -132,7 +132,7 @@ export default function MediaSlider({
             {/* Fullscreen modal */}
             <AnimatePresence>
                 {fullscreenSrc && (
-                    <motion.div
+                    <m.div
                         className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -162,7 +162,7 @@ export default function MediaSlider({
                                 />
                             )}
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Hero from "../Hero/Hero";
 import Companies from "../Companies/Companies";
@@ -8,7 +8,7 @@ import MetaTags from "../MetaTags";
 import { Helmet } from "react-helmet-async";
 import FAQDisplay from "../FAQDisplay.jsx";
 import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
-import { motion } from "framer-motion";
+import { m } from 'framer-motion';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveRight from "../DescriptiveSection/DescriptiveRight";
@@ -38,6 +38,32 @@ import brochureCover from "../../assets/home/cia-brochure.webp";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
 import ciaAchieverImage from "../../assets/home/cia-achievers.webp"
+
+const AnniversaryVideo = () => {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
+      {!playing ? (
+        <div className="absolute inset-0 cursor-pointer" onClick={() => setPlaying(true)}>
+          <img src="/thumbnails/WgA9VzD06kY.jpg" alt="One Year of GPC — A Journey of Growth, Learning & Creativity" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-white text-2xl ml-1">&#9654;</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/WgA9VzD06kY?autoplay=1"
+          title="One Year of GPC | A Journey of Growth, Learning & Creativity"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      )}
+    </div>
+  );
+};
 
 const courseFaqs = [
   {
@@ -187,7 +213,7 @@ export default function Home() {
           <Hero />
 
           {/* Stats Section */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -244,7 +270,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
 
@@ -305,15 +331,7 @@ export default function Home() {
               {/* Video - Left Side (2 columns) */}
               <div className="lg:col-span-2">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                  <iframe
-                    className="w-full h-[300px] sm:h-[400px] md:h-[450px]"
-                    src="https://www.youtube.com/embed/WgA9VzD06kY"
-                    title="One Year of GPC | A Journey of Growth, Learning & Cre..."
-                    frameBorder="0"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  <AnniversaryVideo />
                 </div>
               </div>
 
@@ -608,17 +626,16 @@ export default function Home() {
         </div>
 
         {/* About Mentor */}
-        <MentorShowcase />
+        <div className="cv-auto"><MentorShowcase /></div>
 
         {/* Testimonials Section */}
-        <TestimonialsShowcase />
+        <div className="cv-auto"><TestimonialsShowcase /></div>
 
         {/* Blog Section */}
-
-        <BlogCall />
+        <div className="cv-auto"><BlogCall /></div>
 
         {/* YouTube Videos Section*/}
-        <YouTubeCarousel />
+        <div className="cv-auto"><YouTubeCarousel /></div>
 
         {/* FAQ Section */}
 

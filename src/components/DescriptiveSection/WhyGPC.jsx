@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { m } from 'framer-motion';
 
 const WhyGPC = ({ subHeading, items }) => {
   return (
@@ -22,7 +22,7 @@ const WhyGPC = ({ subHeading, items }) => {
         {/* Grid */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {items.map((item, index) => (
-            <motion.div
+            <m.div
               key={index}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="group flex flex-col justify-start items-center gap-3 bg-white/40 backdrop-blur-md border border-white/60 p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] transition-all duration-300"
@@ -41,7 +41,7 @@ const WhyGPC = ({ subHeading, items }) => {
               <p className="text-gray-600 text-sm font-poppins leading-relaxed">
                 {item.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

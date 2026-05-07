@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+﻿import React, { useState, useEffect, useCallback } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 
 export default function MobileGallery({ images = [] }) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ export default function MobileGallery({ images = [] }) {
                 {activeImages.map((img, i) => {
                     const globalIndex = (currentPage - 1) * ITEMS_PER_PAGE + i;
                     return (
-                        <motion.div
+                        <m.div
                             key={img._id || globalIndex}
                             whileHover={{ scale: 1.02, y: -4 }}
                             className="relative overflow-hidden cursor-pointer group transition-all hover:shadow-xl hover:shadow-brand-blue/10"
@@ -62,7 +62,7 @@ export default function MobileGallery({ images = [] }) {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </m.div>
                     );
                 })}
             </div>
@@ -106,7 +106,7 @@ export default function MobileGallery({ images = [] }) {
             {/* Full Screen Lightbox Modal */}
             <AnimatePresence>
                 {selectedImageIndex !== null && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -131,7 +131,7 @@ export default function MobileGallery({ images = [] }) {
                         </button>
 
                         {/* Image Container */}
-                        <motion.div
+                        <m.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
@@ -150,7 +150,7 @@ export default function MobileGallery({ images = [] }) {
                                     {images[selectedImageIndex].name} - {images[selectedImageIndex].courseName || 'GPC'}
                                 </div>
                             )}
-                        </motion.div>
+                        </m.div>
 
                         {/* Next Button */}
                         <button
@@ -159,7 +159,7 @@ export default function MobileGallery({ images = [] }) {
                         >
                             <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                         </button>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>
