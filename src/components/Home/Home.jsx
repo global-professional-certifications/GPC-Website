@@ -245,7 +245,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-0 text-left text-nowrap">
                   <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
-                    <Counter target={5} />
+                    <Counter target={6} />
                   </p>
                   <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
                     Years of Teaching <br />Experience
@@ -262,7 +262,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-0 text-left text-nowrap">
                   <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
-                    <Counter target={25} />
+                    <Counter target={30} />
                   </p>
                   <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
                     Batches Completed
