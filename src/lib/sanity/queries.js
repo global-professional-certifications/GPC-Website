@@ -2,8 +2,7 @@ export const getAllPosts = `*[_type == "post"] | order(publishedAt desc) {
   _id,
   title,
   slug,
-  description,
-  excerpt,
+  "description": coalesce(shortDescription, description),
   mainImage,
   publishedAt,
   "author": author->name,
@@ -11,16 +10,18 @@ export const getAllPosts = `*[_type == "post"] | order(publishedAt desc) {
   "categories": categories[]->{title, slug, color},
   tags,
   keyTakeaways,
-  contentFunnelStage,
-  meta
+  "contentFunnelStage": funnelStage,
+  "meta": {
+    "metaTitle": seoTitle,
+    "metaDescription": metaDescription
+  }
 }`
 
 export const getPostBySlug = `*[_type == "post" && slug.current == $slug][0] {
   _id,
   title,
   slug,
-  description,
-  excerpt,
+  "description": coalesce(shortDescription, description),
   mainImage,
   publishedAt,
   "author": author->name,
@@ -28,18 +29,21 @@ export const getPostBySlug = `*[_type == "post" && slug.current == $slug][0] {
   "authorBio": author->bio,
   "categories": categories[]->{title, slug, color},
   tags,
+  tldr,
   keyTakeaways,
-  contentFunnelStage,
-  body,
-  meta
+  "contentFunnelStage": funnelStage,
+  "body": coalesce(content, body),
+  "meta": {
+    "metaTitle": seoTitle,
+    "metaDescription": metaDescription
+  }
 }`
 
 export const getRecentPosts = `*[_type == "post"] | order(publishedAt desc)[0...3] {
   _id,
   title,
   slug,
-  description,
-  excerpt,
+  "description": coalesce(shortDescription, description),
   mainImage,
   publishedAt,
   "author": author->name,
@@ -55,8 +59,7 @@ export const getPostsByCategory = `*[_type == "post" && $categorySlug in categor
   _id,
   title,
   slug,
-  description,
-  excerpt,
+  "description": coalesce(shortDescription, description),
   mainImage,
   publishedAt,
   "author": author->name,
@@ -68,8 +71,7 @@ export const getPostsByTag = `*[_type == "post" && $tag in tags] | order(publish
   _id,
   title,
   slug,
-  description,
-  excerpt,
+  "description": coalesce(shortDescription, description),
   mainImage,
   publishedAt,
   "author": author->name,
