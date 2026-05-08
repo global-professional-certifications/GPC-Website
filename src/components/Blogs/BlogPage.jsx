@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, Link, NavLink } from 'react-router-dom'
 import { client } from '../../lib/sanity/client'
 import { getPostBySlug, getRecentPosts } from '../../lib/sanity/queries'
@@ -87,6 +87,7 @@ const BlogPage = () => {
         body,
         categories,
         tags,
+        tldr,
         keyTakeaways,
         meta
     } = post
@@ -115,67 +116,93 @@ const BlogPage = () => {
                 canonicalUrl={`https://globalprofessionalcertifications.com/blogs/${slug}`}
             />
 
-            <div className="relative min-h-screen w-full bg-gray-50 py-12">
-                {/* Header with proper spacing */}
-                <div className="pb-6 px-12 max-w-5xl mx-auto">
-                    {/* Back Button */}
-                    <Link
-                        to="/blogs"
-                        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-blue mb-4"
-                    >
-                        <ArrowLeft className="w-4 h-4" /> Back to Blogs
-                    </Link>
+            <div className="relative min-h-screen w-full bg-white pb-12">
+                {/* Solid Brand Header */}
+                <div className="bg-brand-blue pt-28 pb-16 md:pt-36 md:pb-24">
+                    <div className="max-w-5xl mx-auto px-4 md:px-8">
+                        {/* Breadcrumbs */}
+                        <nav className="flex items-center gap-2 text-blue-100/70 text-xs md:text-sm mb-8 font-medium">
+                            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                            <span className="opacity-40">/</span>
+                            <Link to="/blogs" className="hover:text-white transition-colors">Blog</Link>
+                            <span className="opacity-40">/</span>
+                            <span className="text-white truncate max-w-[200px] md:max-w-none">{title}</span>
+                        </nav>
 
-                    {/* Categories - Clickable */}
-                    {categories?.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mb-3">
-                            {categories.map((cat, idx) => (
-                                <Link
-                                    key={idx}
-                                    to={`/blogs?category=${cat.slug?.current || cat.slug}`}
-                                    className="px-2 py-0.5 text-xs font-semibold rounded-full text-white hover:opacity-80 transition-opacity"
-                                    style={{ backgroundColor: cat.color || '#4F46E5' }}
-                                >
-                                    {cat.title}
-                                </Link>
-                            ))}
-                        </div>
-                    )}
+                        {/* Title */}
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+                            {title}
+                        </h1>
 
-                    {/* Title */}
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-                        {title}
-                    </h1>
+                        {/* Meta Info */}
+                        <div className="flex flex-wrap items-center gap-6 text-sm text-blue-50">
+                            <div className="flex items-center gap-3">
+                                {authorImage ? (
+                                    <img src={urlFor(authorImage).width(40).url()} alt={author} className="w-10 h-10 rounded-full object-cover border-2 border-white/20" />
+                                ) : (
+                                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border-2 border-white/20 font-bold">
+                                        {author?.charAt(0) || 'A'}
+                                    </div>
+                                )}
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-white leading-none mb-1">{author}</span>
+                                    <span className="text-[11px] text-blue-100/70 uppercase tracking-wider font-semibold">Author</span>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                                <Calendar className="w-4 h-4 text-blue-200" />
+                                <span className="font-medium">{formatDate(publishedAt)}</span>
+                            </div>
 
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
-                        <span className="flex items-center gap-1.5">
-                            {authorImage ? (
-                                <img src={urlFor(authorImage).width(32).url()} alt={author} className="w-6 h-6 rounded-full object-cover" />
-                            ) : (
-                                <User className="w-4 h-4" />
+                            {categories?.length > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                    {categories.map((cat, idx) => (
+                                        <span key={idx} className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/20">
+                                            {cat.title}
+                                        </span>
+                                    ))}
+                                </div>
                             )}
-                            {author}
-                        </span>
-                        <span className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
-                            {formatDate(publishedAt)}
-                        </span>
+                        </div>
                     </div>
+                </div>
 
-                    {/* Cover Image */}
-                    {mainImage && (
-                        <img
-                            src={urlFor(mainImage).width(900).url()}
-                            alt={mainImage.alt || title}
-                            className="w-full h-auto max-h-80 object-cover rounded-xl mb-6"
-                        />
-                    )}
+                {/* Cover Image Section */}
+                <div className="max-w-5xl mx-auto px-4 -mt-8 md:-mt-12 mb-12">
+                    <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                        {mainImage ? (
+                            <img
+                                src={urlFor(mainImage).width(1600).url()}
+                                alt={mainImage.alt || title}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-brand-blue to-brand-purple"></div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Content Area */}
                 <div className="max-w-5xl mx-auto px-4 pb-6">
                     <div className="p-6 md:p-10">
+
+                        {/* TL;DR Summary */}
+                        {tldr && (
+                            <div className="mb-10 p-6 bg-blue-50/50 rounded-2xl border border-blue-100 flex gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 shadow-lg shadow-blue-200">
+                                    <CheckCircle2 className="w-6 h-6 text-white" />
+                                </div>
+                                <div>
+                                    <h2 className="text-sm font-bold text-blue-900 uppercase tracking-wider mb-2">
+                                        Quick Summary
+                                    </h2>
+                                    <p className="text-gray-700 leading-relaxed font-medium italic">
+                                        "{tldr}"
+                                    </p>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Key Takeaways */}
                         {keyTakeaways?.length > 0 && (
@@ -245,28 +272,27 @@ const BlogPage = () => {
                         </div>
 
                         {/* Author Box - Professional Design */}
-                        <div className='mt-10 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden'>
-                            <div className='bg-gradient-to-r from-brand-blue/5 via-brand-purple/5 to-brand-blue/5 px-6 py-4 border-b border-gray-100'>
-                                <p className='text-xs font-semibold text-gray-500 uppercase tracking-wider'>About the Author</p>
-                            </div>
-                            <div className='p-6 md:p-8'>
-                                <div className='flex flex-col md:flex-row items-center md:items-start gap-5'>
-                                    <div className='w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-brand-blue/10 shadow-lg'>
-                                        {authorImage ? (
-                                            <img src={urlFor(authorImage).width(150).url()} alt={author} className='w-full h-full object-cover' />
-                                        ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center text-white font-bold text-2xl">
-                                                {author?.charAt(0) || 'A'}
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="flex-1 text-center md:text-left">
-                                        <h3 className='text-xl font-bold text-gray-900 mb-1'>{author}</h3>
-                                        <p className='text-sm text-brand-blue font-medium mb-3'>Expert Faculty</p>
-                                        <p className='text-gray-600 text-sm leading-relaxed'>
-                                            {authorBio || "Experienced professional with expertise in CIA, CISA, CRMA, and IAP training. Dedicated to helping professionals achieve their certification goals through comprehensive coaching and industry insights."}
-                                        </p>
-                                    </div>
+                        <div className='mt-16 bg-gray-50 rounded-2xl p-8 border border-gray-100'>
+                            <div className='flex flex-col md:flex-row items-center md:items-start gap-8'>
+                                <div className='w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden flex-shrink-0 shadow-xl border-4 border-white'>
+                                    {authorImage ? (
+                                        <img src={urlFor(authorImage).width(200).url()} alt={author} className='w-full h-full object-cover' />
+                                    ) : (
+                                        <div className="w-full h-full bg-brand-blue flex items-center justify-center text-white font-bold text-3xl">
+                                            {author?.charAt(0) || 'A'}
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="flex-1 text-center md:text-left">
+                                    <p className='text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] mb-2'>Published By</p>
+                                    <h3 className='text-2xl font-bold text-gray-900 mb-2'>{author}</h3>
+                                    <p className='text-gray-600 text-sm leading-relaxed mb-6'>
+                                        {authorBio || "Experienced professional with expertise in CIA, CISA, CRMA, and IAP training. Dedicated to helping professionals achieve their certification goals."}
+                                    </p>
+                                    <Link to="/blogs" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
+                                        View All Articles by {author}
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -281,42 +307,63 @@ const BlogPage = () => {
                                 <h3 className='text-lg font-bold text-gray-900'>Related Articles</h3>
                             </div>
 
-                            <div className='grid md:grid-cols-3 gap-4'>
-                                {relatedPosts.slice(0, 3).map((related) => (
-                                    <Link
-                                        key={related._id}
-                                        to={`/blogs/${related.slug.current || related.slug}`}
-                                        className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all"
-                                    >
-                                        <div className="h-28 overflow-hidden">
-                                            <img
-                                                src={related.mainImage ? urlFor(related.mainImage).width(300).url() : ''}
-                                                alt={related.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        </div>
-                                        <div className='p-3'>
-                                            {/* Show category on related posts */}
-                                            {related.categories?.[0] && (
-                                                <span
-                                                    className="inline-block px-2 py-0.5 text-[10px] font-semibold rounded-full text-white mb-2"
-                                                    style={{ backgroundColor: related.categories[0].color || '#4F46E5' }}
-                                                >
-                                                    {related.categories[0].title}
-                                                </span>
-                                            )}
-                                            <h4 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2 group-hover:text-brand-blue transition-colors">
-                                                {related.title}
-                                            </h4>
-                                            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                                                {related.description || related.excerpt}
-                                            </p>
-                                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue text-white text-xs font-medium rounded-full group-hover:bg-brand-purple transition-colors w-fit">
-                                                Read More <ArrowRight className="w-3 h-3" />
-                                            </span>
-                                        </div>
-                                    </Link>
-                                ))}
+                            <div className='grid md:grid-cols-3 gap-6'>
+                                {relatedPosts.slice(0, 3).map((related, postIdx) => {
+                                    const styles = [
+                                        'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+                                        'bg-violet-500/10 text-violet-600 border-violet-500/20',
+                                        'bg-amber-500/10 text-amber-600 border-amber-500/20'
+                                    ]
+                                    const tagStyle = styles[postIdx % styles.length]
+                                    const hoverBorder = [
+                                        'hover:border-emerald-500/50 hover:shadow-[0_20px_50px_rgba(16,185,129,0.05)]',
+                                        'hover:border-violet-500/50 hover:shadow-[0_20px_50px_rgba(139,92,246,0.05)]',
+                                        'hover:border-amber-500/50 hover:shadow-[0_20px_50px_rgba(245,158,11,0.05)]'
+                                    ][postIdx % styles.length]
+
+                                    return (
+                                        <Link
+                                            key={related._id}
+                                            to={`/blogs/${related.slug?.current || related.slug}`}
+                                            className={`flex flex-col h-full bg-white border border-gray-200 transition-all rounded-xl overflow-hidden group ${hoverBorder}`}
+                                        >
+                                            <div className="relative h-40 overflow-hidden">
+                                                {related.mainImage ? (
+                                                    <img
+                                                        src={urlFor(related.mainImage).width(400).url()}
+                                                        alt={related.mainImage?.alt || related.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500 ease-out"></div>
+                                                )}
+                                            </div>
+
+                                            <div className="p-5 flex flex-col flex-grow">
+                                                <div className="flex flex-wrap gap-2 mb-3">
+                                                    {related.categories?.[0] && (
+                                                        <span className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border ${tagStyle}`}>
+                                                            {related.categories[0].title}
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors line-clamp-2">
+                                                    {related.title}
+                                                </h3>
+
+                                                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                                                    {related.description || related.excerpt}
+                                                </p>
+
+                                                <div className="mt-auto pt-4 border-t border-gray-100 flex items-center text-xs font-bold text-gray-900 group-hover:text-brand-blue uppercase tracking-wider transition-colors">
+                                                    Read More
+                                                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { client } from '../../lib/sanity/client'
 import { getAllPosts, getAllCategories, getAllTags, getPostsByCategory, getPostsByTag } from '../../lib/sanity/queries'
@@ -17,7 +17,6 @@ const BlogList = () => {
     const [searchQuery, setSearchQuery] = useState('')
 
     const activeCategory = searchParams.get('category')
-    const activeTag = searchParams.get('tag')
 
     // Fetch all data on mount
     useEffect(() => {
@@ -54,18 +53,12 @@ const BlogList = () => {
                     )
                 )
                 setPosts(filtered)
-            } else if (activeTag) {
-                // Filter by tag
-                const filtered = allPosts.filter(post =>
-                    post.tags?.includes(activeTag)
-                )
-                setPosts(filtered)
             } else {
                 setPosts(allPosts)
             }
         }
         filterPosts()
-    }, [activeCategory, activeTag, allPosts])
+    }, [activeCategory, allPosts])
 
     // Search filter (client-side)
     const filteredPosts = useMemo(() => {
@@ -115,15 +108,20 @@ const BlogList = () => {
                 canonicalUrl="https://globalprofessionalcertifications.com/blogs"
             />
 
-            <div className='relative pt-12 min-h-screen w-full bg-gray-50'>
+            <div className='relative pt-12 min-h-screen w-full bg-gray-50 overflow-hidden'>
+                {/* Decorative Blobs */}
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+                <div className="absolute -top-8 left-1/2 w-96 h-96 bg-indigo-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+
                 {/* Hero Section */}
-                <div className="pb-6 px-4 lg:px-16 max-w-6xl mx-auto">
-                    <div className="flex flex-col justify-center items-center text-center mb-6">
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-                            Blog & Expert <span className="text-brand-blue">Insights</span>
+                <div className="relative pb-6 px-6 md:px-12 max-w-7xl mx-auto z-10 pt-10">
+                    <div className="flex flex-col justify-center items-center text-center mb-8">
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                            Blog & Expert <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">Insights</span>
                         </h1>
-                        <p className="text-sm md:text-base text-gray-600 max-w-xl">
-                            Tips, trends, and success stories in audit, risk management, and professional certifications.
+                        <p className="text-base md:text-lg text-gray-600 max-w-2xl">
+                            Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.
                         </p>
                     </div>
 
@@ -150,18 +148,15 @@ const BlogList = () => {
                     </div>
                 </div>
 
-                <div className="px-4 lg:px-16 max-w-6xl mx-auto pb-16">
-                    {/* Filters */}
+                <div className="px-6 md:px-12 max-w-7xl mx-auto pb-16">
                     <BlogFilters
                         categories={categories}
-                        tags={tags}
                         activeCategory={activeCategory}
-                        activeTag={activeTag}
                         onClearFilters={handleClearFilters}
                     />
 
                     {/* Results Count */}
-                    {(activeCategory || activeTag || searchQuery) && (
+                    {(activeCategory || searchQuery) && (
                         <p className="text-sm text-gray-500 mb-4">
                             Found <span className="font-semibold text-gray-700">{filteredPosts.length}</span> article{filteredPosts.length !== 1 ? 's' : ''}
                         </p>
@@ -169,166 +164,135 @@ const BlogList = () => {
 
                     {/* Featured Post */}
                     {featured && (
-                        <section className="mb-10">
-                            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Featured</p>
-
+                        <section className="mb-16">
                             <Link
                                 to={`/blogs/${featured.slug?.current || featured.slug}`}
-                                className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+                                className="group flex flex-col md:flex-row bg-white border border-gray-200 transition-all hover:border-brand-blue/50 hover:shadow-[0_20px_50px_rgba(79,70,229,0.1)] rounded-2xl overflow-hidden relative"
                             >
-                                <div className="grid md:grid-cols-2 gap-0">
-                                    <div className="relative w-full h-auto overflow-hidden">
+                                <div className="absolute top-4 left-4 z-10">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm text-sm font-bold text-brand-purple">
+                                        ✨ Featured
+                                    </span>
+                                </div>
+                                <div className="relative w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
+                                    {featured.mainImage ? (
                                         <img
-                                            src={featured.mainImage ? urlFor(featured.mainImage).width(600).url() : ''}
+                                            src={urlFor(featured.mainImage).width(1200).url()}
                                             alt={featured.mainImage?.alt || featured.title}
-                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                         />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-700 ease-out"></div>
+                                    )}
+                                </div>
+
+                                <div className="p-6 md:p-10 flex flex-col justify-center w-full md:w-1/2">
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {featured.categories?.slice(0, 2).map((cat, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider rounded-full border bg-brand-blue/10 text-brand-blue border-brand-blue/20"
+                                            >
+                                                {cat.title}
+                                            </span>
+                                        ))}
                                     </div>
 
-                                    <div className="p-5 md:p-6 flex flex-col justify-center">
-                                        {/* Categories */}
-                                        <div className="flex flex-wrap gap-1.5 mb-2">
-                                            {featured.categories?.slice(0, 2).map((cat, idx) => (
-                                                <span
-                                                    key={idx}
-                                                    className="px-2 py-0.5 text-[10px] font-semibold rounded-full"
-                                                    style={{
-                                                        backgroundColor: cat.color ? `${cat.color}20` : '#EEF2FF',
-                                                        color: cat.color || '#4F46E5'
-                                                    }}
-                                                >
-                                                    {cat.title}
-                                                </span>
-                                            ))}
-                                        </div>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 group-hover:text-brand-blue transition-colors line-clamp-3 leading-snug">
+                                        {featured.title}
+                                    </h2>
 
-                                        <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors line-clamp-2">
-                                            {featured.title}
-                                        </h2>
-
-                                        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                                            {featured.description || featured.excerpt}
-                                        </p>
-
-                                        <div className="flex items-center gap-3 text-xs text-gray-500 mb-4">
-                                            <span className="flex items-center gap-1">
-                                                <User className="w-3 h-3" />
-                                                {featured.author}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-3 h-3" />
-                                                {formatDate(featured.publishedAt)}
-                                            </span>
-                                        </div>
-
-                                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-full group-hover:bg-brand-purple transition-colors w-fit">
-                                            Read More <ArrowRight className="w-4 h-4" />
+                                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                                        <span className="flex items-center gap-1.5">
+                                            <User className="w-4 h-4" />
+                                            {featured.author}
                                         </span>
+                                        <span className="flex items-center gap-1.5">
+                                            <Calendar className="w-4 h-4" />
+                                            {formatDate(featured.publishedAt)}
+                                        </span>
+                                    </div>
+
+                                    <p className="text-gray-600 text-base mb-6 line-clamp-3">
+                                        {featured.description || featured.excerpt}
+                                    </p>
+
+                                    <div className="mt-auto pt-4 border-t border-gray-100 flex items-center text-sm font-bold text-brand-blue uppercase tracking-wide">
+                                        View Full Article
+                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform duration-300" />
                                     </div>
                                 </div>
                             </Link>
                         </section>
                     )}
 
-                    {/* Secondary Posts Grid */}
-                    {secondary.length > 0 && (
-                        <section className="mb-10">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                {secondary.map((post) => (
-                                    <Link
-                                        key={post._id}
-                                        to={`/blogs/${post.slug?.current || post.slug}`}
-                                        className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-                                    >
-                                        <div className="relative h-36 overflow-hidden">
-                                            <img
-                                                src={post.mainImage ? urlFor(post.mainImage).width(400).url() : ''}
-                                                alt={post.mainImage?.alt || post.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                            {post.categories?.[0] && (
-                                                <span
-                                                    className="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-semibold rounded-full text-white"
-                                                    style={{ backgroundColor: post.categories[0].color || '#4F46E5' }}
-                                                >
-                                                    {post.categories[0].title}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <div className="p-4">
-                                            <h3 className="text-base font-bold text-gray-900 mb-1.5 line-clamp-2 group-hover:text-brand-blue transition-colors">
-                                                {post.title}
-                                            </h3>
-                                            <p className="text-gray-600 text-xs mb-3 line-clamp-2">
-                                                {post.description || post.excerpt}
-                                            </p>
-
-                                            <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                                                <span>{post.author}</span>
-                                                <span>{formatDate(post.publishedAt)}</span>
-                                            </div>
-
-                                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue text-white text-xs font-medium rounded-full group-hover:bg-brand-purple transition-colors w-fit">
-                                                Read More <ArrowRight className="w-3.5 h-3.5" />
-                                            </span>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        </section>
-                    )}
-
-                    {/* All Posts Grid */}
-                    {others.length > 0 && (
+                    {/* Post Grid */}
+                    {(secondary.length > 0 || others.length > 0) && (
                         <section>
-                            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">More Articles</p>
+                            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                                {[...secondary, ...others].map((post, postIdx) => {
+                                    // Determine tag pill styling based on index (emerald, violet, amber)
+                                    const styles = [
+                                        'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+                                        'bg-violet-500/10 text-violet-600 border-violet-500/20',
+                                        'bg-amber-500/10 text-amber-600 border-amber-500/20'
+                                    ]
+                                    const tagStyle = styles[postIdx % styles.length]
+                                    const hoverBorder = [
+                                        'hover:border-emerald-500/50 hover:shadow-[0_20px_50px_rgba(16,185,129,0.05)]',
+                                        'hover:border-violet-500/50 hover:shadow-[0_20px_50px_rgba(139,92,246,0.05)]',
+                                        'hover:border-amber-500/50 hover:shadow-[0_20px_50px_rgba(245,158,11,0.05)]'
+                                    ][postIdx % styles.length]
 
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {others.map((post) => (
-                                    <Link
-                                        key={post._id}
-                                        to={`/blogs/${post.slug?.current || post.slug}`}
-                                        className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
-                                    >
-                                        <div className="relative h-32 overflow-hidden">
-                                            <img
-                                                src={post.mainImage ? urlFor(post.mainImage).width(300).url() : ''}
-                                                alt={post.mainImage?.alt || post.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                        </div>
-
-                                        <div className="p-3 flex flex-col flex-grow">
-                                            {post.tags?.length > 0 && (
-                                                <div className="flex flex-wrap gap-1 mb-2">
-                                                    {post.tags.slice(0, 2).map((tag, idx) => (
-                                                        <span key={idx} className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium text-gray-500 bg-gray-100 rounded">
-                                                            <Tag className="w-2.5 h-2.5" />
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
-
-                                            <h3 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2 group-hover:text-brand-blue transition-colors">
-                                                {post.title}
-                                            </h3>
-
-                                            <p className="text-gray-500 text-xs mb-2 line-clamp-2">
-                                                {post.description || post.excerpt}
-                                            </p>
-
-                                            <div className="flex items-center justify-between text-[10px] text-gray-500 mb-3">
-                                                <span>{formatDate(post.publishedAt)}</span>
+                                    return (
+                                        <Link
+                                            key={post._id}
+                                            to={`/blogs/${post.slug?.current || post.slug}`}
+                                            className={`flex flex-col bg-white border border-gray-200 transition-all rounded-xl overflow-hidden group ${hoverBorder}`}
+                                        >
+                                            <div className="relative h-48 overflow-hidden">
+                                                {post.mainImage ? (
+                                                    <img
+                                                        src={urlFor(post.mainImage).width(600).url()}
+                                                        alt={post.mainImage?.alt || post.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500 ease-out"></div>
+                                                )}
                                             </div>
 
-                                            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-blue text-white text-[10px] font-medium rounded-full group-hover:bg-brand-purple transition-colors w-fit">
-                                                Read More <ArrowRight className="w-3 h-3" />
-                                            </span>
-                                        </div>
-                                    </Link>
-                                ))}
+                                            <div className="p-5 flex flex-col flex-grow">
+                                                <div className="flex flex-wrap gap-2 mb-3">
+                                                    {post.categories?.[0] && (
+                                                        <span className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border ${tagStyle}`}>
+                                                            {post.categories[0].title}
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors line-clamp-2 leading-tight">
+                                                    {post.title}
+                                                </h3>
+
+                                                <div className="flex items-center gap-3 text-[11px] text-gray-500 mb-3">
+                                                    <span>{formatDate(post.publishedAt)}</span>
+                                                    <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                    <span className="line-clamp-1">{post.author}</span>
+                                                </div>
+
+                                                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                                                    {post.description || post.excerpt}
+                                                </p>
+
+                                                <div className="mt-auto pt-4 border-t border-gray-100 flex items-center text-xs font-bold text-gray-900 group-hover:text-brand-blue uppercase tracking-wider transition-colors">
+                                                    Read More
+                                                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
                             </div>
                         </section>
                     )}

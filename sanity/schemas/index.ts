@@ -19,6 +19,8 @@ import inlineCTA from './blockContent/inlineCTA'
 import youtube from './blockContent/youtube'
 import table from './blockContent/table'
 import faqSection from './blockContent/faqSection'
+import tableOfContents from './blockContent/tableOfContents'
+import latex from './blockContent/latex'
 
 export const schemaTypes = [
     // Documents
@@ -42,6 +44,8 @@ export const schemaTypes = [
     youtube,
     table,
     faqSection,
+    tableOfContents,
+    latex,
 ]
 
 

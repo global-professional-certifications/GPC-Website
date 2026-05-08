@@ -88,33 +88,33 @@ export default function AboutUs() {
                             </p>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="p-6 bg-gray-300 rounded-2xl border border-gray-100">
-                                    <div className="w-10 h-10 bg-brand-blue/10 text-brand-blue rounded-lg flex items-center justify-center mb-4">
+                                <div className="p-6 bg-brand-blue rounded-2xl border border-gray-100">
+                                    <div className="w-10 h-10 bg-brand-purple/50 text-gray-400 rounded-lg flex items-center justify-center mb-4">
                                         <Award size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-black text-brand-dark">250+</h4>
-                                    <p className="text-gray-500 font-bold text-[10px] uppercase tracking-wider">Certified CIA's</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-gray-300">350+</h4>
+                                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">Certified CIA's</p>
                                 </div>
-                                <div className="p-6 bg-gray-300 rounded-2xl border border-gray-100">
-                                    <div className="w-10 h-10 bg-brand-purple/10 text-brand-purple rounded-lg flex items-center justify-center mb-4">
+                                <div className="p-6 bg-white rounded-2xl border border-gray-500">
+                                    <div className="w-10 h-10 bg-brand-purple text-gray-100 rounded-lg flex items-center justify-center mb-4">
                                         <GraduationCap size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-black text-brand-dark">1500+</h4>
-                                    <p className="text-gray-500 font-bold text-[10px] uppercase tracking-wider">Global Alumni</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-black">1500+</h4>
+                                    <p className="text-gray-800 font-bold text-[10px] uppercase tracking-wider">Global Alumni</p>
                                 </div>
-                                <div className="p-6 bg-gray-300 rounded-2xl border border-gray-100">
+                                <div className="p-6 bg-white rounded-2xl border border-gray-500">
                                     <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
                                         <BookCheck size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-black text-brand-dark">5+</h4>
-                                    <p className="text-gray-500 font-bold text-[10px] uppercase tracking-wider">Years of Teaching Experience</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-black">6+</h4>
+                                    <p className="text-gray-800 font-bold text-[10px] uppercase tracking-wider">Years of Teaching Experience</p>
                                 </div>
-                                <div className="p-6 bg-gray-300 rounded-2xl border border-gray-100">
+                                <div className="p-6 bg-brand-blue rounded-2xl border border-gray-100">
                                     <div className="w-10 h-10 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
                                         <Users size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-black text-brand-dark">25+</h4>
-                                    <p className="text-gray-500 font-bold text-[10px] uppercase tracking-wider">Batches Completed</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-gray-300">30+</h4>
+                                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">Batches Completed</p>
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
 
-import logo from "../../assets/navbar/gpc-navbar-logo.png";
+import logo from "../../assets/navbar/gpc-navbar-logo.webp";
 import cisaLogo from "../../assets/courses/cisa-logo.webp";
 import ciaLogo from "../../assets/courses/cia-logo.webp";
 import iapLogo from "../../assets/courses/iap-logo.webp";

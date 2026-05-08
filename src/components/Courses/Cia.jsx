@@ -165,7 +165,7 @@ const Cia = () => {
                         />
                         <div className="text-left">
                             <p className="text-sm sm:text-lg md:text-2xl font-bold text-gray-800">
-                                250+
+                                350+
                             </p>
                             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">
                                 CIAs
