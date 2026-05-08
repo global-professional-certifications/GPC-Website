@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+﻿import { useRef } from 'react';
+import { m } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,35 +17,34 @@ const YouTubeCarousel = ({ videos }) => {
         {
             url: 'https://youtu.be/CvzJ_SFD45Y?si=Sh8Y3pi_CE6mNV72',
             title: 'Interview with IIA India CEO Mukundan K V',
-            description:
-                'Dive deep into the importance of Internal Audit, the role of the Institute of Internal Auditors (IIA India), and the value of the CIA Certification.',
+            description: 'Dive deep into the importance of Internal Audit, the role of the Institute of Internal Auditors (IIA India), and the value of the CIA Certification.',
+            thumbnail: '/thumbnails/CvzJ_SFD45Y.jpg',
         },
         {
             url: 'https://youtu.be/qdnLecSFurU?si=sogfATX1kdl0Lyn5',
             title: 'CIA Orientation Program 2025',
-            description:
-                'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
+            description: 'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
+            thumbnail: '/thumbnails/qdnLecSFurU.jpg',
         },
         {
             url: 'https://youtu.be/XNnXkttYQUY?si=MrofNMhf9nXC2GPd',
             title: 'CIA Part wise Orientation Program with New Syllabus',
-            description:
-                'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
+            description: 'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
+            thumbnail: '/thumbnails/XNnXkttYQUY.jpg',
         },
         {
             url: 'https://youtu.be/dz4vHdVRhgY?si=DiqdAfEiDjltBERd',
             title: 'CIA Part 2 Orientation Program with New Syllabus',
-            description:
-                'Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you’re an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!',
+            description: "Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!",
+            thumbnail: '/thumbnails/dz4vHdVRhgY.jpg',
         },
         {
             url: 'https://youtu.be/Xn7lL67U2NI?si=-mCBFQcMy0T04nEi',
             title: 'CIA Part 3 Orientation Program with New Syllabus',
-            description:
-                'Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you’re an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!',
+            description: "Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!",
+            thumbnail: '/thumbnails/Xn7lL67U2NI.jpg',
         },
     ];
-
 
     const processedVideos = (videos || defaultVideos).map(video => {
         const id = extractVideoId(video.url);
@@ -53,7 +52,7 @@ const YouTubeCarousel = ({ videos }) => {
             id,
             title: video.title,
             description: video.description,
-            thumbnail: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+            thumbnail: video.thumbnail || `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
             url: video.url
         };
     });
@@ -102,7 +101,7 @@ const YouTubeCarousel = ({ videos }) => {
                         className="flex overflow-x-auto gap-6 pb-8 no-scrollbar scroll-smooth"
                     >
                         {processedVideos.map((video, index) => (
-                            <motion.div
+                            <m.div
                                 key={index}
                                 className="flex-none w-[280px] md:w-[340px] h-[310px] md:h-[350px]"
                                 initial={{ opacity: 0, x: 20 }}
@@ -144,7 +143,7 @@ const YouTubeCarousel = ({ videos }) => {
                                         </p>
                                     </div>
                                 </a>
-                            </motion.div>
+                            </m.div>
                         ))}
                     </div>
                 </div>

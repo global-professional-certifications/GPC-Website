@@ -15,14 +15,11 @@ import crmaLogo from "../../assets/courses/crma-logo.webp";
 
 export default function CoursesOverview() {
 
-  let windowSize = window.innerWidth
-
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(windowSize < 768)
+      setIsMobile(window.innerWidth < 768)
     }
-    handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
