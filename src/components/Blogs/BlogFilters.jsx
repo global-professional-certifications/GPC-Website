@@ -13,7 +13,7 @@ import { Tag, X, Filter } from 'lucide-react'
 const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, onClearFilters }) => {
     const [searchParams] = useSearchParams()
 
-    const hasActiveFilter = activeCategory || activeTag
+    const hasActiveFilter = activeCategory
 
     return (
         <div className="mb-8">
@@ -25,12 +25,6 @@ const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, on
                     {activeCategory && (
                         <span className="inline-flex items-center gap-1 px-2 py-1 bg-brand-blue text-white text-xs font-medium rounded-full">
                             {categories.find(c => c.slug?.current === activeCategory)?.title || activeCategory}
-                        </span>
-                    )}
-                    {activeTag && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-700 text-white text-xs font-medium rounded-full">
-                            <Tag className="w-3 h-3" />
-                            {activeTag}
                         </span>
                     )}
                     <button
@@ -46,10 +40,10 @@ const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, on
             {/* Category Tabs */}
             {categories.length > 0 && (
                 <div className="mb-4">
-                    <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="flex flex-wrap items-center justify-center gap-2 pb-2">
                         <Link
                             to="/blogs"
-                            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${!activeCategory && !activeTag
+                            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${!activeCategory
                                     ? 'bg-brand-blue text-white shadow-md'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
@@ -85,30 +79,6 @@ const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, on
                 </div>
             )}
 
-            {/* Tag Cloud */}
-            {tags.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider mr-2">
-                        Tags:
-                    </span>
-                    {tags.slice(0, 12).map((tag) => (
-                        <Link
-                            key={tag}
-                            to={`/blogs?tag=${encodeURIComponent(tag)}`}
-                            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 ${activeTag === tag
-                                    ? 'bg-gray-800 text-white'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800'
-                                }`}
-                        >
-                            <Tag className="w-3 h-3" />
-                            {tag}
-                        </Link>
-                    ))}
-                    {tags.length > 12 && (
-                        <span className="text-xs text-gray-400">+{tags.length - 12} more</span>
-                    )}
-                </div>
-            )}
         </div>
     )
 }
