@@ -42,27 +42,20 @@
       }
 
       // Trigger script loading on first interaction
-      window.addEventListener('scroll', loadScripts, { passive: true });
-      window.addEventListener('mousemove', loadScripts, { passive: true });
-      window.addEventListener('touchstart', loadScripts, { passive: true });
-
-      // Fallback: Load when idle or after a longer delay
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => setTimeout(loadScripts, 5000));
-      } else {
-        setTimeout(loadScripts, 8000);
-      }
+      window.addEventListener('scroll', loadScripts, { passive: true, once: true });
+      window.addEventListener('mousemove', loadScripts, { passive: true, once: true });
+      window.addEventListener('touchstart', loadScripts, { passive: true, once: true });
+      window.addEventListener('keydown', loadScripts, { passive: true, once: true });
+      window.addEventListener('click', loadScripts, { passive: true, once: true });
     })();
   </script>
 
   <!-- Preload LCP hero image -->
   <link rel="preload" as="image" href="/hero-girl-opt.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Preconnect to critical origins (max 4) -->
+  <!-- Preconnect to critical origins (max 2) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://salesiq.zohopublic.in">
-  <link rel="preconnect" href="https://x48sh1kt.api.sanity.io" crossorigin>
 
   <!-- Google Fonts (Non-blocking) -->
   <link
