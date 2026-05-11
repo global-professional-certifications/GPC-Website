@@ -19,7 +19,11 @@ export default function Marquee({ companies, start, end }){
                         <img
                             src={logo}
                             alt="Company logo"
+                            width="112"
+                            height="64"
                             className={imageClasses}
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                 ))}
@@ -34,7 +38,11 @@ export default function Marquee({ companies, start, end }){
                         <img
                             src={logo}
                             alt="Company logo"
+                            width="112"
+                            height="64"
                             className={imageClasses}
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                 ))}

@@ -92,8 +92,8 @@ export default function AboutUs() {
                                     <div className="w-10 h-10 bg-brand-purple/50 text-gray-400 rounded-lg flex items-center justify-center mb-4">
                                         <Award size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-poppins font-bold text-gray-300">350+</h4>
-                                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">Certified CIA's</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-white">350+</h4>
+                                    <p className="text-gray-300 font-bold text-[10px] uppercase tracking-wider">Certified CIA's</p>
                                 </div>
                                 <div className="p-6 bg-white rounded-2xl border border-gray-500">
                                     <div className="w-10 h-10 bg-brand-purple text-gray-100 rounded-lg flex items-center justify-center mb-4">
@@ -113,8 +113,8 @@ export default function AboutUs() {
                                     <div className="w-10 h-10 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
                                         <Users size={20} />
                                     </div>
-                                    <h4 className="text-3xl font-poppins font-bold text-gray-300">30+</h4>
-                                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">Batches Completed</p>
+                                    <h4 className="text-3xl font-poppins font-bold text-white">30+</h4>
+                                    <p className="text-gray-300 font-bold text-[10px] uppercase tracking-wider">Batches Completed</p>
                                 </div>
                             </div>
                         </div>
