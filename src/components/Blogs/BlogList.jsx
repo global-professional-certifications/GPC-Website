@@ -169,17 +169,17 @@ const BlogList = () => {
                                 to={`/blogs/${featured.slug?.current || featured.slug}`}
                                 className="group flex flex-col md:flex-row bg-white border border-gray-200 transition-all hover:border-brand-blue/50 hover:shadow-[0_20px_50px_rgba(79,70,229,0.1)] rounded-2xl overflow-hidden relative"
                             >
-                                <div className="absolute top-4 left-4 z-10">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm text-sm font-bold text-brand-purple">
-                                        ✨ Featured
+                                <div className="absolute top-4 right-4 z-10">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm text-xs font-bold text-brand-purple">
+                                        Featured
                                     </span>
                                 </div>
-                                <div className="relative w-full md:w-1/2 h-64 md:h-auto overflow-hidden">
+                                <div className="relative w-full md:w-1/2 aspect-video md:aspect-auto md:h-auto overflow-hidden bg-gray-50 flex items-center justify-center">
                                     {featured.mainImage ? (
                                         <img
                                             src={urlFor(featured.mainImage).width(1200).url()}
                                             alt={featured.mainImage?.alt || featured.title}
-                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-700 ease-out"></div>
@@ -187,39 +187,39 @@ const BlogList = () => {
                                 </div>
 
                                 <div className="p-6 md:p-10 flex flex-col justify-center w-full md:w-1/2">
-                                    <div className="flex flex-wrap gap-2 mb-4">
+                                    <div className="flex flex-wrap gap-2 mb-3">
                                         {featured.categories?.slice(0, 2).map((cat, idx) => (
                                             <span
                                                 key={idx}
-                                                className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider rounded-full border bg-brand-blue/10 text-brand-blue border-brand-blue/20"
+                                                className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-full border bg-brand-blue/10 text-brand-blue border-brand-blue/20"
                                             >
                                                 {cat.title}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 group-hover:text-brand-blue transition-colors line-clamp-3 leading-snug">
+                                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors line-clamp-2 leading-tight">
                                         {featured.title}
                                     </h2>
 
-                                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                                    <div className="flex items-center gap-4 text-[13px] text-gray-500 mb-3">
                                         <span className="flex items-center gap-1.5">
-                                            <User className="w-4 h-4" />
+                                            <User className="w-3.5 h-3.5" />
                                             {featured.author}
                                         </span>
                                         <span className="flex items-center gap-1.5">
-                                            <Calendar className="w-4 h-4" />
+                                            <Calendar className="w-3.5 h-3.5" />
                                             {formatDate(featured.publishedAt)}
                                         </span>
                                     </div>
 
-                                    <p className="text-gray-600 text-base mb-6 line-clamp-3">
+                                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                                         {featured.description || featured.excerpt}
                                     </p>
 
-                                    <div className="mt-auto pt-4 border-t border-gray-100 flex items-center text-sm font-bold text-brand-blue uppercase tracking-wide">
+                                    <div className="mt-auto pt-3 border-t border-gray-100 flex items-center text-xs font-bold text-brand-blue uppercase tracking-wide">
                                         View Full Article
-                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform duration-300" />
+                                        <ArrowRight className="w-3.5 h-3.5 ml-2 group-hover:translate-x-1.5 transition-transform duration-300" />
                                     </div>
                                 </div>
                             </Link>
@@ -250,7 +250,7 @@ const BlogList = () => {
                                             to={`/blogs/${post.slug?.current || post.slug}`}
                                             className={`flex flex-col bg-white border border-gray-200 transition-all rounded-xl overflow-hidden group ${hoverBorder}`}
                                         >
-                                            <div className="relative h-48 overflow-hidden">
+                                            <div className="relative aspect-video overflow-hidden">
                                                 {post.mainImage ? (
                                                     <img
                                                         src={urlFor(post.mainImage).width(600).url()}

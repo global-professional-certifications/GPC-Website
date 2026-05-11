@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -132,7 +132,14 @@ const Cia = () => {
                     </div>
 
                     <div className="relative mx-auto lg:max-w-6xl">
-                        <img className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" src={ciaHero} alt="homepage hero" loading='lazy' />
+                        <img 
+                            className="w-[550px] h-auto rounded-xl shadow-2xl hidden md:block" 
+                            src={ciaHero} 
+                            alt="CIA certification training hero" 
+                            width="550"
+                            height="367"
+                            loading='lazy' 
+                        />
                     </div>
 
                 </div>
@@ -285,6 +292,9 @@ const Cia = () => {
                             <img
                                 src={brochureCover}
                                 alt="Brochure"
+                                width="416"
+                                height="588"
+                                loading="lazy"
                                 className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
                             />
                         </div>
@@ -350,6 +360,9 @@ const Cia = () => {
                             <img
                                 src={learningPartner}
                                 alt="IIA India Certification Ceremony"
+                                width="550"
+                                height="367"
+                                loading="lazy"
                                 className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
                             />
                         </div>

@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { m } from 'framer-motion';
+import React from 'react';
+import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import FAQDisplay from "../FAQDisplay.jsx";
@@ -11,22 +11,15 @@ import orientationCover from "../../assets/upcoming-orientation.png";
 // --- DATA CONSTANTS ---
 
 const upcomingBatches = [
-  {
+    {
     id: 1,
-    name: "CIA Part 2 - Revision Batch",
-    description: "An intensive revision session designed to help you master CIA Part 2 concepts and boost your exam confidence with expert guidance.",
-    date: "May 09, 2026",
-    enrollLink: "https://zfrmz.in/lwPs9vgMP80GoHhZAEDA",
-  },
-  {
-    id: 2,
     name: "CIA Part 1",
     description: "Start your CIA journey with our comprehensive Part 1 batch covering all fundamental audit concepts and the IPPF framework.",
     date: "May 23, 2026",
     enrollLink: "https://zurl.co/OTtVH",
   },
   {
-    id: 3,
+    id: 2,
     name: "CIA Challenge Batch In Collaboration With IIA Bombay",
     description: "The IIA Bombay Chapter presents a high-impact CIA Challenge Crash Course (2026), now enhanced with premium Gleim study materials. Led by Mr. Arpit Garg, this weekend live batch is designed to help you build strong concepts, focus on revision, and master exam-ready MCQ practice.",
     date: "May 23, 2026",

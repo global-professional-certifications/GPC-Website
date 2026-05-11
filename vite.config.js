@@ -22,10 +22,34 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['lucide-react', '@fortawesome/react-fontawesome'],
-          animations: ['framer-motion']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom')) {
+              return 'vendor-react-dom';
+            }
+            if (id.includes('react-router') || id.includes('react-router-dom')) {
+              return 'vendor-router';
+            }
+            if (id.includes('framer-motion') || id.includes('motion')) {
+              return 'vendor-animations';
+            }
+            if (id.includes('react-icons') || id.includes('lucide-react')) {
+              return 'vendor-icons-base';
+            }
+            if (id.includes('@fortawesome')) {
+              return 'vendor-icons-fa';
+            }
+            if (id.includes('@sanity') || id.includes('sanity') || id.includes('styled-components')) {
+              return 'vendor-cms';
+            }
+            if (id.includes('react-slick') || id.includes('slick-carousel')) {
+              return 'vendor-sliders';
+            }
+            if (id.includes('dompurify') || id.includes('react-markdown') || id.includes('remark')) {
+              return 'vendor-content';
+            }
+            return 'vendor-utils';
+          }
         }
       }
     }

@@ -1,9 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 
 const { fontFamily } = require("tailwindcss/defaultTheme");
-import withMT from "@material-tailwind/react/utils/withMT";
 
-export default withMT({
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -62,4 +61,4 @@ export default withMT({
     "lg:py-[168px]",
     "mt-[116px]",
   ]
-})
+}

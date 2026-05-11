@@ -68,6 +68,7 @@ const MentorShowcase = () => {
                                             to="https://www.linkedin.com/in/arpit-garg-88070560"
                                             target="_blank"
                                             className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                            aria-label="Connect with Arpit Garg on LinkedIn"
                                         >
                                             <FontAwesomeIcon
                                                 icon={faLinkedin}
@@ -78,6 +79,7 @@ const MentorShowcase = () => {
                                         <Link
                                             to="mailto:cia@globalprofessionalcertifications.com"
                                             className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                            aria-label="Send email to Arpit Garg"
                                         >
                                             <HiOutlineMail className="text-xl md:text-2xl" />
                                         </Link>
@@ -86,6 +88,7 @@ const MentorShowcase = () => {
                                             to="https://www.riskman.in/"
                                             target="_blank"
                                             className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-brand-blue transition-all hover:scale-110"
+                                            aria-label="Visit Riskman Website"
                                         >
                                             <TbWorldWww className="text-xl md:text-2xl" />
                                         </Link>
@@ -116,7 +119,10 @@ const MentorShowcase = () => {
                             <div className="relative z-10">
                                 <img
                                     src={arpitGarg}
-                                    alt="Arpit Garg"
+                                    alt="Arpit Garg - GPC Mentor"
+                                    width="360"
+                                    height="400"
+                                    loading="lazy"
                                     className="w-68 h-68 md:w-96 lg:w-[360px] object-cover"
                                 />
                             </div>
