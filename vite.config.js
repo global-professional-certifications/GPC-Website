@@ -20,7 +20,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    cssMinify: 'lightningcss',
     modulePreload: false,
     rollupOptions: {
       output: {
