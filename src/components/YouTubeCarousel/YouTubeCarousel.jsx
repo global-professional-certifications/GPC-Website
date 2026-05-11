@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react';
+import { useRef } from 'react';
 import { m } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -18,31 +18,31 @@ const YouTubeCarousel = ({ videos }) => {
             url: 'https://youtu.be/CvzJ_SFD45Y?si=Sh8Y3pi_CE6mNV72',
             title: 'Interview with IIA India CEO Mukundan K V',
             description: 'Dive deep into the importance of Internal Audit, the role of the Institute of Internal Auditors (IIA India), and the value of the CIA Certification.',
-            thumbnail: '/thumbnails/CvzJ_SFD45Y.jpg',
+            thumbnail: '/thumbnails/CvzJ_SFD45Y-opt.webp',
         },
         {
             url: 'https://youtu.be/qdnLecSFurU?si=sogfATX1kdl0Lyn5',
             title: 'CIA Orientation Program 2025',
             description: 'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
-            thumbnail: '/thumbnails/qdnLecSFurU.jpg',
+            thumbnail: '/thumbnails/qdnLecSFurU-opt.webp',
         },
         {
             url: 'https://youtu.be/XNnXkttYQUY?si=MrofNMhf9nXC2GPd',
             title: 'CIA Part wise Orientation Program with New Syllabus',
             description: 'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
-            thumbnail: '/thumbnails/XNnXkttYQUY.jpg',
+            thumbnail: '/thumbnails/XNnXkttYQUY-opt.webp',
         },
         {
             url: 'https://youtu.be/dz4vHdVRhgY?si=DiqdAfEiDjltBERd',
             title: 'CIA Part 2 Orientation Program with New Syllabus',
             description: "Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!",
-            thumbnail: '/thumbnails/dz4vHdVRhgY.jpg',
+            thumbnail: '/thumbnails/dz4vHdVRhgY-opt.webp',
         },
         {
             url: 'https://youtu.be/Xn7lL67U2NI?si=-mCBFQcMy0T04nEi',
             title: 'CIA Part 3 Orientation Program with New Syllabus',
             description: "Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!",
-            thumbnail: '/thumbnails/Xn7lL67U2NI.jpg',
+            thumbnail: '/thumbnails/Xn7lL67U2NI-opt.webp',
         },
     ];
 
@@ -84,6 +84,7 @@ const YouTubeCarousel = ({ videos }) => {
                     <button
                         onClick={() => scroll(-1)}
                         className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
+                        aria-label="Previous Slide"
                     >
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
@@ -91,6 +92,7 @@ const YouTubeCarousel = ({ videos }) => {
                     <button
                         onClick={() => scroll(1)}
                         className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
+                        aria-label="Next Slide"
                     >
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
@@ -122,6 +124,10 @@ const YouTubeCarousel = ({ videos }) => {
                                             src={video.thumbnail}
                                             alt={video.title}
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            loading="lazy"
+                                            decoding="async"
+                                            width="340"
+                                            height="191"
                                         />
 
                                         {/* Overlay */}

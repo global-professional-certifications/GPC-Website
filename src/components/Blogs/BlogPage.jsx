@@ -118,7 +118,7 @@ const BlogPage = () => {
 
             <div className="relative min-h-screen w-full bg-white pb-12">
                 {/* Solid Brand Header */}
-                <div className="bg-brand-blue pt-28 pb-16 md:pt-36 md:pb-24">
+                <div className="bg-brand-blue pt-20 pb-16 md:pt-28 md:pb-24">
                     <div className="max-w-5xl mx-auto px-4 md:px-8">
                         {/* Breadcrumbs */}
                         <nav className="flex items-center gap-2 text-blue-100/70 text-xs md:text-sm mb-8 font-medium">
@@ -130,7 +130,7 @@ const BlogPage = () => {
                         </nav>
 
                         {/* Title */}
-                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
                             {title}
                         </h1>
 
@@ -170,7 +170,7 @@ const BlogPage = () => {
 
                 {/* Cover Image Section */}
                 <div className="max-w-5xl mx-auto px-4 -mt-8 md:-mt-12 mb-12">
-                    <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                    <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                         {mainImage ? (
                             <img
                                 src={urlFor(mainImage).width(1600).url()}
@@ -327,7 +327,7 @@ const BlogPage = () => {
                                             to={`/blogs/${related.slug?.current || related.slug}`}
                                             className={`flex flex-col h-full bg-white border border-gray-200 transition-all rounded-xl overflow-hidden group ${hoverBorder}`}
                                         >
-                                            <div className="relative h-40 overflow-hidden">
+                                            <div className="relative aspect-video overflow-hidden">
                                                 {related.mainImage ? (
                                                     <img
                                                         src={urlFor(related.mainImage).width(400).url()}

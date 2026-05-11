@@ -4,5 +4,6 @@ import { client } from './client'
 const builder = createImageUrlBuilder(client)
 
 export function urlFor(source) {
-  return builder.image(source).format('webp').quality(75)
+  if (!source) return { url: () => '' };
+  return builder.image(source).auto('format').format('webp').quality(75)
 }

@@ -1,22 +1,29 @@
-﻿import React from "react";
+import React, { Suspense, lazy } from "react";
 import { useState, useEffect, useRef } from "react";
-import Hero from "../Hero/Hero";
-import Companies from "../Companies/Companies";
-import VideoSection from "../VideoSection/VideoSection";
 import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
 import { Helmet } from "react-helmet-async";
-import FAQDisplay from "../FAQDisplay.jsx";
-import CelebrationOverlay from "../CelebrationOverlay/CelebrationOverlay";
+import Hero from "../Hero/Hero";
 import { m } from 'framer-motion';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
-import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
-import DescriptiveRight from "../DescriptiveSection/DescriptiveRight";
-import CoursesShowcase from "../Courses/CoursesShowcase.jsx";
-import BlogCall from "../Blogs/BlogCall";
-import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
-import YouTubeCarousel from "../YouTubeCarousel/YouTubeCarousel";
-import MentorShowcase from "../About/MentorShowcase.jsx";
+import LazySection from "../LazySection";
+
+// Lazy load below-the-fold components
+const Companies = lazy(() => import("../Companies/Companies"));
+const VideoSection = lazy(() => import("../VideoSection/VideoSection"));
+const FAQDisplay = lazy(() => import("../FAQDisplay.jsx"));
+const CelebrationOverlay = lazy(() => import("../CelebrationOverlay/CelebrationOverlay"));
+const DescriptiveLeft = lazy(() => import("../DescriptiveSection/DescriptiveLeft"));
+const DescriptiveRight = lazy(() => import("../DescriptiveSection/DescriptiveRight"));
+const CoursesShowcase = lazy(() => import("../Courses/CoursesShowcase.jsx"));
+const BlogCall = lazy(() => import("../Blogs/BlogCall"));
+const TestimonialsShowcase = lazy(() => import("../Testimonials/TestimonialsShowcase"));
+const YouTubeCarousel = lazy(() => import("../YouTubeCarousel/YouTubeCarousel"));
+const MentorShowcase = lazy(() => import("../About/MentorShowcase.jsx"));
+
+// Loading placeholder for sections
+const SectionLoader = () => <div className="py-20 flex justify-center"><div className="w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div></div>;
+
 
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,7 +52,13 @@ const AnniversaryVideo = () => {
     <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
       {!playing ? (
         <div className="absolute inset-0 cursor-pointer" onClick={() => setPlaying(true)}>
-          <img src="/thumbnails/WgA9VzD06kY.jpg" alt="One Year of GPC — A Journey of Growth, Learning & Creativity" className="w-full h-full object-cover" />
+          <img 
+            src="/thumbnails/WgA9VzD06kY-opt.webp" 
+            alt="One Year of GPC — A Journey of Growth, Learning & Creativity" 
+            width="800"
+            height="450"
+            className="w-full h-full object-cover" 
+          />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
             <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
               <span className="text-white text-2xl ml-1">&#9654;</span>
@@ -189,7 +202,9 @@ export default function Home() {
   return (
     <>
       {showCelebration && (
-        <CelebrationOverlay onComplete={handleCelebrationComplete} />
+        <Suspense fallback={null}>
+          <CelebrationOverlay onComplete={handleCelebrationComplete} />
+        </Suspense>
       )}
       <Helmet>
         <script type="application/ld+json">
@@ -358,14 +373,18 @@ export default function Home() {
 
         {/* Desc 1 */}
 
-        <DescriptiveLeft
-          titleStart="Offering a Global Platform for"
-          highlight="GRC Professionals"
-          titleEnd=""
-          description="Global Professional Certifications provides a global platform for professionals who want to grow in the space of Governance, Risk Management, Assurance and Advisory domains. We offer globally recognized, expert-led online CIA, CISA, CRMA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
-          image={descriptionImage1}
-          imageAlt="Global Platform"
-        />
+        <LazySection placeholder={<SectionLoader />}>
+          <Suspense fallback={<SectionLoader />}>
+            <DescriptiveLeft
+              titleStart="Offering a Global Platform for"
+              highlight="GRC Professionals"
+              titleEnd=""
+              description="Global Professional Certifications provides a global platform for professionals who want to grow in the space of Governance, Risk Management, Assurance and Advisory domains. We offer globally recognized, expert-led online CIA, CISA, CRMA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
+              image={descriptionImage1}
+              imageAlt="Global Platform"
+            />
+          </Suspense>
+        </LazySection>
 
         {/* Batch Announcement */}
         {/* Upcoming section temporarily hidden - no active announcements */}
@@ -373,21 +392,29 @@ export default function Home() {
         {/* Company Marquee Section */}
 
         <div className="scale-90 sm:scale-95 md:scale-100 transition-transform duration-300">
-          <Companies />
+          <LazySection placeholder={<SectionLoader />}>
+            <Suspense fallback={<SectionLoader />}>
+              <Companies />
+            </Suspense>
+          </LazySection>
         </div>
 
         {/* Desc 2 */}
 
-        <DescriptiveRight
-          titleStart="Become a Part of the"
-          highlight="Global Community"
-          titleEnd=""
-          description="Join our events to become a part of the thriving global professional network. Stay updated with the latest risk management, audit and advisory trends and connect with industry experts."
-          image={descriptionImage2}
-          imageAlt="Global Community"
-          buttonText="Visit Our Events"
-          buttonLink="events"
-        />
+        <LazySection placeholder={<SectionLoader />}>
+          <Suspense fallback={<SectionLoader />}>
+            <DescriptiveRight
+              titleStart="Become a Part of the"
+              highlight="Global Community"
+              titleEnd=""
+              description="Join our events to become a part of the thriving global professional network. Stay updated with the latest risk management, audit and advisory trends and connect with industry experts."
+              image={descriptionImage2}
+              imageAlt="Global Community"
+              buttonText="Visit Our Events"
+              buttonLink="events"
+            />
+          </Suspense>
+        </LazySection>
 
         {/* Download Brochure CTA */}
 
@@ -399,6 +426,8 @@ export default function Home() {
                 src={brochureCover}
                 alt="Brochure"
                 loading="lazy"
+                width="352"
+                height="497"
                 className="w-64 md:w-[22rem] h-auto object-contain"
               />
             </div>
@@ -483,6 +512,8 @@ export default function Home() {
                 src={choose}
                 alt="Why Choose Global Professional Certifications"
                 loading="lazy"
+                width="600"
+                height="400"
                 className="w-[60%] md:w-[90%] lg:w-[90%] rounded-3xl relative z-10 shadow-xl"
               />
             </div>
@@ -526,12 +557,15 @@ export default function Home() {
 
 
         {/* Popular Courses Card Section */}
-
-        <CoursesShowcase
-          titleStart="Explore Our"
-          highlight="Flagship Certification Programs"
-          titleEnd=""
-          courses={["CIA", "CISA", "CRMA", "IAP"]} />
+        <LazySection placeholder={<SectionLoader />}>
+          <Suspense fallback={<SectionLoader />}>
+            <CoursesShowcase
+              titleStart="Explore Our"
+              highlight="Flagship Certification Programs"
+              titleEnd=""
+              courses={["CIA", "CISA", "CRMA", "IAP"]} />
+          </Suspense>
+        </LazySection>
 
         {/* Video Section */}
         <div className="relative w-full overflow-hidden">
@@ -563,7 +597,7 @@ export default function Home() {
                   className="text-brand-blue hover:text-brand-purple transition-all duration-300 transform"
                 >
                   <p className="text-sm md:text-base flex items-center gap-1">
-                    Learn More{" "}
+                    Learn More about GPC{" "}
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </p>
                 </NavLink>
@@ -583,7 +617,11 @@ export default function Home() {
 
           {/* Floating Video */}
           <div className="absolute left-1/2 -translate-x-1/2 top-[60%] md:top-[45%] lg:top-[40%] z-30 w-[100%] md:w-[750px] max-w-full overflow-hidden">
-            <VideoSection />
+            <LazySection placeholder={null}>
+              <Suspense fallback={null}>
+                <VideoSection />
+              </Suspense>
+            </LazySection>
           </div>
 
           {/* Blue Background Section */}
@@ -609,15 +647,19 @@ export default function Home() {
               src={flowchartWeb}
               alt="How it works flowchart"
               loading="lazy"
+              width="1200"
+              height="600"
               className="w-[90vw] h-auto mx-auto scale-110"
             />
           </div>
           <div className="mx-4 block md:hidden lg:hidden">
             <div className="w-full h-auto mx-auto">
-              <img src={flowchartMobile1} alt="How it works flowchart" loading="lazy" />
+              <img src={flowchartMobile1} alt="How it works flowchart" width="400" height="600" loading="lazy" />
               <img
                 src={flowchartMobile2}
                 alt="How it works flowchart"
+                width="400"
+                height="600"
                 loading="lazy"
                 className="-translate-y-8"
               />
@@ -626,16 +668,41 @@ export default function Home() {
         </div>
 
         {/* About Mentor */}
-        <div className="cv-auto"><MentorShowcase /></div>
+        <div className="cv-auto">
+          <LazySection placeholder={<SectionLoader />}>
+            <Suspense fallback={<SectionLoader />}>
+              <MentorShowcase />
+            </Suspense>
+          </LazySection>
+        </div>
 
         {/* Testimonials Section */}
-        <div className="cv-auto"><TestimonialsShowcase /></div>
+        <div className="cv-auto">
+          <LazySection placeholder={<SectionLoader />}>
+            <Suspense fallback={<SectionLoader />}>
+              <TestimonialsShowcase />
+            </Suspense>
+          </LazySection>
+        </div>
 
         {/* Blog Section */}
-        <div className="cv-auto"><BlogCall /></div>
+        <div className="cv-auto">
+          <LazySection placeholder={<SectionLoader />}>
+            <Suspense fallback={<SectionLoader />}>
+              <BlogCall />
+            </Suspense>
+          </LazySection>
+        </div>
 
         {/* YouTube Videos Section*/}
-        <div className="cv-auto"><YouTubeCarousel /></div>
+        <div className="cv-auto">
+          <LazySection placeholder={<SectionLoader />}>
+            <Suspense fallback={<SectionLoader />}>
+              <YouTubeCarousel />
+            </Suspense>
+          </LazySection>
+        </div>
+
 
         {/* FAQ Section */}
 
@@ -658,7 +725,9 @@ export default function Home() {
 
             {/* Questions Dropdown Section */}
             <div className="w-full lg:w-3/5">
-              <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />
+              <Suspense fallback={<SectionLoader />}>
+                <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />
+              </Suspense>
             </div>
           </div>
         </div>
