@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { m } from 'framer-motion';
+import React from 'react';
+import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import FAQDisplay from "../FAQDisplay.jsx";

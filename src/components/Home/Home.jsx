@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import MetaTags from "../MetaTags";
 import { Helmet } from "react-helmet-async";
 import Hero from "../Hero/Hero";
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import LazySection from "../LazySection";
 

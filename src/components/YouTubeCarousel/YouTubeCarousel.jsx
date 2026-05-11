@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
 
