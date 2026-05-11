@@ -3,13 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
 
-import logo from "../../assets/navbar/gpc-navbar-logo.webp";
-import cisaLogo from "../../assets/courses/cisa-logo.webp";
-import ciaLogo from "../../assets/courses/cia-logo.webp";
-import iapLogo from "../../assets/courses/iap-logo.webp";
-import crmaLogo from "../../assets/courses/crma-logo.webp";
-import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
-import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
+import logo from "../../assets/navbar/gpc-navbar-logo-opt.webp";
+import cisaLogo from "../../assets/courses/cisa-logo-opt.webp";
+import ciaLogo from "../../assets/courses/cia-logo-opt.webp";
+import iapLogo from "../../assets/courses/iap-logo-opt.webp";
+import crmaLogo from "../../assets/courses/crma-logo-opt.webp";
+import coursesPanelImage from "../../assets/navbar/navbar-courses-panel-opt.webp";
+import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel-opt.webp";
 
 const coursesOptions = [
   { name: "CIA", fullname: "Certified Internal Auditor", logo: ciaLogo, link: "/courses/cia" },
@@ -103,7 +103,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-${topOffset} bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-all duration-300`}
+      className={`fixed w-full z-50 top-${topOffset} bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-transform duration-300`}
     >
       <div className="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
@@ -138,19 +138,21 @@ const Navbar = ({ topOffset = 0 }) => {
                       <FaChevronDown
                         className={`text-[10px] transition-transform duration-300 ${isCoursesDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
                       />
-                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-blue transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                      <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
                     </>
                   )}
                 </NavLink>
 
                 {/* MegaMenu for Courses */}
-                <MegaMenu
-                  items={coursesOptions}
-                  isOpen={isCoursesDropdownOpen}
-                  showItemLogos={true}
-                  panelImage={coursesPanelImage}
-                  onClose={() => setIsCoursesDropdownOpen(false)}
-                />
+                {isCoursesDropdownOpen && (
+                  <MegaMenu
+                    items={coursesOptions}
+                    isOpen={isCoursesDropdownOpen}
+                    showItemLogos={true}
+                    panelImage={coursesPanelImage}
+                    onClose={() => setIsCoursesDropdownOpen(false)}
+                  />
+                )}
               </div>
             ) : item === "Corporate" ? (
               <div
@@ -168,17 +170,19 @@ const Navbar = ({ topOffset = 0 }) => {
                   <FaChevronDown
                     className={`text-[10px] transition-transform duration-300 ${isCorporateDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
                   />
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left group-hover:scale-x-100 scale-x-0`}></span>
                 </button>
 
                 {/* MegaMenu for Corporate */}
-                <MegaMenu
-                  items={corporateOptions}
-                  isOpen={isCorporateDropdownOpen}
-                  showItemLogos={false}
-                  panelImage={corporatePanelImage}
-                  onClose={() => setIsCorporateDropdownOpen(false)}
-                />
+                {isCorporateDropdownOpen && (
+                  <MegaMenu
+                    items={corporateOptions}
+                    isOpen={isCorporateDropdownOpen}
+                    showItemLogos={false}
+                    panelImage={corporatePanelImage}
+                    onClose={() => setIsCorporateDropdownOpen(false)}
+                  />
+                )}
               </div>
             ) : (
               <NavLink
@@ -191,7 +195,7 @@ const Navbar = ({ topOffset = 0 }) => {
                 {({ isActive }) => (
                   <>
                     {item === "Success" ? "Success Stories" : item}
-                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-blue transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
                   </>
                 )}
               </NavLink>
@@ -205,7 +209,7 @@ const Navbar = ({ topOffset = 0 }) => {
           onMouseEnter={handleAuthMouseEnter}
           onMouseLeave={handleAuthMouseLeave}
         >
-          <button className="flex items-center gap-2 bg-brand-blue text-white px-5 py-2 rounded-full text-[15px] font-medium hover:bg-brand-purple transition-all duration-300 group shadow-md hover:shadow-lg">
+          <button className="flex items-center gap-2 bg-brand-blue text-white px-5 py-2 rounded-full text-[15px] font-medium transition-transform duration-300 group shadow-md hover:shadow-lg active:scale-95">
             <FaUserCircle className="text-base" />
             Account
             <FaChevronDown className={`text-[10px] transition-transform duration-300 ${isAuthDropdownOpen ? "rotate-180" : ""}`} />
@@ -213,7 +217,7 @@ const Navbar = ({ topOffset = 0 }) => {
 
           {/* Auth Dropdown */}
           <div
-            className={`absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 shadow-xl overflow-hidden transition-all duration-300 origin-top-right ${isAuthDropdownOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
+            className={`absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 shadow-xl overflow-hidden transition-all duration-300 origin-top-right will-change-transform ${isAuthDropdownOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
           >
             <a
               href="https://learn.globalprofessionalcertifications.com/learn/account/signin"
@@ -237,6 +241,7 @@ const Navbar = ({ topOffset = 0 }) => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden text-gray-800 dark:text-white focus:outline-none"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
         </button>

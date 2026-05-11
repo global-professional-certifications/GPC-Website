@@ -84,7 +84,7 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
                       </p>
                     </div>
 
-                    <NavLink to={course.link}>
+                    <NavLink to={course.link} aria-label={`View ${course.name} details`}>
                       <button className="w-full py-1.5 md:py-2 text-xs md:text-base rounded-lg bg-brand-blue text-white font-semibold transition-all duration-300 hover:bg-brand-purple hover:scale-105">
                         View Course
                       </button>

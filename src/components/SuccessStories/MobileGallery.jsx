@@ -1,5 +1,5 @@
-﻿import React, { useState, useEffect, useCallback } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 
 export default function MobileGallery({ images = [] }) {
     const [currentPage, setCurrentPage] = useState(1);

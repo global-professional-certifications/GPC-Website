@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { LazyMotion, domAnimation } from 'framer-motion';
+import { LazyMotion, domAnimation } from 'motion/react';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './Layout.jsx';

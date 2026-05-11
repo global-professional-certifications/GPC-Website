@@ -69,7 +69,10 @@ const TestimonialsShowcase = () => {
                 <img
                     src={testimonialCover}
                     alt="Testimonial Cover"
-                    className="scale-100 md:scale-90"
+                    width="1200"
+                    height="400"
+                    loading="lazy"
+                    className="scale-100 md:scale-90 w-full h-auto"
                 />
             </div>
 
