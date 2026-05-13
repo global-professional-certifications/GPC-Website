@@ -5,7 +5,7 @@ import { getPostBySlug, getRecentPosts } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
 import PortableTextRenderer from './PortableTextRenderer'
 import MetaTags from '../MetaTags'
-import { SchemaMarkup, getBlogPostingSchema, getBreadcrumbSchema } from '../Schema'
+import { SchemaMarkup, getBlogPostingSchema, getBreadcrumbSchema, getFAQSchema } from '../Schema'
 import { Calendar, User, ArrowRight, ArrowLeft, Tag, Share2, Linkedin, Twitter, Facebook, Link2, CheckCircle2 } from 'lucide-react'
 
 const BlogPage = () => {
@@ -92,6 +92,13 @@ const BlogPage = () => {
         meta
     } = post
 
+    // Collect all faqSection blocks from body to build FAQ JSON-LD
+    const faqBlocks = (body || []).filter(
+        (block) => block._type === 'faqSection' && block.enableSchema !== false && block.faqs?.length
+    )
+    const allFaqs = faqBlocks.flatMap((block) => block.faqs || [])
+    const faqSchema = allFaqs.length > 0 ? getFAQSchema(allFaqs) : null
+
     const blogSchema = getBlogPostingSchema({
         title,
         description: meta?.metaDescription || description,
@@ -109,7 +116,7 @@ const BlogPage = () => {
 
     return (
         <>
-            <SchemaMarkup schema={[blogSchema, breadcrumbSchema]} />
+            <SchemaMarkup schema={[blogSchema, breadcrumbSchema, faqSchema].filter(Boolean)} />
             <MetaTags
                 title={meta?.metaTitle || `${title} | GPC Blog`}
                 description={meta?.metaDescription || description}
@@ -204,27 +211,12 @@ const BlogPage = () => {
                             </div>
                         )}
 
-                        {/* Key Takeaways */}
-                        {keyTakeaways?.length > 0 && (
-                            <div className="mb-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                                <h2 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                    💡 Key Takeaways
-                                </h2>
-                                <ul className="space-y-2">
-                                    {keyTakeaways.map((takeaway, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-sm">
-                                            <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-700">{takeaway}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-
                         {/* Blog Content */}
                         <article className="prose prose-sm md:prose-base max-w-none">
                             <PortableTextRenderer value={body} />
                         </article>
+
+
 
                         {/* Tags - Clickable */}
                         {tags?.length > 0 && (
@@ -270,6 +262,24 @@ const BlogPage = () => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Key Takeaways — shown at the VERY bottom of the content area */}
+                        {keyTakeaways?.length > 0 && (
+                            <div className="mt-12 p-6 bg-gradient-to-br from-green-50 to-emerald-50/50 rounded-2xl border border-green-100 shadow-sm">
+                                <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                    <span className="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base shrink-0">💡</span>
+                                    Key Takeaways
+                                </h2>
+                                <ul className="space-y-2.5">
+                                    {keyTakeaways.map((takeaway, idx) => (
+                                        <li key={idx} className="flex items-start gap-2.5 text-sm">
+                                            <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                            <span className="text-gray-700 leading-relaxed">{takeaway}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
 
                         {/* Author Box - Professional Design */}
                         <div className='mt-16 bg-gray-50 rounded-2xl p-8 border border-gray-100'>

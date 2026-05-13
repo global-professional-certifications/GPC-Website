@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -113,7 +113,7 @@ const Cia = () => {
                                     <li>Certified Internal Auditor (CIA) Classes with Gleim Content </li>
                                     <li>Weekend Live Classes with 1000+ Relevant MCQs </li>
                                     <li>7-8 months Course with Full IIA Registration and Exam Support </li>
-                                    <li>250+ Successful CIA Professionals Trained by 100% Proven Methodology </li>
+                                    <li>350+ Successful CIA Professionals Trained by 100% Proven Methodology </li>
                                 </ul>
                             </p>
                         </div>
