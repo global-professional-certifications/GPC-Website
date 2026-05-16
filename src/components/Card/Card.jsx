@@ -33,13 +33,13 @@ export default function Card({
 
         {/* TITLE */}
         <Link to={linkTo}>
-          <h3 className="text-xl font-bold text-gray-900 leading-snug min-h-[3.5rem] group-hover:text-brand-blue transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 leading-tight min-h-[3.5rem] group-hover:text-brand-blue transition-colors">
             {title}
           </h3>
         </Link>
 
         {/* DESCRIPTION */}
-        <p className="mt-2 text-sm text-gray-600 leading-relaxed min-h-[4.5rem]">
+        <p className="mt-2 text-sm text-gray-600 leading-tight min-h-[4.5rem]">
           {text}
         </p>
 
@@ -48,7 +48,7 @@ export default function Card({
 
           {/* PRICE */}
           <div className="flex flex-col">
-            <span className="text-xl font-extrabold text-gray-900">
+            <span className="text-2xl font-bold text-gray-900">
               ₹{price}
             </span>
             <span className="text-xs text-gray-500 mt-1">
@@ -60,10 +60,9 @@ export default function Card({
           <Link
             to={enrollLink}
             target="_blank"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-brand-purple hover:shadow-lg active:scale-95"
+            className="rounded-xl bg-brand-blue px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-brand-purple hover:shadow-lg"
           >
             Enroll Now
-            <FaArrowRightLong className="h-4 w-4" />
           </Link>
         </div>
       </div>

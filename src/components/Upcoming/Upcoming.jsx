@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
@@ -79,12 +79,11 @@ const Upcoming = () => {
         </div>
       </section>
 
-      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
+      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════
       <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
         <div className="max-w-7xl mx-auto px-3 md:px-4">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
 
-            {/* Left: Icon & Label */}
             <div className="flex items-center gap-5 flex-shrink-0">
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shadow-md shadow-brand-blue/15 rotate-[-6deg]">
                 <FaBullhorn className="text-white text-xl md:text-2xl rotate-[6deg]" />
@@ -94,10 +93,8 @@ const Upcoming = () => {
               </h2>
             </div>
 
-            {/* Divider */}
             <div className="hidden lg:block w-px h-14 bg-amber-200/70" />
 
-            {/* Right: Plain Bold Text */}
             <div className="text-gray-800 text-lg leading-relaxed">
               <p>Enroll in CIA (All Parts) for INR 49,999 + GST (including Gleim Material) till 15th May.
                 Price increases to INR 60,000 + GST from 16th May onwards.</p>
@@ -106,6 +103,7 @@ const Upcoming = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* ═══════════ UPCOMING BATCHES ═══════════ */}
       <section id="batches" className="py-16 md:py-20 bg-transparent">
@@ -122,7 +120,7 @@ const Upcoming = () => {
           </m.div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {upcomingBatches.map((batch, index) => (
               <m.div
                 key={batch.id}
@@ -145,7 +143,7 @@ const Upcoming = () => {
                   </div>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-3">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3">
                   {batch.name}
                 </h3>
 
