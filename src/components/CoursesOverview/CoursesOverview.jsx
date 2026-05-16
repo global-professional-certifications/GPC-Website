@@ -117,10 +117,10 @@ export default function CoursesOverview() {
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
           currency="INR"
-          price="17,700"
+          price="20,000"
           linkTo="/courses/cisa"
-          enrollLink="https://rzp.io/rzp/VuvF84x"
-          gst="(Including GST)"
+          enrollLink="https://rzp.io/rzp/ZE5s8Dz"
+          gst="+ GST"
         />
         <Card
           title="Internal Audit Practioner (IAP)"
