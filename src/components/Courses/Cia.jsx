@@ -256,7 +256,7 @@ const Cia = () => {
                             price={60000}
                             enrollLink="https://rzp.io/rzp/uC1OGRim"
                             imageStyle={"pt-4"}
-                            gst="(+ GST)" />
+                            gst="+ GST" />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
@@ -264,21 +264,21 @@ const Cia = () => {
                             price={25000}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
                             imageStyle={"pt-12"}
-                            gst="(+ GST)" />
+                            gst="+ GST" />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
                             price={25000}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
-                            gst="(+ GST)" />
+                            gst="+ GST" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
                             price={25000}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
-                            gst="(+ GST)"
+                            gst="+ GST"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
