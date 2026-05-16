@@ -253,7 +253,7 @@ const Cia = () => {
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                            price={60000}
+                            price={"60,000"}
                             enrollLink="https://rzp.io/rzp/uC1OGRim"
                             imageStyle={"pt-4"}
                             gst="+ GST" />
@@ -261,7 +261,7 @@ const Cia = () => {
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                            price={25000}
+                            price={"25,000"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
                             imageStyle={"pt-12"}
                             gst="+ GST" />
@@ -269,14 +269,14 @@ const Cia = () => {
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
-                            price={25000}
+                            price={"25,000"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
                             gst="+ GST" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
-                            price={25000}
+                            price={"25,000"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
                             gst="+ GST"
                             imageStyle={"pt-8"} />

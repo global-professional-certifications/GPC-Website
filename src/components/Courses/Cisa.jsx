@@ -488,22 +488,18 @@ const Cisa = () => {
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
-                    <p className="text-white text-xl md:text-3xl font-black mb-1">INR 17,700</p>
-                    <p className="text-orange-400 text-xs italic">Including GST</p>
+                    <p className="text-white text-xl md:text-3xl font-black mb-1">₹20,000</p>
+                    <p className="text-orange-400 text-sm italic">+ GST</p>
                   </div>
 
                   <Link
-                    to="https://rzp.io/rzp/VuvF84x"
+                    to="https://rzp.io/rzp/ZE5s8Dz"
                     target="_blank"
                     className="w-full group inline-flex items-center justify-center py-3 text-base font-bold text-white rounded-2xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/25"
                   >
                     Enroll Now
                     <FaArrowRightLong className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" />
                   </Link>
-
-                  <p className="text-gray-500 text-[10px] italic">
-                    Secure payment gateway via Razorpay
-                  </p>
                 </div>
               </div>
             </div>
