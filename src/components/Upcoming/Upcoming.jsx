@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
@@ -16,7 +16,7 @@ const upcomingBatches = [
     name: "CIA Part 1",
     description: "Start your CIA journey with our comprehensive Part 1 batch covering all fundamental audit concepts and the IPPF framework.",
     date: "May 23, 2026",
-    enrollLink: "https://zurl.co/OTtVH",
+    enrollLink: "https://rzp.io/rzp/BjsIQfL",
   },
   {
     id: 2,
@@ -172,11 +172,10 @@ const Upcoming = () => {
         </div>
       </section>
 
-      {/* ═══════════ ORIENTATION ═══════════ */}
+      {/* ═══════════ ORIENTATION ═══════════ 
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-3 md:px-4">
 
-          {/* Section Header */}
           <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 space-y-3">
             <h2 className="text-2xl md:text-4xl font-bold text-center">
               Live <span className="text-brand-blue font-normal italic">Orientation</span>
@@ -186,17 +185,14 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {/* Card — Full width, no hover */}
           <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="bg-gray-50 border border-gray-300 overflow-hidden">
               <div className="flex flex-col lg:flex-row">
 
-                {/* Left: Thumbnail — narrower */}
                 <div className="w-full lg:w-1/3 relative min-h-[220px] overflow-hidden">
                   <img src={orientationCover} alt="Live Orientation" className="absolute inset-0 w-full h-full" />
                 </div>
 
-                {/* Right: Content — wider */}
                 <div className="w-full lg:w-2/3 p-7 md:p-10 flex flex-col justify-between">
 
                   <div>
@@ -236,6 +232,7 @@ const Upcoming = () => {
           </m.div>
         </div>
       </section>
+      */}
 
       {/* ═══════════ WEBINAR (TEMPORARILY HIDDEN) ═══════════ */}
       {/* 
