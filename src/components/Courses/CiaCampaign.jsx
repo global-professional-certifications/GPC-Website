@@ -69,8 +69,8 @@ const CiaCampaign = () => {
     const ciaSchema = getCourseSchema({
         name: "Certified Internal Auditor (CIA) Certification Course - Ad Campaign",
         description: "Master the complete CIA exam with expert guidance and comprehensive study materials. All 3 parts with Gleim content, live weekend classes, and 1000+ MCQs.",
-        price: "58999",
-        enrollUrl: "https://rzp.io/rzp/CIASessions",
+        price: "60000",
+        enrollUrl: "https://rzp.io/rzp/uC1OGRim",
         credential: "Certified Internal Auditor (CIA)",
         occupationalCategory: "Internal Auditor, Risk Management Professional",
         courseWorkload: "PT60-70H (Part 1), PT80-90H (Part 2), PT40-50H (Part 3)"
@@ -115,7 +115,7 @@ const CiaCampaign = () => {
 
                         <div className="mt-6">
                             <Link
-                                to="https://rzp.io/rzp/CIASessions"
+                                to="https://rzp.io/rzp/uC1OGRim"
                                 target='blank'
                                 title=""
                                 className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
@@ -244,32 +244,32 @@ const CiaCampaign = () => {
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                            price={58999}
-                            enrollLink="https://rzp.io/rzp/CIASessions"
+                            price={60000}
+                            enrollLink="https://rzp.io/rzp/uC1OGRim"
                             imageStyle={"pt-4"}
-                            gst="(Including GST)" />
+                            gst="(+ GST)" />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                            price={23599}
-                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
+                            price={25000}
+                            enrollLink="https://rzp.io/rzp/BjsIQfL"
                             imageStyle={"pt-12"}
-                            gst="(Including GST)" />
+                            gst="(+ GST)" />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
-                            price={23599}
-                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
-                            gst="(Including GST)" />
+                            price={25000}
+                            enrollLink="https://rzp.io/rzp/BjsIQfL"
+                            gst="(+ GST)" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
-                            price={23599}
-                            enrollLink="https://pages.razorpay.com/pl_PbHL4oa3lyfSzL/view"
-                            gst="(Including GST)"
+                            price={25000}
+                            enrollLink="https://rzp.io/rzp/BjsIQfL"
+                            gst="(+ GST)"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
@@ -377,7 +377,7 @@ const CiaCampaign = () => {
                                 </div>
                                 <div className="lg:col-span-1 flex flex-col justify-center items-center text-center space-y-6">
                                     <Link
-                                        to={"https://rzp.io/rzp/CIASessions"}
+                                        to={"https://rzp.io/rzp/uC1OGRim"}
                                         target="_blank"
                                         className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
                                     >
@@ -442,15 +442,15 @@ const CiaCampaign = () => {
                             <div className="max-w-3xl mx-auto mb-8">
                                 <div className="p-5 md:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner">
                                     <p className="text-lg md:text-2xl font-bold text-white mb-3">
-                                        Enroll for all 3 parts along with Gleim content for <span className="text-orange-400">₹58,999</span> only
+                                        Enroll for all 3 parts along with Gleim content for <span className="text-orange-400">₹60,000 + GST</span> only
                                     </p>
                                     <p className="text-base md:text-lg text-gray-300">
-                                        Or each part for <span className="text-white font-semibold">₹23,599</span> only
+                                        Or each part for <span className="text-white font-semibold">₹25,000 + GST</span> only
                                     </p>
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                                <Link to="https://rzp.io/rzp/CIASessions" target="_blank" className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105">
+                                <Link to="https://rzp.io/rzp/uC1OGRim" target="_blank" className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105">
                                     Enroll Now
                                 </Link>
                             </div>

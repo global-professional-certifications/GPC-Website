@@ -89,33 +89,6 @@ export default function CoursesOverview() {
         </div>
       </section>
 
-      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
-      <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
-        <div className="max-w-7xl mx-auto px-3 md:px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
-
-            {/* Left: Icon & Label */}
-            <div className="flex items-center gap-5 flex-shrink-0">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shadow-md shadow-brand-blue/15 rotate-[-6deg]">
-                <FaBullhorn className="text-white text-xl md:text-2xl rotate-[6deg]" />
-              </div>
-              <h2 className="text-2xl md:text-3xl text-brand-blue leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800 }}>
-                Important<br className="hidden md:block" /> Announcement
-              </h2>
-            </div>
-
-            {/* Divider */}
-            <div className="hidden lg:block w-px h-14 bg-amber-200/70" />
-
-            {/* Right: Plain Bold Text */}
-            <div className="text-gray-800 text-lg leading-relaxed">
-              <p>Enroll in CIA (All Parts) for INR 49,999 + GST (including Gleim Material) till 15th May.
-                Price increases to INR 60,000 + GST from 16th May onwards.</p>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-center items-center px-4 md:px-12 mt-20 mb-4">
@@ -134,20 +107,20 @@ export default function CoursesOverview() {
           image={ciaLogo}
           text="Master the complete CIA exam with expert guidance and comprehensive study materials"
           currency="INR"
-          price="58,999"
+          price="60,000"
           linkTo="/courses/cia"
-          enrollLink="https://rzp.io/rzp/CIASessions"
-          gst="(Including GST)"
+          enrollLink="https://rzp.io/rzp/uC1OGRim"
+          gst="+ GST"
         />
         <Card
           title="Certified Informations Systems Auditor (CISA)"
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
           currency="INR"
-          price="17,700"
+          price="20,000"
           linkTo="/courses/cisa"
-          enrollLink="https://rzp.io/rzp/VuvF84x"
-          gst="(Including GST)"
+          enrollLink="https://rzp.io/rzp/ZE5s8Dz"
+          gst="+ GST"
         />
         <Card
           title="Internal Audit Practioner (IAP)"
