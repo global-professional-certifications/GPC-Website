@@ -186,6 +186,105 @@ export default function Home() {
     }
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Global Professional Certifications",
+    "alternateName": "GPC",
+    "url": "https://globalprofessionalcertifications.com",
+    "logo": "https://globalprofessionalcertifications.com/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/global-professional-certifications"
+    ]
+  };
+
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Course",
+          "name": "Certified Internal Auditor (CIA)",
+          "description": "The gold standard for internal auditing and risk assurance globally.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "sameAs": "https://globalprofessionalcertifications.com"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Course",
+          "name": "Certified Information Systems Auditor (CISA)",
+          "description": "For IT audit, cyber risk, and information security professionals.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "sameAs": "https://globalprofessionalcertifications.com"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Course",
+          "name": "Certification in Risk Management Assurance (CRMA)",
+          "description": "For expertise in governance, risk, and control.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "sameAs": "https://globalprofessionalcertifications.com"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Course",
+          "name": "Internal Audit Practitioner (IAP)",
+          "description": "Foundational training for aspiring auditors and fresh graduates.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Global Professional Certifications",
+            "sameAs": "https://globalprofessionalcertifications.com"
+          }
+        }
+      }
+    ]
+  };
+
+  const aggregateRatingSchema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Global Professional Certifications",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1500"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://globalprofessionalcertifications.com"
+      }
+    ]
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -209,6 +308,18 @@ export default function Home() {
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(courseSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(aggregateRatingSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
         </script>
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
