@@ -1,4 +1,4 @@
-﻿import aboutHero from "../../assets/about/about-hero.webp";
+import aboutHero from "../../assets/about/about-hero.webp";
 import ourMissionOne from "../../assets/about/our-mission-1.webp";
 import ourMissionTwo from "../../assets/about/our-mission-2.webp";
 import ourVision from "../../assets/about/our-vision.webp";
@@ -7,7 +7,7 @@ import MetaTags from "../MetaTags";
 import { Users, GraduationCap, BookCheck, Award, Target, ShieldCheck, Globe } from "lucide-react";
 import MentorShowcase from "./MentorShowcase";
 import { PiBrain } from "react-icons/pi";
-import { SchemaMarkup, getBreadcrumbSchema, getAboutPageSchema, getPersonSchema } from "../Schema";
+import { SchemaMarkup, generateBreadcrumbSchema, getAboutPageSchema, getPersonSchema, getOrganizationSchema } from "../Schema";
 
 export default function AboutUs() {
     // About Page Schema
@@ -18,10 +18,10 @@ export default function AboutUs() {
     });
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "About Us", url: "https://globalprofessionalcertifications.com/about" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/about");
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
 
     // Mentor Person Schema
     const mentorSchema = getPersonSchema({
@@ -33,7 +33,7 @@ export default function AboutUs() {
 
     return (
         <div className="bg-gray-50">
-            <SchemaMarkup schema={[aboutPageSchema, breadcrumbSchema, mentorSchema]} />
+            <SchemaMarkup schema={[aboutPageSchema, breadcrumbSchema, orgSchema, mentorSchema]} />
             <MetaTags
                 title="About Global Professional Certifications"
                 description="Learn how we empower professionals with globally recognized certifications and expert-driven learning."

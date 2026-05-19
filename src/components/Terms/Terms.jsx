@@ -134,10 +134,21 @@
 
 import React from "react";
 import MetaTags from "../MetaTags";
+import { SchemaMarkup, getWebPageSchema, getOrganizationSchema, generateBreadcrumbSchema } from "../Schema";
 
 export default function Terms() {
+    const webPageSchema = getWebPageSchema({
+        name: "Terms & Conditions – Global Professional Certifications",
+        description: "Read our terms and conditions outlining course access, use of services, and user responsibilities.",
+        url: "https://globalprofessionalcertifications.com/terms"
+    });
+
+    const orgSchema = getOrganizationSchema();
+    const breadcrumbSchema = generateBreadcrumbSchema("/terms");
+
     return (
         <>
+            <SchemaMarkup schema={[webPageSchema, orgSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Terms & Conditions – Global Professional Certifications"
                 description="Read our terms and conditions outlining course access, use of services, and user responsibilities."
