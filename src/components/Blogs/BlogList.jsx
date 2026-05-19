@@ -4,6 +4,7 @@ import { client } from '../../lib/sanity/client'
 import { getAllPosts, getAllCategories, getAllTags, getPostsByCategory, getPostsByTag } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
 import MetaTags from '../MetaTags'
+import { SchemaMarkup, getCollectionPageSchema, getOrganizationSchema, generateBreadcrumbSchema, getBlogPostingSchema } from '../Schema'
 import BlogFilters from './BlogFilters'
 import { Calendar, User, ArrowRight, Tag, Search, X } from 'lucide-react'
 
@@ -100,8 +101,42 @@ const BlogList = () => {
     const secondary = filteredPosts.slice(1, 3)
     const others = filteredPosts.slice(3)
 
+    // CollectionPage Schema
+    const collectionPageSchema = getCollectionPageSchema({
+        name: "Blog & Expert Insights | Global Professional Certifications",
+        description: "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications."
+    });
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = generateBreadcrumbSchema("/blogs");
+
+    // BlogPosting schemas (for the top 5 articles)
+    const blogPostingSchemas = filteredPosts.slice(0, 5).map(post => getBlogPostingSchema({
+        title: post.title || "Blog Post",
+        description: post.description || post.excerpt || "Insightful article on audit and risk management.",
+        image: post.mainImage ? urlFor(post.mainImage).url() : "https://globalprofessionalcertifications.com/logo.png",
+        author: post.author || "Arpit Garg",
+        publishedDate: post.publishedAt || new Date().toISOString(),
+        modifiedDate: post.updatedAt || post.publishedAt || new Date().toISOString(),
+        url: `https://globalprofessionalcertifications.com/blogs/${post.slug?.current || post.slug}`
+    }));
+
+    // Blog Schema
+    const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Global Professional Certifications Blog",
+        "description": "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.",
+        "url": "https://globalprofessionalcertifications.com/blogs",
+        "blogPost": blogPostingSchemas
+    };
+
     return (
         <>
+            <SchemaMarkup schema={[collectionPageSchema, orgSchema, breadcrumbSchema, blogSchema, ...blogPostingSchemas]} />
             <MetaTags
                 title="Blog & Expert Insights | Global Professional Certifications"
                 description="Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications."

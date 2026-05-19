@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import MetaTags from "../MetaTags";
 
-import { SchemaMarkup, getFAQSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
+import { SchemaMarkup, getFAQSchema, generateBreadcrumbSchema, getOrganizationSchema } from "../Schema";
 
 const faqs = [
     {
@@ -225,21 +225,14 @@ const FAQ = () => {
     const faqSchema = getFAQSchema(faqs);
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "FAQ", url: "https://globalprofessionalcertifications.com/faq" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/faq");
 
-    // WebPage Schema
-    const webPageSchema = getWebPageSchema({
-        name: "Frequently Asked Questions - Global Professional Certifications",
-        description: "Find answers to the most common questions about CIA, CISA, CRMA, and other audit certifications offered by Global Professional Certifications.",
-        url: "https://globalprofessionalcertifications.com/faq"
-    });
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
 
     return (
         <>
-            <SchemaMarkup schema={[faqSchema, breadcrumbSchema, webPageSchema]} />
+            <SchemaMarkup schema={[faqSchema, orgSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Frequently Asked Questions (FAQs) | Global Professional Certifications"
                 description="Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career."

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import MetaTags from '../MetaTags';
@@ -22,7 +22,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
@@ -80,14 +80,29 @@ const Cisa = () => {
   });
 
   // Breadcrumb Schema
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", url: "https://globalprofessionalcertifications.com" },
-    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
-    { name: "CISA", url: "https://globalprofessionalcertifications.com/courses/cisa" }
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema("/courses/cisa");
 
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
+
+  // Review Schema
+  const reviewSchema = getReviewSchema({
+    name: "Verified Student",
+    designation: "IT Auditor",
+    text: "Excellent CISA training program. The recorded classes and mock tests were exactly what I needed.",
+    rating: "5",
+    courseName: "Certified Information Systems Auditor (CISA) Certification Course"
+  });
+
+  // SoftwareApplication Schema
+  const softwareSchema = getSoftwareApplicationSchema({
+    name: "GPC Learning Management System",
+    applicationCategory: "EducationalApplication",
+    price: "0"
+  });
+
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
 
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
@@ -97,7 +112,7 @@ const Cisa = () => {
         description="Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/cisa"
       />
-      <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema]} />
+      <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
 
       {/* Header */}

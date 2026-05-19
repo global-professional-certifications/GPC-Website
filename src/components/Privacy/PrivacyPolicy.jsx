@@ -237,10 +237,21 @@
 
 import React from "react";
 import MetaTags from "../MetaTags";
+import { SchemaMarkup, getWebPageSchema, getOrganizationSchema, generateBreadcrumbSchema } from "../Schema";
 
 export default function PrivacyPolicy() {
+    const webPageSchema = getWebPageSchema({
+        name: "Privacy Policy – Global Professional Certifications",
+        description: "Understand how we protect your data and privacy as you use our platform and enroll in our courses.",
+        url: "https://globalprofessionalcertifications.com/privacy"
+    });
+
+    const orgSchema = getOrganizationSchema();
+    const breadcrumbSchema = generateBreadcrumbSchema("/privacy");
+
     return (
         <>
+            <SchemaMarkup schema={[webPageSchema, orgSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Privacy Policy – Global Professional Certifications"
                 description="Understand how we protect your data and privacy as you use our platform and enroll in our courses."

@@ -5,7 +5,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
-import { SchemaMarkup, getContactPageSchema, getLocalBusinessSchema, getBreadcrumbSchema } from "../Schema";
+import { SchemaMarkup, getContactPageSchema, getLocalBusinessSchema, generateBreadcrumbSchema } from "../Schema";
 
 export default function ContactUs() {
     // Contact Page Schema
@@ -25,14 +25,32 @@ export default function ContactUs() {
     });
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Contact Us", url: "https://globalprofessionalcertifications.com/contact" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/contact");
+
+    // ContactPoint Schema
+    const contactPointSchema = {
+        "@context": "https://schema.org",
+        "@type": "ContactPoint",
+        "telephone": "+91-87360-83099",
+        "contactType": "customer service",
+        "email": "cia@globalprofessionalcertifications.com",
+        "availableLanguage": ["English", "Hindi"]
+    };
+
+    // PostalAddress Schema
+    const postalAddressSchema = {
+        "@context": "https://schema.org",
+        "@type": "PostalAddress",
+        "streetAddress": "Innov8 Building, Orchid Centre, Golf course road",
+        "addressLocality": "Gurugram",
+        "addressRegion": "Haryana",
+        "postalCode": "122022",
+        "addressCountry": "IN"
+    };
 
     return (
         <>
-            <SchemaMarkup schema={[contactPageSchema, localBusinessSchema, breadcrumbSchema]} />
+            <SchemaMarkup schema={[contactPageSchema, localBusinessSchema, contactPointSchema, postalAddressSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Contact Us - Global Professional Certifications"
                 description="Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."

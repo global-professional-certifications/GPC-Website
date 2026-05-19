@@ -4,7 +4,7 @@ import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from "react-router-dom";
 
 import MetaTags from "../MetaTags";
-import { SchemaMarkup, getBreadcrumbSchema, getWebPageSchema, getAggregateRatingSchema } from "../Schema";
+import { SchemaMarkup, generateBreadcrumbSchema, getCollectionPageSchema, getAggregateRatingSchema, getOrganizationSchema, getVideoSchema, getReviewSchema } from "../Schema";
 
 // Consolidated Components
 import HeroSection from "./HeroSection";
@@ -165,17 +165,16 @@ export default function SuccessStories() {
     }, [])
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Success Stories", url: "https://globalprofessionalcertifications.com/success" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/success");
 
-    // WebPage Schema  
-    const webPageSchema = getWebPageSchema({
+    // CollectionPage Schema
+    const collectionPageSchema = getCollectionPageSchema({
         name: "CIA Exam Success Stories – Real Achievements",
-        description: "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications.",
-        url: "https://globalprofessionalcertifications.com/success"
+        description: "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications."
     });
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
 
     // Aggregate Rating Schema for GPC courses
     const aggregateRatingSchema = getAggregateRatingSchema({
@@ -184,6 +183,24 @@ export default function SuccessStories() {
         bestRating: "5",
         worstRating: "1"
     });
+
+    // VideoObject Schemas
+    const videoSchemas = videoStories.slice(0, 3).map(story => getVideoSchema({
+        name: `${story.name} - ${story.courseName} Success Story`,
+        description: story.excerpt || story.quote || "Hear about their success journey with GPC.",
+        thumbnailUrl: story.thumbnailUrl || "https://globalprofessionalcertifications.com/logo.png",
+        uploadDate: new Date().toISOString(), // Fallback
+        embedUrl: story.videoUrl || "https://globalprofessionalcertifications.com/success"
+    }));
+
+    // Review Schemas
+    const reviewSchemas = writtenStories.slice(0, 3).map(story => getReviewSchema({
+        name: story.name,
+        designation: story.designation,
+        text: story.quote || story.excerpt || "Great experience with GPC.",
+        rating: "5",
+        courseName: story.courseName
+    }));
 
     if (loading && allStories.length === 0) {
         return (
@@ -195,7 +212,7 @@ export default function SuccessStories() {
 
     return (
         <>
-            <SchemaMarkup schema={[breadcrumbSchema, webPageSchema, aggregateRatingSchema]} />
+            <SchemaMarkup schema={[breadcrumbSchema, collectionPageSchema, aggregateRatingSchema, orgSchema, ...videoSchemas, ...reviewSchemas]} />
             <MetaTags
                 title="CIA Exam Success Stories – Real Achievements"
                 description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
