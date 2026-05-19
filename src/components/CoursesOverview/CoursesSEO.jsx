@@ -1,7 +1,22 @@
 import React from "react";
-import { SchemaMarkup, getCourseListSchema, getBreadcrumbSchema } from "../Schema";
+import { 
+    SchemaMarkup, 
+    getCourseListSchema, 
+    getCollectionPageSchema, 
+    getOrganizationSchema, 
+    generateBreadcrumbSchema 
+} from "../Schema";
 
 const CoursesSEO = () => {
+    // CollectionPage Schema
+    const collectionSchema = getCollectionPageSchema({
+        name: "Certification Courses - Global Professional Certifications",
+        description: "Explore globally recognized certification programs like CIA, CISA, CRMA, and IAP led by expert mentors and powered by premium content."
+    });
+
+    // Organization Schema
+    const organizationSchema = getOrganizationSchema();
+
     // Course List Schema with pricing
     const coursesSchema = getCourseListSchema([
         {
@@ -31,13 +46,10 @@ const CoursesSEO = () => {
     ]);
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/courses");
 
     return (
-        <SchemaMarkup schema={[coursesSchema, breadcrumbSchema]} />
+        <SchemaMarkup schema={[collectionSchema, organizationSchema, coursesSchema, breadcrumbSchema]} />
     );
 };
 

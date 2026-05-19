@@ -14,13 +14,40 @@ import qaip from "../../assets/corporate/qaip.webp";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import qaipHero from "../../assets/corporate/qaip-hero.webp";
 import brochure from "../../assets/corporate/qaip-brochure.pdf";
+import { SchemaMarkup, getServiceSchema, getOrganizationSchema, getFAQSchema, generateBreadcrumbSchema } from '../Schema';
 
 
 
 
 const Qaip = () => {
+    // Service Schema
+    const serviceSchema = getServiceSchema({
+        name: "Quality Assessment Improvement Program (QAIP)",
+        description: "Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards.",
+        serviceType: "Quality Assessment"
+    });
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
+
+    // FAQ Schema
+    const faqSchema = getFAQSchema([
+        {
+            question: "What is QAIP?",
+            answer: "The Quality Assurance and Improvement Program (QAIP) is an in-depth evaluation of an internal audit function's methodologies, effectiveness, and alignment with mandatory guidance and leading practices."
+        },
+        {
+            question: "What are the IIA Quality Assessment Services offered?",
+            answer: "The options include Readiness Assessment, Self-assessment with Independent Validation (SAIV), and full Quality Assessment (QA)."
+        }
+    ]);
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = generateBreadcrumbSchema("/corporate/qaip");
+
     return (
         <>
+            <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India"
                 description="Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India."

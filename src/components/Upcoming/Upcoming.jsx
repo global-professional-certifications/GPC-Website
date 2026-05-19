@@ -3,6 +3,7 @@ import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import FAQDisplay from "../FAQDisplay.jsx";
+import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getOrganizationSchema } from "../Schema";
 
 // Assets
 import faqImage from "../../assets/faq.webp";
@@ -53,12 +54,33 @@ const courseFaqs = [
 // --- MAIN COMPONENT ---
 
 const Upcoming = () => {
+  // Breadcrumb Schema
+  const breadcrumbSchema = generateBreadcrumbSchema("/upcoming");
+
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
+
+  // FAQ Schema
+  const faqSchema = getFAQSchema(courseFaqs);
+
+  // Event Schemas
+  const eventSchemas = upcomingBatches.map(batch => getEventSchema({
+    name: batch.name,
+    description: batch.description,
+    startDate: new Date(batch.date).toISOString(),
+    endDate: new Date(batch.date).toISOString(), // Adjust if end date differs
+    isOnline: true,
+    locationUrl: batch.enrollLink,
+    price: "0" // Placeholder price, customize if necessary
+  }));
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <Helmet>
         <title>Upcoming Batches & Webinars | Global Professional Certifications</title>
         <meta name="description" content="Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence." />
       </Helmet>
+      <SchemaMarkup schema={[breadcrumbSchema, orgSchema, faqSchema, ...eventSchemas]} />
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative bg-brand-blue pt-16 pb-14 md:pt-24 md:pb-20 overflow-hidden text-center">
