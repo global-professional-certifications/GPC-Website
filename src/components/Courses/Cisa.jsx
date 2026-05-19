@@ -22,7 +22,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
@@ -101,6 +101,9 @@ const Cisa = () => {
     price: "0"
   });
 
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
+
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
@@ -109,7 +112,7 @@ const Cisa = () => {
         description="Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/cisa"
       />
-      <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
+      <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
 
       {/* Header */}

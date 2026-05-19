@@ -16,7 +16,7 @@ import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart.jsx
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefcase, FaUserCheck, FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
@@ -92,6 +92,9 @@ const Iap = () => {
     price: "0"
   });
 
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
+
   return (
     <>
       <MetaTags
@@ -99,7 +102,7 @@ const Iap = () => {
         description="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/iap"
       />
-      <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
+      <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
       {/* Header */}
 

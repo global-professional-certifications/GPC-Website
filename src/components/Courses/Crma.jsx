@@ -17,7 +17,7 @@ import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
@@ -91,6 +91,9 @@ const Crma = () => {
     price: "0"
   });
 
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
+
   return (
     <>
       <MetaTags
@@ -98,7 +101,7 @@ const Crma = () => {
         description="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/crma"
       />
-      <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
+      <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
       {/* Header */}
 

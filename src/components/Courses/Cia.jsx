@@ -19,7 +19,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
 import examOne from "../../assets/courses/cia/exam-1.webp";
 import examTwo from "../../assets/courses/cia/exam-2.webp";
@@ -99,9 +99,12 @@ const Cia = () => {
         price: "0" // Included
     });
 
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
+
     return (
         <>
-            <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
+            <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
             <MetaTags
                 title="Become Certified Internal Auditor | Join CIA Certification Training Course in India"
