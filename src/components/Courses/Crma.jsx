@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import MetaTags from '../MetaTags';
@@ -17,7 +17,7 @@ import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
 import WhyGPC from '../DescriptiveSection/WhyGPC';
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
 
 import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
@@ -70,14 +70,26 @@ const Crma = () => {
   });
 
   // Breadcrumb Schema
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", url: "https://globalprofessionalcertifications.com" },
-    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
-    { name: "CRMA", url: "https://globalprofessionalcertifications.com/courses/crma" }
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema("/courses/crma");
 
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
+
+  // Review Schema
+  const reviewSchema = getReviewSchema({
+    name: "Verified Student",
+    designation: "Risk Manager",
+    text: "The CRMA training gave me the exact insights I needed into governance and assurance. Highly recommended for experienced professionals.",
+    rating: "5",
+    courseName: "Certification in Risk Management Assurance (CRMA)"
+  });
+
+  // SoftwareApplication Schema
+  const softwareSchema = getSoftwareApplicationSchema({
+    name: "GPC Learning Management System",
+    applicationCategory: "EducationalApplication",
+    price: "0"
+  });
 
   return (
     <>
@@ -86,7 +98,7 @@ const Crma = () => {
         description="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/crma"
       />
-      <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema]} />
+      <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
 
       {/* Header */}
 

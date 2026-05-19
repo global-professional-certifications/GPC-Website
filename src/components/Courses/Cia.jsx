@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -19,7 +19,7 @@ import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
 
 import examOne from "../../assets/courses/cia/exam-1.webp";
 import examTwo from "../../assets/courses/cia/exam-2.webp";
@@ -78,18 +78,30 @@ const Cia = () => {
     });
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
-        { name: "CIA", url: "https://globalprofessionalcertifications.com/courses/cia" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/courses/cia");
 
     // FAQ Schema
     const faqSchema = getFAQSchema(courseFaqs);
 
+    // Review Schema
+    const reviewSchema = getReviewSchema({
+        name: "Verified Student",
+        designation: "Internal Auditor",
+        text: "GPC provided the best CIA coaching with Gleim content. Arpit Sir's methodology is incredibly effective.",
+        rating: "5",
+        courseName: "Certified Internal Auditor (CIA) Certification Course"
+    });
+
+    // SoftwareApplication Schema
+    const softwareSchema = getSoftwareApplicationSchema({
+        name: "Gleim CIA Review System",
+        applicationCategory: "EducationalApplication",
+        price: "0" // Included
+    });
+
     return (
         <>
-            <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema]} />
+            <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
 
             <MetaTags
                 title="Become Certified Internal Auditor | Join CIA Certification Training Course in India"

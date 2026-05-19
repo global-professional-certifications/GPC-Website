@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { height } from '../Notifications/NotificationBanner';
 import MetaTags from '../MetaTags';
@@ -16,7 +16,7 @@ import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart.jsx
 import CompaniesShowcase from '../Companies/CompaniesShowcase.jsx';
 import MentorShowcase from "../About/MentorShowcase.jsx";
 
-import { SchemaMarkup, getCourseSchema, getBreadcrumbSchema, getFAQSchema } from "../Schema";
+import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema } from "../Schema";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefcase, FaUserCheck, FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate } from "react-icons/fa";
@@ -71,14 +71,26 @@ const Iap = () => {
   });
 
   // Breadcrumb Schema
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", url: "https://globalprofessionalcertifications.com" },
-    { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" },
-    { name: "IAP", url: "https://globalprofessionalcertifications.com/courses/iap" }
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema("/courses/iap");
 
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
+
+  // Review Schema
+  const reviewSchema = getReviewSchema({
+    name: "Verified Student",
+    designation: "Audit Associate",
+    text: "The perfect starting point for my audit career. The IAP course gave me exactly what I needed to build my foundational skills.",
+    rating: "5",
+    courseName: "Internal Audit Practitioner (IAP) Certification Course"
+  });
+
+  // SoftwareApplication Schema
+  const softwareSchema = getSoftwareApplicationSchema({
+    name: "GPC Learning Management System",
+    applicationCategory: "EducationalApplication",
+    price: "0"
+  });
 
   return (
     <>
@@ -87,7 +99,7 @@ const Iap = () => {
         description="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
         canonicalUrl="https://globalprofessionalcertifications.com/courses/iap"
       />
-      <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema]} />
+      <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema]} />
 
       {/* Header */}
 

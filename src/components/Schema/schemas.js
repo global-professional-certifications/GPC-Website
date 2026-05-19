@@ -426,5 +426,22 @@ export const getCollectionPageSchema = (collection) => ({
     "description": collection.description
 });
 
+/**
+ * SoftwareApplication Schema
+ * @param {Object} software - Software details
+ */
+export const getSoftwareApplicationSchema = (software = {}) => ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": software.name || "Gleim LMS",
+    "applicationCategory": software.applicationCategory || "EducationalApplication",
+    "operatingSystem": software.operatingSystem || "Any",
+    "offers": {
+        "@type": "Offer",
+        "price": software.price || "0",
+        "priceCurrency": "INR"
+    }
+});
+
 // Export BASE_URL for use in other files
 export { BASE_URL };
