@@ -21,29 +21,29 @@ const YouTubeCarousel = ({ videos }) => {
             thumbnail: '/thumbnails/CvzJ_SFD45Y-opt.webp',
         },
         {
-            url: 'https://youtu.be/qdnLecSFurU?si=sogfATX1kdl0Lyn5',
-            title: 'CIA Orientation Program 2025',
+            url: 'https://youtu.be/O4H2jSYZ6V8?si=ElxcVtghRgjeGig1',
+            title: 'CIA Orientation Program 2026',
             description: 'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
-            thumbnail: '/thumbnails/qdnLecSFurU-opt.webp',
+            thumbnail: '/thumbnails/O4H2jSYZ6V8-opt.webp',
         },
-        {
-            url: 'https://youtu.be/XNnXkttYQUY?si=MrofNMhf9nXC2GPd',
-            title: 'CIA Part wise Orientation Program with New Syllabus',
-            description: 'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
-            thumbnail: '/thumbnails/XNnXkttYQUY-opt.webp',
-        },
-        {
-            url: 'https://youtu.be/dz4vHdVRhgY?si=DiqdAfEiDjltBERd',
-            title: 'CIA Part 2 Orientation Program with New Syllabus',
-            description: "Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!",
-            thumbnail: '/thumbnails/dz4vHdVRhgY-opt.webp',
-        },
-        {
-            url: 'https://youtu.be/Xn7lL67U2NI?si=-mCBFQcMy0T04nEi',
-            title: 'CIA Part 3 Orientation Program with New Syllabus',
-            description: "Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!",
-            thumbnail: '/thumbnails/Xn7lL67U2NI-opt.webp',
-        },
+        // {
+        //     url: 'https://youtu.be/XNnXkttYQUY?si=MrofNMhf9nXC2GPd',
+        //     title: 'CIA Part wise Orientation Program with New Syllabus',
+        //     description: 'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
+        //     thumbnail: '/thumbnails/XNnXkttYQUY-opt.webp',
+        // },
+        // {
+        //     url: 'https://youtu.be/dz4vHdVRhgY?si=DiqdAfEiDjltBERd',
+        //     title: 'CIA Part 2 Orientation Program with New Syllabus',
+        //     description: "Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!",
+        //     thumbnail: '/thumbnails/dz4vHdVRhgY-opt.webp',
+        // },
+        // {
+        //     url: 'https://youtu.be/Xn7lL67U2NI?si=-mCBFQcMy0T04nEi',
+        //     title: 'CIA Part 3 Orientation Program with New Syllabus',
+        //     description: "Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!",
+        //     thumbnail: '/thumbnails/Xn7lL67U2NI-opt.webp',
+        // },
     ];
 
     const processedVideos = (videos || defaultVideos).map(video => {
@@ -128,6 +128,10 @@ const YouTubeCarousel = ({ videos }) => {
                                             decoding="async"
                                             width="340"
                                             height="191"
+                                            onError={(e) => {
+                                                e.currentTarget.onerror = null;
+                                                e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`;
+                                            }}
                                         />
 
                                         {/* Overlay */}
