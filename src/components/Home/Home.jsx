@@ -52,12 +52,12 @@ const AnniversaryVideo = () => {
     <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
       {!playing ? (
         <div className="absolute inset-0 cursor-pointer" onClick={() => setPlaying(true)}>
-          <img 
-            src="/thumbnails/WgA9VzD06kY-opt.webp" 
-            alt="One Year of GPC — A Journey of Growth, Learning & Creativity" 
+          <img
+            src="/thumbnails/WgA9VzD06kY-opt.webp"
+            alt="One Year of GPC — A Journey of Growth, Learning & Creativity"
             width="800"
             height="450"
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
             <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
@@ -445,7 +445,7 @@ export default function Home() {
             {/* Centered Title */}
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight px-2 md:px-28">
-                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-600">Success and Growth</span>
+                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-300">Success and Growth</span>
               </h2>
               <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
                 We are joining together to celebrate one year of success of our CIA students and aiming to continuously empower them with more knowledge and opportunities.
@@ -695,7 +695,7 @@ export default function Home() {
               {/* Buttons */}
               <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 lg:gap-6 mt-8 px-2 lg:px-8">
                 <a
-                  href="https://youtu.be/qdnLecSFurU?si=0-A0Xnq7t__ixliV"
+                  href="https://youtu.be/O4H2jSYZ6V8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
