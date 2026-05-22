@@ -502,7 +502,7 @@ export default function Home() {
 
         {/* Company Marquee Section */}
 
-        <div className="scale-90 sm:scale-95 md:scale-100 transition-transform duration-300">
+        <div className="mb-12">
           <LazySection placeholder={<SectionLoader />}>
             <Suspense fallback={<SectionLoader />}>
               <Companies />

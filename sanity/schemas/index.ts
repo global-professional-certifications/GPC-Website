@@ -12,6 +12,8 @@ import pastEvent from './pastEvent'
 import event from './event'
 import wallOfExcellence from './wallOfExcellence'
 import successPageSettings from './successPageSettings'
+import marqueeLine from './marqueeLine'
+import brochure from './brochure'
 
 
 // Custom block content types
@@ -38,6 +40,8 @@ export const schemaTypes = [
     event,
     wallOfExcellence,
     successPageSettings,
+    marqueeLine,
+    brochure,
 
     // Custom block content
     inlineCTA,
@@ -47,5 +51,6 @@ export const schemaTypes = [
     tableOfContents,
     latex,
 ]
+
 
 
