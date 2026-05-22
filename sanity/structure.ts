@@ -390,6 +390,49 @@ export const structure: StructureResolver = (S, context) => {
                 .schemaType('popup')
                 .child(S.documentTypeList('popup').title('Popups')),
 
+            // Company Marquees
+            S.listItem()
+                .title('Company Marquees')
+                .schemaType('marqueeLine')
+                .child(S.documentTypeList('marqueeLine').title('Company Marquees')),
+
+            // Brochures (Parent Folder)
+            S.listItem()
+                .title('Brochures')
+                .icon(() => '📁')
+                .child(
+                    S.list()
+                        .title('Brochures')
+                        .items([
+                            S.listItem()
+                                .title('CIA Brochure')
+                                .icon(() => '📄')
+                                .child(
+                                    S.document()
+                                        .schemaType('brochure')
+                                        .documentId('cia-brochure')
+                                        .title('CIA Brochure')
+                                ),
+                            S.listItem()
+                                .title('CISA Brochure')
+                                .icon(() => '📄')
+                                .child(
+                                    S.document()
+                                        .schemaType('brochure')
+                                        .documentId('cisa-brochure')
+                                        .title('CISA Brochure')
+                                ),
+                            S.divider(),
+                            S.listItem()
+                                .title('All Brochures')
+                                .icon(() => '📚')
+                                .child(
+                                    S.documentTypeList('brochure')
+                                        .title('All Course Brochures')
+                                )
+                        ])
+                ),
+
             S.divider(),
 
             // ─── Data Maintenance (Future Proofing) ───

@@ -22,7 +22,7 @@ export default function NotificationBanner() {
                 {!isMobile
                     ?
                     <div className="md:text-sm text-xs md:p-0 px-8 font-semibold md:text-base">
-                        <BsLightbulbFill className="inline text-yellow-400 mr-1 pb-1 h-4 w-4 md:h-6 md:h-6" />Not sure how to start your CIA journey? Watch our<a href="https://youtu.be/qdnLecSFurU?si=0-A0Xnq7t__ixliV" target="_blank" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition-all duration-300 transform ease-in-out">Orientation Program</a>for each part or<a href="/contact" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition duration-300 ease-in-out">Contact Us</a>to get started!<BsLightbulbFill className="inline text-yellow-400 ml-1 pb-1 h-4 w-4 md:h-6 md:h-6" />
+                        <BsLightbulbFill className="inline text-yellow-400 mr-1 pb-1 h-4 w-4 md:h-6 md:h-6" />Not sure how to start your CIA journey? Watch our<a href="https://youtu.be/O4H2jSYZ6V8" target="_blank" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition-all duration-300 transform ease-in-out">Orientation Program</a>for each part or<a href="/contact" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition duration-300 ease-in-out">Contact Us</a>to get started!<BsLightbulbFill className="inline text-yellow-400 ml-1 pb-1 h-4 w-4 md:h-6 md:h-6" />
                     </div>
                     :
                     <p className="md:text-sm text-xs md:p-0 px-2 md:text-base leading-relaxed">
