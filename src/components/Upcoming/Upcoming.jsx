@@ -141,7 +141,8 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {/* Cards */}
+          {/* Cards (Commented out for now) */}
+          {/*
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {upcomingBatches.map((batch, index) => (
               <m.div
@@ -152,10 +153,8 @@ const Upcoming = () => {
                 transition={{ delay: index * 0.1, duration: 0.45 }}
                 className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:shadow-purple-100/60 transition-all duration-400 relative flex flex-col h-full overflow-hidden"
               >
-                {/* Top accent */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue group-hover:bg-brand-purple transition-colors duration-400" />
 
-                {/* Badge + Icon */}
                 <div className="flex justify-between items-start mb-5">
                   <span className="px-3 py-0.5 bg-orange-500/10 text-orange-600 text-[10px] font-bold rounded-full uppercase tracking-widest border border-orange-500/15">
                     Filling Fast
@@ -191,6 +190,34 @@ const Upcoming = () => {
               </m.div>
             ))}
           </div>
+          */}
+
+          {/* No Announcement / Updates Placeholder */}
+          <m.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mx-auto bg-white border border-gray-150 rounded-2xl p-8 md:p-10 shadow-lg text-center relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-purple to-orange-400" />
+            
+            <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-6 text-brand-purple shadow-sm">
+              <FaBullhorn className="text-2xl text-brand-purple animate-bounce" />
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+              No Batch Updates For Now
+            </h3>
+            
+            <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed mb-6">
+              Our active batches are currently underway. We are preparing high-impact schedules for the upcoming cohort. Subscribe below to stay informed and get first-access notifications!
+            </p>
+
+            <div className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50/50 border border-blue-100 rounded-full px-4 py-1.5 hover:bg-blue-50 transition duration-300">
+              <div className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+              New Schedules Releasing Soon
+            </div>
+          </m.div>
         </div>
       </section>
 

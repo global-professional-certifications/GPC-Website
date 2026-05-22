@@ -7,6 +7,15 @@ import Hero from "../Hero/Hero";
 import { m } from 'motion/react';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import LazySection from "../LazySection";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+  faGlobe,
+  faChalkboardTeacher,
+  faRobot,
+  faHandshake,
+  faPlay
+} from "@fortawesome/free-solid-svg-icons";
 
 // Lazy load below-the-fold components
 const Companies = lazy(() => import("../Companies/Companies"));
@@ -24,16 +33,6 @@ const MentorShowcase = lazy(() => import("../About/MentorShowcase.jsx"));
 // Loading placeholder for sections
 const SectionLoader = () => <div className="py-20 flex justify-center"><div className="w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div></div>;
 
-
-// icons import
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpRightFromSquare,
-  faGlobe,
-  faChalkboardTeacher,
-  faRobot,
-  faHandshake,
-} from "@fortawesome/free-solid-svg-icons";
 
 // images import
 import choose from "../../assets/home/why-choose-global-professional-certifications.webp";
@@ -60,8 +59,8 @@ const AnniversaryVideo = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-white text-2xl ml-1">&#9654;</span>
+            <div className="bg-red-600 rounded-lg px-6 py-3 flex items-center justify-center shadow-lg">
+              <FontAwesomeIcon icon={faPlay} className="text-white text-xl" />
             </div>
           </div>
         </div>
@@ -445,7 +444,7 @@ export default function Home() {
             {/* Centered Title */}
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight px-2 md:px-28">
-                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-300">Success and Growth</span>
+                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-400">Success and Growth</span>
               </h2>
               <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
                 We are joining together to celebrate one year of success of our CIA students and aiming to continuously empower them with more knowledge and opportunities.
