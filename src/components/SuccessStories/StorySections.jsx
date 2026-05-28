@@ -1,6 +1,5 @@
-﻿import React, { useState, useMemo, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   videoVaultTabs,
   videoVaultData,
@@ -16,11 +15,11 @@ import {
 
 const SectionHeader = ({ title, highlight, subtitle, centered = false }) => (
   <div className={`mb-8 ${centered ? 'text-center mx-auto' : 'text-left'} max-w-3xl`}>
-    <h2 className="text-gray-900 text-2xl md:text-4xl font-bold leading-tight mb-4">
+    <h2 className="text-gray-900 text-3xl md:text-5xl font-bold leading-tight mb-4">
       {title} <span className="text-brand-blue font-normal italic relative">{highlight}</span>
     </h2>
     {subtitle && (
-      <p className="text-gray-600 text-xs md:text-base lg:text-base leading-relaxed font-poppins mt-4 md:mt-6">
+      <p className="text-gray-600 text-sm md:text-base leading-relaxed font-poppins">
         {subtitle}
       </p>
     )}
@@ -50,9 +49,7 @@ const cardVideoGradients = [
   'linear-gradient(160deg, #181938 0%, #181335 100%)',
 ];
 
-export const VideoGridCard = ({ video, index, onClick }) => {
-  if (!video) return null;
-  return (
+const VideoGridCard = ({ video, index, onClick }) => (
   <div
     onClick={() => onClick?.(video)}
     className="relative rounded-[20px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl cursor-pointer group h-full"
@@ -82,11 +79,9 @@ export const VideoGridCard = ({ video, index, onClick }) => {
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
     </div>
   </div>
-)};
+);
 
-const VideoHeroCard = ({ hero, onClick }) => {
-  if (!hero) return null;
-  return (
+const VideoHeroCard = ({ hero, onClick }) => (
   <div
     onClick={() => onClick?.(hero)}
     className="relative rounded-[28px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl cursor-pointer group h-full"
@@ -117,9 +112,9 @@ const VideoHeroCard = ({ hero, onClick }) => {
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
     </div>
   </div>
-)};
+);
 
-export const VideoModal = ({ video, onClose }) => {
+const VideoModal = ({ video, onClose }) => {
   if (!video) return null;
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 backdrop-blur-lg transition-all p-4 md:p-6 select-none animate-in fade-in duration-300">
@@ -161,6 +156,17 @@ export const VideoModal = ({ video, onClose }) => {
           </div>
         )}
 
+        {/* Info Overlay (Visible on Hover/Always depending on state) */}
+        <div className="absolute bottom-0 left-0 right-0 p-8 pt-20 bg-gradient-to-t from-black via-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          <h3 className="text-white text-xl md:text-2xl font-bold mb-1">{video.name}</h3>
+          <p className="text-[#D1A639] text-xs md:text-sm font-extrabold uppercase tracking-widest">
+            {video.role || video.designation || 'Professional'}
+          </p>
+          {video.company && (
+            <p className="text-white/60 text-xs mt-1">{video.company}</p>
+          )}
+          {video.quote && <p className="text-white/70 text-sm mt-3 leading-relaxed italic line-clamp-2">"{video.quote}"</p>}
+        </div>
       </div>
 
       {/* Background Click to Close */}
@@ -176,68 +182,62 @@ const getInitials = (name) => {
   return name.substring(0, 2).toUpperCase();
 };
 
-export const VideoVault = ({ allStories, courses, settings }) => {
-  const totalVideoCount = useMemo(() => allStories?.filter(s => s.category === 'video').length || 0, [allStories]);
-
+export const VideoVault = ({ allStories, courses }) => {
   // Use courses from Sanity if provided, otherwise fallback to constants
   const tabs = useMemo(() => {
     if (!courses || courses.length === 0) return videoVaultTabs.filter(t => (videoVaultData[t.slug]?.grid?.length || 0) > 0);
-
-    const courseTabs = (courses || [])
-      .filter(c => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video'))))
+    return courses
       .map(c => ({
         label: c.name,
-        slug: c?.slug || '',
+        slug: c.slug,
         count: allStories?.filter(s => {
           const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          const targetSlug = (c?.slug || '').toLowerCase().trim();
-          return storySlug === targetSlug && s.category === 'video';
+          return storySlug === c.slug.toLowerCase().trim() && s.category === 'video';
         }).length || 0
       }))
-      .filter(tab => tab.slug && tab.count > 0); // Hide empty or missing tabs
-
-    if (totalVideoCount === 0) return [];
-    return [{ label: 'ALL', slug: 'all', count: totalVideoCount }, ...courseTabs];
-  }, [courses, allStories, totalVideoCount]);
+      .filter(tab => tab.count > 0); // Hide empty tabs
+  }, [courses, allStories]);
 
   const [activeTab, setActiveTab] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [visibleLimit, setVisibleLimit] = useState(8);
 
-  // Sync activeTab with dynamic tabs safely
+  // Set initial active tab
   useEffect(() => {
-    if (tabs && tabs.length > 0) {
-      if (!activeTab || !tabs.find(t => t.slug === activeTab)) {
-        setActiveTab(tabs[0].slug);
-      }
+    if (tabs.length > 0 && !activeTab) {
+      setActiveTab(tabs[0].slug);
     }
   }, [tabs, activeTab]);
 
   // Derived current data from Sanity
   const currentVideos = useMemo(() => {
     if (!allStories || !activeTab) return [];
-
+    
     // Normalize and filter
-    const activeSlug = (activeTab || '').toLowerCase().trim();
+    const activeSlug = activeTab.toLowerCase().trim();
     const filtered = allStories
       .filter(s => {
-        if (s.category !== 'video') return false;
-        if (activeSlug === 'all') return true;
         const storySlug = (s.courseSlug || '').toLowerCase().trim();
-        return storySlug === activeSlug;
+        return storySlug === activeSlug && s.category === 'video';
       })
       .map(s => ({
         ...s,
         initials: getInitials(s.name),
       }));
-
+    
     // Debugging logs to help identify Sanity data mismatches
     console.log(`[VideoVault] Tab: ${activeTab} | Found: ${filtered.length} videos`);
     if (activeTab === 'cisa' || filtered.length === 0) {
       console.log(`[VideoVault] Available courseSlugs in stories:`, [...new Set(allStories.map(s => s.courseSlug))]);
     }
-
+    
     return filtered;
   }, [allStories, activeTab]);
+
+  // Reset pagination when tab changes
+  useEffect(() => {
+    setVisibleLimit(8);
+  }, [activeTab]);
 
   // If no real data, fallback to dummy data from constants
   const displayHero = currentVideos.length > 0
@@ -250,34 +250,27 @@ export const VideoVault = ({ allStories, courses, settings }) => {
   }, [currentVideos, activeTab]);
 
   const first8Grid = useMemo(() => currentGridAll.slice(0, 8), [currentGridAll]);
+  const extraGridVisible = useMemo(() => currentGridAll.slice(8, 8 + (visibleLimit - 8)), [currentGridAll, visibleLimit]);
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
   };
 
   return (
-    <section id="video-vault" className="w-full py-16 md:py-24 px-4 md:px-8 bg-white overflow-hidden">
+    <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4 relative">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-            title={settings?.videoVaultTitle || "The Video"}
-            highlight={settings?.videoVaultHighlight || "Vault"}
-            subtitle={settings?.videoVaultSubtitle || (
-              <>
-                Raw, unfiltered experiences from professionals who transformed their careers.
-                <br />
-                See how they mastered their certifications with GPC.
-              </>
-            )}
-          />
-          <div className="md:mb-8 mb-4">
-            <Link
-              to="/video-gallery"
-              className="text-brand-blue font-semibold text-[14px] md:text-[15px] flex items-center gap-2 hover:text-blue-500 transition-all w-fit group border-[0.5px] border-brand-blue/30 rounded-full px-5 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.12)] hover:border-brand-blue/50 hover:-translate-y-[1px]"
-            >
-              View all {totalVideoCount} videos <span className="group-hover:translate-x-1 transition-transform text-lg leading-none">→</span>
-            </Link>
-          </div>
+  title="The Video"
+  highlight="Vault"
+  subtitle={
+    <>
+      Raw, unfiltered experiences from professionals who transformed their careers.
+      <br />
+      See how they mastered their certifications with GPC.
+    </>
+  }
+/>
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -287,7 +280,7 @@ export const VideoVault = ({ allStories, courses, settings }) => {
                 <span className="ml-2 font-medium opacity-60">· {tab.count}</span>
                 {activeTab === tab.slug && <span className="absolute -bottom-[1px] left-0 right-0 h-[3px] bg-brand-blue" />}
               </button>
-            ))}
+            ))} 
           </div>
         </div>
 
@@ -305,18 +298,67 @@ export const VideoVault = ({ allStories, courses, settings }) => {
             </div>
           ))}
 
-          {/* Mobile Horizontal Scroll Row */}
-          <div className="lg:hidden col-span-2">
-            <div className="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 pb-2">
-              {[displayHero, ...currentGridAll].filter(Boolean).slice(0, 8).map((video, i) => (
-                <div key={video?._id || `m-${i}`} className="flex-none w-[44vw] snap-start">
-                  <VideoGridCard video={video} index={i} onClick={handleVideoClick} />
-                </div>
-              ))}
-            </div>
+          {/* Mobile Hero */}
+          <div className="block lg:hidden col-span-2 mb-4">
+            <VideoHeroCard hero={displayHero} onClick={handleVideoClick} />
+          </div>
+          {/* Mobile Grid (First 6) */}
+          <div className="lg:hidden grid grid-cols-2 gap-[16px] col-span-2">
+            {first8Grid.slice(0, 6).map((video, i) => (
+              <div key={`m-${i}`} className="h-full">
+                <VideoGridCard video={video} index={i} onClick={handleVideoClick} />
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Expanded Content with Smooth Slide Animation */}
+        <AnimatePresence initial={false}>
+          {visibleLimit > 8 && extraGridVisible.length > 0 && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start mt-[24px]">
+                {extraGridVisible.map((video, i) => (
+                  <div key={`extra-${i}`} className="col-span-1 h-full">
+                    <VideoGridCard video={video} index={i + 8} onClick={handleVideoClick} />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Dynamic Expansion Actions */}
+        {(currentVideos.length > 1 + visibleLimit || visibleLimit > 8) && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6"
+          >
+            {currentVideos.length > 1 + visibleLimit && (
+              <button
+                onClick={() => setVisibleLimit(prev => prev + 12)}
+                className="bg-brand-blue text-white text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-brand-purple transition-all duration-300 font-semibold shadow-md active:scale-95"
+              >
+                See more videos
+              </button>
+            )}
+            
+            {visibleLimit > 8 && (
+              <button
+                onClick={() => setVisibleLimit(8)}
+                className="bg-white border-2 border-brand-blue text-brand-blue text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-gray-50 transition-all duration-300 font-semibold active:scale-95"
+              >
+                Collapse Gallery
+              </button>
+            )}
+          </motion.div>
+        )}
       </div>
       <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
     </section>
@@ -327,9 +369,7 @@ export const VideoVault = ({ allStories, courses, settings }) => {
 // WRITTEN STORIES COMPONENTS
 // =============================================================================
 
-const WrittenFeaturedCard = ({ story }) => {
-  if (!story) return null;
-  return (
+const WrittenFeaturedCard = ({ story }) => (
   <div className="flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-8 transition-all hover:shadow-md">
     <div className="relative w-full md:w-[300px] flex-shrink-0 flex flex-col justify-center items-center p-8 text-center" style={{ background: story.avatarBg }}>
       <div className="absolute top-4 right-4">
@@ -354,11 +394,9 @@ const WrittenFeaturedCard = ({ story }) => {
       </div>
     </div>
   </div>
-)};
+);
 
-export const WrittenGridCard = ({ story }) => {
-  if (!story) return null;
-  return (
+const WrittenGridCard = ({ story }) => (
   <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col transition-all hover:shadow-md group">
     <div className="p-6 flex flex-col h-full">
       <div className="flex items-center gap-4 mb-6">
@@ -377,146 +415,56 @@ export const WrittenGridCard = ({ story }) => {
       </a>
     </div>
   </div>
-)};
+);
 
-export const WrittenStories = ({ allStories, courses, settings }) => {
-  const totalWrittenCount = useMemo(() => allStories?.filter(s => s.category === 'written').length || 0, [allStories]);
+export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: propGrid, totalCount = 48 } = {}) => {
+  const tabs = propTabs || writtenStoriesTabs;
+  const featured = propFeatured || writtenStoriesFeatured;
+  const grid = propGrid || writtenStoriesGrid;
+  const [activeTab, setActiveTab] = useState('all');
+  const [visibleLimit, setVisibleLimit] = useState(2);
+  const filteredGrid = activeTab === 'all' ? grid : grid.filter(s => s.tag?.toLowerCase().includes(activeTab));
 
-  // Build tabs from courses that have written testimonials
-  const tabs = useMemo(() => {
-    const writtenStories = allStories?.filter(s => s.category === 'written') || [];
-    const totalCount = writtenStories.length;
-
-    if (!courses || courses.length === 0) return writtenStoriesTabs.filter(t => (writtenStoriesGrid.length > 0));
-
-    const courseTabs = (courses || [])
-      .filter(c => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written'))))
-      .map(c => ({
-        label: c.name,
-        name: c.name,
-        slug: c?.slug || '',
-        count: writtenStories.filter(s => {
-          const storySlug = (s.courseSlug || '').toLowerCase().trim();
-          const targetSlug = (c?.slug || '').toLowerCase().trim();
-          return storySlug === targetSlug;
-        }).length || 0
-      }))
-      .filter(tab => tab.slug && tab.count > 0); // Hide empty tabs
-
-    if (totalCount === 0) return [];
-    return [{ label: 'ALL', name: 'ALL', slug: 'all', count: totalCount }, ...courseTabs];
-  }, [courses, allStories]);
-
-  const [activeTab, setActiveTab] = useState(null);
-  const [selectedVideo, setSelectedVideo] = useState(null);
-
-  // Sync activeTab with dynamic tabs safely
+  // Reset pagination when tab changes
   useEffect(() => {
-    if (tabs && tabs.length > 0) {
-      if (!activeTab || !tabs.find(t => t.slug === activeTab)) {
-        setActiveTab(tabs[0].slug);
-      }
-    }
-  }, [tabs, activeTab]);
+    setVisibleLimit(2);
+  }, [activeTab]);
 
-  // Derived current written stories from Sanity
-  const currentStories = useMemo(() => {
-    if (!allStories || !activeTab) return [];
-    const activeSlug = (activeTab || '').toLowerCase().trim();
-    return allStories
-      .filter(s => {
-        const storySlug = (s.courseSlug || '').toLowerCase().trim();
-        return (activeSlug === 'all' || storySlug === activeSlug) && s.category === 'written';
-      })
-      .map(s => ({
-        ...s,
-        initials: getInitials(s.name),
-      }));
-  }, [allStories, activeTab]);
-
-  // Handle fallback to dummy data if no Sanity data
-  const isSanityData = currentStories.length > 0;
-  const displayHero = isSanityData ? currentStories[0] : writtenStoriesFeatured;
-  const displayGridAll = isSanityData ? currentStories.slice(1) : writtenStoriesGrid;
-
-  const first8Grid = useMemo(() => displayGridAll.slice(0, 8), [displayGridAll]);
-
-  const handleCardClick = (story) => {
-    // Both VideoVault and WrittenStories can open videos if available
-    setSelectedVideo(story);
-  };
+  const visibleGrid = filteredGrid.slice(0, visibleLimit);
+  const canViewMore = filteredGrid.length > visibleLimit;
 
   return (
-    <section id="written-stories" className="w-full py-16 md:py-24 px-4 md:px-8 bg-gray-50 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+    <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-gray-50">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <SectionHeader
-            title={settings?.writtenStoriesTitle || "Read their"}
-            highlight={settings?.writtenStoriesHighlight || "journey"}
-            subtitle={settings?.writtenStoriesSubtitle || (
-              <>
-                Raw, unfiltered experiences from professionals who transformed their careers.
-                <br />
-                See how they mastered their certifications with GPC.
-              </>
-            )}
+            title="Read their"
+            highlight="journey"
+            subtitle="Deep-dive into the paths our alumni walked : the doubt, the grind, and the moment everything changed. Discover how expert guidance transformed their careers."
           />
-          <div className="md:mb-8 mb-4">
-            <Link
-              to="/written-gallery"
-              className="text-brand-blue font-semibold text-[14px] md:text-[15px] flex items-center gap-2 hover:text-blue-500 transition-all w-fit group border-[0.5px] border-brand-blue/30 rounded-full px-5 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.12)] hover:border-brand-blue/50 hover:-translate-y-[1px]"
-            >
-              View all {totalWrittenCount} stories <span className="group-hover:translate-x-1 transition-transform text-lg leading-none">→</span>
-            </Link>
-          </div>
+          
         </div>
-
-        {/* Course Tabs */}
-        <div className="relative border-b border-gray-100 mb-10">
-          <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
-            {tabs.map(tab => (
-              <button
-                key={tab.slug}
-                onClick={() => setActiveTab(tab.slug)}
-                className="pb-4 text-[13px] transition-colors relative whitespace-nowrap uppercase tracking-widest font-bold"
-                style={{ color: activeTab === tab.slug ? '#111827' : '#6B7280' }}
-              >
-                {tab.name || tab.label}
-                <span className="ml-2 font-medium opacity-60">· {tab.count}</span>
-                {activeTab === tab.slug && <span className="absolute -bottom-[1px] left-0 right-0 h-[3px] bg-brand-blue" />}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Hero + Grid Layout (Duplicate of VideoVault) */}
-        <div className="grid gap-[24px] grid-cols-2 lg:grid-cols-6 items-start">
-          {/* Featured Hero Card */}
-          <div className="hidden lg:block lg:col-span-2 lg:row-span-2 h-full">
-            <VideoHeroCard hero={displayHero} onClick={handleCardClick} />
-          </div>
-
-          {/* First 8 Grid Cards */}
-          {first8Grid.map((story, i) => (
-            <div key={story._id || i} className="hidden lg:block lg:col-span-1 h-full">
-              <VideoGridCard video={story} index={i} onClick={handleCardClick} />
-            </div>
+        <div className="flex flex-wrap gap-2 mb-8">
+          {tabs.map(tab => (
+            <button key={tab.slug} onClick={() => setActiveTab(tab.slug)} className={`px-5 py-1.5 rounded-full text-[13px] font-semibold border transition-all duration-200 ${activeTab === tab.slug ? 'bg-brand-blue text-white border-brand-blue' : 'bg-white text-gray-700 border-gray-300 hover:border-brand-blue'}`}>
+              {tab.label}
+            </button>
           ))}
-
-          {/* Mobile Horizontal Scroll Row */}
-          <div className="lg:hidden col-span-2">
-            <div className="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 pb-2">
-              {[displayHero, ...displayGridAll].filter(Boolean).slice(0, 8).map((story, i) => (
-                <div key={story?._id || `m-${i}`} className="flex-none w-[44vw] snap-start">
-                  <VideoGridCard video={story} index={i} onClick={handleCardClick} />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-
-        {/* Video Modal */}
-        <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
+        <WrittenFeaturedCard story={featured} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {visibleGrid.map((story, i) => <WrittenGridCard key={i} story={story} />)}
+        </div>
+        {canViewMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setVisibleLimit(prev => Math.min(filteredGrid.length, prev + 2))}
+              className="bg-brand-blue text-white text-sm lg:text-base py-3 px-8 lg:px-12 rounded-full hover:bg-brand-purple transition-all duration-300 font-semibold shadow-md active:scale-95"
+            >
+              View More →
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -549,7 +497,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
       <section className="bg-[#FAF9F6] py-20 px-4 w-full">
         <div className="max-w-[1200px] mx-auto flex flex-col items-center">
           <div className="text-center mb-16 max-w-3xl">
-
+            
             <SectionHeader title="Voices of" highlight="Excellence" subtitle="Feedback from our global community of CIA professionals who have achieved their certification goals through our structured mentoring and comprehensive training program." centered />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
@@ -557,7 +505,24 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
           </div>
         </div>
       </section>
-
+      <section className="w-full relative py-14 px-4 mb-[-80px] z-10">
+        <div className="mx-auto w-full max-w-[1000px] bg-gradient-to-b from-[#100b2d] via-[#1f1a63] to-[#2d178f] rounded-[30px] shadow-[0_20px_50px_-18px_rgba(15,23,42,0.55)] border border-white/10 overflow-hidden relative translate-y-6">
+          <div className="absolute top-0 right-0 w-[360px] h-[360px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#bf410a]/8 rounded-full blur-[90px] translate-y-1/2 -translate-x-1/2" />
+          <div className="relative z-10 py-14 px-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+            <div className="flex-1">
+              <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight mb-4">
+                Your name could be <span className="text-orange-400 font-normal italic">next on this page</span>
+              </h2>
+              <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed opacity-95 font-poppins">Join 1,200+ professionals who have accelerated their careers through GPC's globally recognized certification programs and expert mentorship.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
+              <a href="/courses" className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl text-white font-bold px-8 py-3 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95 text-base text-center">Explore</a>
+              <a href="/contact" className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 font-bold px-8 py-3 rounded-xl transition-all text-base text-center">Talk to Us</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
