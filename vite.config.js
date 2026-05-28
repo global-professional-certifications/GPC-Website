@@ -25,9 +25,8 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react-dom')) return 'vendor-react-dom';
+            if (id.includes('/node_modules/react/') || id.includes('/node_modules/react-dom/') || id.includes('/node_modules/scheduler/')) return 'vendor-react';
             if (id.includes('react-router')) return 'vendor-router';
-            if (id.includes('framer-motion') || id.includes('motion')) return 'vendor-animations';
             if (id.includes('@sanity') || id.includes('sanity')) return 'vendor-cms';
           }
         }

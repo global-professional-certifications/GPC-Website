@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { m, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence, motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { FaPlay } from 'react-icons/fa';
 import {
   videoVaultTabs,
   videoVaultData,
@@ -50,7 +51,7 @@ const cardVideoGradients = [
   'linear-gradient(160deg, #181938 0%, #181335 100%)',
 ];
 
-const VideoGridCard = ({ video, index, onClick }) => (
+export const VideoGridCard = ({ video, index, onClick }) => (
   <div
     onClick={() => onClick?.(video)}
     className="relative rounded-[20px] overflow-hidden border border-black/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl cursor-pointer group h-full"
@@ -72,7 +73,7 @@ const VideoGridCard = ({ video, index, onClick }) => (
       {/* Play Button - Bottom Right */}
       <div className="absolute bottom-4 right-4 z-20 transition-transform duration-300 group-hover:scale-110">
         <div className="w-10 h-10 rounded-full flex items-center justify-center bg-brand-blue/90 border border-white/30 shadow-lg backdrop-blur-sm">
-          <span className="text-white text-[12px] ml-0.5">▶</span>
+          <FaPlay className="text-white text-[10px]" />
         </div>
       </div>
 
@@ -105,7 +106,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
       {/* Play Button - Bottom Right */}
       <div className="absolute bottom-8 right-8 z-20 transition-transform duration-300 group-hover:scale-110">
         <div className="w-16 h-16 rounded-full flex items-center justify-center bg-brand-blue/90 border-2 border-white/30 shadow-2xl backdrop-blur-sm">
-          <span className="text-white text-2xl ml-1">▶</span>
+          <FaPlay className="text-white text-xl" />
         </div>
       </div>
 
@@ -115,7 +116,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
   </div>
 );
 
-const VideoModal = ({ video, onClose }) => {
+export const VideoModal = ({ video, onClose }) => {
   if (!video) return null;
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 backdrop-blur-lg transition-all p-4 md:p-6 select-none animate-in fade-in duration-300">

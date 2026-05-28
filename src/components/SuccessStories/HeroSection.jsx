@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { motion, AnimatePresence } from 'framer-motion';
-=======
-import { m, AnimatePresence } from 'motion/react';
->>>>>>> origin/development
+import { motion, m, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 
 // Hero Images
