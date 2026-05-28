@@ -9,7 +9,7 @@ import { RxCross1 } from "react-icons/rx";
 import FAQDisplay from "../FAQDisplay.jsx";
 import EventCarousel from "../Carousels/EventCarousel";
 import UpcomingEventCard from "./UpcomingEventCard";
-import { SchemaMarkup, getEventSchema, getBreadcrumbSchema, getFAQSchema, getWebPageSchema } from "../Schema";
+import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getWebPageSchema, getOrganizationSchema } from "../Schema";
 
 // Sanity imports
 import { client } from "../../lib/sanity/client";
@@ -146,10 +146,10 @@ export default function Events() {
     }));
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Events", url: "https://globalprofessionalcertifications.com/events" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/events");
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
 
     // FAQ Schema for events page
     const faqSchema = getFAQSchema(courseFaqs);
@@ -163,7 +163,7 @@ export default function Events() {
 
     return (
         <>
-            <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema]} />
+            <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema, orgSchema]} />
             <MetaTags
                 title="Upcoming Certification Events & Webinars - GPC"
                 description="Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."

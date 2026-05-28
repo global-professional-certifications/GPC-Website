@@ -1,43 +1,55 @@
 import React from "react";
-import { SchemaMarkup, getCourseListSchema, getBreadcrumbSchema } from "../Schema";
+import { 
+    SchemaMarkup, 
+    getCourseListSchema, 
+    getCollectionPageSchema, 
+    getOrganizationSchema, 
+    generateBreadcrumbSchema 
+} from "../Schema";
 
 const CoursesSEO = () => {
+    // CollectionPage Schema
+    const collectionSchema = getCollectionPageSchema({
+        name: "Certification Courses - Global Professional Certifications",
+        description: "Explore globally recognized certification programs like CIA, CISA, CRMA, and IAP led by expert mentors and powered by premium content."
+    });
+
+    // Organization Schema
+    const organizationSchema = getOrganizationSchema();
+
     // Course List Schema with pricing
     const coursesSchema = getCourseListSchema([
         {
             name: "Certified Internal Auditor (CIA) - All 3 Parts with Gleim Content",
             url: "https://globalprofessionalcertifications.com/courses/cia",
             description: "Master internal auditing with comprehensive CIA certification training. All 3 parts with Gleim content and live weekend classes.",
-            price: "58999"
+            price: "60000(+ GST)"
         },
         {
             name: "Certified Information Systems Auditor (CISA)",
             url: "https://globalprofessionalcertifications.com/courses/cisa",
             description: "Become a certified IT audit expert with ISACA-aligned CISA certification training.",
-            price: "17700"
+            price: "17700(Including GST)"
         },
         {
             name: "Internal Audit Practitioner (IAP)",
             url: "https://globalprofessionalcertifications.com/courses/iap",
             description: "Start your internal audit career with foundational IAP certification. Gateway to CIA.",
-            price: "23600"
+            price: "23600(Including GST)"
         },
         {
             name: "Certification in Risk Management Assurance (CRMA)",
             url: "https://globalprofessionalcertifications.com/courses/crma",
             description: "Master risk management and assurance with IIA-aligned CRMA certification training.",
-            price: "29500"
+            price: "29500(Including GST)"
         }
     ]);
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Courses", url: "https://globalprofessionalcertifications.com/courses" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/courses");
 
     return (
-        <SchemaMarkup schema={[coursesSchema, breadcrumbSchema]} />
+        <SchemaMarkup schema={[collectionSchema, organizationSchema, coursesSchema, breadcrumbSchema]} />
     );
 };
 

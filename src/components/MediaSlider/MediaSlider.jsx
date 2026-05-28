@@ -1,5 +1,5 @@
-﻿import React, { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef, useState } from "react";
+import { m, AnimatePresence } from 'motion/react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 

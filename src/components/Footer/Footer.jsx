@@ -41,7 +41,8 @@ export default function Footer() {
                                     to="https://www.youtube.com/@global-professional-cert"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
+                                    className="hover:text-brand-purple hover:scale-110 transition-transform transition-colors inline-block duration-300"
+                                    aria-label="Visit GPC YouTube Channel"
                                 >
                                     <AiOutlineYoutube className="h-10 w-10" />
                                 </Link>
@@ -51,7 +52,8 @@ export default function Footer() {
                                     to="https://www.instagram.com/global__professionals/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
+                                    className="hover:text-brand-purple hover:scale-110 transition-transform transition-colors inline-block duration-300"
+                                    aria-label="Visit GPC Instagram Profile"
                                 >
                                     <AiOutlineInstagram className="h-9 w-9" />
                                 </Link>
@@ -61,7 +63,8 @@ export default function Footer() {
                                     to="https://www.linkedin.com/company/global-professional-certifications/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hover:text-brand-purple hover:scale-110 transition-all inline-block duration-300"
+                                    className="hover:text-brand-purple hover:scale-110 transition-transform transition-colors inline-block duration-300"
+                                    aria-label="Visit GPC LinkedIn Company Page"
                                 >
                                     <AiOutlineLinkedin className="h-9 w-9" />
                                 </Link>
@@ -108,7 +111,7 @@ export default function Footer() {
                                         <NavLink
                                             to={path}
                                             className={({ isActive }) =>
-                                                `text-base ${isActive ? "text-brand-purple" : "text-gray-400"}  transition-all hover:text-brand-purple duration-300 inline-block`
+                                                `text-base ${isActive ? "text-brand-purple" : "text-gray-400"}  transition-colors hover:text-brand-purple duration-300 inline-block`
                                             }
                                         >
                                             {label}

@@ -12,6 +12,18 @@
     ],
     "rewrites": [
       {
+        "source": "/CIA-Brochure.pdf",
+        "destination": "/api/brochure?course=cia"
+      },
+      {
+        "source": "/CISA-Brochure.pdf",
+        "destination": "/api/brochure?course=cisa"
+      },
+      {
+        "source": "/:course-Brochure.pdf",
+        "destination": "/api/brochure?course=:course"
+      },
+      {
         "source": "/(.*)",
         "destination": "/index.html"
       }

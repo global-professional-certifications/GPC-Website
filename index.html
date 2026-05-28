@@ -8,38 +8,67 @@
   <title>Global Professional Certifications®</title>
   <link rel="icon" type="image/png" href="/logo.png" />
 
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NC8J7N42');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Third-Party Scripts - Load on Interaction -->
+  <script>
+    (function () {
+      let scriptLoaded = false;
+      function loadScripts() {
+        if (scriptLoaded) return;
+        scriptLoaded = true;
+
+        // Load GTM
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+          }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NC8J7N42');
+
+        // Load Zoho SalesIQ
+        window.$zoho = window.$zoho || {};
+        $zoho.salesiq = $zoho.salesiq || { ready: function () { } };
+        var s = document.createElement("script");
+        s.id = "zsiqscript";
+        s.src = "https://salesiq.zohopublic.in/widget?wc=siqf35804132e65c49b7d29d4a0685cd42d624236b97d32b42c0c692f0601766c17f529b5932a53b4ef8a440086e89cf8ae";
+        s.defer = true;
+        document.body.appendChild(s);
+
+        // Remove listeners
+        window.removeEventListener('scroll', loadScripts);
+        window.removeEventListener('mousemove', loadScripts);
+        window.removeEventListener('touchstart', loadScripts);
+      }
+
+      // Trigger script loading on first interaction
+      window.addEventListener('scroll', loadScripts, { passive: true, once: true });
+      window.addEventListener('mousemove', loadScripts, { passive: true, once: true });
+      window.addEventListener('touchstart', loadScripts, { passive: true, once: true });
+      window.addEventListener('keydown', loadScripts, { passive: true, once: true });
+      window.addEventListener('click', loadScripts, { passive: true, once: true });
+    })();
+  </script>
 
   <!-- Preload LCP hero image -->
-  <link rel="preload" as="image" href="/hero-girl.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/hero-girl-opt.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Preconnect to critical origins (max 4) -->
+  <!-- Preconnect to critical origins (max 2) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://salesiq.zohopublic.in">
-  <link rel="preconnect" href="https://x48sh1kt.api.sanity.io" crossorigin>
 
   <!-- Google Fonts (Non-blocking) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </noscript>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Poppins:wght@100..900&display=swap"
     rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet">
   </noscript>
 
 
@@ -86,24 +115,6 @@
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 
-  <!-- Zoho SalesIQ Chatbot - Deferred -->
-  <script>
-    window.$zoho = window.$zoho || {};
-    $zoho.salesiq = $zoho.salesiq || {
-      ready: function () { }
-    };
-
-    // Defer script loading until after heavy initial rendering
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        var s = document.createElement("script");
-        s.id = "zsiqscript";
-        s.src = "https://salesiq.zohopublic.in/widget?wc=siqf35804132e65c49b7d29d4a0685cd42d624236b97d32b42c0c692f0601766c17f529b5932a53b4ef8a440086e89cf8ae";
-        s.defer = true;
-        document.body.appendChild(s);
-      }, 2000); // 2 second delay after window load
-    });
-  </script>
 
 </body>
 

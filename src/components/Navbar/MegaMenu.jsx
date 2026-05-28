@@ -13,7 +13,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
         bg-white
         z-50
         shadow-lg
-        transition-all duration-300 ease-out transform origin-top
+        transition-transform transition-opacity duration-300 ease-out transform origin-top will-change-transform
         ${isOpen
                     ? "opacity-100 scale-100 translate-y-0 pointer-events-auto mt-0"
                     : "opacity-0 scale-100 -translate-y-2 pointer-events-none mt-0"}
@@ -35,7 +35,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
                                 className={`
                 group flex items-center gap-4
                 px-5 py-3
-                transition-all duration-300
+                transition-colors duration-300
                 border-l-2
                 ${isActive
                                         ? 'bg-brand-blue/5 border-brand-blue'
@@ -43,12 +43,12 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
               `}
                             >
                                 {showItemLogos && (
-                                    <div className="w-10 h-10 flex-shrink-0 bg-white rounded-lg p-1.5 shadow-sm group-hover:shadow transition-all">
+                                    <div className="w-10 h-10 flex-shrink-0 bg-white rounded-lg p-1.5 shadow-sm group-hover:shadow transition-shadow">
                                         <img src={item.logo} alt="" className="w-full h-full object-contain" />
                                     </div>
                                 )}
                                 <div className="flex flex-col">
-                                    <span className={`text-[14px] font-medium transition ${isActive ? 'text-brand-blue' : 'text-gray-900 group-hover:text-brand-blue'}`}>
+                                    <span className={`text-[14px] font-medium transition-colors ${isActive ? 'text-brand-blue' : 'text-gray-900 group-hover:text-brand-blue'}`}>
                                         {item.name}
                                     </span>
                                     <span className="text-[12px] text-gray-500 leading-snug font-normal">
@@ -66,6 +66,10 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
                         src={panelImage}
                         alt="Program visual"
                         className=" w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        width="327"
+                        height="327"
                     />
                 </div>
             </div>

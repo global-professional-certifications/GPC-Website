@@ -6,7 +6,7 @@ const nonBlockingCss = {
   transformIndexHtml(html) {
     return html.replace(
       /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
-      '<link rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'" href="$1"><noscript><link rel="stylesheet" href="$1"></noscript>'
+      '<link rel="stylesheet" href="$1" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="$1"></noscript>'
     );
   }
 };
@@ -20,12 +20,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    modulePreload: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['lucide-react', '@fortawesome/react-fontawesome'],
-          animations: ['framer-motion']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom')) return 'vendor-react-dom';
+            if (id.includes('react-router')) return 'vendor-router';
+            if (id.includes('framer-motion') || id.includes('motion')) return 'vendor-animations';
+            if (id.includes('@sanity') || id.includes('sanity')) return 'vendor-cms';
+          }
         }
       }
     }

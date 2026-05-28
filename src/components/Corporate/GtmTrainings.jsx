@@ -10,13 +10,40 @@ import { Link } from 'react-router-dom';
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import gtmHero from "../../assets/corporate/gtm-hero.webp";
-import gtm from "../../assets/corporate/gtm.webp"
+import gtm from "../../assets/corporate/gtm.webp";
+import { SchemaMarkup, getServiceSchema, getOrganizationSchema, getFAQSchema, generateBreadcrumbSchema } from '../Schema';
 
 
 
 const GtmTrainings = () => {
+    // Service Schema
+    const serviceSchema = getServiceSchema({
+        name: "Corporate Training Programmes (GTM)",
+        description: "Elevate your team with GPC's 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies.",
+        serviceType: "Corporate Training"
+    });
+
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
+
+    // FAQ Schema
+    const faqSchema = getFAQSchema([
+        {
+            question: "What are Global Training Modules (GTM)?",
+            answer: "GTM are globally standardized professional training programs developed by The Institute of Internal Auditors (IIA) and delivered in India by IIA India."
+        },
+        {
+            question: "Are GPC's corporate training programs authorized?",
+            answer: "Yes, Global Professional Certifications is an IIA India Authorized Learning Partner."
+        }
+    ]);
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = generateBreadcrumbSchema("/corporate/gtm-trainings");
+
     return (
         <>
+            <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Corporate Training Programmes | GTM Trainings | Global Professional Certifications"
                 description="Elevate your team with GPC's 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies."

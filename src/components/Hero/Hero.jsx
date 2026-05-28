@@ -48,9 +48,10 @@ const Hero = () => {
                 <div className="w-full lg:w-1/2 flex justify-center md:justify-end">
                     <div className="relative max-w-lg">
                         <img
-                            src="/hero-girl.webp"
+                            src="/hero-girl-opt.webp"
                             alt="Professional woman representing certifications"
                             fetchPriority="high"
+                            decoding="async"
                             width="453"
                             height="468"
                             className="w-full h-auto max-h-[500px] object-cover pb-8"

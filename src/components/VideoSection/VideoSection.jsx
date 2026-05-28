@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 export default function VideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const videoId = "2FWaO_Cf0eg";
-  const youtubeThumbnail = "/thumbnails/2FWaO_Cf0eg.jpg";
+  const youtubeThumbnail = "/thumbnails/2FWaO_Cf0eg-opt.webp";
 
   return (
     <div className="flex justify-center items-center px-4 md:px-0 relative z-10">
@@ -23,7 +25,7 @@ export default function VideoSection() {
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                 <button className="bg-red-600 text-white px-6 py-2 rounded-xl text-2xl shadow-md">
-                  ▶
+                  <FontAwesomeIcon icon={faPlay} className="text-white" />
                 </button>
               </div>
             </div>

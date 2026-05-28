@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MetaTags from "../MetaTags";
 
-import { SchemaMarkup, getDefinedTermSetSchema, getBreadcrumbSchema, getWebPageSchema } from "../Schema";
+import { SchemaMarkup, getDefinedTermSetSchema, generateBreadcrumbSchema, getOrganizationSchema } from "../Schema";
 
 const glossary = [
     { term: "Audit", definition: "Systematic review of records and controls to ensure compliance, accuracy, and integrity in an organization. Global Professional Certifications delivers world-class audit training for global risk and compliance careers." },
@@ -102,21 +102,14 @@ const Glossary = () => {
     })));
 
     // Breadcrumb Schema
-    const breadcrumbSchema = getBreadcrumbSchema([
-        { name: "Home", url: "https://globalprofessionalcertifications.com" },
-        { name: "Glossary", url: "https://globalprofessionalcertifications.com/glossary" }
-    ]);
+    const breadcrumbSchema = generateBreadcrumbSchema("/glossary");
 
-    // WebPage Schema
-    const webPageSchema = getWebPageSchema({
-        name: "Certification Glossary | Key Terms for Auditors & Risk Professionals",
-        description: "Explore definitions of essential terms in risk management, internal audit, and advisory careers from Global Professional Certifications.",
-        url: "https://globalprofessionalcertifications.com/glossary"
-    });
+    // Organization Schema
+    const orgSchema = getOrganizationSchema();
 
     return (
         <>
-            <SchemaMarkup schema={[glossarySchema, breadcrumbSchema, webPageSchema]} />
+            <SchemaMarkup schema={[glossarySchema, orgSchema, breadcrumbSchema]} />
             <MetaTags
                 title="Certification Glossary | Key Terms for Auditors & Risk Professionals"
                 description="Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications."

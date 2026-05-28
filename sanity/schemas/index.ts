@@ -12,6 +12,8 @@ import pastEvent from './pastEvent'
 import event from './event'
 import wallOfExcellence from './wallOfExcellence'
 import successPageSettings from './successPageSettings'
+import marqueeLine from './marqueeLine'
+import brochure from './brochure'
 
 
 // Custom block content types
@@ -19,6 +21,8 @@ import inlineCTA from './blockContent/inlineCTA'
 import youtube from './blockContent/youtube'
 import table from './blockContent/table'
 import faqSection from './blockContent/faqSection'
+import tableOfContents from './blockContent/tableOfContents'
+import latex from './blockContent/latex'
 
 export const schemaTypes = [
     // Documents
@@ -36,12 +40,17 @@ export const schemaTypes = [
     event,
     wallOfExcellence,
     successPageSettings,
+    marqueeLine,
+    brochure,
 
     // Custom block content
     inlineCTA,
     youtube,
     table,
     faqSection,
+    tableOfContents,
+    latex,
 ]
+
 
 

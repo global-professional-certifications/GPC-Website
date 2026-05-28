@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 import {
   videoVaultTabs,
   videoVaultData,
@@ -212,7 +213,7 @@ export const VideoVault = ({ allStories, courses }) => {
   // Derived current data from Sanity
   const currentVideos = useMemo(() => {
     if (!allStories || !activeTab) return [];
-    
+
     // Normalize and filter
     const activeSlug = activeTab.toLowerCase().trim();
     const filtered = allStories
@@ -224,13 +225,13 @@ export const VideoVault = ({ allStories, courses }) => {
         ...s,
         initials: getInitials(s.name),
       }));
-    
+
     // Debugging logs to help identify Sanity data mismatches
     console.log(`[VideoVault] Tab: ${activeTab} | Found: ${filtered.length} videos`);
     if (activeTab === 'cisa' || filtered.length === 0) {
       console.log(`[VideoVault] Available courseSlugs in stories:`, [...new Set(allStories.map(s => s.courseSlug))]);
     }
-    
+
     return filtered;
   }, [allStories, activeTab]);
 
@@ -261,16 +262,16 @@ export const VideoVault = ({ allStories, courses }) => {
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <SectionHeader
-  title="The Video"
-  highlight="Vault"
-  subtitle={
-    <>
-      Raw, unfiltered experiences from professionals who transformed their careers.
-      <br />
-      See how they mastered their certifications with GPC.
-    </>
-  }
-/>
+            title="The Video"
+            highlight="Vault"
+            subtitle={
+              <>
+                Raw, unfiltered experiences from professionals who transformed their careers.
+                <br />
+                See how they mastered their certifications with GPC.
+              </>
+            }
+          />
         </div>
         <div className="relative border-b border-gray-100 mb-10">
           <div className="flex gap-8 overflow-x-auto pb-1 no-scrollbar">
@@ -280,7 +281,7 @@ export const VideoVault = ({ allStories, courses }) => {
                 <span className="ml-2 font-medium opacity-60">· {tab.count}</span>
                 {activeTab === tab.slug && <span className="absolute -bottom-[1px] left-0 right-0 h-[3px] bg-brand-blue" />}
               </button>
-            ))} 
+            ))}
           </div>
         </div>
 
@@ -335,7 +336,7 @@ export const VideoVault = ({ allStories, courses }) => {
 
         {/* Dynamic Expansion Actions */}
         {(currentVideos.length > 1 + visibleLimit || visibleLimit > 8) && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6"
@@ -348,7 +349,7 @@ export const VideoVault = ({ allStories, courses }) => {
                 See more videos
               </button>
             )}
-            
+
             {visibleLimit > 8 && (
               <button
                 onClick={() => setVisibleLimit(8)}
@@ -442,7 +443,7 @@ export const WrittenStories = ({ tabs: propTabs, featured: propFeatured, grid: p
             highlight="journey"
             subtitle="Deep-dive into the paths our alumni walked : the doubt, the grind, and the moment everything changed. Discover how expert guidance transformed their careers."
           />
-          
+
         </div>
         <div className="flex flex-wrap gap-2 mb-8">
           {tabs.map(tab => (
@@ -497,7 +498,7 @@ export const VoicesOfExcellence = ({ testimonials: propTestimonials } = {}) => {
       <section className="bg-[#FAF9F6] py-20 px-4 w-full">
         <div className="max-w-[1200px] mx-auto flex flex-col items-center">
           <div className="text-center mb-16 max-w-3xl">
-            
+
             <SectionHeader title="Voices of" highlight="Excellence" subtitle="Feedback from our global community of CIA professionals who have achieved their certification goals through our structured mentoring and comprehensive training program." centered />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">

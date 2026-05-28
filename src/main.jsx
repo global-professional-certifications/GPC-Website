@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { LazyMotion, domAnimation } from 'framer-motion';
+import { LazyMotion, domAnimation } from 'motion/react';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './Layout.jsx';
@@ -19,6 +19,7 @@ const RefundPolicy = lazy(() => import('./components/Refund/RefundPolicy.jsx'));
 const SuccessStories = lazy(() => import('./components/SuccessStories/SuccessStories.jsx'));
 const Events = lazy(() => import("./components/Events/Events.jsx"));
 const Cia = lazy(() => import('./components/Courses/Cia.jsx'));
+const CiaCampaign = lazy(() => import('./components/Courses/CiaCampaign.jsx'));
 const CoursesOverview = lazy(() => import('./components/CoursesOverview/CoursesOverview.jsx'));
 const Crma = lazy(() => import('./components/Courses/Crma.jsx'));
 const Cisa = lazy(() => import('./components/Courses/Cisa.jsx'));
@@ -62,6 +63,7 @@ const router = createBrowserRouter(
         <Route path="our-journey" element={<Suspense fallback={<PageLoader />}><Journey /></Suspense>} />
         <Route path="courses" element={<Suspense fallback={<PageLoader />}><CoursesOverview /></Suspense>} />
         <Route path="courses/cia" element={<Suspense fallback={<PageLoader />}><Cia /></Suspense>} />
+        <Route path="cia-campaign" element={<Suspense fallback={<PageLoader />}><CiaCampaign /></Suspense>} />
         <Route path="courses/crma" element={<Suspense fallback={<PageLoader />}><Crma /></Suspense>} />
         <Route path="courses/cisa" element={<Suspense fallback={<PageLoader />}><Cisa /></Suspense>} />
         <Route path="courses/iap" element={<Suspense fallback={<PageLoader />}><Iap /></Suspense>} />

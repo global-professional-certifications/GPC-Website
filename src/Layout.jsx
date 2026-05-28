@@ -56,9 +56,9 @@ export default function Layout() {
                     onComplete={handleCountdownComplete}
                 />
             )}
-            <div style={{ paddingTop: `${topOffset}px` }} className="min-h-screen">
+            <main id="main-content" style={{ paddingTop: `${topOffset}px` }} className="min-h-screen">
                 <Outlet context={{ showCountdownBar: shouldShowCountdown }} />
-            </div>
+            </main>
             <Footer />
         </>
     );

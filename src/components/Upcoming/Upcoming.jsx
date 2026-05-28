@@ -1,8 +1,9 @@
-﻿import React from 'react';
-import { m } from 'framer-motion';
+import React from 'react';
+import { m } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import FAQDisplay from "../FAQDisplay.jsx";
+import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getOrganizationSchema } from "../Schema";
 
 // Assets
 import faqImage from "../../assets/faq.webp";
@@ -11,22 +12,15 @@ import orientationCover from "../../assets/upcoming-orientation.png";
 // --- DATA CONSTANTS ---
 
 const upcomingBatches = [
-  {
+    {
     id: 1,
-    name: "CIA Part 2 - Revision Batch",
-    description: "An intensive revision session designed to help you master CIA Part 2 concepts and boost your exam confidence with expert guidance.",
-    date: "May 09, 2026",
-    enrollLink: "https://zfrmz.in/lwPs9vgMP80GoHhZAEDA",
-  },
-  {
-    id: 2,
     name: "CIA Part 1",
     description: "Start your CIA journey with our comprehensive Part 1 batch covering all fundamental audit concepts and the IPPF framework.",
     date: "May 23, 2026",
-    enrollLink: "https://zurl.co/OTtVH",
+    enrollLink: "https://rzp.io/rzp/BjsIQfL",
   },
   {
-    id: 3,
+    id: 2,
     name: "CIA Challenge Batch In Collaboration With IIA Bombay",
     description: "The IIA Bombay Chapter presents a high-impact CIA Challenge Crash Course (2026), now enhanced with premium Gleim study materials. Led by Mr. Arpit Garg, this weekend live batch is designed to help you build strong concepts, focus on revision, and master exam-ready MCQ practice.",
     date: "May 23, 2026",
@@ -60,12 +54,33 @@ const courseFaqs = [
 // --- MAIN COMPONENT ---
 
 const Upcoming = () => {
+  // Breadcrumb Schema
+  const breadcrumbSchema = generateBreadcrumbSchema("/upcoming");
+
+  // Organization Schema
+  const orgSchema = getOrganizationSchema();
+
+  // FAQ Schema
+  const faqSchema = getFAQSchema(courseFaqs);
+
+  // Event Schemas
+  const eventSchemas = upcomingBatches.map(batch => getEventSchema({
+    name: batch.name,
+    description: batch.description,
+    startDate: new Date(batch.date).toISOString(),
+    endDate: new Date(batch.date).toISOString(), // Adjust if end date differs
+    isOnline: true,
+    locationUrl: batch.enrollLink,
+    price: "0" // Placeholder price, customize if necessary
+  }));
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <Helmet>
         <title>Upcoming Batches & Webinars | Global Professional Certifications</title>
         <meta name="description" content="Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence." />
       </Helmet>
+      <SchemaMarkup schema={[breadcrumbSchema, orgSchema, faqSchema, ...eventSchemas]} />
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative bg-brand-blue pt-16 pb-14 md:pt-24 md:pb-20 overflow-hidden text-center">
@@ -86,12 +101,11 @@ const Upcoming = () => {
         </div>
       </section>
 
-      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
+      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════
       <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
         <div className="max-w-7xl mx-auto px-3 md:px-4">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
 
-            {/* Left: Icon & Label */}
             <div className="flex items-center gap-5 flex-shrink-0">
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shadow-md shadow-brand-blue/15 rotate-[-6deg]">
                 <FaBullhorn className="text-white text-xl md:text-2xl rotate-[6deg]" />
@@ -101,10 +115,8 @@ const Upcoming = () => {
               </h2>
             </div>
 
-            {/* Divider */}
             <div className="hidden lg:block w-px h-14 bg-amber-200/70" />
 
-            {/* Right: Plain Bold Text */}
             <div className="text-gray-800 text-lg leading-relaxed">
               <p>Enroll in CIA (All Parts) for INR 49,999 + GST (including Gleim Material) till 15th May.
                 Price increases to INR 60,000 + GST from 16th May onwards.</p>
@@ -113,6 +125,7 @@ const Upcoming = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* ═══════════ UPCOMING BATCHES ═══════════ */}
       <section id="batches" className="py-16 md:py-20 bg-transparent">
@@ -128,8 +141,9 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Cards (Commented out for now) */}
+          {/*
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {upcomingBatches.map((batch, index) => (
               <m.div
                 key={batch.id}
@@ -139,10 +153,8 @@ const Upcoming = () => {
                 transition={{ delay: index * 0.1, duration: 0.45 }}
                 className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:shadow-purple-100/60 transition-all duration-400 relative flex flex-col h-full overflow-hidden"
               >
-                {/* Top accent */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue group-hover:bg-brand-purple transition-colors duration-400" />
 
-                {/* Badge + Icon */}
                 <div className="flex justify-between items-start mb-5">
                   <span className="px-3 py-0.5 bg-orange-500/10 text-orange-600 text-[10px] font-bold rounded-full uppercase tracking-widest border border-orange-500/15">
                     Filling Fast
@@ -152,7 +164,7 @@ const Upcoming = () => {
                   </div>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-3">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3">
                   {batch.name}
                 </h3>
 
@@ -178,14 +190,41 @@ const Upcoming = () => {
               </m.div>
             ))}
           </div>
+          */}
+
+          {/* No Announcement / Updates Placeholder */}
+          <m.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mx-auto bg-white border border-gray-150 rounded-2xl p-8 md:p-10 shadow-lg text-center relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-purple to-orange-400" />
+            
+            <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-6 text-brand-purple shadow-sm">
+              <FaBullhorn className="text-2xl text-brand-purple animate-bounce" />
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+              No Batch Updates For Now
+            </h3>
+            
+            <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed mb-6">
+              Our active batches are currently underway. We are preparing high-impact schedules for the upcoming cohort. Subscribe below to stay informed and get first-access notifications!
+            </p>
+
+            <div className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50/50 border border-blue-100 rounded-full px-4 py-1.5 hover:bg-blue-50 transition duration-300">
+              <div className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+              New Schedules Releasing Soon
+            </div>
+          </m.div>
         </div>
       </section>
 
-      {/* ═══════════ ORIENTATION ═══════════ */}
+      {/* ═══════════ ORIENTATION ═══════════ 
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-3 md:px-4">
 
-          {/* Section Header */}
           <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 space-y-3">
             <h2 className="text-2xl md:text-4xl font-bold text-center">
               Live <span className="text-brand-blue font-normal italic">Orientation</span>
@@ -195,17 +234,14 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {/* Card — Full width, no hover */}
           <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="bg-gray-50 border border-gray-300 overflow-hidden">
               <div className="flex flex-col lg:flex-row">
 
-                {/* Left: Thumbnail — narrower */}
                 <div className="w-full lg:w-1/3 relative min-h-[220px] overflow-hidden">
                   <img src={orientationCover} alt="Live Orientation" className="absolute inset-0 w-full h-full" />
                 </div>
 
-                {/* Right: Content — wider */}
                 <div className="w-full lg:w-2/3 p-7 md:p-10 flex flex-col justify-between">
 
                   <div>
@@ -245,6 +281,7 @@ const Upcoming = () => {
           </m.div>
         </div>
       </section>
+      */}
 
       {/* ═══════════ WEBINAR (TEMPORARILY HIDDEN) ═══════════ */}
       {/* 
