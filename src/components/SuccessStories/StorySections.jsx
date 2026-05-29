@@ -108,7 +108,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
       {/* Play Button - Bottom Right */}
       <div className="absolute bottom-8 right-8 z-20 transition-transform duration-300 group-hover:scale-110">
         <div className="w-16 h-16 rounded-full flex items-center justify-center bg-brand-blue/90 border-2 border-white/30 shadow-2xl backdrop-blur-sm">
-          <span className="text-white text-2xl ml-1"><FontAwesomeIcon icon={faPlay} /></span>
+          <span className="text-white text-lg ml-1"><FontAwesomeIcon icon={faPlay} /></span>
         </div>
       </div>
 
