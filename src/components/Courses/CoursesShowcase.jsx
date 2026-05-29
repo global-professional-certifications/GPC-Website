@@ -53,7 +53,7 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
             className={`grid gap-4 md:gap-6 
               grid-cols-2 
               lg:grid-cols-${courses.length >= 4 ? "4" : courses.length}
-              max-w-5xl mx-auto
+              max-w-7xl mx-auto
             `}
           >
             {courses.map((key) => {
@@ -76,7 +76,7 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
 
                   <div className="px-3 md:px-5 py-3 md:py-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <p className="text-xs md:text-base font-bold mb-1 md:mb-2 text-gray-900 line-clamp-2">
+                      <p className="text-xs md:text-xl font-poppins font-bold mb-1 md:mb-2 text-gray-900">
                         {course.name}
                       </p>
                       <p className="text-[10px] md:text-sm text-gray-600 mb-2 md:mb-4 line-clamp-2 md:line-clamp-3">
