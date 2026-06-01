@@ -50,7 +50,7 @@ const Hero = () => {
                         <img
                             src="/hero-girl-opt.webp"
                             alt="Professional woman representing certifications"
-                            fetchPriority="high"
+                            fetchpriority="high"
                             decoding="async"
                             width="453"
                             height="468"
