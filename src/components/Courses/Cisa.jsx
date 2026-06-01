@@ -123,14 +123,14 @@ const Cisa = () => {
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                 Become a Globally Recognized{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Certified IT Audit Expert{" "}</span>with CISA Certification
               </h1>
-              <p className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
+              <div className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
                 <ul className='list-disc pl-3'>
                   <li>ISACA aligned CISA certification training program </li>
                   <li>Recorded classes, MCQs and experienced mentorship </li>
                   <li>Master IT auditing, cybersecurity and risk assessment </li>
                   <li>Get guidance from India’s top CISA faculty – Arpit Garg </li>
                 </ul>
-              </p>
+              </div>
             </div>
 
             <div className="mt-6">

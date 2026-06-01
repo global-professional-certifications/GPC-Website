@@ -123,14 +123,14 @@ const Cia = () => {
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                                 India's #1{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">IIA-Accredited</span>{" "}CIA Training Program
                             </h1>
-                            <p className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
+                            <div className='mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-2xl leading-relaxed'>
                                 <ul className='list-disc pl-3'>
                                     <li>Certified Internal Auditor (CIA) Classes with Gleim Content </li>
                                     <li>Weekend Live Classes with 1000+ Relevant MCQs </li>
                                     <li>7-8 months Course with Full IIA Registration and Exam Support </li>
                                     <li>350+ Successful CIA Professionals Trained by 100% Proven Methodology </li>
                                 </ul>
-                            </p>
+                            </div>
                         </div>
 
                         <div className="mt-6">
