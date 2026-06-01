@@ -75,11 +75,7 @@ export const VideoGridCard = ({ video, index, onClick }) => (
       {/* Play Button - Bottom Right */}
       <div className="absolute bottom-4 right-4 z-20 transition-transform duration-300 group-hover:scale-110">
         <div className="w-10 h-10 rounded-full flex items-center justify-center bg-brand-blue/90 border border-white/30 shadow-lg backdrop-blur-sm">
-<<<<<<< HEAD
-          <span className="text-white text-base ml-1"><FontAwesomeIcon icon={faPlay} /></span>
-=======
           <FaPlay className="text-white text-[10px]" />
->>>>>>> 3c5fef432ac6049435266bcd8e46f553bb69f5a2
         </div>
       </div>
 
@@ -112,11 +108,7 @@ const VideoHeroCard = ({ hero, onClick }) => (
       {/* Play Button - Bottom Right */}
       <div className="absolute bottom-8 right-8 z-20 transition-transform duration-300 group-hover:scale-110">
         <div className="w-16 h-16 rounded-full flex items-center justify-center bg-brand-blue/90 border-2 border-white/30 shadow-2xl backdrop-blur-sm">
-<<<<<<< HEAD
-          <span className="text-white text-lg ml-1"><FontAwesomeIcon icon={faPlay} /></span>
-=======
           <FaPlay className="text-white text-xl" />
->>>>>>> 3c5fef432ac6049435266bcd8e46f553bb69f5a2
         </div>
       </div>
 
