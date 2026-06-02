@@ -3,13 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
 
-import logo from "../../assets/navbar/gpc-navbar-logo-opt.webp";
-import cisaLogo from "../../assets/courses/cisa-logo-opt.webp";
-import ciaLogo from "../../assets/courses/cia-logo-opt.webp";
-import iapLogo from "../../assets/courses/iap-logo-opt.webp";
-import crmaLogo from "../../assets/courses/crma-logo-opt.webp";
-import coursesPanelImage from "../../assets/navbar/navbar-courses-panel-opt.webp";
-import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel-opt.webp";
+import logo from "../../assets/navbar/gpc-navbar-logo.webp";
+import cisaLogo from "../../assets/courses/cisa-logo.webp";
+import ciaLogo from "../../assets/courses/cia-logo.webp";
+import iapLogo from "../../assets/courses/iap-logo.webp";
+import crmaLogo from "../../assets/courses/crma-logo.webp";
+import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
+import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
 
 const coursesOptions = [
   { name: "CIA", fullname: "Certified Internal Auditor", logo: ciaLogo, link: "/courses/cia" },
