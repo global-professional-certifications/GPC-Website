@@ -25,9 +25,19 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('/node_modules/react/') || id.includes('/node_modules/react-dom/') || id.includes('/node_modules/scheduler/')) return 'vendor-react';
+            // Order matters: react-router/framer paths also contain "react",
+            // so match them before the generic React grouping below.
             if (id.includes('react-router')) return 'vendor-router';
             if (id.includes('@sanity') || id.includes('sanity')) return 'vendor-cms';
+            // Keep React core + react-dom + scheduler in ONE chunk so react-dom
+            // never initializes before React exists (fixes "Cannot set
+            // properties of undefined (setting 'Children')"). Slash-bounded so
+            // we don't sweep in react-icons / react-fontawesome / etc.
+            if (
+              id.includes('/react/') ||
+              id.includes('/react-dom/') ||
+              id.includes('/scheduler/')
+            ) return 'vendor-react';
           }
         }
       }
