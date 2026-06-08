@@ -23,6 +23,8 @@ import MentorShowcase from "../About/MentorShowcase.jsx";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
+import { downloadBrochure } from "../../services/brochure.service";
+
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
   FaChalkboardTeacher, FaPenFancy, FaCertificate,
@@ -67,6 +69,24 @@ const courseFaqs = [
 
 
 const Cisa = () => {
+
+  // Brochure download state
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
+
+  const handleBrochureDownload = async () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+    setDownloadError("");
+    try {
+      await downloadBrochure("cisa", "CISA-Brochure.pdf");
+    } catch (err) {
+      console.error("CISA brochure download failed:", err);
+      setDownloadError("Download failed. Please try again later.");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   // Comprehensive Course Schema
   const cisaSchema = getCourseSchema({
@@ -272,14 +292,20 @@ const Cisa = () => {
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
                 Become a Certified Information Systems Auditor (CISA) with expert mentorship support. Download our course brochure to learn more
               </p>
-              <a
-                href="/CISA-Brochure.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
+              <button
+                type="button"
+                onClick={handleBrochureDownload}
+                disabled={isDownloading}
+                aria-busy={isDownloading}
+                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                Download
-              </a>
+                {isDownloading ? "Downloading..." : "Download"}
+              </button>
+              {downloadError && (
+                <p className="text-red-600 text-xs md:text-sm mt-1" role="alert">
+                  {downloadError}
+                </p>
+              )}
             </div>
           </div>
         </div>
