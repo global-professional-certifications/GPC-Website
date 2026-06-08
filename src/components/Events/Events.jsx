@@ -1,4 +1,4 @@
-﻿import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
@@ -13,6 +13,7 @@ import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, g
 
 // Sanity imports
 import { client } from "../../lib/sanity/client";
+import { urlFor } from "../../lib/sanity/imageBuilder";
 
 // images import (static assets for hero/about sections)
 import iiaEvent from "../../assets/events/iia-event.webp";
@@ -73,13 +74,23 @@ export default function Events() {
                     location,
                     date,
                     year,
-                    "coverImage": coverImage.asset->url,
-                    "galleryImages": galleryImages[].asset->url,
+                    coverImage,
+                    galleryImages,
                     order
                 }`;
                 const data = await client.fetch(query);
-                console.log("Fetched past events:", data);
-                setEvents(data);
+                
+                // Process images with urlFor to respect hotspots/crops
+                const processedData = data.map(event => ({
+                    ...event,
+                    coverImageUrl: event.coverImage ? urlFor(event.coverImage).url() : null,
+                    galleryImageUrls: event.galleryImages 
+                        ? event.galleryImages.map(img => urlFor(img).url()) 
+                        : []
+                }));
+
+                console.log("Fetched past events:", processedData);
+                setEvents(processedData);
 
                 // Extract unique years and sort descending (filter out null/undefined)
                 const years = [...new Set(data.map(e => e.year).filter(y => y !== null && y !== undefined))].sort((a, b) => b - a);
@@ -104,7 +115,7 @@ export default function Events() {
     // Get gallery images for active event
     const getGalleryImages = (eventSlug) => {
         const event = events.find(e => e.slug === eventSlug);
-        return event?.galleryImages || [];
+        return event?.galleryImageUrls || [];
     };
 
     // Get event title for modal
@@ -142,7 +153,7 @@ export default function Events() {
         startDate: event.date,
         location: event.location,
         url: `https://globalprofessionalcertifications.com/events#${event.slug}`,
-        image: event.coverImage
+        image: event.coverImageUrl
     }));
 
     // Breadcrumb Schema
@@ -394,7 +405,7 @@ export default function Events() {
                                     {eventsForYear.map((event) => (
                                         <div key={event._id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
                                             <div className="flex flex-row gap-8 w-full h-[16rem]">
-                                                <img src={event.coverImage} className="rounded-xl w-[24rem] h-[16rem] object-cover flex-shrink-0" alt={event.title} />
+                                                <img src={event.coverImageUrl} className="rounded-xl w-[24rem] h-[16rem] object-cover flex-shrink-0" alt={event.title} />
 
                                                 <div className="flex flex-col justify-between flex-1 min-w-0 py-1">
                                                     {/* Top: Badge + Title + Description */}
@@ -452,7 +463,7 @@ export default function Events() {
                                             key={evt._id}
                                             className="min-w-[85%] md:min-w-[55%] snap-center p-4 pb-0 border border-gray-300 shadow-lg rounded-xl flex flex-col bg-white overflow-hidden"
                                         >
-                                            <img src={evt.coverImage} alt={evt.eventName} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
+                                            <img src={evt.coverImageUrl} alt={evt.eventName} className="rounded-lg w-full h-[260px] object-cover mb-4" loading='lazy' />
                                             <div className="flex flex-col gap-2 pb-4">
                                                 <div>
                                                     <div className="inline-flex items-center gap-2 w-fit">
@@ -610,6 +621,7 @@ export default function Events() {
                                 Connect with our mentors, join the latest events, or contact us for personalized guidance!
                             </p>
                         </div>
+
                         {/* Button */}
                         <Link
                             to="/contact"

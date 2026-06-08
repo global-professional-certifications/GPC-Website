@@ -28,6 +28,7 @@ export default defineConfig({
             // Order matters: react-router/framer paths also contain "react",
             // so match them before the generic React grouping below.
             if (id.includes('react-router')) return 'vendor-router';
+            if (id.includes('framer-motion') || id.includes('motion')) return 'vendor-animations';
             if (id.includes('@sanity') || id.includes('sanity')) return 'vendor-cms';
             // Keep React core + react-dom + scheduler in ONE chunk so react-dom
             // never initializes before React exists (fixes "Cannot set
