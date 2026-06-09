@@ -23,6 +23,11 @@ import MentorShowcase from "../About/MentorShowcase.jsx";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
+import { useBrochureSection } from "../../hooks/useBrochureSection";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+import BrochureHeading from "../Brochure/BrochureHeading";
+import BrochureCtaButton from "../Brochure/BrochureCtaButton";
+
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
   FaChalkboardTeacher, FaPenFancy, FaCertificate,
@@ -67,6 +72,13 @@ const courseFaqs = [
 
 
 const Cisa = () => {
+
+  // Editable brochure section content (Sanity), with hardcoded fallbacks.
+  const { section: brochure } = useBrochureSection("cisa");
+  const brochureCoverSrc = brochure?.coverImage
+    ? urlFor(brochure.coverImage).width(832).url()
+    : brochureCover;
+  const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
 
   // Comprehensive Course Schema
   const cisaSchema = getCourseSchema({
@@ -251,8 +263,8 @@ const Cisa = () => {
             {/* Image Section */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img
-                src={brochureCover}
-                alt="Brochure"
+                src={brochureCoverSrc}
+                alt={brochureCoverAlt}
                 width="416"
                 height="588"
                 loading="lazy"
@@ -263,23 +275,31 @@ const Cisa = () => {
             {/* Text Section */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
               <h2 className="text-xl sm:text-2xl md:text-4xl font-bold max-w-[300px] md:max-w-xl lg:max-w-xl">
-                Download Our{" "}
-                <span className="text-brand-blue font-normal italic">
-                  CISA
-                </span>{" "}
-                Brochure
+                <BrochureHeading
+                  heading={brochure?.heading}
+                  fallback={
+                    <>
+                      Download Our{" "}
+                      <span className="text-brand-blue font-normal italic">
+                        CISA
+                      </span>{" "}
+                      Brochure
+                    </>
+                  }
+                />
               </h2>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
-                Become a Certified Information Systems Auditor (CISA) with expert mentorship support. Download our course brochure to learn more
+                {brochure?.description ||
+                  "Become a Certified Information Systems Auditor (CISA) with expert mentorship support. Download our course brochure to learn more"}
               </p>
-              <a
-                href="/CISA-Brochure.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-              >
-                Download
-              </a>
+              <BrochureCtaButton
+                course="cisa"
+                cta={brochure?.cta}
+                fallbackType="download"
+                fallbackLabel="Download"
+                downloadFilename="CISA-Brochure.pdf"
+                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+              />
             </div>
           </div>
         </div>

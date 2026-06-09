@@ -26,6 +26,10 @@ import examTwo from "../../assets/courses/cia/exam-2.webp";
 import examThree from "../../assets/courses/cia/exam-3.webp";
 import examFour from "../../assets/courses/cia/exam-4.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
+import { useBrochureSection } from "../../hooks/useBrochureSection";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+import BrochureHeading from "../Brochure/BrochureHeading";
+import BrochureCtaButton from "../Brochure/BrochureCtaButton";
 import learningPartner from "../../assets/Learning_partner.jpg";
 import internalAudit from "../../assets/courses/cia/internal-audit.webp";
 import ciaCertification from "../../assets/courses/cia/cia-certification.webp";
@@ -64,6 +68,13 @@ const courseFaqs = [
 ];
 
 const CiaCampaign = () => {
+
+    // Editable brochure section content (Sanity), with hardcoded fallbacks.
+    const { section: brochure } = useBrochureSection("cia");
+    const brochureCoverSrc = brochure?.coverImage
+        ? urlFor(brochure.coverImage).width(832).url()
+        : brochureCover;
+    const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
 
     // Comprehensive Course Schema
     const ciaSchema = getCourseSchema({
@@ -279,8 +290,8 @@ const CiaCampaign = () => {
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
                         <div className="w-full md:w-1/2 flex justify-center">
                             <img
-                                src={brochureCover}
-                                alt="Brochure"
+                                src={brochureCoverSrc}
+                                alt={brochureCoverAlt}
                                 width="416"
                                 height="588"
                                 loading="lazy"
@@ -289,21 +300,30 @@ const CiaCampaign = () => {
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
                             <h2 className="text-xl sm:text-2xl md:text-4xl font-bold max-w-[300px] md:max-w-xl lg:max-w-xl">
-                                Download Our{" "}
-                                <span className="text-brand-blue font-normal italic">CIA</span>{" "}
-                                Brochure
+                                <BrochureHeading
+                                    heading={brochure?.heading}
+                                    fallback={
+                                        <>
+                                            Download Our{" "}
+                                            <span className="text-brand-blue font-normal italic">CIA</span>{" "}
+                                            Brochure
+                                        </>
+                                    }
+                                />
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
-                                Become a Certified Internal Auditor (CIA) with expert mentorship support. Download our course brochure to learn more
+                                {brochure?.description ||
+                                    "Become a Certified Internal Auditor (CIA) with expert mentorship support. Download our course brochure to learn more"}
                             </p>
-                            <a
-                                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <BrochureCtaButton
+                                course="cia"
+                                cta={brochure?.cta}
+                                fallbackType="externalUrl"
+                                fallbackUrl="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
+                                fallbackLabel="Download"
+                                downloadFilename="CIA-Brochure.pdf"
                                 className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-                            >
-                                Download
-                            </a>
+                            />
                         </div>
                     </div>
                 </div>
