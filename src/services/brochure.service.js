@@ -35,6 +35,48 @@ export const getBrochureUrl = async (course) => {
 }
 
 /**
+ * Fetch the editable content for a course's brochure CTA section.
+ *
+ * Resolves the same brochure document as {@link getBrochureUrl} (by slug or
+ * `_id`, with and without a "-brochure" suffix) and returns the presentation
+ * fields managed from Sanity Studio. Any field may be null/empty — callers are
+ * expected to fall back to their existing hardcoded defaults so the section
+ * never renders blank.
+ *
+ * @param {string} course - Course key, e.g. "cia" or "cisa".
+ * @returns {Promise<{
+ *   heading: any[]|null,
+ *   description: string|null,
+ *   coverImage: object|null,
+ *   cta: { label?: string, type?: 'download'|'externalUrl', url?: string }|null,
+ *   pdfUrl: string|null,
+ * }|null>} The section content, or null if no brochure document exists.
+ */
+export const getBrochureSection = async (course) => {
+  const key = String(course || '').toLowerCase().trim()
+  if (!key) return null
+
+  const slug1 = key
+  const slug2 = `${key}-brochure`
+
+  const query = `*[_type == "brochure" && (
+    slug.current == $slug1 ||
+    slug.current == $slug2 ||
+    _id == $slug1 ||
+    _id == $slug2
+  )][0]{
+    heading,
+    description,
+    coverImage,
+    cta,
+    "pdfUrl": pdfFile.asset->url
+  }`
+
+  const result = await client.fetch(query, { slug1, slug2 })
+  return result || null
+}
+
+/**
  * Fetch a course brochure from Sanity and trigger a real file download.
  *
  * Sanity asset URLs are cross-origin (cdn.sanity.io), so the HTML `download`

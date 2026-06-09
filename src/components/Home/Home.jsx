@@ -41,6 +41,10 @@ import flowchartMobile1 from "../../assets/home/how-it-works-1.webp";
 import flowchartMobile2 from "../../assets/home/how-it-works-2.webp";
 import faqImage from "../../assets/faq.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
+import { useBrochureSection } from "../../hooks/useBrochureSection";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+import BrochureHeading from "../Brochure/BrochureHeading";
+import BrochureCtaButton from "../Brochure/BrochureCtaButton";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
 import ciaAchieverImage from "../../assets/home/cia-achievers.webp"
@@ -135,6 +139,13 @@ export default function Home() {
   const [showCelebration, setShowCelebration] = useState(false);
   const anniversaryRef = useRef(null);
   const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
+
+  // Editable brochure section content (Sanity), with hardcoded fallbacks.
+  const { section: brochure } = useBrochureSection("cia");
+  const brochureCoverSrc = brochure?.coverImage
+    ? urlFor(brochure.coverImage).width(704).url()
+    : brochureCover;
+  const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
 
   useEffect(() => {
     // Check if celebration has been shown before (persists across sessions)
@@ -533,8 +544,8 @@ export default function Home() {
             {/* Image Section */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img
-                src={brochureCover}
-                alt="Brochure"
+                src={brochureCoverSrc}
+                alt={brochureCoverAlt}
                 loading="lazy"
                 width="352"
                 height="497"
@@ -545,26 +556,32 @@ export default function Home() {
             {/* Text Section */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
               <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 max-w-[300px] md:max-w-xl lg:max-w-xl">
-                Download Our{" "}
-                <span className="text-brand-blue font-normal italic">
-                  Comprehensive
-                </span>{" "}
-                CIA Course Brochure
+                <BrochureHeading
+                  heading={brochure?.heading}
+                  fallback={
+                    <>
+                      Download Our{" "}
+                      <span className="text-brand-blue font-normal italic">
+                        Comprehensive
+                      </span>{" "}
+                      CIA Course Brochure
+                    </>
+                  }
+                />
               </h2>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0">
-                Unlock global career opportunities as a Certified Internal
-                Auditor (CIA) with Global Professional Certifications (GPC). Get
-                detailed insights on course structure, expert mentorship, and
-                global recognition in our downloadable brochure
+                {brochure?.description ||
+                  "Unlock global career opportunities as a Certified Internal Auditor (CIA) with Global Professional Certifications (GPC). Get detailed insights on course structure, expert mentorship, and global recognition in our downloadable brochure"}
               </p>
-              <a
-                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
-                target="_blank"
-                rel="noopener noreferrer"
+              <BrochureCtaButton
+                course="cia"
+                cta={brochure?.cta}
+                fallbackType="externalUrl"
+                fallbackUrl="https://forms.zohopublic.in/globalprofessionalcertificat1/form/eBookDownload1/formperma/v93vgyL8M0OVomy1AV7xJljAoa-TcJqlIGD7-1nerlU"
+                fallbackLabel="Download"
+                downloadFilename="CIA-Brochure.pdf"
                 className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300"
-              >
-                Download
-              </a>
+              />
             </div>
           </div>
         </div>

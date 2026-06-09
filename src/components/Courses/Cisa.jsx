@@ -23,7 +23,10 @@ import MentorShowcase from "../About/MentorShowcase.jsx";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
-import { downloadBrochure } from "../../services/brochure.service";
+import { useBrochureSection } from "../../hooks/useBrochureSection";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+import BrochureHeading from "../Brochure/BrochureHeading";
+import BrochureCtaButton from "../Brochure/BrochureCtaButton";
 
 import {
   FaLaptop, FaHandsHelping, FaUserTie, FaGlobe, FaClipboardList,
@@ -70,23 +73,12 @@ const courseFaqs = [
 
 const Cisa = () => {
 
-  // Brochure download state
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadError, setDownloadError] = useState("");
-
-  const handleBrochureDownload = async () => {
-    if (isDownloading) return;
-    setIsDownloading(true);
-    setDownloadError("");
-    try {
-      await downloadBrochure("cisa", "CISA-Brochure.pdf");
-    } catch (err) {
-      console.error("CISA brochure download failed:", err);
-      setDownloadError("Download failed. Please try again later.");
-    } finally {
-      setIsDownloading(false);
-    }
-  };
+  // Editable brochure section content (Sanity), with hardcoded fallbacks.
+  const { section: brochure } = useBrochureSection("cisa");
+  const brochureCoverSrc = brochure?.coverImage
+    ? urlFor(brochure.coverImage).width(832).url()
+    : brochureCover;
+  const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
 
   // Comprehensive Course Schema
   const cisaSchema = getCourseSchema({
@@ -271,8 +263,8 @@ const Cisa = () => {
             {/* Image Section */}
             <div className="w-full md:w-1/2 flex justify-center">
               <img
-                src={brochureCover}
-                alt="Brochure"
+                src={brochureCoverSrc}
+                alt={brochureCoverAlt}
                 width="416"
                 height="588"
                 loading="lazy"
@@ -283,29 +275,31 @@ const Cisa = () => {
             {/* Text Section */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
               <h2 className="text-xl sm:text-2xl md:text-4xl font-bold max-w-[300px] md:max-w-xl lg:max-w-xl">
-                Download Our{" "}
-                <span className="text-brand-blue font-normal italic">
-                  CISA
-                </span>{" "}
-                Brochure
+                <BrochureHeading
+                  heading={brochure?.heading}
+                  fallback={
+                    <>
+                      Download Our{" "}
+                      <span className="text-brand-blue font-normal italic">
+                        CISA
+                      </span>{" "}
+                      Brochure
+                    </>
+                  }
+                />
               </h2>
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
-                Become a Certified Information Systems Auditor (CISA) with expert mentorship support. Download our course brochure to learn more
+                {brochure?.description ||
+                  "Become a Certified Information Systems Auditor (CISA) with expert mentorship support. Download our course brochure to learn more"}
               </p>
-              <button
-                type="button"
-                onClick={handleBrochureDownload}
-                disabled={isDownloading}
-                aria-busy={isDownloading}
+              <BrochureCtaButton
+                course="cisa"
+                cta={brochure?.cta}
+                fallbackType="download"
+                fallbackLabel="Download"
+                downloadFilename="CISA-Brochure.pdf"
                 className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                {isDownloading ? "Downloading..." : "Download"}
-              </button>
-              {downloadError && (
-                <p className="text-red-600 text-xs md:text-sm mt-1" role="alert">
-                  {downloadError}
-                </p>
-              )}
+              />
             </div>
           </div>
         </div>
