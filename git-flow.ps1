@@ -126,7 +126,7 @@ function Write-Title {
     Write-Host "=== $Text ===" -ForegroundColor Cyan
 }
 
-function Write-Info { param([string]$m) Write-Host "  $m" -ForegroundColor Gray }
+function Write-Info { param([string]$m) Write-Host "  $m" -ForegroundColor Yellow }
 function Write-Good { param([string]$m) Write-Host "  $m" -ForegroundColor Green }
 function Write-Warn { param([string]$m) Write-Host "  ! $m" -ForegroundColor Yellow }
 function Write-Bad { param([string]$m) Write-Host "  x $m" -ForegroundColor Red }
@@ -659,8 +659,8 @@ function Suggest-NextAction {
 
 function Show-Menu {
     Write-Host ""
-    Write-Host "#               git-flow                #" -ForegroundColor Blue
-    Write-Host "############################################" -ForegroundColor Blue
+    Write-Host "|               git-flow                |" -ForegroundColor Blue
+    Write-Host "-----------------------------------------" -ForegroundColor Blue
     $branch = Get-CurrentBranch
     $dirty = if (Test-Dirty) { 'dirty' } else { 'clean' }
     Write-Host "  On branch: $branch  ($dirty)" -ForegroundColor White
