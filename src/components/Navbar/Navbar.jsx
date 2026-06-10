@@ -103,9 +103,10 @@ const Navbar = ({ topOffset = 0 }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-${topOffset} bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-transform duration-300`}
+      className="fixed w-full z-50 bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-transform duration-300"
+      style={{ top: `${topOffset * 4}px` }}
     >
-      <div className="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4">
+      <div className="relative max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <div className="transform scale-150 md:scale-130 transition-transform duration-300">
