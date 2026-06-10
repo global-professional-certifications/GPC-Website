@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# This repo is pnpm-only (see packageManager in package.json). Ignore the npm
+# lockfile so a stray `npm install` can't reintroduce a dual-lockfile conflict,
+# which previously caused different builds on Vercel vs local (blank page).
+package-lock.json
+
 # animation file
 screenshots-carousel.txt
 notes.txt
