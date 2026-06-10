@@ -19,7 +19,6 @@ const headingComponents = {
 
 /**
  * Render the editable brochure headline from Sanity Portable Text.
- *
  * When `heading` is empty (no Studio content, or still loading) the `fallback`
  * is rendered instead, so existing hardcoded headlines remain pixel-identical.
  *
