@@ -2,14 +2,11 @@ import { useState } from 'react'
 import { downloadBrochure } from '../../services/brochure.service'
 
 /**
- * Renders the brochure call-to-action button driven by Sanity, falling back to
- * each page's existing hardcoded behaviour when Studio content is absent.
- *
  * Two actions are supported (matching the schema):
- *  - "download"    → fetches the brochure PDF from Sanity and triggers a real
- *                    file download (with loading + error states).
- *  - "externalUrl" → renders an anchor to an external link (opens a new tab),
- *                    e.g. a Zoho lead-capture form.
+ * "download" → fetches the brochure PDF from Sanity and triggers a real
+ * file download (with loading + error states).
+ * "externalUrl" → renders an anchor to an external link (opens a new tab),
+ * e.g. a Zoho lead-capture form.
  *
  * @param {object} props
  * @param {string} props.course - Course key used to resolve the PDF, e.g. "cia".
@@ -28,12 +25,13 @@ const BrochureCtaButton = ({
   fallbackUrl,
   fallbackLabel = 'Download',
   downloadFilename,
+  overrideLabel,
 }) => {
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadError, setDownloadError] = useState('')
 
   const type = cta?.type || fallbackType
-  const label = cta?.label || fallbackLabel
+  const label = overrideLabel || cta?.label || fallbackLabel
   const url = cta?.url || fallbackUrl
 
   // External link (e.g. lead-capture form) — opens in a new tab.
