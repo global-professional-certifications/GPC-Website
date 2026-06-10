@@ -76,7 +76,7 @@ const CardBrochureButton = ({ config }) => {
       fallbackLabel="Download Brochure"
       overrideLabel={overrideLabel}
       downloadFilename={config.downloadFilename}
-      className="block w-full text-center py-1.5 md:py-2 text-xs md:text-base rounded-lg bg-white text-brand-blue border border-brand-blue font-semibold transition-all duration-300 hover:bg-brand-blue hover:text-white hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+      className="block w-full text-center py-1.5 md:py-2 text-xs md:text-base rounded-lg bg-white text-brand-blue border border-brand-blue font-semibold transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
     />
   );
 };
