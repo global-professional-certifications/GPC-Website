@@ -537,11 +537,23 @@ export default function Home() {
           </Suspense>
         </LazySection>
 
+        {/* Popular Courses Card Section */}
+        <LazySection placeholder={<SectionLoader />}>
+          <Suspense fallback={<SectionLoader />}>
+            <CoursesShowcase
+              titleStart="Explore Our"
+              highlight="Flagship Certification Programs"
+              titleEnd=""
+              courses={["CIA", "CISA", "CRMA", "IAP"]} />
+          </Suspense>
+        </LazySection>
+
+
         {/* Download Brochure CTA */}
 
-        <div className="px-6 md:px-16 lg:px-12 py-12">
+        {/* <div className="px-6 md:px-16 lg:px-12 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 ">
-            {/* Image Section */}
+            
             <div className="w-full md:w-1/2 flex justify-center">
               <img
                 src={brochureCoverSrc}
@@ -553,7 +565,7 @@ export default function Home() {
               />
             </div>
 
-            {/* Text Section */}
+            
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
               <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4 max-w-[300px] md:max-w-xl lg:max-w-xl">
                 <BrochureHeading
@@ -584,7 +596,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Why Choose Us? */}
 
@@ -682,17 +694,6 @@ export default function Home() {
           <img src={ciaAchieverImage} alt="CIA Achievers Image" width="1200" height="400" loading="lazy" className="object-cover rounded-xl" />
         </section>
 
-
-        {/* Popular Courses Card Section */}
-        <LazySection placeholder={<SectionLoader />}>
-          <Suspense fallback={<SectionLoader />}>
-            <CoursesShowcase
-              titleStart="Explore Our"
-              highlight="Flagship Certification Programs"
-              titleEnd=""
-              courses={["CIA", "CISA", "CRMA", "IAP"]} />
-          </Suspense>
-        </LazySection>
 
         {/* Video Section */}
         <div className="relative w-full overflow-hidden">
