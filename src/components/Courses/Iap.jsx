@@ -24,6 +24,12 @@ import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaUserGraduate, FaBriefca
 import iapHero from "../../assets/courses/iap/iap-hero.webp";
 import faqImage from "../../assets/faq.webp";
 import iapAbout from "../../assets/courses/iap/about-iap-course.webp";
+import brochureCover from "../../assets/home/iap-brochure.webp";
+
+import { useBrochureSection } from "../../hooks/useBrochureSection";
+import { urlFor } from "../../lib/sanity/imageBuilder";
+import BrochureHeading from "../Brochure/BrochureHeading";
+import BrochureCtaButton from "../Brochure/BrochureCtaButton";
 
 
 const courseFaqs = [
@@ -59,6 +65,13 @@ const courseFaqs = [
 const Iap = () => {
 
   const marginTop = 68 + (4 * (height ? height : 0))
+
+  // Editable brochure section content (Sanity), with hardcoded fallbacks.
+  const { section: brochure } = useBrochureSection("iap");
+  const brochureCoverSrc = brochure?.coverImage
+    ? urlFor(brochure.coverImage).width(832).url()
+    : brochureCover;
+  const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
 
   // Comprehensive Course Schema
   const iapSchema = getCourseSchema({
@@ -175,6 +188,54 @@ const Iap = () => {
           image={iapAbout}
           imageAlt="About the IAP Course"
         />
+
+        {/* Download Brochure CTA */}
+        <div className="mt-20 md:mt-12 px-6 md:px-16 lg:px-12 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+            {/* Image Section */}
+            <div className="w-full md:w-1/2 flex justify-center">
+              <img
+                src={brochureCoverSrc}
+                alt={brochureCoverAlt}
+                width="500"
+                height="500"
+                loading="lazy"
+                className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
+              />
+            </div>
+
+            {/* Text Section */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold max-w-[300px] md:max-w-xl lg:max-w-xl">
+                <BrochureHeading
+                  heading={brochure?.heading}
+                  fallback={
+                    <>
+                      Download Our{" "}
+                      <span className="text-brand-blue font-normal italic">
+                        IAP
+                      </span>{" "}
+                      Brochure
+                    </>
+                  }
+                />
+              </h2>
+              <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed max-w-xl px-8 md:px-0 lg:px-0 mb-4">
+                {brochure?.description ||
+                  "Become an Internal Audit Practitioner (IAP) with expert mentorship support. Download our course brochure to learn more"}
+              </p>
+              <BrochureCtaButton
+                course="iap"
+                cta={brochure?.cta}
+                fallbackType="download"
+                fallbackLabel="Download"
+                downloadFilename="IAP-Brochure.pdf"
+                className="bg-brand-blue text-white text-sm md:text-base py-2 px-4 lg:px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+              />
+            </div>
+          </div>
+        </div>
+
 
         {/* Course Highlights Section - Professional Grid */}
         <section className="mb-20 mx-auto py-12 px-6 max-w-6xl">
@@ -370,6 +431,7 @@ const Iap = () => {
 
         {/* About Mentor */}
         <MentorShowcase />
+
 
 
         {/* Enrollment Section */}

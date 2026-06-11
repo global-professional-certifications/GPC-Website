@@ -422,6 +422,15 @@ export const structure: StructureResolver = (S, context) => {
                                         .documentId('cisa-brochure')
                                         .title('CISA Brochure')
                                 ),
+                            S.listItem()
+                                .title('IAP Brochure')
+                                .icon(() => '📄')
+                                .child(
+                                    S.document()
+                                        .schemaType('brochure')
+                                        .documentId('iap-brochure')
+                                        .title('IAP Brochure')
+                                ),
                             S.divider(),
                             S.listItem()
                                 .title('All Brochures')
