@@ -8,7 +8,7 @@ import cisa from "../../assets/courses/cisa/what-is-cisa.webp";
 import applyCisa from "../../assets/courses/cisa/apply-for-cisa.webp";
 import faqImage from "../../assets/faq.webp";
 import cisaAbout from "../../assets/courses/cisa/about-cisa-course.webp";
-import brochureCover from "../../assets/home/cia-brochure.webp";///
+import brochureCover from "../../assets/home/cisa-brochure.webp";
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
 import DescriptiveBullets from "../DescriptiveSection/DescriptiveBullets";
 import DescriptiveFlowchart from "../DescriptiveSection/DescriptiveFlowchart";
@@ -265,8 +265,8 @@ const Cisa = () => {
               <img
                 src={brochureCoverSrc}
                 alt={brochureCoverAlt}
-                width="416"
-                height="588"
+                width="500"
+                height="500"
                 loading="lazy"
                 className="w-64 sm:w-80 md:w-[26rem] h-auto object-contain"
               />

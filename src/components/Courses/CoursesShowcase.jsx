@@ -54,6 +54,11 @@ const BROCHURE_CONFIG = {
     fallbackType: "download",
     downloadFilename: "CISA-Brochure.pdf",
   },
+  IAP: {
+    course: "iap",
+    fallbackType: "download",
+    downloadFilename: "IAP-Brochure.pdf",
+  },
 };
 
 // Renders the card's "Download Brochure" button. Reads the editable CTA from
