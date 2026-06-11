@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { m } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ const extractVideoId = (url) => {
 
 const YouTubeCarousel = ({ videos }) => {
     const scrollContainerRef = useRef(null);
+    const [canScroll, setCanScroll] = useState(false);
 
     const defaultVideos = [
         {
@@ -64,6 +65,19 @@ const YouTubeCarousel = ({ videos }) => {
         });
     };
 
+    // Show nav arrows only when the cards actually overflow the viewport.
+    useEffect(() => {
+        const el = scrollContainerRef.current;
+        if (!el) return;
+
+        const updateCanScroll = () => setCanScroll(el.scrollWidth > el.clientWidth);
+        updateCanScroll();
+
+        const observer = new ResizeObserver(updateCanScroll);
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [processedVideos.length]);
+
     return (
         <div className="w-full py-10 bg-gray-50 overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -80,28 +94,34 @@ const YouTubeCarousel = ({ videos }) => {
 
                 {/* Carousel */}
                 <div className="relative">
-                    {/* Buttons */}
-                    <button
-                        onClick={() => scroll(-1)}
-                        className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
-                        aria-label="Previous Slide"
-                    >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
+                    {/* Buttons — only shown when the cards overflow */}
+                    {canScroll && (
+                        <button
+                            onClick={() => scroll(-1)}
+                            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
+                            aria-label="Previous Slide"
+                        >
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </button>
+                    )}
 
-                    <button
-                        onClick={() => scroll(1)}
-                        className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
-                        aria-label="Next Slide"
-                    >
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
+                    {canScroll && (
+                        <button
+                            onClick={() => scroll(1)}
+                            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl rounded-full p-3 hidden md:flex hover:bg-brand-blue hover:text-white transition"
+                            aria-label="Next Slide"
+                        >
+                            <FontAwesomeIcon icon={faChevronRight} />
+                        </button>
+                    )}
 
-                    {/* Scroll Area */}
+                    {/* Scroll Area (viewport) */}
                     <div
                         ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-6 pb-8 no-scrollbar scroll-smooth"
+                        className="overflow-x-auto pb-8 no-scrollbar scroll-smooth"
                     >
+                        {/* Content row: intrinsic width, auto-centered when it fits */}
+                        <div className="flex gap-6 w-max mx-auto">
                         {processedVideos.map((video, index) => (
                             <m.div
                                 key={index}
@@ -155,6 +175,7 @@ const YouTubeCarousel = ({ videos }) => {
                                 </a>
                             </m.div>
                         ))}
+                        </div>
                     </div>
                 </div>
 

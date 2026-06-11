@@ -537,6 +537,18 @@ export default function Home() {
           </Suspense>
         </LazySection>
 
+        {/* Popular Courses Card Section */}
+        <LazySection placeholder={<SectionLoader />}>
+          <Suspense fallback={<SectionLoader />}>
+            <CoursesShowcase
+              titleStart="Explore Our"
+              highlight="Flagship Certification Programs"
+              titleEnd=""
+              courses={["CIA", "CISA", "CRMA", "IAP"]} />
+          </Suspense>
+        </LazySection>
+
+
         {/* Download Brochure CTA */}
 
         <div className="px-6 md:px-16 lg:px-12 py-12">
@@ -682,17 +694,6 @@ export default function Home() {
           <img src={ciaAchieverImage} alt="CIA Achievers Image" width="1200" height="400" loading="lazy" className="object-cover rounded-xl" />
         </section>
 
-
-        {/* Popular Courses Card Section */}
-        <LazySection placeholder={<SectionLoader />}>
-          <Suspense fallback={<SectionLoader />}>
-            <CoursesShowcase
-              titleStart="Explore Our"
-              highlight="Flagship Certification Programs"
-              titleEnd=""
-              courses={["CIA", "CISA", "CRMA", "IAP"]} />
-          </Suspense>
-        </LazySection>
 
         {/* Video Section */}
         <div className="relative w-full overflow-hidden">

@@ -22,15 +22,17 @@ export const getBrochureUrl = async (course) => {
 
   const slug1 = key
   const slug2 = `${key}-brochure`
+  const slug3 = `${key}-course-brochure`
 
   const query = `*[_type == "brochure" && (
     slug.current == $slug1 ||
     slug.current == $slug2 ||
+    slug.current == $slug3 ||
     _id == $slug1 ||
     _id == $slug2
   )][0]{ "url": pdfFile.asset->url }`
 
-  const result = await client.fetch(query, { slug1, slug2 })
+  const result = await client.fetch(query, { slug1, slug2, slug3 })
   return result?.url || null
 }
 
@@ -58,10 +60,12 @@ export const getBrochureSection = async (course) => {
 
   const slug1 = key
   const slug2 = `${key}-brochure`
+  const slug3 = `${key}-course-brochure`
 
   const query = `*[_type == "brochure" && (
     slug.current == $slug1 ||
     slug.current == $slug2 ||
+    slug.current == $slug3 ||
     _id == $slug1 ||
     _id == $slug2
   )][0]{
@@ -72,7 +76,7 @@ export const getBrochureSection = async (course) => {
     "pdfUrl": pdfFile.asset->url
   }`
 
-  const result = await client.fetch(query, { slug1, slug2 })
+  const result = await client.fetch(query, { slug1, slug2, slug3 })
   return result || null
 }
 

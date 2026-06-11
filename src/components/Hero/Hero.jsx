@@ -20,7 +20,7 @@ const Hero = () => {
                     {/* Main Headline (H1) */}
                     <h1 className="mt-6 text-xl sm:text-4xl md:text-4xl font-bold leading-tight text-white">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                            Empowering Risk Professionals
+                            Empowering GRC Professionals
                         </span>{' '}
                         Worldwide with Globally Recognized Certifications
                     </h1>
