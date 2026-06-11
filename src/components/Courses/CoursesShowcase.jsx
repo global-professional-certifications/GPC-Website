@@ -88,7 +88,7 @@ const CardBrochureButton = ({ config }) => {
 
 const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }) => {
   return (
-    <section className="w-full py-12 px-8 flex justify-center">
+    <section className="w-full py-12 md:py-24 px-8 flex justify-center">
       <div className="w-full max-w-7xl">
 
         <h2 className="text-2xl md:text-4xl mb-16 font-bold text-gray-900 text-center">
