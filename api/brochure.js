@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 function getSanityClient() {
-  const projectId = process.env.VITE_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || process.env.SANITY_PROJECT_ID;
-  const dataset = process.env.VITE_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || process.env.SANITY_DATASET || 'production';
-  const apiVersion = process.env.VITE_SANITY_API_VERSION || process.env.SANITY_STUDIO_API_VERSION || '2024-12-05';
+  const projectId = process.env.VITE_SANITY_PROJECT_ID || process.env.VITE_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || process.env.SANITY_PROJECT_ID;
+  const dataset = process.env.VITE_SANITY_DATASET || process.env.VITE_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || process.env.SANITY_DATASET || 'production';
+  const apiVersion = process.env.VITE_SANITY_API_VERSION || process.env.VITE_PUBLIC_SANITY_API_VERSION || process.env.SANITY_STUDIO_API_VERSION || '2024-12-05';
 
   if (!projectId) {
-    throw new Error('Sanity Project ID is not configured. Please define VITE_SANITY_PROJECT_ID in your environment variables.');
+    throw new Error('Sanity Project ID is not configured. Please define VITE_SANITY_PROJECT_ID or VITE_PUBLIC_SANITY_PROJECT_ID in your environment variables.');
   }
 
   return createClient({
