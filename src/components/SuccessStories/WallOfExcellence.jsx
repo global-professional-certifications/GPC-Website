@@ -48,8 +48,11 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
             });
         });
         const courseTabs = Array.from(courseMap.values());
-        if (courseTabs.length <= 1) return []; // No tabs needed for single course
-        return [{ slug: 'all', name: 'ALL', count: displayStories.length }, ...courseTabs];
+        if (courseTabs.length <= 1) return [];
+
+
+        const totalCourseClearances = courseTabs.reduce((sum, t) => sum + t.count, 0);
+        return [{ slug: 'all', name: 'ALL', count: totalCourseClearances }, ...courseTabs];
     }, [displayStories]);
 
     // Interleave stories round-robin across courses so "All" shows a mix on every page
