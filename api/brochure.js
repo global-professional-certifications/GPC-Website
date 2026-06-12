@@ -1,14 +1,28 @@
 import { createClient } from '@sanity/client';
+import dotenv from 'dotenv';
 
-const client = createClient({
-  projectId: process.env.VITE_SANITY_PROJECT_ID,
-  dataset: process.env.VITE_SANITY_DATASET,
-  apiVersion: process.env.VITE_SANITY_API_VERSION || '2024-12-05',
-  useCdn: false,
-});
+dotenv.config();
+
+function getSanityClient() {
+  const projectId = process.env.VITE_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || process.env.SANITY_PROJECT_ID;
+  const dataset = process.env.VITE_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || process.env.SANITY_DATASET || 'production';
+  const apiVersion = process.env.VITE_SANITY_API_VERSION || process.env.SANITY_STUDIO_API_VERSION || '2024-12-05';
+
+  if (!projectId) {
+    throw new Error('Sanity Project ID is not configured. Please define VITE_SANITY_PROJECT_ID in your environment variables.');
+  }
+
+  return createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn: false,
+  });
+}
 
 export default async function handler(req, res) {
   try {
+    const client = getSanityClient();
     const course = (req.query.course || 'cia').toLowerCase();
     const slug1 = course;
     const slug2 = `${course}-brochure`;
@@ -34,6 +48,7 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error('Error fetching brochure:', error);
-    res.status(500).send('Error fetching brochure from Sanity.');
+    res.status(500).send(`Error fetching brochure: ${error.message}`);
   }
 }
+

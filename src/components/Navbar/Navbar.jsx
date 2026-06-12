@@ -2,21 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
+import CascadingMenu from "./CascadingMenu";
+import { coursesMenu } from "./menuData";
 
 import logo from "../../assets/navbar/gpc-navbar-logo.webp";
-import cisaLogo from "../../assets/courses/cisa-logo.webp";
-import ciaLogo from "../../assets/courses/cia-logo.webp";
-import iapLogo from "../../assets/courses/iap-logo.webp";
-import crmaLogo from "../../assets/courses/crma-logo.webp";
 import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
 import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
-
-const coursesOptions = [
-  { name: "CIA", fullname: "Certified Internal Auditor", logo: ciaLogo, link: "/courses/cia" },
-  { name: "CISA", fullname: "Certified Information Systems Auditor", logo: cisaLogo, link: "/courses/cisa" },
-  { name: "CRMA", fullname: "Certification in Risk Management Assurance", logo: crmaLogo, link: "/courses/crma" },
-  { name: "IAP", fullname: "Internal Audit Practitioner", logo: iapLogo, link: "/courses/iap" },
-];
 
 const corporateOptions = [
   {
@@ -40,6 +31,7 @@ const Navbar = ({ topOffset = 0 }) => {
   // Mobile specific states
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
   const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
+  const [mobileOpenProvider, setMobileOpenProvider] = useState(null);
 
   const coursesDropdownRef = useRef(null);
   const corporateDropdownRef = useRef(null);
@@ -144,12 +136,12 @@ const Navbar = ({ topOffset = 0 }) => {
                   )}
                 </NavLink>
 
-                {/* MegaMenu for Courses */}
+                {/* Cascading multi-level menu for Courses */}
                 {isCoursesDropdownOpen && (
-                  <MegaMenu
-                    items={coursesOptions}
+                  <CascadingMenu
+                    categories={coursesMenu}
                     isOpen={isCoursesDropdownOpen}
-                    showItemLogos={true}
+                    showLogos={true}
                     panelImage={coursesPanelImage}
                     onClose={() => setIsCoursesDropdownOpen(false)}
                   />
@@ -265,20 +257,43 @@ const Navbar = ({ topOffset = 0 }) => {
                     Courses
                     <FaChevronDown className={`text-xs transition-transform duration-300 ${mobileCoursesOpen ? "rotate-180 text-brand-purple" : ""}`} />
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${mobileCoursesOpen ? "max-h-96 opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
-                    <div className="flex flex-col space-y-2 pl-4 border-l-2 border-brand-light/20 ml-1">
-                      {coursesOptions.map((course, idx) => (
-                        <NavLink
-                          key={idx}
-                          to={course.link}
-                          onClick={() => setIsOpen(false)}
-                          className={({ isActive }) =>
-                            `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
-                          }
-                        >
-                          {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
-                        </NavLink>
-                      ))}
+                  <div className={`overflow-hidden transition-all duration-300 ${mobileCoursesOpen ? "max-h-[600px] opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
+                    <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
+                      {coursesMenu.map((provider) => {
+                        const providerOpen = mobileOpenProvider === provider.id;
+                        return (
+                          <div key={provider.id}>
+                            {/* Provider (level 1) */}
+                            <button
+                              onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
+                              className="flex items-center justify-between w-full py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
+                            >
+                              <span>
+                                {provider.name}
+                                <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
+                              </span>
+                              <FaChevronDown className={`text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                            </button>
+                            {/* Courses (level 2) */}
+                            <div className={`overflow-hidden transition-all duration-300 ${providerOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                              <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
+                                {provider.items.map((course, idx) => (
+                                  <NavLink
+                                    key={course.link || idx}
+                                    to={course.link}
+                                    onClick={() => setIsOpen(false)}
+                                    className={({ isActive }) =>
+                                      `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                                    }
+                                  >
+                                    {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                  </NavLink>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
