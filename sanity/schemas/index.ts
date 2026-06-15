@@ -12,6 +12,7 @@ import pastEvent from './pastEvent'
 import event from './event'
 import wallOfExcellence from './wallOfExcellence'
 import successPageSettings from './successPageSettings'
+import successHero from './successHero'
 import marqueeLine from './marqueeLine'
 import brochure from './brochure'
 
@@ -40,6 +41,7 @@ export const schemaTypes = [
     event,
     wallOfExcellence,
     successPageSettings,
+    successHero,
     marqueeLine,
     brochure,
 
