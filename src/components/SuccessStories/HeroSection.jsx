@@ -9,14 +9,24 @@ import passoutStudents from "../../assets/Passout-students.jpeg";
 import wofaFive from "../../assets/wofa-2025/wofa-5.jpeg";
 import iiaHyderabadOne from "../../assets/iia-hyderabad/iia-hyderabad-1.jpeg";
 
-const HeroSection = () => {
-    const heroImages = [
-        agmIiaDelhiChapterOne,
-        agmIiaDelhiChapterTwo,
-        iiaHyderabadOne,
-        passoutStudents,
-        wofaFive,
-    ];
+// Hardcoded defaults used when Sanity has no hero content (empty/loading/missing),
+// so the section never renders blank.
+const FALLBACK_HERO_IMAGES = [
+    { src: agmIiaDelhiChapterOne, alt: "GPC success story" },
+    { src: agmIiaDelhiChapterTwo, alt: "GPC success story" },
+    { src: iiaHyderabadOne, alt: "GPC success story" },
+    { src: passoutStudents, alt: "GPC success story" },
+    { src: wofaFive, alt: "GPC success story" },
+];
+const FALLBACK_CAPTION = "Empowering industrious alumni who have made us proud.";
+
+const HeroSection = ({ hero }) => {
+    // Sanity-driven carousel images + caption, falling back to the defaults above.
+    const sanityImages = (hero?.heroImages || [])
+        .filter((img) => img?.url)
+        .map((img) => ({ src: img.url, alt: img.alt || "GPC success story" }));
+    const heroImages = sanityImages.length ? sanityImages : FALLBACK_HERO_IMAGES;
+    const caption = hero?.heroCaption || FALLBACK_CAPTION;
 
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(true);
@@ -147,9 +157,9 @@ const HeroSection = () => {
                                     {[...heroImages, ...heroImages].map((image, index) => (
                                         <div key={index} className="w-full flex-shrink-0 relative aspect-[4/3]">
                                             <img
-                                                src={image}
+                                                src={image.src}
                                                 className="w-full h-full object-cover"
-                                                alt={`Success story ${(index % heroImages.length) + 1}`}
+                                                alt={image.alt || `Success story ${(index % heroImages.length) + 1}`}
                                             />
                                             {/* Subtle vignette on images */}
                                             <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.2)]" />
@@ -171,7 +181,7 @@ const HeroSection = () => {
                     </div>
 
                     <p className="font-medium text-center text-gray-300 text-sm md:text-base px-4 max-w-xs leading-relaxed opacity-80 italic">
-                        "Empowering industrious alumni who have made us proud."
+                        "{caption}"
                     </p>
                 </m.div>
             </div>
