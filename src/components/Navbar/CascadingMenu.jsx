@@ -53,7 +53,7 @@ const CascadingMenu = ({ categories = [], isOpen, onClose, panelImage = null, sh
                 {/* COLUMN 1 — Providers (level 1) */}
                 <div className="col-span-3 md:col-span-2 px-6 py-8 font-poppins border-r border-gray-100">
                     <div className="mb-4 pb-2 border-b border-gray-100">
-                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Certification Bodies</h4>
+                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Certification Organizations</h4>
                     </div>
                     <div className="space-y-1">
                         {categories.map((cat) => {

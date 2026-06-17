@@ -89,7 +89,7 @@ export function BulkImageUploadInput(props: any) {
     [items]
   )
 
-  // ── Upload ──────────────────────────────────────────────────────────────
+  // Upload
   const handlePick = useCallback(() => {
     inputRef.current?.click()
   }, [])
@@ -148,7 +148,7 @@ export function BulkImageUploadInput(props: any) {
     [client, onChange, toast]
   )
 
-  // ── Manage / bulk delete ────────────────────────────────────────────────
+  // Bulk delete 
   // Load filenames + thumbnail URLs for the assets currently in the array so
   // editors can recognise which rows they are deleting.
   useEffect(() => {
