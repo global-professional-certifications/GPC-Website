@@ -40,6 +40,17 @@ export const structure: StructureResolver = (S, context) => {
                                             .title('Edit Section Titles')
                                     ),
 
+                                // ─── Hero Section (carousel + caption) ───
+                                S.listItem()
+                                    .title('Hero Section')
+                                    .icon(() => '🖼️')
+                                    .child(
+                                        S.document()
+                                            .schemaType('successHero')
+                                            .documentId('successHero')
+                                            .title('Hero Section')
+                                    ),
+
                                 S.divider(),
 
                                 // ─── Wall of Excellence Section ───

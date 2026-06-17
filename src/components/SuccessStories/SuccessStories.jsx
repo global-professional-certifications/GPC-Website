@@ -24,6 +24,7 @@ export default function SuccessStories() {
     const [allStories, setAllStories] = useState([]);
     const [wallOfExcellenceEntries, setWallOfExcellenceEntries] = useState([]);
     const [pageSettings, setPageSettings] = useState(null);
+    const [heroData, setHeroData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // Fetch page settings (titles, subtitles)
@@ -38,6 +39,23 @@ export default function SuccessStories() {
             }
         };
         fetchSettings();
+    }, []);
+
+    // Fetch hero section (carousel images + caption)
+    useEffect(() => {
+        const fetchHero = async () => {
+            try {
+                const query = `*[_type == "successHero"][0]{
+                    heroCaption,
+                    "heroImages": heroImages[]{ "url": asset->url, "alt": coalesce(label, asset->originalFilename) }
+                }`;
+                const data = await client.fetch(query);
+                setHeroData(data);
+            } catch (error) {
+                console.error("Error fetching hero section:", error);
+            }
+        };
+        fetchHero();
     }, []);
 
     // Fetch courses on mount - only courses that have at least one testimonial
@@ -219,7 +237,7 @@ export default function SuccessStories() {
                 canonicalUrl="https://globalprofessionalcertifications.com/success"
             />
 
-            <HeroSection />
+            <HeroSection hero={heroData} />
 
             <VideoVault
                 allStories={allStories}
