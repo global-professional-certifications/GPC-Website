@@ -1,32 +1,18 @@
-import React from 'react';
-import { m } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
+import { RxCross1 } from 'react-icons/rx';
+import PortableTextRenderer from '../Blogs/PortableTextRenderer';
 import FAQDisplay from "../FAQDisplay.jsx";
 import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getOrganizationSchema } from "../Schema";
+import { client } from "../../lib/sanity/client";
 
 // Assets
 import faqImage from "../../assets/faq.webp";
 import orientationCover from "../../assets/upcoming-orientation.png";
 
 // --- DATA CONSTANTS ---
-
-const upcomingBatches = [
-    {
-    id: 1,
-    name: "CIA Part 1",
-    description: "Start your CIA journey with our comprehensive Part 1 batch covering all fundamental audit concepts and the IPPF framework.",
-    date: "May 23, 2026",
-    enrollLink: "https://rzp.io/rzp/BjsIQfL",
-  },
-  {
-    id: 2,
-    name: "CIA Challenge Batch In Collaboration With IIA Bombay",
-    description: "The IIA Bombay Chapter presents a high-impact CIA Challenge Crash Course (2026), now enhanced with premium Gleim study materials. Led by Mr. Arpit Garg, this weekend live batch is designed to help you build strong concepts, focus on revision, and master exam-ready MCQ practice.",
-    date: "May 23, 2026",
-    enrollLink: "https://rzp.io/rzp/9AticWKJ",
-  }
-];
 
 const courseFaqs = [
   {
@@ -51,9 +37,56 @@ const courseFaqs = [
   }
 ];
 
+// --- HELPERS ---
+
+const formatDate = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
+
+  const day = date.getDate();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${day} ${month}, ${year}`;
+};
+
+const displayDateText = (batch) => {
+  const formatted = formatDate(batch.date);
+  if (!formatted) return "";
+  const prefixes = batch.datePrefixes && batch.datePrefixes.length > 0
+    ? batch.datePrefixes.join(" & ") + " "
+    : "";
+  return `${prefixes}${formatted}`;
+};
+
 // --- MAIN COMPONENT ---
 
 const Upcoming = () => {
+  const [batches, setBatches] = useState([]);
+  const [announcement, setAnnouncement] = useState(null);
+  const [activeModalBatch, setActiveModalBatch] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [batchesData, announcementData] = await Promise.all([
+          client.fetch(`*[_type == "upcomingBatch" && isActive == true] | order(order asc) { ..., "detailsFileUrl": detailsFile.asset->url }`),
+          client.fetch(`*[_type == "upcomingAnnouncement" && isActive == true] | order(order asc)[0]`)
+        ]);
+        setBatches(batchesData || []);
+        setAnnouncement(announcementData || null);
+      } catch (error) {
+        console.error("Error fetching upcoming page data from Sanity:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   // Breadcrumb Schema
   const breadcrumbSchema = generateBreadcrumbSchema("/upcoming");
 
@@ -63,16 +96,31 @@ const Upcoming = () => {
   // FAQ Schema
   const faqSchema = getFAQSchema(courseFaqs);
 
-  // Event Schemas
-  const eventSchemas = upcomingBatches.map(batch => getEventSchema({
-    name: batch.name,
-    description: batch.description,
-    startDate: new Date(batch.date).toISOString(),
-    endDate: new Date(batch.date).toISOString(), // Adjust if end date differs
-    isOnline: true,
-    locationUrl: batch.enrollLink,
-    price: "0" // Placeholder price, customize if necessary
-  }));
+  // Event Schemas (safe date parsing)
+  const eventSchemas = batches
+    .map(batch => {
+      let dateIso = null;
+      try {
+        const parsedDate = new Date(batch.date);
+        if (!isNaN(parsedDate.getTime())) {
+          dateIso = parsedDate.toISOString();
+        }
+      } catch (e) {
+        console.warn("Invalid date format for event schema:", batch.date, e);
+      }
+      if (!dateIso) return null;
+
+      return getEventSchema({
+        name: batch.title,
+        description: batch.description,
+        startDate: dateIso,
+        endDate: dateIso,
+        isOnline: true,
+        locationUrl: batch.ctaButtonLink,
+        price: "0"
+      });
+    })
+    .filter(Boolean);
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -101,31 +149,31 @@ const Upcoming = () => {
         </div>
       </section>
 
-      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════
-      <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
-        <div className="max-w-7xl mx-auto px-3 md:px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+      {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
+      {!loading && announcement && (
+        <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
+          <div className="max-w-7xl mx-auto px-3 md:px-4">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
 
-            <div className="flex items-center gap-5 flex-shrink-0">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shadow-md shadow-brand-blue/15 rotate-[-6deg]">
-                <FaBullhorn className="text-white text-xl md:text-2xl rotate-[6deg]" />
+              <div className="flex items-center gap-5 flex-shrink-0">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shadow-md shadow-brand-blue/15 rotate-[-6deg]">
+                  <FaBullhorn className="text-white text-xl md:text-2xl rotate-[6deg]" />
+                </div>
+                <h2 className="text-2xl md:text-3xl text-brand-blue leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800 }}>
+                  Important<br className="hidden md:block" /> Announcement
+                </h2>
               </div>
-              <h2 className="text-2xl md:text-3xl text-brand-blue leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800 }}>
-                Important<br className="hidden md:block" /> Announcement
-              </h2>
+
+              <div className="hidden lg:block w-px h-14 bg-amber-200/70" />
+
+              <div className="text-gray-800 text-lg leading-relaxed">
+                <p>{announcement.content}</p>
+              </div>
+
             </div>
-
-            <div className="hidden lg:block w-px h-14 bg-amber-200/70" />
-
-            <div className="text-gray-800 text-lg leading-relaxed">
-              <p>Enroll in CIA (All Parts) for INR 49,999 + GST (including Gleim Material) till 15th May.
-                Price increases to INR 60,000 + GST from 16th May onwards.</p>
-            </div>
-
           </div>
-        </div>
-      </section>
-      */}
+        </section>
+      )}
 
       {/* ═══════════ UPCOMING BATCHES ═══════════ */}
       <section id="batches" className="py-16 md:py-20 bg-transparent">
@@ -141,83 +189,117 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {/* Cards (Commented out for now) */}
-          {/*
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {upcomingBatches.map((batch, index) => (
-              <m.div
-                key={batch.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.45 }}
-                className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:shadow-purple-100/60 transition-all duration-400 relative flex flex-col h-full overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue group-hover:bg-brand-purple transition-colors duration-400" />
+          {loading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-blue"></div>
+            </div>
+          ) : batches.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {batches.map((batch, index) => (
+                <m.div
+                  key={batch._id || index}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.45 }}
+                  className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:shadow-purple-100/60 transition-all duration-400 relative flex flex-col h-full overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue group-hover:bg-brand-purple transition-colors duration-400" />
 
-                <div className="flex justify-between items-start mb-5">
-                  <span className="px-3 py-0.5 bg-orange-500/10 text-orange-600 text-[10px] font-bold rounded-full uppercase tracking-widest border border-orange-500/15">
-                    Filling Fast
-                  </span>
-                  <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-brand-purple group-hover:text-white transition-all duration-400">
-                    <FaGraduationCap className="text-base" />
-                  </div>
-                </div>
-
-                <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3">
-                  {batch.name}
-                </h3>
-
-                <p className="text-gray-500 text-sm font-light leading-relaxed mb-6 flex-grow">
-                  {batch.description}
-                </p>
-
-                <div className="pt-5 border-t border-gray-50">
-                  <div className="bg-gray-50 rounded-xl px-4 py-3 flex items-center gap-3">
-                    <FaCalendarAlt className="text-brand-purple text-sm md:text-xl flex-shrink-0" />
-                    <div>
-                      <p className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Starts On</p>
-                      <p className="text-gray-800 text-sm md:text-base font-semibold">{batch.date}</p>
+                  <div className="flex justify-between items-start gap-4 mb-5">
+                    <div className="flex flex-wrap gap-2">
+                      {batch.badges && batch.badges.map((badge, idx) => (
+                        <span key={idx} className="px-3 py-0.5 bg-orange-500/10 text-orange-600 text-[10px] font-bold rounded-full uppercase tracking-widest border border-orange-500/15">
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-brand-purple group-hover:text-white transition-all duration-400 flex-shrink-0">
+                      <FaGraduationCap className="text-base" />
                     </div>
                   </div>
-                </div>
 
-                <div className="mt-6">
-                  <a href={batch.enrollLink} target="_blank" rel="noopener noreferrer" className="w-full py-3.5 bg-gray-900 group-hover:bg-brand-purple text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300">
-                    Enroll Now <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
-              </m.div>
-            ))}
-          </div>
-          */}
+                  <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3">
+                    {batch.title}
+                  </h3>
 
-          {/* No Announcement / Updates Placeholder */}
-          <m.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-xl mx-auto bg-white border border-gray-150 rounded-2xl p-8 md:p-10 shadow-lg text-center relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-purple to-orange-400" />
-            
-            <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-6 text-brand-purple shadow-sm">
-              <FaBullhorn className="text-2xl text-brand-purple animate-bounce" />
+                  <p className="text-gray-800 text-base font-light leading-relaxed mb-4 flex-grow">
+                    {batch.description}
+                  </p>
+
+                  <p className="text-sm text-gray-500 font-light mb-6">
+                    For any other queries{" "}
+                    <a
+                      href={batch.contactUrl || "https://globalprofessionalcertifications.com/contact"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-blue font-semibold hover:underline"
+                    >
+                      Contact Us
+                    </a>
+                  </p>
+
+                  <div className="pt-5 border-t border-gray-50">
+                    <div className="bg-gray-50 rounded-xl px-4 py-3 flex items-center gap-3">
+                      <FaCalendarAlt className="text-brand-purple text-sm md:text-xl flex-shrink-0" />
+                      <div>
+                        <p className="text-gray-800 text-sm md:text-base font-semibold">{displayDateText(batch)}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex gap-3">
+                    {batch.detailsType === 'document' ? (
+                      <a
+                        href={batch.detailsFileUrl || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-[30%] py-3.5 border border-gray-300 hover:border-gray-900 text-gray-700 hover:text-gray-900 text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 text-center"
+                      >
+                        Details
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => setActiveModalBatch(batch)}
+                        className="w-[30%] py-3.5 border border-gray-300 hover:border-gray-900 text-gray-700 hover:text-gray-900 text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300"
+                      >
+                        Details
+                      </button>
+                    )}
+                    <a href={batch.ctaButtonLink} target="_blank" rel="noopener noreferrer" className="w-[70%] py-3.5 bg-gray-900 hover:bg-brand-purple text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 group/btn">
+                      {batch.ctaButtonText || "Enroll Now"} <FaArrowRight className="text-[10px] group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    </a>
+                  </div>
+                </m.div>
+              ))}
             </div>
+          ) : (
+            <m.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-xl mx-auto bg-white border border-gray-150 rounded-2xl p-8 md:p-10 shadow-lg text-center relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-purple to-orange-400" />
 
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-              No Batch Updates For Now
-            </h3>
-            
-            <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed mb-6">
-              Our active batches are currently underway. We are preparing high-impact schedules for the upcoming cohort. Subscribe below to stay informed and get first-access notifications!
-            </p>
+              <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-6 text-brand-purple shadow-sm">
+                <FaBullhorn className="text-2xl text-brand-purple" />
+              </div>
 
-            <div className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50/50 border border-blue-100 rounded-full px-4 py-1.5 hover:bg-blue-50 transition duration-300">
-              <div className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
-              New Schedules Releasing Soon
-            </div>
-          </m.div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                No Batch Updates For Now
+              </h3>
+
+              <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed mb-6">
+                Our active batches are currently underway. We are preparing high-impact schedules for the upcoming cohort. Subscribe below to stay informed and get first-access notifications!
+              </p>
+
+              <div className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50/50 border border-blue-100 rounded-full px-4 py-1.5 hover:bg-blue-50 transition duration-300">
+                <div className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+                New Schedules Releasing Soon
+              </div>
+            </m.div>
+          )}
         </div>
       </section>
 
@@ -392,6 +474,66 @@ const Upcoming = () => {
           </m.div>
         </div>
       </section>
+
+      {/* ═══════════ DETAILS MODAL ═══════════ */}
+      <AnimatePresence>
+        {activeModalBatch && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-hidden">
+            {/* Backdrop */}
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveModalBatch(null)}
+              className="absolute inset-0 bg-black/45 backdrop-blur-sm"
+            />
+
+            {/* Modal Box */}
+            <m.div
+              initial={{ scale: 0.95, y: 15, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 15, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative max-w-3xl w-full bg-white rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col max-h-[85vh] z-10"
+            >
+              {/* Header */}
+              <div className="flex justify-between items-start mb-4 pr-6 border-b border-gray-100 pb-4">
+                <h3 className="text-base md:text-lg font-medium text-gray-900 leading-snug">
+                  {activeModalBatch.title} Details
+                </h3>
+                <button
+                  onClick={() => setActiveModalBatch(null)}
+                  className="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Close modal"
+                >
+                  <RxCross1 className="text-base" />
+                </button>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="overflow-y-auto max-h-[60vh] pr-2 text-[15px] leading-relaxed text-gray-600">
+                {activeModalBatch.details && activeModalBatch.details.length > 0 ? (
+                  <div className="prose prose-blue max-w-none">
+                    <PortableTextRenderer value={activeModalBatch.details} />
+                  </div>
+                ) : (
+                  <p className="text-gray-500 italic text-center py-8">No details to show</p>
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="mt-6 pt-4 border-t border-gray-100 flex justify-end">
+                <button
+                  onClick={() => setActiveModalBatch(null)}
+                  className="px-6 py-2.5 bg-gray-900 hover:bg-brand-purple text-white text-sm font-bold rounded-xl transition-all duration-300 shadow-sm"
+                >
+                  Close
+                </button>
+              </div>
+            </m.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
