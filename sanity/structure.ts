@@ -308,6 +308,35 @@ export const structure: StructureResolver = (S, context) => {
 
             S.divider(),
 
+            // Upcoming Page Section
+            S.listItem()
+                .title('Upcoming Page')
+                .icon(() => '📅')
+                .child(
+                    S.list()
+                        .title('Upcoming Page')
+                        .items([
+                            S.listItem()
+                                .title('Important Announcements')
+                                .icon(() => '📢')
+                                .child(
+                                    S.documentTypeList('upcomingAnnouncement')
+                                        .title('Important Announcements')
+                                        .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                ),
+                            S.listItem()
+                                .title('Upcoming Batches')
+                                .icon(() => '🎓')
+                                .child(
+                                    S.documentTypeList('upcomingBatch')
+                                        .title('Upcoming Batches')
+                                        .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                ),
+                        ])
+                ),
+
+            S.divider(),
+
             // Events - Hierarchical Structure
             S.listItem()
                 .title('Events')

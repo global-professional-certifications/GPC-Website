@@ -11,6 +11,19 @@ export default defineType({
             type: 'string',
         },
         {
+            name: 'importData',
+            title: 'Import Excel / Google Sheets / CSV Data',
+            type: 'text',
+            description: 'Paste cells copied directly from Excel/Google Sheets, or paste comma-separated CSV rows here. This will automatically generate the table dynamically when rendering.',
+        },
+        {
+            name: 'hasHeader',
+            title: 'Use First Row as Header',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Treat the first row of your Excel/CSV data as the table header.',
+        },
+        {
             name: 'rows',
             title: 'Table Rows',
             type: 'array',
