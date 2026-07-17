@@ -15,6 +15,8 @@ import successPageSettings from './successPageSettings'
 import successHero from './successHero'
 import marqueeLine from './marqueeLine'
 import brochure from './brochure'
+import upcomingAnnouncement from './upcomingAnnouncement'
+import upcomingBatch from './upcomingBatch'
 
 
 // Custom block content types
@@ -44,6 +46,8 @@ export const schemaTypes = [
     successHero,
     marqueeLine,
     brochure,
+    upcomingAnnouncement,
+    upcomingBatch,
 
     // Custom block content
     inlineCTA,
