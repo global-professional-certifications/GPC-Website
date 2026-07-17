@@ -314,34 +314,59 @@ const buildComponents = (body) => ({
       )
     },
 
-    table: ({ value }) => (
-      <div className="my-5 overflow-x-auto rounded-lg shadow-md border border-gray-200">
-        {value.caption && (
-          <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
-            <p className="font-medium text-gray-700 text-sm">{value.caption}</p>
-          </div>
-        )}
-        <table className="w-full text-sm">
-          <tbody>
-            {value.rows?.map((row, rowIndex) => (
-              <tr key={rowIndex} className={row.isHeader ? 'bg-gray-100' : rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                {row.cells?.map((cell, cellIndex) =>
-                  row.isHeader ? (
-                    <th key={cellIndex} className="px-3 py-2 text-left font-semibold text-gray-800 border-b border-gray-200">
-                      {cell}
-                    </th>
-                  ) : (
-                    <td key={cellIndex} className="px-3 py-2 text-gray-700 border-b border-gray-100">
-                      {cell}
-                    </td>
-                  )
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    ),
+    table: ({ value }) => {
+      let rowsData = [];
+      const hasHeader = value.hasHeader !== false;
+
+      if (value.importData && value.importData.trim()) {
+        const rawRows = value.importData.trim().split(/\r?\n/);
+        rowsData = rawRows.map((rawRow, rowIndex) => {
+          let cells = [];
+          if (rawRow.includes('\t')) {
+            cells = rawRow.split('\t');
+          } else if (rawRow.includes(',')) {
+            cells = rawRow.split(',');
+          } else {
+            cells = [rawRow];
+          }
+          return {
+            cells: cells.map(c => c.trim()),
+            isHeader: hasHeader && rowIndex === 0
+          };
+        });
+      } else {
+        rowsData = value.rows || [];
+      }
+
+      return (
+        <div className="my-5 overflow-x-auto rounded-lg shadow-md border border-gray-200">
+          {value.caption && (
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
+              <p className="font-medium text-gray-700 text-sm">{value.caption}</p>
+            </div>
+          )}
+          <table className="w-full text-sm">
+            <tbody>
+              {rowsData.map((row, rowIndex) => (
+                <tr key={rowIndex} className={row.isHeader ? 'bg-gray-100' : rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.cells?.map((cell, cellIndex) =>
+                    row.isHeader ? (
+                      <th key={cellIndex} className="px-3 py-2.5 text-left font-semibold text-gray-800 border-b border-gray-200">
+                        {cell}
+                      </th>
+                    ) : (
+                      <td key={cellIndex} className="px-3 py-2.5 text-gray-700 border-b border-gray-100">
+                        {cell}
+                      </td>
+                    )
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    },
 
     // FAQ Section — renders accordion UI (JSON-LD is injected separately in BlogPage)
     faqSection: ({ value }) => (
