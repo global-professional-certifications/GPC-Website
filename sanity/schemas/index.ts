@@ -17,6 +17,7 @@ import marqueeLine from './marqueeLine'
 import brochure from './brochure'
 import upcomingAnnouncement from './upcomingAnnouncement'
 import upcomingBatch from './upcomingBatch'
+import notificationBanner from './notificationBanner'
 
 
 // Custom block content types
@@ -48,6 +49,7 @@ export const schemaTypes = [
     brochure,
     upcomingAnnouncement,
     upcomingBatch,
+    notificationBanner,
 
     // Custom block content
     inlineCTA,

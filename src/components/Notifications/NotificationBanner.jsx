@@ -1,37 +1,212 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { BsLightbulbFill } from "react-icons/bs"
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaLightbulb,
+  FaExternalLinkAlt,
+  FaArrowRight,
+} from "react-icons/fa";
+import { client } from "../../lib/sanity/client";
 
-export default function NotificationBanner() {
-
-
-    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-
-        window.addEventListener("resize", handleResize)
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
-
-    return (
-        <div className="fixed top-0 left-0 w-screen bg-brand-blue text-white flex items-center justify-center text-center h-12 z-50 transition-colors duration-300">
-            <div className="w-full">
-                {!isMobile
-                    ?
-                    <div className="md:text-sm text-xs md:p-0 px-8 font-semibold md:text-base">
-                        <BsLightbulbFill className="inline text-yellow-400 mr-1 pb-1 h-4 w-4 md:h-6 md:h-6" />Not sure how to start your CIA journey? Watch our<a href="https://youtu.be/O4H2jSYZ6V8" target="_blank" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition-all duration-300 transform ease-in-out">Orientation Program</a>for each part or<a href="/contact" className="border border-brand-purple border-1 rounded-lg p-1 m-1 hover:bg-brand-purple hover:text-white transition duration-300 ease-in-out">Contact Us</a>to get started!<BsLightbulbFill className="inline text-yellow-400 ml-1 pb-1 h-4 w-4 md:h-6 md:h-6" />
-                    </div>
-                    :
-                    <p className="md:text-sm text-xs md:p-0 px-2 md:text-base leading-relaxed">
-                        Explore our <Link to="https://youtu.be/XNnXkttYQUY?si=_LsRnwG4OWTeQdED" target="_blank" className="border border-brand-purple border-1 rounded-md p-1 hover:bg-brand-purple transition-all duration-300">youtube channel</Link> or <Link className="border border-brand-purple border-1 rounded-md p-1 hover:bg-brand-purple transition-all duration-300" to="/contact">contact us</Link> to get started!
-                    </p>
-                }
-            </div>
-        </div>
-    );
+const slideVariants = {
+  enter: (direction) => ({
+    y: direction > 0 ? 20 : -20,
+    opacity: 0,
+  }),
+  center: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: (direction) => ({
+    y: direction < 0 ? 20 : -20,
+    opacity: 0,
+  }),
 };
 
-export const height = 12;
+export default function NotificationBanner() {
+  const [notifications, setNotifications] = useState([]);
+  const [[currentIndex, direction], setPage] = useState([0, 1]);
+  const [isPaused, setIsPaused] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch published active notifications from Sanity
+  useEffect(() => {
+    let isMounted = true;
+    const fetchSanityNotifications = async () => {
+      try {
+        const data = await client.fetch(
+          `*[_type == "notificationBanner" && isActive == true] | order(order asc)`
+        );
+
+        if (isMounted) {
+          if (data && data.length > 0) {
+            const formatted = data.map((item, idx) => ({
+              id: item._id || `banner-${idx}`,
+              highlightTitle: item.highlightTitle || "",
+              notification: item.notification || "",
+              buttons: item.buttons || [],
+            }));
+            setNotifications(formatted);
+          } else {
+            setNotifications([]);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching notifications from Sanity:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    fetchSanityNotifications();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Navigation callbacks
+  const paginate = useCallback(
+    (newDirection) => {
+      setPage(([prevIndex]) => {
+        let nextIndex = prevIndex + newDirection;
+        if (nextIndex < 0) nextIndex = notifications.length - 1;
+        if (nextIndex >= notifications.length) nextIndex = 0;
+        return [nextIndex, newDirection];
+      });
+    },
+    [notifications.length]
+  );
+
+  // Auto rotation timer
+  useEffect(() => {
+    if (isPaused || notifications.length <= 1) return;
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, notifications.length, paginate]);
+
+  // If loading or no active notifications, do not render banner
+  if (loading || !notifications || notifications.length === 0) {
+    return null;
+  }
+
+  const currentNotification = notifications[currentIndex] || notifications[0];
+
+  return (
+    <div
+      className="fixed top-0 left-0 w-screen bg-slate-900 border-b border-white/10 text-white flex items-center justify-between h-12 z-50 px-2 sm:px-4 md:px-8 select-none shadow-md overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Background Gradient Effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-slate-900 to-brand-blue opacity-90 pointer-events-none" />
+
+      {/* Main Container */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between gap-2">
+        {/* Left Arrow Button (shown if >1 notification) */}
+        {notifications.length > 1 ? (
+          <button
+            onClick={() => paginate(-1)}
+            className="p-1.5 rounded-full hover:bg-white/15 active:scale-95 transition-all text-white/80 hover:text-white flex-shrink-0"
+            aria-label="Previous notification"
+          >
+            <FaChevronLeft className="text-xs md:text-sm" />
+          </button>
+        ) : (
+          <div className="w-6 flex-shrink-0" />
+        )}
+
+        {/* Content Slider Window */}
+        <div className="relative flex-1 h-8 overflow-hidden flex items-center justify-center">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentNotification.id || currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute w-full flex items-center justify-center text-center gap-2 md:gap-3 px-1"
+            >
+              {/* Highlight Title Tag */}
+              {currentNotification.highlightTitle && (
+                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 uppercase tracking-wider flex-shrink-0">
+                  <FaLightbulb className="text-amber-400 text-xs" />
+                  {currentNotification.highlightTitle}
+                </span>
+              )}
+
+              {/* Text & Buttons */}
+              <div className="text-xs md:text-sm font-medium flex items-center justify-center flex-wrap gap-1.5 leading-snug">
+                <span className="text-gray-100 font-normal">
+                  {currentNotification.highlightTitle && (
+                    <span className="sm:hidden font-bold text-amber-300 mr-1">
+                      {currentNotification.highlightTitle}:
+                    </span>
+                  )}
+                  {currentNotification.notification}
+                </span>
+
+                {/* Render Buttons (Max 2) */}
+                {currentNotification.buttons && currentNotification.buttons.length > 0 && (
+                  <div className="inline-flex items-center gap-1.5 ml-1">
+                    {currentNotification.buttons.slice(0, 2).map((btn, idx) => {
+                      const isExternal = btn.isExternal || (btn.pageLink && btn.pageLink.startsWith("http"));
+                      if (isExternal) {
+                        return (
+                          <a
+                            key={idx}
+                            href={btn.pageLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-brand-purple/80 hover:bg-brand-purple border border-white/20 text-white rounded-lg text-xs font-semibold hover:shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
+                          >
+                            {btn.buttonText}
+                            <FaExternalLinkAlt className="text-[9px] opacity-80" />
+                          </a>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={idx}
+                          to={btn.pageLink}
+                          className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-brand-purple/80 hover:bg-brand-purple border border-white/20 text-white rounded-lg text-xs font-semibold hover:shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
+                        >
+                          {btn.buttonText}
+                          <FaArrowRight className="text-[9px] opacity-80" />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Arrow Button & Indicator (shown if >1 notification) */}
+        {notifications.length > 1 ? (
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span className="hidden md:inline-block text-[10px] text-gray-400 font-semibold tracking-wider px-1">
+              {currentIndex + 1}/{notifications.length}
+            </span>
+            <button
+              onClick={() => paginate(1)}
+              className="p-1.5 rounded-full hover:bg-white/15 active:scale-95 transition-all text-white/80 hover:text-white"
+              aria-label="Next notification"
+            >
+              <FaChevronRight className="text-xs md:text-sm" />
+            </button>
+          </div>
+        ) : (
+          <div className="w-6 flex-shrink-0" />
+        )}
+      </div>
+    </div>
+  );
+}
+
+export const height = 12;
