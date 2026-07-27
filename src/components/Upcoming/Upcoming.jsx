@@ -130,24 +130,6 @@ const Upcoming = () => {
       </Helmet>
       <SchemaMarkup schema={[breadcrumbSchema, orgSchema, faqSchema, ...eventSchemas]} />
 
-      {/* ═══════════ HERO ═══════════ */}
-      <section className="relative bg-brand-blue pt-16 pb-14 md:pt-24 md:pb-20 overflow-hidden text-center">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-56 h-56 bg-brand-purple/10 rounded-full blur-3xl" />
-        <div className="max-w-5xl mx-auto px-3 md:px-4 relative z-10">
-          <m.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <p className="inline-block px-4 py-1.5 bg-white/10 border border-white/15 text-orange-400 text-[11px] md:text-xs rounded-full font-bold tracking-[0.25em] uppercase mb-6">
-              Upcoming Batches and Announcements
-            </p>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight mb-5">
-              Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-orange-600">What's Coming Next</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-2xl mx-auto">
-              Stay ahead with our upcoming events, live webinars, and expertly designed courses — crafted to help you learn, grow, and take the next step in your journey.
-            </p>
-          </m.div>
-        </div>
-      </section>
 
       {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
       {!loading && announcement && (
