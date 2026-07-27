@@ -430,6 +430,17 @@ export const structure: StructureResolver = (S, context) => {
                 .schemaType('popup')
                 .child(S.documentTypeList('popup').title('Popups')),
 
+            // Notification Banner
+            S.listItem()
+                .title('Notification')
+                .icon(() => '🔔')
+                .schemaType('notificationBanner')
+                .child(
+                    S.documentTypeList('notificationBanner')
+                        .title('Notifications')
+                        .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                ),
+
             // Company Marquees
             S.listItem()
                 .title('Company Marquees')
