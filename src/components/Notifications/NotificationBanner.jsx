@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "motion/react";
 import {
   FaChevronLeft,
   FaChevronRight,
-  FaLightbulb,
   FaExternalLinkAlt,
   FaArrowRight,
 } from "react-icons/fa";
@@ -133,8 +132,7 @@ export default function NotificationBanner() {
             >
               {/* Highlight Title Tag */}
               {currentNotification.highlightTitle && (
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 uppercase tracking-wider flex-shrink-0">
-                  <FaLightbulb className="text-amber-400 text-xs" />
+                <span className="hidden sm:inline-flex items-center text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 uppercase tracking-wider flex-shrink-0">
                   {currentNotification.highlightTitle}
                 </span>
               )}
