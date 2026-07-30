@@ -22,7 +22,7 @@ const corporateOptions = [
   },
 ];
 
-const Navbar = ({ topOffset = 0 }) => {
+const Navbar = ({ topOffset = 48 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   const [isCorporateDropdownOpen, setIsCorporateDropdownOpen] = useState(false);
@@ -96,12 +96,12 @@ const Navbar = ({ topOffset = 0 }) => {
   return (
     <nav
       className="fixed w-full z-50 bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-transform duration-300"
-      style={{ top: `${topOffset * 4}px` }}
+      style={{ top: `${topOffset}px` }}
     >
       <div className="relative max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <div className="transform scale-150 md:scale-130 transition-transform duration-300">
+          <div className="transform scale-150 md:scale-130 origin-left transition-transform duration-300">
             <img src={logo} className="w-24 h-auto object-contain" alt="GPC logo" width="96" height="46" />
           </div>
         </Link>
@@ -266,13 +266,13 @@ const Navbar = ({ topOffset = 0 }) => {
                             {/* Provider (level 1) */}
                             <button
                               onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
-                              className="flex items-center justify-between w-full py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
+                              className="flex items-center justify-between w-full gap-2 py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
                             >
-                              <span>
+                              <span className="min-w-0 truncate text-left">
                                 {provider.name}
                                 <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
                               </span>
-                              <FaChevronDown className={`text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                              <FaChevronDown className={`flex-shrink-0 text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
                             </button>
                             {/* Courses (level 2) */}
                             <div className={`overflow-hidden transition-all duration-300 ${providerOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -283,10 +283,12 @@ const Navbar = ({ topOffset = 0 }) => {
                                     to={course.link}
                                     onClick={() => setIsOpen(false)}
                                     className={({ isActive }) =>
-                                      `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                                      `flex min-w-0 items-center py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
                                     }
                                   >
-                                    {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                    <span className="min-w-0 truncate">
+                                      {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                    </span>
                                   </NavLink>
                                 ))}
                               </div>

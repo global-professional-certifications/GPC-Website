@@ -145,9 +145,9 @@ const BlogList = () => {
 
             <div className='relative pt-12 min-h-screen w-full bg-gray-50 overflow-hidden'>
                 {/* Decorative Blobs */}
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-                <div className="absolute -top-8 left-1/2 w-96 h-96 bg-indigo-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob pointer-events-none"></div>
+                <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000 pointer-events-none"></div>
+                <div className="absolute -top-8 left-1/2 w-96 h-96 bg-indigo-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000 pointer-events-none"></div>
 
                 {/* Hero Section */}
                 <div className="relative pb-6 px-6 md:px-12 max-w-7xl mx-auto z-10 pt-10">
