@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -8,6 +8,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { client } from "../../lib/sanity/client";
+import { useLayout } from "../../contexts/LayoutContext";
 
 const slideVariants = {
   enter: (direction) => ({
@@ -29,6 +30,8 @@ export default function NotificationBanner() {
   const [[currentIndex, direction], setPage] = useState([0, 1]);
   const [isPaused, setIsPaused] = useState(false);
   const [loading, setLoading] = useState(true);
+  const bannerRef = useRef(null);
+  const { setNotificationBarHeight } = useLayout();
 
   // Fetch published active notifications from Sanity
   useEffect(() => {
@@ -86,6 +89,31 @@ export default function NotificationBanner() {
     return () => clearInterval(timer);
   }, [isPaused, notifications.length, paginate]);
 
+  // Keep the shared layout context in sync with whether the banner is
+  // actually taking up space, so the Navbar/page content don't leave a gap
+  // (or overlap) when there is nothing to show.
+  useEffect(() => {
+    if (loading || !notifications || notifications.length === 0) {
+      setNotificationBarHeight(0);
+    }
+  }, [loading, notifications, setNotificationBarHeight]);
+
+  // Measure the banner's real rendered height and report it to LayoutContext.
+  // The banner's height is content-driven (it grows on narrow screens when
+  // the announcement text wraps to multiple lines), so this can't be a fixed
+  // constant - the Navbar and page content need to know the true height.
+  useEffect(() => {
+    const el = bannerRef.current;
+    if (!el) return;
+
+    const reportHeight = () => setNotificationBarHeight(el.offsetHeight);
+    reportHeight();
+
+    const observer = new ResizeObserver(reportHeight);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [notifications, currentIndex, setNotificationBarHeight]);
+
   // If loading or no active notifications, do not render banner
   if (loading || !notifications || notifications.length === 0) {
     return null;
@@ -95,7 +123,8 @@ export default function NotificationBanner() {
 
   return (
     <div
-      className="fixed top-0 left-0 w-screen bg-slate-900 border-b border-white/10 text-white flex items-center justify-between h-12 z-50 px-2 sm:px-4 md:px-8 select-none shadow-md overflow-hidden"
+      ref={bannerRef}
+      className="fixed top-0 left-0 w-screen bg-slate-900 border-b border-white/10 text-white flex items-center justify-between min-h-12 z-50 px-2 sm:px-4 md:px-8 py-1.5 sm:py-0 select-none shadow-md"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -118,7 +147,7 @@ export default function NotificationBanner() {
         )}
 
         {/* Content Slider Window */}
-        <div className="relative flex-1 h-8 overflow-hidden flex items-center justify-center">
+        <div className="relative flex-1 min-h-8 py-1 flex items-center justify-center">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentNotification.id || currentIndex}
@@ -128,7 +157,7 @@ export default function NotificationBanner() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute w-full flex items-center justify-center text-center gap-2 md:gap-3 px-1"
+              className="relative w-full flex items-center justify-center text-center flex-wrap gap-2 md:gap-3 px-1"
             >
               {/* Highlight Title Tag */}
               {currentNotification.highlightTitle && (

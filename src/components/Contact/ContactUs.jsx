@@ -65,7 +65,7 @@ export default function ContactUs() {
 
                 <div className="w-full max-w-6xl px-6 lg:px-12 mx-auto relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                        
+
                         {/* Left Side: Texts */}
                         <div className="lg:col-span-7 text-left">
                             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/10">
