@@ -109,7 +109,7 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                 {/* Course Tabs */}
                 {tabs.length > 0 && (
                     <div className="w-full relative border-b border-white/20 mb-4">
-                        <div className="flex gap-6 md:gap-10 overflow-x-auto pb-1 no-scrollbar justify-center">
+                        <div className="flex gap-6 md:gap-10 overflow-x-auto pb-1 no-scrollbar justify-start px-1 md:justify-center md:px-0">
                             {tabs.map(tab => (
                                 <button
                                     key={tab.slug}
