@@ -11,7 +11,8 @@ const EventCountdownBar = ({
     tagText = "Upcoming Event",
     buttonText = "Join Event",
     buttonLink = "/events#upcoming-event",
-    onComplete
+    onComplete,
+    topOffset = LAYOUT_HEIGHTS.NOTIFICATION_BAR + LAYOUT_HEIGHTS.NAVBAR
 }) => {
     const [isVisible, setIsVisible] = useState(true);
 
@@ -78,9 +79,6 @@ const EventCountdownBar = ({
         return null;
     }
 
-    // Calculate top position: notification bar (48px) + navbar (64px) = 112px = top-28
-    const topPosition = LAYOUT_HEIGHTS.NOTIFICATION_BAR + LAYOUT_HEIGHTS.NAVBAR;
-
     // Check if buttonLink is external URL
     const isExternalLink = buttonLink && (buttonLink.startsWith('http://') || buttonLink.startsWith('https://'));
 
@@ -92,7 +90,7 @@ const EventCountdownBar = ({
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="fixed left-0 w-full z-40 bg-gradient-to-r from-brand-blue via-[#2d1b69] to-brand-purple text-white shadow-xl overflow-hidden"
-                style={{ top: `${topPosition}px` }}
+                style={{ top: `${topOffset}px` }}
             >
                 {/* Glossy overlay effect */}
                 <div className="absolute inset-0 bg-white/5 pointer-events-none"></div>

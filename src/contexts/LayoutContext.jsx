@@ -16,6 +16,11 @@ export function LayoutProvider({ children }) {
     const [upcomingEvent, setUpcomingEvent] = useState(null);
     const [showCountdownBar, setShowCountdownBar] = useState(false);
     const [loading, setLoading] = useState(true);
+    // Real, measured height of the notification banner (it can grow taller on
+    // narrow screens when the announcement text wraps to multiple lines).
+    // Defaults to the old fixed value until NotificationBanner reports its
+    // actual rendered height.
+    const [notificationBarHeight, setNotificationBarHeight] = useState(LAYOUT_HEIGHTS.NOTIFICATION_BAR);
 
     // Fetch upcoming event from Sanity
     useEffect(() => {
@@ -92,18 +97,18 @@ export function LayoutProvider({ children }) {
 
     // Calculate total top offset based on visible elements
     const topOffset = useMemo(() => {
-        let offset = LAYOUT_HEIGHTS.NOTIFICATION_BAR + LAYOUT_HEIGHTS.NAVBAR;
+        let offset = notificationBarHeight + LAYOUT_HEIGHTS.NAVBAR;
         if (showCountdownBar) {
             offset += LAYOUT_HEIGHTS.COUNTDOWN_BAR;
         }
         return offset;
-    }, [showCountdownBar]);
+    }, [notificationBarHeight, showCountdownBar]);
 
     // Navbar top offset (just after notification bar)
-    const navbarTopOffset = LAYOUT_HEIGHTS.NOTIFICATION_BAR;
+    const navbarTopOffset = notificationBarHeight;
 
     // Countdown bar top offset (after notification bar + navbar)
-    const countdownBarTopOffset = LAYOUT_HEIGHTS.NOTIFICATION_BAR + LAYOUT_HEIGHTS.NAVBAR;
+    const countdownBarTopOffset = notificationBarHeight + LAYOUT_HEIGHTS.NAVBAR;
 
     const value = {
         upcomingEvents,
@@ -115,6 +120,8 @@ export function LayoutProvider({ children }) {
         topOffset,
         navbarTopOffset,
         countdownBarTopOffset,
+        notificationBarHeight,
+        setNotificationBarHeight,
         heights: LAYOUT_HEIGHTS,
     };
 

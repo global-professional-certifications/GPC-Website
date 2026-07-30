@@ -105,10 +105,10 @@ const Journey = () => {
                 canonicalUrl="https://globalprofessionalcertifications.com/journey-celebration"
             />
 
-            <div className="bg-gray-50 min-h-screen font-sans text-gray-800 mt-[64px]">
+            <div className="bg-gray-50 min-h-screen font-sans text-gray-800">
                 {/* Hero Section */}
                 <section
-                    className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 lg:px-24 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white"
+                    className="relative pt-10 pb-20 md:pt-16 md:pb-32 px-6 lg:px-24 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white"
                 >
                     {/* Beautiful Multi-layered Background Pattern */}
                     <div className="absolute inset-0 opacity-15">
