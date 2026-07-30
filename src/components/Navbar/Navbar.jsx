@@ -101,7 +101,7 @@ const Navbar = ({ topOffset = 48 }) => {
       <div className="relative max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <div className="transform scale-150 md:scale-130 transition-transform duration-300">
+          <div className="transform scale-150 md:scale-130 origin-left transition-transform duration-300">
             <img src={logo} className="w-24 h-auto object-contain" alt="GPC logo" width="96" height="46" />
           </div>
         </Link>
