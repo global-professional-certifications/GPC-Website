@@ -57,6 +57,22 @@ const Navbar = ({ topOffset = 48 }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Lock background page scroll while the mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   // Handle hover with delay for Courses
   const handleCoursesMouseEnter = () => {
     clearTimeout(coursesTimeoutRef.current);
@@ -242,7 +258,7 @@ const Navbar = ({ topOffset = 48 }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white shadow-xl overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white shadow-xl overflow-y-auto overscroll-contain max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
