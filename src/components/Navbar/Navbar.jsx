@@ -122,7 +122,7 @@ const Navbar = ({ topOffset = 48 }) => {
                   to="/courses"
                   onClick={() => setIsCoursesDropdownOpen(false)}
                   className={({ isActive }) =>
-                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
+                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                   }
                 >
                   {({ isActive }) => (
@@ -157,7 +157,7 @@ const Navbar = ({ topOffset = 48 }) => {
               >
                 {/* Corporate Button */}
                 <button
-                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 dark:text-white hover:text-brand-blue transition group"
+                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 hover:text-brand-blue transition group"
                 >
                   {item}
                   <FaChevronDown
@@ -182,7 +182,7 @@ const Navbar = ({ topOffset = 48 }) => {
                 key={index}
                 to={item.toLowerCase()}
                 className={({ isActive }) =>
-                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
+                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                 }
               >
                 {({ isActive }) => (
@@ -233,7 +233,7 @@ const Navbar = ({ topOffset = 48 }) => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-gray-800 dark:text-white focus:outline-none"
+          className="lg:hidden text-gray-800 focus:outline-none"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
@@ -242,12 +242,12 @@ const Navbar = ({ topOffset = 48 }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white dark:bg-gray-900 shadow-xl overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white shadow-xl overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
           {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs"].map((item, index) => (
-            <li key={index} className="w-full border-b border-gray-100 dark:border-gray-800 last:border-0">
+            <li key={index} className="w-full border-b border-gray-100 last:border-0">
               {item === "Courses" ? (
                 <div className="w-full">
                   <button
@@ -268,7 +268,7 @@ const Navbar = ({ topOffset = 48 }) => {
                               onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
                               className="flex items-center justify-between w-full gap-2 py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
                             >
-                              <span className="min-w-0 truncate text-left">
+                              <span className="min-w-0 flex-1 truncate text-left">
                                 {provider.name}
                                 <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
                               </span>
