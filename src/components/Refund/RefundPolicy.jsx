@@ -76,7 +76,7 @@ export default function RefundPolicy() {
                 canonicalUrl="https://globalprofessionalcertifications.com/refund"
             />
             <div className="w-full bg-gray-50 min-h-screen">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pb-12 pt-32 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-32 text-brand-dark">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-10 text-brand-dark">
                     <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Refund Policy</h3>
                     <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8">
                         At Young Stalwart Consulting LLP, under the brand name Global Professional Certifications, we are committed to delivering high-quality professional certification programs and ensuring customer satisfaction. We understand that occasionally, you may require a refund due to unforeseen circumstances. Please read the following refund and international payment policy carefully.
