@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -102,7 +102,7 @@ export default function NotificationBanner() {
   // The banner's height is content-driven (it grows on narrow screens when
   // the announcement text wraps to multiple lines), so this can't be a fixed
   // constant - the Navbar and page content need to know the true height.
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = bannerRef.current;
     if (!el) return;
 

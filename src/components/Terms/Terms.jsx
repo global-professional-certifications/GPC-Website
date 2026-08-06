@@ -155,7 +155,7 @@ export default function Terms() {
                 canonicalUrl="https://globalprofessionalcertifications.com/terms"
             />
             <div className="w-full bg-gray-50 min-h-screen">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pt-32 pb-12 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-32 text-brand-dark">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pt-8 pb-12 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-10 text-brand-dark">
                     <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Terms & Conditions</h3>
                     <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6">Last updated: February 10, 2025</p>
                     <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8">
