@@ -116,7 +116,7 @@ const Glossary = () => {
                 canonicalUrl="https://globalprofessionalcertifications.com/glossary"
             />
             <div className="min-h-screen bg-gray-50 flex flex-col items-center px-4 sm:px-6 md:px-8">
-                <div className="max-w-4xl w-full pt-28 sm:pt-32">
+                <div className="max-w-4xl w-full pt-8 sm:pt-10">
                     <h1 className="text-3xl sm:text-4xl font-bold mt-6 text-center mb-6 sm:mb-8">Glossary</h1>
 
                     {/* Search Box */}

@@ -31,7 +31,9 @@ export default function Layout() {
         showCountdownBar,
         handleCountdownComplete,
         loading,
-        topOffset
+        topOffset,
+        navbarTopOffset,
+        countdownBarTopOffset
     } = useLayout();
 
     // Show countdown bar on homepage if there's an active upcoming event
@@ -45,7 +47,7 @@ export default function Layout() {
             <ScrollToHash />
             <ScrollToTop />
             <NotificationBanner />
-            <Navbar topOffset={12} showCountdownBar={shouldShowCountdown} />
+            <Navbar topOffset={navbarTopOffset} showCountdownBar={shouldShowCountdown} />
             {shouldShowCountdown && upcomingEvent && (
                 <EventCountdownBar
                     eventName={upcomingEvent.eventName}
@@ -54,6 +56,7 @@ export default function Layout() {
                     buttonText="View Event"
                     buttonLink="/events#upcoming-event"
                     onComplete={handleCountdownComplete}
+                    topOffset={countdownBarTopOffset}
                 />
             )}
             <main id="main-content" style={{ paddingTop: `${topOffset}px` }} className="min-h-screen">

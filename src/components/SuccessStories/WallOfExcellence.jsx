@@ -9,6 +9,34 @@ const getInitials = (name) => {
     return name.substring(0, 2).toUpperCase();
 };
 
+// Builds a windowed page list so pagination never grows wider than a handful
+// of buttons, regardless of totalPages: first page, last page, a small
+// window around the current page, and '...' placeholders for the gaps.
+const getVisiblePages = (currentPage, totalPages) => {
+    const siblingCount = 1;
+    const totalVisible = siblingCount * 2 + 5; // first + last + current + 2 siblings + 2 ellipses
+
+    if (totalPages <= totalVisible) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    const leftSibling = Math.max(currentPage - siblingCount, 1);
+    const rightSibling = Math.min(currentPage + siblingCount, totalPages);
+
+    const showLeftEllipsis = leftSibling > 2;
+    const showRightEllipsis = rightSibling < totalPages - 1;
+
+    const pages = [1];
+    if (showLeftEllipsis) pages.push('...');
+    for (let page = leftSibling; page <= rightSibling; page++) {
+        if (page !== 1 && page !== totalPages) pages.push(page);
+    }
+    if (showRightEllipsis) pages.push('...');
+    pages.push(totalPages);
+
+    return pages;
+};
+
 
 
 const WallOfExcellence = ({ wallEntries, stories }) => {
@@ -109,7 +137,7 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                 {/* Course Tabs */}
                 {tabs.length > 0 && (
                     <div className="w-full relative border-b border-white/20 mb-4">
-                        <div className="flex gap-6 md:gap-10 overflow-x-auto pb-1 no-scrollbar justify-center">
+                        <div className="flex gap-6 md:gap-10 overflow-x-auto pb-1 no-scrollbar justify-start px-1 md:justify-center md:px-0">
                             {tabs.map(tab => (
                                 <button
                                     key={tab.slug}
@@ -239,30 +267,39 @@ const WallOfExcellence = ({ wallEntries, stories }) => {
                         <button
                             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                             disabled={currentPage === 1}
-                            className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/70 hover:bg-white hover:text-brand-blue hover:shadow-md transition-all duration-300 disabled:opacity-30 disabled:hover:shadow-none disabled:hover:bg-white/10 disabled:hover:text-white/70"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/70 hover:bg-white hover:text-brand-blue hover:shadow-md transition-all duration-300 disabled:opacity-30 disabled:hover:shadow-none disabled:hover:bg-white/10 disabled:hover:text-white/70"
                         >
                             <span className="text-xl">←</span>
                         </button>
 
                         <div className="flex items-center gap-2">
-                            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                                <button
-                                    key={page}
-                                    onClick={() => setCurrentPage(page)}
-                                    className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${currentPage === page
-                                        ? 'bg-white text-brand-blue shadow-lg shadow-black/20 scale-110'
-                                        : 'bg-white/10 text-white/70 border border-white/20 hover:border-white/50 hover:bg-white hover:text-brand-blue'
-                                        }`}
-                                >
-                                    {page}
-                                </button>
+                            {getVisiblePages(currentPage, totalPages).map((page, idx) => (
+                                page === '...' ? (
+                                    <span
+                                        key={`ellipsis-${idx}`}
+                                        className="w-6 flex-shrink-0 flex items-center justify-center text-white/50 text-sm font-bold select-none"
+                                    >
+                                        …
+                                    </span>
+                                ) : (
+                                    <button
+                                        key={page}
+                                        onClick={() => setCurrentPage(page)}
+                                        className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${currentPage === page
+                                            ? 'bg-white text-brand-blue shadow-lg shadow-black/20 scale-110'
+                                            : 'bg-white/10 text-white/70 border border-white/20 hover:border-white/50 hover:bg-white hover:text-brand-blue'
+                                            }`}
+                                    >
+                                        {page}
+                                    </button>
+                                )
                             ))}
                         </div>
 
                         <button
                             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                             disabled={currentPage === totalPages}
-                            className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/70 hover:bg-white hover:text-brand-blue hover:shadow-md transition-all duration-300 disabled:opacity-30 disabled:hover:shadow-none disabled:hover:bg-white/10 disabled:hover:text-white/70"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/70 hover:bg-white hover:text-brand-blue hover:shadow-md transition-all duration-300 disabled:opacity-30 disabled:hover:shadow-none disabled:hover:bg-white/10 disabled:hover:text-white/70"
                         >
                             <span className="text-xl">→</span>
                         </button>

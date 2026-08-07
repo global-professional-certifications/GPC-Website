@@ -2,6 +2,51 @@ import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Tag, X, Filter } from 'lucide-react'
 
+// The Sanity "color" field is documented as a hex code, but in practice
+// editors enter plain Tailwind color-family names (e.g. "purple", "emerald").
+// Some of those happen to also be valid CSS keywords (purple, blue) so they
+// render by luck; others (emerald, indigo, sky, ...) aren't real CSS colors
+// and silently fail to apply, leaving the chip with no background at all.
+// Resolve any of these to a real hex value before computing contrast.
+const TAILWIND_COLOR_HEX = {
+    red: '#dc2626', orange: '#ea580c', amber: '#d97706', yellow: '#ca8a04',
+    lime: '#65a30d', green: '#16a34a', emerald: '#059669', teal: '#0d9488',
+    cyan: '#0891b2', sky: '#0284c7', blue: '#2563eb', indigo: '#4f46e5',
+    violet: '#7c3aed', purple: '#9333ea', fuchsia: '#c026d3', pink: '#db2777',
+    rose: '#e11d48', slate: '#475569', gray: '#4b5563', zinc: '#52525b',
+    neutral: '#525252', stone: '#57534e',
+}
+
+const resolveCategoryColor = (color) => {
+    const fallback = '#4F46E5'
+    if (!color || typeof color !== 'string') return fallback
+
+    const trimmed = color.trim().toLowerCase()
+    if (TAILWIND_COLOR_HEX[trimmed]) return TAILWIND_COLOR_HEX[trimmed]
+
+    const hex = trimmed.replace('#', '')
+    if (/^[0-9a-f]{3}$/.test(hex) || /^[0-9a-f]{6}$/.test(hex)) return `#${hex}`
+
+    return fallback
+}
+
+// Compute relative luminance of a resolved hex color and pick a readable
+// text color instead of assuming white always works.
+const getContrastTextColor = (hexColor) => {
+    let hex = hexColor.replace('#', '')
+    if (hex.length === 3) {
+        hex = hex.split('').map((c) => c + c).join('')
+    }
+    if (hex.length !== 6 || /[^0-9a-fA-F]/.test(hex)) return '#ffffff'
+
+    const r = parseInt(hex.substring(0, 2), 16)
+    const g = parseInt(hex.substring(2, 4), 16)
+    const b = parseInt(hex.substring(4, 6), 16)
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+    return luminance > 0.6 ? '#1f2937' : '#ffffff'
+}
+
 /**
  * BlogFilters - Reusable filter component for blog categories and tags
  * @param {Array} categories - Array of category objects with title, slug, color, postCount
@@ -40,7 +85,7 @@ const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, on
             {/* Category Tabs */}
             {categories.length > 0 && (
                 <div className="mb-4">
-                    <div className="flex flex-wrap items-center justify-center gap-2 pb-2">
+                    <div className="flex items-center gap-2 pb-2 overflow-x-auto no-scrollbar flex-nowrap justify-start px-1 md:flex-wrap md:overflow-visible md:justify-center md:px-0">
                         <Link
                             to="/blogs"
                             className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${!activeCategory
@@ -50,31 +95,33 @@ const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, on
                         >
                             All Posts
                         </Link>
-                        {categories.map((category) => (
-                            <Link
-                                key={category._id}
-                                to={`/blogs?category=${category.slug?.current || category.slug}`}
-                                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === (category.slug?.current || category.slug)
-                                        ? 'text-white shadow-md'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                    }`}
-                                style={
-                                    activeCategory === (category.slug?.current || category.slug)
-                                        ? { backgroundColor: category.color || '#4F46E5' }
-                                        : {}
-                                }
-                            >
-                                {category.title}
-                                {category.postCount > 0 && (
-                                    <span className={`ml-1.5 text-xs ${activeCategory === (category.slug?.current || category.slug)
-                                            ? 'text-white/80'
-                                            : 'text-gray-400'
-                                        }`}>
-                                        ({category.postCount})
-                                    </span>
-                                )}
-                            </Link>
-                        ))}
+                        {categories.map((category) => {
+                            const isActive = activeCategory === (category.slug?.current || category.slug)
+                            const bgColor = resolveCategoryColor(category.color)
+                            const textColor = getContrastTextColor(bgColor)
+
+                            return (
+                                <Link
+                                    key={category._id}
+                                    to={`/blogs?category=${category.slug?.current || category.slug}`}
+                                    className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive
+                                            ? 'shadow-md'
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                        }`}
+                                    style={isActive ? { backgroundColor: bgColor, color: textColor } : {}}
+                                >
+                                    {category.title}
+                                    {category.postCount > 0 && (
+                                        <span
+                                            className={`ml-1.5 text-xs ${isActive ? '' : 'text-gray-400'}`}
+                                            style={isActive ? { color: textColor, opacity: 0.8 } : {}}
+                                        >
+                                            ({category.postCount})
+                                        </span>
+                                    )}
+                                </Link>
+                            )
+                        })}
                     </div>
                 </div>
             )}

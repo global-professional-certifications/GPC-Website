@@ -58,37 +58,86 @@ export default function ContactUs() {
             />
 
             {/* ───── SECTION 1: Hero ───── */}
-            <section className="bg-brand-blue pt-10 pb-20 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-28 relative overflow-hidden">
+            <section className="bg-brand-blue pt-12 pb-16 lg:pt-16 lg:pb-20 relative overflow-hidden">
                 {/* Decorative blurs */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div className="w-full max-w-6xl px-6 lg:px-12 mx-auto text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        <span className="text-sm text-white/90 font-medium">We typically respond within 24 hours</span>
-                    </div>
-                    <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-4">
-                        We'd Love to <span className="text-orange-400">Hear From You</span>
-                    </h1>
-                    <p className="text-base sm:text-lg text-gray-200 max-w-xl mx-auto leading-relaxed font-poppins">
-                        You have a question about our programs? Our team is ready to answer all your queries.
-                    </p>
+                <div className="w-full max-w-6xl px-6 lg:px-12 mx-auto relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-                    {/* Contact Details Row */}
-                    <div className="mt-12 flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-5">
-                        <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/10">
-                            <GrLocation size={16} className="text-orange-400 flex-shrink-0" />
-                            <p className="text-sm text-white font-medium font-poppins">Innov8, Orchid Centre, Golf Course Road, Gurugram</p>
+                        {/* Left Side: Texts */}
+                        <div className="lg:col-span-7 text-left">
+                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/10">
+                                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                                <span className="text-sm text-white/90 font-medium">We typically respond within 24 hours</span>
+                            </div>
+                            <h1 className="text-3xl md:text-6xl font-bold leading-tight text-white mb-5">
+                                We'd Love to <br />
+                                <span className="text-orange-400">Hear From You</span>
+                            </h1>
+                            <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-poppins max-w-md">
+                                You have a question about our programs? Our team is ready to answer all your queries and guide you toward your certification goals.
+                            </p>
                         </div>
-                        <a href="tel:+918736083099" className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/10 hover:bg-white/20 transition-all duration-300">
-                            <FiPhoneCall size={16} className="text-orange-400 flex-shrink-0" />
-                            <p className="text-sm text-white font-medium font-poppins">(+91) 87360 83099</p>
-                        </a>
-                        <a href="mailto:cia@globalprofessionalcertifications.com?subject=Inquiry&body=Hi there, I would like to know more about..." className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/10 hover:bg-white/20 transition-all duration-300">
-                            <MdOutlineEmail size={16} className="text-orange-400 flex-shrink-0" />
-                            <p className="text-sm text-white font-medium font-poppins">cia@globalprofessionalcertifications.com</p>
-                        </a>
+
+                        {/* Right Side: White Card with Contact Info */}
+                        <div className="lg:col-span-5">
+                            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/20 text-gray-900 relative">
+                                <h3 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-100 flex items-center justify-between">
+                                    <span>Contact Information</span>
+                                    <span className="w-2 h-2 rounded-full bg-brand-blue"></span>
+                                </h3>
+
+                                <div className="space-y-6">
+                                    {/* Location / Address */}
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-11 h-11 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                            <GrLocation size={20} />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Our Office</p>
+                                            <p className="text-sm text-gray-800 font-normal font-poppins leading-snug">
+                                                Innov8, Orchid Centre, Golf Course Road, Gurugram, Haryana - 122022
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Phone */}
+                                    <a
+                                        href="tel:+918736083099"
+                                        className="flex items-start gap-4 group/item transition-colors"
+                                    >
+                                        <div className="w-11 h-11 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-brand-blue group-hover/item:text-white transition-colors duration-300">
+                                            <FiPhoneCall size={18} />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Phone Number</p>
+                                            <p className="text-sm text-gray-800 font-normal font-poppins group-hover/item:text-brand-blue transition-colors">
+                                                (+91) 87360 83099
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                    {/* Email */}
+                                    <a
+                                        href="mailto:cia@globalprofessionalcertifications.com?subject=Inquiry&body=Hi there, I would like to know more about..."
+                                        className="flex items-start gap-4 group/item transition-colors"
+                                    >
+                                        <div className="w-11 h-11 rounded-2xl bg-purple-500/10 text-brand-purple flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-brand-purple group-hover/item:text-white transition-colors duration-300">
+                                            <MdOutlineEmail size={20} />
+                                        </div>
+                                        <div className="overflow-hidden">
+                                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Email Address</p>
+                                            <p className="text-sm text-gray-800 font-normal font-poppins truncate group-hover/item:text-brand-purple transition-colors">
+                                                cia@globalprofessionalcertifications.com
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>

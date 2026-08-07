@@ -22,7 +22,7 @@ const corporateOptions = [
   },
 ];
 
-const Navbar = ({ topOffset = 0 }) => {
+const Navbar = ({ topOffset = 48 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   const [isCorporateDropdownOpen, setIsCorporateDropdownOpen] = useState(false);
@@ -56,6 +56,22 @@ const Navbar = ({ topOffset = 0 }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Lock background page scroll while the mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   // Handle hover with delay for Courses
   const handleCoursesMouseEnter = () => {
@@ -96,12 +112,12 @@ const Navbar = ({ topOffset = 0 }) => {
   return (
     <nav
       className="fixed w-full z-50 bg-white backdrop-blur-md shadow-sm px-0 md:px-6 transition-transform duration-300"
-      style={{ top: `${topOffset * 4}px` }}
+      style={{ top: `${topOffset}px` }}
     >
       <div className="relative max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto py-2 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <div className="transform scale-150 md:scale-130 transition-transform duration-300">
+          <div className="transform scale-150 md:scale-130 origin-left transition-transform duration-300">
             <img src={logo} className="w-24 h-auto object-contain" alt="GPC logo" width="96" height="46" />
           </div>
         </Link>
@@ -122,7 +138,7 @@ const Navbar = ({ topOffset = 0 }) => {
                   to="/courses"
                   onClick={() => setIsCoursesDropdownOpen(false)}
                   className={({ isActive }) =>
-                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
+                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                   }
                 >
                   {({ isActive }) => (
@@ -157,7 +173,7 @@ const Navbar = ({ topOffset = 0 }) => {
               >
                 {/* Corporate Button */}
                 <button
-                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 dark:text-white hover:text-brand-blue transition group"
+                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 hover:text-brand-blue transition group"
                 >
                   {item}
                   <FaChevronDown
@@ -182,7 +198,7 @@ const Navbar = ({ topOffset = 0 }) => {
                 key={index}
                 to={item.toLowerCase()}
                 className={({ isActive }) =>
-                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800 dark:text-white'} hover:text-brand-blue transition group`
+                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                 }
               >
                 {({ isActive }) => (
@@ -233,7 +249,7 @@ const Navbar = ({ topOffset = 0 }) => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-gray-800 dark:text-white focus:outline-none"
+          className="lg:hidden text-gray-800 focus:outline-none"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
@@ -242,12 +258,12 @@ const Navbar = ({ topOffset = 0 }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white dark:bg-gray-900 shadow-xl overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`lg:hidden fixed top-16 right-0 w-[85vw] md:w-[65vw] bg-white shadow-xl overflow-y-auto overscroll-contain max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
           {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs"].map((item, index) => (
-            <li key={index} className="w-full border-b border-gray-100 dark:border-gray-800 last:border-0">
+            <li key={index} className="w-full border-b border-gray-100 last:border-0">
               {item === "Courses" ? (
                 <div className="w-full">
                   <button
@@ -266,13 +282,13 @@ const Navbar = ({ topOffset = 0 }) => {
                             {/* Provider (level 1) */}
                             <button
                               onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
-                              className="flex items-center justify-between w-full py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
+                              className="flex items-center justify-between w-full gap-2 py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
                             >
-                              <span>
+                              <span className="min-w-0 flex-1 truncate text-left">
                                 {provider.name}
                                 <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
                               </span>
-                              <FaChevronDown className={`text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                              <FaChevronDown className={`flex-shrink-0 text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
                             </button>
                             {/* Courses (level 2) */}
                             <div className={`overflow-hidden transition-all duration-300 ${providerOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -283,10 +299,12 @@ const Navbar = ({ topOffset = 0 }) => {
                                     to={course.link}
                                     onClick={() => setIsOpen(false)}
                                     className={({ isActive }) =>
-                                      `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                                      `flex min-w-0 items-center py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
                                     }
                                   >
-                                    {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                    <span className="min-w-0 truncate">
+                                      {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                    </span>
                                   </NavLink>
                                 ))}
                               </div>
