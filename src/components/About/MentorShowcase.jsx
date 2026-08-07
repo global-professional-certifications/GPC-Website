@@ -8,7 +8,7 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const MentorShowcase = () => {
     return (
-        <section className="bg-brand-blue py-16 px-6 md:px-20">
+        <section className="bg-brand-blue py-16 px-6 md:px-20 font-poppins">
             <div className="md:hidden">
                 <h2 className="text-3xl md:text-4xl font-bold text-white md:text-gray-900 mb-4">
                     Our{" "}
@@ -35,7 +35,7 @@ const MentorShowcase = () => {
                         {/* LEFT CONTENT */}
                         <div className="w-full md:w-[65%]">
                             <div className="hidden md:block">
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
                                     Our{" "}
                                     <span className="text-brand-blue font-normal italic">
                                         Experienced
