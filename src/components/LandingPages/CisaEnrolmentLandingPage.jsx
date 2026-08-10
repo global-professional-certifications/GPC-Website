@@ -7,7 +7,6 @@ import faqImage from '../../assets/faq.webp';
 
 import {
   FaCalendarAlt,
-  FaClock,
   FaShieldAlt,
   FaChalkboardTeacher,
   FaBookOpen,
@@ -231,21 +230,13 @@ export default function CisaEnrolmentLandingPage() {
               Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 15th. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
             </p>
 
-            {/* Batch & Orientation Schedule Showcase */}
+            {/* Batch Schedule Showcase */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-8 mb-7 text-xs sm:text-sm text-gray-200 font-medium">
               <div className="flex items-center gap-3">
                 <FaCalendarAlt className="text-orange-400 text-xl sm:text-2xl shrink-0" />
                 <div>
                   <span className="block text-white font-semibold">Batch starts from <strong className="text-amber-300 font-bold">Aug 15th</strong></span>
                   <span className="block text-[11px] sm:text-xs text-gray-300 font-normal">(7:30 AM IST)</span>
-                </div>
-              </div>
-              <span className="hidden sm:inline text-white/20 self-center text-xl">•</span>
-              <div className="flex items-center gap-3">
-                <FaClock className="text-purple-300 text-xl sm:text-2xl shrink-0" />
-                <div>
-                  <span className="block text-white font-semibold">Orientation on <strong className="text-amber-300 font-bold">Aug 9th</strong></span>
-                  <span className="block text-[11px] sm:text-xs text-gray-300 font-normal">(5:00 PM IST)</span>
                 </div>
               </div>
             </div>
@@ -259,14 +250,6 @@ export default function CisaEnrolmentLandingPage() {
                 className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md flex items-center justify-center gap-2.5 cursor-pointer group"
               >
                 <span>Secure Your Seat</span>
-              </a>
-              <a
-                href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-lg font-medium text-sm text-white bg-white/10 hover:bg-white/20 border border-white/25 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
-              >
-                <span>Attend Free Orientation</span>
               </a>
             </div>
           </div>
@@ -446,8 +429,8 @@ export default function CisaEnrolmentLandingPage() {
             </p>
           </div>
 
-          {/* Schedule Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {/* Schedule Summary Card */}
+          <div className="max-w-2xl mx-auto w-full mb-16">
             {/* Card 1 */}
             <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-brand-blue relative">
               <div className="inline-block bg-blue-50 text-brand-blue text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
@@ -480,41 +463,6 @@ export default function CisaEnrolmentLandingPage() {
                 className="block text-center w-full py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white bg-brand-blue hover:bg-brand-purple transition-all duration-200 shadow-sm cursor-pointer"
               >
                 Enroll Now
-              </a>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-orange-500 relative">
-              <div className="inline-block bg-orange-50 text-orange-600 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
-                Free Session
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2.5">
-                <FaCalendarAlt className="text-orange-500 text-sm" />
-                Free CISA Orientation
-              </h3>
-
-              <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Date:</span>
-                  <strong className="text-gray-900 font-semibold">August 9th</strong>
-                </div>
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Timings:</span>
-                  <strong className="text-orange-600 font-semibold">5:00 PM - 6:00 PM IST</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Focus:</span>
-                  <strong className="text-gray-900 font-medium">90-Day Exam Strategy & Roadmap</strong>
-                </div>
-              </div>
-
-              <a
-                href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center w-full py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-orange-500 to-pink-500 transition-all duration-200 shadow-sm cursor-pointer"
-              >
-                Register Now
               </a>
             </div>
           </div>
