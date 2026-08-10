@@ -512,27 +512,27 @@ export default function CisaEnrolmentLandingPage() {
               {/* Desktop Flowing Gradient Line — sits behind the nodes */}
               <div className="hidden lg:block absolute top-[36px] left-[calc(10%+28px)] right-[calc(10%+28px)] h-[3px] bg-gradient-to-r from-[#3a1292] via-[#a622e1] via-amber-500 via-emerald-500 to-rose-600 rounded-full z-0" />
 
+              {/* Mobile/Tablet Vertical Trunk Line — continuous, runs through every icon node.
+                  Offsets are tuned to the current card min-height (~204px, so icon center ≈ 102px);
+                  revisit if card content/min-height changes materially. */}
+              <div className="lg:hidden absolute top-[102px] bottom-[102px] left-9 -translate-x-1/2 w-[3px] bg-gradient-to-b from-[#3a1292] via-[#a622e1] via-amber-500 via-emerald-600 to-rose-600 rounded-full z-0" />
+
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-3 items-stretch relative z-10">
-                {DOMAIN_BREAKDOWN.map((d, index) => {
+                {DOMAIN_BREAKDOWN.map((d) => {
                   const IconComponent = d.icon;
                   return (
-                    <div key={d.id} className="flex flex-col items-center text-center group h-full">
+                    <div key={d.id} className="flex items-center gap-4 text-left lg:flex-col lg:items-center lg:text-center lg:gap-0 group h-full">
 
                       {/* Icon Node with pulsing ring */}
-                      <div className="relative mb-5">
+                      <div className="relative flex-shrink-0 lg:mb-5">
                         <div className={`absolute inset-0 rounded-2xl ${d.bgTheme} opacity-20 scale-125 blur-md group-hover:opacity-40 transition-all duration-300`} />
                         <div className={`relative w-[72px] h-[72px] rounded-2xl ${d.bgTheme} text-white flex items-center justify-center text-2xl shadow-xl border-[3px] border-white ring-2 ${d.ringTheme} transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300`}>
                           <IconComponent />
                         </div>
                       </div>
 
-                      {/* Mobile vertical connector */}
-                      {index !== DOMAIN_BREAKDOWN.length - 1 && (
-                        <div className="lg:hidden w-[3px] h-8 bg-gradient-to-b from-brand-blue to-purple-500 -mt-2 mb-3 rounded-full" />
-                      )}
-
                       {/* Card */}
-                      <div className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg group-hover:border-brand-blue/30 transition-all duration-300 flex flex-col flex-1">
+                      <div className="flex-1 lg:w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg group-hover:border-brand-blue/30 transition-all duration-300 flex flex-col lg:flex-1">
                         {/* Coloured top accent */}
                         <div className={`h-1 w-full ${d.barColor}`} />
 
