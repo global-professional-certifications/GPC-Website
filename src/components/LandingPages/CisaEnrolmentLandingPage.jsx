@@ -120,28 +120,52 @@ const courseFaqs = [
 // Testimonials Data
 const TESTIMONIALS_DATA = [
   {
-    quote: "The conceptual clarity provided by Arpit Sir is unmatched. The live sessions made the complex IT Governance and Protection of Assets domains incredibly simple. Cleared my CISA exam on the first attempt!",
-    author: "Adnan Al-Mansoori",
-    role: "Senior IT Auditor",
-    location: "Riyadh (Saudi Arabia)"
+    quote: "I passed my CISA Exam. Thank you so much for your guidance and the efforts you put into the training. I truly couldn’t have done it without your insights and the solid foundation you helped me build. You are a truly valuable teacher, and I feel lucky to have been part of your first batch.",
+    author: "Bhargav Tej",
+    role: "Compliance Manager",
+    companyname: "Micron"
   },
   {
-    quote: "As a risk professional, bridging the gap to IT auditing was a challenge. GPC's CISA course provided exactly the structured approach and real-life scenarios I needed to clear the exam.",
-    author: "Fatima Al-Hashimi",
-    role: "Risk Advisory Analyst",
-    location: "Dubai (UAE)"
+    quote: "From CIA to CISA—Arpit Garg’s mentorship is truly comprehensive. The classes are so well-structured that no student is left with a single doubt. I highly recommend GPC for any global aspirant.",
+    author: "Amit Mayani",
+    role: "Group Head- Internal Audit & Systems Management",
+    companyname: "Karimjee Group"
   },
   {
-    quote: "The WhatsApp support group and regular practice questions kept me on track. If you are a working professional with a busy schedule, GPC's structured weekend sessions are the absolute best choice.",
-    author: "David Vance",
-    role: "Internal Audit Manager",
-    location: "London (UK)"
+    quote: "The right guidance made my CISA journey smooth and successful. When the mentor is right, results follow. I give full credit to Arpit for helping me pass CISA with great ease.",
+    author: "Jignesh Mehta ",
+    role: "Head- Internal Audit",
+    companyname: "Qatar National Bank"
   },
   {
-    quote: "Excellent session delivery with deep focus on ISACA's exam mind. The mock tests simulated the real exam perfectly.",
-    author: "Rohan Mehta",
-    role: "Cyber Security Consultant",
-    location: "Mumbai (India)"
+    quote: "Cleared CISA Certification on my first attempt. This journey wouldn’t have been possible without the outstanding guidance, structure, and consistent support provided by Global Professional Certifications, especially the exceptional mentorship of Arpit Garg.",
+    author: "Praveen Yande",
+    role: "Associate Director",
+    companyname: "Alliantgroup India Talent "
+  },
+  {
+    quote: "I am thrilled to have passed the CISA exam! This is my second major certification achieved under Arpit's exceptional mentorship, right after my CIA success. The structured support and continuous guidance at GPC made a massive difference in my preparation. Thank you for the unwavering support!",
+    author: "Yogesh Soni",
+    role: "Deputy General Manager",
+    companyname: "Ather Energy  "
+  },
+  {
+    quote: "Delighted to have cleared the CISA exam on my first attempt! The course was well-structured, making complex concepts simple and practical to grasp. Extremely grateful to Mentor Arpit Garg for his exceptional guidance and continuous support throughout my preparation.",
+    author: "Bharti Grover",
+    role: "Senior Manager – Internal Audit",
+    companyname: "E-commerce Company "
+  },
+  {
+    quote: "Passing the CISA exam was a smooth journey, thanks to GPC! A big shoutout to Arpit Garg Sir for his exceptional guidance. The structured training made complex, technical topics easy to grasp for someone with a finance background. His exam strategy and MCQ insights were invaluable. Highly recommend GPC’s CISA program!",
+    author: "Pooja Lakhotia ",
+    role: "Senior II",
+    companyname: "Alliant Talent"
+  },
+  {
+    quote: "A heartfelt thanks to Arpit Sir for his exceptional guidance and structured coaching! His CISA training was instrumental in helping me clear the examination. His in-depth subject knowledge and practical approach make his mentorship truly outstanding.",
+    author: "Krinal Dabberu ",
+    role: "Senior Officer – Risk & Fraud",
+    companyname: "United Arab Bank "
   }
 ];
 
@@ -185,7 +209,7 @@ export default function CisaEnrolmentLandingPage() {
       {/* Hero Section - Sober, Clean & Standard Font Sizing with Embedded Form */}
       <section className="bg-brand-blue text-white py-12 md:py-16 px-4 sm:px-6 lg:px-8 font-poppins">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-          
+
           {/* Left Column: Copy & Value Proposition */}
           <div className="w-full lg:w-[52%] text-center lg:text-left">
             {/* Pre-Heading Urgency Badge */}
@@ -400,7 +424,7 @@ export default function CisaEnrolmentLandingPage() {
                   {/* Location Tile */}
                   <div className="shrink-0">
                     <span className="inline-block text-xs font-semibold text-brand-blue bg-blue-50/90 border border-blue-100/90 px-3 py-1.5 rounded-full shadow-2xs group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all duration-300">
-                      {t.location}
+                      {t.companyname}
                     </span>
                   </div>
                 </div>
@@ -569,32 +593,32 @@ export default function CisaEnrolmentLandingPage() {
       </section>
 
       {/* FAQ Section */}
-      
-              <div className="mt-24 px-8 pb-40 md:pb-[220px] lg:px-20">
-                <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
-                  {/* Image Section */}
-                  <div className="w-full lg:w-2/5 flex justify-center items-center relative">
-                    <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
-      
-                    {/* Main Image */}
-                    <img
-                      src={faqImage}
-                      alt="FAQ illustration"
-                      loading="lazy"
-                      width="500"
-                      height="500"
-                      className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
-                    />
-                  </div>
-      
-                  {/* Questions Dropdown Section */}
-                  <div className="w-full lg:w-3/5">
-                    <Suspense fallback={<SectionLoader />}>
-                      <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />
-                    </Suspense>
-                  </div>
-                </div>
-              </div>
+
+      <div className="mt-24 px-8 pb-40 md:pb-[220px] lg:px-20">
+        <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-0">
+          {/* Image Section */}
+          <div className="w-full lg:w-2/5 flex justify-center items-center relative">
+            <div className="absolute max-w-md w-full h-full bg-brand-blue/30 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 lg:translate-x-6 lg:translate-y-6 z-0"></div>
+
+            {/* Main Image */}
+            <img
+              src={faqImage}
+              alt="FAQ illustration"
+              loading="lazy"
+              width="500"
+              height="500"
+              className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
+            />
+          </div>
+
+          {/* Questions Dropdown Section */}
+          <div className="w-full lg:w-3/5">
+            <Suspense fallback={<SectionLoader />}>
+              <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />
+            </Suspense>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="py-6 px-6 bg-white border-t border-gray-200 text-center text-xs text-gray-500">
