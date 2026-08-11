@@ -250,7 +250,7 @@ export default function CisaEnrolmentLandingPage() {
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-200 font-medium justify-center lg:justify-start">
                   <FaChalkboardTeacher className="text-orange-400 text-xl sm:text-2xl shrink-0" />
-                  <span className="block text-white font-semibold">Free Orientation on <strong className="text-amber-300 font-bold">Aug 15th, 5 PM - 6 PM</strong></span>
+                  <span className="block text-white font-semibold">Free Orientation on <strong className="text-amber-300 font-bold">Aug 15th</strong></span>
                 </div>
                 <a
                   href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
