@@ -10,7 +10,7 @@ import {
   FaShieldAlt,
   FaChalkboardTeacher,
   FaBookOpen,
-  FaWhatsapp,
+  FaLaptop,
   FaArrowRight,
   FaStar,
   FaUserGraduate,
@@ -279,7 +279,7 @@ export default function CisaEnrolmentLandingPage() {
               Why IT Audit & Risk Professionals Prepare with <span className="text-brand-blue font-normal italic">GPC</span>
             </h2>
             <p className="text-gray-600 text-xs sm:text-sm max-w-xl mx-auto">
-              Our proven pedagogical model combines live interactive learning, Gleim alignment, and continuous mentor support.
+              Our proven teaching method combines live interactive learning, ISACA-aligned curriculum, and continuous mentor support.
             </p>
           </div>
 
@@ -292,11 +292,11 @@ export default function CisaEnrolmentLandingPage() {
                     <FaChalkboardTeacher />
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug group-hover:text-brand-blue transition-colors">
-                    Live & Interactive Sessions
+                    Interactive Live Weekend Sessions
                   </h3>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  Don't just watch videos. Engage in live, two-way interactive classes with real-time Q&A. Master the most complex IT audit concepts through practical, real-world case studies aligning with COBIT, ISO 27001, NIST, SOX, and global regulatory frameworks.
+                  Don’t just watch videos. Engage in interactive, weekend live classes tailored for working professionals with real-time Q&A. Master complex IT audit and risk management concepts through practical, real-world case studies aligned with global frameworks such as COBIT, ISO 27001, NIST, SOX, and regulatory standards.
                 </p>
               </div>
             </div>
@@ -313,7 +313,7 @@ export default function CisaEnrolmentLandingPage() {
                   </h3>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  Learn directly from our mentor Mr. Arpit Garg holding CA, CIA, CISA, and CRMA credentials. Benefit from his proven exam strategies that have helped working professionals clear their exams on the first try.
+                  Learn directly from Mr. Arpit Garg (CA, CIA, CISA, CRMA), holding prestigious certifications and years of teaching experience. Benefit from his proven first-attempt exam strategies, practical industry insights, and structured guidance that have successfully powered over 1,500+ working professionals toward global certification.
                 </p>
               </div>
             </div>
@@ -326,11 +326,11 @@ export default function CisaEnrolmentLandingPage() {
                     <FaBookOpen />
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors">
-                    Exam-Centric Study Prep & Gleim Alignment
+                    Exam-Centric Study Prep & ISACA Alignment
                   </h3>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  Get access to domain-wise mindmaps, cheat sheets, and structured study plans. Our preparation is meticulously aligned with the latest ISACA exam practices and Gleim curriculum to ensure zero surprises on exam day.
+                  Accelerate your preparation with structured study plans, domain-wise mindmaps, cheat sheets, and high-yield MCQs. Meticulously aligned with the latest ISACA exam specifications and premier study materials, our methodology ensures complete syllabus mastery with zero surprises on exam day.
                 </p>
               </div>
             </div>
@@ -340,14 +340,14 @@ export default function CisaEnrolmentLandingPage() {
               <div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center text-emerald-600 text-2xl shrink-0">
-                    <FaWhatsapp />
+                    <FaLaptop />
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug group-hover:text-emerald-600 transition-colors">
-                    Post-Class Support & Study Group Access
+                    Unlimited LMS Portal Access (Recorded Sessions + PPT Notes + MCQs)
                   </h3>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  Preparation doesn't end when the class does. Get direct access to a dedicated WhatsApp group for doubt clearing, peer discussion, and ongoing support until you pass your exam.
+                  Get access to the LMS Portal, which includes recorded sessions + PPT notes + MCQs (with no validity period). Revisit live class recordings anytime at your own pace, review comprehensive presentation notes, and practice topic-wise MCQs with unlimited access throughout your career journey.
                 </p>
               </div>
             </div>
