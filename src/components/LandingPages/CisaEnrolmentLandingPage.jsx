@@ -596,7 +596,7 @@ export default function CisaEnrolmentLandingPage() {
             {/* Main Image */}
             <img
               src={faqImage}
-              alt="FAQ illustration"
+              alt="FAQ illustration "
               loading="lazy"
               width="500"
               height="500"
