@@ -230,27 +230,37 @@ export default function CisaEnrolmentLandingPage() {
               Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 15th. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
             </p>
 
-            {/* Batch Schedule Showcase */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-8 mb-7 text-xs sm:text-sm text-gray-200 font-medium">
-              <div className="flex items-center gap-3">
-                <FaCalendarAlt className="text-orange-400 text-xl sm:text-2xl shrink-0" />
-                <div>
-                  <span className="block text-white font-semibold">Batch starts from <strong className="text-amber-300 font-bold">Aug 15th</strong></span>
-                  <span className="block text-[11px] sm:text-xs text-gray-300 font-normal">(7:30 AM IST)</span>
+            {/* Batch Schedule Showcase + CTAs */}
+            <div className="flex flex-col sm:flex-row items-stretch justify-center lg:justify-start gap-4 sm:gap-6 mb-2">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-200 font-medium justify-center lg:justify-start">
+                  <FaCalendarAlt className="text-orange-400 text-xl sm:text-2xl shrink-0" />
+                  <span className="block text-white font-semibold">Batch starts from <strong className="text-amber-300 font-bold">Aug 23rd</strong></span>
                 </div>
+                <a
+                  href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-6 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md flex items-center justify-center gap-2.5 cursor-pointer group"
+                >
+                  <span>Secure Your Seat</span>
+                </a>
               </div>
-            </div>
 
-            {/* Hero Action CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-              <a
-                href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md flex items-center justify-center gap-2.5 cursor-pointer group"
-              >
-                <span>Secure Your Seat</span>
-              </a>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-200 font-medium justify-center lg:justify-start">
+                  <FaChalkboardTeacher className="text-orange-400 text-xl sm:text-2xl shrink-0" />
+                  <span className="block text-white font-semibold">Free Orientation on <strong className="text-amber-300 font-bold">Aug 15th, 5 PM - 6 PM</strong></span>
+                </div>
+                <a
+                  href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-6 py-3 rounded-lg font-semibold text-sm text-white bg-white/10 border border-white/30 hover:bg-white/20 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
+                >
+                  <span>Book Free Orientation</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -429,9 +439,44 @@ export default function CisaEnrolmentLandingPage() {
             </p>
           </div>
 
-          {/* Schedule Summary Card */}
-          <div className="max-w-2xl mx-auto w-full mb-16">
-            {/* Card 1 */}
+          {/* Schedule Summary Cards */}
+          <div className="max-w-4xl mx-auto w-full mb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Card 1: Orientation Session */}
+            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-orange-500 relative">
+              <div className="inline-block bg-orange-50 text-orange-600 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
+                Free Orientation
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2.5">
+                <FaUserGraduate className="text-orange-500 text-sm" />
+                Orientation Session
+              </h3>
+
+              <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <span className="text-gray-500">Date:</span>
+                  <strong className="text-gray-900 font-semibold">August 15th</strong>
+                </div>
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <span className="text-gray-500">Timings:</span>
+                  <strong className="text-orange-600 font-semibold">5:00 PM - 6:00 PM IST</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Format:</span>
+                  <strong className="text-gray-900 font-medium">Live Online Session</strong>
+                </div>
+              </div>
+
+              <a
+                href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center w-full py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm cursor-pointer"
+              >
+                Reserve Your Free Spot
+              </a>
+            </div>
+
+            {/* Card 2: Live Interactive Batch */}
             <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-brand-blue relative">
               <div className="inline-block bg-blue-50 text-brand-blue text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
                 Live Batch
@@ -444,11 +489,11 @@ export default function CisaEnrolmentLandingPage() {
               <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
                 <div className="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Start Date:</span>
-                  <strong className="text-gray-900 font-semibold">August 15th</strong>
+                  <strong className="text-gray-900 font-semibold">August 23rd</strong>
                 </div>
                 <div className="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Timings:</span>
-                  <strong className="text-brand-blue font-semibold">7:30 AM - 10:30 AM IST</strong>
+                  <strong className="text-brand-blue font-semibold">8:30 AM - 11:30 AM IST</strong>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500">Days:</span>
