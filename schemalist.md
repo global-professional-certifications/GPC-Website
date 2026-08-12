@@ -56,10 +56,10 @@ This document outlines a comprehensive plan for implementing JSON-LD structured 
   },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Innov8 Building, Orchid Centre, Golf course road",
+    "streetAddress": "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Road, Sector 48",
     "addressLocality": "Gurugram",
     "addressRegion": "Haryana",
-    "postalCode": "122022",
+    "postalCode": "122018",
     "addressCountry": "IN"
   }
 }
@@ -444,10 +444,10 @@ This document outlines a comprehensive plan for implementing JSON-LD structured 
   "email": "cia@globalprofessionalcertifications.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Innov8 Building, Orchid Centre, Golf course road",
+    "streetAddress": "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Road, Sector 48",
     "addressLocality": "Gurugram",
     "addressRegion": "Haryana",
-    "postalCode": "122022",
+    "postalCode": "122018",
     "addressCountry": "IN"
   },
   "geo": {

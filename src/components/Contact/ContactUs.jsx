@@ -19,7 +19,7 @@ export default function ContactUs() {
     const localBusinessSchema = getLocalBusinessSchema({
         name: "Global Professional Certifications",
         description: "Leading institute for CIA, CISA, CRMA, and IAP certification training. Expert-led programs for audit and risk professionals.",
-        address: "Innov8 Building, Orchid Centre, Golf course road, Gurugram, Haryana, India - 122022",
+        address: "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Rd, Sector 48, Gurugram, Haryana, India - 122018",
         phone: "+91 87360 83099",
         email: "cia@globalprofessionalcertifications.com"
     });
@@ -41,10 +41,10 @@ export default function ContactUs() {
     const postalAddressSchema = {
         "@context": "https://schema.org",
         "@type": "PostalAddress",
-        "streetAddress": "Innov8 Building, Orchid Centre, Golf course road",
+        "streetAddress": "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Rd, Sector 48",
         "addressLocality": "Gurugram",
         "addressRegion": "Haryana",
-        "postalCode": "122022",
+        "postalCode": "122018",
         "addressCountry": "IN"
     };
 
@@ -98,7 +98,7 @@ export default function ContactUs() {
                                         <div>
                                             <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Our Office</p>
                                             <p className="text-sm text-gray-800 font-normal font-poppins leading-snug">
-                                                Innov8, Orchid Centre, Golf Course Road, Gurugram, Haryana - 122022
+                                                5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Rd, Sector 48, Gurugram, Haryana 122018
                                             </p>
                                         </div>
                                     </div>
@@ -240,7 +240,7 @@ export default function ContactUs() {
                             Find Us on <span className="text-brand-blue font-normal italic">Google Maps</span>
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base font-poppins leading-relaxed max-w-xl mx-auto">
-                            Visit us at our Gurugram office. We are located at Innov8, Orchid Centre on Golf Course Road.
+                            Visit us at our Gurugram office. We are located at 5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Rd, Sector 48, Gurugram
                         </p>
                     </div>
                     <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">

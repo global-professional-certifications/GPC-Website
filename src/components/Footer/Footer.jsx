@@ -129,7 +129,7 @@ export default function Footer() {
                             <div className="flex items-start gap-3">
                                 <FontAwesomeIcon icon={faLocationDot} className="text-white mt-1.5" />
                                 <p>
-                                    Innov8 Building, Orchid Centre, <br />Golf course road, Gurugram, <br />Haryana, India - 122022
+                                    5th Floor, Unit 502, Tower B, Capital Business Park, <br />Sohna Rd, Sector 48, Gurugram, <br />Haryana, India - 122018
                                 </p>
                             </div>
                             <div className="flex items-start gap-3">
