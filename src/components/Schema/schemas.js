@@ -30,10 +30,10 @@ export const getOrganizationSchema = () => ({
     },
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Innov8 Building, Orchid Centre, Golf course road",
+        "streetAddress": "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Road   , Sector 48",
         "addressLocality": "Gurugram",
         "addressRegion": "Haryana",
-        "postalCode": "122022",
+        "postalCode": "122018",
         "addressCountry": "IN"
     },
     "foundingDate": "2024",
@@ -364,16 +364,16 @@ export const getLocalBusinessSchema = (business = {}) => ({
     "email": business.email || "cia@globalprofessionalcertifications.com",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": business.address || "Innov8 Building, Orchid Centre, Golf course road",
+        "streetAddress": business.address || "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Road, Sector 48",
         "addressLocality": "Gurugram",
         "addressRegion": "Haryana",
-        "postalCode": "122022",
+        "postalCode": "122018",
         "addressCountry": "IN"
     },
     "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "28.4595",
-        "longitude": "77.0266"
+        "latitude": "28.4157",
+        "longitude": "77.0393"
     },
     "hasMap": "https://maps.app.goo.gl/iJx6qe41EeEeG1vY8",
     "openingHoursSpecification": {
