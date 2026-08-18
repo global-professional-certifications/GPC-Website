@@ -3,13 +3,8 @@ import post from './post'
 import successStory from './successStory'
 import testimonialCourse from './testimonialCourse'
 import category from './category'
-import ebook from './ebook'
-import course from './course'
-import courseCategory from './courseCategory'
-import popup from './popup'
 import upcomingEvent from './upcomingEvent'
 import pastEvent from './pastEvent'
-import event from './event'
 import wallOfExcellence from './wallOfExcellence'
 import successPageSettings from './successPageSettings'
 import successHero from './successHero'
@@ -35,13 +30,8 @@ export const schemaTypes = [
     successStory,
     testimonialCourse,
     category,
-    ebook,
-    course,
-    courseCategory,
-    popup,
     upcomingEvent,
     pastEvent,
-    event,
     wallOfExcellence,
     successPageSettings,
     successHero,
