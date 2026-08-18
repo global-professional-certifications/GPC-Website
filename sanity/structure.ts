@@ -7,23 +7,40 @@ export const structure: StructureResolver = (S, context) => {
     return S.list()
         .title('Content')
         .items([
-            // Blog Post
+            // Blogs Folder
             S.listItem()
-                .title('Blog Posts')
-                .schemaType('post')
-                .child(S.documentTypeList('post').title('Blog Posts')),
+                .title('Blogs')
+                .icon(() => '📝')
+                .child(
+                    S.list()
+                        .title('Blogs')
+                        .items([
+                            S.listItem()
+                                .title('Blog Posts')
+                                .icon(() => '📰')
+                                .schemaType('post')
+                                .child(S.documentTypeList('post').title('Blog Posts')),
 
-            // Author
-            S.listItem()
-                .title('Authors')
-                .schemaType('author')
-                .child(S.documentTypeList('author').title('Authors')),
+                            S.listItem()
+                                .title('Authors')
+                                .icon(() => '✍️')
+                                .schemaType('author')
+                                .child(S.documentTypeList('author').title('Authors')),
+
+                            S.listItem()
+                                .title('Categories')
+                                .icon(() => '🏷️')
+                                .schemaType('category')
+                                .child(S.documentTypeList('category').title('Categories')),
+                        ])
+                ),
 
             S.divider(),
 
             // Success Stories - Hierarchical Structure
             S.listItem()
                 .title('Success Stories')
+                .icon(() => '🌟')
                 .child(() =>
                     client.fetch(`*[_type == "testimonialCourse"] | order(order asc) { _id, name, sections, category }`).then((courses) =>
                         S.list()
@@ -56,6 +73,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // ─── Wall of Excellence Section ───
                                 S.listItem()
                                     .title('Wall of Excellence')
+                                    .icon(() => '🏅')
                                     .id('wall-of-excellence')
                                     .child(
                                         S.list()
@@ -64,6 +82,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Add New Course shortcut
                                                 S.listItem()
                                                     .title('+ Add/Manage Wall Courses')
+                                                    .icon(() => '📚')
                                                     .child(
                                                         S.documentList()
                                                             .title('Manage Wall Courses')
@@ -80,6 +99,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // + Add New Entry (all courses)
                                                 S.listItem()
                                                     .title('+ Add New Entry')
+                                                    .icon(() => '➕')
                                                     .id('wall-add-new')
                                                     .schemaType('wallOfExcellence')
                                                     .child(
@@ -91,6 +111,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // All Entries
                                                 S.listItem()
                                                     .title('All Entries')
+                                                    .icon(() => '📑')
                                                     .id('wall-all')
                                                     .child(
                                                         S.documentList()
@@ -106,6 +127,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 ...courses.filter((c: any) => c.category === 'wallOfExcellence' || (!c.category && (!c.sections || c.sections.includes('wallOfExcellence')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
+                                                        .icon(() => '🎓')
                                                         .id(`wall-${course._id}`)
                                                         .child(
                                                             S.documentList()
@@ -127,6 +149,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Drafts / Unassigned
                                                 S.listItem()
                                                     .title('⚠️ Drafts / Unassigned')
+                                                    .icon(() => '⚠️')
                                                     .id('wall-unassigned')
                                                     .child(
                                                         S.documentList()
@@ -143,6 +166,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // ─── Video Testimonials (Video Vault) ───
                                 S.listItem()
                                     .title('Video Testimonials (Video Vault)')
+                                    .icon(() => '🎥')
                                     .id('video-testimonials-category')
                                     .child(
                                         S.list()
@@ -151,6 +175,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Add New Course shortcut
                                                 S.listItem()
                                                     .title('+ Add/Manage Video Courses')
+                                                    .icon(() => '📚')
                                                     .child(
                                                         S.documentList()
                                                             .title('Manage Video Courses')
@@ -165,6 +190,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Drafts / Unassigned
                                                 S.listItem()
                                                     .title('⚠️ Drafts / Unassigned')
+                                                    .icon(() => '⚠️')
                                                     .id('video-unassigned')
                                                     .child(
                                                         S.documentList()
@@ -176,6 +202,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 ...courses.filter((c: any) => c.category === 'video' || (!c.category && (!c.sections || c.sections.includes('video')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
+                                                        .icon(() => '🎬')
                                                         .id(`video-${course._id}`)
                                                         .child(
                                                             S.documentList()
@@ -198,6 +225,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // ─── Written Testimonials (Read Journey) ───
                                 S.listItem()
                                     .title('Written Testimonials (Read Journey)')
+                                    .icon(() => '💬')
                                     .id('written-testimonials-category')
                                     .child(
                                         S.list()
@@ -206,6 +234,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Add New Course shortcut
                                                 S.listItem()
                                                     .title('+ Add/Manage Written Courses')
+                                                    .icon(() => '📚')
                                                     .child(
                                                         S.documentList()
                                                             .title('Manage Written Courses')
@@ -220,6 +249,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Drafts / Unassigned
                                                 S.listItem()
                                                     .title('⚠️ Drafts / Unassigned')
+                                                    .icon(() => '⚠️')
                                                     .id('written-unassigned')
                                                     .child(
                                                         S.documentList()
@@ -231,6 +261,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 ...courses.filter((c: any) => c.category === 'written' || (!c.category && (!c.sections || c.sections.includes('written')))).map((course: { _id: string; name: string }) =>
                                                     S.listItem()
                                                         .title(course.name)
+                                                        .icon(() => '📖')
                                                         .id(`written-${course._id}`)
                                                         .child(
                                                             S.documentList()
@@ -253,6 +284,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // ─── Mobile Screenshots ───
                                 S.listItem()
                                     .title('Mobile Screenshots')
+                                    .icon(() => '📱')
                                     .id('mobile-screenshots-category')
                                     .child(
                                         S.list()
@@ -261,6 +293,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Add New Course shortcut
                                                 S.listItem()
                                                     .title('+ Add/Manage Mobile Courses')
+                                                    .icon(() => '📚')
                                                     .child(
                                                         S.documentList()
                                                             .title('Manage Mobile Courses')
@@ -277,6 +310,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // All Entries
                                                 S.listItem()
                                                     .title('All Mobile Screenshots')
+                                                    .icon(() => '🖼️')
                                                     .id('mobile-all')
                                                     .schemaType('successStory')
                                                     .child(
@@ -292,6 +326,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Drafts / Unassigned
                                                 S.listItem()
                                                     .title('⚠️ Drafts / Unassigned')
+                                                    .icon(() => '⚠️')
                                                     .id('image-unassigned')
                                                     .child(
                                                         S.documentList()
@@ -340,9 +375,10 @@ export const structure: StructureResolver = (S, context) => {
             // Events - Hierarchical Structure
             S.listItem()
                 .title('Events')
+                .icon(() => '🎉')
                 .child(() =>
                     // Fetch years from past event documents
-                    client.fetch(`*[(_type == "pastEvent" || _type == "event") && defined(year)] { year } | order(year desc)`).then((events: { year: number }[]) => {
+                    client.fetch(`*[_type == "pastEvent" && defined(year)] { year } | order(year desc)`).then((events: { year: number }[]) => {
                         const years: number[] = [...new Set(events.map((e) => e.year).filter((y): y is number => y !== null && y !== undefined))].sort((a, b) => b - a)
 
                         return S.list()
@@ -351,6 +387,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // 1. Upcoming Events
                                 S.listItem()
                                     .title('Upcoming Events')
+                                    .icon(() => '⏳')
                                     .id('upcoming-events')
                                     .schemaType('upcomingEvent')
                                     .child(
@@ -362,6 +399,7 @@ export const structure: StructureResolver = (S, context) => {
                                 // 2. Past Events - with year subfolders
                                 S.listItem()
                                     .title('Past Events')
+                                    .icon(() => '📜')
                                     .id('past-events')
                                     .child(
                                         S.list()
@@ -370,6 +408,7 @@ export const structure: StructureResolver = (S, context) => {
                                                 // Add new past event option
                                                 S.listItem()
                                                     .title('+ Add New Past Event')
+                                                    .icon(() => '➕')
                                                     .id('add-past-event')
                                                     .schemaType('pastEvent')
                                                     .child(
@@ -383,11 +422,12 @@ export const structure: StructureResolver = (S, context) => {
                                                 ...years.map((year: number) =>
                                                     S.listItem()
                                                         .title(`${year}`)
+                                                        .icon(() => '📁')
                                                         .id(`past-events-${year}`)
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${year} Events`)
-                                                                .filter('(_type == "pastEvent" || _type == "event") && year == $year')
+                                                                .filter('_type == "pastEvent" && year == $year')
                                                                 .params({ year })
                                                                 .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                         )
@@ -400,52 +440,27 @@ export const structure: StructureResolver = (S, context) => {
 
             S.divider(),
 
-            // Category
-            S.listItem()
-                .title('Categories')
-                .schemaType('category')
-                .child(S.documentTypeList('category').title('Categories')),
-
-            // Ebook
-            S.listItem()
-                .title('Ebooks')
-                .schemaType('ebook')
-                .child(S.documentTypeList('ebook').title('Ebooks')),
-
-            // Course
-            S.listItem()
-                .title('Courses')
-                .schemaType('course')
-                .child(S.documentTypeList('course').title('Courses')),
-
-            // Course Category
-            S.listItem()
-                .title('Course Categories')
-                .schemaType('courseCategory')
-                .child(S.documentTypeList('courseCategory').title('Course Categories')),
-
-            // Popup
-            S.listItem()
-                .title('Popups')
-                .schemaType('popup')
-                .child(S.documentTypeList('popup').title('Popups')),
-
             // Notification Banner
             S.listItem()
-                .title('Notification')
+                .title('Notification Banner')
                 .icon(() => '🔔')
                 .schemaType('notificationBanner')
                 .child(
                     S.documentTypeList('notificationBanner')
-                        .title('Notifications')
+                        .title('Notification Banner')
                         .defaultOrdering([{ field: 'order', direction: 'asc' }])
                 ),
+
+            S.divider(),
 
             // Company Marquees
             S.listItem()
                 .title('Company Marquees')
+                .icon(() => '🏢')
                 .schemaType('marqueeLine')
                 .child(S.documentTypeList('marqueeLine').title('Company Marquees')),
+
+            S.divider(),
 
             // Brochures (Parent Folder)
             S.listItem()
@@ -497,13 +512,15 @@ export const structure: StructureResolver = (S, context) => {
 
             // ─── Data Maintenance (Future Proofing) ───
             S.listItem()
-                .title('🛠️ Data Maintenance')
+                .title('Data Maintenance')
+                .icon(() => '🛠️')
                 .child(
                     S.list()
                         .title('Data Maintenance')
                         .items([
                             S.listItem()
                                 .title('Legacy Wall Formats (Needs Fix)')
+                                .icon(() => '⚠️')
                                 .child(
                                     S.documentList()
                                         .title('Entries with Single Reference (Fix by re-selecting course)')
@@ -512,6 +529,7 @@ export const structure: StructureResolver = (S, context) => {
                                 ),
                             S.listItem()
                                 .title('Stories Missing Thumbnail')
+                                .icon(() => '🖼️')
                                 .child(
                                     S.documentList()
                                         .title('Missing Thumbnails')
@@ -520,6 +538,7 @@ export const structure: StructureResolver = (S, context) => {
                                 ),
                             S.listItem()
                                 .title('Broken Course References')
+                                .icon(() => '🔗')
                                 .child(
                                     S.documentList()
                                         .title('Broken References')

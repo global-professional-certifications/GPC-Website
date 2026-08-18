@@ -140,6 +140,32 @@ export default defineType({
             initialValue: true,
         }),
         defineField({
+            name: 'enableAutoInactive',
+            title: 'Enable Auto Inactive',
+            type: 'boolean',
+            description: 'Automatically hide/inactivate this card once the specified date and time passes',
+            initialValue: false,
+        }),
+        defineField({
+            name: 'autoInactiveDateTime',
+            title: 'Auto Inactive Date & Time',
+            type: 'datetime',
+            description: 'Select the exact date and time after which this card will automatically become inactive',
+            options: {
+                dateFormat: 'YYYY-MM-DD',
+                timeFormat: 'HH:mm',
+                timeStep: 15,
+            },
+            hidden: ({ parent }) => !parent?.enableAutoInactive,
+            validation: (Rule) => Rule.custom((dateTime, context) => {
+                const parent = context.parent as any
+                if (parent?.enableAutoInactive && !dateTime) {
+                    return 'Auto Inactive Date & Time is required when Auto Inactive is enabled'
+                }
+                return true
+            }),
+        }),
+        defineField({
             name: 'order',
             title: 'Display Order',
             type: 'number',
@@ -153,9 +179,26 @@ export default defineType({
             subtitle: 'date',
             active: 'isActive',
             badges: 'badges',
+            enableAutoInactive: 'enableAutoInactive',
+            autoInactiveDateTime: 'autoInactiveDateTime',
         },
-        prepare({ title, subtitle, active, badges }) {
-            const status = active ? '🟢 Active' : '🔴 Inactive'
+        prepare({ title, subtitle, active, badges, enableAutoInactive, autoInactiveDateTime }) {
+            let status = active ? '🟢 Active' : '🔴 Inactive'
+            if (active && enableAutoInactive && autoInactiveDateTime) {
+                const now = new Date()
+                const expireDate = new Date(autoInactiveDateTime)
+                if (now > expireDate) {
+                    status = '⏰ Auto-Expired'
+                } else {
+                    const formattedExpire = expireDate.toLocaleString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                    status = `🟢 Active (Expires ${formattedExpire})`
+                }
+            }
             const badgesStr = badges && badges.length > 0 ? `[${badges.join(', ')}] ` : ''
             return {
                 title: title,

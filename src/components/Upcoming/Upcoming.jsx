@@ -63,6 +63,18 @@ const displayDateText = (batch) => {
 
 // --- MAIN COMPONENT ---
 
+// Helper to check if an item is active (handling Auto Inactive expiration)
+const isItemActive = (item) => {
+  if (!item || !item.isActive) return false;
+  if (item.enableAutoInactive && item.autoInactiveDateTime) {
+    const inactiveTime = new Date(item.autoInactiveDateTime).getTime();
+    if (!isNaN(inactiveTime) && Date.now() >= inactiveTime) {
+      return false;
+    }
+  }
+  return true;
+};
+
 const Upcoming = () => {
   const [batches, setBatches] = useState([]);
   const [announcement, setAnnouncement] = useState(null);
@@ -72,12 +84,16 @@ const Upcoming = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [batchesData, announcementData] = await Promise.all([
+        const [batchesData, announcementsData] = await Promise.all([
           client.fetch(`*[_type == "upcomingBatch" && isActive == true] | order(order asc) { ..., "detailsFileUrl": detailsFile.asset->url }`),
-          client.fetch(`*[_type == "upcomingAnnouncement" && isActive == true] | order(order asc)[0]`)
+          client.fetch(`*[_type == "upcomingAnnouncement" && isActive == true] | order(order asc)`)
         ]);
-        setBatches(batchesData || []);
-        setAnnouncement(announcementData || null);
+        
+        const activeBatches = (batchesData || []).filter(isItemActive);
+        const activeAnnouncements = (announcementsData || []).filter(isItemActive);
+        
+        setBatches(activeBatches);
+        setAnnouncement(activeAnnouncements.length > 0 ? activeAnnouncements[0] : null);
       } catch (error) {
         console.error("Error fetching upcoming page data from Sanity:", error);
       } finally {
