@@ -1,7 +1,7 @@
 import React from "react";
 import MetaTags from "../MetaTags";
 import { GrLocation } from "react-icons/gr";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiArrowUpRight } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
@@ -63,7 +63,7 @@ export default function ContactUs() {
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div className="w-full max-w-3xl px-6 lg:px-12 mx-auto relative z-10 text-center">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/10">
                         <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                         <span className="text-sm text-white/90 font-medium">We typically respond within 24 hours</span>
@@ -71,7 +71,7 @@ export default function ContactUs() {
                     <h1 className="text-3xl md:text-6xl font-bold leading-tight text-white mb-5">
                         We'd Love to <span className="text-orange-400">Hear From You</span>
                     </h1>
-                    <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-poppins max-w-xl mx-auto mb-8">
+                    <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-poppins max-w-2xl mx-auto mb-8">
                         Questions about CIA, CISA, CRMA, or any of our programs? Our advisors are ready to guide you toward the right certification path.
                     </p>
 
@@ -95,82 +95,91 @@ export default function ContactUs() {
             </section>
 
             {/* ───── SECTION 2: Contact Info Strip ───── */}
-            <section className="bg-gray-50 py-16 lg:py-20">
-                <div className="max-w-6xl mx-auto px-6 lg:px-12">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <section className="bg-gray-50 py-12 lg:py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
 
                         {/* Email Us */}
                         <a
                             href="mailto:cia@globalprofessionalcertifications.com?subject=Inquiry&body=Hi there, I would like to know more about..."
-                            className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100 transition-shadow duration-300 hover:shadow-[0_0_0_2px_rgba(58,18,146,0.08),0_8px_30px_-8px_rgba(58,18,146,0.25)]"
+                            className="group relative bg-white rounded-2xl p-6 md:p-7 shadow-md hover:shadow-xl border border-gray-100 hover:border-purple-200 transition-all duration-300 flex flex-col justify-between"
                         >
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="w-11 h-11 rounded-2xl bg-purple-500/10 text-brand-purple flex items-center justify-center flex-shrink-0">
-                                    <MdOutlineEmail size={20} />
+                            <div>
+                                <div className="flex items-center justify-between mb-5">
+                                    <div className="w-12 h-12 rounded-xl bg-purple-50 text-brand-purple group-hover:bg-brand-purple group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                                        <MdOutlineEmail size={22} />
+                                    </div>
+                                    <FiArrowUpRight size={20} className="text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                                 </div>
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-green-600 bg-green-100 rounded-full px-2.5 py-1">
-                                    Reply in 24h
-                                </span>
+                                <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1.5 group-hover:text-brand-purple transition-colors duration-300">
+                                    Email Us
+                                </p>
+                                <p className="text-base font-semibold text-gray-900 break-words group-hover:text-brand-blue transition-colors duration-300">
+                                    cia@globalprofessionalcertifications.com
+                                </p>
+                                <p className="text-xs text-gray-500 font-poppins mt-2.5 leading-relaxed">
+                                    Reach out to our team for course details, guidance, or support.
+                                </p>
                             </div>
-                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Email Us</p>
-                            <p className="text-sm font-semibold text-gray-900 mb-2 break-words">
-                                cia@globalprofessionalcertifications.com
-                            </p>
-                            <p className="text-sm text-gray-500 font-poppins leading-snug">
-                                The fastest way to reach an advisor. Include the certification you are interested in.
-                            </p>
                         </a>
 
                         {/* Call Us */}
                         <a
                             href="tel:+918736083099"
-                            className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100 transition-shadow duration-300 hover:shadow-[0_0_0_2px_rgba(58,18,146,0.08),0_8px_30px_-8px_rgba(58,18,146,0.25)]"
+                            className="group relative bg-white rounded-2xl p-6 md:p-7 shadow-md hover:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300 flex flex-col justify-between"
                         >
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="w-11 h-11 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center flex-shrink-0">
-                                    <FiPhoneCall size={18} />
+                            <div>
+                                <div className="flex items-center justify-between mb-5">
+                                    <div className="w-12 h-12 rounded-xl bg-blue-50 text-brand-blue group-hover:bg-brand-blue group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                                        <FiPhoneCall size={20} />
+                                    </div>
+                                    <FiArrowUpRight size={20} className="text-gray-300 group-hover:text-brand-blue group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                                 </div>
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-orange-600 bg-orange-100 rounded-full px-2.5 py-1">
-                                    Mon &ndash; Fri
-                                </span>
+                                <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1.5 group-hover:text-brand-blue transition-colors duration-300">
+                                    Call Us
+                                </p>
+                                <p className="text-base font-semibold text-gray-900 group-hover:text-brand-blue transition-colors duration-300">
+                                    (+91) 87360 83099
+                                </p>
+                                <p className="text-xs text-gray-500 font-poppins mt-2.5 leading-relaxed">
+                                    Speak directly with a certification advisor regarding your goals.
+                                </p>
                             </div>
-                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Call Us</p>
-                            <p className="text-sm font-semibold text-gray-900 mb-2">
-                                (+91) 87360 83099
-                            </p>
-                            <p className="text-sm text-gray-500 font-poppins leading-snug">
-                                Speak to a certification advisor Monday to Friday, 9:30 AM &ndash; 6:30 PM.
-                            </p>
                         </a>
 
                         {/* Visit Us */}
-                        <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="w-11 h-11 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center flex-shrink-0">
-                                    <GrLocation size={20} />
+                        <a
+                            href="#office-location"
+                            className="group relative bg-white rounded-2xl p-6 md:p-7 shadow-md hover:shadow-xl border border-gray-100 hover:border-orange-200 transition-all duration-300 flex flex-col justify-between"
+                        >
+                            <div>
+                                <div className="flex items-center justify-between mb-5">
+                                    <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                                        <GrLocation size={22} />
+                                    </div>
+                                    <FiArrowUpRight size={20} className="text-gray-300 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                                 </div>
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-brand-purple bg-purple-100 rounded-full px-2.5 py-1">
-                                    Gurugram
-                                </span>
+                                <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1.5 group-hover:text-orange-500 transition-colors duration-300">
+                                    Visit Us
+                                </p>
+                                <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-brand-blue transition-colors duration-300 leading-relaxed">
+                                    5th Floor, Unit 502, Tower B,<br />
+                                    <span className="font-normal">Capital Business Park, Sohna Rd,<br />
+                                    Sector 48, Gurugram, Haryana 122018, India</span>
+                                </p>
                             </div>
-                            <p className="text-xs uppercase font-bold tracking-wider text-gray-400 mb-1">Visit Us</p>
-                            <p className="text-sm font-semibold text-gray-900 mb-2">
-                                Capital Business Park, Sohna Road
-                            </p>
-                            <p className="text-sm text-gray-500 font-poppins leading-snug">
-                                Sector 48, Gurugram, Haryana &ndash; 122018. By prior appointment only.
-                            </p>
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </section>
 
             {/* ───── SECTION 3: Enquiry Form ───── */}
             <section className="py-16 lg:py-24 bg-gray-50">
-                <div className="max-w-6xl mx-auto px-6 lg:px-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Heading */}
-                    <div className="text-center max-w-2xl mx-auto mb-14">
+                    <div className="text-center max-w-3xl mx-auto mb-14">
                         <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
                             Send Us a <span className="text-brand-blue font-normal italic">Message</span>
                         </h2>
@@ -270,8 +279,8 @@ export default function ContactUs() {
             </section>
 
             {/* ───── SECTION 4: Find Us ───── */}
-            <section className="py-16 lg:py-20 bg-white">
-                <div className="max-w-6xl mx-auto px-6 lg:px-12">
+            <section id="office-location" className="py-16 lg:py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10">
                         <p className="text-xs font-bold uppercase tracking-widest text-brand-purple mb-3">Find Us</p>
                         <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
@@ -292,9 +301,9 @@ export default function ContactUs() {
                                     <p className="text-sm font-bold text-gray-900 mb-1">Global Professional Certifications</p>
                                     <p className="text-sm text-gray-600 font-poppins leading-relaxed">
                                         5th Floor, Unit 502, Tower B<br />
-                                        Capital Business Park, Sohna Road<br />
+                                        Capital Business Park, Sohna Rd<br />
                                         Sector 48, Gurugram<br />
-                                        Haryana &ndash; 122018, India
+                                        Haryana 122018, India
                                     </p>
                                 </div>
                             </div>
