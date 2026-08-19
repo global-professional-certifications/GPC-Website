@@ -377,8 +377,8 @@ export const structure: StructureResolver = (S, context) => {
                 .title('Events')
                 .icon(() => '🎉')
                 .child(() =>
-                    // Fetch years from past event documents
-                    client.fetch(`*[_type == "pastEvent" && defined(year)] { year } | order(year desc)`).then((events: { year: number }[]) => {
+                    // Fetch years from past event documents (including legacy 'event' type)
+                    client.fetch(`*[_type in ["pastEvent", "event"] && defined(year)] { year } | order(year desc)`).then((events: { year: number }[]) => {
                         const years: number[] = [...new Set(events.map((e) => e.year).filter((y): y is number => y !== null && y !== undefined))].sort((a, b) => b - a)
 
                         return S.list()
@@ -427,7 +427,7 @@ export const structure: StructureResolver = (S, context) => {
                                                         .child(
                                                             S.documentList()
                                                                 .title(`${year} Events`)
-                                                                .filter('_type == "pastEvent" && year == $year')
+                                                                .filter('(_type == "pastEvent" || _type == "event") && year == $year')
                                                                 .params({ year })
                                                                 .defaultOrdering([{ field: 'order', direction: 'asc' }])
                                                         )

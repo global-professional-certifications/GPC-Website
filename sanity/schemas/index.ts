@@ -5,6 +5,7 @@ import testimonialCourse from './testimonialCourse'
 import category from './category'
 import upcomingEvent from './upcomingEvent'
 import pastEvent from './pastEvent'
+import event from './event'
 import wallOfExcellence from './wallOfExcellence'
 import successPageSettings from './successPageSettings'
 import successHero from './successHero'
@@ -32,6 +33,7 @@ export const schemaTypes = [
     category,
     upcomingEvent,
     pastEvent,
+    event,
     wallOfExcellence,
     successPageSettings,
     successHero,
