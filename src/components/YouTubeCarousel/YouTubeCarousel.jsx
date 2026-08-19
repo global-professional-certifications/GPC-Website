@@ -27,24 +27,12 @@ const YouTubeCarousel = ({ videos }) => {
             description: 'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
             thumbnail: '/thumbnails/O4H2jSYZ6V8-opt.webp',
         },
-        // {
-        //     url: 'https://youtu.be/XNnXkttYQUY?si=MrofNMhf9nXC2GPd',
-        //     title: 'CIA Part wise Orientation Program with New Syllabus',
-        //     description: 'Get to know everything about CIA course - New syllabus, What is changing, Schedule of session series, Cost, etc.',
-        //     thumbnail: '/thumbnails/XNnXkttYQUY-opt.webp',
-        // },
-        // {
-        //     url: 'https://youtu.be/dz4vHdVRhgY?si=DiqdAfEiDjltBERd',
-        //     title: 'CIA Part 2 Orientation Program with New Syllabus',
-        //     description: "Are you ready to conquer CIA Part 2 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 2 Orientation Program is designed to set you on the right path to success!",
-        //     thumbnail: '/thumbnails/dz4vHdVRhgY-opt.webp',
-        // },
-        // {
-        //     url: 'https://youtu.be/Xn7lL67U2NI?si=-mCBFQcMy0T04nEi',
-        //     title: 'CIA Part 3 Orientation Program with New Syllabus',
-        //     description: "Are you ready to conquer CIA Part 3 with confidence and strategy? Whether you're an existing student, a newcomer, or an aspirant eager to embark on this journey, our CIA Part 3 Orientation Program is designed to set you on the right path to success!",
-        //     thumbnail: '/thumbnails/Xn7lL67U2NI-opt.webp',
-        // },
+        {
+            url: 'https://youtu.be/gh1jwuF7vyw?si=soGkDoIUEuB85PKu',
+            title: 'How to Crack CISA on Your 1st Attempt',
+            description: "If you are planning to pursue the globally recognized Certified Information Systems Auditor (CISA) credential in 2026, structuring your preparation with the right strategy is the critical first step.",
+            thumbnail: '/thumbnails/gh1jwuF7vyw-opt.webp',
+        },
     ];
 
     const processedVideos = (videos || defaultVideos).map(video => {

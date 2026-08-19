@@ -64,8 +64,8 @@ export default function Events() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                // Fetch past events
-                const query = `*[_type == "pastEvent" && isActive == true && defined(year)] | order(year desc, order asc) {
+                // Fetch past events (supports both pastEvent and legacy event document types)
+                const query = `*[_type in ["pastEvent", "event"] && isActive != false && defined(year)] | order(year desc, order asc) {
                     _id,
                     eventName,
                     "slug": slug.current,
