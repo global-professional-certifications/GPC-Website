@@ -180,7 +180,7 @@ export default function CisaEnrolmentLandingPage() {
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">
       <MetaTags
         title="CISA Live Interactive Batch | Global Professional Certifications (GPC)"
-        description="Fast-Track Your GRC Career & Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 15th."
+        description="Fast-Track Your GRC Career & Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd."
         canonicalUrl="https://globalprofessionalcertifications.com/cisa-enrollment"
       />
 
@@ -227,7 +227,7 @@ export default function CisaEnrolmentLandingPage() {
 
             {/* Sub-Headline */}
             <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6 font-normal">
-              Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 15th. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
+              Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 23rd. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
             </p>
 
             {/* Batch Schedule Showcase + CTAs */}
@@ -247,18 +247,14 @@ export default function CisaEnrolmentLandingPage() {
                 </a>
               </div>
 
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-gray-200 font-medium justify-center lg:justify-start">
-                  <FaChalkboardTeacher className="text-orange-400 text-xl sm:text-2xl shrink-0" />
-                  <span className="block text-white font-semibold">Free Orientation on <strong className="text-amber-300 font-bold">Aug 15th</strong></span>
-                </div>
+              <div className="flex flex-col justify-end">
                 <a
-                  href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
+                  href="https://youtu.be/gh1jwuF7vyw?si=OZltdbu8EUTu427b"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full px-6 py-3 rounded-lg font-semibold text-sm text-white bg-white/10 border border-white/30 hover:bg-white/20 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
                 >
-                  <span>Book Free Orientation</span>
+                  <span>Watch Orientation</span>
                 </a>
               </div>
             </div>
@@ -441,63 +437,55 @@ export default function CisaEnrolmentLandingPage() {
 
           {/* Schedule Summary Cards */}
           <div className="max-w-4xl mx-auto w-full mb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Card 1: Orientation Session */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-orange-500 relative">
-              <div className="inline-block bg-orange-50 text-orange-600 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
-                Free Orientation
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2.5">
-                <FaUserGraduate className="text-orange-500 text-sm" />
-                Orientation Session
-              </h3>
-
-              <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Date:</span>
-                  <strong className="text-gray-900 font-semibold">August 15th</strong>
+            {/* Card 1: Orientation Session Recording */}
+            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-orange-500 relative flex flex-col justify-between">
+              <div>
+                <div className="inline-block bg-orange-50 text-orange-600 text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
+                  Orientation Recording
                 </div>
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Timings:</span>
-                  <strong className="text-orange-600 font-semibold">5:00 PM - 6:00 PM IST</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Format:</span>
-                  <strong className="text-gray-900 font-medium">Live Online Session</strong>
-                </div>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 flex items-center gap-2.5">
+                  <FaUserGraduate className="text-orange-500 text-sm" />
+                  Watch Orientation Session
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6">
+                  Watch the complete orientation recording to understand the CISA exam structure, 5 ISACA domains breakdown, and our mentor Mr. Arpit Garg&apos;s study strategy before joining the live batch.
+                </p>
               </div>
 
               <a
-                href="https://zfrmz.in/slj78OhVQrBzqLausmRi"
+                href="https://youtu.be/gh1jwuF7vyw?si=OZltdbu8EUTu427b"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center w-full py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm cursor-pointer"
               >
-                Reserve Your Free Spot
+                Watch Orientation
               </a>
             </div>
 
             {/* Card 2: Live Interactive Batch */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-brand-blue relative">
-              <div className="inline-block bg-blue-50 text-brand-blue text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
-                Live Batch
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2.5">
-                <FaChalkboardTeacher className="text-brand-blue text-sm" />
-                Live Interactive Batch
-              </h3>
+            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm border-t-4 border-t-brand-blue relative flex flex-col justify-between">
+              <div>
+                <div className="inline-block bg-blue-50 text-brand-blue text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-3">
+                  Live Batch
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2.5">
+                  <FaChalkboardTeacher className="text-brand-blue text-sm" />
+                  Live Interactive Batch
+                </h3>
 
-              <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Start Date:</span>
-                  <strong className="text-gray-900 font-semibold">August 23rd</strong>
-                </div>
-                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span className="text-gray-500">Timings:</span>
-                  <strong className="text-brand-blue font-semibold">8:30 AM - 11:30 AM IST</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Days:</span>
-                  <strong className="text-gray-900 font-medium">Saturday & Sunday (Every Weekend)</strong>
+                <div className="space-y-3 text-xs sm:text-sm text-gray-700 mb-6">
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                    <span className="text-gray-500">Start Date:</span>
+                    <strong className="text-gray-900 font-semibold">August 23rd</strong>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                    <span className="text-gray-500">Timings:</span>
+                    <strong className="text-brand-blue font-semibold">8:30 AM - 11:30 AM IST</strong>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-500">Days:</span>
+                    <strong className="text-gray-900 font-medium">Saturday & Sunday (Every Weekend)</strong>
+                  </div>
                 </div>
               </div>
 
