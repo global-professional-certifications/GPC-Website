@@ -77,12 +77,14 @@ const Qaip = () => {
                         </div>
 
                         <div className="mt-6 flex flex-wrap gap-4">
-                            <Link
-                                to="/contact"
+                            <a
+                                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/ContactUs1/formperma/O9MpY9VaFlj1CW0wNoiKdeqYueZlhdJoosj25jkM01U"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white rounded-lg shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
                             >
                                 Check Your Compliance
-                            </Link>
+                            </a>
 
                             <a
                                 href="https://iiaindia.co/"
@@ -396,15 +398,17 @@ const Qaip = () => {
                                     External Quality Assessments are mandated every 5 years. GPC, in partnership with IIA India, can help you navigate this process and drive continuous improvement.
                                 </p>
                             </div>
-                            <Link
-                                to="https://forms.zohopublic.in/globalprofessionalcertificat1/form/SimpleContactUs/formperma/UZgkfg0mt8KJh2ccgdqvzWV8DwJUTKuKwSXWALn-nyU"
+                            <a
+                                href="https://forms.zohopublic.in/globalprofessionalcertificat1/form/ContactUs1/formperma/O9MpY9VaFlj1CW0wNoiKdeqYueZlhdJoosj25jkM01U"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group flex-shrink-0 inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/20"
                             >
                                 Request a Consultation
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                 </svg>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>

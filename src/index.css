@@ -222,3 +222,30 @@
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
 }
+
+/* Chatbot Widget Hiding (Disabled temporarily for chatbot improvements) */
+#zsiqscript,
+#zsiq_float,
+.zsiq_floatmain,
+.zsiq_theme1,
+.zsiq_theme2,
+.zsiq_cnt,
+#zcontent,
+div[siq_id],
+iframe[id*="zsiq"],
+iframe[title*="Zoho"],
+iframe[title*="SalesIQ"],
+[id*="zsiq"],
+.zsiq-widget,
+.zsiq_custombtn,
+#zsiq_chat {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+}
