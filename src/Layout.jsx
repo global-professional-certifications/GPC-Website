@@ -7,6 +7,7 @@ import EventCountdownBar from "./components/Events/EventCountdownBar";
 import ScrollToHash from "./ScrollToHash";
 import { SchemaMarkup, getOrganizationSchema, BreadcrumbsSEO } from "./components/Schema";
 import { useLayout, LAYOUT_HEIGHTS } from "./contexts/LayoutContext";
+import EnquireStickyDrawer from "./components/Enquiry/EnquireStickyDrawer";
 
 const ScrollToTop = () => {
     const { pathname, hash } = useLocation();
@@ -33,7 +34,10 @@ export default function Layout() {
         loading,
         topOffset,
         navbarTopOffset,
-        countdownBarTopOffset
+        countdownBarTopOffset,
+        isEnquiryDrawerOpen,
+        openEnquiryDrawer,
+        closeEnquiryDrawer
     } = useLayout();
 
     // Show countdown bar on homepage if there's an active upcoming event
@@ -63,6 +67,12 @@ export default function Layout() {
                 <Outlet context={{ showCountdownBar: shouldShowCountdown }} />
             </main>
             <Footer />
+            <EnquireStickyDrawer
+                isOpen={isEnquiryDrawerOpen}
+                onOpen={openEnquiryDrawer}
+                onClose={closeEnquiryDrawer}
+            />
         </>
     );
 }
+
