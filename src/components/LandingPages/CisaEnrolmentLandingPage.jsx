@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import MetaTags from '../MetaTags.jsx';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
 import { FiPhoneCall } from 'react-icons/fi';
 import MentorShowcase from '../About/MentorShowcase.jsx';
 import FAQDisplay from '../FAQDisplay.jsx';
+import AlumniLogosSection from './AlumniLogosSection.jsx';
 import faqImage from '../../assets/faq.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -12,6 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import {
   FaCalendarAlt,
   FaShieldAlt,
+  FaPhoneAlt,
   FaChalkboardTeacher,
   FaBookOpen,
   FaLaptop,
@@ -26,8 +29,12 @@ import {
   FaQuoteLeft,
   FaCheckCircle,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronRight,
+  FaWhatsapp,
+  FaClipboardList
 } from 'react-icons/fa';
+
+const WHATSAPP_CISA_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%20interested%20in%20the%20CISA%20Training%20Program";
 
 // Custom Arrows for Testimonial Carousel
 const TestimonialPrevArrow = ({ onClick }) => (
@@ -226,10 +233,17 @@ export default function CisaEnrolmentLandingPage() {
           <div className="flex items-center gap-3">
             <a
               href="tel:+918736083099"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap"
+              className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full font-poppins text-white bg-brand-blue hover:bg-[#2e0e75] shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap group"
             >
-              <FiPhoneCall className="text-sm sm:text-base shrink-0" />
-              <span>Talk To Expert</span>
+              <FaPhoneAlt className="text-sm sm:text-base text-white shrink-0 group-hover:scale-110 transition-transform duration-200" />
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] sm:text-[11px] font-normal text-white/90 leading-tight">
+                  Talk to an Expert
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide leading-tight">
+                  +91 87360 83099
+                </span>
+              </div>
             </a>
           </div>
         </div>
@@ -421,16 +435,17 @@ export default function CisaEnrolmentLandingPage() {
 
             <Slider
               className="testimonial-carousel"
-              dots
-              infinite
+              dots={TESTIMONIALS_DATA.length > 4}
+              arrows={TESTIMONIALS_DATA.length > 4}
+              infinite={TESTIMONIALS_DATA.length > 4}
               speed={500}
               slidesToShow={4}
-              slidesToScroll={4}
-              prevArrow={<TestimonialPrevArrow />}
-              nextArrow={<TestimonialNextArrow />}
+              slidesToScroll={TESTIMONIALS_DATA.length > 4 ? 4 : 1}
+              prevArrow={TESTIMONIALS_DATA.length > 4 ? <TestimonialPrevArrow /> : null}
+              nextArrow={TESTIMONIALS_DATA.length > 4 ? <TestimonialNextArrow /> : null}
               responsive={[
-                { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2 } },
-                { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+                { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, dots: true, arrows: true, infinite: true } },
+                { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1, dots: true, arrows: true, infinite: true } }
               ]}
             >
               {TESTIMONIALS_DATA.map((t, idx) => (
@@ -476,6 +491,8 @@ export default function CisaEnrolmentLandingPage() {
               ))}
             </Slider>
           </div>
+
+          <AlumniLogosSection />
         </div>
       </section>
 
@@ -681,10 +698,51 @@ export default function CisaEnrolmentLandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-6 px-6 bg-white border-t border-gray-200 text-center text-xs text-gray-500">
-        <div className="max-w-6xl mx-auto text-center">
-          <span>© {new Date().getFullYear()} Global Professional Certifications. All rights reserved.</span>
+      {/* Mobile Sticky Action Bar Specs (<= 768px) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200 p-2.5 flex items-center gap-2 shadow-2xl">
+        <a
+          href={WHATSAPP_CISA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-lg font-bold text-xs text-white bg-[#059669] hover:bg-emerald-700 shadow-sm transition-all duration-200 text-center whitespace-nowrap"
+        >
+          <FaWhatsapp className="text-sm shrink-0" />
+          <span>Chat on WhatsApp</span>
+        </a>
+        <button
+          onClick={scrollToForm}
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-lg font-bold text-xs text-white bg-[#1D4ED8] hover:bg-blue-800 shadow-sm transition-all duration-200 text-center whitespace-nowrap cursor-pointer"
+        >
+          <FaClipboardList className="text-sm shrink-0" />
+          <span>Secure Your Seat</span>
+        </button>
+      </div>
+
+      {/* Footer & Legal Compliance (Light theme) */}
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200 text-center text-xs text-gray-500 font-poppins pb-24 md:pb-8">
+        <div className="max-w-5xl mx-auto space-y-4 text-center">
+          {/* Compliance & Info Links */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-gray-600">
+            <Link to="/about" target="_blank" className="hover:text-brand-blue transition-colors">About GPC</Link>
+            <span>•</span>
+            <Link to="/success" target="_blank" className="hover:text-brand-blue transition-colors">Wall of Excellence</Link>
+            <span>•</span>
+            <Link to="/privacy" target="_blank" className="hover:text-brand-blue transition-colors">Privacy Policy</Link>
+            <span>•</span>
+            <Link to="/terms" target="_blank" className="hover:text-brand-blue transition-colors">Terms & Conditions</Link>
+            <span>•</span>
+            <Link to="/contact" target="_blank" className="hover:text-brand-blue transition-colors">Contact Us</Link>
+          </div>
+
+          {/* Legal Trademark Disclaimer */}
+          <p className="max-w-4xl mx-auto text-[11px] leading-relaxed text-gray-400 text-center">
+            Certified Information Systems Auditor® (CISA®) is a registered trademark of ISACA. Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
+          </p>
+
+          {/* Copyright Line */}
+          <div className="pt-3 border-t border-gray-100 text-[11px] text-gray-400">
+            <span>© {new Date().getFullYear()} Global Professional Certifications. All rights reserved.</span>
+          </div>
         </div>
       </footer>
     </div>

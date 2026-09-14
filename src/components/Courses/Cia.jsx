@@ -267,7 +267,7 @@ const Cia = () => {
 
                 {/* Course Cards */}
 
-                <div className='container mx-auto'>
+                <div className='container mx-auto' id="course-fees">
                     <div className="max-w-base md:max-w-[52rem] px-6 md:px-0 mx-auto mt-12">
                         <h2 className="text-center text-2xl md:text-4xl font-bold mb-8 mt-16">CIA Enrollment <span className="text-brand-blue font-normal italic">(All 3 Parts)</span>, Your Path to Success</h2>
                         <p className="text-center text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed px-6 md:px-24 pb-12">Earn the Certified Internal Auditor (CIA) certification and accelerate your career with global recognition, high salaries, and job security</p>
@@ -689,7 +689,7 @@ const Cia = () => {
 
                 {/* CIA Course Eligibility */}
 
-                <div className="py-16 px-4 sm:px-6 lg:px-8 font-poppins">
+                <div className="py-16 px-4 sm:px-6 lg:px-8 font-poppins" id="eligibility">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-2xl md:text-4xl font-bold mb-6">

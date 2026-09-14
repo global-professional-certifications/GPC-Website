@@ -37,6 +37,7 @@ const WrittenGalleryPage = lazy(() => import('./components/SuccessStories/Writte
 const Upcoming = lazy(() => import('./components/Upcoming/Upcoming.jsx'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound.jsx'));
 const CisaEnrolmentLandingPage = lazy(() => import('./components/LandingPages/CisaEnrolmentLandingPage.jsx'));
+const CiaEnrolmentLandingPage = lazy(() => import('./components/LandingPages/CiaEnrolmentLandingPage.jsx'));
 
 // Loading component
 const PageLoader = () => (
@@ -51,6 +52,8 @@ const router = createBrowserRouter(
       <Route path="/studio/*" element={<Suspense fallback={<PageLoader />}><StudioPage /></Suspense>} />
       <Route path="/cisa-enrollment" element={<Suspense fallback={<PageLoader />}><CisaEnrolmentLandingPage /></Suspense>} />
       <Route path="/lp/cisa-enrollment" element={<Suspense fallback={<PageLoader />}><CisaEnrolmentLandingPage /></Suspense>} />
+      <Route path="/cia-enrollment" element={<Suspense fallback={<PageLoader />}><CiaEnrolmentLandingPage /></Suspense>} />
+      <Route path="/lp/cia-enrollment" element={<Suspense fallback={<PageLoader />}><CiaEnrolmentLandingPage /></Suspense>} />
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
         <Route path="about" element={<Suspense fallback={<PageLoader />}><AboutUs /></Suspense>} />
