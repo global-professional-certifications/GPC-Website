@@ -110,6 +110,11 @@ export function LayoutProvider({ children }) {
     // Countdown bar top offset (after notification bar + navbar)
     const countdownBarTopOffset = notificationBarHeight + LAYOUT_HEIGHTS.NAVBAR;
 
+    // Sticky Enquiry Drawer state
+    const [isEnquiryDrawerOpen, setIsEnquiryDrawerOpen] = useState(false);
+    const openEnquiryDrawer = () => setIsEnquiryDrawerOpen(true);
+    const closeEnquiryDrawer = () => setIsEnquiryDrawerOpen(false);
+
     const value = {
         upcomingEvents,
         upcomingEvent,
@@ -123,6 +128,10 @@ export function LayoutProvider({ children }) {
         notificationBarHeight,
         setNotificationBarHeight,
         heights: LAYOUT_HEIGHTS,
+        isEnquiryDrawerOpen,
+        setIsEnquiryDrawerOpen,
+        openEnquiryDrawer,
+        closeEnquiryDrawer,
     };
 
     return (
