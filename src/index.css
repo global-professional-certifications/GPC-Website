@@ -227,8 +227,7 @@
 /* Zoho SalesIQ – constrain float button & hide oversized teaser card */
 #zsiq_float,
 .zsiq_floatmain,
-.zsiq_flt_cnt,
-#zohosalesiq {
+.zsiq_flt_cnt {
   max-width: 60px !important;
   max-height: 60px !important;
   overflow: hidden !important;

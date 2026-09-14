@@ -27,11 +27,12 @@
               'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NC8J7N42');
 
-        // Load Zoho SalesIQ
+        // Load Zoho SalesIQ (kept collapsed until user clicks the floating button)
         window.$zoho = window.$zoho || {};
         $zoho.salesiq = $zoho.salesiq || {
           ready: function () {
-            $zoho.salesiq.floatwindow.visible("show");
+            $zoho.salesiq.floatbutton.visible("show");
+            $zoho.salesiq.floatwindow.visible("hide");
             $zoho.salesiq.teaser.visible("hide");
           }
         };
