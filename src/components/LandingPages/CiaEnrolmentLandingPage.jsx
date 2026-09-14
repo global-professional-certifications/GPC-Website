@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import MetaTags from '../MetaTags.jsx';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
@@ -23,7 +23,9 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaArrowRight,
-  FaClipboardList
+  FaClipboardList,
+  FaSpinner,
+  FaArrowDown
 } from 'react-icons/fa';
 import Companies from '../Companies/Companies.jsx';
 import MentorShowcase from '../About/MentorShowcase.jsx';
@@ -32,6 +34,8 @@ import faqImage from '../../assets/faq.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/styles';
 
 // Custom Arrows for Testimonial Carousel
 const TestimonialPrevArrow = ({ onClick }) => (
@@ -55,7 +59,21 @@ const TestimonialNextArrow = ({ onClick }) => (
 );
 
 const WHATSAPP_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%20interested%20in%20the%20CIA%20Training%20Program";
-const ZOHO_FORM_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/CIAEnquiryForm/formperma/qIApzkyOzhnrwrqx8_0Bq5CPCgKmz4r3TjkM7WeJ7u4";
+
+// Native lead form now POSTs directly to Zoho's submit endpoint (field names/URL pulled from
+// Zoho's own "HTML & CSS" embed export) instead of rendering Zoho's hosted form in an iframe.
+// Submitted via a real native form POST (targeting a hidden iframe), not fetch() — Zoho's
+// endpoint rejects fetch/XHR-style submissions with a 409 regardless of payload correctness.
+const ZOHO_SUBMIT_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/CIAEnquiry/formperma/Mh0C4XY-nm68nylJQ6FCm1HmgOgR_-44AJMCWUdLV6M/htmlRecords/submit";
+const ZOHO_SUBMIT_TARGET = "zoho-cia-submit-frame";
+
+const CIA_COURSE_OPTIONS = [
+  "CIA Part 1",
+  "CIA Part 2",
+  "CIA Part 3",
+  "CIA All Parts",
+  "CIA Challenge"
+];
 
 // Hero core value badges (2x2 grid)
 const HERO_VALUE_BADGES = [
@@ -231,6 +249,85 @@ const CIA_FAQS = [
 export default function CiaEnrolmentLandingPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
+  const leadFormRef = useRef(null);
+  const phoneInputRef = useRef(null);
+  const itiRef = useRef(null);
+
+  const [leadForm, setLeadForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    course: ''
+  });
+  const [dialCode, setDialCode] = useState('+91');
+  const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success
+  const [formError, setFormError] = useState('');
+  const [tickVisible, setTickVisible] = useState(false);
+
+  useEffect(() => {
+    if (formStatus === 'success') {
+      const id = requestAnimationFrame(() => setTickVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+    setTickVisible(false);
+  }, [formStatus]);
+
+  useEffect(() => {
+    const phoneInputEl = phoneInputRef.current;
+    if (!phoneInputEl) return;
+
+    const iti = intlTelInput(phoneInputEl, {
+      initialCountry: 'in',
+      separateDialCode: true
+    });
+    itiRef.current = iti;
+
+    const handleCountryChange = () => {
+      const country = iti.getSelectedCountry();
+      if (country) {
+        setDialCode(`+${country.dialCode}`);
+      }
+    };
+    phoneInputEl.addEventListener('countrychange', handleCountryChange);
+
+    return () => {
+      phoneInputEl.removeEventListener('countrychange', handleCountryChange);
+      iti.destroy();
+    };
+  }, []);
+
+  const handleLeadFormSubmit = (e) => {
+    e.preventDefault();
+
+    const phoneValue = phoneInputRef.current?.value || '';
+
+    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim() || !leadForm.course) {
+      setFormError('Please fill in all required fields.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadForm.email.trim())) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+    const phoneDigits = phoneValue.replace(/\D/g, '');
+    if (phoneDigits.length < 7 || phoneDigits.length > 12) {
+      setFormError('Please enter a valid phone number.');
+      return;
+    }
+
+    setFormError('');
+    setFormStatus('submitting');
+
+    // Zoho's submit endpoint rejects fetch/XHR-style requests (409) — it expects a genuine
+    // browser-native form POST. We trigger the real DOM submit (bypassing this onSubmit
+    // handler, so no re-entrant loop) targeting a hidden iframe so the page never navigates away.
+    leadFormRef.current.submit();
+
+    setTimeout(() => {
+      setFormStatus('success');
+    }, 1000);
+  };
+
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
@@ -261,9 +358,10 @@ export default function CiaEnrolmentLandingPage() {
             </span>
             <button
               onClick={scrollToForm}
-              className="inline-flex items-center gap-1.5 text-[#F59E0B] font-semibold underline underline-offset-2 hover:text-amber-300 transition-colors shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[#F59E0B] font-semibold hover:text-amber-300 transition-colors shrink-0 cursor-pointer"
             >
-              Download Batch Schedule ↓
+              <span className="underline underline-offset-2">Download Batch Schedule</span>
+              <FaArrowDown className="text-xs shrink-0" />
             </button>
           </div>
         </div>
@@ -306,12 +404,6 @@ export default function CiaEnrolmentLandingPage() {
 
           {/* Left Column: Copy & Value Proposition */}
           <div className="w-full lg:w-[52%] text-center lg:text-left">
-            {/* Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-orange-300 text-xs font-medium uppercase tracking-wider mb-5 backdrop-blur-sm">
-              <FaShieldAlt className="text-xs text-orange-400" />
-              <span>GLOBAL PROFESSIONAL CERTIFICATIONS (GPC) | IIA CHAPTER COLLABORATION PARTNER</span>
-            </div>
-
             {/* Primary Headline */}
             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white mb-4">
               Master the Certified Internal Auditor{' '}
@@ -346,17 +438,158 @@ export default function CiaEnrolmentLandingPage() {
             </div>
           </div>
 
-          {/* Right Column: Embedded Zoho Form */}
+          {/* Right Column: Native Lead Form (posts to Zoho, no iframe) */}
           <div id="hero-lead-form" className="w-full lg:w-[48%] max-w-md lg:max-w-none">
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 h-[530px] sm:h-[550px] transition-all duration-300">
+            <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 p-5 sm:p-7 transition-all duration-300 text-gray-800">
+
+              {(formStatus === 'submitting' || formStatus === 'success') && (
+                <div className="absolute inset-0 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center z-10 px-6 text-center">
+                  <div
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-500 ease-out ${
+                      formStatus === 'success'
+                        ? `bg-emerald-50 ${tickVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`
+                        : 'bg-blue-50'
+                    }`}
+                  >
+                    {formStatus === 'submitting' ? (
+                      <FaSpinner className="text-brand-blue text-3xl animate-spin" />
+                    ) : (
+                      <FaCheckCircle className="text-emerald-500 text-4xl" />
+                    )}
+                  </div>
+                  <p className="text-gray-900 font-semibold text-sm sm:text-base">
+                    {formStatus === 'submitting' ? 'Submitting your details...' : 'Thank you!'}
+                  </p>
+                  {formStatus === 'success' && (
+                    <p className="text-gray-600 text-xs sm:text-sm mt-1 max-w-xs">
+                      Our team will get back to you soon.
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
+                START YOUR CIA PREPARATION TODAY
+              </h3>
+              <p className="text-gray-500 text-xs sm:text-sm mb-4">
+                Get upcoming batch dates, fee structure, and course brochure.
+              </p>
+
+              <form
+                ref={leadFormRef}
+                onSubmit={handleLeadFormSubmit}
+                noValidate
+                action={ZOHO_SUBMIT_URL}
+                method="POST"
+                encType="multipart/form-data"
+                target={ZOHO_SUBMIT_TARGET}
+                className="space-y-3.5"
+              >
+                <input type="hidden" name="zf_referrer_name" value="" />
+                <input type="hidden" name="zf_redirect_url" value="" />
+                <input type="hidden" name="zc_gad" value="" />
+                <input type="hidden" name="PhoneNumber_countrycodeval" value={dialCode} />
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label htmlFor="cia-first-name" className="block text-xs font-semibold text-gray-700 mb-1">
+                      First Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="cia-first-name"
+                      type="text"
+                      name="Name_First"
+                      value={leadForm.firstName}
+                      onChange={(e) => setLeadForm((prev) => ({ ...prev, firstName: e.target.value }))}
+                      maxLength={255}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cia-last-name" className="block text-xs font-semibold text-gray-700 mb-1">
+                      Last Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="cia-last-name"
+                      type="text"
+                      name="Name_Last"
+                      value={leadForm.lastName}
+                      onChange={(e) => setLeadForm((prev) => ({ ...prev, lastName: e.target.value }))}
+                      maxLength={255}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="cia-email" className="block text-xs font-semibold text-gray-700 mb-1">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="cia-email"
+                    type="email"
+                    name="Email"
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm((prev) => ({ ...prev, email: e.target.value }))}
+                    maxLength={255}
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="cia-phone" className="block text-xs font-semibold text-gray-700 mb-1">
+                    Phone <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    ref={phoneInputRef}
+                    id="cia-phone"
+                    type="tel"
+                    name="PhoneNumber_countrycode"
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="cia-course" className="block text-xs font-semibold text-gray-700 mb-1">
+                    Course Interested In <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="cia-course"
+                    name="Radio"
+                    value={leadForm.course}
+                    onChange={(e) => setLeadForm((prev) => ({ ...prev, course: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  >
+                    <option value="" disabled>Select an option</option>
+                    {CIA_COURSE_OPTIONS.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {formError && (
+                  <p className="text-red-500 text-xs font-medium">{formError}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={formStatus === 'submitting'}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.01] transition-all duration-200 shadow-md cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <span>GET COURSE DETAILS & BATCH FEES</span>
+                  <FaArrowRight className="text-xs shrink-0" />
+                </button>
+
+                <p className="text-gray-400 text-[11px] text-center leading-snug">
+                  🔒 100% Privacy. No spam. Course brochure & batch schedule will be delivered directly to your WhatsApp and Email.
+                </p>
+              </form>
+
               <iframe
-                src={ZOHO_FORM_URL}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                style={{ border: 'none' }}
-                title="CIA Lead Generation Form"
-              ></iframe>
+                name={ZOHO_SUBMIT_TARGET}
+                title="Form submission target"
+                hidden
+              />
             </div>
           </div>
 
