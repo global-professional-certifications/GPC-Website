@@ -309,7 +309,7 @@ export default function CiaEnrolmentLandingPage() {
         <div className="bg-[#0F172A] text-white font-poppins">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center text-xs sm:text-sm">
             <span>
-              🚨 Upcoming CIA Live Weekend Batch Starts <strong className="text-[#F59E0B] font-semibold">Sept 19</strong>
+              🚨 Upcoming CIA Part 1 Accelerator Batch | Starts <strong className="text-[#F59E0B] font-semibold">Sept 19</strong>
               <span className="hidden sm:inline"> | Aligned with Latest IIA Global Standards</span>
             </span>
           </div>
@@ -645,7 +645,7 @@ export default function CiaEnrolmentLandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
-                  Fast-Track Pathway for Qualified Accountants
+                  Fast-Track CIA Challenge Exam Pathway
                 </h3>
                 <p className="text-gray-200 text-xs sm:text-sm leading-relaxed">
                   Already a qualified CA, ACCA, or CPA? You may be eligible for the CIA Challenge Exam — a streamlined, one-part pathway to the CIA designation. Instead of taking the traditional three-part CIA examination, eligible professionals can pursue the single-paper Challenge Exam and prepare through GPC's dedicated, exam-focused coaching and expert guidance. Explore the CIA Challenge Exam pathway and find out if you're eligible.
