@@ -168,8 +168,8 @@ const TESTIMONIALS_DATA = [
 // Frequently Asked Questions Data (Section 6)
 const CIA_FAQS = [
   {
-    question: "What is the CIA® certification?",
-    answer: "The Certified Internal Auditor® (CIA®) is the only globally recognized professional credential for internal auditors, awarded by The Institute of Internal Auditors (IIA), USA. It demonstrates proficiency in audit standards, risk management, and governance."
+    question: "What is the CIA certification?",
+    answer: "The Certified Internal Auditor (CIA) is the only globally recognized professional credential for internal auditors, awarded by The Institute of Internal Auditors (IIA), USA. It demonstrates proficiency in audit standards, risk management, and governance."
   },
   {
     question: "Are GPC's classes live or pre-recorded?",
@@ -874,7 +874,7 @@ export default function CiaEnrolmentLandingPage() {
 
           {/* Legal Trademark Disclaimer */}
           <p className="max-w-4xl mx-auto text-[11px] leading-relaxed text-gray-400 text-center">
-            Certified Internal Auditor® (CIA®) is a registered trademark of The Institute of Internal Auditors (IIA). Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
+            Certified Internal Auditor (CIA) is a registered trademark of The Institute of Internal Auditors (IIA). Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
           </p>
 
           {/* Copyright Line */}
