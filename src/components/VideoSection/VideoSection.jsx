@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,11 +7,27 @@ export default function VideoSection() {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const videoId = "2FWaO_Cf0eg";
   const youtubeThumbnail = "/thumbnails/2FWaO_Cf0eg-opt.webp";
+  const frameRef = useRef(null);
+
+  // Stop this video when the user clicks outside its frame (e.g. to play another video).
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const handleOutsideClick = (event) => {
+      if (frameRef.current && !frameRef.current.contains(event.target)) {
+        setIsPlaying(false);
+        setIsIframeLoaded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isPlaying]);
 
   return (
     <div className="flex justify-center items-center px-4 md:px-0 relative z-10">
       <div className="w-full max-w-4xl mx-auto">
-        <div className="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-lg">
+        <div ref={frameRef} className="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-lg">
           {/* Thumbnail + Play Button */}
           {!isPlaying && (
             <div

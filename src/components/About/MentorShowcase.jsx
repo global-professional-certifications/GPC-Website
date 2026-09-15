@@ -18,9 +18,6 @@ const MentorShowcase = () => {
                     Course Mentor
                 </h2>
 
-                <p className="text-gray-300 md:text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
-                    Learn from industry experts and gain real-world skills that drive success
-                </p>
             </div>
 
             <div className="max-w-6xl mx-auto">
@@ -42,9 +39,6 @@ const MentorShowcase = () => {
                                     </span>{" "}
                                     Course Mentor
                                 </h2>
-                                <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
-                                    Learn from industry experts and gain real-world skills that drive success
-                                </p>
                             </div>
 
                             <div className="space-y-3 md:space-y-6">
@@ -102,10 +96,13 @@ const MentorShowcase = () => {
                                 <div className="h-px w-24 bg-brand-blue/30" />
 
                                 <p className="text-sm md:text-base font-poppins text-gray-600 leading-relaxed max-w-xl">
-                                    A faculty and the architect of success for{" "}
-                                    <span className="font-bold text-brand-dark">1500+</span>{" "}
-                                    professionals. Renowned for redefining audit excellence with
-                                    clarity, structure, and strategic insight.
+                                    With 6+ years of mentoring experience and{" "}
+                                    <span className="font-bold text-brand-dark">1,500+</span>{" "}
+                                    professionals mentored, Arpit Garg brings a practical, structured
+                                    approach to audit and certification preparation. His focus on
+                                    clarity, conceptual understanding, and strategic exam preparation
+                                    has helped professionals approach their certification journey with
+                                    greater confidence.
                                 </p>
                             </div>
                         </div>

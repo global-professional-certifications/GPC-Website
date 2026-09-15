@@ -207,6 +207,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -223,29 +224,48 @@
   contain-intrinsic-size: auto 600px;
 }
 
-/* Chatbot Widget Hiding (Disabled temporarily for chatbot improvements) */
-#zsiqscript,
+/* Zoho SalesIQ – constrain float button & hide oversized teaser card */
 #zsiq_float,
 .zsiq_floatmain,
-.zsiq_theme1,
-.zsiq_theme2,
-.zsiq_cnt,
-#zcontent,
-div[siq_id],
-iframe[id*="zsiq"],
-iframe[title*="Zoho"],
-iframe[title*="SalesIQ"],
-[id*="zsiq"],
-.zsiq-widget,
-.zsiq_custombtn,
-#zsiq_chat {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
+.zsiq_flt_cnt {
+  max-width: 60px !important;
+  max-height: 60px !important;
+  overflow: hidden !important;
 }
+
+#zsiq_float img,
+.zsiq_floatmain img,
+.zsiq_flt_cnt img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Chat window – keep standard dimensions when open */
+.zsiq_cnt {
+  max-width: 370px !important;
+  max-height: 550px !important;
+}
+
+/* Landing pages with their own mobile sticky action bar (CIA, CISA): lift the
+   SalesIQ float button above it (<=767px) so the two don't overlap. Scoped via
+   body.mobile-sticky-bar-active so no other page is affected. */
+@media (max-width: 767px) {
+  body.mobile-sticky-bar-active #zsiq_float {
+    bottom: 76px !important;
+  }
+}
+
+/* intl-tel-input integration helpers */
+.iti {
+  width: 100%;
+  display: block;
+}
+
+.iti__dropdown-content {
+  z-index: 70 !important;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+

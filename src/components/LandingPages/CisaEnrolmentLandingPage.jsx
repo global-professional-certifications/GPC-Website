@@ -1,13 +1,20 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import MetaTags from '../MetaTags.jsx';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
+import { FiPhoneCall } from 'react-icons/fi';
 import MentorShowcase from '../About/MentorShowcase.jsx';
 import FAQDisplay from '../FAQDisplay.jsx';
+import AlumniLogosSection from './AlumniLogosSection.jsx';
 import faqImage from '../../assets/faq.webp';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import {
   FaCalendarAlt,
   FaShieldAlt,
+  FaPhoneAlt,
   FaChalkboardTeacher,
   FaBookOpen,
   FaLaptop,
@@ -20,8 +27,35 @@ import {
   FaServer,
   FaLock,
   FaQuoteLeft,
-  FaCheckCircle
+  FaCheckCircle,
+  FaChevronLeft,
+  FaChevronRight,
+  FaWhatsapp,
+  FaClipboardList
 } from 'react-icons/fa';
+
+const WHATSAPP_CISA_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%20interested%20in%20the%20CISA%20Training%20Program";
+
+// Custom Arrows for Testimonial Carousel
+const TestimonialPrevArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute -left-2 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 bg-white hover:bg-brand-blue rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+    aria-label="Previous testimonials"
+  >
+    <FaChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+  </button>
+);
+
+const TestimonialNextArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute -right-2 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 bg-white hover:bg-brand-blue rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+    aria-label="Next testimonials"
+  >
+    <FaChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+  </button>
+);
 
 // Loading placeholder for sections
 const SectionLoader = () => <div className="py-20 flex justify-center"><div className="w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div></div>;
@@ -176,6 +210,15 @@ export default function CisaEnrolmentLandingPage() {
     }
   };
 
+  // Lift the globally-injected Zoho SalesIQ chat button above this page's mobile
+  // sticky bar so they don't overlap; scoped via body class so no other page is affected.
+  useEffect(() => {
+    document.body.classList.add('mobile-sticky-bar-active');
+    return () => {
+      document.body.classList.remove('mobile-sticky-bar-active');
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">
       <MetaTags
@@ -191,16 +234,26 @@ export default function CisaEnrolmentLandingPage() {
             <img
               src={logo}
               alt="Global Professional Certifications logo"
-              className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-300"
+              className="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300"
               width="160"
               height="60"
             />
           </div>
-          <div className="hidden sm:flex items-center space-x-2 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full text-xs text-brand-blue font-semibold">
-            <span className="inline-block w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-            <span>Live Interactive Mentorship</span>
-            <span className="text-gray-300">|</span>
-            <span className="text-gray-600">Global Batch</span>
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:+918736083099"
+              className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full font-poppins text-white bg-brand-blue hover:bg-[#2e0e75] shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap group"
+            >
+              <FaPhoneAlt className="text-sm sm:text-base text-white shrink-0 group-hover:scale-110 transition-transform duration-200" />
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] sm:text-[11px] font-normal text-white/90 leading-tight">
+                  Talk to an Expert
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide leading-tight">
+                  +91 87360 83099
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </header>
@@ -376,50 +429,79 @@ export default function CisaEnrolmentLandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {TESTIMONIALS_DATA.map((t, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 sm:p-7 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-brand-blue/30 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
-              >
-                {/* Background Quote Accent */}
-                <FaQuoteLeft className="absolute top-4 right-4 text-gray-100 text-5xl opacity-40 group-hover:text-blue-50 group-hover:scale-110 transition-all pointer-events-none z-0" />
+          <div className="relative px-2 sm:px-6 lg:px-8">
+            <style>{`
+              .testimonial-carousel .slick-dots { position: static; margin-top: 2rem; display: flex !important; align-items: center; justify-content: center; gap: 0.5rem; }
+              .testimonial-carousel .slick-dots li { width: auto; height: auto; margin: 0; }
+              .testimonial-carousel .slick-dots li button { width: 0.625rem; height: 0.625rem; padding: 0; }
+              .testimonial-carousel .slick-dots li button:before { content: ''; width: 0.625rem; height: 0.625rem; border-radius: 9999px; background-color: #d1d5db; opacity: 1; transition: all 0.3s ease; }
+              .testimonial-carousel .slick-dots li.slick-active button:before { background-color: #3a1292; width: 1.5rem; border-radius: 9999px; }
+              .testimonial-carousel .slick-dots li.slick-active button { width: 1.5rem; }
+              .testimonial-carousel .slick-track { display: flex !important; }
+              .testimonial-carousel .slick-slide { height: auto; }
+              .testimonial-carousel .slick-slide > div { height: 100%; }
+            `}</style>
 
-                <div className="relative z-10">
-                  {/* Star Rating */}
-                  <div className="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} />
-                    ))}
+            <Slider
+              className="testimonial-carousel"
+              dots={TESTIMONIALS_DATA.length > 4}
+              arrows={TESTIMONIALS_DATA.length > 4}
+              infinite={TESTIMONIALS_DATA.length > 4}
+              speed={500}
+              slidesToShow={4}
+              slidesToScroll={TESTIMONIALS_DATA.length > 4 ? 4 : 1}
+              prevArrow={TESTIMONIALS_DATA.length > 4 ? <TestimonialPrevArrow /> : null}
+              nextArrow={TESTIMONIALS_DATA.length > 4 ? <TestimonialNextArrow /> : null}
+              responsive={[
+                { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, dots: true, arrows: true, infinite: true } },
+                { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1, dots: true, arrows: true, infinite: true } }
+              ]}
+            >
+              {TESTIMONIALS_DATA.map((t, idx) => (
+                <div key={idx} className="h-full -mx-px">
+                  <div className="h-full min-h-[300px] sm:min-h-[320px] bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 hover:border-brand-blue/30 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    {/* Background Quote Accent */}
+                    <FaQuoteLeft className="absolute top-4 right-4 text-gray-100 text-5xl opacity-40 group-hover:text-blue-50 group-hover:scale-110 transition-all pointer-events-none z-0" />
+
+                    <div className="relative z-10">
+                      {/* Star Rating */}
+                      <div className="flex items-center gap-1 text-amber-400 text-sm mb-3">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} />
+                        ))}
+                      </div>
+
+                      {/* Quote Text */}
+                      <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4 font-normal">
+                        "{t.quote}"
+                      </p>
+                    </div>
+
+                    {/* Author Info & Simple Location Text */}
+                    <div className="border-t border-gray-100 pt-3 mt-auto flex flex-col gap-2 relative z-10">
+                      <div>
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-tight group-hover:text-brand-blue transition-colors">
+                          {t.author}
+                        </h4>
+                        <p className="text-gray-500 text-xs font-medium mt-0.5">
+                          {t.role}
+                        </p>
+                      </div>
+
+                      {/* Location Tile */}
+                      <div className="shrink-0">
+                        <span className="inline-block text-xs font-semibold text-brand-blue bg-blue-50/90 border border-blue-100/90 px-3 py-1.5 rounded-full shadow-2xs group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all duration-300">
+                          {t.companyname}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-
-                  {/* Quote Text */}
-                  <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
-                    "{t.quote}"
-                  </p>
                 </div>
-
-                {/* Author Info & Simple Location Text */}
-                <div className="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between gap-3 relative z-10">
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-tight group-hover:text-brand-blue transition-colors">
-                      {t.author}
-                    </h4>
-                    <p className="text-gray-500 text-xs font-medium mt-0.5">
-                      {t.role}
-                    </p>
-                  </div>
-
-                  {/* Location Tile */}
-                  <div className="shrink-0">
-                    <span className="inline-block text-xs font-semibold text-brand-blue bg-blue-50/90 border border-blue-100/90 px-3 py-1.5 rounded-full shadow-2xs group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all duration-300">
-                      {t.companyname}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </Slider>
           </div>
+
+          <AlumniLogosSection />
         </div>
       </section>
 
@@ -601,10 +683,75 @@ export default function CisaEnrolmentLandingPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="py-6 px-6 bg-white border-t border-gray-200 text-center text-xs text-gray-500">
-        <div className="max-w-6xl mx-auto text-center">
-          <span>© {new Date().getFullYear()} Global Professional Certifications. All rights reserved.</span>
+      {/* Final CTA - Course Enrollment */}
+      <section className="py-14 md:py-16 px-4 sm:px-6 lg:px-8 bg-brand-blue font-poppins">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+            Ready to Fast-Track Your{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              CISA Certification
+            </span>
+            ?
+          </h2>
+          <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8">
+            Secure your seat in our upcoming CISA Live Interactive Batch starting <strong className="text-white font-semibold">Aug 23rd</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
+          </p>
+          <a
+            href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md cursor-pointer"
+          >
+            <span>Secure Your Seat</span>
+          </a>
+        </div>
+      </section>
+
+      {/* Mobile Sticky Action Bar Specs (<= 768px) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200 p-2.5 flex items-center gap-2 shadow-2xl">
+        <a
+          href={WHATSAPP_CISA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-lg font-bold text-xs text-white bg-[#059669] hover:bg-emerald-700 shadow-sm transition-all duration-200 text-center whitespace-nowrap"
+        >
+          <FaWhatsapp className="text-sm shrink-0" />
+          <span>Chat on WhatsApp</span>
+        </a>
+        <button
+          onClick={scrollToForm}
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-lg font-bold text-xs text-white bg-[#1D4ED8] hover:bg-blue-800 shadow-sm transition-all duration-200 text-center whitespace-nowrap cursor-pointer"
+        >
+          <FaClipboardList className="text-sm shrink-0" />
+          <span>Secure Your Seat</span>
+        </button>
+      </div>
+
+      {/* Footer & Legal Compliance (Light theme) */}
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200 text-center text-xs text-gray-500 font-poppins pb-24 md:pb-8">
+        <div className="max-w-5xl mx-auto space-y-4 text-center">
+          {/* Compliance & Info Links */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-gray-600">
+            <Link to="/about" target="_blank" className="hover:text-brand-blue transition-colors">About GPC</Link>
+            <span>•</span>
+            <Link to="/success" target="_blank" className="hover:text-brand-blue transition-colors">Wall of Excellence</Link>
+            <span>•</span>
+            <Link to="/privacy" target="_blank" className="hover:text-brand-blue transition-colors">Privacy Policy</Link>
+            <span>•</span>
+            <Link to="/terms" target="_blank" className="hover:text-brand-blue transition-colors">Terms & Conditions</Link>
+            <span>•</span>
+            <Link to="/contact" target="_blank" className="hover:text-brand-blue transition-colors">Contact Us</Link>
+          </div>
+
+          {/* Legal Trademark Disclaimer */}
+          <p className="max-w-4xl mx-auto text-[11px] leading-relaxed text-gray-400 text-center">
+            Certified Information Systems Auditor® (CISA®) is a registered trademark of ISACA. Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
+          </p>
+
+          {/* Copyright Line */}
+          <div className="pt-3 border-t border-gray-100 text-[11px] text-gray-400">
+            <span>© {new Date().getFullYear()} Global Professional Certifications. All rights reserved.</span>
+          </div>
         </div>
       </footer>
     </div>

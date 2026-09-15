@@ -51,8 +51,24 @@ import ciaAchieverImage from "../../assets/home/cia-achievers.webp"
 
 const AnniversaryVideo = () => {
   const [playing, setPlaying] = useState(false);
+  const frameRef = useRef(null);
+
+  // Stop this video when the user clicks outside its frame (e.g. to play another video).
+  useEffect(() => {
+    if (!playing) return;
+
+    const handleOutsideClick = (event) => {
+      if (frameRef.current && !frameRef.current.contains(event.target)) {
+        setPlaying(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [playing]);
+
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
+    <div ref={frameRef} className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
       {!playing ? (
         <div className="absolute inset-0 cursor-pointer" onClick={() => setPlaying(true)}>
           <img
