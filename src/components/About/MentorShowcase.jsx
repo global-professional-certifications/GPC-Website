@@ -18,9 +18,6 @@ const MentorShowcase = () => {
                     Course Mentor
                 </h2>
 
-                <p className="text-gray-300 md:text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
-                    Learn from industry experts and gain real-world skills that drive success
-                </p>
             </div>
 
             <div className="max-w-6xl mx-auto">
@@ -42,9 +39,6 @@ const MentorShowcase = () => {
                                     </span>{" "}
                                     Course Mentor
                                 </h2>
-                                <p className="text-gray-600 text-xs md:text-base font-poppins leading-relaxed mb-10 max-w-xl">
-                                    Learn from industry experts and gain real-world skills that drive success
-                                </p>
                             </div>
 
                             <div className="space-y-3 md:space-y-6">
