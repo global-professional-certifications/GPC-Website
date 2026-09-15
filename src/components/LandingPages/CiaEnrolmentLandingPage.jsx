@@ -63,12 +63,15 @@ const WHATSAPP_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%
 const ZOHO_SUBMIT_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/CIAEnquiry/formperma/Mh0C4XY-nm68nylJQ6FCm1HmgOgR_-44AJMCWUdLV6M/htmlRecords/submit";
 const ZOHO_SUBMIT_TARGET = "zoho-cia-submit-frame";
 
+// value strings must match Zoho's "MultipleChoice" field exactly (including its
+// own "CIA part 2" typo — lowercase "p") since Zoho validates submitted values
+// strictly; label is what we actually display to the visitor.
 const CIA_COURSE_OPTIONS = [
-  "CIA Part 1",
-  "CIA Part 2",
-  "CIA Part 3",
-  "CIA All Parts",
-  "CIA Challenge"
+  { label: "CIA Part 1", value: "CIA Part 1" },
+  { label: "CIA Part 2", value: "CIA part 2" },
+  { label: "CIA Part 3", value: "CIA Part 3" },
+  { label: "CIA All Parts", value: "CIA All Parts" },
+  { label: "CIA Challenge", value: "CIA Challenge" }
 ];
 
 // The 4 GPC Pillars
@@ -201,7 +204,7 @@ export default function CiaEnrolmentLandingPage() {
     firstName: '',
     lastName: '',
     email: '',
-    course: ''
+    courses: []
   });
   const [dialCode, setDialCode] = useState('+91');
   const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success
@@ -254,7 +257,7 @@ export default function CiaEnrolmentLandingPage() {
 
     const phoneValue = phoneInputRef.current?.value || '';
 
-    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim() || !leadForm.course) {
+    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim() || leadForm.courses.length === 0) {
       setFormError('Please fill in all required fields.');
       return;
     }
@@ -475,23 +478,34 @@ export default function CiaEnrolmentLandingPage() {
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="cia-course" className="block text-xs font-semibold text-gray-700 mb-1">
+                <fieldset>
+                  <legend className="block text-xs font-semibold text-gray-700 mb-1.5">
                     Course Interested In <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="cia-course"
-                    name="Radio"
-                    value={leadForm.course}
-                    onChange={(e) => setLeadForm((prev) => ({ ...prev, course: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
-                  >
-                    <option value="" disabled>Select an option</option>
+                  </legend>
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-3 py-2.5 rounded-lg border border-gray-300">
                     {CIA_COURSE_OPTIONS.map((option) => (
-                      <option key={option} value={option}>{option}</option>
+                      <label key={option.value} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          name="MultipleChoice"
+                          value={option.value}
+                          checked={leadForm.courses.includes(option.value)}
+                          onChange={(e) => {
+                            const { checked } = e.target;
+                            setLeadForm((prev) => ({
+                              ...prev,
+                              courses: checked
+                                ? [...prev.courses, option.value]
+                                : prev.courses.filter((c) => c !== option.value)
+                            }));
+                          }}
+                          className="h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue accent-brand-blue cursor-pointer"
+                        />
+                        {option.label}
+                      </label>
                     ))}
-                  </select>
-                </div>
+                  </div>
+                </fieldset>
 
                 {formError && (
                   <p className="text-red-500 text-xs font-medium">{formError}</p>
