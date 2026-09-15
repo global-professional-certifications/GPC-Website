@@ -8,8 +8,6 @@ import {
   FaPhoneAlt,
   FaChalkboardTeacher,
   FaBookOpen,
-  FaCalendarAlt,
-  FaShieldAlt,
   FaLaptop,
   FaClipboardCheck,
   FaTasks,
@@ -24,12 +22,10 @@ import {
   FaChevronUp,
   FaArrowRight,
   FaClipboardList,
-  FaSpinner,
-  FaArrowDown
+  FaSpinner
 } from 'react-icons/fa';
 import Companies from '../Companies/Companies.jsx';
 import MentorShowcase from '../About/MentorShowcase.jsx';
-import AlumniLogosSection from './AlumniLogosSection.jsx';
 import faqImage from '../../assets/faq.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -67,36 +63,15 @@ const WHATSAPP_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%
 const ZOHO_SUBMIT_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/CIAEnquiry/formperma/Mh0C4XY-nm68nylJQ6FCm1HmgOgR_-44AJMCWUdLV6M/htmlRecords/submit";
 const ZOHO_SUBMIT_TARGET = "zoho-cia-submit-frame";
 
+// value strings must match Zoho's "MultipleChoice" field exactly (including its
+// own "CIA part 2" typo — lowercase "p") since Zoho validates submitted values
+// strictly; label is what we actually display to the visitor.
 const CIA_COURSE_OPTIONS = [
-  "CIA Part 1",
-  "CIA Part 2",
-  "CIA Part 3",
-  "CIA All Parts",
-  "CIA Challenge"
-];
-
-// Hero core value badges (2x2 grid)
-const HERO_VALUE_BADGES = [
-  {
-    icon: FaChalkboardTeacher,
-    title: "Lead Faculty: CA Arpit Garg",
-    description: "CA, CIA, CISA, CRMA | 6+ Yrs Exp | 1,500+ Mentored"
-  },
-  {
-    icon: FaBookOpen,
-    title: "Official Study Resources",
-    description: "Gleim Study Materials & Extensive Question Bank"
-  },
-  {
-    icon: FaCalendarAlt,
-    title: "Flexible Format",
-    description: "Interactive Weekend Live Sessions + HD Recorded Backup"
-  },
-  {
-    icon: FaShieldAlt,
-    title: "Pass Protection™",
-    description: "Unlimited LMS Access (Recorded Sessions + PPT Notes + MCQs)"
-  }
+  { label: "CIA Part 1", value: "CIA Part 1" },
+  { label: "CIA Part 2", value: "CIA part 2" },
+  { label: "CIA Part 3", value: "CIA Part 3" },
+  { label: "CIA All Parts", value: "CIA All Parts" },
+  { label: "CIA Challenge", value: "CIA Challenge" }
 ];
 
 // The 4 GPC Pillars
@@ -105,25 +80,25 @@ const GPC_PILLARS = [
     icon: FaChalkboardTeacher,
     color: "blue",
     title: "Interactive Live Weekend Sessions",
-    description: "Learn through live, two-way online classes held exclusively on weekends. Engage in real-time discussions, case studies, and conceptual deep dives without disrupting your workweek."
+    description: "Learn directly with our mentor through live, two-way weekend classes featuring discussions, practical examples, and in-depth concept explanations—without disrupting your workweek."
   },
   {
     icon: FaBookOpen,
     color: "purple",
     title: "Official Gleim Study Resources",
-    description: "Prepare using globally recognized Gleim review resources. Build complete syllabus mastery with structured textbooks, topic summaries, and high-yield exam outlines."
+    description: "Prepare with official Gleim study materials, including structured content, topic-wise resources, and exam-focused preparation support."
   },
   {
     icon: FaClipboardCheck,
     color: "orange",
-    title: "1,000+ Exam-Caliber MCQs Per Part",
-    description: "Master the elimination technique. Practice high-yield scenario questions with detailed rationales that teach you how to decode tricky IIA options."
+    title: "1,000+ MCQs Per Part",
+    description: "Build confidence through extensive practice with 1,000+ questions per CIA part, helping you strengthen concepts and become familiar with exam-style questions."
   },
   {
     icon: FaLaptop,
     color: "green",
-    title: "Unlimited LMS Portal Access",
-    description: "Never miss a class due to corporate deadlines or travel. Revisit HD class recordings, PPT slide decks, and mock questions with no expiration validity."
+    title: "Unlimited LMS Access",
+    description: "Learn at your own pace with unlimited access to HD class recordings, PPT notes, and MCQs—so you can revisit concepts and revise whenever your schedule allows."
   }
 ];
 
@@ -140,89 +115,61 @@ const CIA_PARTS = [
     icon: FaClipboardCheck,
     part: "CIA Part 1",
     title: "Internal Audit Fundamentals",
-    focus: "IIA Standards & Code of Ethics, Independence & Objectivity, Proficiency & Due Professional Care, Quality Assurance (QAIP), Governance, Risk & Control (GRC), and Fraud Controls.",
-    inclusions: "Live weekend classes, Gleim study material, 1,000+ MCQs, full mock tests.",
-    cta: "Enquire for Part 1"
+    focus: "Foundations of Internal Auditing, Ethics & Professionalism, Governance, Risk Management & Control, and Fraud Risks.",
+    inclusions: "Live weekend classes, Gleim study resources, 1,000+ MCQs, and full mock tests.",
+    cta: "Get Part 1 Details"
   },
   {
     icon: FaTasks,
     part: "CIA Part 2",
     title: "Internal Audit Engagement",
-    focus: "Managing the Internal Audit Function, Engagement Planning, Performing Fieldwork, Gathering Audit Evidence, Communicating Results, and Monitoring Remediation.",
-    inclusions: "Scenario-based practical problem solving, engagement walkthroughs, mock drills.",
-    cta: "Enquire for Part 2"
+    focus: "Engagement Planning, Information Gathering, Analysis & Evaluation, and Engagement Supervision & Communication.",
+    inclusions: "Live weekend classes, Gleim study resources, 1,000+ MCQs, practical case-based learning, and mock exam practice.",
+    cta: "Get Part 2 Details"
   },
   {
     icon: FaChartLine,
     part: "CIA Part 3",
-    title: "Internal Audit Function & Business Knowledge",
-    focus: "Business Acumen & Strategic Management, Information Security & Cyber Risks, Information Technology & Business Continuity, and Financial Management & Accounting.",
-    inclusions: "Deep-dive IT governance sessions, cyber controls practice, financial analysis.",
-    cta: "Enquire for Part 3"
+    title: "Internal Audit Function",
+    focus: "Internal Audit Operations, Internal Audit Plan, Quality of the Internal Audit Function, and Engagement Results & Monitoring.",
+    inclusions: "Live weekend classes, Gleim study resources, 1,000+ MCQs, practical application, and mock exam practice.",
+    cta: "Get Part 3 Details"
   }
 ];
 
 // Wall of Excellence Testimonials
 const TESTIMONIALS_DATA = [
   {
-    quote: "Balancing a demanding schedule at PwC with CIA prep seemed tough, but GPC's structured weekend classes and Gleim question reviews gave me the exact clarity needed to clear.",
+    quote: "Completing my CIA certification journey with Global Professional Certifications was a great experience. The structured training, comprehensive study materials, and continuous support made my preparation focused and effective. Special thanks to Mr. Arpit Garg for his practical guidance, mentorship, and constant motivation throughout the journey. Highly recommended for anyone pursuing the CIA!",
     author: "Ayush Jha",
     role: "Associate, PwC India (Cleared CIA Part-Wise)",
     companyname: "PwC India"
   },
   {
-    quote: "As a working CA, I needed an efficient, focused methodology. The mock exams and Arpit Sir's elimination techniques on tricky scenario questions were exceptional.",
+    quote: "I am deeply grateful to Arpit for his unwavering guidance and support throughout my studies. His clear explanations and encouragement helped me overcome challenges and build confidence in my abilities. Thanks to him, for all his support on this challenging but worthy CIA journey.",
     author: "Sudarshan Bhattar",
     role: "Associate Manager, EY GDS (Cleared CIA Challenge Exam)",
     companyname: "EY GDS"
   },
   {
-    quote: "Having unlimited access to session recordings helped me revise key governance and IT concepts whenever my schedule allowed. A truly practical learning experience.",
+    quote: "Clearing my CIA Challenge Exam while working a full-time job felt overwhelming at first, but Arpit Sir made the journey much easier. His ability to simplify complex concepts and explain the ‘why’ behind them made preparation more effective and eliminated the need for memorisation. Despite teaching a full batch, he always took the time to address my individual doubts. His expertise, practical guidance, and constant motivation made a real difference. Truly grateful for his mentorship and support!",
     author: "Tanvi Vyawahare",
     role: "VP, Internal Audit, Citibank (Cleared CIA Challenge Exam)",
     companyname: "Citibank"
   },
   {
-    quote: "Arpit Sir's direct insights into IIA standards simplified difficult topics. The continuous support and mock practice ensured zero surprises on exam day.",
+    quote: "I am truly grateful to Global Professional Certifications for providing a strong, practical, and well-structured CIA learning experience. A special thanks to Mr. Arpit Garg for his clear guidance, exam-focused strategies, and constant motivation, all of which played an important role throughout my CIA journey. His support made the preparation process more focused and effective. Highly recommended for aspiring internal auditors!",
     author: "Hariharan Thekkiam",
     role: "Head of Audit, Standard Chartered Capital (Cleared CIA Challenge Exam)",
     companyname: "Standard Chartered Capital"
   }
 ];
 
-// Program Inclusions Checklist (Section 5)
-const PROGRAM_INCLUSIONS = [
-  {
-    title: "Live, 2-Way Interactive Online Classes",
-    description: "Scheduled on weekends for working professionals."
-  },
-  {
-    title: "Official Gleim Study Materials",
-    description: "High-yield books, summary outlines, and exam guides."
-  },
-  {
-    title: "1,000+ Exam-Grade MCQs Per Part",
-    description: "Extensive scenario practice with detailed answer rationales."
-  },
-  {
-    title: "Unlimited LMS Portal Access",
-    description: "Revisit recorded lectures and class presentations anytime until you pass."
-  },
-  {
-    title: "Exam Application & CCMS Guidance",
-    description: "End-to-end guidance on IIA profile creation and documentation."
-  },
-  {
-    title: "Direct Mentor Doubt Support",
-    description: "Clear doubts during live classes and via dedicated WhatsApp groups."
-  }
-];
-
 // Frequently Asked Questions Data (Section 6)
 const CIA_FAQS = [
   {
-    question: "What is the CIA® certification?",
-    answer: "The Certified Internal Auditor® (CIA®) is the only globally recognized professional credential for internal auditors, awarded by The Institute of Internal Auditors (IIA), USA. It demonstrates proficiency in audit standards, risk management, and governance."
+    question: "What is the CIA certification?",
+    answer: "The Certified Internal Auditor (CIA) is the only globally recognized professional credential for internal auditors, awarded by The Institute of Internal Auditors (IIA), USA. It demonstrates proficiency in audit standards, risk management, and governance."
   },
   {
     question: "Are GPC's classes live or pre-recorded?",
@@ -230,7 +177,7 @@ const CIA_FAQS = [
   },
   {
     question: "How does Unlimited LMS Access work?",
-    answer: "We understand corporate audit commitments and travel can be demanding. GPC provides continuous LMS access (recorded lectures, presentation slides, and practice MCQs) with no validity expiration until you successfully clear your examination."
+    answer: "With unlimited LMS access, you can revisit recorded lectures, presentation slides, and practice MCQs whenever you need. There's no fixed validity period, giving you the flexibility to learn, revise, and prepare at your own pace until you clear your examination."
   },
   {
     question: "Which study materials are provided?",
@@ -238,7 +185,7 @@ const CIA_FAQS = [
   },
   {
     question: "Can Chartered Accountants (CAs) or ACCAs take the single CIA Challenge Exam?",
-    answer: "Yes. Members of recognized accounting bodies (such as ICAI, ACCA, and CPA) may qualify for the single-paper CIA Challenge Exam. GPC offers dedicated batches for this fast-track pathway."
+    answer: "Eligible members of recognized accounting bodies, including ICAI and ACCA, may qualify for the single-paper CIA Challenge Exam, subject to The IIA's eligibility requirements. GPC offers dedicated Challenge Exam preparation with focused guidance and exam-oriented learning to help eligible professionals prepare for this streamlined pathway to the CIA."
   },
   {
     question: "How do I get upcoming batch dates and fee details?",
@@ -257,7 +204,7 @@ export default function CiaEnrolmentLandingPage() {
     firstName: '',
     lastName: '',
     email: '',
-    course: ''
+    courses: []
   });
   const [dialCode, setDialCode] = useState('+91');
   const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success
@@ -296,12 +243,21 @@ export default function CiaEnrolmentLandingPage() {
     };
   }, []);
 
+  // Lift the globally-injected Zoho SalesIQ chat button above this page's mobile
+  // sticky bar so they don't overlap; scoped via body class so no other page is affected.
+  useEffect(() => {
+    document.body.classList.add('mobile-sticky-bar-active');
+    return () => {
+      document.body.classList.remove('mobile-sticky-bar-active');
+    };
+  }, []);
+
   const handleLeadFormSubmit = (e) => {
     e.preventDefault();
 
     const phoneValue = phoneInputRef.current?.value || '';
 
-    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim() || !leadForm.course) {
+    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim() || leadForm.courses.length === 0) {
       setFormError('Please fill in all required fields.');
       return;
     }
@@ -356,45 +312,38 @@ export default function CiaEnrolmentLandingPage() {
               🚨 Upcoming CIA Live Weekend Batch Starts <strong className="text-[#F59E0B] font-semibold">Sept 19</strong>
               <span className="hidden sm:inline"> | Aligned with Latest IIA Global Standards</span>
             </span>
-            <button
-              onClick={scrollToForm}
-              className="inline-flex items-center gap-1.5 text-[#F59E0B] font-semibold hover:text-amber-300 transition-colors shrink-0 cursor-pointer"
-            >
-              <span className="underline underline-offset-2">Download Batch Schedule</span>
-              <FaArrowDown className="text-xs shrink-0" />
-            </button>
           </div>
         </div>
 
         {/* Header - Minimal Header with GPC Logo only */}
         <header className="bg-white/95 backdrop-blur-md border-b border-gray-200 py-1.5 px-4 sm:px-8 transition-all font-poppins">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <img
-              src={logo}
-              alt="Global Professional Certifications logo"
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300"
-              width="160"
-              height="60"
-            />
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <img
+                src={logo}
+                alt="Global Professional Certifications logo"
+                className="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300"
+                width="160"
+                height="60"
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href="tel:+918736083099"
+                className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full font-poppins text-white bg-brand-blue hover:bg-[#2e0e75] shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap group"
+              >
+                <FaPhoneAlt className="text-sm sm:text-base text-white shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] sm:text-[11px] font-normal text-white/90 leading-tight">
+                    Talk to an Expert
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-white tracking-wide leading-tight">
+                    +91 87360 83099
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:+918736083099"
-              className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full font-poppins text-white bg-brand-blue hover:bg-[#2e0e75] shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap group"
-            >
-              <FaPhoneAlt className="text-sm sm:text-base text-white shrink-0 group-hover:scale-110 transition-transform duration-200" />
-              <div className="flex flex-col text-left">
-                <span className="text-[10px] sm:text-[11px] font-normal text-white/90 leading-tight">
-                  Talk to an Expert
-                </span>
-                <span className="text-xs sm:text-sm font-bold text-white tracking-wide leading-tight">
-                  +91 87360 83099
-                </span>
-              </div>
-            </a>
-          </div>
-        </div>
         </header>
       </div>
 
@@ -405,37 +354,18 @@ export default function CiaEnrolmentLandingPage() {
           {/* Left Column: Copy & Value Proposition */}
           <div className="w-full lg:w-[52%] text-center lg:text-left">
             {/* Primary Headline */}
-            <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-6">
               Master the Certified Internal Auditor{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                (CIA®) Exam
+                (CIA) Exam
               </span>
               {' '}with Structured Live Weekend Training
             </h1>
 
             {/* Sub-Headline */}
-            <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6 font-normal">
-              Accelerate your internal audit and risk career. Learn through live interactive weekend sessions led by qualified mentors, official Gleim study resources, 1,000+ exam-grade MCQs per part, and unlimited LMS portal access until you pass.
+            <p className="text-base sm:text-lg text-gray-200 leading-relaxed mb-8 font-normal">
+              Accelerate your CIA journey with structured, exam-focused preparation designed to help you learn concepts, build confidence, and prepare effectively for the exam—with expert guidance and the right resources at every step.
             </p>
-
-            {/* Core Value Badges (2x2 grid) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
-              {HERO_VALUE_BADGES.map((badge, idx) => {
-                const Icon = badge.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-2.5 text-left px-3.5 py-3 rounded-lg bg-white/10 border border-white/20 backdrop-blur-sm"
-                  >
-                    <Icon className="text-orange-400 text-base shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-white font-semibold text-xs sm:text-sm leading-snug">{badge.title}</p>
-                      <p className="text-gray-300 text-[11px] sm:text-xs leading-snug mt-0.5">{badge.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
 
           {/* Right Column: Native Lead Form (posts to Zoho, no iframe) */}
@@ -445,11 +375,10 @@ export default function CiaEnrolmentLandingPage() {
               {(formStatus === 'submitting' || formStatus === 'success') && (
                 <div className="absolute inset-0 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center z-10 px-6 text-center">
                   <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-500 ease-out ${
-                      formStatus === 'success'
-                        ? `bg-emerald-50 ${tickVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`
-                        : 'bg-blue-50'
-                    }`}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-500 ease-out ${formStatus === 'success'
+                      ? `bg-emerald-50 ${tickVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`
+                      : 'bg-blue-50'
+                      }`}
                   >
                     {formStatus === 'submitting' ? (
                       <FaSpinner className="text-brand-blue text-3xl animate-spin" />
@@ -549,23 +478,34 @@ export default function CiaEnrolmentLandingPage() {
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="cia-course" className="block text-xs font-semibold text-gray-700 mb-1">
+                <fieldset>
+                  <legend className="block text-xs font-semibold text-gray-700 mb-1.5">
                     Course Interested In <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="cia-course"
-                    name="Radio"
-                    value={leadForm.course}
-                    onChange={(e) => setLeadForm((prev) => ({ ...prev, course: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
-                  >
-                    <option value="" disabled>Select an option</option>
+                  </legend>
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-3 py-2.5 rounded-lg border border-gray-300">
                     {CIA_COURSE_OPTIONS.map((option) => (
-                      <option key={option} value={option}>{option}</option>
+                      <label key={option.value} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          name="MultipleChoice"
+                          value={option.value}
+                          checked={leadForm.courses.includes(option.value)}
+                          onChange={(e) => {
+                            const { checked } = e.target;
+                            setLeadForm((prev) => ({
+                              ...prev,
+                              courses: checked
+                                ? [...prev.courses, option.value]
+                                : prev.courses.filter((c) => c !== option.value)
+                            }));
+                          }}
+                          className="h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue accent-brand-blue cursor-pointer"
+                        />
+                        {option.label}
+                      </label>
                     ))}
-                  </select>
-                </div>
+                  </div>
+                </fieldset>
 
                 {formError && (
                   <p className="text-red-500 text-xs font-medium">{formError}</p>
@@ -606,8 +546,8 @@ export default function CiaEnrolmentLandingPage() {
             <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900 mb-3">
               Why Audit & Risk Professionals Choose <span className="text-brand-blue font-normal italic">GPC</span> for CIA Preparation
             </h2>
-            <p className="text-gray-600 text-xs sm:text-sm max-w-xl mx-auto">
-              Balancing a demanding 50+ hour corporate workweek with exam preparation requires more than passive recorded videos. GPC provides an interactive, disciplined learning environment designed specifically for working professionals.
+            <p className="text-gray-700 text-base sm:text-lg max-w-3xl mx-auto text-pretty">
+              Balancing a demanding professional career with CIA preparation requires more than self-paced learning. GPC combines live, interactive sessions with structured guidance and flexible recorded access—helping working professionals stay focused, consistent, and exam-ready.
             </p>
           </div>
 
@@ -656,8 +596,8 @@ export default function CiaEnrolmentLandingPage() {
             <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900 mb-3">
               Comprehensive Preparation Aligned with <span className="text-brand-blue font-normal italic">Latest IIA Standards</span>
             </h2>
-            <p className="text-gray-600 text-xs sm:text-sm max-w-xl mx-auto">
-              Choose the training module that aligns with where you are in your certification pathway.
+            <p className="text-gray-600 text-xs sm:text-sm max-w-3xl mx-auto text-pretty">
+              Choose your starting point and prepare for each CIA exam part with structured, expert-led learning.
             </p>
           </div>
 
@@ -683,7 +623,7 @@ export default function CiaEnrolmentLandingPage() {
                       <strong className="text-gray-900 font-semibold">Focus:</strong> {part.focus}
                     </p>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5">
-                      <strong className="text-gray-900 font-semibold">Inclusions:</strong> {part.inclusions}
+                      <strong className="text-gray-900 font-semibold">What's Included:</strong> {part.inclusions}
                     </p>
                   </div>
                   <button
@@ -708,7 +648,7 @@ export default function CiaEnrolmentLandingPage() {
                   Fast-Track Pathway for Qualified Accountants
                 </h3>
                 <p className="text-gray-200 text-xs sm:text-sm leading-relaxed">
-                  Qualified Chartered Accountant (CA), ACCA, or CPA? You may be eligible for the single-paper <strong className="text-white font-semibold">CIA Challenge Exam fast-track</strong>! Skip the 3-part exam pathway and earn your CIA designation through 1 single integrated exam. GPC offers dedicated Challenge Exam coaching with IIA Chapter collaboration.
+                  Already a qualified CA, ACCA, or CPA? You may be eligible for the CIA Challenge Exam — a streamlined, one-part pathway to the CIA designation. Instead of taking the traditional three-part CIA examination, eligible professionals can pursue the single-paper Challenge Exam and prepare through GPC's dedicated, exam-focused coaching and expert guidance. Explore the CIA Challenge Exam pathway and find out if you're eligible.
                 </p>
               </div>
               <button
@@ -808,47 +748,6 @@ export default function CiaEnrolmentLandingPage() {
               ))}
             </Slider>
           </div>
-
-          <AlumniLogosSection />
-        </div>
-      </section>
-
-      {/* Section 5: Program Inclusions Checklist */}
-      <section className="py-14 md:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 font-poppins">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900 mb-3">
-              What's Included in <span className="text-brand-blue font-normal italic">GPC Training</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-            {PROGRAM_INCLUSIONS.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-3 bg-white rounded-xl p-5 border border-gray-200 shadow-sm"
-              >
-                <FaCheckCircle className="text-emerald-600 text-lg shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-snug">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mt-1">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <button
-              onClick={scrollToForm}
-              className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md cursor-pointer"
-            >
-              GET CIA COURSE DETAILS & FEES
-            </button>
-          </div>
         </div>
       </section>
 
@@ -910,15 +809,6 @@ export default function CiaEnrolmentLandingPage() {
                 })}
               </div>
 
-              {/* See More / Enquire Button */}
-              <div className="flex justify-center mt-10">
-                <button
-                  onClick={scrollToForm}
-                  className="bg-brand-blue text-white text-sm md:text-base py-2 px-6 rounded-full hover:bg-brand-purple hover:scale-105 transition-all duration-300 cursor-pointer shadow-sm"
-                >
-                  See All FAQs
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -935,7 +825,7 @@ export default function CiaEnrolmentLandingPage() {
             ?
           </h2>
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8">
-            Secure your seat in our upcoming CIA Live Interactive Batch starting <strong className="text-white font-semibold">Sept 19</strong>, led by mentor <strong className="text-white font-semibold">CA Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
+            Secure your seat in our upcoming CIA Live Interactive Batch starting <strong className="text-white font-semibold">Sept 19</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
           </p>
           <button
             onClick={scrollToForm}
@@ -984,7 +874,7 @@ export default function CiaEnrolmentLandingPage() {
 
           {/* Legal Trademark Disclaimer */}
           <p className="max-w-4xl mx-auto text-[11px] leading-relaxed text-gray-400 text-center">
-            Certified Internal Auditor® (CIA®) is a registered trademark of The Institute of Internal Auditors (IIA). Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
+            Certified Internal Auditor (CIA) is a registered trademark of The Institute of Internal Auditors (IIA). Global Professional Certifications is an independent premier professional education provider. Program collaborations and study partner materials are provided in accordance with applicable agreements.
           </p>
 
           {/* Copyright Line */}

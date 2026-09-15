@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MetaTags from '../MetaTags.jsx';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
@@ -209,6 +209,15 @@ export default function CisaEnrolmentLandingPage() {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
+
+  // Lift the globally-injected Zoho SalesIQ chat button above this page's mobile
+  // sticky bar so they don't overlap; scoped via body class so no other page is affected.
+  useEffect(() => {
+    document.body.classList.add('mobile-sticky-bar-active');
+    return () => {
+      document.body.classList.remove('mobile-sticky-bar-active');
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">

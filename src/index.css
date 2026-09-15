@@ -245,4 +245,27 @@
 .zsiq_cnt {
   max-width: 370px !important;
   max-height: 550px !important;
-}
+}
+
+/* Landing pages with their own mobile sticky action bar (CIA, CISA): lift the
+   SalesIQ float button above it (<=767px) so the two don't overlap. Scoped via
+   body.mobile-sticky-bar-active so no other page is affected. */
+@media (max-width: 767px) {
+  body.mobile-sticky-bar-active #zsiq_float {
+    bottom: 76px !important;
+  }
+}
+
+/* intl-tel-input integration helpers */
+.iti {
+  width: 100%;
+  display: block;
+}
+
+.iti__dropdown-content {
+  z-index: 70 !important;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
