@@ -7,18 +7,17 @@ const ZOHO_SUBMIT_URL = "https://forms.zohopublic.in/globalprofessionalcertifica
 const ZOHO_SUBMIT_TARGET = "zoho-general-enquiry-frame";
 
 const COURSE_OPTIONS = [
-  { label: "-Select-", value: "-Select-" },
   { label: "CIA (Certified Internal Auditor)", value: "CIA" },
   { label: "CISA (Certified Information Systems Auditor)", value: "CISA" },
-  { label: "IAP (Internal Audit Practitioner)", value: "IAP" },
-  { label: "CRMA (Certification in Risk Management Assurance)", value: "CRMA" }
+  { label: "CRMA (Certification in Risk Management Assurance)", value: "CRMA" },
+  { label: "IAP (Internal Audit Practitioner)", value: "IAP" }
 ];
 
 export default function EnquireStickyDrawer({ isOpen, onOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    course: '-Select-',
+    courses: [],
     terms: true
   });
   const [dialCode, setDialCode] = useState('+91');
@@ -126,7 +125,7 @@ export default function EnquireStickyDrawer({ isOpen, onOpen, onClose }) {
       setFormError('Please enter a valid phone number (7-15 digits).');
       return;
     }
-    if (!formData.course || formData.course === '-Select-') {
+    if (formData.courses.length === 0) {
       setFormError('Please select a course you are interested in.');
       return;
     }
@@ -152,7 +151,7 @@ export default function EnquireStickyDrawer({ isOpen, onOpen, onClose }) {
     setFormData({
       name: '',
       email: '',
-      course: '-Select-',
+      courses: [],
       terms: true
     });
     if (phoneInputRef.current) {
@@ -342,24 +341,34 @@ export default function EnquireStickyDrawer({ isOpen, onOpen, onClose }) {
             </div>
 
             {/* Course Interested In */}
-            <div>
-              <label htmlFor="enquire-course" className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <fieldset>
+              <legend className="block text-xs font-semibold text-gray-700 mb-1.5">
                 Course Interested In <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="enquire-course"
-                name="Dropdown"
-                value={formData.course}
-                onChange={(e) => setFormData((prev) => ({ ...prev, course: e.target.value }))}
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all"
-              >
+              </legend>
+              <div className="grid grid-cols-1 gap-y-2 px-3.5 py-2.5 rounded-lg border border-gray-300">
                 {COURSE_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
+                  <label key={opt.value} className="flex items-center gap-2.5 text-sm text-gray-900 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      name="MultipleChoice"
+                      value={opt.value}
+                      checked={formData.courses.includes(opt.value)}
+                      onChange={(e) => {
+                        const { checked } = e.target;
+                        setFormData((prev) => ({
+                          ...prev,
+                          courses: checked
+                            ? [...prev.courses, opt.value]
+                            : prev.courses.filter((c) => c !== opt.value)
+                        }));
+                      }}
+                      className="h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue accent-brand-blue cursor-pointer"
+                    />
                     {opt.label}
-                  </option>
+                  </label>
                 ))}
-              </select>
-            </div>
+              </div>
+            </fieldset>
 
             {/* Terms & Conditions Authorization */}
             <div className="pt-1">
