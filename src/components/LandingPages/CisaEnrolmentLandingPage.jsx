@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import MetaTags from '../MetaTags.jsx';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
@@ -10,6 +10,8 @@ import faqImage from '../../assets/faq.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/styles';
 
 import {
   FaCalendarAlt,
@@ -31,10 +33,18 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaWhatsapp,
-  FaClipboardList
+  FaClipboardList,
+  FaSpinner
 } from 'react-icons/fa';
 
 const WHATSAPP_CISA_URL = "https://wa.me/918736083099?text=Hi%20GPC%20Team,%20I%20am%20interested%20in%20the%20CISA%20Training%20Program";
+
+// Native lead form POSTs directly to Zoho's submit endpoint via a real native form
+// (targeting a hidden iframe), not fetch() — Zoho's endpoint rejects fetch/XHR-style
+// submissions with a 409 regardless of payload correctness. Same architecture as the
+// CIA enrollment page's lead form.
+const ZOHO_SUBMIT_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/CISAEnquiryForm/formperma/sNaUUNB2fvT4uGj71YoWwlnXJuI5zDzg5QMKciAiq6U/htmlRecords/submit";
+const ZOHO_SUBMIT_TARGET = "zoho-cisa-submit-frame";
 
 // Custom Arrows for Testimonial Carousel
 const TestimonialPrevArrow = ({ onClick }) => (
@@ -219,6 +229,81 @@ export default function CisaEnrolmentLandingPage() {
     };
   }, []);
 
+  const leadFormRef = useRef(null);
+  const phoneInputRef = useRef(null);
+  const itiRef = useRef(null);
+
+  const [leadForm, setLeadForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+  const [dialCode, setDialCode] = useState('+91');
+  const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success
+  const [formError, setFormError] = useState('');
+  const [tickVisible, setTickVisible] = useState(false);
+
+  useEffect(() => {
+    if (formStatus === 'success') {
+      const id = requestAnimationFrame(() => setTickVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+    setTickVisible(false);
+  }, [formStatus]);
+
+  useEffect(() => {
+    const phoneInputEl = phoneInputRef.current;
+    if (!phoneInputEl) return;
+
+    const iti = intlTelInput(phoneInputEl, {
+      initialCountry: 'in',
+      separateDialCode: true
+    });
+    itiRef.current = iti;
+
+    const handleCountryChange = () => {
+      const country = iti.getSelectedCountry();
+      if (country) {
+        setDialCode(`+${country.dialCode}`);
+      }
+    };
+    phoneInputEl.addEventListener('countrychange', handleCountryChange);
+
+    return () => {
+      phoneInputEl.removeEventListener('countrychange', handleCountryChange);
+      iti.destroy();
+    };
+  }, []);
+
+  const handleLeadFormSubmit = (e) => {
+    e.preventDefault();
+
+    const phoneValue = phoneInputRef.current?.value || '';
+
+    if (!leadForm.firstName.trim() || !leadForm.lastName.trim() || !leadForm.email.trim() || !phoneValue.trim()) {
+      setFormError('Please fill in all required fields.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadForm.email.trim())) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+    const phoneDigits = phoneValue.replace(/\D/g, '');
+    if (phoneDigits.length < 7 || phoneDigits.length > 12) {
+      setFormError('Please enter a valid phone number.');
+      return;
+    }
+
+    setFormError('');
+    setFormStatus('submitting');
+
+    leadFormRef.current.submit();
+
+    setTimeout(() => {
+      setFormStatus('success');
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">
       <MetaTags
@@ -290,14 +375,12 @@ export default function CisaEnrolmentLandingPage() {
                   <FaCalendarAlt className="text-orange-400 text-xl sm:text-2xl shrink-0" />
                   <span className="block text-white font-semibold">Batch starts from <strong className="text-amber-300 font-bold">Aug 23rd</strong></span>
                 </div>
-                <a
-                  href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={scrollToForm}
                   className="w-full px-6 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md flex items-center justify-center gap-2.5 cursor-pointer group"
                 >
                   <span>Secure Your Seat</span>
-                </a>
+                </button>
               </div>
 
               <div className="flex flex-col justify-end">
@@ -313,17 +396,140 @@ export default function CisaEnrolmentLandingPage() {
             </div>
           </div>
 
-          {/* Right Column: Embedded Zoho Form */}
+          {/* Right Column: Native Lead Form (posts to Zoho, no iframe) */}
           <div id="hero-lead-form" className="w-full lg:w-[48%] max-w-md lg:max-w-none">
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 h-[530px] sm:h-[550px] transition-all duration-300">
+            <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 p-5 sm:p-7 transition-all duration-300 text-gray-800">
+
+              {(formStatus === 'submitting' || formStatus === 'success') && (
+                <div className="absolute inset-0 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center z-10 px-6 text-center">
+                  <div
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-500 ease-out ${
+                      formStatus === 'success'
+                        ? `bg-emerald-50 ${tickVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`
+                        : 'bg-blue-50'
+                    }`}
+                  >
+                    {formStatus === 'submitting' ? (
+                      <FaSpinner className="text-brand-blue text-3xl animate-spin" />
+                    ) : (
+                      <FaCheckCircle className="text-emerald-500 text-4xl" />
+                    )}
+                  </div>
+                  <p className="text-gray-900 font-semibold text-sm sm:text-base">
+                    {formStatus === 'submitting' ? 'Submitting your details...' : 'Thank you!'}
+                  </p>
+                  {formStatus === 'success' && (
+                    <p className="text-gray-600 text-xs sm:text-sm mt-1 max-w-xs">
+                      Our team will get back to you soon.
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
+                START YOUR CISA PREPARATION TODAY
+              </h3>
+              <p className="text-gray-500 text-xs sm:text-sm mb-4">
+                Get upcoming batch dates, fee structure, and course brochure.
+              </p>
+
+              <form
+                ref={leadFormRef}
+                onSubmit={handleLeadFormSubmit}
+                noValidate
+                action={ZOHO_SUBMIT_URL}
+                method="POST"
+                encType="multipart/form-data"
+                target={ZOHO_SUBMIT_TARGET}
+                className="space-y-3.5"
+              >
+                <input type="hidden" name="zf_referrer_name" value="" />
+                <input type="hidden" name="zf_redirect_url" value="" />
+                <input type="hidden" name="zc_gad" value="" />
+                <input type="hidden" name="PhoneNumber_countrycodeval" value={dialCode} />
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label htmlFor="cisa-first-name" className="block text-xs font-semibold text-gray-700 mb-1">
+                      First Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="cisa-first-name"
+                      type="text"
+                      name="Name_First"
+                      value={leadForm.firstName}
+                      onChange={(e) => setLeadForm((prev) => ({ ...prev, firstName: e.target.value }))}
+                      maxLength={255}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cisa-last-name" className="block text-xs font-semibold text-gray-700 mb-1">
+                      Last Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="cisa-last-name"
+                      type="text"
+                      name="Name_Last"
+                      value={leadForm.lastName}
+                      onChange={(e) => setLeadForm((prev) => ({ ...prev, lastName: e.target.value }))}
+                      maxLength={255}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="cisa-email" className="block text-xs font-semibold text-gray-700 mb-1">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="cisa-email"
+                    type="email"
+                    name="Email"
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm((prev) => ({ ...prev, email: e.target.value }))}
+                    maxLength={255}
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="cisa-phone" className="block text-xs font-semibold text-gray-700 mb-1">
+                    Phone <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    ref={phoneInputRef}
+                    id="cisa-phone"
+                    type="tel"
+                    name="PhoneNumber_countrycode"
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                  />
+                </div>
+
+                {formError && (
+                  <p className="text-red-500 text-xs font-medium">{formError}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={formStatus === 'submitting'}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-semibold text-sm text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.01] transition-all duration-200 shadow-md cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <span>GET COURSE DETAILS & BATCH FEES</span>
+                  <FaArrowRight className="text-xs shrink-0" />
+                </button>
+
+                <p className="text-gray-400 text-[11px] text-center leading-snug">
+                  🔒 100% Privacy. No spam. Course brochure & batch schedule will be delivered directly to your WhatsApp and Email.
+                </p>
+              </form>
+
               <iframe
-                src="https://zfrmz.in/m394pgOFL1meu9stLsgh"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                style={{ border: 'none' }}
-                title="CISA Lead Generation Form"
-              ></iframe>
+                name={ZOHO_SUBMIT_TARGET}
+                title="Form submission target"
+                hidden
+              />
             </div>
           </div>
 
@@ -571,14 +777,12 @@ export default function CisaEnrolmentLandingPage() {
                 </div>
               </div>
 
-              <a
-                href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={scrollToForm}
                 className="block text-center w-full py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white bg-brand-blue hover:bg-brand-purple transition-all duration-200 shadow-sm cursor-pointer"
               >
                 Enroll Now
-              </a>
+              </button>
             </div>
           </div>
 
@@ -696,14 +900,12 @@ export default function CisaEnrolmentLandingPage() {
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8">
             Secure your seat in our upcoming CISA Live Interactive Batch starting <strong className="text-white font-semibold">Aug 23rd</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
           </p>
-          <a
-            href="https://zfrmz.in/m394pgOFL1meu9stLsgh"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={scrollToForm}
             className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-[1.02] transition-all duration-200 shadow-md cursor-pointer"
           >
             <span>Secure Your Seat</span>
-          </a>
+          </button>
         </div>
       </section>
 
