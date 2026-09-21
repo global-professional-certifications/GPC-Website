@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Countdown from "react-countdown";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 import { motion, AnimatePresence } from "motion/react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { LAYOUT_HEIGHTS } from "../../contexts/LayoutContext";

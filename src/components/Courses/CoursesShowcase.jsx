@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from '../routing';
 import cia from "../../assets/courses/cia-logo.webp";
 import cisa from "../../assets/courses/cisa-logo.webp";
 import crma from "../../assets/courses/crma-logo.webp";

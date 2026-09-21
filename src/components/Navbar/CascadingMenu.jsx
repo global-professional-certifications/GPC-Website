@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
+import { Link } from "../routing";
 import { FaChevronRight } from "react-icons/fa";
 
 /**
@@ -22,7 +23,7 @@ import { FaChevronRight } from "react-icons/fa";
  * @param {boolean} [props.showLogos=true] - Show course logos in the courses column.
  */
 const CascadingMenu = ({ categories = [], isOpen, onClose, panelImage = null, showLogos = true }) => {
-    const location = useLocation();
+    const pathname = usePathname();
     const [activeId, setActiveId] = useState(categories[0]?.id);
 
     // Reset the highlighted provider to the first whenever the menu reopens, so
@@ -100,7 +101,7 @@ const CascadingMenu = ({ categories = [], isOpen, onClose, panelImage = null, sh
                     </div>
                     <div className="space-y-1">
                         {courses.map((course, index) => {
-                            const isActive = location.pathname === course.link;
+                            const isActive = pathname === course.link;
                             return (
                                 <Link
                                     key={course.link || index}

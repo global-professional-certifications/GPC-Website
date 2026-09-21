@@ -1,9 +1,10 @@
+'use client';
+
 import React, { useState, useCallback, useEffect } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
-import { Link } from "react-router-dom";
-import MetaTags from "../MetaTags";
+import { Link } from '../routing';
 import { motion } from "motion/react";
 import { RxCross1 } from "react-icons/rx";
 import FAQDisplay from "../FAQDisplay.jsx";
@@ -175,11 +176,6 @@ export default function Events() {
     return (
         <>
             <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema, orgSchema]} />
-            <MetaTags
-                title="Upcoming Certification Events & Webinars - GPC"
-                description="Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."
-                canonicalUrl="https://globalprofessionalcertifications.com/events"
-            />
 
             {/* Hero Section */}
 

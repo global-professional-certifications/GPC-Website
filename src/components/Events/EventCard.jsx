@@ -1,7 +1,7 @@
 import React from "react";
 import Countdown from "react-countdown";
 import { FaClock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";

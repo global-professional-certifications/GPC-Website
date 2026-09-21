@@ -1,15 +1,19 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from '../routing'
 import { client } from '../../lib/sanity/client'
 import { getPostBySlug, getRecentPosts } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
 import PortableTextRenderer from './PortableTextRenderer'
-import MetaTags from '../MetaTags'
 import { SchemaMarkup, getBlogPostingSchema, getBreadcrumbSchema, getFAQSchema } from '../Schema'
 import { Calendar, User, ArrowRight, ArrowLeft, Tag, Share2, Linkedin, Twitter, Facebook, Link2, CheckCircle2 } from 'lucide-react'
 
-const BlogPage = () => {
-    const { slug } = useParams()
+// `slug` now arrives as a prop from app/(site)/blogs/[slug]/page.jsx, which also
+// owns this page's <head> via generateMetadata. The MetaTags element that used
+// to live in the returned JSX is gone for that reason -- keeping it would have
+// produced a second, duplicate title tag after hydration.
+const BlogPage = ({ slug }) => {
     const [post, setPost] = useState(null)
     const [relatedPosts, setRelatedPosts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -117,11 +121,6 @@ const BlogPage = () => {
     return (
         <>
             <SchemaMarkup schema={[blogSchema, breadcrumbSchema, faqSchema].filter(Boolean)} />
-            <MetaTags
-                title={meta?.metaTitle || `${title} | GPC Blog`}
-                description={meta?.metaDescription || description}
-                canonicalUrl={`https://globalprofessionalcertifications.com/blogs/${slug}`}
-            />
 
             <div className="relative min-h-screen w-full bg-white pb-12">
                 {/* Solid Brand Header */}

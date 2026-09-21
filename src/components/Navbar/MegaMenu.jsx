@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
+import { Link } from "../routing";
 
 const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onClose }) => {
-    const location = useLocation();
+    const pathname = usePathname();
 
     return (
         <div
@@ -26,7 +27,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
                         <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Programs & Modules</h4>
                     </div>
                     {items.map((item, index) => {
-                        const isActive = location.pathname === item.link;
+                        const isActive = pathname === item.link;
                         return (
                             <Link
                                 key={index}

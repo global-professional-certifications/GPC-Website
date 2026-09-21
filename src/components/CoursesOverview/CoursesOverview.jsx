@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
-import MetaTags from "../MetaTags";
 import CoursesSEO from "./CoursesSEO";
 import useCurrency from "../../hooks/useCurrency";
 import { FaBullhorn } from "react-icons/fa";
@@ -15,11 +16,22 @@ import crmaLogo from "../../assets/courses/crma-logo.webp";
 
 export default function CoursesOverview() {
 
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+  // Starts false rather than reading window.innerWidth in the initialiser.
+  // 'use client' still server-renders this component, and a useState initialiser
+  // runs during that render -- reading window there crashed the prerender with
+  // "ReferenceError: window is not defined".
+  //
+  // false (desktop) is the correct default: it matches the server render, so
+  // hydration does not mismatch, and the effect below corrects it on mount
+  // before paint for real mobile viewports.
+  const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
     }
+    // Called immediately so the true viewport is applied on mount, not only
+    // after the first resize event.
+    handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
@@ -40,11 +52,6 @@ export default function CoursesOverview() {
   return (
     <>
       <CoursesSEO />
-      <MetaTags
-        title="Certification Courses - Global Professional Certifications"
-        description="Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content."
-        canonicalUrl="https://globalprofessionalcertifications.com/courses"
-      />
 
 
       {/* Hero */}

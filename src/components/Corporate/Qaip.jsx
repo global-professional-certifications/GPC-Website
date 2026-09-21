@@ -1,9 +1,8 @@
 import React from 'react';
-import MetaTags from '../MetaTags';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldHalved, faMagnifyingGlassChart, faCheckDouble, faUserTie, faHandshake, faAward, faStar, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 
 
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart';
@@ -48,11 +47,6 @@ const Qaip = () => {
     return (
         <>
             <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India"
-                description="Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India."
-                canonicalUrl="https://globalprofessionalcertifications.com/corporate/qaip"
-            />
 
             {/* Hero Section */}
             <div

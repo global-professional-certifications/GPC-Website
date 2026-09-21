@@ -1,8 +1,9 @@
+'use client';
+
 import React, { Suspense, lazy } from "react";
 import { useState, useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
-import MetaTags from "../MetaTags";
-import { Helmet } from "react-helmet-async";
+import { Link, NavLink } from '../routing';
+import { SchemaMarkup } from "../Schema";
 import Hero from "../Hero/Hero";
 import { m } from 'motion/react';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
@@ -331,30 +332,24 @@ export default function Home() {
           <CelebrationOverlay onComplete={handleCelebrationComplete} />
         </Suspense>
       )}
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(websiteSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(courseSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(aggregateRatingSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
-      <MetaTags
-        title="Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
-        description=" Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. "
-        canonicalUrl="https://globalprofessionalcertifications.com/"
+      {/*
+        Was a <Helmet> block emitting these six JSON-LD scripts into <head>.
+        SchemaMarkup renders the identical tags inline, which is equally valid
+        for structured data and drops the Helmet dependency.
+
+        filter(Boolean) because faqSchema and aggregateRatingSchema are null
+        when their source data is empty; Helmet silently ignored those, and
+        without the filter they would serialise as the string "null".
+      */}
+      <SchemaMarkup
+        schema={[
+          websiteSchema,
+          organizationSchema,
+          courseSchema,
+          aggregateRatingSchema,
+          breadcrumbSchema,
+          faqSchema,
+        ].filter(Boolean)}
       />
       <div className="bg-gray-50 transition-colors duration-300">
 

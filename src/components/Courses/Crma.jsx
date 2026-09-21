@@ -1,7 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 import { height } from '../Notifications/NotificationBanner';
-import MetaTags from '../MetaTags';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGlobe, FaHandsHelping, FaUserTie, FaLaptop, FaClipboardList, FaChalkboardTeacher, FaPenFancy, FaCertificate } from "react-icons/fa";
 
@@ -96,11 +97,6 @@ const Crma = () => {
 
   return (
     <>
-      <MetaTags
-        title="CRMA Certification - Global Professional Certifications"
-        description="Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
-        canonicalUrl="https://globalprofessionalcertifications.com/courses/crma"
-      />
       <SchemaMarkup schema={[crmaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
       {/* Header */}

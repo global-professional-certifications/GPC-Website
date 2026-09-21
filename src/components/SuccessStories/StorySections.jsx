@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { m, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 import {
   videoVaultTabs,
   videoVaultData,

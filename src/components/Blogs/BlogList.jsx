@@ -1,15 +1,24 @@
+'use client'
+
 import React, { useEffect, useState, useMemo } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { Link } from '../routing'
 import { client } from '../../lib/sanity/client'
 import { getAllPosts, getAllCategories, getAllTags, getPostsByCategory, getPostsByTag } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
-import MetaTags from '../MetaTags'
 import { SchemaMarkup, getCollectionPageSchema, getOrganizationSchema, generateBreadcrumbSchema, getBlogPostingSchema } from '../Schema'
 import BlogFilters from './BlogFilters'
 import { Calendar, User, ArrowRight, Tag, Search, X } from 'lucide-react'
 
 const BlogList = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
+    // next/navigation's useSearchParams returns a read-only URLSearchParams,
+    // NOT react-router's [params, setParams] tuple. Destructuring it as an
+    // array does not throw -- it just yields undefined -- so the old form would
+    // have failed silently at runtime. Writes go through the router instead;
+    // see handleClearFilters.
+    const searchParams = useSearchParams()
+    const router = useRouter()
+    const pathname = usePathname()
     const [posts, setPosts] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [categories, setCategories] = useState([])
@@ -74,7 +83,14 @@ const BlogList = () => {
     }, [posts, searchQuery])
 
     const handleClearFilters = () => {
-        setSearchParams({})
+        // Equivalent of react-router's setSearchParams({}): navigate to the same
+        // path with no query string. push (not replace) keeps the previous
+        // filtered view in history, matching the old default.
+        //
+        // scroll: false is load-bearing. Next's router scrolls to top on
+        // navigation and react-router's setSearchParams did not, so omitting it
+        // would jerk the page to the top whenever filters are cleared.
+        router.push(pathname, { scroll: false })
         setSearchQuery('')
     }
 
@@ -137,11 +153,6 @@ const BlogList = () => {
     return (
         <>
             <SchemaMarkup schema={[collectionPageSchema, orgSchema, breadcrumbSchema, blogSchema, ...blogPostingSchemas]} />
-            <MetaTags
-                title="Blog & Expert Insights | Global Professional Certifications"
-                description="Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications."
-                canonicalUrl="https://globalprofessionalcertifications.com/blogs"
-            />
 
             <div className='relative pt-12 min-h-screen w-full bg-gray-50 overflow-hidden'>
                 {/* Decorative Blobs */}

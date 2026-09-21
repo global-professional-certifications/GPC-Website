@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence } from 'motion/react';
-import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaClock, FaArrowRight, FaGraduationCap, FaBullhorn } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
 import PortableTextRenderer from '../Blogs/PortableTextRenderer';
@@ -140,11 +141,12 @@ const Upcoming = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Helmet>
-        <title>Upcoming Batches & Webinars | Global Professional Certifications</title>
-        <meta name="description" content="Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence." />
-      </Helmet>
-      <SchemaMarkup schema={[breadcrumbSchema, orgSchema, faqSchema, ...eventSchemas]} />
+      {/*
+        The <Helmet> title and description that were here have moved to the
+        `metadata` export in app/(site)/upcoming/page.jsx, where they are
+        server-rendered. Values transcribed verbatim.
+      */}
+      <SchemaMarkup schema={[breadcrumbSchema, orgSchema, faqSchema, ...eventSchemas].filter(Boolean)} />
 
 
       {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}

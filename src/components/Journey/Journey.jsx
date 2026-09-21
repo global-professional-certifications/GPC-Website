@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import MetaTags from '../MetaTags';
+import { Link, NavLink } from '../routing';
 import useScrollAnimation from '../Hooks/useScrollAnimation';
 import { FaGraduationCap, FaHandshake, FaChartLine, FaRocket, FaStar, FaUsers, FaCheckCircle, FaTrophy } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
@@ -99,11 +100,6 @@ const Journey = () => {
 
     return (
         <>
-            <MetaTags
-                title="1 Year Journey | CIA Certification Training in India | Global Professional Certifications"
-                description="Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities."
-                canonicalUrl="https://globalprofessionalcertifications.com/journey-celebration"
-            />
 
             <div className="bg-gray-50 min-h-screen font-sans text-gray-800">
                 {/* Hero Section */}

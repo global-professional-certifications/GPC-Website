@@ -1,7 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from '../routing';
 import { height } from '../Notifications/NotificationBanner';
-import MetaTags from '../MetaTags';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
 import cisa from "../../assets/courses/cisa/what-is-cisa.webp";
@@ -118,11 +119,6 @@ const Cisa = () => {
   const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
-      <MetaTags
-        title="Best CISA Certification in India | Global Professional Certifications"
-        description="Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
-        canonicalUrl="https://globalprofessionalcertifications.com/courses/cisa"
-      />
       <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link } from './routing';
 
 const FAQDisplay = ({ faqs = [], showCount = 5, showMoreLink = "/faq" }) => {
     const [openIndex, setOpenIndex] = useState(null);

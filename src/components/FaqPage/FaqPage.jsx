@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import MetaTags from "../MetaTags";
 
 import { SchemaMarkup, getFAQSchema, generateBreadcrumbSchema, getOrganizationSchema } from "../Schema";
 
@@ -233,11 +234,6 @@ const FAQ = () => {
     return (
         <>
             <SchemaMarkup schema={[faqSchema, orgSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Frequently Asked Questions (FAQs) | Global Professional Certifications"
-                description="Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career."
-                canonicalUrl="https://globalprofessionalcertifications.com/faq"
-            />
 
             {/* Hero Section */}
             <section className="h-[50vh] sm:h-[50vh] md:h-[60vh] flex flex-col justify-center items-center bg-brand-blue px-4 sm:px-6 md:px-8">

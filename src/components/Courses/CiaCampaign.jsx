@@ -1,9 +1,10 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from '../routing';
 import Card from '../Card/Card.jsx';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import MetaTags from '../MetaTags.jsx';
 import { height } from '../Notifications/NotificationBanner.jsx';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
@@ -100,11 +101,6 @@ const CiaCampaign = () => {
         <>
             <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema]} />
 
-            <MetaTags
-                title="CIA Certification Training | India's #1 IIA-Accredited Program"
-                description="Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!"
-                canonicalUrl="https://globalprofessionalcertifications.com/cia-certification-training"
-            />
 
             {/* Hero Section */}
             <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(12 + (height ? height - 4 : 0)).toString()}`}>

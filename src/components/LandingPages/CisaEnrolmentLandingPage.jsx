@@ -1,6 +1,7 @@
+'use client';
+
 import React, { Suspense, useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import MetaTags from '../MetaTags.jsx';
+import { Link } from '../routing';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
 import { FiPhoneCall } from 'react-icons/fi';
 import MentorShowcase from '../About/MentorShowcase.jsx';
@@ -306,11 +307,6 @@ export default function CisaEnrolmentLandingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">
-      <MetaTags
-        title="CISA Live Interactive Batch | Global Professional Certifications (GPC)"
-        description="Fast-Track Your GRC Career & Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd."
-        canonicalUrl="https://globalprofessionalcertifications.com/cisa-enrollment"
-      />
 
       {/* Header - Minimal Header with GPC Logo only */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 py-1.5 px-4 sm:px-8 transition-all font-poppins">

@@ -133,7 +133,6 @@
 // }
 
 import React from "react";
-import MetaTags from "../MetaTags";
 import { SchemaMarkup, getWebPageSchema, getOrganizationSchema, generateBreadcrumbSchema } from "../Schema";
 
 export default function Terms() {
@@ -149,11 +148,6 @@ export default function Terms() {
     return (
         <>
             <SchemaMarkup schema={[webPageSchema, orgSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Terms & Conditions – Global Professional Certifications"
-                description="Read our terms and conditions outlining course access, use of services, and user responsibilities."
-                canonicalUrl="https://globalprofessionalcertifications.com/terms"
-            />
             <div className="w-full bg-gray-50 min-h-screen">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pt-8 pb-12 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-10 text-brand-dark">
                     <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Terms & Conditions</h3>

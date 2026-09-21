@@ -1,9 +1,8 @@
 import React from "react";
-import MetaTags from "../MetaTags";
 import { GrLocation } from "react-icons/gr";
 import { FiPhoneCall, FiArrowUpRight } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import { SchemaMarkup, getContactPageSchema, getLocalBusinessSchema, generateBreadcrumbSchema } from "../Schema";
 
@@ -51,11 +50,6 @@ export default function ContactUs() {
     return (
         <>
             <SchemaMarkup schema={[contactPageSchema, localBusinessSchema, contactPointSchema, postalAddressSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Contact Us - Global Professional Certifications"
-                description="Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."
-                canonicalUrl="https://globalprofessionalcertifications.com/contact"
-            />
 
             {/* ───── SECTION 1: Hero ───── */}
             <section className="bg-brand-blue pt-12 pb-16 lg:pt-16 lg:pb-20 relative overflow-hidden">

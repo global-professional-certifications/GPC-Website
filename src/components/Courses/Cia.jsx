@@ -1,9 +1,10 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from '../routing';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import MetaTags from '../MetaTags';
 import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
@@ -117,11 +118,6 @@ const Cia = () => {
         <>
             <SchemaMarkup schema={[ciaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
-            <MetaTags
-                title="Become Certified Internal Auditor | Join CIA Certification Training Course in India"
-                description="Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India's leading CIA certification training providers."
-                canonicalUrl="https://globalprofessionalcertifications.com/courses/cia"
-            />
 
 
 

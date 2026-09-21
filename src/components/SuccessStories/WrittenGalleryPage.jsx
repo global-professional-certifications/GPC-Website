@@ -1,8 +1,9 @@
+'use client';
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { client } from "../../lib/sanity/client";
 import { urlFor } from "../../lib/sanity/imageBuilder";
-import { Link } from "react-router-dom";
-import MetaTags from "../MetaTags";
+import { Link } from '../routing';
 
 import { VideoGridCard, VideoModal } from "./StorySections";
 
@@ -89,10 +90,6 @@ export default function WrittenGalleryPage() {
 
     return (
         <div className="min-h-screen bg-white flex flex-col">
-            <MetaTags
-                title="Written Testimonials - GPC Success Stories"
-                description="Read written testimonials and success stories from our students who transformed their careers."
-            />
             <section className="w-full pt-8 pb-16 px-4 md:px-8 max-w-[1280px] mx-auto flex-1">
                 <div className="mb-8 md:mb-12">
                     <Link

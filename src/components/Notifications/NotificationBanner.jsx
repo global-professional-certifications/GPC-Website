@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 import { motion, AnimatePresence } from "motion/react";
 import {
   FaChevronLeft,

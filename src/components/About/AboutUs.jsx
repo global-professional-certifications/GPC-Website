@@ -2,8 +2,7 @@ import aboutHero from "../../assets/about/about-hero.webp";
 import ourMissionOne from "../../assets/about/our-mission-1.webp";
 import ourMissionTwo from "../../assets/about/our-mission-2.webp";
 import ourVision from "../../assets/about/our-vision.webp";
-import { Link } from "react-router-dom";
-import MetaTags from "../MetaTags";
+import { Link } from '../routing';
 import { Users, GraduationCap, BookCheck, Award, Target, ShieldCheck, Globe } from "lucide-react";
 import MentorShowcase from "./MentorShowcase";
 import { PiBrain } from "react-icons/pi";
@@ -34,11 +33,6 @@ export default function AboutUs() {
     return (
         <div className="bg-gray-50">
             <SchemaMarkup schema={[aboutPageSchema, breadcrumbSchema, orgSchema, mentorSchema]} />
-            <MetaTags
-                title="About Global Professional Certifications"
-                description="Learn how we empower professionals with globally recognized certifications and expert-driven learning."
-                canonicalUrl="https://globalprofessionalcertifications.com/about"
-            />
 
             {/* Hero Section */}
             <section className="bg-brand-blue pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 relative md:min-h-[70vh] md:flex md:justify-center md:items-center">

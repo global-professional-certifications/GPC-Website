@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import { Link } from '../routing';
 import { m } from 'motion/react';
 import { Home, ArrowLeft } from 'lucide-react';
 

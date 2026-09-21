@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 
 // Hero Images
 import agmIiaDelhiChapterOne from "../../assets/AGM-IIA-Delhi/AGM-IIA-Delhi-9-success.png";

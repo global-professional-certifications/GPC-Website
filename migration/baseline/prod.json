@@ -1,0 +1,1666 @@
+{
+  "base": "https://globalprofessionalcertifications.com",
+  "capturedAt": "2026-09-18T05:36:08.731Z",
+  "groups": {
+    "campaign": [
+      {
+        "path": "/cisa-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cisa-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/cisa-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 583,
+        "meta": {
+          "path": "/cisa-enrollment",
+          "component": "LandingPages/CisaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/lp/cisa-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cisa-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/lp/cisa-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 580,
+        "meta": {
+          "path": "/lp/cisa-enrollment",
+          "component": "LandingPages/CisaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/cia-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 831,
+        "meta": {
+          "path": "/cia-enrollment",
+          "component": "LandingPages/CiaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/lp/cia-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/lp/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 550,
+        "meta": {
+          "path": "/lp/cia-enrollment",
+          "component": "LandingPages/CiaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/cia-campaign",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-campaign",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/cia-campaign",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 280,
+        "meta": {
+          "path": "/cia-campaign",
+          "component": "Courses/CiaCampaign",
+          "chrome": true
+        }
+      }
+    ],
+    "content": [
+      {
+        "path": "/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 52,
+        "meta": {
+          "path": "/",
+          "component": "Home/Home",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/about",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/about",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/about",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/about",
+          "component": "About/AboutUs",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/terms",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/terms",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/terms",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 64,
+        "meta": {
+          "path": "/terms",
+          "component": "Terms/Terms",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/privacy",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/privacy",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/privacy",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 58,
+        "meta": {
+          "path": "/privacy",
+          "component": "Privacy/PrivacyPolicy",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/contact",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/contact",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/contact",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 63,
+        "meta": {
+          "path": "/contact",
+          "component": "Contact/ContactUs",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/refund",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/refund",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/refund",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 61,
+        "meta": {
+          "path": "/refund",
+          "component": "Refund/RefundPolicy",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/faq",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/faq",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/faq",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 56,
+        "meta": {
+          "path": "/faq",
+          "component": "FaqPage/FaqPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/glossary",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/glossary",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/glossary",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 58,
+        "meta": {
+          "path": "/glossary",
+          "component": "Glossary/Glossary",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/success",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/success",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/success",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/success",
+          "component": "SuccessStories/SuccessStories",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/video-gallery",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/video-gallery",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/video-gallery",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/video-gallery",
+          "component": "SuccessStories/VideoGalleryPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/written-gallery",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/written-gallery",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/written-gallery",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 122,
+        "meta": {
+          "path": "/written-gallery",
+          "component": "SuccessStories/WrittenGalleryPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/our-journey",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/our-journey",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/our-journey",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 114,
+        "meta": {
+          "path": "/our-journey",
+          "component": "Journey/Journey",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 170,
+        "meta": {
+          "path": "/courses",
+          "component": "CoursesOverview/CoursesOverview",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/cia",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cia",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses/cia",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 170,
+        "meta": {
+          "path": "/courses/cia",
+          "component": "Courses/Cia",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/crma",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/crma",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses/crma",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 190,
+        "meta": {
+          "path": "/courses/crma",
+          "component": "Courses/Crma",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/cisa",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cisa",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses/cisa",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 165,
+        "meta": {
+          "path": "/courses/cisa",
+          "component": "Courses/Cisa",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/iap",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/iap",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses/iap",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 52,
+        "meta": {
+          "path": "/courses/iap",
+          "component": "Courses/Iap",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/events",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/events",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/events",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 49,
+        "meta": {
+          "path": "/events",
+          "component": "Events/Events",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/corporate/qaip",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/corporate/qaip",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/corporate/qaip",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 182,
+        "meta": {
+          "path": "/corporate/qaip",
+          "component": "Corporate/Qaip",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/corporate/gtm-trainings",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/corporate/gtm-trainings",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/corporate/gtm-trainings",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 180,
+        "meta": {
+          "path": "/corporate/gtm-trainings",
+          "component": "Corporate/GtmTrainings",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/blogs",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/blogs",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 169,
+        "meta": {
+          "path": "/blogs",
+          "component": "Blogs/BlogList",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/upcoming",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/upcoming",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/upcoming",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 146,
+        "meta": {
+          "path": "/upcoming",
+          "component": "Upcoming/Upcoming",
+          "chrome": true
+        }
+      }
+    ],
+    "dynamic": [
+      {
+        "path": "/blogs/how-to-become-certified-internal-auditor-india",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/how-to-become-certified-internal-auditor-india",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/blogs/how-to-become-certified-internal-auditor-india",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 283,
+        "meta": {
+          "path": "/blogs/how-to-become-certified-internal-auditor-india",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      },
+      {
+        "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 249,
+        "meta": {
+          "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      },
+      {
+        "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/cia-vs-cpa-which-certification-to-choose",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/blogs/cia-vs-cpa-which-certification-to-choose",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 254,
+        "meta": {
+          "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      }
+    ],
+    "rewrites": [
+      {
+        "path": "/CIA-Brochure.pdf",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/CIA-Brochure.pdf",
+            "status": 302,
+            "location": "https://cdn.sanity.io/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf"
+          },
+          {
+            "url": "https://cdn.sanity.io/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "application/pdf",
+        "bytes": null,
+        "head": null,
+        "ms": 2008,
+        "meta": {
+          "path": "/CIA-Brochure.pdf",
+          "destination": "/api/brochure?course=cia",
+          "expectRedirect": true
+        }
+      },
+      {
+        "path": "/CISA-Brochure.pdf",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/CISA-Brochure.pdf",
+            "status": 302,
+            "location": "https://cdn.sanity.io/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf"
+          },
+          {
+            "url": "https://cdn.sanity.io/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "application/pdf",
+        "bytes": null,
+        "head": null,
+        "ms": 2017,
+        "meta": {
+          "path": "/CISA-Brochure.pdf",
+          "destination": "/api/brochure?course=cisa",
+          "expectRedirect": true
+        }
+      },
+      {
+        "path": "/CRMA-Brochure.pdf",
+        "ok": true,
+        "status": 404,
+        "finalPath": "/CRMA-Brochure.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/CRMA-Brochure.pdf",
+            "status": 404,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 173,
+        "head": {
+          "title": null,
+          "description": null,
+          "robots": null,
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": []
+        },
+        "ms": 1333,
+        "meta": {
+          "path": "/CRMA-Brochure.pdf",
+          "destination": "/api/brochure?course=CRMA",
+          "expectRedirect": true
+        }
+      }
+    ],
+    "edgeCases": [
+      {
+        "path": "/about/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/about/",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/about/",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 56,
+        "meta": {
+          "path": "/about/",
+          "note": "trailing slash on a content route"
+        }
+      },
+      {
+        "path": "/courses/cia/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cia/",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/courses/cia/",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 52,
+        "meta": {
+          "path": "/courses/cia/",
+          "note": "trailing slash on a nested route"
+        }
+      },
+      {
+        "path": "/cia-enrollment/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment/",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/cia-enrollment/",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 56,
+        "meta": {
+          "path": "/cia-enrollment/",
+          "note": "trailing slash on a CAMPAIGN route"
+        }
+      },
+      {
+        "path": "/About",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/About",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/About",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/About",
+          "note": "mixed case -- React Router matches, Next.js does not"
+        }
+      },
+      {
+        "path": "/Courses/CIA",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/Courses/CIA",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/Courses/CIA",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 62,
+        "meta": {
+          "path": "/Courses/CIA",
+          "note": "mixed case on a nested route"
+        }
+      },
+      {
+        "path": "/CIA-Enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/CIA-Enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/CIA-Enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 58,
+        "meta": {
+          "path": "/CIA-Enrollment",
+          "note": "mixed case on a CAMPAIGN route"
+        }
+      },
+      {
+        "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "?utm_source=google&utm_medium=cpc&gclid=TEST123",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 59,
+        "meta": {
+          "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+          "note": "campaign route with UTM + gclid -- params must survive"
+        }
+      },
+      {
+        "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cia-enrollment",
+        "finalSearch": "?utm_source=meta&utm_campaign=test",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+          "note": "/lp/ campaign variant with UTM"
+        }
+      },
+      {
+        "path": "/this-route-does-not-exist",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/this-route-does-not-exist",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "https://globalprofessionalcertifications.com/this-route-does-not-exist",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 5372,
+        "head": {
+          "title": "Global Professional Certifications®",
+          "description": null,
+          "robots": "index, follow",
+          "canonical": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "ogUrl": null,
+          "ogImage": null,
+          "twitterCard": null,
+          "jsonLdTypes": [
+            "Organization",
+            "WebSite"
+          ]
+        },
+        "ms": 147,
+        "meta": {
+          "path": "/this-route-does-not-exist",
+          "note": "unmatched route -- 404 handling"
+        }
+      }
+    ]
+  }
+}

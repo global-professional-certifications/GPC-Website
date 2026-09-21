@@ -1,7 +1,6 @@
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '../../lib/sanity/imageBuilder'
-import { Link } from 'react-router-dom'
-import { ChevronDown, List } from 'lucide-react'
+import { Link } from '../routing';import { ChevronDown, List } from 'lucide-react'
 import { useState } from 'react'
 import LatexRenderer from './LatexRenderer'
 

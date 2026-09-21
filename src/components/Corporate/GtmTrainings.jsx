@@ -1,10 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import MetaTags from '../MetaTags';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faClock, faRocket, faShieldHalved, faBrain, faScaleBalanced } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 
 
 import DescriptiveLeft from "../DescriptiveSection/DescriptiveLeft";
@@ -44,11 +42,6 @@ const GtmTrainings = () => {
     return (
         <>
             <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Corporate Training Programmes | GTM Trainings | Global Professional Certifications"
-                description="Elevate your team with GPC's 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies."
-                canonicalUrl="https://globalprofessionalcertifications.com/corporate/gtm-trainings"
-            />
 
             {/* Hero Section */}
             <div className="flex justify-center items-center bg-brand-blue py-24">

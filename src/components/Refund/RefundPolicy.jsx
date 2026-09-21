@@ -54,7 +54,6 @@
 
 
 import React from "react";
-import MetaTags from "../MetaTags";
 import { SchemaMarkup, getWebPageSchema, getOrganizationSchema, generateBreadcrumbSchema } from "../Schema";
 
 export default function RefundPolicy() {
@@ -70,11 +69,6 @@ export default function RefundPolicy() {
     return (
         <>
             <SchemaMarkup schema={[webPageSchema, orgSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Refund Policy – Global Professional Certifications"
-                description="Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience."
-                canonicalUrl="https://globalprofessionalcertifications.com/refund"
-            />
             <div className="w-full bg-gray-50 min-h-screen">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-10 text-brand-dark">
                     <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Refund Policy</h3>

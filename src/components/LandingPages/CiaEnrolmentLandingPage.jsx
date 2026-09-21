@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import MetaTags from '../MetaTags.jsx';
+import { Link } from '../routing';
 import logo from '../../assets/navbar/gpc-navbar-logo.webp';
 import { FiPhoneCall, FiMail } from 'react-icons/fi';
 import {
@@ -297,11 +298,6 @@ export default function CiaEnrolmentLandingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-poppins selection:bg-brand-blue selection:text-white">
-      <MetaTags
-        title="CIA Live Weekend Batch | Global Professional Certifications (GPC)"
-        description="Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg."
-        canonicalUrl="https://globalprofessionalcertifications.com/cia-enrollment"
-      />
 
       {/* Sticky Top Group: Urgency Bar + Header stick together as one unit */}
       <div className="sticky top-0 z-50">

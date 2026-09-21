@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const nonBlockingCss = {
@@ -12,8 +12,24 @@ const nonBlockingCss = {
 };
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+
+  return {
   plugins: [react(), nonBlockingCss],
+  // During the Next.js migration both builds share src/lib/sanity/env.js, which
+  // reads `process.env.NEXT_PUBLIC_*` because that is the only form Next.js can
+  // inline into a client bundle. Vite has no such variables, so we substitute
+  // them from the existing VITE_* ones here. This keeps the Vite build working
+  // as a rollback target without duplicating any values in .env.
+  //
+  // Remove this block together with vite.config.js itself once the Next.js
+  // deployment is confirmed stable.
+  define: {
+    'process.env.NEXT_PUBLIC_SANITY_PROJECT_ID': JSON.stringify(env.VITE_SANITY_PROJECT_ID),
+    'process.env.NEXT_PUBLIC_SANITY_DATASET': JSON.stringify(env.VITE_SANITY_DATASET || 'production'),
+    'process.env.NEXT_PUBLIC_SANITY_API_VERSION': JSON.stringify(env.VITE_SANITY_API_VERSION || '2024-12-05'),
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
@@ -50,5 +66,6 @@ export default defineConfig({
         }
       }
     }
+  }
   }
 })

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 import { HiOutlineMail } from "react-icons/hi";
 import { TbWorldWww } from "react-icons/tb";
 import arpitGarg from "../../assets/about/arpit-garg.webp";

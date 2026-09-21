@@ -1,9 +1,10 @@
+'use client';
+
 import React, { useState, useEffect, useMemo } from "react";
 import { client } from "../../lib/sanity/client";
 import { urlFor } from "../../lib/sanity/imageBuilder";
-import { Link } from "react-router-dom";
+import { Link } from '../routing';
 
-import MetaTags from "../MetaTags";
 import { SchemaMarkup, generateBreadcrumbSchema, getCollectionPageSchema, getAggregateRatingSchema, getOrganizationSchema, getVideoSchema, getReviewSchema } from "../Schema";
 
 // Consolidated Components
@@ -231,11 +232,6 @@ export default function SuccessStories() {
     return (
         <>
             <SchemaMarkup schema={[breadcrumbSchema, collectionPageSchema, aggregateRatingSchema, orgSchema, ...videoSchemas, ...reviewSchemas]} />
-            <MetaTags
-                title="CIA Exam Success Stories – Real Achievements"
-                description="Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
-                canonicalUrl="https://globalprofessionalcertifications.com/success"
-            />
 
             <HeroSection hero={heroData} />
 

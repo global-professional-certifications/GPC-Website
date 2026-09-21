@@ -1,7 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 import { height } from '../Notifications/NotificationBanner';
-import MetaTags from '../MetaTags';
 
 import FAQDisplay from "../FAQDisplay.jsx";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase.jsx";
@@ -110,11 +111,6 @@ const Iap = () => {
 
   return (
     <>
-      <MetaTags
-        title="IAP Certification - Global Professional Certifications"
-        description="Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
-        canonicalUrl="https://globalprofessionalcertifications.com/courses/iap"
-      />
       <SchemaMarkup schema={[iapSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
       {/* Header */}

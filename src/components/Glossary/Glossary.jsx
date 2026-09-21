@@ -1,5 +1,6 @@
+'use client';
+
 import React, { useState } from "react";
-import MetaTags from "../MetaTags";
 
 import { SchemaMarkup, getDefinedTermSetSchema, generateBreadcrumbSchema, getOrganizationSchema } from "../Schema";
 
@@ -110,11 +111,6 @@ const Glossary = () => {
     return (
         <>
             <SchemaMarkup schema={[glossarySchema, orgSchema, breadcrumbSchema]} />
-            <MetaTags
-                title="Certification Glossary | Key Terms for Auditors & Risk Professionals"
-                description="Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications."
-                canonicalUrl="https://globalprofessionalcertifications.com/glossary"
-            />
             <div className="min-h-screen bg-gray-50 flex flex-col items-center px-4 sm:px-6 md:px-8">
                 <div className="max-w-4xl w-full pt-8 sm:pt-10">
                     <h1 className="text-3xl sm:text-4xl font-bold mt-6 text-center mb-6 sm:mb-8">Glossary</h1>
