@@ -1,5 +1,5 @@
 /**
- * Fails if any module reachable from app/ still imports react-router-dom.
+ * Fails if any module reachable from app/ imports a package whose provider is gone.
  *
  *   node migration/check-router-imports.js
  *
@@ -24,7 +24,14 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
 
 const ROOT = process.cwd();
-const FORBIDDEN = 'react-router-dom';
+/**
+ * Packages that no longer have the provider they depend on. Importing one from
+ * reachable code is a runtime crash, not a lint nit:
+ *   react-router-dom    -- hooks throw without a <Router> ancestor
+ *   react-helmet-async  -- <Helmet> throws without a <HelmetProvider>
+ * Both providers were removed with main.jsx.
+ */
+const FORBIDDEN = ['react-router-dom', 'react-helmet-async'];
 const EXTENSIONS = ['.jsx', '.js', '.ts', '.tsx'];
 
 /** Every page/layout/route under app/ is an entry point into the graph. */
@@ -83,9 +90,14 @@ function walk(file, chain) {
     ];
 
     // Only count a real import statement, not a mention in a comment.
-    const importsForbidden = specs.includes(FORBIDDEN);
-    if (importsForbidden) {
-        offenders.push({ file: relative(ROOT, file), chain: chain.map((c) => relative(ROOT, c)) });
+    for (const bad of FORBIDDEN) {
+        if (specs.includes(bad)) {
+            offenders.push({
+                file: relative(ROOT, file),
+                pkg: bad,
+                chain: chain.map((c) => relative(ROOT, c)),
+            });
+        }
     }
 
     for (const spec of specs) {
@@ -100,13 +112,13 @@ for (const entry of entries) walk(entry, []);
 console.log(`\nWalked ${visited.size} modules reachable from ${entries.length} app/ entry points.\n`);
 
 if (!offenders.length) {
-    console.log(`No reachable module imports ${FORBIDDEN}.\n`);
+    console.log(`No reachable module imports ${FORBIDDEN.join(" or ")}.\n`);
     process.exit(0);
 }
 
-console.log(`REACHABLE ${FORBIDDEN} IMPORTS (${offenders.length}) -- these WILL crash at runtime:\n`);
+console.log(`REACHABLE FORBIDDEN IMPORTS (${offenders.length}) -- these WILL crash at runtime:\n`);
 for (const o of offenders) {
-    console.log(`  x ${o.file}`);
+    console.log(`  x ${o.file}  imports ${o.pkg}`);
     // The chain shows which route drags it in, which is the part you need to
     // reproduce it in a browser.
     if (o.chain.length) console.log(`      reached via: ${o.chain.join('  ->  ')}`);
