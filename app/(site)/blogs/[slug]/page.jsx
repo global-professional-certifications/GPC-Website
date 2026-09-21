@@ -15,6 +15,50 @@ import { urlFor } from '../../../../src/lib/sanity/imageBuilder';
  * saw none of it -- so every post shared one title across the whole blog.
  */
 
+/**
+ * Prerender every published post at build time.
+ *
+ * Not a performance tweak -- it is what puts this page's metadata inside
+ * <head>. A dynamically-rendered route streams its <head> tags into the body
+ * instead: measured on this very page, </head> closed at byte 5,073 while the
+ * <title> arrived at byte 55,409. React 19 and browsers hoist those tags, and
+ * Google runs JS so it sees them, but link unfurlers (Slack, WhatsApp,
+ * LinkedIn, Facebook) parse <head> and never execute scripts. Open Graph tags
+ * below the fold are invisible to precisely the clients they exist for.
+ *
+ * Prerendering resolves the metadata at build time, so it lands in <head> like
+ * every static route.
+ *
+ * Posts published after a build still work: `dynamicParams` defaults to true,
+ * so an unknown slug renders on demand and is then cached.
+ *
+ * Failing soft on a CMS error is deliberate. Returning [] falls back to
+ * on-demand rendering for every post, which is the pre-migration behaviour --
+ * strictly better than failing the deploy because Sanity was briefly
+ * unreachable.
+ */
+export async function generateStaticParams() {
+    try {
+        const slugs = await client.fetch(
+            `*[_type == "post" && defined(slug.current)].slug.current`,
+        );
+        return (slugs ?? []).filter(Boolean).map((slug) => ({ slug }));
+    } catch (error) {
+        console.error('generateStaticParams: could not list blog slugs, falling back to on-demand rendering:', error);
+        return [];
+    }
+}
+
+/**
+ * Re-resolve a prerendered post at most once an hour.
+ *
+ * Only affects the <head> metadata and the prerendered shell. The visible
+ * article is still fetched client-side by BlogPage on every load, exactly as
+ * before, so editors keep seeing content changes immediately -- this window
+ * applies to the title and OG tags alone.
+ */
+export const revalidate = 3600;
+
 const METADATA_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   title,
   "description": coalesce(shortDescription, description),

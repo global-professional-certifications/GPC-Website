@@ -1,0 +1,2006 @@
+{
+  "base": "http://localhost:3000",
+  "capturedAt": "2026-09-21T07:33:49.458Z",
+  "groups": {
+    "campaign": [
+      {
+        "path": "/cisa-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cisa-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/cisa-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 176379,
+        "head": {
+          "title": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
+          "description": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cisa-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cisa-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 65,
+        "meta": {
+          "path": "/cisa-enrollment",
+          "component": "LandingPages/CisaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/lp/cisa-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cisa-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/lp/cisa-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 176891,
+        "head": {
+          "title": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
+          "description": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cisa-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cisa-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 63,
+        "meta": {
+          "path": "/lp/cisa-enrollment",
+          "component": "LandingPages/CisaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/cia-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 82858,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 59,
+        "meta": {
+          "path": "/cia-enrollment",
+          "component": "LandingPages/CiaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/lp/cia-enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/lp/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 83327,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 59,
+        "meta": {
+          "path": "/lp/cia-enrollment",
+          "component": "LandingPages/CiaEnrolmentLandingPage",
+          "chrome": false
+        }
+      },
+      {
+        "path": "/cia-campaign",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-campaign",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/cia-campaign",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 118200,
+        "head": {
+          "title": "CIA Certification Training | India&#x27;s #1 IIA-Accredited Program",
+          "description": "Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-campaign",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Certification Training | India&#x27;s #1 IIA-Accredited Program",
+          "ogDescription": "Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-campaign",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "FAQPage",
+            "WebSite"
+          ]
+        },
+        "ms": 14,
+        "meta": {
+          "path": "/cia-campaign",
+          "component": "Courses/CiaCampaign",
+          "chrome": true
+        }
+      }
+    ],
+    "content": [
+      {
+        "path": "/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 91390,
+        "head": {
+          "title": "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
+          "description": " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
+          "ogDescription": " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
+          "ogUrl": "https://globalprofessionalcertifications.com",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "ItemList",
+            "Organization",
+            "WebSite",
+            "WebSite"
+          ]
+        },
+        "ms": 25,
+        "meta": {
+          "path": "/",
+          "component": "Home/Home",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/about",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/about",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/about",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 105271,
+        "head": {
+          "title": "About Global Professional Certifications",
+          "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/about",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "About Global Professional Certifications",
+          "ogDescription": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "ogUrl": "https://globalprofessionalcertifications.com/about",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "AboutPage",
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "Person",
+            "WebSite"
+          ]
+        },
+        "ms": 45,
+        "meta": {
+          "path": "/about",
+          "component": "About/AboutUs",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/terms",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/terms",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/terms",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 89814,
+        "head": {
+          "title": "Terms &amp; Conditions – Global Professional Certifications",
+          "description": "Read our terms and conditions outlining course access, use of services, and user responsibilities.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/terms",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Terms &amp; Conditions – Global Professional Certifications",
+          "ogDescription": "Read our terms and conditions outlining course access, use of services, and user responsibilities.",
+          "ogUrl": "https://globalprofessionalcertifications.com/terms",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "WebPage",
+            "WebSite"
+          ]
+        },
+        "ms": 42,
+        "meta": {
+          "path": "/terms",
+          "component": "Terms/Terms",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/privacy",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/privacy",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/privacy",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 107395,
+        "head": {
+          "title": "Privacy Policy – Global Professional Certifications",
+          "description": "Understand how we protect your data and privacy as you use our platform and enroll in our courses.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/privacy",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Privacy Policy – Global Professional Certifications",
+          "ogDescription": "Understand how we protect your data and privacy as you use our platform and enroll in our courses.",
+          "ogUrl": "https://globalprofessionalcertifications.com/privacy",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "WebPage",
+            "WebSite"
+          ]
+        },
+        "ms": 47,
+        "meta": {
+          "path": "/privacy",
+          "component": "Privacy/PrivacyPolicy",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/contact",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/contact",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/contact",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 101114,
+        "head": {
+          "title": "Contact Us - Global Professional Certifications",
+          "description": "Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/contact",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Contact Us - Global Professional Certifications",
+          "ogDescription": "Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals.",
+          "ogUrl": "https://globalprofessionalcertifications.com/contact",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "ContactPage",
+            "ContactPoint",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "PostalAddress",
+            "WebSite"
+          ]
+        },
+        "ms": 35,
+        "meta": {
+          "path": "/contact",
+          "component": "Contact/ContactUs",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/refund",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/refund",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/refund",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 65474,
+        "head": {
+          "title": "Refund Policy – Global Professional Certifications",
+          "description": "Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/refund",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Refund Policy – Global Professional Certifications",
+          "ogDescription": "Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience.",
+          "ogUrl": "https://globalprofessionalcertifications.com/refund",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "WebPage",
+            "WebSite"
+          ]
+        },
+        "ms": 34,
+        "meta": {
+          "path": "/refund",
+          "component": "Refund/RefundPolicy",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/faq",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/faq",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/faq",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 100394,
+        "head": {
+          "title": "Frequently Asked Questions (FAQs) | Global Professional Certifications",
+          "description": "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/faq",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Frequently Asked Questions (FAQs) | Global Professional Certifications",
+          "ogDescription": "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
+          "ogUrl": "https://globalprofessionalcertifications.com/faq",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "WebSite"
+          ]
+        },
+        "ms": 36,
+        "meta": {
+          "path": "/faq",
+          "component": "FaqPage/FaqPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/glossary",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/glossary",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/glossary",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 91321,
+        "head": {
+          "title": "Certification Glossary | Key Terms for Auditors &amp; Risk Professionals",
+          "description": "Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/glossary",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Certification Glossary | Key Terms for Auditors &amp; Risk Professionals",
+          "ogDescription": "Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications.",
+          "ogUrl": "https://globalprofessionalcertifications.com/glossary",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "DefinedTermSet",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 36,
+        "meta": {
+          "path": "/glossary",
+          "component": "Glossary/Glossary",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/success",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/success",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/success",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 54361,
+        "head": {
+          "title": "CIA Exam Success Stories – Real Achievements",
+          "description": "Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/success",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Exam Success Stories – Real Achievements",
+          "ogDescription": "Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers.",
+          "ogUrl": "https://globalprofessionalcertifications.com/success",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 53,
+        "meta": {
+          "path": "/success",
+          "component": "SuccessStories/SuccessStories",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/video-gallery",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/video-gallery",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/video-gallery",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 53627,
+        "head": {
+          "title": "Hear from our Students - GPC Video Gallery",
+          "description": "Watch success stories and testimonials from our students.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/video-gallery",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Hear from our Students - GPC Video Gallery",
+          "ogDescription": "Watch success stories and testimonials from our students.",
+          "ogUrl": "https://globalprofessionalcertifications.com/video-gallery",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 52,
+        "meta": {
+          "path": "/video-gallery",
+          "component": "SuccessStories/VideoGalleryPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/written-gallery",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/written-gallery",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/written-gallery",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 53871,
+        "head": {
+          "title": "Written Testimonials - GPC Success Stories",
+          "description": "Read written testimonials and success stories from our students who transformed their careers.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/written-gallery",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Written Testimonials - GPC Success Stories",
+          "ogDescription": "Read written testimonials and success stories from our students who transformed their careers.",
+          "ogUrl": "https://globalprofessionalcertifications.com/written-gallery",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 52,
+        "meta": {
+          "path": "/written-gallery",
+          "component": "SuccessStories/WrittenGalleryPage",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/our-journey",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/our-journey",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/our-journey",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 103721,
+        "head": {
+          "title": "1 Year Journey | CIA Certification Training in India | Global Professional Certifications",
+          "description": "Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/our-journey",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "1 Year Journey | CIA Certification Training in India | Global Professional Certifications",
+          "ogDescription": "Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities.",
+          "ogUrl": "https://globalprofessionalcertifications.com/our-journey",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 59,
+        "meta": {
+          "path": "/our-journey",
+          "component": "Journey/Journey",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 64445,
+        "head": {
+          "title": "Certification Courses - Global Professional Certifications",
+          "description": "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Certification Courses - Global Professional Certifications",
+          "ogDescription": "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "CollectionPage",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "ItemList",
+            "WebSite"
+          ]
+        },
+        "ms": 39,
+        "meta": {
+          "path": "/courses",
+          "component": "CoursesOverview/CoursesOverview",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/cia",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cia",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses/cia",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 148921,
+        "head": {
+          "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/cia",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "ogDescription": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/cia",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 45,
+        "meta": {
+          "path": "/courses/cia",
+          "component": "Courses/Cia",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/crma",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/crma",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses/crma",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 121162,
+        "head": {
+          "title": "CRMA Certification - Global Professional Certifications",
+          "description": "Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/crma",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CRMA Certification - Global Professional Certifications",
+          "ogDescription": "Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/crma",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 38,
+        "meta": {
+          "path": "/courses/crma",
+          "component": "Courses/Crma",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/cisa",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cisa",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses/cisa",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 122244,
+        "head": {
+          "title": "Best CISA Certification in India | Global Professional Certifications",
+          "description": "Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/cisa",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Best CISA Certification in India | Global Professional Certifications",
+          "ogDescription": "Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/cisa",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 45,
+        "meta": {
+          "path": "/courses/cisa",
+          "component": "Courses/Cisa",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/courses/iap",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/iap",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses/iap",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 112060,
+        "head": {
+          "title": "IAP Certification - Global Professional Certifications",
+          "description": "Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/iap",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "IAP Certification - Global Professional Certifications",
+          "ogDescription": "Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/iap",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 48,
+        "meta": {
+          "path": "/courses/iap",
+          "component": "Courses/Iap",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/events",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/events",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/events",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 70540,
+        "head": {
+          "title": "Upcoming Certification Events &amp; Webinars - GPC",
+          "description": "Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/events",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Upcoming Certification Events &amp; Webinars - GPC",
+          "ogDescription": "Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications.",
+          "ogUrl": "https://globalprofessionalcertifications.com/events",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "WebPage",
+            "WebSite"
+          ]
+        },
+        "ms": 33,
+        "meta": {
+          "path": "/events",
+          "component": "Events/Events",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/corporate/qaip",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/corporate/qaip",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/corporate/qaip",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 128537,
+        "head": {
+          "title": "Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India",
+          "description": "Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/corporate/qaip",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India",
+          "ogDescription": "Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India.",
+          "ogUrl": "https://globalprofessionalcertifications.com/corporate/qaip",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Service",
+            "WebSite"
+          ]
+        },
+        "ms": 32,
+        "meta": {
+          "path": "/corporate/qaip",
+          "component": "Corporate/Qaip",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/corporate/gtm-trainings",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/corporate/gtm-trainings",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/corporate/gtm-trainings",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 152973,
+        "head": {
+          "title": "Corporate Training Programmes | GTM Trainings | Global Professional Certifications",
+          "description": "Elevate your team with GPC&#x27;s 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/corporate/gtm-trainings",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Corporate Training Programmes | GTM Trainings | Global Professional Certifications",
+          "ogDescription": "Elevate your team with GPC&#x27;s 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies.",
+          "ogUrl": "https://globalprofessionalcertifications.com/corporate/gtm-trainings",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Service",
+            "WebSite"
+          ]
+        },
+        "ms": 35,
+        "meta": {
+          "path": "/corporate/gtm-trainings",
+          "component": "Corporate/GtmTrainings",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/blogs",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/blogs",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 54125,
+        "head": {
+          "title": "Blog &amp; Expert Insights | Global Professional Certifications",
+          "description": "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/blogs",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Blog &amp; Expert Insights | Global Professional Certifications",
+          "ogDescription": "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.",
+          "ogUrl": "https://globalprofessionalcertifications.com/blogs",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 23,
+        "meta": {
+          "path": "/blogs",
+          "component": "Blogs/BlogList",
+          "chrome": true
+        }
+      },
+      {
+        "path": "/upcoming",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/upcoming",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/upcoming",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 67947,
+        "head": {
+          "title": "Upcoming Batches &amp; Webinars | Global Professional Certifications",
+          "description": "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/upcoming",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Upcoming Batches &amp; Webinars | Global Professional Certifications",
+          "ogDescription": "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
+          "ogUrl": "https://globalprofessionalcertifications.com/upcoming",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "WebSite"
+          ]
+        },
+        "ms": 18,
+        "meta": {
+          "path": "/upcoming",
+          "component": "Upcoming/Upcoming",
+          "chrome": true
+        }
+      }
+    ],
+    "dynamic": [
+      {
+        "path": "/blogs/how-to-become-certified-internal-auditor-india",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/how-to-become-certified-internal-auditor-india",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/blogs/how-to-become-certified-internal-auditor-india",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 57507,
+        "head": {
+          "title": "How to Become a Certified Internal Auditor (CIA) in India: Step-by-Step Guide | GPC Blog",
+          "description": "Learn how to become a Certified Internal Auditor (CIA) in India with our step-by-step guide. Explore eligibility, exam syllabus, fees, study tips, and career benefits.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/blogs/how-to-become-certified-internal-auditor-india",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "How to Become a Certified Internal Auditor (CIA) in India: Step-by-Step Guide | GPC Blog",
+          "ogDescription": "Learn how to become a Certified Internal Auditor (CIA) in India with our step-by-step guide. Explore eligibility, exam syllabus, fees, study tips, and career benefits.",
+          "ogUrl": "https://globalprofessionalcertifications.com/blogs/how-to-become-certified-internal-auditor-india",
+          "ogImage": "https://cdn.sanity.io/images/x48sh1kt/production/9473be76886491f9a7423d2d61a938357f7101f6-1920x1080.webp?fm=webp&amp;q=75&amp;auto=format",
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 17,
+        "meta": {
+          "path": "/blogs/how-to-become-certified-internal-auditor-india",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      },
+      {
+        "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 57745,
+        "head": {
+          "title": "The 2026 CIA Challenge Exam: Everything You Need to Know About the New Syllabus  | GPC Blog",
+          "description": "Master the 2026 CIA Challenge Exam. Full guide on the new unified syllabus, mandatory 2024 Global Internal Audit Standards, and key application dates.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "The 2026 CIA Challenge Exam: Everything You Need to Know About the New Syllabus  | GPC Blog",
+          "ogDescription": "Master the 2026 CIA Challenge Exam. Full guide on the new unified syllabus, mandatory 2024 Global Internal Audit Standards, and key application dates.",
+          "ogUrl": "https://globalprofessionalcertifications.com/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+          "ogImage": "https://cdn.sanity.io/images/x48sh1kt/production/04e45fb08bd31e8b9169ad8111181ee76d6e4476-1200x500.png?fm=webp&amp;q=75&amp;auto=format",
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 17,
+        "meta": {
+          "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      },
+      {
+        "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/blogs/cia-vs-cpa-which-certification-to-choose",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/blogs/cia-vs-cpa-which-certification-to-choose",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 57141,
+        "head": {
+          "title": "CIA vs CPA: Which Certification Should You Choose? | GPC Blog",
+          "description": "Choosing between CIA and CPA? This guide breaks down requirements, benefits, and career paths to help aspiring auditors and accountants decide.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/blogs/cia-vs-cpa-which-certification-to-choose",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA vs CPA: Which Certification Should You Choose? | GPC Blog",
+          "ogDescription": "Choosing between CIA and CPA? This guide breaks down requirements, benefits, and career paths to help aspiring auditors and accountants decide.",
+          "ogUrl": "https://globalprofessionalcertifications.com/blogs/cia-vs-cpa-which-certification-to-choose",
+          "ogImage": "https://cdn.sanity.io/images/x48sh1kt/production/ebdf53544aec6f537c9ef07cf4a5863501fa41b1-1920x1080.webp?fm=webp&amp;q=75&amp;auto=format",
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 13,
+        "meta": {
+          "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
+          "pattern": "/blogs/:slug",
+          "component": "Blogs/BlogPage"
+        }
+      }
+    ],
+    "rewrites": [
+      {
+        "path": "/CIA-Brochure.pdf",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/CIA-Brochure.pdf",
+            "status": 302,
+            "location": "https://cdn.sanity.io/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf"
+          },
+          {
+            "url": "https://cdn.sanity.io/files/x48sh1kt/production/adf232c11cc1c76833815be911994e22857e59a2.pdf",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "application/pdf",
+        "bytes": null,
+        "head": null,
+        "ms": 794,
+        "meta": {
+          "path": "/CIA-Brochure.pdf",
+          "destination": "/api/brochure?course=cia",
+          "expectRedirect": true
+        }
+      },
+      {
+        "path": "/CISA-Brochure.pdf",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/CISA-Brochure.pdf",
+            "status": 302,
+            "location": "https://cdn.sanity.io/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf"
+          },
+          {
+            "url": "https://cdn.sanity.io/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "application/pdf",
+        "bytes": null,
+        "head": null,
+        "ms": 1365,
+        "meta": {
+          "path": "/CISA-Brochure.pdf",
+          "destination": "/api/brochure?course=cisa",
+          "expectRedirect": true
+        }
+      },
+      {
+        "path": "/CRMA-Brochure.pdf",
+        "ok": true,
+        "status": 404,
+        "finalPath": "/CRMA-Brochure.pdf",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/CRMA-Brochure.pdf",
+            "status": 404,
+            "location": null
+          }
+        ],
+        "contentType": "text/plain",
+        "bytes": null,
+        "head": null,
+        "ms": 479,
+        "meta": {
+          "path": "/CRMA-Brochure.pdf",
+          "destination": "/api/brochure?course=CRMA",
+          "expectRedirect": true
+        }
+      }
+    ],
+    "edgeCases": [
+      {
+        "path": "/about/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/about",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/about/",
+            "status": 308,
+            "location": "/about"
+          },
+          {
+            "url": "http://localhost:3000/about",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 105271,
+        "head": {
+          "title": "About Global Professional Certifications",
+          "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/about",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "About Global Professional Certifications",
+          "ogDescription": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "ogUrl": "https://globalprofessionalcertifications.com/about",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "AboutPage",
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "Person",
+            "WebSite"
+          ]
+        },
+        "ms": 63,
+        "meta": {
+          "path": "/about/",
+          "note": "trailing slash on a content route"
+        }
+      },
+      {
+        "path": "/courses/cia/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cia",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/courses/cia/",
+            "status": 308,
+            "location": "/courses/cia"
+          },
+          {
+            "url": "http://localhost:3000/courses/cia",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 148921,
+        "head": {
+          "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/cia",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "ogDescription": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/cia",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 51,
+        "meta": {
+          "path": "/courses/cia/",
+          "note": "trailing slash on a nested route"
+        }
+      },
+      {
+        "path": "/cia-enrollment/",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/cia-enrollment/",
+            "status": 308,
+            "location": "/cia-enrollment"
+          },
+          {
+            "url": "http://localhost:3000/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 82858,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 53,
+        "meta": {
+          "path": "/cia-enrollment/",
+          "note": "trailing slash on a CAMPAIGN route"
+        }
+      },
+      {
+        "path": "/About",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/about",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/About",
+            "status": 308,
+            "location": "/about"
+          },
+          {
+            "url": "http://localhost:3000/about",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 105271,
+        "head": {
+          "title": "About Global Professional Certifications",
+          "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/about",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "About Global Professional Certifications",
+          "ogDescription": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
+          "ogUrl": "https://globalprofessionalcertifications.com/about",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "AboutPage",
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "Person",
+            "WebSite"
+          ]
+        },
+        "ms": 55,
+        "meta": {
+          "path": "/About",
+          "note": "mixed case -- React Router matches, Next.js does not"
+        }
+      },
+      {
+        "path": "/Courses/CIA",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/courses/cia",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/Courses/CIA",
+            "status": 308,
+            "location": "/courses/cia"
+          },
+          {
+            "url": "http://localhost:3000/courses/cia",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 148921,
+        "head": {
+          "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/courses/cia",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
+          "ogDescription": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
+          "ogUrl": "https://globalprofessionalcertifications.com/courses/cia",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "BreadcrumbList",
+            "Course",
+            "EducationalOrganization",
+            "EducationalOrganization",
+            "FAQPage",
+            "Review",
+            "SoftwareApplication",
+            "WebSite"
+          ]
+        },
+        "ms": 61,
+        "meta": {
+          "path": "/Courses/CIA",
+          "note": "mixed case on a nested route"
+        }
+      },
+      {
+        "path": "/CIA-Enrollment",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": true,
+        "hops": 1,
+        "chain": [
+          {
+            "url": "http://localhost:3000/CIA-Enrollment",
+            "status": 308,
+            "location": "/cia-enrollment"
+          },
+          {
+            "url": "http://localhost:3000/cia-enrollment",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 82858,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 54,
+        "meta": {
+          "path": "/CIA-Enrollment",
+          "note": "mixed case on a CAMPAIGN route"
+        }
+      },
+      {
+        "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/cia-enrollment",
+        "finalSearch": "?utm_source=google&utm_medium=cpc&gclid=TEST123",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 82858,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 50,
+        "meta": {
+          "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
+          "note": "campaign route with UTM + gclid -- params must survive"
+        }
+      },
+      {
+        "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+        "ok": true,
+        "status": 200,
+        "finalPath": "/lp/cia-enrollment",
+        "finalSearch": "?utm_source=meta&utm_campaign=test",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+            "status": 200,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 83327,
+        "head": {
+          "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "robots": "index, follow",
+          "canonical": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
+          "ogDescription": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
+          "ogUrl": "https://globalprofessionalcertifications.com/cia-enrollment",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 46,
+        "meta": {
+          "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
+          "note": "/lp/ campaign variant with UTM"
+        }
+      },
+      {
+        "path": "/this-route-does-not-exist",
+        "ok": true,
+        "status": 404,
+        "finalPath": "/this-route-does-not-exist",
+        "finalSearch": "",
+        "queryPreserved": true,
+        "redirected": false,
+        "hops": 0,
+        "chain": [
+          {
+            "url": "http://localhost:3000/this-route-does-not-exist",
+            "status": 404,
+            "location": null
+          }
+        ],
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 55695,
+        "head": {
+          "title": "Page Not Found | Global Professional Certifications®",
+          "description": "The page you are looking for could not be found.",
+          "robots": "noindex",
+          "canonical": "https://globalprofessionalcertifications.com",
+          "inHead": {
+            "title": true,
+            "canonical": true,
+            "ogTitle": true
+          },
+          "ogTitle": "Page Not Found | Global Professional Certifications®",
+          "ogDescription": "The page you are looking for could not be found.",
+          "ogUrl": "https://globalprofessionalcertifications.com",
+          "ogImage": null,
+          "twitterCard": "summary_large_image",
+          "jsonLdTypes": [
+            "BreadcrumbList",
+            "EducationalOrganization",
+            "WebSite"
+          ]
+        },
+        "ms": 24,
+        "meta": {
+          "path": "/this-route-does-not-exist",
+          "note": "unmatched route -- 404 handling"
+        }
+      }
+    ]
+  }
+}

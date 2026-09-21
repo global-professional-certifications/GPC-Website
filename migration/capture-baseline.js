@@ -56,24 +56,47 @@ function parseArgs(argv) {
 // ------------------------------------------------------------ head scraping
 
 /**
- * Pulls the SEO-relevant parts of <head> out of raw HTML.
+ * Pulls the SEO-relevant metadata out of raw HTML.
  *
  * Deliberately regex-based rather than a DOM parse: we are comparing two
  * captures produced by this same function, so consistency matters far more than
  * correctness on adversarial markup, and this keeps the script dependency-free.
+ *
+ * Scans the WHOLE document, not just up to </head>, and separately records
+ * whether each tag was actually inside <head> (`inHead` below).
+ *
+ * That distinction is not pedantry. Next.js streams a dynamically-rendered
+ * route's metadata into the body, after </head> -- on /blogs/[slug] the <title>
+ * lands around byte 55,000 while </head> closes at byte 5,000. React 19 and
+ * browsers hoist those tags, and Google executes JS so it sees them, but
+ * link unfurlers (Slack, WhatsApp, LinkedIn, Facebook) parse <head> only and
+ * never run scripts. Metadata below the fold is invisible to exactly the
+ * consumers that Open Graph tags exist for.
+ *
+ * Truncating at </head> hid this completely: the tags were reported as absent
+ * when they were present-but-misplaced, which is a different bug with a
+ * different fix.
  */
 function extractHead(html) {
     if (!html) return null;
 
-    const head = html.slice(0, Math.max(html.indexOf('</head>'), 0) || html.length);
+    const headEnd = html.indexOf('</head>');
+
+    /** True if `value` appears within <head> rather than later in the body. */
+    const isInHead = (needle) => {
+        if (!needle) return false;
+        const at = html.indexOf(needle);
+        return at >= 0 && headEnd > 0 && at < headEnd;
+    };
 
     const meta = (attr, name) => {
         const re = new RegExp(`<meta[^>]+${attr}=["']${name}["'][^>]*content=["']([^"']*)["']`, 'i');
         const reReversed = new RegExp(`<meta[^>]+content=["']([^"']*)["'][^>]*${attr}=["']${name}["']`, 'i');
-        return (head.match(re) || head.match(reReversed) || [])[1] ?? null;
+        const match = html.match(re) || html.match(reReversed);
+        return match?.[1] ?? null;
     };
 
-    const jsonLd = [...head.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
+    const jsonLd = [...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
         .map((m) => {
             try {
                 return JSON.parse(m[1].trim());
@@ -87,11 +110,21 @@ function extractHead(html) {
         .filter(Boolean)
         .sort();
 
+    const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]?.trim() ?? null;
+    const canonical = (html.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']*)["']/i) || [])[1] ?? null;
+
     return {
-        title: (head.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]?.trim() ?? null,
+        title,
         description: meta('name', 'description'),
         robots: meta('name', 'robots'),
-        canonical: (head.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']*)["']/i) || [])[1] ?? null,
+        canonical,
+        // Where the tags physically sit. Anything false here is invisible to
+        // non-JS link unfurlers even though a browser would hoist it.
+        inHead: {
+            title: isInHead(title ? `<title>${title}</title>` : null) || isInHead('<title>'),
+            canonical: isInHead(canonical ? `href="${canonical}"` : null),
+            ogTitle: isInHead('og:title'),
+        },
         ogTitle: meta('property', 'og:title'),
         ogDescription: meta('property', 'og:description'),
         ogUrl: meta('property', 'og:url'),

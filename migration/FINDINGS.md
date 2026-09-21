@@ -129,3 +129,87 @@ submissions.
 These must be ported **verbatim**. Do not "modernise" them into a fetch call or a
 server action. They are lead capture for paid campaigns — a silent failure here
 costs real money and would not surface as an error.
+
+---
+
+# Found during verification (Phase 6)
+
+Both of these were caught by `compare.js` diffing the Next.js build against the
+production capture. Neither would have failed a build, shown an error, or
+looked wrong in a browser.
+
+## 8. CRITICAL (fixed) — every brochure URL served the CIA brochure
+
+A Next.js rewrite does **not** expose its destination's query string to a route
+handler. Measured against a running production build, a request to
+`/CISA-Brochure.pdf` rewritten to `/api/brochure?course=cisa` arrived as:
+
+```
+request.url                 "http://host/CISA-Brochure.pdf"
+nextUrl.search              ""
+searchParams.get('course')  null
+```
+
+So `course` fell through to its `'cia'` default on every request:
+
+| URL | Production | Next.js (before fix) |
+|---|---|---|
+| `/CIA-Brochure.pdf` | `adf232c1…` | `adf232c1…` ok |
+| `/CISA-Brochure.pdf` | `dc579a6d…` | `adf232c1…` **wrong PDF** |
+| `/CRMA-Brochure.pdf` | 404 | `adf232c1…` **should 404** |
+
+This differs from the pre-migration setup, where Vercel handled the rewrite at
+the platform layer before the function ran, so the function did see the
+rewritten query.
+
+It is the nastiest class of bug this migration could produce: a healthy `302`,
+a real PDF, no error anywhere. Someone requesting the CISA brochure silently
+received the CIA one.
+
+**Fix:** `app/api/brochure/route.js` now derives the course from the request
+path (`/([^/]+)-Brochure\.pdf`) and falls back to `?course=` for direct API
+calls. Independent of rewrite query behaviour. All four brochure URLs now match
+production exactly, including the CRMA 404.
+
+## 9. Blog metadata rendered after `</head>` — fixed by prerendering
+
+Dynamically-rendered routes stream their metadata into the body. On
+`/blogs/[slug]`, `</head>` closed at byte 5,073 while `<title>` arrived at byte
+55,409.
+
+React 19 and browsers hoist those tags, and Google executes JS so it sees them
+— but link unfurlers (Slack, WhatsApp, LinkedIn, Facebook) parse `<head>` only
+and never run scripts. Open Graph tags below the fold are invisible to exactly
+the clients they exist for.
+
+Not a regression — pre-migration these tags were client-only, so unfurlers
+never saw them either — but it would have silently forfeited one of the main
+wins of the migration.
+
+**Fix:** `generateStaticParams()` prerenders every published post, so metadata
+resolves at build time and lands in `<head>` (now byte 3,321, before `</head>`
+at 6,842). `revalidate = 3600` refreshes it hourly; `dynamicParams` stays on so
+posts published after a build still render on demand. Article content is still
+fetched client-side on every load, so editors keep seeing changes immediately —
+the hour applies only to the title and OG tags.
+
+The capture script was also truncating at `</head>`, which reported these tags
+as *absent* rather than *misplaced*. It now scans the whole document and records
+an `inHead` flag per tag, so this class of problem is visible rather than
+disguised as a different one.
+
+## Verification result
+
+`node migration/compare.js migration/baseline/prod.json migration/baseline/next-local.json`
+
+```
+REGRESSIONS      0
+EXPECTED CHANGES 1   soft 404 -> real 404
+WARNINGS         9   trailing-slash and lowercase redirects (findings #1, #2)
+IMPROVEMENTS   147   metadata now server-rendered
+```
+
+Campaign path confirmed end to end:
+`/CIA-Enrollment?utm_source=google&utm_medium=cpc&gclid=ABC123`
+→ 308 → `/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=ABC123` → 200,
+every parameter intact.

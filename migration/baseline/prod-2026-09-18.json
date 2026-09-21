@@ -1,6 +1,6 @@
 {
   "base": "https://globalprofessionalcertifications.com",
-  "capturedAt": "2026-09-21T07:33:37.876Z",
+  "capturedAt": "2026-09-18T05:36:08.731Z",
   "groups": {
     "campaign": [
       {
@@ -26,11 +26,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -41,7 +36,7 @@
             "WebSite"
           ]
         },
-        "ms": 648,
+        "ms": 583,
         "meta": {
           "path": "/cisa-enrollment",
           "component": "LandingPages/CisaEnrolmentLandingPage",
@@ -71,11 +66,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -86,7 +76,7 @@
             "WebSite"
           ]
         },
-        "ms": 574,
+        "ms": 580,
         "meta": {
           "path": "/lp/cisa-enrollment",
           "component": "LandingPages/CisaEnrolmentLandingPage",
@@ -116,11 +106,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -131,7 +116,7 @@
             "WebSite"
           ]
         },
-        "ms": 523,
+        "ms": 831,
         "meta": {
           "path": "/cia-enrollment",
           "component": "LandingPages/CiaEnrolmentLandingPage",
@@ -161,11 +146,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -176,7 +156,7 @@
             "WebSite"
           ]
         },
-        "ms": 522,
+        "ms": 550,
         "meta": {
           "path": "/lp/cia-enrollment",
           "component": "LandingPages/CiaEnrolmentLandingPage",
@@ -206,11 +186,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -221,7 +196,7 @@
             "WebSite"
           ]
         },
-        "ms": 97,
+        "ms": 280,
         "meta": {
           "path": "/cia-campaign",
           "component": "Courses/CiaCampaign",
@@ -253,11 +228,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -268,7 +238,7 @@
             "WebSite"
           ]
         },
-        "ms": 61,
+        "ms": 52,
         "meta": {
           "path": "/",
           "component": "Home/Home",
@@ -298,11 +268,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -313,7 +278,7 @@
             "WebSite"
           ]
         },
-        "ms": 58,
+        "ms": 55,
         "meta": {
           "path": "/about",
           "component": "About/AboutUs",
@@ -343,11 +308,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -358,7 +318,7 @@
             "WebSite"
           ]
         },
-        "ms": 61,
+        "ms": 64,
         "meta": {
           "path": "/terms",
           "component": "Terms/Terms",
@@ -388,11 +348,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -403,7 +358,7 @@
             "WebSite"
           ]
         },
-        "ms": 65,
+        "ms": 58,
         "meta": {
           "path": "/privacy",
           "component": "Privacy/PrivacyPolicy",
@@ -433,11 +388,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -448,7 +398,7 @@
             "WebSite"
           ]
         },
-        "ms": 55,
+        "ms": 63,
         "meta": {
           "path": "/contact",
           "component": "Contact/ContactUs",
@@ -478,11 +428,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -493,7 +438,7 @@
             "WebSite"
           ]
         },
-        "ms": 48,
+        "ms": 61,
         "meta": {
           "path": "/refund",
           "component": "Refund/RefundPolicy",
@@ -523,11 +468,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -538,7 +478,7 @@
             "WebSite"
           ]
         },
-        "ms": 55,
+        "ms": 56,
         "meta": {
           "path": "/faq",
           "component": "FaqPage/FaqPage",
@@ -568,11 +508,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -583,7 +518,7 @@
             "WebSite"
           ]
         },
-        "ms": 75,
+        "ms": 58,
         "meta": {
           "path": "/glossary",
           "component": "Glossary/Glossary",
@@ -613,11 +548,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -628,7 +558,7 @@
             "WebSite"
           ]
         },
-        "ms": 71,
+        "ms": 55,
         "meta": {
           "path": "/success",
           "component": "SuccessStories/SuccessStories",
@@ -658,11 +588,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -673,7 +598,7 @@
             "WebSite"
           ]
         },
-        "ms": 68,
+        "ms": 55,
         "meta": {
           "path": "/video-gallery",
           "component": "SuccessStories/VideoGalleryPage",
@@ -703,11 +628,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -718,7 +638,7 @@
             "WebSite"
           ]
         },
-        "ms": 63,
+        "ms": 122,
         "meta": {
           "path": "/written-gallery",
           "component": "SuccessStories/WrittenGalleryPage",
@@ -748,11 +668,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -763,7 +678,7 @@
             "WebSite"
           ]
         },
-        "ms": 66,
+        "ms": 114,
         "meta": {
           "path": "/our-journey",
           "component": "Journey/Journey",
@@ -793,11 +708,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -808,7 +718,7 @@
             "WebSite"
           ]
         },
-        "ms": 88,
+        "ms": 170,
         "meta": {
           "path": "/courses",
           "component": "CoursesOverview/CoursesOverview",
@@ -838,11 +748,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -853,7 +758,7 @@
             "WebSite"
           ]
         },
-        "ms": 74,
+        "ms": 170,
         "meta": {
           "path": "/courses/cia",
           "component": "Courses/Cia",
@@ -883,11 +788,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -898,7 +798,7 @@
             "WebSite"
           ]
         },
-        "ms": 87,
+        "ms": 190,
         "meta": {
           "path": "/courses/crma",
           "component": "Courses/Crma",
@@ -928,11 +828,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -943,7 +838,7 @@
             "WebSite"
           ]
         },
-        "ms": 52,
+        "ms": 165,
         "meta": {
           "path": "/courses/cisa",
           "component": "Courses/Cisa",
@@ -973,11 +868,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -988,7 +878,7 @@
             "WebSite"
           ]
         },
-        "ms": 50,
+        "ms": 52,
         "meta": {
           "path": "/courses/iap",
           "component": "Courses/Iap",
@@ -1018,11 +908,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1033,7 +918,7 @@
             "WebSite"
           ]
         },
-        "ms": 50,
+        "ms": 49,
         "meta": {
           "path": "/events",
           "component": "Events/Events",
@@ -1063,11 +948,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1078,7 +958,7 @@
             "WebSite"
           ]
         },
-        "ms": 62,
+        "ms": 182,
         "meta": {
           "path": "/corporate/qaip",
           "component": "Corporate/Qaip",
@@ -1108,11 +988,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1123,7 +998,7 @@
             "WebSite"
           ]
         },
-        "ms": 54,
+        "ms": 180,
         "meta": {
           "path": "/corporate/gtm-trainings",
           "component": "Corporate/GtmTrainings",
@@ -1153,11 +1028,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1168,7 +1038,7 @@
             "WebSite"
           ]
         },
-        "ms": 51,
+        "ms": 169,
         "meta": {
           "path": "/blogs",
           "component": "Blogs/BlogList",
@@ -1198,11 +1068,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1213,7 +1078,7 @@
             "WebSite"
           ]
         },
-        "ms": 67,
+        "ms": 146,
         "meta": {
           "path": "/upcoming",
           "component": "Upcoming/Upcoming",
@@ -1245,11 +1110,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1260,7 +1120,7 @@
             "WebSite"
           ]
         },
-        "ms": 62,
+        "ms": 283,
         "meta": {
           "path": "/blogs/how-to-become-certified-internal-auditor-india",
           "pattern": "/blogs/:slug",
@@ -1290,11 +1150,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1305,7 +1160,7 @@
             "WebSite"
           ]
         },
-        "ms": 58,
+        "ms": 249,
         "meta": {
           "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
           "pattern": "/blogs/:slug",
@@ -1335,11 +1190,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1350,7 +1200,7 @@
             "WebSite"
           ]
         },
-        "ms": 113,
+        "ms": 254,
         "meta": {
           "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
           "pattern": "/blogs/:slug",
@@ -1383,7 +1233,7 @@
         "contentType": "application/pdf",
         "bytes": null,
         "head": null,
-        "ms": 1890,
+        "ms": 2008,
         "meta": {
           "path": "/CIA-Brochure.pdf",
           "destination": "/api/brochure?course=cia",
@@ -1394,7 +1244,7 @@
         "path": "/CISA-Brochure.pdf",
         "ok": true,
         "status": 200,
-        "finalPath": "/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf",
+        "finalPath": "/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf",
         "finalSearch": "",
         "queryPreserved": true,
         "redirected": true,
@@ -1403,10 +1253,10 @@
           {
             "url": "https://globalprofessionalcertifications.com/CISA-Brochure.pdf",
             "status": 302,
-            "location": "https://cdn.sanity.io/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf"
+            "location": "https://cdn.sanity.io/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf"
           },
           {
-            "url": "https://cdn.sanity.io/files/x48sh1kt/production/dc579a6d5c70df7aeaf9591158313dd5b35e4940.pdf",
+            "url": "https://cdn.sanity.io/files/x48sh1kt/production/2979571ccf27cda196b6a35039ec36c60384689e.pdf",
             "status": 200,
             "location": null
           }
@@ -1414,7 +1264,7 @@
         "contentType": "application/pdf",
         "bytes": null,
         "head": null,
-        "ms": 1888,
+        "ms": 2017,
         "meta": {
           "path": "/CISA-Brochure.pdf",
           "destination": "/api/brochure?course=cisa",
@@ -1444,11 +1294,6 @@
           "description": null,
           "robots": null,
           "canonical": null,
-          "inHead": {
-            "title": false,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1456,7 +1301,7 @@
           "twitterCard": null,
           "jsonLdTypes": []
         },
-        "ms": 1217,
+        "ms": 1333,
         "meta": {
           "path": "/CRMA-Brochure.pdf",
           "destination": "/api/brochure?course=CRMA",
@@ -1488,11 +1333,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1503,7 +1343,7 @@
             "WebSite"
           ]
         },
-        "ms": 74,
+        "ms": 56,
         "meta": {
           "path": "/about/",
           "note": "trailing slash on a content route"
@@ -1532,11 +1372,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1547,7 +1382,7 @@
             "WebSite"
           ]
         },
-        "ms": 68,
+        "ms": 52,
         "meta": {
           "path": "/courses/cia/",
           "note": "trailing slash on a nested route"
@@ -1576,11 +1411,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1591,7 +1421,7 @@
             "WebSite"
           ]
         },
-        "ms": 72,
+        "ms": 56,
         "meta": {
           "path": "/cia-enrollment/",
           "note": "trailing slash on a CAMPAIGN route"
@@ -1620,11 +1450,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1635,7 +1460,7 @@
             "WebSite"
           ]
         },
-        "ms": 83,
+        "ms": 55,
         "meta": {
           "path": "/About",
           "note": "mixed case -- React Router matches, Next.js does not"
@@ -1664,11 +1489,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1679,7 +1499,7 @@
             "WebSite"
           ]
         },
-        "ms": 99,
+        "ms": 62,
         "meta": {
           "path": "/Courses/CIA",
           "note": "mixed case on a nested route"
@@ -1708,11 +1528,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1723,7 +1538,7 @@
             "WebSite"
           ]
         },
-        "ms": 93,
+        "ms": 58,
         "meta": {
           "path": "/CIA-Enrollment",
           "note": "mixed case on a CAMPAIGN route"
@@ -1752,11 +1567,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1767,7 +1577,7 @@
             "WebSite"
           ]
         },
-        "ms": 93,
+        "ms": 59,
         "meta": {
           "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
           "note": "campaign route with UTM + gclid -- params must survive"
@@ -1796,11 +1606,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1811,7 +1616,7 @@
             "WebSite"
           ]
         },
-        "ms": 84,
+        "ms": 55,
         "meta": {
           "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
           "note": "/lp/ campaign variant with UTM"
@@ -1840,11 +1645,6 @@
           "description": null,
           "robots": "index, follow",
           "canonical": null,
-          "inHead": {
-            "title": true,
-            "canonical": false,
-            "ogTitle": false
-          },
           "ogTitle": null,
           "ogDescription": null,
           "ogUrl": null,
@@ -1855,7 +1655,7 @@
             "WebSite"
           ]
         },
-        "ms": 65,
+        "ms": 147,
         "meta": {
           "path": "/this-route-does-not-exist",
           "note": "unmatched route -- 404 handling"
