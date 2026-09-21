@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from '../routing'
 import { Tag, X, Filter } from 'lucide-react'
 
 // The Sanity "color" field is documented as a hex code, but in practice
@@ -56,7 +58,20 @@ const getContrastTextColor = (hexColor) => {
  * @param {function} onClearFilters - Callback to clear all filters
  */
 const BlogFilters = ({ categories = [], tags = [], activeCategory, activeTag, onClearFilters }) => {
-    const [searchParams] = useSearchParams()
+    // The `const [searchParams] = useSearchParams()` that was here has been
+    // removed rather than ported: the value was never read anywhere in this
+    // component, so the call did nothing but subscribe to the router.
+    //
+    // Left in place it would have crashed the page. react-router's
+    // useSearchParams throws without a <Router> ancestor, and there is no
+    // longer one. It survived both the build and the URL crawler because
+    // BlogList returns an early loading state while its Sanity fetch is in
+    // flight, so this component never renders on the server -- /blogs
+    // prerenders and returns a clean 200. The throw would only have happened
+    // in the browser, a moment after the posts arrived.
+    //
+    // Filter state reaches this component through the `activeCategory` prop,
+    // which BlogList derives from the search params it already reads.
 
     const hasActiveFilter = activeCategory
 

@@ -18,7 +18,8 @@
     "// verification": "Freeze current URL behaviour, then diff a candidate deployment against it.",
     "baseline:prod": "node migration/capture-baseline.js --base https://globalprofessionalcertifications.com --out migration/baseline/prod.json",
     "baseline:local": "node migration/capture-baseline.js --base http://localhost:3000 --out migration/baseline/next-local.json",
-    "verify": "node migration/compare.js migration/baseline/prod.json migration/baseline/next-local.json"
+    "verify": "node migration/compare.js migration/baseline/prod.json migration/baseline/next-local.json",
+    "verify:imports": "node migration/check-router-imports.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
