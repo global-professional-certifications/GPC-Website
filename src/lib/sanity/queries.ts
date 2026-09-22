@@ -1,0 +1,99 @@
+export const getAllPosts = `*[_type == "post"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  "description": coalesce(shortDescription, description),
+  mainImage,
+  publishedAt,
+  "author": author->name,
+  "authorImage": author->image,
+  "categories": categories[]->{title, slug, color},
+  tags,
+  keyTakeaways,
+  "contentFunnelStage": funnelStage,
+  "meta": {
+    "metaTitle": seoTitle,
+    "metaDescription": metaDescription
+  }
+}`
+
+export const getPostBySlug = `*[_type == "post" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  "description": coalesce(shortDescription, description),
+  mainImage,
+  publishedAt,
+  "author": author->name,
+  "authorImage": author->image,
+  "authorBio": author->bio,
+  "categories": categories[]->{title, slug, color},
+  tags,
+  tldr,
+  keyTakeaways,
+  "contentFunnelStage": funnelStage,
+  "body": coalesce(content, body),
+  "meta": {
+    "metaTitle": seoTitle,
+    "metaDescription": metaDescription
+  }
+}`
+
+export const getRecentPosts = `*[_type == "post"] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  slug,
+  "description": coalesce(shortDescription, description),
+  mainImage,
+  publishedAt,
+  "author": author->name,
+  "categories": categories[]->{title, slug, color},
+  tags
+}`
+
+export const getAllSlugs = `*[_type == "post"] {
+  "slug": slug.current
+}`
+
+export const getPostsByCategory = `*[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  "description": coalesce(shortDescription, description),
+  mainImage,
+  publishedAt,
+  "author": author->name,
+  "categories": categories[]->{title, slug, color},
+  tags
+}`
+
+// $tagName rather than $tag: @sanity/client reserves `tag` in QueryParams
+// (typed `never`) because it is the name of a fetch request option, so passing
+// a GROQ parameter called `tag` is rejected at compile time. See the longer
+// note in src/services/blog.service.ts.
+//
+// Currently unused -- BlogList imports this and getPostsByCategory but filters
+// client-side instead and never calls either. Renamed anyway so the trap is not
+// waiting for whoever wires it up.
+export const getPostsByTag = `*[_type == "post" && $tagName in tags] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  "description": coalesce(shortDescription, description),
+  mainImage,
+  publishedAt,
+  "author": author->name,
+  "categories": categories[]->{title, slug, color},
+  tags
+}`
+
+export const getAllCategories = `*[_type == "category"] | order(title asc) {
+  _id,
+  title,
+  slug,
+  description,
+  color,
+  "postCount": count(*[_type == "post" && references(^._id)])
+}`
+
+export const getAllTags = `array::unique(*[_type == "post"].tags[])`

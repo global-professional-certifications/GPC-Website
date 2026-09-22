@@ -136,7 +136,7 @@ function buildPage(entry) {
     const componentName = entry.component.split('/').pop();
 
     const dir = join('app', entry.group, ...entry.route.split('/').filter(Boolean));
-    const file = join(dir, 'page.jsx');
+    const file = join(dir, 'page.tsx');
 
     const body = entry.needsSuspense
         ? `        <Suspense fallback={null}>
@@ -153,7 +153,7 @@ function buildPage(entry) {
  * <MetaTags> props. These tags used to be written by react-helmet-async after
  * hydration; they are now in the server response.
  */
-export const metadata = {
+export const metadata: Metadata = {
     title: ${js(title)},
     description: ${js(description)},
     alternates: { canonical: ${js(canonical)} },
