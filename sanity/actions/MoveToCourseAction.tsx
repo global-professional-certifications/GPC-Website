@@ -42,7 +42,7 @@ export const MoveToCourseAction = (props: any) => {
     label: 'Move to Course',
     onHandle: handleOpen,
     dialog: isDialogOpen && {
-      type: 'dialog',
+      type: 'dialog' as const,
       onClose: () => setDialogOpen(false),
       header: 'Select Target Course',
       content: (
