@@ -54,6 +54,29 @@ const nextConfig = {
     trailingSlash: false,
 
     images: {
+        /*
+         * Static image imports are handled by our own webpack rule below, not
+         * by next-image-loader.
+         *
+         * This is load-bearing, not a preference. With Next's loader active,
+         * `import hero from './hero.webp'` evaluates to a StaticImageData
+         * OBJECT ({src, width, height, blurDataURL}); under Vite it was a URL
+         * string. Every one of the ~148 asset imports in this codebase is
+         * passed straight to a plain <img src={hero}>, so React stringified the
+         * object and emitted src="[object Object]".
+         *
+         * Every locally-imported image on the site was broken -- homepage,
+         * course pages, and both ad-campaign landing pages -- while the build
+         * passed and every URL returned 200. Only a browser or a type checker
+         * would have caught it.
+         *
+         * Disabling the loader restores the Vite behaviour exactly, with no
+         * change to any component. next/image is unaffected for remote Sanity
+         * images (remotePatterns below); it simply cannot take a static import
+         * as its src, which nothing here does.
+         */
+        disableStaticImages: true,
+
         // Sanity-hosted media. The pre-migration site rendered these as plain
         // <img> via @sanity/image-url, which already applies width/format/quality
         // transforms at the CDN. Components keep doing that during the port;
@@ -76,6 +99,20 @@ const nextConfig = {
         // exactly the shape the component already expects.
         config.module.rules.push({
             test: /\.pdf$/i,
+            type: 'asset/resource',
+            generator: { filename: 'static/media/[name].[hash:8][ext]' },
+        });
+
+        /*
+         * Images resolve to a URL string, matching Vite and matching what every
+         * <img src={imported}> in this codebase expects. Paired with
+         * images.disableStaticImages above -- see the note there for why.
+         *
+         * asset/resource emits the file and yields its public URL, so the
+         * content-hashed filenames keep long-term caching working.
+         */
+        config.module.rules.push({
+            test: /\.(png|jpe?g|gif|webp|avif|svg|ico)$/i,
             type: 'asset/resource',
             generator: { filename: 'static/media/[name].[hash:8][ext]' },
         });

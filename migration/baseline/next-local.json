@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:3000",
-  "capturedAt": "2026-09-21T07:33:49.458Z",
+  "capturedAt": "2026-09-22T07:20:06.000Z",
   "groups": {
     "campaign": [
       {
@@ -20,7 +20,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 176379,
+        "bytes": 177124,
         "head": {
           "title": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
           "description": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
@@ -41,7 +41,7 @@
             "WebSite"
           ]
         },
-        "ms": 65,
+        "ms": 56,
         "meta": {
           "path": "/cisa-enrollment",
           "component": "LandingPages/CisaEnrolmentLandingPage",
@@ -65,7 +65,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 176891,
+        "bytes": 177636,
         "head": {
           "title": "CISA Live Interactive Batch | Global Professional Certifications (GPC)",
           "description": "Fast-Track Your GRC Career &amp; Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.",
@@ -86,7 +86,7 @@
             "WebSite"
           ]
         },
-        "ms": 63,
+        "ms": 41,
         "meta": {
           "path": "/lp/cisa-enrollment",
           "component": "LandingPages/CisaEnrolmentLandingPage",
@@ -110,7 +110,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 82858,
+        "bytes": 83606,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -131,7 +131,7 @@
             "WebSite"
           ]
         },
-        "ms": 59,
+        "ms": 38,
         "meta": {
           "path": "/cia-enrollment",
           "component": "LandingPages/CiaEnrolmentLandingPage",
@@ -155,7 +155,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 83327,
+        "bytes": 84075,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -176,7 +176,7 @@
             "WebSite"
           ]
         },
-        "ms": 59,
+        "ms": 49,
         "meta": {
           "path": "/lp/cia-enrollment",
           "component": "LandingPages/CiaEnrolmentLandingPage",
@@ -200,7 +200,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 118200,
+        "bytes": 120712,
         "head": {
           "title": "CIA Certification Training | India&#x27;s #1 IIA-Accredited Program",
           "description": "Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!",
@@ -224,7 +224,7 @@
             "WebSite"
           ]
         },
-        "ms": 14,
+        "ms": 19,
         "meta": {
           "path": "/cia-campaign",
           "component": "Courses/CiaCampaign",
@@ -250,7 +250,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 91390,
+        "bytes": 92363,
         "head": {
           "title": "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
           "description": " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
@@ -278,7 +278,7 @@
             "WebSite"
           ]
         },
-        "ms": 25,
+        "ms": 18,
         "meta": {
           "path": "/",
           "component": "Home/Home",
@@ -302,7 +302,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 105271,
+        "bytes": 105182,
         "head": {
           "title": "About Global Professional Certifications",
           "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
@@ -328,7 +328,7 @@
             "WebSite"
           ]
         },
-        "ms": 45,
+        "ms": 19,
         "meta": {
           "path": "/about",
           "component": "About/AboutUs",
@@ -352,7 +352,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 89814,
+        "bytes": 90686,
         "head": {
           "title": "Terms &amp; Conditions – Global Professional Certifications",
           "description": "Read our terms and conditions outlining course access, use of services, and user responsibilities.",
@@ -377,7 +377,7 @@
             "WebSite"
           ]
         },
-        "ms": 42,
+        "ms": 32,
         "meta": {
           "path": "/terms",
           "component": "Terms/Terms",
@@ -401,7 +401,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 107395,
+        "bytes": 108267,
         "head": {
           "title": "Privacy Policy – Global Professional Certifications",
           "description": "Understand how we protect your data and privacy as you use our platform and enroll in our courses.",
@@ -426,7 +426,7 @@
             "WebSite"
           ]
         },
-        "ms": 47,
+        "ms": 31,
         "meta": {
           "path": "/privacy",
           "component": "Privacy/PrivacyPolicy",
@@ -450,7 +450,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 101114,
+        "bytes": 102005,
         "head": {
           "title": "Contact Us - Global Professional Certifications",
           "description": "Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals.",
@@ -477,7 +477,7 @@
             "WebSite"
           ]
         },
-        "ms": 35,
+        "ms": 27,
         "meta": {
           "path": "/contact",
           "component": "Contact/ContactUs",
@@ -501,7 +501,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 65474,
+        "bytes": 66346,
         "head": {
           "title": "Refund Policy – Global Professional Certifications",
           "description": "Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience.",
@@ -526,7 +526,7 @@
             "WebSite"
           ]
         },
-        "ms": 34,
+        "ms": 25,
         "meta": {
           "path": "/refund",
           "component": "Refund/RefundPolicy",
@@ -550,7 +550,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 100394,
+        "bytes": 101266,
         "head": {
           "title": "Frequently Asked Questions (FAQs) | Global Professional Certifications",
           "description": "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
@@ -575,7 +575,7 @@
             "WebSite"
           ]
         },
-        "ms": 36,
+        "ms": 28,
         "meta": {
           "path": "/faq",
           "component": "FaqPage/FaqPage",
@@ -599,7 +599,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 91321,
+        "bytes": 92244,
         "head": {
           "title": "Certification Glossary | Key Terms for Auditors &amp; Risk Professionals",
           "description": "Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications.",
@@ -624,7 +624,7 @@
             "WebSite"
           ]
         },
-        "ms": 36,
+        "ms": 25,
         "meta": {
           "path": "/glossary",
           "component": "Glossary/Glossary",
@@ -648,7 +648,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 54361,
+        "bytes": 55233,
         "head": {
           "title": "CIA Exam Success Stories – Real Achievements",
           "description": "Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers.",
@@ -670,7 +670,7 @@
             "WebSite"
           ]
         },
-        "ms": 53,
+        "ms": 21,
         "meta": {
           "path": "/success",
           "component": "SuccessStories/SuccessStories",
@@ -694,7 +694,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 53627,
+        "bytes": 54499,
         "head": {
           "title": "Hear from our Students - GPC Video Gallery",
           "description": "Watch success stories and testimonials from our students.",
@@ -716,7 +716,7 @@
             "WebSite"
           ]
         },
-        "ms": 52,
+        "ms": 23,
         "meta": {
           "path": "/video-gallery",
           "component": "SuccessStories/VideoGalleryPage",
@@ -740,7 +740,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 53871,
+        "bytes": 54743,
         "head": {
           "title": "Written Testimonials - GPC Success Stories",
           "description": "Read written testimonials and success stories from our students who transformed their careers.",
@@ -762,7 +762,7 @@
             "WebSite"
           ]
         },
-        "ms": 52,
+        "ms": 31,
         "meta": {
           "path": "/written-gallery",
           "component": "SuccessStories/WrittenGalleryPage",
@@ -786,7 +786,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 103721,
+        "bytes": 105450,
         "head": {
           "title": "1 Year Journey | CIA Certification Training in India | Global Professional Certifications",
           "description": "Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities.",
@@ -808,7 +808,7 @@
             "WebSite"
           ]
         },
-        "ms": 59,
+        "ms": 16,
         "meta": {
           "path": "/our-journey",
           "component": "Journey/Journey",
@@ -832,7 +832,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 64445,
+        "bytes": 65874,
         "head": {
           "title": "Certification Courses - Global Professional Certifications",
           "description": "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
@@ -858,7 +858,7 @@
             "WebSite"
           ]
         },
-        "ms": 39,
+        "ms": 25,
         "meta": {
           "path": "/courses",
           "component": "CoursesOverview/CoursesOverview",
@@ -882,7 +882,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 148921,
+        "bytes": 151538,
         "head": {
           "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
           "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
@@ -910,7 +910,7 @@
             "WebSite"
           ]
         },
-        "ms": 45,
+        "ms": 14,
         "meta": {
           "path": "/courses/cia",
           "component": "Courses/Cia",
@@ -934,7 +934,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 121162,
+        "bytes": 122550,
         "head": {
           "title": "CRMA Certification - Global Professional Certifications",
           "description": "Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance.",
@@ -962,7 +962,7 @@
             "WebSite"
           ]
         },
-        "ms": 38,
+        "ms": 25,
         "meta": {
           "path": "/courses/crma",
           "component": "Courses/Crma",
@@ -986,7 +986,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 122244,
+        "bytes": 123834,
         "head": {
           "title": "Best CISA Certification in India | Global Professional Certifications",
           "description": "Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India.",
@@ -1014,7 +1014,7 @@
             "WebSite"
           ]
         },
-        "ms": 45,
+        "ms": 26,
         "meta": {
           "path": "/courses/cisa",
           "component": "Courses/Cisa",
@@ -1038,7 +1038,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 112060,
+        "bytes": 113495,
         "head": {
           "title": "IAP Certification - Global Professional Certifications",
           "description": "Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally.",
@@ -1066,7 +1066,7 @@
             "WebSite"
           ]
         },
-        "ms": 48,
+        "ms": 33,
         "meta": {
           "path": "/courses/iap",
           "component": "Courses/Iap",
@@ -1090,7 +1090,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 70540,
+        "bytes": 71660,
         "head": {
           "title": "Upcoming Certification Events &amp; Webinars - GPC",
           "description": "Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications.",
@@ -1116,7 +1116,7 @@
             "WebSite"
           ]
         },
-        "ms": 33,
+        "ms": 28,
         "meta": {
           "path": "/events",
           "component": "Events/Events",
@@ -1140,7 +1140,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 128537,
+        "bytes": 128498,
         "head": {
           "title": "Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India",
           "description": "Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India.",
@@ -1166,7 +1166,7 @@
             "WebSite"
           ]
         },
-        "ms": 32,
+        "ms": 30,
         "meta": {
           "path": "/corporate/qaip",
           "component": "Corporate/Qaip",
@@ -1190,7 +1190,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 152973,
+        "bytes": 152936,
         "head": {
           "title": "Corporate Training Programmes | GTM Trainings | Global Professional Certifications",
           "description": "Elevate your team with GPC&#x27;s 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies.",
@@ -1216,7 +1216,7 @@
             "WebSite"
           ]
         },
-        "ms": 35,
+        "ms": 38,
         "meta": {
           "path": "/corporate/gtm-trainings",
           "component": "Corporate/GtmTrainings",
@@ -1240,7 +1240,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 54125,
+        "bytes": 54858,
         "head": {
           "title": "Blog &amp; Expert Insights | Global Professional Certifications",
           "description": "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.",
@@ -1262,7 +1262,7 @@
             "WebSite"
           ]
         },
-        "ms": 23,
+        "ms": 26,
         "meta": {
           "path": "/blogs",
           "component": "Blogs/BlogList",
@@ -1286,7 +1286,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 67947,
+        "bytes": 68921,
         "head": {
           "title": "Upcoming Batches &amp; Webinars | Global Professional Certifications",
           "description": "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
@@ -1311,7 +1311,7 @@
             "WebSite"
           ]
         },
-        "ms": 18,
+        "ms": 23,
         "meta": {
           "path": "/upcoming",
           "component": "Upcoming/Upcoming",
@@ -1337,7 +1337,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 57507,
+        "bytes": 58464,
         "head": {
           "title": "How to Become a Certified Internal Auditor (CIA) in India: Step-by-Step Guide | GPC Blog",
           "description": "Learn how to become a Certified Internal Auditor (CIA) in India with our step-by-step guide. Explore eligibility, exam syllabus, fees, study tips, and career benefits.",
@@ -1359,7 +1359,7 @@
             "WebSite"
           ]
         },
-        "ms": 17,
+        "ms": 19,
         "meta": {
           "path": "/blogs/how-to-become-certified-internal-auditor-india",
           "pattern": "/blogs/:slug",
@@ -1383,7 +1383,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 57745,
+        "bytes": 58702,
         "head": {
           "title": "The 2026 CIA Challenge Exam: Everything You Need to Know About the New Syllabus  | GPC Blog",
           "description": "Master the 2026 CIA Challenge Exam. Full guide on the new unified syllabus, mandatory 2024 Global Internal Audit Standards, and key application dates.",
@@ -1405,7 +1405,7 @@
             "WebSite"
           ]
         },
-        "ms": 17,
+        "ms": 19,
         "meta": {
           "path": "/blogs/the-2026-cia-challenge-exam-everything-you-need-to-know-about-the-new-syllabus",
           "pattern": "/blogs/:slug",
@@ -1429,7 +1429,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 57141,
+        "bytes": 58098,
         "head": {
           "title": "CIA vs CPA: Which Certification Should You Choose? | GPC Blog",
           "description": "Choosing between CIA and CPA? This guide breaks down requirements, benefits, and career paths to help aspiring auditors and accountants decide.",
@@ -1451,7 +1451,7 @@
             "WebSite"
           ]
         },
-        "ms": 13,
+        "ms": 20,
         "meta": {
           "path": "/blogs/cia-vs-cpa-which-certification-to-choose",
           "pattern": "/blogs/:slug",
@@ -1484,7 +1484,7 @@
         "contentType": "application/pdf",
         "bytes": null,
         "head": null,
-        "ms": 794,
+        "ms": 1446,
         "meta": {
           "path": "/CIA-Brochure.pdf",
           "destination": "/api/brochure?course=cia",
@@ -1515,7 +1515,7 @@
         "contentType": "application/pdf",
         "bytes": null,
         "head": null,
-        "ms": 1365,
+        "ms": 1720,
         "meta": {
           "path": "/CISA-Brochure.pdf",
           "destination": "/api/brochure?course=cisa",
@@ -1541,7 +1541,7 @@
         "contentType": "text/plain",
         "bytes": null,
         "head": null,
-        "ms": 479,
+        "ms": 1102,
         "meta": {
           "path": "/CRMA-Brochure.pdf",
           "destination": "/api/brochure?course=CRMA",
@@ -1572,7 +1572,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 105271,
+        "bytes": 105182,
         "head": {
           "title": "About Global Professional Certifications",
           "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
@@ -1598,7 +1598,7 @@
             "WebSite"
           ]
         },
-        "ms": 63,
+        "ms": 38,
         "meta": {
           "path": "/about/",
           "note": "trailing slash on a content route"
@@ -1626,7 +1626,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 148921,
+        "bytes": 151538,
         "head": {
           "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
           "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
@@ -1654,7 +1654,7 @@
             "WebSite"
           ]
         },
-        "ms": 51,
+        "ms": 45,
         "meta": {
           "path": "/courses/cia/",
           "note": "trailing slash on a nested route"
@@ -1682,7 +1682,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 82858,
+        "bytes": 83606,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -1703,7 +1703,7 @@
             "WebSite"
           ]
         },
-        "ms": 53,
+        "ms": 41,
         "meta": {
           "path": "/cia-enrollment/",
           "note": "trailing slash on a CAMPAIGN route"
@@ -1731,7 +1731,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 105271,
+        "bytes": 105182,
         "head": {
           "title": "About Global Professional Certifications",
           "description": "Learn how we empower professionals with globally recognized certifications and expert-driven learning.",
@@ -1757,7 +1757,7 @@
             "WebSite"
           ]
         },
-        "ms": 55,
+        "ms": 57,
         "meta": {
           "path": "/About",
           "note": "mixed case -- React Router matches, Next.js does not"
@@ -1785,7 +1785,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 148921,
+        "bytes": 151538,
         "head": {
           "title": "Become Certified Internal Auditor | Join CIA Certification Training Course in India",
           "description": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India&#x27;s leading CIA certification training providers.",
@@ -1813,7 +1813,7 @@
             "WebSite"
           ]
         },
-        "ms": 61,
+        "ms": 32,
         "meta": {
           "path": "/Courses/CIA",
           "note": "mixed case on a nested route"
@@ -1841,7 +1841,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 82858,
+        "bytes": 83606,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -1862,7 +1862,7 @@
             "WebSite"
           ]
         },
-        "ms": 54,
+        "ms": 30,
         "meta": {
           "path": "/CIA-Enrollment",
           "note": "mixed case on a CAMPAIGN route"
@@ -1885,7 +1885,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 82858,
+        "bytes": 83606,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -1906,7 +1906,7 @@
             "WebSite"
           ]
         },
-        "ms": 50,
+        "ms": 25,
         "meta": {
           "path": "/cia-enrollment?utm_source=google&utm_medium=cpc&gclid=TEST123",
           "note": "campaign route with UTM + gclid -- params must survive"
@@ -1929,7 +1929,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 83327,
+        "bytes": 84075,
         "head": {
           "title": "CIA Live Weekend Batch | Global Professional Certifications (GPC)",
           "description": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.",
@@ -1950,7 +1950,7 @@
             "WebSite"
           ]
         },
-        "ms": 46,
+        "ms": 14,
         "meta": {
           "path": "/lp/cia-enrollment?utm_source=meta&utm_campaign=test",
           "note": "/lp/ campaign variant with UTM"
@@ -1973,7 +1973,7 @@
           }
         ],
         "contentType": "text/html; charset=utf-8",
-        "bytes": 55695,
+        "bytes": 56567,
         "head": {
           "title": "Page Not Found | Global Professional Certifications®",
           "description": "The page you are looking for could not be found.",
@@ -1995,7 +1995,7 @@
             "WebSite"
           ]
         },
-        "ms": 24,
+        "ms": 11,
         "meta": {
           "path": "/this-route-does-not-exist",
           "note": "unmatched route -- 404 handling"

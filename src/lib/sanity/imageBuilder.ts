@@ -10,30 +10,30 @@ import { client } from './client'
 const builder = createImageUrlBuilder(client)
 
 /**
- * The subset of the builder that call sites actually use.
+ * Stand-in returned when there is no image source.
  *
- * `urlFor` has always had two different return shapes: a real ImageUrlBuilder,
- * or a `{ url: () => '' }` stub when the source is missing. Roughly 30 call
- * sites do `urlFor(x).url()` directly on the result, several of them on CMS
- * fields that are genuinely optional, so the stub is load-bearing -- without it
- * a missing image would throw instead of rendering nothing.
+ * `urlFor` has always had to tolerate a missing source -- plenty of call sites
+ * do `urlFor(post.mainImage).url()` on a CMS field that is genuinely optional,
+ * and throwing there would take out the whole page for a missing thumbnail.
  *
- * Typing the return as this common shape keeps both branches assignable and
- * keeps `.url()` available to every caller, which is the only method the stub
- * can honour. Callers that need to chain further transforms (`.width()`,
- * `.height()`) should narrow with the guard below rather than widening this.
+ * The original stub was `{ url: () => '' }`, which only works when `.url()` is
+ * called immediately. Several call sites chain first
+ * (`urlFor(x).width(800).url()`), so the stub has to be chainable too or it
+ * throws exactly where it was meant to be forgiving.
+ *
+ * Every method returns the stub itself; `url()` returns an empty string. The
+ * Proxy means it keeps working if a call site starts using a builder method
+ * nobody has used yet, rather than failing on a method this file forgot to
+ * list.
  */
-export type ImageUrlSource = Pick<ImageUrlBuilder, 'url'>
+const emptyBuilder = new Proxy({} as ImageUrlBuilder, {
+  get(_target, prop) {
+    if (prop === 'url' || prop === 'toString') return () => ''
+    return () => emptyBuilder
+  },
+})
 
-export function urlFor(source: SanityImageSource | null | undefined): ImageUrlSource {
-  if (!source) return { url: () => '' }
+export function urlFor(source: SanityImageSource | null | undefined): ImageUrlBuilder {
+  if (!source) return emptyBuilder
   return builder.image(source).auto('format').format('webp').quality(75)
-}
-
-/**
- * True when `urlFor` returned a real builder rather than the empty stub, so
- * further chaining is safe.
- */
-export function isImageBuilder(value: ImageUrlSource): value is ImageUrlBuilder {
-  return 'image' in value
 }

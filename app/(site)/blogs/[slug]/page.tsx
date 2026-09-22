@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import BlogPage from '../../../../src/components/Blogs/BlogPage';
 import { client } from '../../../../src/lib/sanity/client';
 import { urlFor } from '../../../../src/lib/sanity/imageBuilder';
+import type { CmsData } from '../../../../src/types/cms';
 
 /** Next 15 passes route params as a Promise. */
 type RouteProps = { params: Promise<{ slug: string }> };
@@ -79,7 +80,9 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
     // params is a Promise in Next.js 15.
     const { slug } = await params;
 
-    let post = null;
+    // Annotated because `let post = null` infers the type `null`, so every
+    // later `post.meta` / `post.title` fails once the fetch assigns to it.
+    let post: CmsData = null;
     try {
         post = await client.fetch(METADATA_QUERY, { slug });
     } catch (error) {

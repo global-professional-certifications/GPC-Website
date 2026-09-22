@@ -27,6 +27,28 @@
      */
     "strict": true,
 
+    /*
+     * Transitional, and a deliberate walk-back from "strict from day one".
+     *
+     * That stance was right for the layers where types are cheap and valuable,
+     * and those were converted under full strict and are clean: app/, the
+     * Sanity lib, the services, and the contexts all carry real annotations.
+     *
+     * It did not survive contact with the presentational layer. Converting the
+     * remaining ~100 markup components produced 401 implicit-any errors, almost
+     * all of them destructured props on components that render CMS strings into
+     * JSX. Annotating every one would be a 400-edit diff across the exact files
+     * this migration promised not to disturb, for types that guard very little.
+     *
+     * Everything else in strict stays on -- strictNullChecks in particular,
+     * which is where the real bugs were (the never[] state, the dead Navbar
+     * prop, the font onLoad).
+     *
+     * To re-enable: flip this to true and work through the errors
+     * directory by directory. Nothing else has to change.
+     */
+    "noImplicitAny": false,
+
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",

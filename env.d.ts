@@ -18,3 +18,51 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env?: ImportMetaEnv
 }
+
+/*
+ * Static asset imports resolve to a URL string.
+ *
+ * These must match the webpack rule in next.config.js, which handles images as
+ * `asset/resource` because next-image-loader is disabled
+ * (images.disableStaticImages). Next's own next/image-types/global would
+ * declare them as StaticImageData objects, which is what silently produced
+ * src="[object Object]" on every <img> in the site.
+ *
+ * Keep the two in step: if the webpack rule changes, change these.
+ */
+declare module '*.webp' {
+  const src: string
+  export default src
+}
+declare module '*.png' {
+  const src: string
+  export default src
+}
+declare module '*.jpg' {
+  const src: string
+  export default src
+}
+declare module '*.jpeg' {
+  const src: string
+  export default src
+}
+declare module '*.gif' {
+  const src: string
+  export default src
+}
+declare module '*.avif' {
+  const src: string
+  export default src
+}
+declare module '*.ico' {
+  const src: string
+  export default src
+}
+declare module '*.svg' {
+  const src: string
+  export default src
+}
+declare module '*.pdf' {
+  const src: string
+  export default src
+}
