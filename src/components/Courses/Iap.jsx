@@ -77,7 +77,7 @@ const Iap = () => {
   const iapSchema = getCourseSchema({
     name: "Internal Audit Practitioner (IAP) Certification Course",
     description: "Start your auditing career with the Internal Audit Practitioner (IAP) course. Learn essential auditing principles, ethics, and best practices recognized globally. Foundation for CIA certification.",
-    price: "23600",
+    price: "29500",
     enrollUrl: "https://rzp.io/rzp/C7jUKuC",
     credential: "Internal Audit Practitioner (IAP)",
     occupationalCategory: "Entry-Level Internal Auditor, Audit Associate, Risk Analyst"
@@ -456,7 +456,7 @@ const Iap = () => {
                 <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
                   <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
                     <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
-                    <p className="text-white text-xl md:text-3xl font-black mb-1">INR 23,600</p>
+                    <p className="text-white text-xl md:text-3xl font-black mb-1">INR 29,500</p>
                     <p className="text-orange-400 text-xs italic">Including GST</p>
                   </div>
 
