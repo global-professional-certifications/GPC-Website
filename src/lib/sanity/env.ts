@@ -1,5 +1,5 @@
 /**
- * Sanity connection config, resolved once and shared by both builds.
+ * Sanity connection config, resolved once.
  *
  * These MUST be literal, statically-analysable `process.env.NEXT_PUBLIC_*`
  * references. Next.js inlines client-side env vars by textual substitution at
@@ -9,9 +9,8 @@
  * repetition below is deliberate. Do not refactor it into a loop or a helper
  * that takes the name as a parameter.
  *
- * Neither build reads NEXT_PUBLIC_* from the environment directly:
- *   - Next.js  : next.config.js maps the existing VITE_* vars onto these names.
- *   - Vite     : vite.config.js `define` substitutes the same values.
+ * NEXT_PUBLIC_* is not read from the environment directly: next.config.js
+ * maps the existing VITE_* vars onto these names.
  *
  * That indirection is what lets us migrate without touching the Vercel
  * dashboard. The deployment's existing VITE_SANITY_* variables keep working
