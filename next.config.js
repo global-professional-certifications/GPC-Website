@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 /**
  * Next.js configuration.
  *
@@ -18,6 +21,9 @@ function mapped(nextName, viteName, fallback) {
     }
     return value;
 }
+
+/** Absolute path to the Next.js-side Sanity settings (see the webpack note below). */
+const NEXT_SANITY_ENV = path.join(path.dirname(fileURLToPath(import.meta.url)), 'src', 'lib', 'sanity', 'env.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -89,7 +95,7 @@ const nextConfig = {
         formats: ['image/webp'],
     },
 
-    webpack(config) {
+    webpack(config, { webpack }) {
         // Vite resolved any imported file to a URL. webpack only knows the types
         // Next configures, and Qaip.jsx imports a PDF directly
         // (src/assets/corporate/qaip-brochure.pdf), which otherwise fails the
@@ -116,6 +122,31 @@ const nextConfig = {
             type: 'asset/resource',
             generator: { filename: 'static/media/[name].[hash:8][ext]' },
         });
+
+        /*
+         * Sanity Studio at /studio: give sanity.config.ts the Next.js settings file.
+         *
+         * sanity/env.ts reads its settings through import.meta.env (Vite) or a
+         * dynamic process.env[key] lookup. Neither exists in a Next.js browser
+         * bundle, so projectId/dataset come out undefined and the Studio throws
+         * "Missing environment variable: VITE_SANITY_DATASET..." on load.
+         *
+         * sanity/ must not change (CR point 4) and the Sanity CLI (`pnpm sanity`)
+         * still needs that file as it is, so the swap happens here, in the Next.js
+         * build only. src/lib/sanity/env.ts exports the same names (projectId,
+         * dataset, apiVersion) from the same VITE_SANITY_* values, mapped in `env`
+         * above, in the literal form Next.js can inline.
+         *
+         * Deliberately narrow: only the request './sanity/env' made by
+         * sanity.config.ts is redirected. Every other import is left alone.
+         */
+        config.plugins.push(
+            new webpack.NormalModuleReplacementPlugin(/^\.\/sanity\/env$/, (resource) => {
+                if (path.basename(resource.contextInfo?.issuer ?? '') === 'sanity.config.ts') {
+                    resource.request = NEXT_SANITY_ENV;
+                }
+            }),
+        );
 
         return config;
     },
