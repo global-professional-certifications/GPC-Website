@@ -2,41 +2,25 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from '../routing'
-import { client } from '../../lib/sanity/client'
-import { getPostBySlug, getRecentPosts } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
 import PortableTextRenderer from './PortableTextRenderer'
 import { SchemaMarkup, getBlogPostingSchema, getBreadcrumbSchema, getFAQSchema } from '../Schema'
 import { Calendar, User, ArrowRight, ArrowLeft, Tag, Share2, Linkedin, Twitter, Facebook, Link2, CheckCircle2 } from 'lucide-react'
-import type { CmsData, CmsList, ComponentProps } from '../../types/cms';
+import type { ComponentProps } from '../../types/cms';
 
 // `slug` now arrives as a prop from app/(site)/blogs/[slug]/page.jsx, which also
 // owns this page's <head> via generateMetadata. The MetaTags element that used
 // to live in the returned JSX is gone for that reason -- keeping it would have
 // produced a second, duplicate title tag after hydration.
-const BlogPage = ({ slug }: ComponentProps) => {
-    const [post, setPost] = useState<CmsData>(null)
-    const [relatedPosts, setRelatedPosts] = useState<CmsList>([])
-    const [loading, setLoading] = useState(true)
+const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
     const [copied, setCopied] = useState(false)
+    // Read in the browser after the page loads: the server has no page address,
+    // and reading it while rendering would make server and browser disagree.
+    const [shareUrl, setShareUrl] = useState('')
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try {
-                const postData = await client.fetch(getPostBySlug, { slug })
-                setPost(postData)
-
-                const recent = await client.fetch(getRecentPosts)
-                setRelatedPosts(recent.filter(p => p.slug.current !== slug))
-            } catch (error) {
-                console.error("Error fetching blog data:", error)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchData()
         window.scrollTo(0, 0)
+        setShareUrl(window.location.href)
     }, [slug])
 
     const copyLink = () => {
@@ -45,7 +29,6 @@ const BlogPage = ({ slug }: ComponentProps) => {
         setTimeout(() => setCopied(false), 2000)
     }
 
-    const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
     const shareUrls = {
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
         twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post?.title || '')}`,
@@ -57,17 +40,10 @@ const BlogPage = ({ slug }: ComponentProps) => {
         return new Date(dateString).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            // India time, so the server and every browser show the same date.
+            timeZone: 'Asia/Kolkata'
         })
-    }
-
-    if (loading) {
-        return (
-            <div className='relative min-h-screen w-full flex flex-col justify-center items-center bg-gray-50'>
-                <div className="animate-spin rounded-full h-10 w-10 border-4 border-brand-purple/20 border-t-brand-purple"></div>
-                <p className="mt-3 text-gray-500 text-sm">Loading article...</p>
-            </div>
-        )
     }
 
     if (!post) {
@@ -162,9 +138,9 @@ const BlogPage = ({ slug }: ComponentProps) => {
                                 <span className="font-medium">{formatDate(publishedAt)}</span>
                             </div>
 
-                            {categories?.length > 0 && (
+                            {categories?.filter(Boolean).length > 0 && (
                                 <div className="flex flex-wrap gap-2">
-                                    {categories.map((cat, idx) => (
+                                    {categories.filter(Boolean).map((cat, idx) => (
                                         <span key={idx} className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/20">
                                             {cat.title}
                                         </span>

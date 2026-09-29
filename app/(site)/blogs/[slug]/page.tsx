@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import BlogPage from '../../../../src/components/Blogs/BlogPage';
 import { client } from '../../../../src/lib/sanity/client';
 import { urlFor } from '../../../../src/lib/sanity/imageBuilder';
-import type { CmsData } from '../../../../src/types/cms';
+import { getPostBySlug, getRecentPosts } from '../../../../src/lib/sanity/queries';
+import type { CmsData, CmsList } from '../../../../src/types/cms';
 
 /** Next 15 passes route params as a Promise. */
 type RouteProps = { params: Promise<{ slug: string }> };
@@ -57,10 +58,8 @@ export async function generateStaticParams() {
 /**
  * Re-resolve a prerendered post at most once an hour.
  *
- * Only affects the <head> metadata and the prerendered shell. The visible
- * article is still fetched client-side by BlogPage on every load, exactly as
- * before, so editors keep seeing content changes immediately -- this window
- * applies to the title and OG tags alone.
+ * Covers both the <head> metadata and the article itself, which is now
+ * fetched here on the server so it is in the HTML crawlers receive.
  */
 export const revalidate = 3600;
 
@@ -133,8 +132,17 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
 export default async function Page({ params }: RouteProps) {
     const { slug } = await params;
 
-    // Passed as a prop rather than read via useParams(). BlogPage is a client
-    // component and Next's useParams() would work, but taking it as a prop
+    // Same two queries BlogPage used to run in the browser. No try/catch on
+    // purpose: if Sanity fails during an hourly refresh, Next.js keeps serving
+    // the last good version of the page instead of caching an error.
+    const [post, recent] = await Promise.all([
+        client.fetch(getPostBySlug, { slug }),
+        client.fetch<CmsList>(getRecentPosts),
+    ]);
+    const relatedPosts = (recent ?? []).filter((p) => p.slug.current !== slug);
+
+    // Passed as props rather than read via useParams(). BlogPage is a client
+    // component and Next's useParams() would work, but taking them as props
     // keeps the component agnostic about how it was routed to.
-    return <BlogPage slug={slug} />;
+    return <BlogPage slug={slug} post={post} relatedPosts={relatedPosts} />;
 }
