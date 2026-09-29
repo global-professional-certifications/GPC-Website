@@ -197,7 +197,7 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
             ) : (
               <NavLink
                 key={index}
-                to={item.toLowerCase()}
+                to={`/${item.toLowerCase()}`}
                 className={({ isActive }) =>
                   `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                 }
@@ -345,7 +345,7 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
               ) : (
                 <NavLink
                   onClick={() => setIsOpen(false)}
-                  to={item === "Success" ? "/success" : item === "Blogs" ? "/blogs" : item.toLowerCase()}
+                  to={item === "Success" ? "/success" : item === "Blogs" ? "/blogs" : `/${item.toLowerCase()}`}
                   className={({ isActive }) =>
                     `block w-full py-3 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
                     } hover:text-brand-purple transition-colors`

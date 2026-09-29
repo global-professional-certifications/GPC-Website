@@ -493,7 +493,7 @@ export default function Home() {
                     Discover how we've grown into a trusted partner for thousands of professionals!
                   </p>
                   <Link
-                    to="our-journey"
+                    to="/our-journey"
                     className="inline-flex items-center justify-center w-full py-3 px-6 rounded-full bg-white text-brand-blue font-bold text-lg shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300"
                   >
                     See Our Journey →

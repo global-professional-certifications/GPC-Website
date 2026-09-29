@@ -82,7 +82,7 @@ export default function Footer() {
                                 {["courses", "success", "about", "contact"].map((item) => (
                                     <li key={item}>
                                         <NavLink
-                                            to={item}
+                                            to={`/${item}`}
                                             className={({ isActive }) =>
                                                 `text-base ${isActive ? "text-brand-purple" : "text-gray-400"}  transition-all hover:text-brand-purple duration-300 inline-block`
                                             }
@@ -101,11 +101,11 @@ export default function Footer() {
                             <p className="text-sm uppercase tracking-widest mb-4">Legal</p>
                             <ul className="space-y-3">
                                 {[
-                                    ["refund", "Refund Policy"],
+                                    ["/refund", "Refund Policy"],
                                     ["/terms", "Terms & Conditions"],
-                                    ["privacy", "Privacy Policy"],
-                                    ["faq", "FAQ"],
-                                    ["glossary", "Glossary"],
+                                    ["/privacy", "Privacy Policy"],
+                                    ["/faq", "FAQ"],
+                                    ["/glossary", "Glossary"],
                                 ].map(([path, label]) => (
                                     <li key={path}>
                                         <NavLink
