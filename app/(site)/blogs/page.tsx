@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import BlogList from '../../../src/components/Blogs/BlogList';
+import { client } from '../../../src/lib/sanity/client';
+import { getAllPosts, getAllCategories, getAllTags } from '../../../src/lib/sanity/queries';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /blogs
@@ -27,16 +30,32 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the list at most once a minute. */
+export const revalidate = 60;
+
+export default async function Page() {
+    // Same three queries BlogList used to run in the browser. No try/catch on
+    // purpose: if Sanity fails during a refresh, Next.js keeps serving the
+    // last good version instead of caching an empty list.
+    const [posts, categories, tags] = await Promise.all([
+        client.fetch<CmsList>(getAllPosts),
+        client.fetch<CmsList>(getAllCategories),
+        client.fetch<CmsList>(getAllTags),
+    ]);
+
     return (
         /*
-         * BlogList calls useSearchParams() to read ?category=. Without a
-         * Suspense boundary Next.js refuses to statically render the route and
-         * the build fails. fallback={null} because the component renders its own
-         * loading state.
+         * BlogList reads ?category= through useSearchParams() inside its own
+         * small <Suspense> boundary (CategoryFromUrl), so the list itself is in
+         * the server HTML. This outer boundary is a safety net: if a future
+         * change calls useSearchParams() higher up, the route still builds.
          */
         <Suspense fallback={null}>
-            <BlogList />
+            <BlogList
+                allPosts={posts ?? []}
+                categories={categories ?? []}
+                tags={(tags ?? []).filter(Boolean)}
+            />
         </Suspense>
     );
 }

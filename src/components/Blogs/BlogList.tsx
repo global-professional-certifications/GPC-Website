@@ -1,75 +1,48 @@
 'use client'
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { Suspense, useEffect, useState, useMemo } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { Link } from '../routing'
-import { client } from '../../lib/sanity/client'
-import { getAllPosts, getAllCategories, getAllTags, getPostsByCategory, getPostsByTag } from '../../lib/sanity/queries'
 import { urlFor } from '../../lib/sanity/imageBuilder'
 import { SchemaMarkup, getCollectionPageSchema, getOrganizationSchema, generateBreadcrumbSchema, getBlogPostingSchema } from '../Schema'
 import BlogFilters from './BlogFilters'
 import { Calendar, User, ArrowRight, Tag, Search, X } from 'lucide-react'
-import type { CmsList } from '../../types/cms';
+import type { ComponentProps } from '../../types/cms';
 
-const BlogList = () => {
-    // next/navigation's useSearchParams returns a read-only URLSearchParams,
-    // NOT react-router's [params, setParams] tuple. Destructuring it as an
-    // array does not throw -- it just yields undefined -- so the old form would
-    // have failed silently at runtime. Writes go through the router instead;
-    // see handleClearFilters.
-    const searchParams = useSearchParams()
+/**
+ * Reads ?category= from the URL and reports it to BlogList.
+ *
+ * Kept in its own component under <Suspense> on purpose: calling
+ * useSearchParams() in BlogList itself makes Next.js leave the whole list out
+ * of the server HTML (client-side rendering bail-out). Isolated here, only
+ * this empty component waits for the browser; the list stays in the HTML.
+ *
+ * next/navigation's useSearchParams returns a read-only URLSearchParams,
+ * NOT react-router's [params, setParams] tuple. Destructuring it as an
+ * array does not throw -- it just yields undefined -- so the old form would
+ * have failed silently at runtime. Writes go through the router instead;
+ * see handleClearFilters.
+ */
+function CategoryFromUrl({ onChange }: { onChange: (category: string | null) => void }) {
+    const category = useSearchParams().get('category')
+    useEffect(() => { onChange(category) }, [category, onChange])
+    return null
+}
+
+const BlogList = ({ allPosts = [], categories = [] }: ComponentProps) => {
     const router = useRouter()
     const pathname = usePathname()
-    const [posts, setPosts] = useState<CmsList>([])
-    const [allPosts, setAllPosts] = useState<CmsList>([])
-    const [categories, setCategories] = useState<CmsList>([])
-    const [tags, setTags] = useState<CmsList>([])
-    const [loading, setLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState('')
+    // Set from the URL by <CategoryFromUrl> once the page is in the browser.
+    const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
-    const activeCategory = searchParams.get('category')
-
-    // Fetch all data on mount
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [postsData, categoriesData, tagsData] = await Promise.all([
-                    client.fetch(getAllPosts),
-                    client.fetch(getAllCategories),
-                    client.fetch(getAllTags)
-                ])
-                setAllPosts(postsData)
-                setPosts(postsData)
-                setCategories(categoriesData)
-                setTags(tagsData?.filter(Boolean) || [])
-            } catch (error) {
-                console.error("Error fetching data:", error)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchData()
-    }, [])
-
-    // Filter posts based on URL params
-    useEffect(() => {
-        const filterPosts = async () => {
-            if (!allPosts.length) return
-
-            if (activeCategory) {
-                // Filter by category
-                const filtered = allPosts.filter(post =>
-                    post.categories?.some(cat =>
-                        (cat.slug?.current || cat.slug) === activeCategory
-                    )
-                )
-                setPosts(filtered)
-            } else {
-                setPosts(allPosts)
-            }
-        }
-        filterPosts()
-    }, [activeCategory, allPosts])
+    // Same category rule as before. `cat &&` skips empty category entries
+    // (one post has a null category in Sanity, which crashed this filter).
+    const posts = useMemo(() => activeCategory
+        ? allPosts.filter(post => post.categories?.some(cat =>
+            cat && (cat.slug?.current || cat.slug) === activeCategory))
+        : allPosts,
+    [activeCategory, allPosts])
 
     // Search filter (client-side)
     const filteredPosts = useMemo(() => {
@@ -101,17 +74,10 @@ const BlogList = () => {
         return new Date(dateString).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
-            day: 'numeric'
+            day: 'numeric',
+            // India time, so the server and every browser show the same date.
+            timeZone: 'Asia/Kolkata'
         })
-    }
-
-    if (loading) {
-        return (
-            <div className='relative min-h-screen w-full flex flex-col justify-center items-center bg-gray-50'>
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-purple/20 border-t-brand-purple"></div>
-                <p className="mt-3 text-gray-500 text-sm">Loading articles...</p>
-            </div>
-        )
     }
 
     const featured = filteredPosts[0]
@@ -153,6 +119,9 @@ const BlogList = () => {
 
     return (
         <>
+            <Suspense fallback={null}>
+                <CategoryFromUrl onChange={setActiveCategory} />
+            </Suspense>
             <SchemaMarkup schema={[collectionPageSchema, orgSchema, breadcrumbSchema, blogSchema, ...blogPostingSchemas]} />
 
             <div className='relative pt-12 min-h-screen w-full bg-gray-50 overflow-hidden'>
@@ -235,7 +204,7 @@ const BlogList = () => {
 
                                 <div className="p-6 md:p-10 flex flex-col justify-center w-full md:w-1/2">
                                     <div className="flex flex-wrap gap-2 mb-3">
-                                        {featured.categories?.slice(0, 2).map((cat, idx) => (
+                                        {featured.categories?.filter(Boolean).slice(0, 2).map((cat, idx) => (
                                             <span
                                                 key={idx}
                                                 className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-full border bg-brand-blue/10 text-brand-blue border-brand-blue/20"
