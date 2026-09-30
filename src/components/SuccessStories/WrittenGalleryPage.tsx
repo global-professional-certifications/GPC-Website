@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { client } from "../../lib/sanity/client";
+import React, { useState, useMemo } from 'react';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from '../routing';
 
 import { VideoGridCard, VideoModal } from "./StorySections";
-import type { CmsData, CmsList } from '../../types/cms';
+import type { CmsData, ComponentProps } from '../../types/cms';
 
 const getInitials = (name) => {
     if (!name) return '??';
@@ -15,51 +14,19 @@ const getInitials = (name) => {
     return name.substring(0, 2).toUpperCase();
 };
 
-export default function WrittenGalleryPage() {
-    const [stories, setStories] = useState<CmsList>([]);
-    const [loading, setLoading] = useState(true);
+export default function WrittenGalleryPage({ stories: serverStories = [] }: ComponentProps) {
+    // Stories arrive from app/(site)/written-gallery/page.tsx, fetched on the
+    // server. Prepared here exactly as before; the same inputs give the same
+    // result on the server and in the browser.
+    const stories = useMemo(() => serverStories.map(s => ({
+        ...s,
+        initials: getInitials(s.name),
+        thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
+        imageUrl: s.image ? urlFor(s.image).url() : null,
+        companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
+    })), [serverStories]);
     const [activeTab, setActiveTab] = useState('all');
     const [selectedVideo, setSelectedVideo] = useState<CmsData>(null);
-
-    useEffect(() => {
-        const fetchStories = async () => {
-            try {
-                const query = `*[_type == "successStory" && category == "written"] | order(_createdAt desc) {
-                    _id,
-                    name,
-                    company,
-                    location,
-                    designation,
-                    batch,
-                    "courseSlug": course->slug.current,
-                    "courseName": course->name,
-                    category,
-                    quote,
-                    excerpt,
-                    thumbnail,
-                    "videoUrl": video.asset->url,
-                    image,
-                    companyLogo
-                }`;
-                const data = await client.fetch(query);
-
-                const processedStories = data.map(s => ({
-                    ...s,
-                    initials: getInitials(s.name),
-                    thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
-                    imageUrl: s.image ? urlFor(s.image).url() : null,
-                    companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
-                }));
-
-                setStories(processedStories);
-            } catch (error) {
-                console.error("Error fetching written stories:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchStories();
-    }, []);
 
     // Build tabs from fetched stories (ALL + one per course)
     const tabs = useMemo(() => {
@@ -80,14 +47,6 @@ export default function WrittenGalleryPage() {
         if (activeTab === 'all') return stories;
         return stories.filter(s => (s.courseSlug || '').toLowerCase().trim() === activeTab);
     }, [stories, activeTab]);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-white">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-white flex flex-col">

@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { client } from "../../lib/sanity/client";
+import React, { useState, useMemo } from 'react';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from '../routing';
 
 import { VideoGridCard, VideoModal } from "./StorySections";
-import type { CmsData, CmsList } from '../../types/cms';
+import type { CmsData, ComponentProps } from '../../types/cms';
 
 const getInitials = (name) => {
     if (!name) return '??';
@@ -15,51 +14,19 @@ const getInitials = (name) => {
     return name.substring(0, 2).toUpperCase();
 };
 
-export default function VideoGalleryPage() {
-    const [videos, setVideos] = useState<CmsList>([]);
-    const [loading, setLoading] = useState(true);
+export default function VideoGalleryPage({ stories = [] }: ComponentProps) {
+    // Stories arrive from app/(site)/video-gallery/page.tsx, fetched on the
+    // server. Prepared here exactly as before; the same inputs give the same
+    // result on the server and in the browser.
+    const videos = useMemo(() => stories.map(s => ({
+        ...s,
+        initials: getInitials(s.name),
+        thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
+        imageUrl: s.image ? urlFor(s.image).url() : null,
+        companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
+    })), [stories]);
     const [selectedVideo, setSelectedVideo] = useState<CmsData>(null);
     const [activeTab, setActiveTab] = useState('all');
-
-    useEffect(() => {
-        const fetchVideos = async () => {
-            try {
-                const query = `*[_type == "successStory" && category == "video"] | order(_createdAt desc) {
-                    _id,
-                    name,
-                    company,
-                    location,
-                    designation,
-                    batch,
-                    "courseSlug": course->slug.current,
-                    "courseName": course->name,
-                    category,
-                    quote,
-                    excerpt,
-                    thumbnail,
-                    "videoUrl": video.asset->url,
-                    image,
-                    companyLogo
-                }`;
-                const data = await client.fetch(query);
-
-                const processedVideos = data.map(s => ({
-                    ...s,
-                    initials: getInitials(s.name),
-                    thumbnailUrl: s.thumbnail ? urlFor(s.thumbnail).url() : null,
-                    imageUrl: s.image ? urlFor(s.image).url() : null,
-                    companyLogo: s.companyLogo ? urlFor(s.companyLogo).url() : null,
-                }));
-
-                setVideos(processedVideos);
-            } catch (error) {
-                console.error("Error fetching video stories:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchVideos();
-    }, []);
 
     // Build tabs from fetched videos (ALL + one per course)
     const tabs = useMemo(() => {
@@ -84,14 +51,6 @@ export default function VideoGalleryPage() {
     const handleVideoClick = (video) => {
         setSelectedVideo(video);
     };
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-white">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-white flex flex-col">

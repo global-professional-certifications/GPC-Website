@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import WrittenGalleryPage from '../../../src/components/SuccessStories/WrittenGalleryPage';
+import { client } from '../../../src/lib/sanity/client';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /written-gallery
@@ -25,8 +27,34 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the written stories at most once a minute. */
+export const revalidate = 60;
+
+// Same query WrittenGalleryPage.tsx used to run in the browser, moved here unchanged.
+const WRITTEN_STORIES_QUERY = `*[_type == "successStory" && category == "written"] | order(_createdAt desc) {
+                    _id,
+                    name,
+                    company,
+                    location,
+                    designation,
+                    batch,
+                    "courseSlug": course->slug.current,
+                    "courseName": course->name,
+                    category,
+                    quote,
+                    excerpt,
+                    thumbnail,
+                    "videoUrl": video.asset->url,
+                    image,
+                    companyLogo
+                }`;
+
+export default async function Page() {
+    // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
+    // serving the last good version instead of an empty gallery.
+    const stories = await client.fetch<CmsList>(WRITTEN_STORIES_QUERY);
+
     return (
-        <WrittenGalleryPage />
+        <WrittenGalleryPage stories={stories ?? []} />
     );
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import VideoGalleryPage from '../../../src/components/SuccessStories/VideoGalleryPage';
+import { client } from '../../../src/lib/sanity/client';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /video-gallery
@@ -25,8 +27,34 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the video stories at most once a minute. */
+export const revalidate = 60;
+
+// Same query VideoGalleryPage.tsx used to run in the browser, moved here unchanged.
+const VIDEO_STORIES_QUERY = `*[_type == "successStory" && category == "video"] | order(_createdAt desc) {
+                    _id,
+                    name,
+                    company,
+                    location,
+                    designation,
+                    batch,
+                    "courseSlug": course->slug.current,
+                    "courseName": course->name,
+                    category,
+                    quote,
+                    excerpt,
+                    thumbnail,
+                    "videoUrl": video.asset->url,
+                    image,
+                    companyLogo
+                }`;
+
+export default async function Page() {
+    // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
+    // serving the last good version instead of an empty gallery.
+    const stories = await client.fetch<CmsList>(VIDEO_STORIES_QUERY);
+
     return (
-        <VideoGalleryPage />
+        <VideoGalleryPage stories={stories ?? []} />
     );
 }
