@@ -42,7 +42,6 @@ import flowchartMobile1 from "../../assets/home/how-it-works-1.webp";
 import flowchartMobile2 from "../../assets/home/how-it-works-2.webp";
 import faqImage from "../../assets/faq.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
-import { useBrochureSection } from "../../hooks/useBrochureSection";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import BrochureHeading from "../Brochure/BrochureHeading";
 import BrochureCtaButton from "../Brochure/BrochureCtaButton";
@@ -158,8 +157,12 @@ export default function Home() {
   const anniversaryRef = useRef<CmsData>(null);
   const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
 
-  // Editable brochure section content (Sanity), with hardcoded fallbacks.
-  const { section: brochure } = useBrochureSection("cia");
+  // The brochure section further down is commented out (hidden), so its
+  // Sanity content is no longer fetched. `brochure` stays null so the lines
+  // below and the commented-out section keep their hardcoded fallbacks. To
+  // re-enable the section, load it on the server in app/(site)/page.tsx with
+  // getBrochureSection('cia') and pass it in as a prop (see /cia-campaign).
+  const brochure: CmsData = null;
   const brochureCoverSrc = brochure?.coverImage
     ? urlFor(brochure.coverImage).width(704).url()
     : brochureCover;
