@@ -65,8 +65,13 @@ const BROCHURE_CONFIG = {
 // Renders the card's "Download Brochure" button. Reads the editable CTA from
 // Sanity (same source as the course pages) and falls back to the hardcoded
 // config so behaviour matches /courses/cia and /courses/cisa exactly.
-const CardBrochureButton = ({ config }: ComponentProps) => {
-  const { section } = useBrochureSection(config.course);
+//
+// Pages that load brochure data on the server pass it in as `section`
+// (undefined = not provided). Otherwise the button loads it in the browser as
+// before; an empty course key makes useBrochureSection skip the request.
+const CardBrochureButton = ({ config, section: providedSection }: ComponentProps) => {
+  const { section: fetchedSection } = useBrochureSection(providedSection === undefined ? config.course : "");
+  const section = providedSection === undefined ? fetchedSection : providedSection;
 
   // If sanity has a custom label that is NOT "Download", we use it, otherwise we override it to "Download Brochure"
   const overrideLabel = section?.cta?.label && section.cta.label.trim() !== "Download"
@@ -87,7 +92,7 @@ const CardBrochureButton = ({ config }: ComponentProps) => {
   );
 };
 
-const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }: ComponentProps) => {
+const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses, brochureSections }: ComponentProps) => {
   return (
     <section className="w-full py-12 md:py-24 px-8 flex justify-center">
       <div className="w-full max-w-7xl">
@@ -137,7 +142,10 @@ const CoursesShowcase = ({ titleStart, highlight, titleEnd, courses }: Component
 
                     <div className="flex flex-col gap-2">
                       {BROCHURE_CONFIG[key] && (
-                        <CardBrochureButton config={BROCHURE_CONFIG[key]} />
+                        <CardBrochureButton
+                          config={BROCHURE_CONFIG[key]}
+                          section={brochureSections?.[BROCHURE_CONFIG[key].course]}
+                        />
                       )}
                       <NavLink to={course.link} aria-label={`View ${course.name} details`}>
                         <button className="w-full py-1.5 md:py-2 text-xs md:text-base rounded-lg bg-brand-blue text-white font-semibold transition-all duration-300 hover:bg-brand-purple hover:scale-105">

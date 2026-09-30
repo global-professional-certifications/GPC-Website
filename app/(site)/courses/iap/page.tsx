@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Iap from '../../../../src/components/Courses/Iap';
+import { getBrochureSection } from '../../../../src/services/brochure.service';
 
 /*
  * /courses/iap
@@ -25,8 +26,21 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the brochure content at most once a minute. */
+export const revalidate = 60;
+
+export default async function Page() {
+    // Brochure content for the IAP section and the "Other Courses" cards, loaded
+    // with the same function (and query) the browser used before. No try/catch
+    // on purpose: if Sanity fails during a refresh, Next.js keeps serving the
+    // last good version instead of the built-in fallback content.
+    const [iap, cia, cisa] = await Promise.all([
+        getBrochureSection('iap'),
+        getBrochureSection('cia'),
+        getBrochureSection('cisa'),
+    ]);
+
     return (
-        <Iap />
+        <Iap brochure={iap} brochureSections={{ iap, cia, cisa }} />
     );
 }

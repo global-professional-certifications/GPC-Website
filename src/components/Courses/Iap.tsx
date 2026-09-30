@@ -27,7 +27,7 @@ import faqImage from "../../assets/faq.webp";
 import iapAbout from "../../assets/courses/iap/about-iap-course.webp";
 import brochureCover from "../../assets/home/iap-brochure.webp";
 
-import { useBrochureSection } from "../../hooks/useBrochureSection";
+import type { ComponentProps } from '../../types/cms';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import BrochureHeading from "../Brochure/BrochureHeading";
 import BrochureCtaButton from "../Brochure/BrochureCtaButton";
@@ -63,12 +63,12 @@ const courseFaqs = [
       "Yes, Global Professional Certifications (GPC) is officially recognized as an Authorized Learning Partner of IIA India. We are proud to be endorsed by Mr. Mukundan K.V, CEO of IIA India, validating our commitment to delivering high-quality internal audit training and exam preparation. As an IIA India Authorized Learning Partner, GPC offers globally recognized programs such as Certified Internal Auditor (CIA), CRMA, and Internal Audit Practitioner (IAP), empowering professionals to upskill with industry-leading resources, expert mentorship, and comprehensive support. Advance your career potential, enhance your audit skills, and join a community of risk professionals who trust GPC for their certification journey.",
   },
 ];
-const Iap = () => {
+const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
 
   const marginTop = 68 + (4 * (height ? height : 0))
 
-  // Editable brochure section content (Sanity), with hardcoded fallbacks.
-  const { section: brochure } = useBrochureSection("iap");
+  // Editable brochure section content (Sanity), loaded on the server in
+  // app/(site)/courses/iap/page.tsx, with hardcoded fallbacks.
   const brochureCoverSrc = brochure?.coverImage
     ? urlFor(brochure.coverImage).width(832).url()
     : brochureCover;
@@ -488,7 +488,8 @@ const Iap = () => {
           titleStart=""
           highlight="Global Professional Certifications"
           titleEnd="Other Courses"
-          courses={["CIA", "CISA", "CRMA"]} />
+          courses={["CIA", "CISA", "CRMA"]}
+          brochureSections={brochureSections} />
 
         {/* Blog Section */}
 
