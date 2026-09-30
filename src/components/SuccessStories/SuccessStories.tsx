@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from "react";
-import { client } from "../../lib/sanity/client";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from '../routing';
 
@@ -13,154 +12,44 @@ import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
 import MobileGallery from "./MobileGallery";
 import testimonialCover from "../../assets/home/testimonial-cover.webp";
-import type { CmsData, CmsList } from '../../types/cms';
+import type { ComponentProps } from '../../types/cms';
 
 
 
-export default function SuccessStories() {
-    // Dynamic courses from Sanity
-    const [courses, setCourses] = useState<CmsList>([]);
+export default function SuccessStories({
+    pageSettings = null,
+    heroData = null,
+    courses: serverCourses = [],
+    stories: serverStories = [],
+    wallEntries: serverWallEntries = [],
+    generatedAt,
+}: ComponentProps) {
+    // All five pieces arrive from app/(site)/success/page.tsx, fetched on the
+    // server. Prepared here exactly as before; the same inputs give the same
+    // result on the server and in the browser.
+
+    // Dynamic courses from Sanity.
+    // Filter to only show courses with testimonials OR wall of excellence entries
+    const courses = useMemo(
+        () => serverCourses.filter(c => c.testimonialCount > 0 || c.wallCount > 0),
+        [serverCourses]
+    );
     const [activeCourse, setActiveCourse] = useState('all');
 
     // All stories from Sanity
-    const [allStories, setAllStories] = useState<CmsList>([]);
-    const [wallOfExcellenceEntries, setWallOfExcellenceEntries] = useState<CmsList>([]);
-    const [pageSettings, setPageSettings] = useState<CmsData>(null);
-    const [heroData, setHeroData] = useState<CmsData>(null);
-    const [loading, setLoading] = useState(true);
+    const allStories = useMemo(() => serverStories.map(story => ({
+        ...story,
+        thumbnailUrl: story.thumbnail ? urlFor(story.thumbnail).url() : null,
+        imageUrl: story.image ? urlFor(story.image).url() : null,
+        companyLogo: story.companyLogo ? urlFor(story.companyLogo).url() : null,
+    })), [serverStories]);
 
-    // Fetch page settings (titles, subtitles)
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const query = `*[_type == "successPageSettings"][0]`;
-                const data = await client.fetch(query);
-                setPageSettings(data);
-            } catch (error) {
-                console.error("Error fetching page settings:", error);
-            }
-        };
-        fetchSettings();
-    }, []);
-
-    // Fetch hero section (carousel images + caption)
-    useEffect(() => {
-        const fetchHero = async () => {
-            try {
-                const query = `*[_type == "successHero"][0]{
-                    heroCaption,
-                    "heroImages": heroImages[]{ "url": asset->url, "alt": coalesce(label, asset->originalFilename) }
-                }`;
-                const data = await client.fetch(query);
-                setHeroData(data);
-            } catch (error) {
-                console.error("Error fetching hero section:", error);
-            }
-        };
-        fetchHero();
-    }, []);
-
-    // Fetch courses on mount - only courses that have at least one testimonial
-    useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                // Get courses that have at least one testimonial
-                const query = `*[_type == "testimonialCourse" && isActive != false] | order(order asc) {
-                    _id,
-                    name,
-                    fullName,
-                    "slug": slug.current,
-                    "sections": coalesce(sections, ['video', 'written', 'image', 'wallOfExcellence']),
-                    "category": category,
-                    "testimonialCount": count(*[_type == "successStory" && course._ref == ^._id]),
-                    "wallCount": count(*[_type == "wallOfExcellence" && course._ref == ^._id])
-                }`;
-                const data = await client.fetch(query);
-                // Filter to only show courses with testimonials OR wall of excellence entries
-                const coursesWithContent = data.filter(c => c.testimonialCount > 0 || c.wallCount > 0);
-                console.log("Fetched courses with content:", coursesWithContent);
-                setCourses(coursesWithContent);
-                if (coursesWithContent.length > 0) {
-                    setActiveCourse('all');
-                }
-            } catch (error) {
-                console.error("Error fetching courses:", error);
-            }
-        };
-        fetchCourses();
-    }, []);
-
-    // Fetch all stories on mount
-    useEffect(() => {
-        const fetchStories = async () => {
-            try {
-                const query = `*[_type == "successStory"] | order(_createdAt desc) {
-                    _id,
-                    name,
-                    company,
-                    location,
-                    designation,
-                    batch,
-                    "courseSlug": course->slug.current,
-                    "courseName": course->name,
-                    category,
-                    quote,
-                    excerpt,
-                    thumbnail,
-                    "videoUrl": video.asset->url,
-                    image,
-                    companyLogo
-                }`;
-                const data = await client.fetch(query);
-                console.log("Fetched success stories:", data);
-                const processed = data.map(story => ({
-                    ...story,
-                    thumbnailUrl: story.thumbnail ? urlFor(story.thumbnail).url() : null,
-                    imageUrl: story.image ? urlFor(story.image).url() : null,
-                    companyLogo: story.companyLogo ? urlFor(story.companyLogo).url() : null,
-                }));
-                setAllStories(processed);
-            } catch (error) {
-                console.error("Error fetching success stories:", error);
-            } finally {
-                // We keep loading handled here, but wait for courses too if possible
-                // For now, let's just make sure it sets false
-                setLoading(false);
-            }
-        };
-        fetchStories();
-    }, []);
-
-    // Fetch Wall of Excellence entries from Sanity
-    useEffect(() => {
-        const fetchWallEntries = async () => {
-            try {
-                const query = `*[_type == "wallOfExcellence"] | order(order asc) {
-                    _id,
-                    name,
-                    company,
-                    designation,
-                    photo,
-                    companyLogo,
-                    "courses": coalesce(
-                        course[]->{ "slug": slug.current, "name": name },
-                        [course->{ "slug": slug.current, "name": name }]
-                    )
-                }`;
-                const data = await client.fetch(query);
-                console.log("Fetched Wall of Excellence entries:", data);
-                const processed = data.map(entry => ({
-                    ...entry,
-                    imageUrl: entry.photo ? urlFor(entry.photo).url() : null,
-                    companyLogo: entry.companyLogo ? urlFor(entry.companyLogo).url() : null,
-                }));
-                setWallOfExcellenceEntries(processed);
-            } catch (error) {
-                console.error("Error fetching Wall of Excellence entries:", error);
-            }
-        };
-        fetchWallEntries();
-    }, []);
+    // Wall of Excellence entries from Sanity
+    const wallOfExcellenceEntries = useMemo(() => serverWallEntries.map(entry => ({
+        ...entry,
+        imageUrl: entry.photo ? urlFor(entry.photo).url() : null,
+        companyLogo: entry.companyLogo ? urlFor(entry.companyLogo).url() : null,
+    })), [serverWallEntries]);
 
     // Filter stories by active course
     const courseStories = useMemo(() => {
@@ -209,7 +98,7 @@ export default function SuccessStories() {
         name: `${story.name} - ${story.courseName} Success Story`,
         description: story.excerpt || story.quote || "Hear about their success journey with GPC.",
         thumbnailUrl: story.thumbnailUrl || "https://globalprofessionalcertifications.com/logo.png",
-        uploadDate: new Date().toISOString(), // Fallback
+        uploadDate: generatedAt, // Time the page was generated (stamped once on the server)
         embedUrl: story.videoUrl || "https://globalprofessionalcertifications.com/success"
     }));
 
@@ -221,14 +110,6 @@ export default function SuccessStories() {
         rating: "5",
         courseName: story.courseName
     }));
-
-    if (loading && allStories.length === 0) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-white">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
-            </div>
-        );
-    }
 
     return (
         <>

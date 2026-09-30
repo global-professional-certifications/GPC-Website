@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import SuccessStories from '../../../src/components/SuccessStories/SuccessStories';
+import { client } from '../../../src/lib/sanity/client';
+import type { CmsData, CmsList } from '../../../src/types/cms';
 
 /*
  * /success
@@ -25,8 +27,82 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the success stories at most once a minute. */
+export const revalidate = 60;
+
+// The five queries SuccessStories.tsx used to run in the browser, moved here
+// unchanged (text copied character for character).
+const PAGE_SETTINGS_QUERY = `*[_type == "successPageSettings"][0]`;
+
+const HERO_QUERY = `*[_type == "successHero"][0]{
+                    heroCaption,
+                    "heroImages": heroImages[]{ "url": asset->url, "alt": coalesce(label, asset->originalFilename) }
+                }`;
+
+// Courses (with testimonial and wall counts, used to hide empty courses)
+const COURSES_QUERY = `*[_type == "testimonialCourse" && isActive != false] | order(order asc) {
+                    _id,
+                    name,
+                    fullName,
+                    "slug": slug.current,
+                    "sections": coalesce(sections, ['video', 'written', 'image', 'wallOfExcellence']),
+                    "category": category,
+                    "testimonialCount": count(*[_type == "successStory" && course._ref == ^._id]),
+                    "wallCount": count(*[_type == "wallOfExcellence" && course._ref == ^._id])
+                }`;
+
+const STORIES_QUERY = `*[_type == "successStory"] | order(_createdAt desc) {
+                    _id,
+                    name,
+                    company,
+                    location,
+                    designation,
+                    batch,
+                    "courseSlug": course->slug.current,
+                    "courseName": course->name,
+                    category,
+                    quote,
+                    excerpt,
+                    thumbnail,
+                    "videoUrl": video.asset->url,
+                    image,
+                    companyLogo
+                }`;
+
+const WALL_QUERY = `*[_type == "wallOfExcellence"] | order(order asc) {
+                    _id,
+                    name,
+                    company,
+                    designation,
+                    photo,
+                    companyLogo,
+                    "courses": coalesce(
+                        course[]->{ "slug": slug.current, "name": name },
+                        [course->{ "slug": slug.current, "name": name }]
+                    )
+                }`;
+
+export default async function Page() {
+    // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
+    // serving the last good version of the whole page instead of a broken one.
+    const [pageSettings, heroData, courses, stories, wallEntries] = await Promise.all([
+        client.fetch<CmsData>(PAGE_SETTINGS_QUERY),
+        client.fetch<CmsData>(HERO_QUERY),
+        client.fetch<CmsList>(COURSES_QUERY),
+        client.fetch<CmsList>(STORIES_QUERY),
+        client.fetch<CmsList>(WALL_QUERY),
+    ]);
+
     return (
-        <SuccessStories />
+        <SuccessStories
+            pageSettings={pageSettings}
+            heroData={heroData}
+            courses={courses ?? []}
+            stories={stories ?? []}
+            wallEntries={wallEntries ?? []}
+            // Stamped once here so the video SEO data is identical on the
+            // server and in the browser (it used to call new Date() on every render).
+            generatedAt={new Date().toISOString()}
+        />
     );
 }

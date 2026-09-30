@@ -44,10 +44,13 @@ const getVisiblePages = (currentPage, totalPages) => {
 const WallOfExcellence = ({ wallEntries, stories }: ComponentProps) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [activeTab, setActiveTab] = useState('all');
-    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+    // Start as desktop so the first render matches the server HTML (the server
+    // has no screen), then switch to the real screen size right after load.
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
