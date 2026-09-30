@@ -27,7 +27,7 @@ import examTwo from "../../assets/courses/cia/exam-2.webp";
 import examThree from "../../assets/courses/cia/exam-3.webp";
 import examFour from "../../assets/courses/cia/exam-4.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
-import { useBrochureSection } from "../../hooks/useBrochureSection";
+import type { ComponentProps } from '../../types/cms';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import BrochureHeading from "../Brochure/BrochureHeading";
 import BrochureCtaButton from "../Brochure/BrochureCtaButton";
@@ -68,10 +68,10 @@ const courseFaqs = [
     },
 ];
 
-const CiaCampaign = () => {
+const CiaCampaign = ({ brochure = null }: ComponentProps) => {
 
-    // Editable brochure section content (Sanity), with hardcoded fallbacks.
-    const { section: brochure } = useBrochureSection("cia");
+    // Editable brochure section content (Sanity), loaded on the server in
+    // app/(site)/cia-campaign/page.tsx, with hardcoded fallbacks.
     const brochureCoverSrc = brochure?.coverImage
         ? urlFor(brochure.coverImage).width(832).url()
         : brochureCover;
