@@ -47,10 +47,28 @@ const PAST_EVENTS_QUERY = `*[_type in ["pastEvent", "event"] && isActive != fals
                     order
                 }`;
 
+// Upcoming events: the same query LayoutContext runs in the browser (copied
+// unchanged). LayoutContext keeps its own copy for the home countdown bar.
+const UPCOMING_EVENTS_QUERY = `*[_type == "upcomingEvent" && isActive == true] | order(eventStartDateTime asc) {
+                    _id,
+                    eventName,
+                    title,
+                    description,
+                    venue,
+                    date,
+                    eventStartDateTime,
+                    registrationLink,
+                    registrationButtonText,
+                    coverImage
+                }`;
+
 export default async function Page() {
     // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
     // serving the last good version instead of caching an empty events list.
-    const data = await client.fetch<CmsList>(PAST_EVENTS_QUERY);
+    const [data, upcomingData] = await Promise.all([
+        client.fetch<CmsList>(PAST_EVENTS_QUERY),
+        client.fetch<CmsList>(UPCOMING_EVENTS_QUERY),
+    ]);
 
     // Process images with urlFor to respect hotspots/crops (same as before).
     const events = (data ?? []).map(event => ({
@@ -61,7 +79,18 @@ export default async function Page() {
             : []
     }));
 
+    // Same rule as LayoutContext: hide events that have already started, and
+    // build the cover image URL. UpcomingEventCard re-checks after load, so an
+    // event starting between refreshes is still hidden.
+    const now = new Date();
+    const upcomingEvents = (upcomingData ?? [])
+        .filter(event => new Date(event.eventStartDateTime) > now)
+        .map(event => ({
+            ...event,
+            coverImageUrl: event.coverImage ? urlFor(event.coverImage).url() : null,
+        }));
+
     return (
-        <Events events={events} />
+        <Events events={events} upcomingEvents={upcomingEvents} />
     );
 }

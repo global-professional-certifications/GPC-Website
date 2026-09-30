@@ -48,7 +48,7 @@ const courseFaqs = [
 ];
 
 
-export default function Events({ events = [] }: ComponentProps) {
+export default function Events({ events = [], upcomingEvents = [] }: ComponentProps) {
     // Past events arrive from app/(site)/events/page.tsx, fetched on the server.
     //
     // Year toggles are dynamically generated - adding events with new years (2027, 2028, etc.)
@@ -202,7 +202,7 @@ export default function Events({ events = [] }: ComponentProps) {
 
             {/* Upcoming Event Section - Auto-populated from Sanity */}
             <section className="bg-gray-50">
-                <UpcomingEventCard />
+                <UpcomingEventCard events={upcomingEvents} />
             </section>
 
             {/* Our Event Presence */}

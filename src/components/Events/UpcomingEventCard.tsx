@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
-import { useLayout } from "../../contexts/LayoutContext";
+import type { ComponentProps } from '../../types/cms';
 
-const UpcomingEventCard = () => {
-    const { upcomingEvents, loading } = useLayout();
+const UpcomingEventCard = ({ events: serverEvents = [] }: ComponentProps) => {
+    // Events arrive from app/(site)/events/page.tsx with past ones already
+    // removed. The page is cached for up to a minute, so re-check once in the
+    // browser: an event that started after the cached copy was made is hidden,
+    // exactly as before. Done after mount so the first render matches the
+    // server HTML.
+    const [upcomingEvents, setUpcomingEvents] = useState(serverEvents);
+    useEffect(() => {
+        const now = new Date();
+        setUpcomingEvents(serverEvents.filter(event => new Date(event.eventStartDateTime) > now));
+    }, [serverEvents]);
 
-    // Don't render if still loading or no upcoming events
-    if (loading || !upcomingEvents || upcomingEvents.length === 0) {
+    // Don't render if there are no upcoming events
+    if (!upcomingEvents || upcomingEvents.length === 0) {
         return null;
     }
 

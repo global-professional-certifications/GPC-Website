@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import { FaClock } from "react-icons/fa";
 import { Link } from '../routing';
@@ -19,6 +19,12 @@ const EventCard = ({
     venue,
     date,
 }: ComponentProps) => {
+    // The countdown depends on the current time, which differs between the
+    // server and the browser, so the live numbers are drawn only after load.
+    // Until then the same boxes show "--", keeping the layout identical.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
     // Generate image URL with hotspot support if image is a Sanity object
     const imageUrl = image && typeof image === 'object' 
         ? urlFor(image).url() 
@@ -122,7 +128,9 @@ const EventCard = ({
                                 <FaClock className="text-brand-purple" />
                                 <span>Event Starts In</span>
                             </div>
-                            <Countdown date={targetDate} renderer={renderer} />
+                            {mounted
+                                ? <Countdown date={targetDate} renderer={renderer} />
+                                : renderer({ days: '--', hours: '--', minutes: '--', seconds: '--', completed: false })}
                         </div>
 
                         <div className="flex md:justify-end">
