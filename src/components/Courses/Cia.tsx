@@ -28,7 +28,7 @@ import examThree from "../../assets/courses/cia/exam-3.webp";
 import examFour from "../../assets/courses/cia/exam-4.webp";
 import ciaHero from "../../assets/courses/cia/cia-hero.webp";
 import brochureCover from "../../assets/home/cia-brochure.webp";
-import { useBrochureSection } from "../../hooks/useBrochureSection";
+import type { ComponentProps } from '../../types/cms';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import BrochureHeading from "../Brochure/BrochureHeading";
 import BrochureCtaButton from "../Brochure/BrochureCtaButton";
@@ -69,10 +69,10 @@ const courseFaqs = [
     },
 ];
 
-const Cia = () => {
+const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
 
-    // Editable brochure section content (Sanity), with hardcoded fallbacks.
-    const { section: brochure } = useBrochureSection("cia");
+    // Editable brochure section content (Sanity), loaded on the server in
+    // app/(site)/courses/cia/page.tsx, with hardcoded fallbacks.
     const brochureCoverSrc = brochure?.coverImage
         ? urlFor(brochure.coverImage).width(832).url()
         : brochureCover;
@@ -1044,7 +1044,8 @@ const Cia = () => {
                     titleStart=""
                     highlight="Global Professional Certifications"
                     titleEnd="Other Courses"
-                    courses={["CISA", "CRMA", "IAP"]} />
+                    courses={["CISA", "CRMA", "IAP"]}
+                    brochureSections={brochureSections} />
 
                 {/* Blog Section */}
 
