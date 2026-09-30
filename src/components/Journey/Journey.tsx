@@ -14,8 +14,9 @@ import {
     faQuoteLeft,
     faQuoteRight,
 } from "@fortawesome/free-solid-svg-icons";
+import type { ComponentProps } from '../../types/cms';
 
-const Journey = () => {
+const Journey = ({ brochureSections }: ComponentProps) => {
     const [heroRef, isHeroVisible] = useScrollAnimation({ threshold: 0.1 });
     const [statsRef, isStatsVisible] = useScrollAnimation({ threshold: 0.2 });
     const [videoRef, isVideoVisible] = useScrollAnimation({ threshold: 0.2 });
@@ -374,6 +375,7 @@ const Journey = () => {
                         highlight="Flagship Certification"
                         titleEnd="Courses"
                         courses={["CIA", "CISA", "CRMA", "IAP"]}
+                        brochureSections={brochureSections}
                     />
                 </div>
 

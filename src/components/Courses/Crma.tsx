@@ -24,6 +24,7 @@ import crmaHero from "../../assets/courses/crma/crma-hero.webp";
 import faqImage from "../../assets/faq.webp";
 import crmaBenefits from "../../assets/courses/crma/crma-benefits.webp";
 import crmaAbout from "../../assets/courses/crma/about-crma.webp";
+import type { ComponentProps } from '../../types/cms';
 
 
 const courseFaqs = [
@@ -57,7 +58,7 @@ const courseFaqs = [
   },
 ];
 
-const Crma = () => {
+const Crma = ({ brochureSections }: ComponentProps) => {
   const marginTop = (68 + (4 * (height ? height : 0))).toString()
 
   // Comprehensive Course Schema
@@ -489,7 +490,8 @@ const Crma = () => {
             titleStart=""
             highlight="Global Professional Certifications"
             titleEnd="Other Courses"
-            courses={["CIA", "CISA", "IAP"]} />
+            courses={["CIA", "CISA", "IAP"]}
+            brochureSections={brochureSections} />
         </div>
 
         {/* Blog Section */}
