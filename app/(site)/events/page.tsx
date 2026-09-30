@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Events from '../../../src/components/Events/Events';
+import { client } from '../../../src/lib/sanity/client';
+import { urlFor } from '../../../src/lib/sanity/imageBuilder';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /events
@@ -25,8 +28,40 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the past events at most once a minute. */
+export const revalidate = 60;
+
+// Past events (supports both pastEvent and legacy event document types).
+// Same query Events.tsx used to run in the browser, moved here unchanged.
+const PAST_EVENTS_QUERY = `*[_type in ["pastEvent", "event"] && isActive != false && defined(year)] | order(year desc, order asc) {
+                    _id,
+                    eventName,
+                    "slug": slug.current,
+                    title,
+                    description,
+                    location,
+                    date,
+                    year,
+                    coverImage,
+                    galleryImages,
+                    order
+                }`;
+
+export default async function Page() {
+    // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
+    // serving the last good version instead of caching an empty events list.
+    const data = await client.fetch<CmsList>(PAST_EVENTS_QUERY);
+
+    // Process images with urlFor to respect hotspots/crops (same as before).
+    const events = (data ?? []).map(event => ({
+        ...event,
+        coverImageUrl: event.coverImage ? urlFor(event.coverImage).url() : null,
+        galleryImageUrls: event.galleryImages
+            ? event.galleryImages.map(img => urlFor(img).url())
+            : []
+    }));
+
     return (
-        <Events />
+        <Events events={events} />
     );
 }

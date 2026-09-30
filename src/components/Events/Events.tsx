@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { MdTipsAndUpdates } from "react-icons/md";
@@ -12,10 +12,6 @@ import EventCarousel from "../Carousels/EventCarousel";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getWebPageSchema, getOrganizationSchema } from "../Schema";
 
-// Sanity imports
-import { client } from "../../lib/sanity/client";
-import { urlFor } from "../../lib/sanity/imageBuilder";
-
 // images import (static assets for hero/about sections)
 import iiaEvent from "../../assets/events/iia-event.webp";
 import heroImage from '../../assets/events/event-hero.webp'
@@ -25,7 +21,7 @@ import faqImage from "../../assets/faq.webp";
 // icons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
-import type { CmsData, CmsList } from '../../types/cms';
+import type { CmsData, ComponentProps } from '../../types/cms';
 
 
 const courseFaqs = [
@@ -52,64 +48,20 @@ const courseFaqs = [
 ];
 
 
-export default function Events() {
-    // Sanity data state
-    const [events, setEvents] = useState<CmsList>([]);
-    const [loading, setLoading] = useState(true);
-    const [availableYears, setAvailableYears] = useState<CmsList>([]);
-    const [activeYear, setActiveYear] = useState<CmsData>(null);
-    const [activeEvent, setActiveEvent] = useState<CmsData>(null);
-
-    // Fetch past events from Sanity
+export default function Events({ events = [] }: ComponentProps) {
+    // Past events arrive from app/(site)/events/page.tsx, fetched on the server.
+    //
     // Year toggles are dynamically generated - adding events with new years (2027, 2028, etc.)
-    // will automatically create new toggle buttons on the frontend
-    useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                // Fetch past events (supports both pastEvent and legacy event document types)
-                const query = `*[_type in ["pastEvent", "event"] && isActive != false && defined(year)] | order(year desc, order asc) {
-                    _id,
-                    eventName,
-                    "slug": slug.current,
-                    title,
-                    description,
-                    location,
-                    date,
-                    year,
-                    coverImage,
-                    galleryImages,
-                    order
-                }`;
-                const data = await client.fetch(query);
-                
-                // Process images with urlFor to respect hotspots/crops
-                const processedData = data.map(event => ({
-                    ...event,
-                    coverImageUrl: event.coverImage ? urlFor(event.coverImage).url() : null,
-                    galleryImageUrls: event.galleryImages 
-                        ? event.galleryImages.map(img => urlFor(img).url()) 
-                        : []
-                }));
-
-                console.log("Fetched past events:", processedData);
-                setEvents(processedData);
-
-                // Extract unique years and sort descending (filter out null/undefined)
-                const years = [...new Set(data.map(e => e.year).filter(y => y !== null && y !== undefined))].sort((a: CmsData, b: CmsData) => b - a);
-                setAvailableYears(years.map(y => String(y)));
-
-                // Set default active year to most recent
-                if (years.length > 0) {
-                    setActiveYear(String(years[0]));
-                }
-            } catch (error) {
-                console.error("Error fetching events:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchEvents();
-    }, []);
+    // will automatically create new toggle buttons on the frontend.
+    // Unique years, most recent first (null/undefined filtered out), same rule as before.
+    const availableYears = useMemo(() =>
+        [...new Set(events.map(e => e.year).filter(y => y !== null && y !== undefined))]
+            .sort((a: CmsData, b: CmsData) => b - a)
+            .map(y => String(y)),
+    [events]);
+    // Default to the most recent year, as before.
+    const [activeYear, setActiveYear] = useState<CmsData>(() => availableYears[0] ?? null);
+    const [activeEvent, setActiveEvent] = useState<CmsData>(null);
 
     // Get events for active year
     const eventsForYear = events.filter(e => String(e.year) === activeYear);
@@ -382,7 +334,7 @@ export default function Events() {
 
                     {/* Events Content by Year */}
                     <div className="w-full">
-                        {loading || !activeYear ? (
+                        {!activeYear ? (
                             <div className="flex justify-center items-center py-20">
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
                             </div>
