@@ -7,12 +7,12 @@ import { RxCross1 } from 'react-icons/rx';
 import PortableTextRenderer from '../Blogs/PortableTextRenderer';
 import FAQDisplay from "../FAQDisplay";
 import { SchemaMarkup, getEventSchema, generateBreadcrumbSchema, getFAQSchema, getOrganizationSchema } from "../Schema";
-import { client } from "../../lib/sanity/client";
+import { isItemActive } from "./upcomingUtils";
 
 // Assets
 import faqImage from "../../assets/faq.webp";
 import orientationCover from "../../assets/upcoming-orientation.png";
-import type { CmsData, CmsList } from '../../types/cms';
+import type { CmsData, CmsList, ComponentProps } from '../../types/cms';
 
 // --- DATA CONSTANTS ---
 
@@ -46,10 +46,16 @@ const formatDate = (dateString) => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return dateString;
 
-  const day = date.getDate();
+  // India time, so the server and every browser show the date entered in Sanity.
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Kolkata", day: "numeric", month: "numeric", year: "numeric"
+  }).formatToParts(date);
+  const get = (type) => Number(parts.find(p => p.type === type)?.value);
+
+  const day = get("day");
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
+  const month = months[get("month") - 1];
+  const year = get("year");
 
   return `${day} ${month}, ${year}`;
 };
@@ -65,45 +71,23 @@ const displayDateText = (batch) => {
 
 // --- MAIN COMPONENT ---
 
-// Helper to check if an item is active (handling Auto Inactive expiration)
-const isItemActive = (item) => {
-  if (!item || !item.isActive) return false;
-  if (item.enableAutoInactive && item.autoInactiveDateTime) {
-    const inactiveTime = new Date(item.autoInactiveDateTime).getTime();
-    if (!isNaN(inactiveTime) && Date.now() >= inactiveTime) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const Upcoming = () => {
-  const [batches, setBatches] = useState<CmsList>([]);
-  const [announcement, setAnnouncement] = useState<CmsData>(null);
+const Upcoming = ({ batches: serverBatches = [], announcements: serverAnnouncements = [] }: ComponentProps) => {
+  // Batches and announcements arrive from app/(site)/upcoming/page.tsx, already
+  // filtered on the server. The page is cached for up to a minute, so the
+  // auto-inactive times are re-checked once in the browser: an item that
+  // expired after the cached copy was made is hidden, exactly as before.
+  // Done after mount, not during render, so the first render matches the
+  // server HTML.
+  const [batches, setBatches] = useState<CmsList>(serverBatches);
+  const [announcements, setAnnouncements] = useState<CmsList>(serverAnnouncements);
   const [activeModalBatch, setActiveModalBatch] = useState<CmsData>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [batchesData, announcementsData] = await Promise.all([
-          client.fetch(`*[_type == "upcomingBatch" && isActive == true] | order(order asc) { ..., "detailsFileUrl": detailsFile.asset->url }`),
-          client.fetch(`*[_type == "upcomingAnnouncement" && isActive == true] | order(order asc)`)
-        ]);
-        
-        const activeBatches = (batchesData || []).filter(isItemActive);
-        const activeAnnouncements = (announcementsData || []).filter(isItemActive);
-        
-        setBatches(activeBatches);
-        setAnnouncement(activeAnnouncements.length > 0 ? activeAnnouncements[0] : null);
-      } catch (error) {
-        console.error("Error fetching upcoming page data from Sanity:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    setBatches(serverBatches.filter(isItemActive));
+    setAnnouncements(serverAnnouncements.filter(isItemActive));
+  }, [serverBatches, serverAnnouncements]);
+
+  const announcement = announcements.length > 0 ? announcements[0] : null;
 
   // Breadcrumb Schema
   const breadcrumbSchema = generateBreadcrumbSchema("/upcoming");
@@ -151,7 +135,7 @@ const Upcoming = () => {
 
 
       {/* ═══════════ IMPORTANT ANNOUNCEMENT ═══════════ */}
-      {!loading && announcement && (
+      {announcement && (
         <section className="py-8 md:py-10 bg-amber-50/50 border-b border-amber-100/50">
           <div className="max-w-7xl mx-auto px-3 md:px-4">
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
@@ -190,11 +174,7 @@ const Upcoming = () => {
             </p>
           </m.div>
 
-          {loading ? (
-            <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-blue"></div>
-            </div>
-          ) : batches.length > 0 ? (
+          {batches.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {batches.map((batch, index) => (
                 <m.div

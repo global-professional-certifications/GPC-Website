@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Upcoming from '../../../src/components/Upcoming/Upcoming';
+import { isItemActive } from '../../../src/components/Upcoming/upcomingUtils';
+import { client } from '../../../src/lib/sanity/client';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /upcoming
@@ -25,8 +28,25 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Page() {
+/** Refresh the batches at most once a minute. */
+export const revalidate = 60;
+
+export default async function Page() {
+    // Same two queries Upcoming.tsx used to run in the browser, moved here
+    // unchanged. No try/catch on purpose: if Sanity fails during a refresh,
+    // Next.js keeps serving the last good version instead of an empty page.
+    const [batchesData, announcementsData] = await Promise.all([
+        client.fetch<CmsList>(`*[_type == "upcomingBatch" && isActive == true] | order(order asc) { ..., "detailsFileUrl": detailsFile.asset->url }`),
+        client.fetch<CmsList>(`*[_type == "upcomingAnnouncement" && isActive == true] | order(order asc)`)
+    ]);
+
+    // Hide items whose auto-inactive time has passed, same rule as before.
+    // Upcoming re-checks after load, so an item expiring between refreshes
+    // is still hidden.
     return (
-        <Upcoming />
+        <Upcoming
+            batches={(batchesData || []).filter(isItemActive)}
+            announcements={(announcementsData || []).filter(isItemActive)}
+        />
     );
 }
