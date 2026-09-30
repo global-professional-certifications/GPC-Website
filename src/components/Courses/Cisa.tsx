@@ -24,7 +24,7 @@ import MentorShowcase from "../About/MentorShowcase";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
-import { useBrochureSection } from "../../hooks/useBrochureSection";
+import type { ComponentProps } from '../../types/cms';
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import BrochureHeading from "../Brochure/BrochureHeading";
 import BrochureCtaButton from "../Brochure/BrochureCtaButton";
@@ -72,10 +72,10 @@ const courseFaqs = [
 ];
 
 
-const Cisa = () => {
+const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
 
-  // Editable brochure section content (Sanity), with hardcoded fallbacks.
-  const { section: brochure } = useBrochureSection("cisa");
+  // Editable brochure section content (Sanity), loaded on the server in
+  // app/(site)/courses/cisa/page.tsx, with hardcoded fallbacks.
   const brochureCoverSrc = brochure?.coverImage
     ? urlFor(brochure.coverImage).width(832).url()
     : brochureCover;
@@ -589,7 +589,8 @@ const Cisa = () => {
           titleStart=""
           highlight="Global Professional Certifications"
           titleEnd="Other Courses"
-          courses={["CIA", "CRMA", "IAP"]} />
+          courses={["CIA", "CRMA", "IAP"]}
+          brochureSections={brochureSections} />
 
 
         {/* Blog Section */}
