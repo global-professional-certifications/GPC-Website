@@ -1,4 +1,5 @@
 {
+    "framework": "nextjs",
     "headers": [
       {
         "source": "/(.*)",
@@ -31,10 +32,6 @@
       {
         "source": "/:course-Brochure.pdf",
         "destination": "/api/brochure?course=:course"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
       }
     ]
   }
