@@ -74,6 +74,7 @@ const BlogCall = () => {
                             <img
                                 src={blog.mainImage ? urlFor(blog.mainImage).url() : ""}
                                 alt={blog.title}
+                                loading="lazy"
                                 className="w-full h-36 md:h-56 object-cover"
                             />
                             {/* Category Badge */}

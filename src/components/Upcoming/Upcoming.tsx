@@ -422,7 +422,7 @@ const Upcoming = ({ batches: serverBatches = [], announcements: serverAnnounceme
         <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-0 max-w-7xl mx-auto">
           <div className="w-full lg:w-2/5 flex justify-center items-center relative">
             <div className="absolute max-w-sm w-full h-full bg-brand-blue/25 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 z-0" />
-            <img src={faqImage} alt="FAQ illustration" className="max-w-sm w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-5 md:-translate-y-5" />
+            <img src={faqImage} alt="FAQ illustration" loading="lazy" className="max-w-sm w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-5 md:-translate-y-5" />
           </div>
           <div className="w-full lg:w-3/5">
             <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />

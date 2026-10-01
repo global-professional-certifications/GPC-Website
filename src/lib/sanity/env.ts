@@ -30,8 +30,7 @@ function required(value: string | undefined, name: string): string {
     if (!value) {
         throw new Error(
             `Sanity config is incomplete: ${name} is not set. Expected it to be ` +
-            'provided by next.config.js (mapped from the VITE_SANITY_* vars) or ' +
-            'by vite.config.js define.',
+            'provided by next.config.js (mapped from the VITE_SANITY_* vars).',
         );
     }
     return value;

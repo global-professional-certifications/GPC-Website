@@ -187,6 +187,7 @@ const WallOfExcellence = ({ wallEntries, stories }: ComponentProps) => {
                                                         <img
                                                             src={story.imageUrl}
                                                             alt={story.name}
+                                                            loading="lazy"
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
@@ -213,6 +214,7 @@ const WallOfExcellence = ({ wallEntries, stories }: ComponentProps) => {
                                                         <img
                                                             src={story.companyLogo}
                                                             alt={story.company}
+                                                            loading="lazy"
                                                             className="h-full max-w-[65px] md:max-w-[110px] object-contain transition-all duration-500"
                                                         />
                                                     ) : (

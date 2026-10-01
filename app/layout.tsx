@@ -96,18 +96,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   its listeners at parse time, immediately after the links are
                   declared, and also handles the case where a stylesheet
                   finished loading before the listener was attached.
+
+                  suppressHydrationWarning on both links: the script changes
+                  media from "print" to "all" before React hydrates, on purpose,
+                  so React must not report that as a server/client mismatch.
                 */}
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
                     media="print"
                     data-font-swap=""
+                    suppressHydrationWarning
                 />
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&family=Poppins:wght@100..900&display=swap"
                     media="print"
                     data-font-swap=""
+                    suppressHydrationWarning
                 />
                 <script
                     dangerouslySetInnerHTML={{
@@ -131,14 +137,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     />
                 </noscript>
 
-                {/* LCP hero image on the homepage. Kept from index.html. */}
-                <link
-                    rel="preload"
-                    as="image"
-                    href="/hero-girl-opt.webp"
-                    type="image/webp"
-                    fetchPriority="high"
-                />
+                {/*
+                  No manual preload for the homepage hero image here. React
+                  already emits a high-priority preload on the homepage from the
+                  hero <img fetchPriority="high"> (Hero.tsx); a preload in this
+                  shared layout made every other page download it for nothing.
+                */}
 
                 <script
                     type="application/ld+json"

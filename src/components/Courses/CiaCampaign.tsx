@@ -490,7 +490,7 @@ const CiaCampaign = ({ brochure = null }: ComponentProps) => {
                 <div className="mt-32 px-8 pb-16 lg:px-20">
                     <div className="flex flex-col lg:flex-row items-center gap-20">
                         <div className="w-full lg:w-2/5 flex justify-center items-center">
-                            <img src={faqImage} alt="FAQ" className="w-full object-contain" />
+                            <img src={faqImage} alt="FAQ" loading="lazy" className="w-full object-contain" />
                         </div>
                         <div className="w-full lg:w-3/5">
                             <FAQDisplay faqs={courseFaqs} showCount={5} showMoreLink="/faq" />

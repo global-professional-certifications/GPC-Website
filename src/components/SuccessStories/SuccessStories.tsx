@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { urlFor } from "../../lib/sanity/imageBuilder";
 import { Link } from '../routing';
 
@@ -34,7 +34,6 @@ export default function SuccessStories({
         () => serverCourses.filter(c => c.testimonialCount > 0 || c.wallCount > 0),
         [serverCourses]
     );
-    const [activeCourse, setActiveCourse] = useState('all');
 
     // All stories from Sanity
     const allStories = useMemo(() => serverStories.map(story => ({
@@ -51,27 +50,10 @@ export default function SuccessStories({
         companyLogo: entry.companyLogo ? urlFor(entry.companyLogo).url() : null,
     })), [serverWallEntries]);
 
-    // Filter stories by active course
-    const courseStories = useMemo(() => {
-        if (!activeCourse) return [];
-        if (activeCourse === 'all') return allStories;
-        return allStories.filter(story => story.courseSlug === activeCourse);
-    }, [allStories, activeCourse]);
-
-    // Derived filtered data straight from allStories (prevents filtering bug if activeCourse changes)
+    // Derived filtered data straight from allStories.
     const videoStories = useMemo(() => allStories.filter(s => s.category === 'video'), [allStories]);
     const writtenStories = useMemo(() => allStories.filter(s => s.category === 'written'), [allStories]);
     const imageStories = useMemo(() => allStories.filter(s => s.category === 'image').slice(0, 4), [allStories]);
-
-    const [isMobile, setIsMobile] = useState(false);
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-        handleResize()
-        window.addEventListener("resize", handleResize)
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
 
     // Breadcrumb Schema
     const breadcrumbSchema = generateBreadcrumbSchema("/success");
@@ -144,6 +126,7 @@ export default function SuccessStories({
                     <img
                         src={testimonialCover}
                         alt="Testimonial Cover"
+                        loading="lazy"
                         className="w-full max-w-[1200px] h-auto object-contain mx-auto mb-8 md:mb-12"
                     />
 

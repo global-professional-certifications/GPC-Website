@@ -41,6 +41,12 @@ const GtmTrainings = () => {
 
     return (
         <>
+            {/*
+              Start the hero picture early, but only on screens that show it
+              (it is `hidden md:block`). The <img> keeps loading="lazy", so
+              phones, where it is hidden, still never download it.
+            */}
+            <link rel="preload" as="image" href={gtmHero} media="(min-width: 768px)" fetchPriority="high" />
             <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
 
             {/* Hero Section */}
@@ -161,6 +167,7 @@ const GtmTrainings = () => {
                             <img
                                 src={learningPartner}
                                 alt="IIA India Certification Ceremony"
+                                loading="lazy"
                                 className="w-80 md:w-full lg:w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
                             />
                         </div>

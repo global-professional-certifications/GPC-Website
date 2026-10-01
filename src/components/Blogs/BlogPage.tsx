@@ -262,7 +262,7 @@ const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
                             <div className='flex flex-col md:flex-row items-center md:items-start gap-8'>
                                 <div className='w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden flex-shrink-0 shadow-xl border-4 border-white'>
                                     {authorImage ? (
-                                        <img src={urlFor(authorImage).width(200).url()} alt={author} className='w-full h-full object-cover' />
+                                        <img src={urlFor(authorImage).width(200).url()} alt={author} loading='lazy' className='w-full h-full object-cover' />
                                     ) : (
                                         <div className="w-full h-full bg-brand-blue flex items-center justify-center text-white font-bold text-3xl">
                                             {author?.charAt(0) || 'A'}
@@ -318,6 +318,7 @@ const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
                                                     <img
                                                         src={urlFor(related.mainImage).width(400).url()}
                                                         alt={related.mainImage?.alt || related.title}
+                                                        loading="lazy"
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                                     />
                                                 ) : (

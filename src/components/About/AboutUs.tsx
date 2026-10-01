@@ -114,8 +114,8 @@ export default function AboutUs() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <img src={ourMissionTwo} alt="Mission" className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg mt-8" />
-                            <img src={ourMissionOne} alt="Mission" className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg" />
+                            <img src={ourMissionTwo} alt="Mission" loading="lazy" className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg mt-8" />
+                            <img src={ourMissionOne} alt="Mission" loading="lazy" className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg" />
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ export default function AboutUs() {
 
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="order-2 lg:order-1">
-                            <img src={ourVision} alt="Vision" className="w-full h-80 md:h-[450px] object-cover rounded-2xl shadow-2xl" />
+                            <img src={ourVision} alt="Vision" loading="lazy" className="w-full h-80 md:h-[450px] object-cover rounded-2xl shadow-2xl" />
                         </div>
 
                         <div className="order-1 lg:order-2 space-y-6">

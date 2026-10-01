@@ -128,6 +128,14 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
 
     return (
         <>
+            {/*
+              Start each hero picture early, only on the screens that show it:
+              the desktop banner (a CSS background, `hidden lg:block`) and the
+              mobile picture (`lg:hidden`). The mobile <img> keeps
+              loading="lazy", so desktops still never download it.
+            */}
+            <link rel="preload" as="image" href={heroImage} media="(min-width: 1024px)" fetchPriority="high" />
+            <link rel="preload" as="image" href={heroImageMobile} media="(max-width: 1023.98px)" fetchPriority="high" />
             <SchemaMarkup schema={[...eventSchemas, breadcrumbSchema, faqSchema, webPageSchema, orgSchema]} />
 
             {/* Hero Section */}
@@ -334,11 +342,7 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
 
                     {/* Events Content by Year */}
                     <div className="w-full">
-                        {!activeYear ? (
-                            <div className="flex justify-center items-center py-20">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
-                            </div>
-                        ) : events.length === 0 ? (
+                        {events.length === 0 || !activeYear ? (
                             <div className="text-center py-20 text-gray-500">
                                 <p className="text-lg">No events available</p>
                             </div>
@@ -353,7 +357,7 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
                                     {eventsForYear.map((event) => (
                                         <div key={event._id} className="p-8 border border-gray-300 shadow-lg rounded-xl w-full hover:shadow-xl transition-shadow duration-300">
                                             <div className="flex flex-row gap-8 w-full h-[16rem]">
-                                                <img src={event.coverImageUrl} className="rounded-xl w-[24rem] h-[16rem] object-cover flex-shrink-0" alt={event.title} />
+                                                <img src={event.coverImageUrl} className="rounded-xl w-[24rem] h-[16rem] object-cover flex-shrink-0" alt={event.title} loading="lazy" />
 
                                                 <div className="flex flex-col justify-between flex-1 min-w-0 py-1">
                                                     {/* Top: Badge + Title + Description */}
@@ -538,6 +542,7 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
                         <img
                             src={faqImage}
                             alt="FAQ illustration"
+                            loading="lazy"
                             className="max-w-md w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
                         />
                     </div>

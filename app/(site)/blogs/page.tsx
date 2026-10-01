@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 import BlogList from '../../../src/components/Blogs/BlogList';
 import { client } from '../../../src/lib/sanity/client';
-import { getAllPosts, getAllCategories, getAllTags } from '../../../src/lib/sanity/queries';
+import { getAllPosts, getAllCategories } from '../../../src/lib/sanity/queries';
 import type { CmsList } from '../../../src/types/cms';
 
 /*
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function Page() {
-    // Same three queries BlogList used to run in the browser. No try/catch on
+    // The queries BlogList used to run in the browser, minus getAllTags: the
+    // old BlogList fetched the tag list but never displayed it. No try/catch on
     // purpose: if Sanity fails during a refresh, Next.js keeps serving the
     // last good version instead of caching an empty list.
-    const [posts, categories, tags] = await Promise.all([
+    const [posts, categories] = await Promise.all([
         client.fetch<CmsList>(getAllPosts),
         client.fetch<CmsList>(getAllCategories),
-        client.fetch<CmsList>(getAllTags),
     ]);
 
     return (
@@ -54,7 +54,6 @@ export default async function Page() {
             <BlogList
                 allPosts={posts ?? []}
                 categories={categories ?? []}
-                tags={(tags ?? []).filter(Boolean)}
             />
         </Suspense>
     );

@@ -609,6 +609,7 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
               <img
                 src={faqImage}
                 alt="FAQ illustration"
+                loading="lazy"
                 className="max-w- w-full object-contain relative z-10 -translate-x-3 -translate-y-3 md:-translate-x-6 md:-translate-y-6 lg:-translate-x-6 lg:-translate-y-6"
               />
             </div>

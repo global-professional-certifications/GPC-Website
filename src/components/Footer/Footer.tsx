@@ -148,6 +148,7 @@ export default function Footer() {
                             <img
                                 src={wappLogo}
                                 alt="WhatsApp community QR code"
+                                loading="lazy"
                                 className="h-24 w-24 bg-white object-contain hover:scale-105 transition-transform duration-300"
                             />
                         </div>

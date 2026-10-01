@@ -53,6 +53,7 @@ export default function MobileGallery({ images = [] }: ComponentProps) {
                                 <img
                                     src={img.thumbnailUrl}
                                     alt={img.name || "WhatsApp Showcase"}
+                                    loading="lazy"
                                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />

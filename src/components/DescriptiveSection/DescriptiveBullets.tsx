@@ -20,6 +20,7 @@ const DescriptiveBullets = ({
                         <img
                             src={image}
                             alt={imageAlt}
+                            loading="lazy"
                             className="w-full h-auto md:w-[35vw] object-contain rounded-xl shadow-sm"
                         />
                     </div>

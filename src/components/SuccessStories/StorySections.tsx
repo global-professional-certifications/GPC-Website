@@ -236,12 +236,6 @@ export const VideoVault = ({ allStories, courses, settings }: ComponentProps) =>
         initials: getInitials(s.name),
       }));
 
-    // Debugging logs to help identify Sanity data mismatches
-    console.log(`[VideoVault] Tab: ${activeTab} | Found: ${filtered.length} videos`);
-    if (activeTab === 'cisa' || filtered.length === 0) {
-      console.log(`[VideoVault] Available courseSlugs in stories:`, [...new Set(allStories.map(s => s.courseSlug))]);
-    }
-
     return filtered;
   }, [allStories, activeTab]);
 

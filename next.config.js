@@ -164,6 +164,12 @@ const nextConfig = {
             { source: '/CIA-Brochure.pdf', destination: '/api/brochure?course=cia' },
             { source: '/CISA-Brochure.pdf', destination: '/api/brochure?course=cisa' },
             { source: '/:course-Brochure.pdf', destination: '/api/brochure?course=:course' },
+
+            // Browsers request /favicon.ico on their own, whatever the <head> says.
+            // There is no such file (the site icon is /logo.png, set in
+            // app/layout.tsx), so answer it with the same logo instead of a 404.
+            // A rewrite, not a new file: public/ stays unchanged (CR point 5).
+            { source: '/favicon.ico', destination: '/logo.png' },
         ];
     },
 

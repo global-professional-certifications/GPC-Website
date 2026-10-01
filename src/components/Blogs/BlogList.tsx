@@ -271,6 +271,7 @@ const BlogList = ({ allPosts = [], categories = [] }: ComponentProps) => {
                                                     <img
                                                         src={urlFor(post.mainImage).width(600).url()}
                                                         alt={post.mainImage?.alt || post.title}
+                                                        loading="lazy"
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                                     />
                                                 ) : (

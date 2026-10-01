@@ -249,6 +249,7 @@ const buildComponents = (body) => ({
           <img
             src={urlFor(value).url()}
             alt={value.alt || 'Blog Image'}
+            loading="lazy"
             className={imgClass}
           />
           {value.caption && (
