@@ -1,0 +1,512 @@
+[
+  {
+    "file": "src/components/About/AboutUs.jsx",
+    "component": "MetaTags",
+    "line": 37,
+    "title": {
+      "kind": "literal",
+      "value": "About Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Learn how we empower professionals with globally recognized certifications and expert-driven learning."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/about"
+    },
+    "raw": "<MetaTags title=\"About Global Professional Certifications\" description=\"Learn how we empower professionals with globally recognized certifications and expert-driven learning.\" canonicalUrl=\"https://globalprofessionalcertifications.com/about\" />"
+  },
+  {
+    "file": "src/components/Blogs/BlogList.jsx",
+    "component": "MetaTags",
+    "line": 140,
+    "title": {
+      "kind": "literal",
+      "value": "Blog & Expert Insights | Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/blogs"
+    },
+    "raw": "<MetaTags title=\"Blog & Expert Insights | Global Professional Certifications\" description=\"Stay updated with the latest tips, trends, and success stories in audit, risk management, and professional certifications.\" canonicalUrl=\"https://globalprofessionalcertifications.com/blogs\" />"
+  },
+  {
+    "file": "src/components/Blogs/BlogPage.jsx",
+    "component": "MetaTags",
+    "line": 120,
+    "title": {
+      "kind": "expression",
+      "value": "meta?.metaTitle || `${title} | GPC Blog`"
+    },
+    "description": {
+      "kind": "expression",
+      "value": "meta?.metaDescription || description"
+    },
+    "canonicalUrl": {
+      "kind": "expression",
+      "value": "`https://globalprofessionalcertifications.com/blogs/${slug}`"
+    },
+    "raw": "<MetaTags title={meta?.metaTitle || `${title} | GPC Blog`} description={meta?.metaDescription || description} canonicalUrl={`https://globalprofessionalcertifications.com/blogs/${slug}`} />"
+  },
+  {
+    "file": "src/components/Contact/ContactUs.jsx",
+    "component": "MetaTags",
+    "line": 54,
+    "title": {
+      "kind": "literal",
+      "value": "Contact Us - Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/contact"
+    },
+    "raw": "<MetaTags title=\"Contact Us - Global Professional Certifications\" description=\"Reach out to our team for queries, support, or course guidance. We are here to help you achieve your certification goals.\" canonicalUrl=\"https://globalprofessionalcertifications.com/contact\" />"
+  },
+  {
+    "file": "src/components/Corporate/GtmTrainings.jsx",
+    "component": "MetaTags",
+    "line": 47,
+    "title": {
+      "kind": "literal",
+      "value": "Corporate Training Programmes | GTM Trainings | Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Elevate your team with GPC's 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/corporate/gtm-trainings"
+    },
+    "raw": "<MetaTags title=\"Corporate Training Programmes | GTM Trainings | Global Professional Certifications\" description=\"Elevate your team with GPC's 30 specialized corporate training programs. From Risk-Based Auditing to AI and Agile methodologies.\" canonicalUrl=\"https://globalprofessionalcertifications.com/corporate/gtm-trainings\" />"
+  },
+  {
+    "file": "src/components/Corporate/Qaip.jsx",
+    "component": "MetaTags",
+    "line": 51,
+    "title": {
+      "kind": "literal",
+      "value": "Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/corporate/qaip"
+    },
+    "raw": "<MetaTags title=\"Quality Assessment Improvement Program (QAIP) | GPC in Partnership with IIA India\" description=\"Elevate Internal Audit Excellence with IIA Quality Assessments. Ensure conformance with Global Internal Audit Standards. GPC in partnership with IIA India.\" canonicalUrl=\"https://globalprofessionalcertifications.com/corporate/qaip\" />"
+  },
+  {
+    "file": "src/components/Courses/Cia.jsx",
+    "component": "MetaTags",
+    "line": 120,
+    "title": {
+      "kind": "literal",
+      "value": "Become Certified Internal Auditor | Join CIA Certification Training Course in India"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India's leading CIA certification training providers."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/courses/cia"
+    },
+    "raw": "<MetaTags title=\"Become Certified Internal Auditor | Join CIA Certification Training Course in India\" description=\"Pass the CIA challenge exam with live sessions, Gleim content, and expert guidance from Global Professional Certifications, one of India's leading CIA certification training providers.\" canonicalUrl=\"https://globalprofessionalcertifications.com/courses/cia\" />"
+  },
+  {
+    "file": "src/components/Courses/CiaCampaign.jsx",
+    "component": "MetaTags",
+    "line": 103,
+    "title": {
+      "kind": "literal",
+      "value": "CIA Certification Training | India's #1 IIA-Accredited Program"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!"
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/cia-certification-training"
+    },
+    "raw": "<MetaTags title=\"CIA Certification Training | India's #1 IIA-Accredited Program\" description=\"Join the most trusted CIA certification training in India. 350+ success stories, US Gleim content, and live mentorship by Arpit Garg. Enroll now!\" canonicalUrl=\"https://globalprofessionalcertifications.com/cia-certification-training\" />"
+  },
+  {
+    "file": "src/components/Courses/Cisa.jsx",
+    "component": "MetaTags",
+    "line": 121,
+    "title": {
+      "kind": "literal",
+      "value": "Best CISA Certification in India | Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/courses/cisa"
+    },
+    "raw": "<MetaTags title=\"Best CISA Certification in India | Global Professional Certifications\" description=\"Become a certified expert in IT auditing and risk management with our globally recognized best CISA certification course in India.\" canonicalUrl=\"https://globalprofessionalcertifications.com/courses/cisa\" />"
+  },
+  {
+    "file": "src/components/Courses/Crma.jsx",
+    "component": "MetaTags",
+    "line": 99,
+    "title": {
+      "kind": "literal",
+      "value": "CRMA Certification - Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/courses/crma"
+    },
+    "raw": "<MetaTags title=\"CRMA Certification - Global Professional Certifications\" description=\"Advance your career in risk management and assurance with our CRMA course. Learn governance, control, and mitigation techniques with expert guidance.\" canonicalUrl=\"https://globalprofessionalcertifications.com/courses/crma\" />"
+  },
+  {
+    "file": "src/components/Courses/Iap.jsx",
+    "component": "MetaTags",
+    "line": 113,
+    "title": {
+      "kind": "literal",
+      "value": "IAP Certification - Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/courses/iap"
+    },
+    "raw": "<MetaTags title=\"IAP Certification - Global Professional Certifications\" description=\"Advance your career in internal auditing with our IAP course. Learn essential auditing principles, ethics, and best practices recognized globally.\" canonicalUrl=\"https://globalprofessionalcertifications.com/courses/iap\" />"
+  },
+  {
+    "file": "src/components/CoursesOverview/CoursesOverview.jsx",
+    "component": "MetaTags",
+    "line": 43,
+    "title": {
+      "kind": "literal",
+      "value": "Certification Courses - Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/courses"
+    },
+    "raw": "<MetaTags title=\"Certification Courses - Global Professional Certifications\" description=\"Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.\" canonicalUrl=\"https://globalprofessionalcertifications.com/courses\" />"
+  },
+  {
+    "file": "src/components/Events/Events.jsx",
+    "component": "MetaTags",
+    "line": 178,
+    "title": {
+      "kind": "literal",
+      "value": "Upcoming Certification Events & Webinars - GPC"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/events"
+    },
+    "raw": "<MetaTags title=\"Upcoming Certification Events & Webinars - GPC\" description=\"Stay updated with live sessions, webinars, and certification events hosted by Global Professional Certifications.\" canonicalUrl=\"https://globalprofessionalcertifications.com/events\" />"
+  },
+  {
+    "file": "src/components/FaqPage/FaqPage.jsx",
+    "component": "MetaTags",
+    "line": 236,
+    "title": {
+      "kind": "literal",
+      "value": "Frequently Asked Questions (FAQs) | Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/faq"
+    },
+    "raw": "<MetaTags title=\"Frequently Asked Questions (FAQs) | Global Professional Certifications\" description=\"Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.\" canonicalUrl=\"https://globalprofessionalcertifications.com/faq\" />"
+  },
+  {
+    "file": "src/components/Glossary/Glossary.jsx",
+    "component": "MetaTags",
+    "line": 113,
+    "title": {
+      "kind": "literal",
+      "value": "Certification Glossary | Key Terms for Auditors & Risk Professionals"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/glossary"
+    },
+    "raw": "<MetaTags title=\"Certification Glossary | Key Terms for Auditors & Risk Professionals\" description=\"Explore definitions of essential terms in risk management, internal audit, and advisory careers. This comprehensive glossary from Global Professional Certifications (GPC) helps you master industry language and excel in globally recognized certifications.\" canonicalUrl=\"https://globalprofessionalcertifications.com/glossary\" />"
+  },
+  {
+    "file": "src/components/Home/Home.jsx",
+    "component": "MetaTags",
+    "line": 354,
+    "title": {
+      "kind": "literal",
+      "value": "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP"
+    },
+    "description": {
+      "kind": "literal",
+      "value": " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. "
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/"
+    },
+    "raw": "<MetaTags title=\"Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP\" description=\" Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. \" canonicalUrl=\"https://globalprofessionalcertifications.com/\" />"
+  },
+  {
+    "file": "src/components/Home/Home.jsx",
+    "component": "Helmet",
+    "line": 334,
+    "raw": "<Helmet>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(websiteSchema)}\r\n        </script>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(organizationSchema)}\r\n        </script>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(courseSchema)}\r\n        </script>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(aggregateRatingSchema)}\r\n        </script>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(breadcrumbSchema)}\r\n        </script>\r\n        <script type=\"application/ld+json\">\r\n          {JSON.stringify(faqSchema)}\r\n        </script>\r\n      </Helmet>"
+  },
+  {
+    "file": "src/components/Journey/Journey.jsx",
+    "component": "MetaTags",
+    "line": 102,
+    "title": {
+      "kind": "literal",
+      "value": "1 Year Journey | CIA Certification Training in India | Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/journey-celebration"
+    },
+    "raw": "<MetaTags title=\"1 Year Journey | CIA Certification Training in India | Global Professional Certifications\" description=\"Celebrating 1 year journey of Global Professional Certifications who help individuals excel in their CIA career journey to earn higher salary and more job opportunities.\" canonicalUrl=\"https://globalprofessionalcertifications.com/journey-celebration\" />"
+  },
+  {
+    "file": "src/components/LandingPages/CiaEnrolmentLandingPage.jsx",
+    "component": "MetaTags",
+    "line": 300,
+    "title": {
+      "kind": "literal",
+      "value": "CIA Live Weekend Batch | Global Professional Certifications (GPC)"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/cia-enrollment"
+    },
+    "raw": "<MetaTags title=\"CIA Live Weekend Batch | Global Professional Certifications (GPC)\" description=\"Master the Certified Internal Auditor (CIA) Exam with Structured Live Weekend Training. Official Gleim resources, 1,000+ exam-grade MCQs, and unlimited LMS access with mentor Mr. Arpit Garg.\" canonicalUrl=\"https://globalprofessionalcertifications.com/cia-enrollment\" />"
+  },
+  {
+    "file": "src/components/LandingPages/CisaEnrolmentLandingPage.jsx",
+    "component": "MetaTags",
+    "line": 309,
+    "title": {
+      "kind": "literal",
+      "value": "CISA Live Interactive Batch | Global Professional Certifications (GPC)"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Fast-Track Your GRC Career & Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/cisa-enrollment"
+    },
+    "raw": "<MetaTags title=\"CISA Live Interactive Batch | Global Professional Certifications (GPC)\" description=\"Fast-Track Your GRC Career & Command Higher Salaries Globally with CISA Certification. Master 5 ISACA Domains with mentor Mr. Arpit Garg. Starts August 23rd.\" canonicalUrl=\"https://globalprofessionalcertifications.com/cisa-enrollment\" />"
+  },
+  {
+    "file": "src/components/Privacy/PrivacyPolicy.jsx",
+    "component": "MetaTags",
+    "line": 7,
+    "title": {
+      "kind": "literal",
+      "value": "Privacy Policy – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Understand how we protect your data and privacy as you use our platform and enroll in our courses."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/privacy"
+    },
+    "raw": "<MetaTags // title=\"Privacy Policy – Global Professional Certifications\" // description=\"Understand how we protect your data and privacy as you use our platform and enroll in our courses.\" // canonicalUrl=\"https://globalprofessionalcertifications.com/privacy\" // />"
+  },
+  {
+    "file": "src/components/Privacy/PrivacyPolicy.jsx",
+    "component": "MetaTags",
+    "line": 255,
+    "title": {
+      "kind": "literal",
+      "value": "Privacy Policy – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Understand how we protect your data and privacy as you use our platform and enroll in our courses."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/privacy"
+    },
+    "raw": "<MetaTags title=\"Privacy Policy – Global Professional Certifications\" description=\"Understand how we protect your data and privacy as you use our platform and enroll in our courses.\" canonicalUrl=\"https://globalprofessionalcertifications.com/privacy\" />"
+  },
+  {
+    "file": "src/components/Refund/RefundPolicy.jsx",
+    "component": "MetaTags",
+    "line": 7,
+    "title": {
+      "kind": "literal",
+      "value": "Refund Policy – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/refund"
+    },
+    "raw": "<MetaTags // title=\"Refund Policy – Global Professional Certifications\" // description=\"Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience.\" // canonicalUrl=\"https://globalprofessionalcertifications.com/refund\" // />"
+  },
+  {
+    "file": "src/components/Refund/RefundPolicy.jsx",
+    "component": "MetaTags",
+    "line": 73,
+    "title": {
+      "kind": "literal",
+      "value": "Refund Policy – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/refund"
+    },
+    "raw": "<MetaTags title=\"Refund Policy – Global Professional Certifications\" description=\"Review our refund and cancellation policy before enrolling. We aim to ensure a smooth learning experience.\" canonicalUrl=\"https://globalprofessionalcertifications.com/refund\" />"
+  },
+  {
+    "file": "src/components/SuccessStories/SuccessStories.jsx",
+    "component": "MetaTags",
+    "line": 234,
+    "title": {
+      "kind": "literal",
+      "value": "CIA Exam Success Stories – Real Achievements"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/success"
+    },
+    "raw": "<MetaTags title=\"CIA Exam Success Stories – Real Achievements\" description=\"Hear from professionals who passed the CIA Challenge Exam with our guidance. Discover how our course made a difference in their careers.\" canonicalUrl=\"https://globalprofessionalcertifications.com/success\" />"
+  },
+  {
+    "file": "src/components/SuccessStories/VideoGalleryPage.jsx",
+    "component": "MetaTags",
+    "line": 96,
+    "title": {
+      "kind": "literal",
+      "value": "Hear from our Students - GPC Video Gallery"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Watch success stories and testimonials from our students."
+    },
+    "canonicalUrl": null,
+    "raw": "<MetaTags title=\"Hear from our Students - GPC Video Gallery\" description=\"Watch success stories and testimonials from our students.\" />"
+  },
+  {
+    "file": "src/components/SuccessStories/WrittenGalleryPage.jsx",
+    "component": "MetaTags",
+    "line": 92,
+    "title": {
+      "kind": "literal",
+      "value": "Written Testimonials - GPC Success Stories"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Read written testimonials and success stories from our students who transformed their careers."
+    },
+    "canonicalUrl": null,
+    "raw": "<MetaTags title=\"Written Testimonials - GPC Success Stories\" description=\"Read written testimonials and success stories from our students who transformed their careers.\" />"
+  },
+  {
+    "file": "src/components/Terms/Terms.jsx",
+    "component": "MetaTags",
+    "line": 7,
+    "title": {
+      "kind": "literal",
+      "value": "Terms & Conditions – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Read our terms and conditions outlining course access, use of services, and user responsibilities."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/terms"
+    },
+    "raw": "<MetaTags // title=\"Terms & Conditions – Global Professional Certifications\" // description=\"Read our terms and conditions outlining course access, use of services, and user responsibilities.\" // canonicalUrl=\"https://globalprofessionalcertifications.com/terms\" // />"
+  },
+  {
+    "file": "src/components/Terms/Terms.jsx",
+    "component": "MetaTags",
+    "line": 152,
+    "title": {
+      "kind": "literal",
+      "value": "Terms & Conditions – Global Professional Certifications"
+    },
+    "description": {
+      "kind": "literal",
+      "value": "Read our terms and conditions outlining course access, use of services, and user responsibilities."
+    },
+    "canonicalUrl": {
+      "kind": "literal",
+      "value": "https://globalprofessionalcertifications.com/terms"
+    },
+    "raw": "<MetaTags title=\"Terms & Conditions – Global Professional Certifications\" description=\"Read our terms and conditions outlining course access, use of services, and user responsibilities.\" canonicalUrl=\"https://globalprofessionalcertifications.com/terms\" />"
+  },
+  {
+    "file": "src/components/Upcoming/Upcoming.jsx",
+    "component": "Helmet",
+    "line": 143,
+    "raw": "<Helmet>\r\n        <title>Upcoming Batches & Webinars | Global Professional Certifications</title>\r\n        <meta name=\"description\" content=\"Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.\" />\r\n      </Helmet>"
+  }
+]
