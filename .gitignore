@@ -45,3 +45,8 @@ Unused Files/
 *.sw?
 .vercel
 .env*.local
+
+#Local environment files .env.example stays as template
+.env
+.env.*
+!.env.example
