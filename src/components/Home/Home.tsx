@@ -6,6 +6,7 @@ import { Link, NavLink } from '../routing';
 import { SchemaMarkup } from "../Schema";
 import Hero from "../Hero/Hero";
 import ISACAAccreditationSection from "../ISACAAccreditationSection/ISACAAccreditationSection";
+import IIARecognitionSection from "../IIARecognitionSection/IIARecognitionSection";
 import { m } from 'motion/react';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import LazySection from "../LazySection";
@@ -507,6 +508,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* IIA Recognition */}
+        <IIARecognitionSection />
 
         {/* Desc 1 */}
 
