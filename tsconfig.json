@@ -1,0 +1,82 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    /*
+     * allowJs + checkJs:false is what makes this migration incremental.
+     * The ~190 remaining .jsx files still compile, but are NOT type-checked,
+     * so converting a file is opt-in: it gets real types the moment it becomes
+     * .tsx, and everything else stays quiet in the meantime.
+     *
+     * Do not turn on checkJs to "get coverage faster" -- it would surface
+     * thousands of errors in untouched files and force the whole conversion to
+     * land at once, which is exactly what we are avoiding.
+     */
+    "allowJs": true,
+    "checkJs": false,
+
+    /*
+     * strict from day one, deliberately.
+     *
+     * The alternative -- strict:false now, tighten later -- means every file
+     * converted in the meantime is full of implicit `any` and has to be
+     * revisited. Since files are converted one at a time, paying for strictness
+     * per file as we go is cheaper than a second pass over all of them, and it
+     * is the whole reason for doing this.
+     */
+    "strict": true,
+
+    /*
+     * Transitional, and a deliberate walk-back from "strict from day one".
+     *
+     * That stance was right for the layers where types are cheap and valuable,
+     * and those were converted under full strict and are clean: app/, the
+     * Sanity lib, the services, and the contexts all carry real annotations.
+     *
+     * It did not survive contact with the presentational layer. Converting the
+     * remaining ~100 markup components produced 401 implicit-any errors, almost
+     * all of them destructured props on components that render CMS strings into
+     * JSX. Annotating every one would be a 400-edit diff across the exact files
+     * this migration promised not to disturb, for types that guard very little.
+     *
+     * Everything else in strict stays on -- strictNullChecks in particular,
+     * which is where the real bugs were (the never[] state, the dead Navbar
+     * prop, the font onLoad).
+     *
+     * To re-enable: flip this to true and work through the errors
+     * directory by directory. Nothing else has to change.
+     */
+    "noImplicitAny": false,
+
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+
+    // Third-party .d.ts files are not our problem to fix, and @sanity/* ships a
+    // lot of them. Without this the first run drowns in errors from node_modules.
+    "skipLibCheck": true,
+
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist",
+    "migration"
+  ]
+}

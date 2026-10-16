@@ -179,7 +179,7 @@ export default function MarqueeArrayInput(props: ArrayOfObjectsInputProps) {
           <Grid columns={[1, 1, 2]} gap={4} style={{ marginTop: '0.5rem' }}>
             {/* Column 1: Bulk Upload */}
             <Card padding={3} border radius={2}>
-              <Stack space={3} height="100%" justify="space-between">
+              <Flex direction="column" gap={3} height="fill" justify="space-between">
                 <Stack space={2}>
                   <Label size={1}>1. Bulk Upload Logos</Label>
                   <Text size={1} muted>
@@ -199,7 +199,7 @@ export default function MarqueeArrayInput(props: ArrayOfObjectsInputProps) {
                   <Button
                     text={uploading ? 'Uploading assets...' : 'Select & Upload Logos'}
                     icon={uploading ? undefined : UploadIcon}
-                    tone="brand"
+                    tone="primary"
                     onClick={handleUploadClick}
                     disabled={uploading}
                     style={{ cursor: uploading ? 'not-allowed' : 'pointer', width: '100%' }}
@@ -214,7 +214,7 @@ export default function MarqueeArrayInput(props: ArrayOfObjectsInputProps) {
                     </Text>
                   </Flex>
                 )}
-              </Stack>
+              </Flex>
             </Card>
 
             {/* Column 2: Move Logo to another Section */}
@@ -270,9 +270,9 @@ export default function MarqueeArrayInput(props: ArrayOfObjectsInputProps) {
       </Card>
 
       {/* Render native Sanity array field underneath */}
-      <Box borderTop style={{ paddingTop: '1rem' }}>
+      <Card borderTop style={{ paddingTop: '1rem' }}>
         {props.renderDefault(props)}
-      </Box>
+      </Card>
     </Stack>
   )
 }

@@ -35,7 +35,7 @@ export const MoveToCategoryAction = (props: any) => {
     label: 'Change Section/Category',
     onHandle: () => setDialogOpen(true),
     dialog: isDialogOpen && {
-      type: 'dialog',
+      type: 'dialog' as const,
       onClose: () => setDialogOpen(false),
       header: 'Select Target Section',
       content: (

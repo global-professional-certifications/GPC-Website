@@ -116,7 +116,7 @@ const BulkMover = () => {
                 </Select>
               </Stack>
 
-              <Stack space={2} justify="flex-end">
+              <Flex gap={2} justify="flex-end" align="flex-end">
                 <Button 
                   text={`Move ${selectedIds.length} selected items`} 
                   tone="primary" 
@@ -124,10 +124,14 @@ const BulkMover = () => {
                   disabled={loading || selectedIds.length === 0}
                   padding={3}
                 />
-              </Stack>
+              </Flex>
             </Grid>
 
-            {message && <Text tone={message.includes('Error') ? 'critical' : 'positive'}>{message}</Text>}
+            {message && (
+              <Card padding={3} radius={2} tone={message.includes('Error') ? 'critical' : 'positive'}>
+                <Text>{message}</Text>
+              </Card>
+            )}
           </Stack>
         </Card>
 

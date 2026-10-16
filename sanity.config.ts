@@ -1,3 +1,4 @@
+import type { CmsData } from './src/types/cms';
 import { defineConfig, Template } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
@@ -96,7 +97,7 @@ export default defineConfig({
           action.action !== 'publish' && action.action !== 'delete'
         )
 
-        const orderedActions = []
+        const orderedActions: CmsData[] = []
         if (publishAction) orderedActions.push(publishAction)
         if (deleteAction) orderedActions.push(deleteAction)
         orderedActions.push(...otherActions)
