@@ -71,6 +71,65 @@ const courseFaqs = [
   },
 ];
 
+// Enrollment pricing cards, worded as in the CISA brochure fee tables.
+// Top row: the 3 INR plans (Razorpay). Bottom row: the 2 USD plans (Zoho USD Payments Form),
+// which together span the same width as the top row.
+const USD_PAYMENTS_FORM_URL = "https://forms.zohopublic.in/globalprofessionalcertificat1/form/USDPaymentsForm/formperma/OUbMBW4u7njtIwJqew7mj5idvPeteNgrWx3JLB6iLqs";
+
+type CisaPricingPlan = {
+  group: string;
+  subtitle: string;
+  title: string;
+  price: string;
+  taxNote?: string;
+  link: string;
+};
+
+const cisaPricingRows: CisaPricingPlan[][] = [
+  [
+    {
+      group: "Training Fee",
+      subtitle: "CISA Preparation Course",
+      title: "Indian Members",
+      price: "₹20,000",
+      taxNote: "+ GST",
+      link: "https://rzp.io/rzp/ZE5s8Dz",
+    },
+    {
+      group: "Complete CISA Package",
+      subtitle: "Members appearing for the exam in India",
+      title: "Individual (B2C)",
+      price: "₹1,30,000",
+      taxNote: "Including GST",
+      link: "https://rzp.io/rzp/BFURqQ1",
+    },
+    {
+      group: "Complete CISA Package",
+      subtitle: "Members appearing for the exam in India",
+      title: "Corporate (B2B)",
+      price: "₹1,30,000",
+      taxNote: "+ GST",
+      link: "https://rzp.io/rzp/OjJVsS1",
+    },
+  ],
+  [
+    {
+      group: "Training Fee",
+      subtitle: "CISA Preparation Course",
+      title: "International Members",
+      price: "USD 299",
+      link: USD_PAYMENTS_FORM_URL,
+    },
+    {
+      group: "Complete CISA Package",
+      subtitle: "Members appearing for the exam",
+      title: "Outside India",
+      price: "USD 1,400",
+      link: USD_PAYMENTS_FORM_URL,
+    },
+  ],
+];
+
 
 const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
 
@@ -536,38 +595,57 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
         {/* CISA Enrollment CTA Banner */}
 
         <div className="py-16 w-full px-4" id="enrollment">
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-white/5">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gradient-to-br from-brand-blue to-black rounded-[2.5rem] p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-white/5">
               {/* Decorative Accent */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-orange-400/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-orange-400/20 transition-colors duration-700"></div>
 
-              <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
-                {/* Content Side */}
-                <div className="flex-1 text-center lg:text-left space-y-4">
+              <div className="relative z-10">
+                {/* Heading */}
+                <div className="text-center space-y-4 mb-12">
                   <h2 className="text-yellow-500 font-normal italic text-2xl md:text-4xl leading-tight">
-                    Certified Informations Systems Auditor
+                    Certified Information Systems Auditor
                   </h2>
-                  <p className="text-gray-100 text-base md:text-lg max-w-2xl leading-relaxed">
+                  <p className="text-gray-100 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                     Become a certified expert in IT auditing and risk management with our comprehensive CISA course.
                   </p>
                 </div>
 
-                {/* Pricing/Action Side */}
-                <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
-                  <div className="p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center lg:text-right">
-                    <p className="text-gray-400 text-sm mb-2 font-normal">Total Investment</p>
-                    <p className="text-white text-xl md:text-3xl font-black mb-1">₹20,000</p>
-                    <p className="text-orange-400 text-sm italic">+ GST</p>
-                  </div>
+                {/* Pricing Cards: INR row on top, USD row below; cards share each row's width equally */}
+                <div className="space-y-6 max-w-md mx-auto lg:max-w-none">
+                  {cisaPricingRows.map((row, rowIndex) => (
+                    <div key={rowIndex} className="flex flex-col lg:flex-row items-stretch gap-6">
+                        {row.map((plan) => (
+                          <div
+                            key={plan.title}
+                            className="flex flex-col w-full lg:flex-1 p-6 rounded-3xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.15] hover:border-white/25"
+                          >
+                            <p className="text-orange-400 text-xs font-semibold uppercase tracking-wider mb-3">{plan.group}</p>
 
-                  <Link
-                    to="https://rzp.io/rzp/ZE5s8Dz"
-                    target="_blank"
-                    className="w-full group inline-flex items-center justify-center py-3 text-base font-bold text-white rounded-2xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-orange-500/25"
-                  >
-                    Enroll Now
-                    <FaArrowRightLong className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" />
-                  </Link>
+                            <div className="flex-1 mb-5">
+                              <p className="text-gray-400 text-sm leading-snug mb-1">{plan.subtitle}</p>
+                              <h4 className="text-white text-lg font-bold leading-snug">{plan.title}</h4>
+                            </div>
+
+                            <div className="w-12 h-0.5 bg-orange-400/40 mx-auto rounded-full mb-5" />
+
+                            <p className="text-white text-2xl md:text-3xl font-black mb-1">{plan.price}</p>
+                            {/* Reserves the line when there is no tax note, so prices align across a row */}
+                            <p className="text-orange-400 text-sm italic mb-6 min-h-[1.25rem]">{plan.taxNote}</p>
+
+                            <Link
+                              to={plan.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full group/btn inline-flex items-center justify-center py-3 text-base font-bold text-white rounded-2xl shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:shadow-xl hover:shadow-orange-500/25"
+                            >
+                              Enroll Now
+                              <FaArrowRightLong className="ml-3 h-5 w-5 group-hover/btn:translate-x-2 transition-transform" />
+                            </Link>
+                          </div>
+                        ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
