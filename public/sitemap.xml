@@ -91,11 +91,13 @@
         <priority>0.9</priority>
     </url>
 
+    <!-- Hidden: CRMA Course Page
     <url>
         <loc>https://globalprofessionalcertifications.com/courses/crma</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+    -->
 
     <url>
         <loc>https://globalprofessionalcertifications.com/courses/cisa</loc>

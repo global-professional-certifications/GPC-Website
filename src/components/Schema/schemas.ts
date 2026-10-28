@@ -86,7 +86,7 @@ export const getCourseSchema = (course) => ({
         "instructor": {
             "@type": "Person",
             "name": "Arpit Garg",
-            "jobTitle": "Lead Faculty, CIA, CA, CISA, CRMA"
+            "jobTitle": "Lead Faculty, CIA, CA, CISA"
         },
         ...(course.courseWorkload && { "courseWorkload": course.courseWorkload })
     },
@@ -148,11 +148,6 @@ export const getPersonSchema = (person: CmsData = {}) => ({
             "@type": "EducationalOccupationalCredential",
             "credentialCategory": "Certification",
             "name": "Certified Information Systems Auditor (CISA)"
-        },
-        {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "Certification",
-            "name": "Certification in Risk Management Assurance (CRMA)"
         }
     ]
 });
@@ -360,7 +355,7 @@ export const getLocalBusinessSchema = (business: CmsData = {}) => ({
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": business.name || "Global Professional Certifications",
-    "description": business.description || "Leading institute for CIA, CISA, CRMA, and IAP certification training",
+    "description": business.description || "Leading institute for CIA, CISA, and IAP certification training",
     "telephone": business.phone || "+91-87360-83099",
     "email": business.email || "cia@globalprofessionalcertifications.com",
     "address": {

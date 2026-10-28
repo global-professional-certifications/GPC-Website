@@ -1,10 +1,10 @@
 # Global Professional Certifications (GPC)
 
-> Global Professional Certifications (GPC) is a leading institute for professional certification training in internal auditing, risk management, IT governance, and assurance. GPC is an IIA India Authorized Learning Partner, offering expert-led online training programs for CIA, CISA, CRMA, and IAP certifications to professionals in India and worldwide.
+> Global Professional Certifications (GPC) is a leading institute for professional certification training in internal auditing, risk management, IT governance, and assurance. GPC is an IIA India Authorized Learning Partner, offering expert-led online training programs for CIA, CISA, and IAP certifications to professionals in India and worldwide.
 
 ## About
 
-Global Professional Certifications empowers audit and risk professionals with industry-leading certification programs. Founded by Arpit Garg — a certified CIA, CISA, CRMA, and IAP professional and Founding Partner of RiskMan Consulting — GPC has trained 1,500+ professionals across 25+ batches with 250+ successful CIA certifications. The institute is officially recognized as an Authorized Learning Partner of IIA India, endorsed by Mr. Mukundan K.V, CEO of IIA India.
+Global Professional Certifications empowers audit and risk professionals with industry-leading certification programs. Founded by Arpit Garg — a certified CIA, CISA, and IAP professional and Founding Partner of RiskMan Consulting — GPC has trained 1,500+ professionals across 25+ batches with 250+ successful CIA certifications. The institute is officially recognized as an Authorized Learning Partner of IIA India, endorsed by Mr. Mukundan K.V, CEO of IIA India.
 
 - Website: https://globalprofessionalcertifications.com
 - Location: 5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Road, Sector 48, Gurugram, Haryana 122018, India.
@@ -31,6 +31,7 @@ Global Professional Certifications empowers audit and risk professionals with in
 - Eligibility: 5 years of IS audit experience (substitutions available for education/experience).
 - URL: https://globalprofessionalcertifications.com/courses/cisa
 
+<!-- Hidden: CRMA
 ### Certification in Risk Management Assurance (CRMA)
 - IIA certification for governance, risk, and control expertise.
 - Focuses on enterprise risk assessment, governance frameworks, and assurance methodologies.
@@ -38,6 +39,7 @@ Global Professional Certifications empowers audit and risk professionals with in
 - Price: INR 29,500 (including GST).
 - Eligibility: Bachelor's degree (2 years experience), Master's degree (1 year experience), IAP holders (5 years experience), or without degree (5 years experience).
 - URL: https://globalprofessionalcertifications.com/courses/crma
+-->
 
 ### Internal Auditor Practitioner (IAP)
 - Foundational certification for aspiring auditors and fresh graduates.
@@ -61,7 +63,7 @@ Global Professional Certifications empowers audit and risk professionals with in
 ## Key Differentiators
 
 - IIA India Authorized Learning Partner
-- Expert mentorship by Arpit Garg (CA, CIA, CISA, CRMA)
+- Expert mentorship by Arpit Garg (CA, CIA, CISA)
 - Weekend online live classes with 100% recorded sessions
 - Gleim study materials (US content) for CIA preparation
 - Dedicated one-on-one support from enrollment to certification
@@ -75,7 +77,7 @@ Global Professional Certifications empowers audit and risk professionals with in
 - [All Courses](https://globalprofessionalcertifications.com/courses)
 - [CIA Course](https://globalprofessionalcertifications.com/courses/cia)
 - [CISA Course](https://globalprofessionalcertifications.com/courses/cisa)
-- [CRMA Course](https://globalprofessionalcertifications.com/courses/crma)
+<!-- - [CRMA Course](https://globalprofessionalcertifications.com/courses/crma) -->
 - [IAP Course](https://globalprofessionalcertifications.com/courses/iap)
 - [QAIP (Corporate)](https://globalprofessionalcertifications.com/corporate/qaip)
 - [GTM Trainings (Corporate)](https://globalprofessionalcertifications.com/corporate/gtm-trainings)
@@ -101,13 +103,13 @@ Global Professional Certifications empowers audit and risk professionals with in
 ## Frequently Asked Questions
 
 **What certifications does GPC offer?**
-GPC specializes in CIA, CISA, CRMA, and IAP certification programs for risk management, assurance, audit, and IT governance.
+GPC specializes in CIA, CISA, and IAP certification programs for risk management, assurance, audit, and IT governance.
 
 **Is GPC an authorized learning partner of IIA India?**
 Yes, GPC is officially recognized as an Authorized Learning Partner of IIA India, endorsed by Mr. Mukundan K.V, CEO of IIA India.
 
 **Who is Arpit Garg?**
-Arpit Garg is the Founding Partner of RiskMan Consulting and a certified CIA, CISA, CRMA, and IAP professional. He is widely recognized as one of the best faculty for CIA, CISA, CRMA, and IAP training in India, known for his insightful teaching style and high student success rates.
+Arpit Garg is the Founding Partner of RiskMan Consulting and a certified CIA, CISA, and IAP professional. He is widely recognized as one of the best faculty for CIA, CISA, and IAP training in India, known for his insightful teaching style and high student success rates.
 
 **Do you need a CA or MBA degree for CIA certification?**
 No. The IIA allows individuals to become eligible for CIA certification with a Bachelor's, Master's, or no degree (with required relevant experience).

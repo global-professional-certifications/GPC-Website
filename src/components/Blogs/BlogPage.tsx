@@ -250,7 +250,11 @@ const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
                                     {keyTakeaways.map((takeaway, idx) => (
                                         <li key={idx} className="flex items-start gap-2.5 text-sm">
                                             <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-700 leading-relaxed">{takeaway}</span>
+                                            <span className="text-gray-700 leading-relaxed">
+                                                {typeof takeaway === 'string'
+                                                    ? takeaway.replace(/,?\s*\bCRMA\b/g, '').replace(/\bCRMA\b,?\s*/g, '')
+                                                    : takeaway}
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
@@ -273,7 +277,7 @@ const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
                                     <p className='text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] mb-2'>Published By</p>
                                     <h3 className='text-2xl font-bold text-gray-900 mb-2'>{author}</h3>
                                     <p className='text-gray-600 text-sm leading-relaxed mb-6'>
-                                        {authorBio || "Experienced professional with expertise in CIA, CISA, CRMA, and IAP training. Dedicated to helping professionals achieve their certification goals."}
+                                        {authorBio || "Experienced professional with expertise in CIA, CISA, and IAP training. Dedicated to helping professionals achieve their certification goals."}
                                     </p>
                                     <Link to="/blogs" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
                                         View All Articles by {author}

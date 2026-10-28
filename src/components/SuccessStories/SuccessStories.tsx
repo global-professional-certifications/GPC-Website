@@ -61,7 +61,7 @@ export default function SuccessStories({
     // CollectionPage Schema
     const collectionPageSchema = getCollectionPageSchema({
         name: "CIA Exam Success Stories – Real Achievements",
-        description: "Read inspiring success stories of students who cleared CIA, CISA, CRMA, and IAP certifications with Global Professional Certifications."
+        description: "Read inspiring success stories of students who cleared CIA, CISA, and IAP certifications with Global Professional Certifications."
     });
 
     // Organization Schema
