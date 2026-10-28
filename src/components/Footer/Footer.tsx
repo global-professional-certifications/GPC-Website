@@ -30,7 +30,7 @@ export default function Footer() {
                         <div className="mt-2 px-0 md:pr-12 lg:pr-12 space-y-4 text-gray-400 text-xs text-justify">
                             <p>
                                 Global Professional Certifications (GPC) empowers auditors, risk managers, and advisors worldwide with industry-accredited courses and expert mentorship.
-                                Join a thriving community and unlock new career heights with globally recognized certifications like CIA, CRMA, IAP, and CISA.
+                                Join a thriving community and unlock new career heights with globally recognized certifications like CIA, CISA, and IAP.
                             </p>
                         </div>
 

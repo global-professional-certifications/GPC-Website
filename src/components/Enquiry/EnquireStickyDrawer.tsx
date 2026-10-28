@@ -10,7 +10,7 @@ const ZOHO_SUBMIT_TARGET = "zoho-general-enquiry-frame";
 const COURSE_OPTIONS = [
   { label: "CIA (Certified Internal Auditor)", value: "CIA" },
   { label: "CISA (Certified Information Systems Auditor)", value: "CISA" },
-  { label: "CRMA (Certification in Risk Management Assurance)", value: "CRMA" },
+  // { label: "CRMA (Certification in Risk Management Assurance)", value: "CRMA" },
   { label: "IAP (Internal Audit Practitioner)", value: "IAP" }
 ];
 

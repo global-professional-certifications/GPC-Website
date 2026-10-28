@@ -822,7 +822,7 @@ export default function CiaEnrolmentLandingPage() {
             ?
           </h2>
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8">
-            Secure your seat in our upcoming CIA Live Interactive Batch starting <strong className="text-white font-semibold">Sept 19</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
+            Secure your seat in our upcoming CIA Live Interactive Batch starting <strong className="text-white font-semibold">Sept 19</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA)</strong>.
           </p>
           <button
             onClick={scrollToForm}

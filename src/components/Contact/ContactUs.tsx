@@ -17,7 +17,7 @@ export default function ContactUs() {
     // Local Business Schema
     const localBusinessSchema = getLocalBusinessSchema({
         name: "Global Professional Certifications",
-        description: "Leading institute for CIA, CISA, CRMA, and IAP certification training. Expert-led programs for audit and risk professionals.",
+        description: "Leading institute for CIA, CISA, and IAP certification training. Expert-led programs for audit and risk professionals.",
         address: "5th Floor, Unit 502, Tower B, Capital Business Park, Sohna Rd, Sector 48, Gurugram, Haryana, India - 122018",
         phone: "+91 87360 83099",
         email: "cia@globalprofessionalcertifications.com"
@@ -66,7 +66,7 @@ export default function ContactUs() {
                         We'd Love to <span className="text-orange-400">Hear From You</span>
                     </h1>
                     <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-poppins max-w-2xl mx-auto mb-8">
-                        Questions about CIA, CISA, CRMA, or any of our programs? Our advisors are ready to guide you toward the right certification path.
+                        Questions about CIA, CISA, IAP, or any of our programs? Our advisors are ready to guide you toward the right certification path.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

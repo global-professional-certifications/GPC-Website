@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     // which is exactly the kind of silent SEO drift this migration must avoid.
     title: 'Global Professional Certifications®',
     description:
-        'Global Professional Certifications® — CIA, CISA, CRMA and IAP certification training, corporate audit trainings and QAIP services.',
+        'Global Professional Certifications® — CIA, CISA and IAP certification training, corporate audit trainings and QAIP services.',
     robots: { index: true, follow: true },
     icons: { icon: '/logo.png' },
     alternates: { canonical: '/' },

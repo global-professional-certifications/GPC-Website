@@ -63,7 +63,7 @@ export default function CoursesOverview() {
                 Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Global Audit</span> Excellence
               </h1>
               <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
-                Achieve globally recognized certifications in <span className='font-bold text-orange-400'>Internal Audit, IT Systems Audit and Risk Management.</span> Expert-led courses with Gleim content, comprehensive study materials, and proven success strategies for <span className='font-bold text-orange-400'>CIA, CISA, CRMA, and IAP</span> exams
+                Achieve globally recognized certifications in <span className='font-bold text-orange-400'>Internal Audit, IT Systems Audit and Risk Management.</span> Expert-led courses with Gleim content, comprehensive study materials, and proven success strategies for <span className='font-bold text-orange-400'>CIA, CISA, and IAP</span> exams
               </h2>
             </div>
 
@@ -139,6 +139,7 @@ export default function CoursesOverview() {
           enrollLink="https://rzp.io/rzp/C7jUKuC"
           gst="(Including GST)"
         />
+        {/* Hidden: CRMA Course Card
         <Card
           title="Certification in Risk Management Assurance"
           image={crmaLogo}
@@ -149,6 +150,7 @@ export default function CoursesOverview() {
           enrollLink="https://rzp.io/rzp/hjuC9dj"
           gst="(Including GST)"
         />
+        */}
       </div>
     </>
   );

@@ -12,7 +12,7 @@ export default function AboutUs() {
     // About Page Schema
     const aboutPageSchema = getAboutPageSchema({
         name: "About Global Professional Certifications",
-        description: "Learn how GPC empowers professionals with globally recognized CIA, CISA, CRMA, and IAP certifications and expert-driven learning.",
+        description: "Learn how GPC empowers professionals with globally recognized CIA, CISA, and IAP certifications and expert-driven learning.",
         url: "https://globalprofessionalcertifications.com/about"
     });
 
@@ -26,7 +26,7 @@ export default function AboutUs() {
     const mentorSchema = getPersonSchema({
         name: "Arpit Garg",
         title: "Lead Instructor",
-        description: "Founding Partner of RiskMan Consulting and certified CIA, CISA, CRMA, and IAP professional. Recognized as one of India's leading educators for internal audit certifications by IIA India.",
+        description: "Founding Partner of RiskMan Consulting and certified CIA, CISA, and IAP professional. Recognized as one of India's leading educators for internal audit certifications by IIA India.",
         image: "https://globalprofessionalcertifications.com/assets/arpit-garg-mentor.webp"
     });
 
@@ -44,7 +44,7 @@ export default function AboutUs() {
                                     Elevate Your <span className="text-orange-400">Career</span>
                                 </h1>
                                 <h2 className="text-base sm:text-lg text-gray-200 max-w-lg leading-relaxed">
-                                    At <span className='font-bold text-orange-400'>Global Professional Certifications</span> (GPC), we empower audit and risk professionals worldwide with industry-leading <span className='font-bold text-orange-400'>CIA, CISA, CRMA, and IAP</span> programs.
+                                    At <span className='font-bold text-orange-400'>Global Professional Certifications</span> (GPC), we empower audit and risk professionals worldwide with industry-leading <span className='font-bold text-orange-400'>CIA, CISA, and IAP</span> programs.
                                 </h2>
                             </div>
                             <Link to="/contact">
@@ -78,7 +78,7 @@ export default function AboutUs() {
                                 Bridging ambition with <span className="font-normal italic text-brand-blue">achievement.</span>
                             </h2>
                             <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
-                                We transform learners into leaders through rigorous, globally recognized certifications. We specialize in CIA, CRMA, IAP, and CISA programs, regarded as the gold standard in risk assurance.
+                                We transform learners into leaders through rigorous, globally recognized certifications. We specialize in CIA, CISA, and IAP programs, regarded as the gold standard in risk assurance.
                             </p>
 
                             <div className="grid grid-cols-2 gap-4">

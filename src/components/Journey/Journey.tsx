@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Link, NavLink } from '../routing';
 import useScrollAnimation from '../Hooks/useScrollAnimation';
 import { FaGraduationCap, FaHandshake, FaChartLine, FaRocket, FaStar, FaUsers, FaCheckCircle, FaTrophy } from 'react-icons/fa';
-import confetti from 'canvas-confetti';
+
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
 import CoursesShowcase from "../Courses/CoursesShowcase";
 
@@ -23,34 +23,40 @@ const Journey = ({ brochureSections }: ComponentProps) => {
     const [milestonesRef, isMilestonesVisible] = useScrollAnimation({ threshold: 0.1 });
 
     useEffect(() => {
-        // Trigger confetti on load
-        const duration = 3000;
-        const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+        let interval: NodeJS.Timeout | undefined;
+        // Trigger confetti on client load dynamically
+        import('canvas-confetti').then((module) => {
+            const confetti = module.default;
+            const duration = 3000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-        const randomInRange = (min, max) => Math.random() * (max - min) + min;
+            const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
-        const interval = setInterval(function () {
-            const timeLeft = animationEnd - Date.now();
+            interval = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
 
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
 
-            const particleCount = 50 * (timeLeft / duration);
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-            });
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-            });
-        }, 250);
+                const particleCount = 50 * (timeLeft / duration);
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                });
+            }, 250);
+        });
 
-        return () => clearInterval(interval);
+        return () => {
+            if (interval) clearInterval(interval);
+        };
     }, []);
 
     const statistics = [
@@ -374,7 +380,7 @@ const Journey = ({ brochureSections }: ComponentProps) => {
                         titleStart="Our Other"
                         highlight="Flagship Certification"
                         titleEnd="Courses"
-                        courses={["CIA", "CISA", "CRMA", "IAP"]}
+                        courses={["CIA", "CISA", "IAP"]}
                         brochureSections={brochureSections}
                     />
                 </div>
