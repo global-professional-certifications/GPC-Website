@@ -36,13 +36,19 @@ const BlogList = ({ allPosts = [], categories = [] }: ComponentProps) => {
     // Set from the URL by <CategoryFromUrl> once the page is in the browser.
     const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
+    // Filter out any hidden CRMA posts
+    const activePosts = useMemo(() =>
+        (allPosts || []).filter(p => !p.slug?.current?.toLowerCase().includes('crma') && !p.title?.toLowerCase().includes('crma')),
+        [allPosts]
+    );
+
     // Same category rule as before. `cat &&` skips empty category entries
     // (one post has a null category in Sanity, which crashed this filter).
     const posts = useMemo(() => activeCategory
-        ? allPosts.filter(post => post.categories?.some(cat =>
+        ? activePosts.filter(post => post.categories?.some(cat =>
             cat && (cat.slug?.current || cat.slug) === activeCategory))
-        : allPosts,
-    [activeCategory, allPosts])
+        : activePosts,
+    [activeCategory, activePosts])
 
     // Search filter (client-side)
     const filteredPosts = useMemo(() => {

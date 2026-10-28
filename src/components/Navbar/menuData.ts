@@ -25,12 +25,14 @@ export const coursesMenu = [
         logo: ciaLogo,
         link: "/courses/cia",
       },
+      /* Hidden: CRMA
       {
         name: "CRMA",
         fullname: "Certification in Risk Management Assurance",
         logo: crmaLogo,
         link: "/courses/crma",
       },
+      */
       {
         name: "IAP",
         fullname: "Internal Audit Practitioner",

@@ -10,18 +10,18 @@ import FaqPage from '../../../src/components/FaqPage/FaqPage';
  */
 export const metadata: Metadata = {
     title: "Frequently Asked Questions (FAQs) | Global Professional Certifications",
-    description: "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
+    description: "Discover answers to common questions about CIA, CISA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
     alternates: { canonical: "/faq" },
     openGraph: {
         title: "Frequently Asked Questions (FAQs) | Global Professional Certifications",
-        description: "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
+        description: "Discover answers to common questions about CIA, CISA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
         url: "/faq",
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
         title: "Frequently Asked Questions (FAQs) | Global Professional Certifications",
-        description: "Discover answers to common questions about CIA, CISA, CRMA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
+        description: "Discover answers to common questions about CIA, CISA, and IAP certification courses, mentorship, enrollment, and exam preparation at Global Professional Certifications (GPC). Get expert guidance for your risk assurance and advisory career.",
     },
 };
 

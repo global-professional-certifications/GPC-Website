@@ -1044,7 +1044,7 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                     titleStart=""
                     highlight="Global Professional Certifications"
                     titleEnd="Other Courses"
-                    courses={["CISA", "CRMA", "IAP"]}
+                    courses={["CISA", "IAP"]}
                     brochureSections={brochureSections} />
 
                 {/* Blog Section */}

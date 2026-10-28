@@ -667,7 +667,7 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
           titleStart=""
           highlight="Global Professional Certifications"
           titleEnd="Other Courses"
-          courses={["CIA", "CRMA", "IAP"]}
+          courses={["CIA", "IAP"]}
           brochureSections={brochureSections} />
 
 

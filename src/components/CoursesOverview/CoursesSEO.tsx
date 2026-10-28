@@ -11,7 +11,7 @@ const CoursesSEO = () => {
     // CollectionPage Schema
     const collectionSchema = getCollectionPageSchema({
         name: "Certification Courses - Global Professional Certifications",
-        description: "Explore globally recognized certification programs like CIA, CISA, CRMA, and IAP led by expert mentors and powered by premium content."
+        description: "Explore globally recognized certification programs like CIA, CISA, and IAP led by expert mentors and powered by premium content."
     });
 
     // Organization Schema
@@ -37,12 +37,14 @@ const CoursesSEO = () => {
             description: "Start your internal audit career with foundational IAP certification. Gateway to CIA.",
             price: "23600(Including GST)"
         },
+        /* Hidden: CRMA
         {
             name: "Certification in Risk Management Assurance (CRMA)",
             url: "https://globalprofessionalcertifications.com/courses/crma",
             description: "Master risk management and assurance with IIA-aligned CRMA certification training.",
             price: "29500(Including GST)"
         }
+        */
     ]);
 
     // Breadcrumb Schema

@@ -43,6 +43,22 @@ export default async function Page() {
         client.fetch<CmsList>(getAllCategories),
     ]);
 
+    // Filter out hidden CRMA blog posts and sanitize any takeaway references
+    const visiblePosts = (posts ?? [])
+        .filter(
+            (p) => !p.slug?.current?.toLowerCase().includes('crma') && !p.title?.toLowerCase().includes('crma')
+        )
+        .map((p) => ({
+            ...p,
+            keyTakeaways: Array.isArray(p.keyTakeaways)
+                ? p.keyTakeaways.map((kt: string) =>
+                    typeof kt === 'string'
+                        ? kt.replace(/,?\s*\bCRMA\b/g, '').replace(/\bCRMA\b,?\s*/g, '')
+                        : kt
+                )
+                : p.keyTakeaways,
+        }));
+
     return (
         /*
          * BlogList reads ?category= through useSearchParams() inside its own
@@ -52,7 +68,7 @@ export default async function Page() {
          */
         <Suspense fallback={null}>
             <BlogList
-                allPosts={posts ?? []}
+                allPosts={visiblePosts}
                 categories={categories ?? []}
             />
         </Suspense>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import BlogPage from '../../../../src/components/Blogs/BlogPage';
 import { client } from '../../../../src/lib/sanity/client';
 import { urlFor } from '../../../../src/lib/sanity/imageBuilder';
@@ -48,7 +49,10 @@ export async function generateStaticParams() {
         const slugs = await client.fetch<string[]>(
             `*[_type == "post" && defined(slug.current)].slug.current`,
         );
-        return (slugs ?? []).filter(Boolean).map((slug: string) => ({ slug }));
+        return (slugs ?? [])
+            .filter(Boolean)
+            .filter((slug: string) => !slug.toLowerCase().includes('crma'))
+            .map((slug: string) => ({ slug }));
     } catch (error) {
         console.error('generateStaticParams: could not list blog slugs, falling back to on-demand rendering:', error);
         return [];
@@ -78,6 +82,10 @@ const METADATA_QUERY = `*[_type == "post" && slug.current == $slug][0] {
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
     // params is a Promise in Next.js 15.
     const { slug } = await params;
+
+    if (slug.toLowerCase().includes('crma')) {
+        notFound();
+    }
 
     // Annotated because `let post = null` infers the type `null`, so every
     // later `post.meta` / `post.title` fails once the fetch assigns to it.
@@ -132,6 +140,10 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
 export default async function Page({ params }: RouteProps) {
     const { slug } = await params;
 
+    if (slug.toLowerCase().includes('crma')) {
+        notFound();
+    }
+
     // Same two queries BlogPage used to run in the browser. No try/catch on
     // purpose: if Sanity fails during an hourly refresh, Next.js keeps serving
     // the last good version of the page instead of caching an error.
@@ -139,7 +151,9 @@ export default async function Page({ params }: RouteProps) {
         client.fetch(getPostBySlug, { slug }),
         client.fetch<CmsList>(getRecentPosts),
     ]);
-    const relatedPosts = (recent ?? []).filter((p) => p.slug.current !== slug);
+    const relatedPosts = (recent ?? []).filter(
+        (p) => p.slug?.current !== slug && !p.slug?.current?.toLowerCase().includes('crma') && !p.title?.toLowerCase().includes('crma')
+    );
 
     // Passed as props rather than read via useParams(). BlogPage is a client
     // component and Next's useParams() would work, but taking them as props

@@ -27,7 +27,7 @@ const Hero = () => {
 
                     {/* Subheading (H2) */}
                     <p className="mt-4 text-base md:text-base lg:text-lg text-gray-200 leading-relaxed">
-                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led,<span className='font-bold text-orange-400'>{" "}industry-accredited CIA, CRMA, IAP, and CISA courses{" "}</span>designed for aspiring and experienced professionals in risk assurance and advisory.
+                        Join a thriving global community of auditors, risk managers, and advisory professionals. Unlock your potential with expert-led,<span className='font-bold text-orange-400'>{" "}industry-accredited CIA, CISA, and IAP courses{" "}</span>designed for aspiring and experienced professionals in risk assurance and advisory.
                     </p>
 
                     {/* CTA Button */}

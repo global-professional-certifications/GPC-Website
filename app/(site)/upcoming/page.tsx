@@ -13,18 +13,18 @@ import type { CmsList } from '../../../src/types/cms';
  */
 export const metadata: Metadata = {
     title: "Upcoming Batches & Webinars | Global Professional Certifications",
-    description: "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
+    description: "Stay updated with upcoming CIA, CISA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
     alternates: { canonical: "/upcoming" },
     openGraph: {
         title: "Upcoming Batches & Webinars | Global Professional Certifications",
-        description: "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
+        description: "Stay updated with upcoming CIA, CISA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
         url: "/upcoming",
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
         title: "Upcoming Batches & Webinars | Global Professional Certifications",
-        description: "Stay updated with upcoming CIA, CISA, CRMA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
+        description: "Stay updated with upcoming CIA, CISA, and IAP certification batches. Join our global webinars on Risk Management and Internal Audit excellence.",
     },
 };
 

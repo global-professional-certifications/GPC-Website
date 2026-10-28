@@ -122,7 +122,7 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
     // WebPage Schema
     const webPageSchema = getWebPageSchema({
         name: "Upcoming Certification Events & Webinars - GPC",
-        description: "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, CRMA, and IAP aspirants.",
+        description: "Stay updated with the latest events, webinars, and workshops organized by Global Professional Certifications for CIA, CISA, and IAP aspirants.",
         url: "https://globalprofessionalcertifications.com/events"
     });
 
