@@ -362,7 +362,7 @@ export default function CisaEnrolmentLandingPage() {
 
             {/* Sub-Headline */}
             <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6 font-normal">
-              Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 23rd. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
+              Master the 5 ISACA Domains in our upcoming CISA Live Interactive Batch starting August 23rd. Led by our mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA)</strong>. Gain the conceptual clarity needed to pass on your first attempt.
             </p>
 
             {/* Batch Schedule Showcase + CTAs */}
@@ -575,7 +575,7 @@ export default function CisaEnrolmentLandingPage() {
                   </h3>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                  Learn directly from Mr. Arpit Garg (CA, CIA, CISA, CRMA), holding prestigious certifications and years of teaching experience. Benefit from his proven first-attempt exam strategies, practical industry insights, and structured guidance that have successfully powered over 1,500+ working professionals toward global certification.
+                  Learn directly from Mr. Arpit Garg (CA, CIA, CISA), holding prestigious certifications and years of teaching experience. Benefit from his proven first-attempt exam strategies, practical industry insights, and structured guidance that have successfully powered over 1,500+ working professionals toward global certification.
                 </p>
               </div>
             </div>
@@ -895,7 +895,7 @@ export default function CisaEnrolmentLandingPage() {
             ?
           </h2>
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-8">
-            Secure your seat in our upcoming CISA Live Interactive Batch starting <strong className="text-white font-semibold">Aug 23rd</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA, CRMA)</strong>.
+            Secure your seat in our upcoming CISA Live Interactive Batch starting <strong className="text-white font-semibold">Aug 23rd</strong>, led by mentor <strong className="text-white font-semibold">Mr. Arpit Garg (CA, CIA, CISA)</strong>.
           </p>
           <button
             onClick={scrollToForm}

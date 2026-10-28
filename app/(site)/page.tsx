@@ -9,19 +9,19 @@ import Home from '../../src/components/Home/Home';
  * hydration; they are now in the server response.
  */
 export const metadata: Metadata = {
-    title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
-    description: " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
+    title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, and IAP",
+    description: " Achieve global recognition with our CIA, CISA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
     alternates: { canonical: "/" },
     openGraph: {
-        title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
-        description: " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
+        title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, and IAP",
+        description: " Achieve global recognition with our CIA, CISA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
         url: "/",
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
-        title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, CRMA, and IAP",
-        description: " Achieve global recognition with our CIA, CISA, CRMA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
+        title: "Global Professional Certifications® | Advance Your Career with Global Professional Certifications in CIA, CISA, and IAP",
+        description: " Achieve global recognition with our CIA, CISA, IAP course training in India and worldwide. Earn an average salary of 8 LPA with our expert-led programs. ",
     },
 };
 

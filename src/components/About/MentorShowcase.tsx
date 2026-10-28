@@ -52,7 +52,7 @@ const MentorShowcase = () => {
                                             Mr. Arpit Garg
                                         </p>
                                         <p className="text-xs md:text-sm tracking-widest text-brand-blue">
-                                            (CA, CIA, CISA, CRMA)
+                                            (CA, CIA, CISA)
                                         </p>
                                     </div>
 

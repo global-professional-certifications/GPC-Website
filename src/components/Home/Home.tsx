@@ -105,13 +105,13 @@ const courseFaqs = [
     question:
       "What certifications or training does Global Professional Certifications offer?",
     answer:
-      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) for IT audit, cyber risk, and information security professionals, Certification in Risk Management Assurance (CRMA) for expertise in governance, risk, and control, and Internal Auditor Practitioner (IAP) foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
+      "Global Professional Certifications specializes in globally recognized certifications for risk management, assurance, audit, and IT governance. Our flagship programs include Certified Internal Auditor (CIA) the gold standard for internal auditing and risk assurance globally, Certified Information Systems Auditor (CISA) for IT audit, cyber risk, and information security professionals, and Internal Auditor Practitioner (IAP) foundational training for aspiring auditors and fresh graduates. Our expert-led training delivers practical knowledge, flexible schedules, and personalized support, helping you unlock new career heights as an auditor, risk advisor, or IT assurance specialist.",
   },
   {
     question:
       "How does Global Professional Certifications support students in their career journey?",
     answer:
-      "Global Professional Certifications provides comprehensive support for CIA, CISA, CRMA, and IAP exam success with updated study material, practice exams, and webinars led by certified trainers, one-on-one mentorship and doubt resolution sessions, mock tests with performance analytics and feedback, and interactive case studies adapted to real-world audit and risk scenarios. Our approach ensures deep conceptual clarity, practical skill-building, and confident performance in certification exams.",
+      "Global Professional Certifications provides comprehensive support for CIA, CISA, and IAP exam success with updated study material, practice exams, and webinars led by certified trainers, one-on-one mentorship and doubt resolution sessions, mock tests with performance analytics and feedback, and interactive case studies adapted to real-world audit and risk scenarios. Our approach ensures deep conceptual clarity, practical skill-building, and confident performance in certification exams.",
   },
   {
     question:
@@ -122,12 +122,12 @@ const courseFaqs = [
   {
     question: "Who is Arpit Garg?",
     answer:
-      "Arpit Garg is the Founding Partner of RiskMan Consulting and a certified CIA, CISA, CRMA, and IAP professional. He is widely recognized as the best faculty for CIA, CISA, CRMA, and IAP training in India. As a top-qualified audit, assurance, and risk management expert, he is renowned for his insightful teaching style, industry expertise, and high student success rates. Associated with Global Professional Certifications and recognized by IIA India, Arpit Garg is a trusted mentor for aspiring audit professionals nationwide.",
+      "Arpit Garg is the Founding Partner of RiskMan Consulting and a certified CIA, CISA, and IAP professional. He is widely recognized as the best faculty for CIA, CISA, and IAP training in India. As a top-qualified audit, assurance, and risk management expert, he is renowned for his insightful teaching style, industry expertise, and high student success rates. Associated with Global Professional Certifications and recognized by IIA India, Arpit Garg is a trusted mentor for aspiring audit professionals nationwide.",
   },
   {
     question: "Is GPC an authorized learning partner of IIA India?",
     answer:
-      "Yes, Global Professional Certifications (GPC) is officially recognized as an Authorized Learning Partner of IIA India. We are proud to be endorsed by Mr. Mukundan K.V, CEO of IIA India, validating our commitment to delivering high-quality internal audit training and exam preparation. As an IIA India Authorized Learning Partner, GPC offers globally recognized programs such as Certified Internal Auditor (CIA), CRMA, and Internal Audit Practitioner (IAP), empowering professionals to upskill with industry-leading resources, expert mentorship, and comprehensive support. Advance your career potential, enhance your audit skills, and join a community of risk professionals who trust GPC for their certification journey.",
+      "Yes, Global Professional Certifications (GPC) is officially recognized as an Authorized Learning Partner of IIA India. We are proud to be endorsed by Mr. Mukundan K.V, CEO of IIA India, validating our commitment to delivering high-quality internal audit training and exam preparation. As an IIA India Authorized Learning Partner, GPC offers globally recognized programs such as Certified Internal Auditor (CIA) and Internal Audit Practitioner (IAP), empowering professionals to upskill with industry-leading resources, expert mentorship, and comprehensive support. Advance your career potential, enhance your audit skills, and join a community of risk professionals who trust GPC for their certification journey.",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function Home() {
     "name": "Global Professional Certifications",
     "alternateName": "GPC",
     "url": "https://globalprofessionalcertifications.com",
-    "description": "Leading institute for CIA, CISA, CRMA, and IAP certification training in India",
+    "description": "Leading institute for CIA, CISA, and IAP certification training in India",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://globalprofessionalcertifications.com/search?q={search_term_string}",
@@ -263,6 +263,7 @@ export default function Home() {
           }
         }
       },
+      /* Hidden: CRMA
       {
         "@type": "ListItem",
         "position": 3,
@@ -277,9 +278,10 @@ export default function Home() {
           }
         }
       },
+      */
       {
         "@type": "ListItem",
-        "position": 4,
+        "position": 3,
         "item": {
           "@type": "Course",
           "name": "Internal Audit Practitioner (IAP)",
@@ -520,7 +522,7 @@ export default function Home() {
               titleStart="Offering a Global Platform for"
               highlight="GRC Professionals"
               titleEnd=""
-              description="Global Professional Certifications provides a global platform for professionals who want to grow in the space of Governance, Risk Management, Assurance and Advisory domains. We offer globally recognized, expert-led online CIA, CISA, CRMA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
+              description="Global Professional Certifications provides a global platform for professionals who want to grow in the space of Governance, Risk Management, Assurance and Advisory domains. We offer globally recognized, expert-led online CIA, CISA, and IAP course training in India and worldwide. Our courses support you at every step of your journey, from choosing the program to getting certified. Access high-paying job opportunities globally with us. "
               image={descriptionImage1}
               imageAlt="Global Platform"
             />
@@ -564,7 +566,7 @@ export default function Home() {
               titleStart="Explore Our"
               highlight="Flagship Certification Programs"
               titleEnd=""
-              courses={["CIA", "CISA", "CRMA", "IAP"]} />
+              courses={["CIA", "CISA", "IAP"]} />
           </Suspense>
         </LazySection>
 
@@ -660,7 +662,7 @@ export default function Home() {
                 </p>
                 <p className="text-gray-600 text-xs md:text-sm lg:text-base font-poppins leading-relaxed">
                   Led by India's top faculty <br />
-                  Arpit Garg (CA, CIA, CRMA, CISA)
+                  Arpit Garg (CA, CIA, CISA)
                 </p>
               </div>
             </div>
@@ -758,7 +760,7 @@ export default function Home() {
             <div className="md:max-w-lg text-center md:text-left px-4 md:px-0">
               <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                 At Global Professional Certifications (GPC), we are dedicated to
-                empowering professionals worldwide by providing top-tier CIA, CISA, CRMA and IAP
+                empowering professionals worldwide by providing top-tier CIA, CISA and IAP
                 certification programs that unlock career growth, enhance
                 expertise, and elevate industry standards.
               </p>

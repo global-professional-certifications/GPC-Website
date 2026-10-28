@@ -8,11 +8,13 @@ import { LAYOUT_HEIGHTS } from '../../contexts/LayoutContext';
 
 const glossary = [
     { term: "Audit", definition: "Systematic review of records and controls to ensure compliance, accuracy, and integrity in an organization. Global Professional Certifications delivers world-class audit training for global risk and compliance careers." },
-    { term: "Assurance", definition: "Independent professional services that improve information quality or its context, typically performed by internal auditors; a major focus at GPC and covered in CIA and CRMA courses." },
+    { term: "Assurance", definition: "Independent professional services that improve information quality or its context, typically performed by internal auditors; a major focus at GPC and covered in CIA and internal audit courses." },
     { term: "BCP (Business Continuity Planning)", definition: "Planning for business operations to continue during disruptions. BCP is a crucial component in risk management syllabi at GPC." },
     { term: "CIA (Certified Internal Auditor)", definition: "The gold-standard global certification in internal audit from IIA, validating skills in risk, controls, and assurance. GPC is one of India’s top CIA training institutes." },
     { term: "CISA (Certified Information Systems Auditor)", definition: "Premier certification for IT and information systems auditors. With GPC’s CISA course, you gain expertise in cyber risk, IS governance, and systems assurance." },
+    /* Hidden: CRMA
     { term: "CRMA (Certification in Risk Management Assurance)", definition: "An advanced IIA certification for professionals specializing in corporate governance, risk management, and control assurance. Trained at GPC for career growth." },
+    */
     { term: "Compliance", definition: "The process of adhering to regulatory requirements and internal standards. A core element in all GPC audit and risk curriculums." },
     { term: "Data Analytics", definition: "Use of tools and techniques to analyze, visualize, and interpret data for improved audit and risk assessment. Integrated in GPC’s audit and CISA training." },
     { term: "Disaster Recovery", definition: "Policies and procedures to recover and protect business IT infrastructure after disruptions. GPC’s courses cover audit aspects of disaster recovery plans." },
@@ -24,7 +26,7 @@ const glossary = [
     { term: "IAP (Internal Auditor Practitioner)", definition: "An IIA entry-level certification for those starting a career in internal audit, offered at GPC as a stepping stone to CIA." },
     { term: "Independence", definition: "Essential audit standard, requiring auditors to perform objectively without conflicts of interest—a standard rigorously upheld and taught at GPC." },
     { term: "IS Audit", definition: "Specialized process for auditing organizational information systems and controls, part of GPC’s CISA curriculum." },
-    { term: "IIA (Institute of Internal Auditors)", definition: "The global professional body for internal auditors, offering CIA, CRMA, IAP. GPC is a recognized IIA India learning partner." },
+    { term: "IIA (Institute of Internal Auditors)", definition: "The global professional body for internal auditors, offering CIA, IAP. GPC is a recognized IIA India learning partner." },
     { term: "Journal (Audit Journal)", definition: "Record of audit work, findings, and recommendations—taught as a core part of professional documentation at GPC." },
     { term: "KRI (Key Risk Indicator)", definition: "Metrics for monitoring potential risk at an early stage. GPC teaches how to identify and utilize KRIs in practical audit settings." },
     { term: "Knowledge Base", definition: "Centralized repository of information and guidance for audit and risk professionals. GPC maintains a strong audit knowledge base for its learners." },
@@ -37,7 +39,7 @@ const glossary = [
     { term: "Process Audit", definition: "Audit that evaluates the effectiveness and efficiency of organizational processes; taught in GPC’s internal audit and risk curriculum." },
     { term: "Professional Skepticism", definition: "An attitude of critical evaluation in audits for reliable assurance outcomes—a mindset developed in all GPC trainees." },
     { term: "Quality Assurance", definition: "Activities ensuring the quality of audit services, findings, or recommendations; core in GPC’s approach." },
-    { term: "Qualification (Audit)", definition: "Earning a credential (like CIA, CISA, CRMA) for recognized professional status. GPC prepares students for the highest audit qualifications in India and globally." },
+    { term: "Qualification (Audit)", definition: "Earning a credential (like CIA, CISA) for recognized professional status. GPC prepares students for the highest audit qualifications in India and globally." },
     { term: "Risk Assessment", definition: "Evaluation of business risks to help prioritize audit focus; taught extensively in all GPC programs." },
     { term: "Regulations", definition: "Laws or requirements that auditors must know and follow. GPC covers global, Indian, and industry-specific audit regulations." },
     { term: "SOX (Sarbanes-Oxley Act)", definition: "US regulation for better corporate governance, controls, and transparency—covered in advanced GPC audit and IT audit programs." },
