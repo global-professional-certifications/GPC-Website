@@ -7,6 +7,7 @@ import { SchemaMarkup } from "../Schema";
 import Hero from "../Hero/Hero";
 import ISACAAccreditationSection from "../ISACAAccreditationSection/ISACAAccreditationSection";
 import IIARecognitionSection from "../IIARecognitionSection/IIARecognitionSection";
+import GRCOpeningsSection from "../GRCOpeningsSection/GRCOpeningsSection";
 import { m } from 'motion/react';
 import { Users, GraduationCap, BookCheck } from "lucide-react";
 import LazySection from "../LazySection";
@@ -779,6 +780,9 @@ export default function Home() {
           {/* Blue Background Section */}
           <div className="h-[180px] md:h-[350px] mt-4 md:mt-32 lg:mt-32 bg-brand-blue w-full"></div>
         </div>
+
+        {/* Explore our product: GRC Openings */}
+        <GRCOpeningsSection />
 
         {/* How it works? */}
 
