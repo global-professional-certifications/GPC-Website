@@ -719,6 +719,8 @@ export default function Home() {
           <img src={ciaAchieverImage} alt="CIA Achievers Image" width="1200" height="400" loading="lazy" className="object-cover rounded-xl" />
         </section>
 
+        {/* Explore our product: GRC Openings */}
+        <GRCOpeningsSection />
 
         {/* Video Section */}
         <div className="relative w-full overflow-hidden">
@@ -780,9 +782,6 @@ export default function Home() {
           {/* Blue Background Section */}
           <div className="h-[180px] md:h-[350px] mt-4 md:mt-32 lg:mt-32 bg-brand-blue w-full"></div>
         </div>
-
-        {/* Explore our product: GRC Openings */}
-        <GRCOpeningsSection />
 
         {/* How it works? */}
 
