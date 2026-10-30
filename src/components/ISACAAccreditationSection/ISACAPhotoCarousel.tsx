@@ -35,8 +35,9 @@ export default function ISACAPhotoCarousel({ images }: { images: string[] }) {
 
     return (
         <div className="w-full max-w-[550px]">
-            {/* Global .slick-slide>div margin (index.css) would inset the photos; reset it here only. */}
-            <div className="relative rounded-2xl shadow-xl overflow-hidden [&_.slick-slide>div]:!m-0">
+            {/* Global .slick-slide>div margin (index.css) would inset the photos; reset it here only.
+                align-top: react-slick wraps each slide in an inline-block, which leaves an empty strip under the photo. */}
+            <div className="relative rounded-2xl shadow-xl overflow-hidden [&_.slick-slide>div]:!m-0 [&_.slick-slide>div>div]:align-top">
                 <Slider ref={sliderRef} {...settings}>
                     {images.map((image, index) => (
                         <div key={image} className="outline-none">
