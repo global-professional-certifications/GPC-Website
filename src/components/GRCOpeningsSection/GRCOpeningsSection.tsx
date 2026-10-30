@@ -10,7 +10,8 @@ import logoImage from "../../assets/grc-openings-logo.webp";
 const GRCOpeningsSection = () => {
     return (
         <section className="py-20 md:py-16 px-6 md:px-16 bg-brand-blue/5">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
+            {/* Capped at 1200px so it lines up with the CIA Achievers banner above and the mentor section below */}
+            <div className="w-full max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
                 {/* Left Content */}
                 <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl font-bold leading-snug">
