@@ -15,8 +15,9 @@ const GRCOpeningsSection = () => {
                 {/* Left Content */}
                 <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl font-bold leading-snug">
-                        Explore our product{" "}
-                        <span className="text-brand-blue font-normal italic whitespace-nowrap">GRC Openings</span>
+                        Explore{" "}
+                        <span className="text-brand-blue font-normal italic whitespace-nowrap">GRC Openings</span>{" "}
+                        Platform
                     </h2>
                     <p className="text-gray-600 text-xs md:text-base lg:text-base font-poppins leading-relaxed">
                         Developed by Global Professional Certifications (GPC), GRC Openings is a dedicated
