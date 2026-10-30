@@ -25,7 +25,6 @@ import {
 const Companies = lazy(() => import("../Companies/Companies"));
 const VideoSection = lazy(() => import("../VideoSection/VideoSection"));
 const FAQDisplay = lazy(() => import("../FAQDisplay"));
-const CelebrationOverlay = lazy(() => import("../CelebrationOverlay/CelebrationOverlay"));
 const DescriptiveLeft = lazy(() => import("../DescriptiveSection/DescriptiveLeft"));
 const DescriptiveRight = lazy(() => import("../DescriptiveSection/DescriptiveRight"));
 const CoursesShowcase = lazy(() => import("../Courses/CoursesShowcase"));
@@ -156,7 +155,6 @@ const Counter = ({ target }: ComponentProps) => {
 };
 
 export default function Home() {
-  const [showCelebration, setShowCelebration] = useState(false);
   const anniversaryRef = useRef<CmsData>(null);
   const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
 
@@ -170,19 +168,6 @@ export default function Home() {
     ? urlFor(brochure.coverImage).width(704).url()
     : brochureCover;
   const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
-
-  useEffect(() => {
-    // Check if celebration has been shown before (persists across sessions)
-    const hasSeenCelebration = localStorage.getItem('hasSeenCelebration');
-    if (!hasSeenCelebration) {
-      setShowCelebration(true);
-    }
-  }, []);
-
-  const handleCelebrationComplete = () => {
-    setShowCelebration(false);
-    localStorage.setItem('hasSeenCelebration', 'true');
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -336,11 +321,6 @@ export default function Home() {
 
   return (
     <>
-      {showCelebration && (
-        <Suspense fallback={null}>
-          <CelebrationOverlay onComplete={handleCelebrationComplete} />
-        </Suspense>
-      )}
       {/*
         Was a <Helmet> block emitting these six JSON-LD scripts into <head>.
         SchemaMarkup renders the identical tags inline, which is equally valid
