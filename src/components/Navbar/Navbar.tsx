@@ -125,7 +125,7 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8 font-poppins">
-          {["Courses", "Upcoming", "Events", "About", "Success", "Corporate", "Contact", "Blogs"].map((item, index) =>
+          {["Courses", "Upcoming", "Events", "About", "Success", "Corporate", "Contact", "Blogs", "GRC Openings"].map((item, index) =>
             item === "Courses" ? (
               <div
                 key={index}
@@ -194,6 +194,18 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
                   />
                 )}
               </div>
+            ) : item === "GRC Openings" ? (
+              // External product site, opens in a new tab
+              <a
+                key={index}
+                href="https://grcopenings.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative text-[15px] font-medium text-gray-800 hover:text-brand-blue transition group whitespace-nowrap"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left scale-x-0 group-hover:scale-x-100"></span>
+              </a>
             ) : (
               <NavLink
                 key={index}
@@ -263,7 +275,7 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
-          {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs"].map((item, index) => (
+          {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs", "GRC Openings"].map((item, index) => (
             <li key={index} className="w-full border-b border-gray-100 last:border-0">
               {item === "Courses" ? (
                 <div className="w-full">
@@ -342,6 +354,17 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
                     </div>
                   </div>
                 </div>
+              ) : item === "GRC Openings" ? (
+                // External product site, opens in a new tab
+                <a
+                  href="https://grcopenings.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="block w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
+                >
+                  {item}
+                </a>
               ) : (
                 <NavLink
                   onClick={() => setIsOpen(false)}

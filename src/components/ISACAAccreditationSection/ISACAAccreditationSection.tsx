@@ -1,14 +1,35 @@
+import { Suspense, lazy } from "react";
 // Web-sized copy (1100px wide WebP) of the original ISACA accreditation photo.
 import accreditationImage from "../../assets/home/isaca-accreditation.webp";
 
+// Only loaded when more than one photo is passed (CISA course page).
+const ISACAPhotoCarousel = lazy(() => import("./ISACAPhotoCarousel"));
+
+const singlePhotoClassName = "w-full max-w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300";
+
 /**
- * "ISACA Accredited Training Organization" section on the homepage.
+ * "ISACA Accredited Training Organization" section, used on the homepage and
+ * the CISA course page.
  *
  * Static, like the IIA India "Authorized Training Partner" section on the CIA
  * course page, whose layout and styling it mirrors. Text and photo live here,
  * not in Sanity.
+ *
+ * `images` is optional: without it (homepage) the single accreditation photo
+ * is shown; with more than one photo it becomes a fading carousel.
  */
-const ISACAAccreditationSection = () => {
+const ISACAAccreditationSection = ({ images }: { images?: string[] }) => {
+    const singlePhoto = (
+        <img
+            src={images?.[0] ?? accreditationImage}
+            alt="GPC team with the ISACA representative at the ISACA accreditation meeting"
+            width="1100"
+            height="772"
+            loading="lazy"
+            className={singlePhotoClassName}
+        />
+    );
+
     return (
         <section className="py-20 md:py-16 px-6 md:px-16">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20">
@@ -29,16 +50,15 @@ const ISACAAccreditationSection = () => {
                     </p>
                 </div>
 
-                {/* Right Image */}
+                {/* Right Image(s) */}
                 <div className="flex justify-center md:justify-end w-full lg:w-1/2">
-                    <img
-                        src={accreditationImage}
-                        alt="GPC team with the ISACA representative at the ISACA accreditation meeting"
-                        width="1100"
-                        height="772"
-                        loading="lazy"
-                        className="w-full max-w-[550px] h-auto rounded-2xl shadow-xl object-cover transition-all duration-300"
-                    />
+                    {images && images.length > 1 ? (
+                        <Suspense fallback={singlePhoto}>
+                            <ISACAPhotoCarousel images={images} />
+                        </Suspense>
+                    ) : (
+                        singlePhoto
+                    )}
                 </div>
             </div>
         </section>

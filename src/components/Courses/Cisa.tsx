@@ -21,6 +21,11 @@ import CoursesShowcase from "../Courses/CoursesShowcase";
 import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase";
+import ISACAAccreditationSection from "../ISACAAccreditationSection/ISACAAccreditationSection";
+import isacaAccreditationImage from "../../assets/home/isaca-accreditation.webp";
+import isacaAccreditationImage1 from "../../assets/courses/cisa/isaca-accreditation-1.webp";
+import isacaAccreditationImage2 from "../../assets/courses/cisa/isaca-accreditation-2.webp";
+import isacaAccreditationImage3 from "../../assets/courses/cisa/isaca-accreditation-3.webp";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
@@ -268,6 +273,16 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
               text:
                 "Anyone seeking to grow in or switch to IT auditing roles ",
             },
+          ]}
+        />
+
+        {/* ISACA Accredited Training Organization */}
+        <ISACAAccreditationSection
+          images={[
+            isacaAccreditationImage,
+            isacaAccreditationImage1,
+            isacaAccreditationImage2,
+            isacaAccreditationImage3,
           ]}
         />
 
