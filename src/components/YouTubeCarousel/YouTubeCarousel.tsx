@@ -17,6 +17,12 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
 
     const defaultVideos = [
         {
+            url: 'https://www.youtube.com/watch?v=n0BWhWfEs90',
+            title: 'What ISACA Accreditation Means for Your CISA Journey | GPC Podcast',
+            description: "Your CISA journey deserves the right guidance. Discover how GPC's ISACA accreditation strengthens CISA exam preparation, supports aspiring IT Audit professionals, and brings greater value to your professional growth. Chris and Arpit discuss what this means for CISA aspirants and the opportunities ahead in IT Audit, Risk, Cybersecurity and GRC.",
+            thumbnail: '/thumbnails/n0BWhWfEs90-opt.webp',
+        },
+        {
             url: 'https://youtu.be/CvzJ_SFD45Y?si=Sh8Y3pi_CE6mNV72',
             title: 'Interview with IIA India CEO Mukundan K V',
             description: 'Dive deep into the importance of Internal Audit, the role of the Institute of Internal Auditors (IIA India), and the value of the CIA Certification.',
@@ -109,12 +115,12 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
                         ref={scrollContainerRef}
                         className="overflow-x-auto pb-8 no-scrollbar scroll-smooth"
                     >
-                        {/* Content row: intrinsic width, auto-centered when it fits */}
-                        <div className="flex gap-6 w-max mx-auto">
+                        {/* Content row: intrinsic width, auto-centered when it fits; 4 equal columns from xl (1280px) */}
+                        <div className="flex gap-6 w-max mx-auto xl:grid xl:grid-cols-4 xl:w-full">
                         {processedVideos.map((video, index) => (
                             <m.div
                                 key={index}
-                                className="flex-none w-[280px] md:w-[340px] h-[310px] md:h-[350px]"
+                                className="flex-none w-[280px] md:w-[340px] xl:w-auto"
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
@@ -127,8 +133,8 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
                                     rel="noopener noreferrer"
                                     className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100"
                                 >
-                                    {/* Thumbnail */}
-                                    <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
+                                    {/* Thumbnail (shrink-0 keeps every thumbnail 16:9 whatever the text length) */}
+                                    <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-gray-200">
                                         <img
                                             src={video.thumbnail}
                                             alt={video.title}
