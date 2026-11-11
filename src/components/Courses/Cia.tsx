@@ -82,7 +82,7 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
     const ciaSchema = getCourseSchema({
         name: "Certified Internal Auditor (CIA) Certification Course",
         description: "Master the complete CIA exam with expert guidance and comprehensive study materials. All 3 parts with Gleim content, live weekend classes, and 1000+ MCQs.",
-        price: "60000",
+        price: "70800",
         enrollUrl: "https://rzp.io/rzp/uC1OGRim",
         credential: "Certified Internal Auditor (CIA)",
         occupationalCategory: "Internal Auditor, Risk Management Professional",
@@ -275,32 +275,32 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                             title="CIA All 3 Parts with Gleim Content"
                             image={examOne}
                             text={"Master the complete CIA exam with expert guidance and comprehensive study materials"}
-                            price={"60,000"}
+                            price={"70,800"}
                             enrollLink="https://rzp.io/rzp/uC1OGRim"
                             imageStyle={"pt-4"}
-                            gst="+ GST" />
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 1 with Gleim Content"
                             image={examTwo}
                             text={"Build a strong foundation in internal audit essentials with in-depth preparation"}
-                            price={"25,000"}
+                            price={"29,500"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
                             imageStyle={"pt-12"}
-                            gst="+ GST" />
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 2 with Gleim Content"
                             image={examThree}
                             text={"Strengthen your skills in risk management, governance, and control processes"}
-                            price={"25,000"}
+                            price={"29,500"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
-                            gst="+ GST" />
+                            gst="(Including GST)" />
                         <Card
                             title="CIA Part 3 with Gleim Content"
                             image={examFour}
                             text={"Gain expertise in business acumen, financial management, and data analytics"}
-                            price={"25,000"}
+                            price={"29,500"}
                             enrollLink="https://rzp.io/rzp/BjsIQfL"
-                            gst="+ GST"
+                            gst="(Including GST)"
                             imageStyle={"pt-8"} />
                     </div>
                 </div>
@@ -989,11 +989,11 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                             <div className="max-w-3xl mx-auto mb-8">
                                 <div className="p-5 md:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-inner">
                                     <p className="text-lg md:text-2xl font-bold text-white mb-3">
-                                        Enroll for all 3 parts along with Gleim content for <br /><span className="text-orange-400">₹60,000 + GST</span> only
+                                        Enroll for all 3 parts along with Gleim content for <br /><span className="text-orange-400">₹70,800 (Including GST)</span> only
                                     </p>
                                     <div className="w-12 h-0.5 bg-orange-400/30 mx-auto mb-3 rounded-full"></div>
                                     <p className="text-base md:text-lg text-gray-300">
-                                        Or each part for <span className="text-white font-semibold">₹25,000 + GST</span> only
+                                        Or each part for <span className="text-white font-semibold">₹29,500 (Including GST)</span> only
                                     </p>
                                 </div>
                             </div>
