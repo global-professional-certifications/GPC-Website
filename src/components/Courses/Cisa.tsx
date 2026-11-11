@@ -96,8 +96,8 @@ const cisaPricingRows: CisaPricingPlan[][] = [
       group: "Training Fee",
       subtitle: "CISA Preparation Course",
       title: "Indian Members",
-      price: "₹20,000",
-      taxNote: "+ GST",
+      price: "₹23,600",
+      taxNote: "Including GST",
       link: "https://rzp.io/rzp/ZE5s8Dz",
     },
     {
@@ -112,8 +112,8 @@ const cisaPricingRows: CisaPricingPlan[][] = [
       group: "Complete CISA Package",
       subtitle: "Members appearing for the exam in India",
       title: "Corporate (B2B)",
-      price: "₹1,30,000",
-      taxNote: "+ GST",
+      price: "₹1,53,400",
+      taxNote: "Including GST",
       link: "https://rzp.io/rzp/OjJVsS1",
     },
   ],
@@ -149,8 +149,8 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
   const cisaSchema = getCourseSchema({
     name: "Certified Information Systems Auditor (CISA) Certification Course",
     description: "Become a certified expert in IT auditing and risk management with our comprehensive CISA course. Master IT audit, control, and assurance with ISACA-aligned training.",
-    price: "17700",
-    enrollUrl: "https://rzp.io/rzp/VuvF84x",
+    price: "23600",
+    enrollUrl: "https://rzp.io/rzp/ZE5s8Dz",
     credential: "Certified Information Systems Auditor (CISA)",
     occupationalCategory: "IT Auditor, Cybersecurity Professional, Information Security Specialist"
   });

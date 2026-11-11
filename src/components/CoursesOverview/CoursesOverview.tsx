@@ -114,27 +114,27 @@ export default function CoursesOverview() {
           image={ciaLogo}
           text="Master the complete CIA exam with expert guidance and comprehensive study materials"
           currency="INR"
-          price="60,000"
+          price="70,800"
           linkTo="/courses/cia"
           enrollLink="https://rzp.io/rzp/uC1OGRim"
-          gst="+ GST"
+          gst="(Including GST)"
         />
         <Card
           title="Certified Informations Systems Auditor (CISA)"
           image={cisaLogo}
           text="Become a certified expert in IT auditing and risk management with our comprehensive CISA course"
           currency="INR"
-          price="20,000"
+          price="23,600"
           linkTo="/courses/cisa"
           enrollLink="https://rzp.io/rzp/ZE5s8Dz"
-          gst="+ GST"
+          gst="(Including GST)"
         />
         <Card
           title="Internal Audit Practioner (IAP)"
           image={iapLogo}
           text="Kickstart your CIA journey with our IAP course—covering audit fundamentals and risk assessment"
           currency="INR"
-          price="23,600"
+          price="29,500"
           linkTo="/courses/iap"
           enrollLink="https://rzp.io/rzp/C7jUKuC"
           gst="(Including GST)"
