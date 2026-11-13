@@ -106,6 +106,12 @@
     </url>
 
     <url>
+        <loc>https://globalprofessionalcertifications.com/dubai-cisa-cohort</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
         <loc>https://globalprofessionalcertifications.com/courses/iap</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
