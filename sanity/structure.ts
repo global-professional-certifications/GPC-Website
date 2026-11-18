@@ -343,6 +343,45 @@ export const structure: StructureResolver = (S, context) => {
 
             S.divider(),
 
+            // Courses: per-course content folders (currently CIA batch cards)
+            S.listItem()
+                .title('Courses')
+                .icon(() => '🎓')
+                .child(
+                    S.list()
+                        .title('Courses')
+                        .items([
+                            S.listItem()
+                                .title('CIA')
+                                .icon(() => '📘')
+                                .child(
+                                    S.list()
+                                        .title('CIA')
+                                        .items([
+                                            S.listItem()
+                                                .title('Upcoming Batches')
+                                                .icon(() => '🗓️')
+                                                .child(
+                                                    S.documentList()
+                                                        .title('CIA Upcoming Batches')
+                                                        .schemaType('courseBatch')
+                                                        .filter('_type == "courseBatch" && course == $course')
+                                                        .params({ course: 'cia' })
+                                                        .defaultOrdering([
+                                                            { field: 'order', direction: 'asc' },
+                                                            { field: 'startDate', direction: 'asc' },
+                                                        ])
+                                                        .initialValueTemplates([
+                                                            S.initialValueTemplateItem('courseBatch-for-course', { course: 'cia' }),
+                                                        ])
+                                                ),
+                                        ])
+                                ),
+                        ])
+                ),
+
+            S.divider(),
+
             // Upcoming Page Section
             S.listItem()
                 .title('Upcoming Page')

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import CoursesOverview from '../../../src/components/CoursesOverview/CoursesOverview';
+import Courses from './Courses';
+import { client } from '../../../src/lib/sanity/client';
+import type { CmsList } from '../../../src/types/cms';
 
 /*
  * /courses
@@ -10,23 +12,41 @@ import CoursesOverview from '../../../src/components/CoursesOverview/CoursesOver
  */
 export const metadata: Metadata = {
     title: "Certification Courses - Global Professional Certifications",
-    description: "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
+    description: "Join a thriving community and unlock new career heights with globally recognized certifications like CIA, IAP, and CISA.",
     alternates: { canonical: "/courses" },
     openGraph: {
         title: "Certification Courses - Global Professional Certifications",
-        description: "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
+        description: "Join a thriving community and unlock new career heights with globally recognized certifications like CIA, IAP, and CISA.",
         url: "/courses",
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
         title: "Certification Courses - Global Professional Certifications",
-        description: "Explore globally recognized certification programs like CIA, led by expert mentors and powered by premium content.",
+        description: "Join a thriving community and unlock new career heights with globally recognized certifications like CIA, IAP, and CISA.",
     },
 };
 
-export default function Page() {
+/** Refresh the success-story images at most once a minute (same as /success). */
+export const revalidate = 60;
+
+// The same four images shown under "What Our Learners Say" on /success:
+// the newest four success stories in the "image" category.
+const IMAGE_STORIES_QUERY = `*[_type == "successStory" && category == "image"] | order(_createdAt desc)[0...4] {
+                    _id,
+                    name,
+                    "courseName": course->name,
+                    thumbnail
+                }`;
+
+export default async function Page() {
+    // If Sanity is unreachable, render the page without the gallery rather
+    // than failing the whole course listing.
+    const imageStories = await client
+        .fetch<CmsList>(IMAGE_STORIES_QUERY)
+        .catch(() => []);
+
     return (
-        <CoursesOverview />
+        <Courses imageStories={imageStories ?? []} />
     );
 }

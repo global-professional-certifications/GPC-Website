@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Cisa from '../../../../src/components/Courses/Cisa';
 import { getBrochureSection } from '../../../../src/services/brochure.service';
+import { client } from '../../../../src/lib/sanity/client';
+import type { CmsList } from '../../../../src/types/cms';
 
 /*
  * /courses/cisa
@@ -29,18 +31,29 @@ export const metadata: Metadata = {
 /** Refresh the brochure content at most once a minute. */
 export const revalidate = 60;
 
+// Newest four CISA video testimonials for the "Video Testimonials" section
+// (same Sanity documents as the Video Vault on /success).
+const VIDEO_TESTIMONIALS_QUERY = `*[_type == "successStory" && category == "video" && course->slug.current == "cisa-video"] | order(_createdAt desc)[0...4] {
+                    _id,
+                    name,
+                    "courseName": course->name,
+                    thumbnail,
+                    "videoUrl": video.asset->url
+                }`;
+
 export default async function Page() {
     // Brochure content for the CISA section and the "Other Courses" cards, loaded
     // with the same function (and query) the browser used before. No try/catch
     // on purpose: if Sanity fails during a refresh, Next.js keeps serving the
     // last good version instead of the built-in fallback content.
-    const [cisa, cia, iap] = await Promise.all([
+    const [cisa, cia, iap, videoTestimonials] = await Promise.all([
         getBrochureSection('cisa'),
         getBrochureSection('cia'),
         getBrochureSection('iap'),
+        client.fetch<CmsList>(VIDEO_TESTIMONIALS_QUERY),
     ]);
 
     return (
-        <Cisa brochure={cisa} brochureSections={{ cisa, cia, iap }} />
+        <Cisa brochure={cisa} brochureSections={{ cisa, cia, iap }} videoTestimonials={videoTestimonials ?? []} />
     );
 }
