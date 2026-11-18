@@ -11,20 +11,25 @@ export default function Card({
   linkTo,
   enrollLink,
   gst,
-  imageStyle = ""
+  imageStyle = "",
+  // fullWidth: fill the parent (e.g. a grid cell) instead of the fixed 18rem.
+  fullWidth = false
 }: ComponentProps) {
   return (
-    <div className="group relative mt-4 md:mt-6 w-[18rem] min-h-[26rem] flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden">
+    <div className={`group relative mt-4 md:mt-6 ${fullWidth ? "w-full" : "w-[18rem]"} min-h-[26rem] flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden`}>
 
       {/* IMAGE SECTION */}
       <div
         className={`relative mx-4 mt-4 flex h-52 items-center justify-center overflow-hidden rounded-xl bg-gray-50 ${imageStyle}`}
       >
-        <Link to={linkTo}>
+        <Link to={linkTo} className={fullWidth ? "flex h-full w-full items-center justify-center p-5" : undefined}>
           <img
             src={image}
             alt={title}
-            className="h-auto w-full object-contain transition-transform duration-500 group-hover:scale-105"
+            // In fullWidth mode the card is wider than the image area is tall, so
+            // fit the logo inside the box instead of stretching it to full width
+            // (which would crop square logos such as CISA).
+            className={`${fullWidth ? "max-h-full max-w-full w-auto h-auto" : "h-auto w-full"} object-contain transition-transform duration-500 group-hover:scale-105`}
           />
         </Link>
       </div>

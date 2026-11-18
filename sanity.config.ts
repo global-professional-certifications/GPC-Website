@@ -60,6 +60,14 @@ const initialValueTemplates: Template[] = [
     schemaType: 'testimonialCourse',
     value: { category: 'wallOfExcellence' },
   },
+  {
+    // Used by Courses -> <course> -> Upcoming Batches so new batches get their course set.
+    id: 'courseBatch-for-course',
+    title: 'Course Batch',
+    schemaType: 'courseBatch',
+    parameters: [{ name: 'course', type: 'string' }],
+    value: (params: { course: string }) => ({ course: params.course, isActive: true, order: 0 }),
+  },
 ]
 
 export default defineConfig({
