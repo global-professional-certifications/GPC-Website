@@ -5,7 +5,6 @@ import { Link, NavLink } from '../routing';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -129,8 +128,8 @@ const Cia = ({ brochure = null, brochureSections, videoTestimonials = [], course
 
             {/* Hero Section */}
 
-            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+            <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+                <div className="pt-12 md:pt-16 md:pb-16 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -782,7 +781,7 @@ const Cia = ({ brochure = null, brochureSections, videoTestimonials = [], course
                     titleEnd="for CIA"
                     description="Review the official IIA Certified Internal Auditor (CIA) fee structure, updated effective August 1, 2026. Candidates can optimize their investments by leveraging IIA India professional or student memberships."
                     rows={CIA_EXAM_FEES}
-                    note={<><span className="font-semibold text-gray-900">Note:</span> An 18% GST is applicable on the above fees. Members holding an active Internal Audit Practitioner (IAP) designation receive a waiver for CIA Part 1.</>}
+                    note={<><span className="font-semibold text-gray-900">Note:</span> An 18% GST is applicable on the above fees. Members holding an active <Link to="/courses/iap" className="font-medium text-brand-blue underline underline-offset-2 hover:text-brand-purple">Internal Audit Practitioner (IAP)</Link> designation receive a waiver for CIA Part 1.</>}
                 />
 
                 {/* Exam Timeline Breakdown */}

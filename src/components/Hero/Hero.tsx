@@ -6,7 +6,7 @@ const Hero = () => {
 
     return (
         <section
-            className="relative min-h-screen md:h-[60vh] lg:h-full flex items-center justify-center bg-brand-blue transition-colors duration-300 pt-16 md:pt-0"
+            className="relative flex items-center justify-center bg-brand-blue transition-colors duration-300 pt-12 md:pt-16"
         >
             <div className="container mx-auto px-6 flex flex-col lg:flex-row md:items-start lg:items-center gap-10">
 

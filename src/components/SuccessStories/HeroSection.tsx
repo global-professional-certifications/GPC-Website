@@ -101,7 +101,7 @@ const HeroSection = ({ hero }: ComponentProps) => {
                 <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-brand-purple/20 rounded-full blur-[140px] md:blur-[180px]" />
             </div>
 
-            <div className="relative w-full max-w-7xl mx-auto py-20 md:py-28 flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-8 items-center pl-0 lg:pl-12">
+            <div className="relative w-full max-w-7xl mx-auto pt-12 md:pt-16 pb-20 md:pb-28 flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-8 items-center pl-0 lg:pl-12">
 
                 {/* Left Content with Staggered Entrance */}
                 <m.div

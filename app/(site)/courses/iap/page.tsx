@@ -43,16 +43,26 @@ const VIDEO_TESTIMONIALS_QUERY = `*[_type == "successStory" && category == "vide
                     "videoUrl": video.asset->url
                 }`;
 
+// Batch cards for "Live Batch Schedule & Upcoming Cohort Timelines", managed in
+// Sanity under Courses -> IAP -> Upcoming Batches.
+const COURSE_BATCHES_QUERY = `*[_type == "courseBatch" && course == "iap" && isActive != false] | order(order asc, startDate asc) {
+                    _id,
+                    title,
+                    startDate,
+                    "scheduleUrl": scheduleFile.asset->url
+                }`;
+
 export default async function Page() {
     // Brochure content for the IAP section and the "Other Courses" cards, loaded
     // with the same function (and query) the browser used before. No try/catch
     // on purpose: if Sanity fails during a refresh, Next.js keeps serving the
     // last good version instead of the built-in fallback content.
-    const [iap, cia, cisa, videos] = await Promise.all([
+    const [iap, cia, cisa, videos, courseBatches] = await Promise.all([
         getBrochureSection('iap'),
         getBrochureSection('cia'),
         getBrochureSection('cisa'),
         client.fetch<CmsList>(VIDEO_TESTIMONIALS_QUERY),
+        client.fetch<CmsList>(COURSE_BATCHES_QUERY),
     ]);
 
     // IAP videos first, then CIA Part Wise; keep the newest four overall.
@@ -62,6 +72,11 @@ export default async function Page() {
     ].slice(0, 4);
 
     return (
-        <Iap brochure={iap} brochureSections={{ iap, cia, cisa }} videoTestimonials={videoTestimonials} />
+        <Iap
+            brochure={iap}
+            brochureSections={{ iap, cia, cisa }}
+            videoTestimonials={videoTestimonials}
+            courseBatches={courseBatches ?? []}
+        />
     );
 }

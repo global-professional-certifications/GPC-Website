@@ -185,7 +185,7 @@ export default function Events({ events = [], upcomingEvents = [] }: ComponentPr
             {/* Mobile Version */}
 
             <section className="flex flex-col justify-center items-center lg:hidden bg-brand-blue pb-12">
-                <div className="flex flex-col justify-center items-center text-white pt-10 px-8">
+                <div className="flex flex-col justify-center items-center text-white pt-12 md:pt-16 px-8">
                     <h1 className="text-2xl md:text-4xl font-bold">Connect. <span className="text-[#FFD700] font-normal italic">Learn. </span>Grow.</h1>
                     <h2 className="text-xs md:text-base font-light text-gray-300 font-poppins mt-4 text-center px-0 md:px-20">Step into our events and virtual sessions to connect with leading mentors and industry experts.</h2>
                 </div>

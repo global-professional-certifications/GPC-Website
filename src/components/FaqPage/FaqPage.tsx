@@ -237,7 +237,7 @@ const FAQ = () => {
             <SchemaMarkup schema={[faqSchema, orgSchema, breadcrumbSchema]} />
 
             {/* Hero Section */}
-            <section className="h-[50vh] sm:h-[50vh] md:h-[60vh] flex flex-col justify-center items-center bg-brand-blue px-4 sm:px-6 md:px-8">
+            <section className="pt-12 md:pt-16 pb-16 md:pb-24 flex flex-col justify-center items-center bg-brand-blue px-4 sm:px-6 md:px-8">
                 <h2 className="text-base sm:text-lg md:text-xl mb-4 p-2 text-white font-semibold border border-white rounded text-center">
                     Frequently Asked Questions
                 </h2>

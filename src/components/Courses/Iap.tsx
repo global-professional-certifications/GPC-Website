@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Link } from '../routing';
-import { height } from '../Notifications/NotificationBanner';
 
 import FAQDisplay from "../FAQDisplay";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
@@ -16,6 +15,7 @@ import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart';
 import CompaniesShowcase from '../Companies/CompaniesShowcase';
 import MentorShowcase from "../About/MentorShowcase";
+import CourseBatchSchedule from "../CourseBatches/CourseBatchSchedule";
 import CareerPathway from "../CareerPathway/CareerPathway";
 import GoogleReviews from "../GoogleReviews/GoogleReviews";
 import VideoTestimonials from "../VideoTestimonials/VideoTestimonials";
@@ -68,9 +68,8 @@ const courseFaqs = [
       "Yes, Global Professional Certifications (GPC) is officially recognized as an Authorized Learning Partner of IIA India. We are proud to be endorsed by Mr. Mukundan K.V, CEO of IIA India, validating our commitment to delivering high-quality internal audit training and exam preparation. As an IIA India Authorized Learning Partner, GPC offers globally recognized programs such as Certified Internal Auditor (CIA) and Internal Audit Practitioner (IAP), empowering professionals to upskill with industry-leading resources, expert mentorship, and comprehensive support. Advance your career potential, enhance your audit skills, and join a community of risk professionals who trust GPC for their certification journey.",
   },
 ];
-const Iap = ({ brochure = null, brochureSections, videoTestimonials = [] }: ComponentProps) => {
+const Iap = ({ brochure = null, brochureSections, videoTestimonials = [], courseBatches = [] }: ComponentProps) => {
 
-  const marginTop = 68 + (4 * (height ? height : 0))
 
   // Editable brochure section content (Sanity), loaded on the server in
   // app/(site)/courses/iap/page.tsx, with hardcoded fallbacks.
@@ -120,8 +119,8 @@ const Iap = ({ brochure = null, brochureSections, videoTestimonials = [] }: Comp
 
       {/* Header */}
 
-      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+      <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+        <div className="pt-12 md:pt-16 md:pb-16 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -454,6 +453,13 @@ const Iap = ({ brochure = null, brochureSections, videoTestimonials = [] }: Comp
         {/* About Mentor */}
         <MentorShowcase />
 
+        {/* Live Batch Schedule & Upcoming Cohort Timelines (batch cards from Sanity: Courses -> IAP -> Upcoming Batches) */}
+        <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8 font-poppins" id="batch-schedule">
+          <CourseBatchSchedule
+            batches={courseBatches}
+            description="Explore our structured live weekend batches and flexible hybrid study schedules designed to fit seamlessly into demanding corporate calendars."
+          />
+        </div>
 
 
         {/* Enrollment Section */}

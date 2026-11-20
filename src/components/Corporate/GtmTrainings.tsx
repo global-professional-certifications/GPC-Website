@@ -50,7 +50,7 @@ const GtmTrainings = () => {
             <SchemaMarkup schema={[serviceSchema, orgSchema, faqSchema, breadcrumbSchema]} />
 
             {/* Hero Section */}
-            <div className="flex justify-center items-center bg-brand-blue py-24">
+            <div className="flex justify-center items-center bg-brand-blue pt-12 md:pt-16 pb-24">
                 <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center md:justify-center md:items-center gap-0 md:gap-12 px-8 md:px-24">
                     {/* Left Content */}
                     <div className="max-w-sm md:max-w-2xl mx-auto">
