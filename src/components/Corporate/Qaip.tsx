@@ -56,7 +56,7 @@ const Qaip = () => {
 
             {/* Hero Section */}
             <div
-                className="flex justify-center items-center bg-brand-blue py-24"
+                className="flex justify-center items-center bg-brand-blue pt-12 md:pt-16 pb-24"
             >
                 <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     {/* Left Content */}

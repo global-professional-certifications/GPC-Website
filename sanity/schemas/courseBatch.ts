@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 /*
  * Batch card shown in the "Live Batch Schedule & Upcoming Cohort Timelines"
- * section of a course page (currently the CIA page).
+ * section of a course page (currently the CIA and IAP pages).
  *
  * Managed from the Studio sidebar: Courses -> <course> -> Upcoming Batches.
  * Documents created there get their `course` set automatically.
