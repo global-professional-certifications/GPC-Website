@@ -80,11 +80,11 @@ export default function Courses({ imageStories = [] }: { imageStories?: CmsList 
 
       {/* Hero + Stats (stats bar overlaps the hero's bottom edge, as on Home) */}
       <div className="relative">
-      <section className="flex justify-center items-center bg-brand-blue pt-12 pb-16 md:pb-20">
+      <section className="flex justify-center items-center bg-brand-blue pt-12 md:pt-16 pb-16 md:pb-20">
         <div className="md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-0 gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
-              <h1 className="mt-6 text-2xl md:text-4xl font-bold leading-tight text-white">
+              <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
                 Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Global Audit</span> Excellence
               </h1>
               <h2 className="mt-4 text-base sm:text-lg md:text-lg text-gray-200 max-w-lg leading-relaxed">
@@ -128,12 +128,12 @@ export default function Courses({ imageStories = [] }: { imageStories?: CmsList 
 
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-center items-center px-4 md:px-12 mt-20 mb-4">
-        <h1 id="courses" className="text-2xl md:text-4xl font-bold">
+        <h2 id="courses" className="text-2xl md:text-4xl font-bold">
           <span className="text-brand-blue font-normal italic">
             Courses{" "}
           </span>
           We Offer
-        </h1>
+        </h2>
       </div>
 
 
@@ -273,7 +273,7 @@ export default function Courses({ imageStories = [] }: { imageStories?: CmsList 
 
 
       {/* Learner Success Stories */}
-      <section id="success-stories" className="font-poppins px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-16 md:pb-24">
+      <section id="success-stories" className="font-poppins px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-12 md:pb-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <h2 className="text-2xl md:text-4xl font-bold">
@@ -302,6 +302,35 @@ export default function Courses({ imageStories = [] }: { imageStories?: CmsList 
               Read More Testimonials
               <FaArrowRightLong className="h-4 w-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA: upcoming cohort */}
+      <section className="font-poppins px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl bg-brand-blue px-6 py-12 md:px-16 md:py-16 text-center shadow-xl">
+          {/* Soft brand glows */}
+          <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-purple/40 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+
+          <div className="relative max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight text-white">
+              Secure Your Spot in the{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Upcoming Cohort</span>{" "}
+              Today
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-gray-200 leading-relaxed">
+              Seats for our upcoming examination cycle are filling rapidly. Take the next step toward professional excellence and schedule a consultation with our academic advisors or enroll directly.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-lg px-8 py-3 text-base md:text-lg font-semibold text-white shadow-lg transition-all duration-300 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:scale-105 hover:shadow-xl"
+              >
+                Contact Us
+                <FaArrowRightLong className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

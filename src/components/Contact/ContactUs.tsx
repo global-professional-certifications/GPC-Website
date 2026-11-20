@@ -52,7 +52,7 @@ export default function ContactUs() {
             <SchemaMarkup schema={[contactPageSchema, localBusinessSchema, contactPointSchema, postalAddressSchema, breadcrumbSchema]} />
 
             {/* ───── SECTION 1: Hero ───── */}
-            <section className="bg-brand-blue pt-12 pb-16 lg:pt-16 lg:pb-20 relative overflow-hidden">
+            <section className="bg-brand-blue pt-12 pb-16 md:pt-16 lg:pb-20 relative overflow-hidden">
                 {/* Decorative blurs */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>

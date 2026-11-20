@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import { Link } from "../routing";
 import type { ComponentProps } from '../../types/cms';
 
-const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onClose }: ComponentProps) => {
+const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onClose, heading = "Programs & Modules" }: ComponentProps) => {
     const pathname = usePathname();
 
     return (
@@ -25,14 +25,19 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
                 {/* LEFT – Routes */}
                 <div className="col-span-3 px-8 py-8 space-y-1 font-poppins">
                     <div className="mb-4 pb-2 border-b border-gray-100">
-                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Programs & Modules</h4>
+                        <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-400">{heading}</h4>
                     </div>
                     {items.map((item, index) => {
-                        const isActive = pathname === item.link;
+                        const isActive = !item.external && pathname === item.link;
+                        // External items (e.g. other product sites) open in a new tab
+                        const ItemLink = item.external ? "a" : Link;
+                        const linkProps = item.external
+                            ? { href: item.link, target: "_blank", rel: "noopener noreferrer" }
+                            : { to: item.link };
                         return (
-                            <Link
+                            <ItemLink
                                 key={index}
-                                to={item.link}
+                                {...linkProps}
                                 onClick={() => onClose && onClose()}
                                 className={`
                 group flex items-center gap-4
@@ -57,7 +62,7 @@ const MegaMenu = ({ items, isOpen, showItemLogos = false, panelImage = null, onC
                                         {item.fullname}
                                     </span>
                                 </div>
-                            </Link>
+                            </ItemLink>
                         );
                     })}
                 </div>

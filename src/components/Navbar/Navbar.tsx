@@ -1,14 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Link, NavLink } from '../routing';
-import { FaChevronDown, FaBars, FaTimes, FaAward, FaRocket, FaUserCircle } from "react-icons/fa";
+import { FaChevronDown, FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import MegaMenu from "./MegaMenu";
 import CascadingMenu from "./CascadingMenu";
 import { coursesMenu } from "./menuData";
 
 import logo from "../../assets/navbar/gpc-navbar-logo.webp";
+import grcOpeningsLogo from "../../assets/grc-openings-logo.webp";
 import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
 import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
 import type { CmsData, ComponentProps } from '../../types/cms';
+
+const exploreOptions = [
+  {
+    name: "About",
+    fullname: "Who we are and what drives us",
+    link: "/about"
+  },
+  {
+    name: "Events",
+    fullname: "Webinars, workshops and live sessions",
+    link: "/events"
+  },
+  {
+    name: "Success Stories",
+    fullname: "Hear from our certified professionals",
+    link: "/success"
+  },
+];
 
 const corporateOptions = [
   {
@@ -23,32 +43,57 @@ const corporateOptions = [
   },
 ];
 
+const resourcesOptions = [
+  {
+    name: "Blogs",
+    fullname: "Insights on audit, risk and certifications",
+    link: "/blogs"
+  },
+];
+
+const GRC_OPENINGS_URL = "https://grcopenings.com/";
+
+// Flat dropdowns (rendered with MegaMenu). Courses uses the cascading menu instead.
+const dropdownMenus = {
+  explore: { items: exploreOptions, heading: "Explore GPC", panelImage: coursesPanelImage },
+  corporate: { items: corporateOptions, heading: "Programs & Modules", panelImage: corporatePanelImage },
+  resources: { items: resourcesOptions, heading: "Resources", panelImage: corporatePanelImage },
+};
+
+// Top-level order, shared by desktop and mobile.
+// `to` = the label itself is a link; `menu` = it opens a dropdown.
+const navItems = [
+  { label: "Courses", to: "/courses", menu: "courses" },
+  { label: "Upcoming", to: "/upcoming" },
+  { label: "Explore", menu: "explore" },
+  { label: "Corporate", menu: "corporate" },
+  { label: "Contact", to: "/contact" },
+  { label: "Resources", menu: "resources" },
+];
+
+const underline = (active: boolean) =>
+  `absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left ${active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`;
+
 const Navbar = ({ topOffset = 48 }: ComponentProps) => {
+  const pathname = usePathname() || "";
   const [isOpen, setIsOpen] = useState(false);
-  const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
-  const [isCorporateDropdownOpen, setIsCorporateDropdownOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
 
   // Mobile specific states
-  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
-  const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
   const [mobileOpenProvider, setMobileOpenProvider] = useState<CmsData>(null);
 
-  const coursesDropdownRef = useRef<CmsData>(null);
-  const corporateDropdownRef = useRef<CmsData>(null);
+  const desktopMenuRef = useRef<CmsData>(null);
   const authDropdownRef = useRef<CmsData>(null);
-  const coursesTimeoutRef = useRef<CmsData>(null);
-  const corporateTimeoutRef = useRef<CmsData>(null);
+  const menuTimeoutRef = useRef<CmsData>(null);
   const authTimeoutRef = useRef<CmsData>(null);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (coursesDropdownRef.current && !coursesDropdownRef.current.contains(event.target)) {
-        setIsCoursesDropdownOpen(false);
-      }
-      if (corporateDropdownRef.current && !corporateDropdownRef.current.contains(event.target)) {
-        setIsCorporateDropdownOpen(false);
+      if (desktopMenuRef.current && !desktopMenuRef.current.contains(event.target)) {
+        setOpenMenu(null);
       }
       if (authDropdownRef.current && !authDropdownRef.current.contains(event.target)) {
         setIsAuthDropdownOpen(false);
@@ -74,31 +119,16 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
     };
   }, [isOpen]);
 
-  // Handle hover with delay for Courses
-  const handleCoursesMouseEnter = () => {
-    clearTimeout(coursesTimeoutRef.current);
-    setIsCoursesDropdownOpen(true);
+  // Hover with a short close delay so the cursor can travel into the panel
+  const handleMenuMouseEnter = (menu: string) => {
+    clearTimeout(menuTimeoutRef.current);
+    setOpenMenu(menu);
   };
 
-  const handleCoursesMouseLeave = () => {
-    coursesTimeoutRef.current = setTimeout(() => {
-      setIsCoursesDropdownOpen(false);
-    }, 200);
+  const handleMenuMouseLeave = () => {
+    menuTimeoutRef.current = setTimeout(() => setOpenMenu(null), 200);
   };
 
-  // Handle hover with delay for Corporate
-  const handleCorporateMouseEnter = () => {
-    clearTimeout(corporateTimeoutRef.current);
-    setIsCorporateDropdownOpen(true);
-  };
-
-  const handleCorporateMouseLeave = () => {
-    corporateTimeoutRef.current = setTimeout(() => {
-      setIsCorporateDropdownOpen(false);
-    }, 200);
-  };
-
-  // Handle hover with delay for Auth
   const handleAuthMouseEnter = () => {
     clearTimeout(authTimeoutRef.current);
     setIsAuthDropdownOpen(true);
@@ -109,6 +139,14 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
       setIsAuthDropdownOpen(false);
     }, 200);
   };
+
+  // A dropdown trigger is highlighted when the current page is one of its children
+  const isMenuActive = (menu: string) =>
+    dropdownMenus[menu]?.items.some(
+      (item) => !item.external && (pathname === item.link || pathname.startsWith(`${item.link}/`))
+    );
+
+  const closeMobile = () => setIsOpen(false);
 
   return (
     <nav
@@ -124,106 +162,110 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-8 font-poppins">
-          {["Courses", "Upcoming", "Events", "About", "Success", "Corporate", "Contact", "Blogs", "GRC Openings"].map((item, index) =>
-            item === "Courses" ? (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center"
-                ref={coursesDropdownRef}
-                onMouseEnter={handleCoursesMouseEnter}
-                onMouseLeave={handleCoursesMouseLeave}
-              >
-                {/* Courses Link - Clickable to go to /courses */}
+        {/* mr-auto pins the links beside the logo; ml-16 clears the logo's scale() overflow */}
+        <div ref={desktopMenuRef} className="hidden lg:flex items-center space-x-5 ml-16 mr-auto font-poppins">
+          {navItems.map((item) => {
+            const chevron = item.menu && (
+              <FaChevronDown
+                className={`text-[10px] transition-transform duration-300 ${openMenu === item.menu ? "rotate-180 text-brand-blue" : ""}`}
+              />
+            );
+
+            // Plain link, no dropdown
+            if (!item.menu) {
+              return (
                 <NavLink
-                  to="/courses"
-                  onClick={() => setIsCoursesDropdownOpen(false)}
+                  key={item.label}
+                  to={item.to}
                   className={({ isActive }) =>
-                    `relative flex items-center gap-1 text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
+                    `relative text-sm font-medium whitespace-nowrap ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
                   }
                 >
                   {({ isActive }) => (
                     <>
-                      {item}
-                      <FaChevronDown
-                        className={`text-[10px] transition-transform duration-300 ${isCoursesDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
-                      />
-                      <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                      {item.label}
+                      <span className={underline(isActive)}></span>
                     </>
                   )}
                 </NavLink>
+              );
+            }
 
-                {/* Cascading multi-level menu for Courses */}
-                {isCoursesDropdownOpen && (
-                  <CascadingMenu
-                    categories={coursesMenu}
-                    isOpen={isCoursesDropdownOpen}
-                    showLogos={true}
-                    panelImage={coursesPanelImage}
-                    onClose={() => setIsCoursesDropdownOpen(false)}
-                  />
-                )}
-              </div>
-            ) : item === "Corporate" ? (
+            return (
               <div
-                key={index}
+                key={item.label}
                 className="flex flex-col items-center justify-center"
-                ref={corporateDropdownRef}
-                onMouseEnter={handleCorporateMouseEnter}
-                onMouseLeave={handleCorporateMouseLeave}
+                onMouseEnter={() => handleMenuMouseEnter(item.menu)}
+                onMouseLeave={handleMenuMouseLeave}
               >
-                {/* Corporate Button */}
-                <button
-                  className="relative flex items-center gap-1 text-[15px] font-medium text-gray-800 hover:text-brand-blue transition group"
-                >
-                  {item}
-                  <FaChevronDown
-                    className={`text-[10px] transition-transform duration-300 ${isCorporateDropdownOpen ? "rotate-180 text-brand-blue" : ""}`}
-                  />
-                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left group-hover:scale-x-100 scale-x-0`}></span>
-                </button>
+                {item.to ? (
+                  // Courses: the label navigates, hovering opens the menu
+                  <NavLink
+                    to={item.to}
+                    onClick={() => setOpenMenu(null)}
+                    className={({ isActive }) =>
+                      `relative flex items-center gap-1 text-sm font-medium whitespace-nowrap ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        {item.label}
+                        {chevron}
+                        <span className={underline(isActive)}></span>
+                      </>
+                    )}
+                  </NavLink>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setOpenMenu(openMenu === item.menu ? null : item.menu)}
+                    aria-expanded={openMenu === item.menu}
+                    className={`relative flex items-center gap-1 text-sm font-medium whitespace-nowrap ${isMenuActive(item.menu) ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`}
+                  >
+                    {item.label}
+                    {chevron}
+                    <span className={underline(isMenuActive(item.menu))}></span>
+                  </button>
+                )}
 
-                {/* MegaMenu for Corporate */}
-                {isCorporateDropdownOpen && (
-                  <MegaMenu
-                    items={corporateOptions}
-                    isOpen={isCorporateDropdownOpen}
-                    showItemLogos={false}
-                    panelImage={corporatePanelImage}
-                    onClose={() => setIsCorporateDropdownOpen(false)}
-                  />
+                {openMenu === item.menu && (
+                  item.menu === "courses" ? (
+                    <CascadingMenu
+                      categories={coursesMenu}
+                      isOpen
+                      showLogos={true}
+                      panelImage={coursesPanelImage}
+                      onClose={() => setOpenMenu(null)}
+                    />
+                  ) : (
+                    <MegaMenu
+                      items={dropdownMenus[item.menu].items}
+                      heading={dropdownMenus[item.menu].heading}
+                      isOpen
+                      showItemLogos={false}
+                      panelImage={dropdownMenus[item.menu].panelImage}
+                      onClose={() => setOpenMenu(null)}
+                    />
+                  )
                 )}
               </div>
-            ) : item === "GRC Openings" ? (
-              // External product site, opens in a new tab
-              <a
-                key={index}
-                href="https://grcopenings.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative text-[15px] font-medium text-gray-800 hover:text-brand-blue transition group whitespace-nowrap"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left scale-x-0 group-hover:scale-x-100"></span>
-              </a>
-            ) : (
-              <NavLink
-                key={index}
-                to={`/${item.toLowerCase()}`}
-                className={({ isActive }) =>
-                  `relative text-[15px] font-medium ${isActive ? 'text-brand-blue' : 'text-gray-800'} hover:text-brand-blue transition group`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {item === "Success" ? "Success Stories" : item}
-                    <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                  </>
-                )}
-              </NavLink>
-            )
-          )}
+            );
+          })}
         </div>
+
+        {/* GRC Openings — sister product, opens in a new tab */}
+        <a
+          href={GRC_OPENINGS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GRC Openings (opens in a new tab)"
+          className="hidden lg:block mr-6 motion-safe:animate-float hover:[animation-play-state:paused]"
+        >
+          <img src={grcOpeningsLogo} alt="GRC Openings" className="h-9 w-auto object-contain" width="83" height="36" />
+        </a>
+
+        {/* Divider between GRC Openings and Account */}
+        <span aria-hidden="true" className="hidden lg:block h-7 w-px bg-gray-300 mr-6" />
 
         <div
           className="hidden lg:flex items-center relative font-poppins"
@@ -231,10 +273,9 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
           onMouseEnter={handleAuthMouseEnter}
           onMouseLeave={handleAuthMouseLeave}
         >
-          <button className="flex items-center gap-2 bg-brand-blue text-white px-5 py-2 rounded-full text-[15px] font-medium transition-transform duration-300 group shadow-md hover:shadow-lg active:scale-95">
-            <FaUserCircle className="text-base" />
+          <button className={`flex items-center gap-2 py-2 text-sm font-medium transition-colors ${isAuthDropdownOpen ? "text-brand-blue" : "text-gray-800"} hover:text-brand-blue`}>
+            <FaUserCircle className="text-lg" />
             Account
-            <FaChevronDown className={`text-[10px] transition-transform duration-300 ${isAuthDropdownOpen ? "rotate-180" : ""}`} />
           </button>
 
           {/* Auth Dropdown */}
@@ -275,110 +316,128 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
           }`}
       >
         <ul className="flex flex-col py-6 space-y-2 px-6">
-          {["Courses", "Corporate", "Events", "About", "Success", "Upcoming", "Contact", "Blogs", "GRC Openings"].map((item, index) => (
-            <li key={index} className="w-full border-b border-gray-100 last:border-0">
-              {item === "Courses" ? (
+          {navItems.map((item) => {
+            const groupOpen = mobileOpenMenu === item.menu;
+
+            if (!item.menu) {
+              return (
+                <li key={item.label} className="w-full border-b border-gray-100 last:border-0">
+                  <NavLink
+                    onClick={closeMobile}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `block w-full py-3 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
+                      } hover:text-brand-purple transition-colors`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              );
+            }
+
+            return (
+              <li key={item.label} className="w-full border-b border-gray-100 last:border-0">
                 <div className="w-full">
                   <button
-                    onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                    onClick={() => setMobileOpenMenu(groupOpen ? null : item.menu)}
                     className="flex items-center justify-between w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
                   >
-                    Courses
-                    <FaChevronDown className={`text-xs transition-transform duration-300 ${mobileCoursesOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                    {item.label}
+                    <FaChevronDown className={`text-xs transition-transform duration-300 ${groupOpen ? "rotate-180 text-brand-purple" : ""}`} />
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${mobileCoursesOpen ? "max-h-[600px] opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
-                    <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
-                      {coursesMenu.map((provider) => {
-                        const providerOpen = mobileOpenProvider === provider.id;
-                        return (
-                          <div key={provider.id}>
-                            {/* Provider (level 1) */}
-                            <button
-                              onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
-                              className="flex items-center justify-between w-full gap-2 py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
-                            >
-                              <span className="min-w-0 flex-1 truncate text-left">
-                                {provider.name}
-                                <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
-                              </span>
-                              <FaChevronDown className={`flex-shrink-0 text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
-                            </button>
-                            {/* Courses (level 2) */}
-                            <div className={`overflow-hidden transition-all duration-300 ${providerOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-                              <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
-                                {provider.items.map((course, idx) => (
-                                  <NavLink
-                                    key={course.link || idx}
-                                    to={course.link}
-                                    onClick={() => setIsOpen(false)}
-                                    className={({ isActive }) =>
-                                      `flex min-w-0 items-center py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
-                                    }
-                                  >
-                                    <span className="min-w-0 truncate">
-                                      {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
-                                    </span>
-                                  </NavLink>
-                                ))}
+
+                  {item.menu === "courses" ? (
+                    <div className={`overflow-hidden transition-all duration-300 ${groupOpen ? "max-h-[600px] opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
+                      <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
+                        {coursesMenu.map((provider) => {
+                          const providerOpen = mobileOpenProvider === provider.id;
+                          return (
+                            <div key={provider.id}>
+                              {/* Provider (level 1) */}
+                              <button
+                                onClick={() => setMobileOpenProvider(providerOpen ? null : provider.id)}
+                                className="flex items-center justify-between w-full gap-2 py-2 text-sm font-semibold text-brand-dark hover:text-brand-purple transition-colors"
+                              >
+                                <span className="min-w-0 flex-1 truncate text-left">
+                                  {provider.name}
+                                  <span className="text-xs text-gray-400 font-normal ml-1">- {provider.fullname}</span>
+                                </span>
+                                <FaChevronDown className={`flex-shrink-0 text-[10px] transition-transform duration-300 ${providerOpen ? "rotate-180 text-brand-purple" : ""}`} />
+                              </button>
+                              {/* Courses (level 2) */}
+                              <div className={`overflow-hidden transition-all duration-300 ${providerOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                                <div className="flex flex-col space-y-1 pl-4 border-l-2 border-brand-light/20 ml-1">
+                                  {provider.items.map((course, idx) => (
+                                    <NavLink
+                                      key={course.link || idx}
+                                      to={course.link}
+                                      onClick={closeMobile}
+                                      className={({ isActive }) =>
+                                        `flex min-w-0 items-center py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                                      }
+                                    >
+                                      <span className="min-w-0 truncate">
+                                        {course.name} <span className="text-xs text-gray-400 font-normal ml-1">- {course.fullname}</span>
+                                      </span>
+                                    </NavLink>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ) : item === "Corporate" ? (
-                <div className="w-full">
-                  <button
-                    onClick={() => setMobileCorporateOpen(!mobileCorporateOpen)}
-                    className="flex items-center justify-between w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
-                  >
-                    Corporate
-                    <FaChevronDown className={`text-xs transition-transform duration-300 ${mobileCorporateOpen ? "rotate-180 text-brand-purple" : ""}`} />
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${mobileCorporateOpen ? "max-h-48 opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
-                    <div className="flex flex-col space-y-2 pl-4 border-l-2 border-brand-light/20 ml-1">
-                      {corporateOptions.map((corp, idx) => (
-                        <NavLink
-                          key={idx}
-                          to={corp.link}
-                          onClick={() => setIsOpen(false)}
-                          className={({ isActive }) =>
-                            `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
-                          }
-                        >
-                          {corp.name}
-                        </NavLink>
-                      ))}
+                  ) : (
+                    <div className={`overflow-hidden transition-all duration-300 ${groupOpen ? "max-h-64 opacity-100 mb-3" : "max-h-0 opacity-0"}`}>
+                      <div className="flex flex-col space-y-2 pl-4 border-l-2 border-brand-light/20 ml-1">
+                        {dropdownMenus[item.menu].items.map((sub) =>
+                          sub.external ? (
+                            <a
+                              key={sub.link}
+                              href={sub.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={closeMobile}
+                              className="block py-2 text-sm text-gray-600 hover:text-brand-purple transition-colors"
+                            >
+                              {sub.name}
+                            </a>
+                          ) : (
+                            <NavLink
+                              key={sub.link}
+                              to={sub.link}
+                              onClick={closeMobile}
+                              className={({ isActive }) =>
+                                `block py-2 text-sm ${isActive ? "text-brand-purple font-medium" : "text-gray-600"} hover:text-brand-purple transition-colors`
+                              }
+                            >
+                              {sub.name}
+                            </NavLink>
+                          )
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
-              ) : item === "GRC Openings" ? (
-                // External product site, opens in a new tab
-                <a
-                  href="https://grcopenings.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full py-3 text-lg font-medium text-brand-dark hover:text-brand-purple transition-colors"
-                >
-                  {item}
-                </a>
-              ) : (
-                <NavLink
-                  onClick={() => setIsOpen(false)}
-                  to={item === "Success" ? "/success" : item === "Blogs" ? "/blogs" : `/${item.toLowerCase()}`}
-                  className={({ isActive }) =>
-                    `block w-full py-3 text-lg font-medium ${isActive ? "text-brand-purple" : "text-brand-dark"
-                    } hover:text-brand-purple transition-colors`
-                  }
-                >
-                  {item === "Success" ? "Success Stories" : item}
-                </NavLink>
-              )}
-            </li>
-          ))}
+              </li>
+            );
+          })}
+
+          {/* Mobile GRC Openings */}
+          <li className="pt-4">
+            <a
+              href={GRC_OPENINGS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobile}
+              aria-label="GRC Openings (opens in a new tab)"
+              className="inline-block motion-safe:animate-float"
+            >
+              <img src={grcOpeningsLogo} alt="GRC Openings" className="h-10 w-auto object-contain" width="92" height="40" />
+            </a>
+          </li>
 
           {/* Mobile Login / Signup */}
           <li className="flex flex-col space-y-3 pt-6 mt-2">
