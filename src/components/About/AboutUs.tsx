@@ -5,6 +5,7 @@ import ourVision from "../../assets/about/our-vision.webp";
 import { Link } from '../routing';
 import { Users, GraduationCap, BookCheck, Award, Target, ShieldCheck, Globe } from "lucide-react";
 import MentorShowcase from "./MentorShowcase";
+import AnniversarySection from "../AnniversarySection/AnniversarySection";
 import { PiBrain } from "react-icons/pi";
 import { SchemaMarkup, generateBreadcrumbSchema, getAboutPageSchema, getPersonSchema, getOrganizationSchema } from "../Schema";
 
@@ -61,6 +62,9 @@ export default function AboutUs() {
                     </div>
                 </div>
             </section>
+
+            {/* 1-Year Anniversary Celebration */}
+            <AnniversarySection />
 
             {/* Our Mission Section - Sober & Elegant */}
             <section className="py-16 bg-gray-50">
