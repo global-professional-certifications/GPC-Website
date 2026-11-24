@@ -12,24 +12,6 @@ import coursesPanelImage from "../../assets/navbar/navbar-courses-panel.webp";
 import corporatePanelImage from "../../assets/navbar/navbar-corporate-panel.webp";
 import type { CmsData, ComponentProps } from '../../types/cms';
 
-const exploreOptions = [
-  {
-    name: "About",
-    fullname: "Who we are and what drives us",
-    link: "/about"
-  },
-  {
-    name: "Events",
-    fullname: "Webinars, workshops and live sessions",
-    link: "/events"
-  },
-  {
-    name: "Success Stories",
-    fullname: "Hear from our certified professionals",
-    link: "/success"
-  },
-];
-
 const corporateOptions = [
   {
     name: "IIA Global Training Modules",
@@ -43,21 +25,11 @@ const corporateOptions = [
   },
 ];
 
-const resourcesOptions = [
-  {
-    name: "Blogs",
-    fullname: "Insights on audit, risk and certifications",
-    link: "/blogs"
-  },
-];
-
 const GRC_OPENINGS_URL = "https://grcopenings.com/";
 
 // Flat dropdowns (rendered with MegaMenu). Courses uses the cascading menu instead.
 const dropdownMenus = {
-  explore: { items: exploreOptions, heading: "Explore GPC", panelImage: coursesPanelImage },
   corporate: { items: corporateOptions, heading: "Programs & Modules", panelImage: corporatePanelImage },
-  resources: { items: resourcesOptions, heading: "Resources", panelImage: corporatePanelImage },
 };
 
 // Top-level order, shared by desktop and mobile.
@@ -65,10 +37,12 @@ const dropdownMenus = {
 const navItems = [
   { label: "Courses", to: "/courses", menu: "courses" },
   { label: "Upcoming", to: "/upcoming" },
-  { label: "Explore", menu: "explore" },
+  { label: "About", to: "/about" },
+  { label: "Events", to: "/events" },
+  { label: "Success Stories", to: "/success" },
   { label: "Corporate", menu: "corporate" },
   { label: "Contact", to: "/contact" },
-  { label: "Resources", menu: "resources" },
+  { label: "Blogs", to: "/blogs" },
 ];
 
 const underline = (active: boolean) =>
@@ -162,8 +136,9 @@ const Navbar = ({ topOffset = 48 }: ComponentProps) => {
         </Link>
 
         {/* Desktop Menu */}
-        {/* mr-auto pins the links beside the logo; ml-16 clears the logo's scale() overflow */}
-        <div ref={desktopMenuRef} className="hidden lg:flex items-center space-x-5 ml-16 mr-auto font-poppins">
+        {/* flex-1 + justify-center centres the links between the GPC logo and GRC Openings logo.
+            ml-12 offsets the GPC logo's scale() overflow (~29px at lg) so the visual gaps match mr-6 on the right. */}
+        <div ref={desktopMenuRef} className="hidden lg:flex flex-1 justify-center items-center space-x-5 ml-12 mr-6 font-poppins">
           {navItems.map((item) => {
             const chevron = item.menu && (
               <FaChevronDown

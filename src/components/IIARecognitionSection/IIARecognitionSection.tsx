@@ -14,7 +14,7 @@ import awardImage from "../../assets/home/gpc-iia-award.webp";
  */
 const IIARecognitionSection = () => {
     return (
-        <section className="py-20 md:py-16 px-6 md:px-16 bg-white">
+        <section className="pt-24 md:pt-32 pb-12 md:pb-20 px-6 md:px-16 bg-white">
             <div className="flex flex-col lg:flex-row-reverse items-center justify-between gap-12 md:gap-20">
                 {/* Right Content */}
                 <div className="flex flex-col gap-6 lg:w-1/2 text-center md:text-left">
