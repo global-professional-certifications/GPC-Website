@@ -1,4 +1,37 @@
-import type { StructureResolver } from 'sanity/structure'
+import type { StructureResolver, StructureBuilder } from 'sanity/structure'
+
+/**
+ * Courses -> <course> folder. Holds that course page's "Upcoming Batches"
+ * (courseBatch documents); new batches created here get `course` preset.
+ * `course` must be one of COURSE_BATCH_COURSES in schemas/courseBatch.ts.
+ */
+const courseFolder = (S: StructureBuilder, label: string, course: string, icon: string) =>
+    S.listItem()
+        .title(label)
+        .icon(() => icon)
+        .child(
+            S.list()
+                .title(label)
+                .items([
+                    S.listItem()
+                        .title('Upcoming Batches')
+                        .icon(() => '🗓️')
+                        .child(
+                            S.documentList()
+                                .title(`${label} Upcoming Batches`)
+                                .schemaType('courseBatch')
+                                .filter('_type == "courseBatch" && course == $course')
+                                .params({ course })
+                                .defaultOrdering([
+                                    { field: 'order', direction: 'asc' },
+                                    { field: 'startDate', direction: 'asc' },
+                                ])
+                                .initialValueTemplates([
+                                    S.initialValueTemplateItem('courseBatch-for-course', { course }),
+                                ])
+                        ),
+                ])
+        )
 
 export const structure: StructureResolver = (S, context) => {
     const { getClient } = context
@@ -339,6 +372,21 @@ export const structure: StructureResolver = (S, context) => {
                                     ),
                             ])
                     )
+                ),
+
+            S.divider(),
+
+            // Courses: per-course content folders (batch cards for CIA and IAP)
+            S.listItem()
+                .title('Courses')
+                .icon(() => '🎓')
+                .child(
+                    S.list()
+                        .title('Courses')
+                        .items([
+                            courseFolder(S, 'CIA', 'cia', '📘'),
+                            courseFolder(S, 'IAP', 'iap', '📗'),
+                        ])
                 ),
 
             S.divider(),

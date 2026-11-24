@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Cia from '../../../../src/components/Courses/Cia';
 import { getBrochureSection } from '../../../../src/services/brochure.service';
+import { client } from '../../../../src/lib/sanity/client';
+import type { CmsList } from '../../../../src/types/cms';
 
 /*
  * /courses/cia
@@ -29,18 +31,44 @@ export const metadata: Metadata = {
 /** Refresh the brochure content at most once a minute. */
 export const revalidate = 60;
 
+// Newest four CIA All Parts video testimonials for the "Video Testimonials"
+// section (same Sanity documents as the Video Vault on /success).
+const VIDEO_TESTIMONIALS_QUERY = `*[_type == "successStory" && category == "video" && course->slug.current == "cia-all-parts"] | order(_createdAt desc)[0...4] {
+                    _id,
+                    name,
+                    "courseName": course->name,
+                    thumbnail,
+                    "videoUrl": video.asset->url
+                }`;
+
+// Batch cards for "Live Batch Schedule & Upcoming Cohort Timelines", managed in
+// Sanity under Courses -> CIA -> Upcoming Batches.
+const COURSE_BATCHES_QUERY = `*[_type == "courseBatch" && course == "cia" && isActive != false] | order(order asc, startDate asc) {
+                    _id,
+                    title,
+                    startDate,
+                    "scheduleUrl": scheduleFile.asset->url
+                }`;
+
 export default async function Page() {
     // Brochure content for the CIA section and the "Other Courses" cards, loaded
     // with the same function (and query) the browser used before. No try/catch
     // on purpose: if Sanity fails during a refresh, Next.js keeps serving the
     // last good version instead of the built-in fallback content.
-    const [cia, cisa, iap] = await Promise.all([
+    const [cia, cisa, iap, videoTestimonials, courseBatches] = await Promise.all([
         getBrochureSection('cia'),
         getBrochureSection('cisa'),
         getBrochureSection('iap'),
+        client.fetch<CmsList>(VIDEO_TESTIMONIALS_QUERY),
+        client.fetch<CmsList>(COURSE_BATCHES_QUERY),
     ]);
 
     return (
-        <Cia brochure={cia} brochureSections={{ cia, cisa, iap }} />
+        <Cia
+            brochure={cia}
+            brochureSections={{ cia, cisa, iap }}
+            videoTestimonials={videoTestimonials ?? []}
+            courseBatches={courseBatches ?? []}
+        />
     );
 }

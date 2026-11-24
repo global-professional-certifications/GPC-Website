@@ -101,7 +101,7 @@ const BlogPage = ({ slug, post, relatedPosts }: ComponentProps) => {
 
             <div className="relative min-h-screen w-full bg-white pb-12">
                 {/* Solid Brand Header */}
-                <div className="bg-brand-blue pt-20 pb-16 md:pt-28 md:pb-24">
+                <div className="bg-brand-blue pt-12 pb-16 md:pt-16 md:pb-24">
                     <div className="max-w-5xl mx-auto px-4 md:px-8">
                         {/* Breadcrumbs */}
                         <nav className="flex items-center gap-2 text-blue-100/70 text-xs md:text-sm mb-8 font-medium">

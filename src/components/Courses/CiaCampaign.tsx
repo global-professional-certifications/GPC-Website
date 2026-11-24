@@ -5,7 +5,6 @@ import { Link, NavLink } from '../routing';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -103,8 +102,8 @@ const CiaCampaign = ({ brochure = null }: ComponentProps) => {
 
 
             {/* Hero Section */}
-            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(12 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-28 md:pt-16 w-full flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-24 px-8 md:px-20">
+            <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+                <div className="pt-12 md:pt-16 md:pb-16 w-full flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-24 px-8 md:px-20">
                     <div className="w-full lg:w-[40%] text-center lg:text-left">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">

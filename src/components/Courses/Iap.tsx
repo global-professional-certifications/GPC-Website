@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Link } from '../routing';
-import { height } from '../Notifications/NotificationBanner';
 
 import FAQDisplay from "../FAQDisplay";
 import TestimonialsShowcase from "../Testimonials/TestimonialsShowcase";
@@ -16,6 +15,12 @@ import WhyGPC from '../DescriptiveSection/WhyGPC';
 import DescriptiveFlowchart from '../DescriptiveSection/DescriptiveFlowchart';
 import CompaniesShowcase from '../Companies/CompaniesShowcase';
 import MentorShowcase from "../About/MentorShowcase";
+import CourseBatchSchedule from "../CourseBatches/CourseBatchSchedule";
+import CareerPathway from "../CareerPathway/CareerPathway";
+import GoogleReviews from "../GoogleReviews/GoogleReviews";
+import VideoTestimonials from "../VideoTestimonials/VideoTestimonials";
+import ExamFeeTable, { type ExamFeeRow } from "../ExamDetails/ExamFeeTable";
+import ExamTimelineTable, { type ExamTimelineRow } from "../ExamDetails/ExamTimelineTable";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
@@ -63,9 +68,8 @@ const courseFaqs = [
       "Yes, Global Professional Certifications (GPC) is officially recognized as an Authorized Learning Partner of IIA India. We are proud to be endorsed by Mr. Mukundan K.V, CEO of IIA India, validating our commitment to delivering high-quality internal audit training and exam preparation. As an IIA India Authorized Learning Partner, GPC offers globally recognized programs such as Certified Internal Auditor (CIA) and Internal Audit Practitioner (IAP), empowering professionals to upskill with industry-leading resources, expert mentorship, and comprehensive support. Advance your career potential, enhance your audit skills, and join a community of risk professionals who trust GPC for their certification journey.",
   },
 ];
-const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
+const Iap = ({ brochure = null, brochureSections, videoTestimonials = [], courseBatches = [] }: ComponentProps) => {
 
-  const marginTop = 68 + (4 * (height ? height : 0))
 
   // Editable brochure section content (Sanity), loaded on the server in
   // app/(site)/courses/iap/page.tsx, with hardcoded fallbacks.
@@ -115,8 +119,8 @@ const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
 
       {/* Header */}
 
-      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+      <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+        <div className="pt-12 md:pt-16 md:pb-16 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -391,6 +395,24 @@ const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
           ]}
         />
 
+        {/* IIA Exam Fee */}
+        <ExamFeeTable
+          titleStart="Detailed IIA"
+          highlight="Exam Fee"
+          titleEnd="for IAP"
+          description="Review the official IIA Internal Audit Practitioner (IAP) fee structure. Candidates can optimize their investment by leveraging IIA India professional or student memberships."
+          rows={IAP_EXAM_FEES}
+        />
+
+        {/* Exam Timeline Breakdown & Syllabus Structure */}
+        <ExamTimelineTable
+          titleStart="Exam"
+          highlight="Timeline Breakdown"
+          titleEnd="& Syllabus Structure"
+          description="The IAP exam utilizes Part 1 of the official CIA examination blueprint, structured to test foundational mastery:"
+          rows={IAP_EXAM_TIMELINE}
+        />
+
         {/* Flowchart */}
         <DescriptiveFlowchart
           titleStart="Process of"
@@ -425,9 +447,19 @@ const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
           ]}
         />
 
+        {/* Multi-Certification Career Progression Pathway (universal) */}
+        <CareerPathway />
+
         {/* About Mentor */}
         <MentorShowcase />
 
+        {/* Live Batch Schedule & Upcoming Cohort Timelines (batch cards from Sanity: Courses -> IAP -> Upcoming Batches) */}
+        <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8 font-poppins" id="batch-schedule">
+          <CourseBatchSchedule
+            batches={courseBatches}
+            description="Explore our structured live weekend batches and flexible hybrid study schedules designed to fit seamlessly into demanding corporate calendars."
+          />
+        </div>
 
 
         {/* Enrollment Section */}
@@ -473,6 +505,19 @@ const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
             </div>
           </div>
         </div>
+
+        {/* Video Testimonials */}
+        <VideoTestimonials
+          videos={videoTestimonials}
+          titleStart="Video Testimonials from"
+          highlight="Our IAP Community"
+          description="Read real success stories, video testimonials, and verified reviews from finance and internal audit professionals who passed their exams on the first try with Global Professional Certifications."
+          moreLink="/success"
+          moreLabel="Watch More"
+        />
+
+        {/* Google Reviews (universal) */}
+        <GoogleReviews />
 
         {/* Companies */}
         <CompaniesShowcase
@@ -523,5 +568,30 @@ const Iap = ({ brochure = null, brochureSections }: ComponentProps) => {
     </>
   );
 };
+
+// IIA IAP fee structure (amounts as supplied by marketing).
+const IAP_EXAM_FEES: ExamFeeRow[] = [
+  {
+    component: "IAP Application Fee (One-time)",
+    member: { usd: "US $72", inr: "₹7,200" },
+    student: { usd: "US $45", inr: "₹4,500" },
+    nonMember: { usd: "US $240", inr: "₹24,000" },
+  },
+  {
+    component: "IAP Exam Registration Fee",
+    member: { usd: "US $232.50", inr: "₹23,250" },
+    student: { usd: "US $165", inr: "₹16,500" },
+    nonMember: { usd: "US $445", inr: "₹44,500" },
+  },
+];
+
+const IAP_EXAM_TIMELINE: ExamTimelineRow[] = [
+  { milestone: "Total Exam Format", spec: "125 multiple-choice questions administered over 2.5 hours (150 minutes)." },
+  { milestone: "Foundations of Internal Auditing", spec: "35% weight: Covers core IPPF standards, independence, and objectivity." },
+  { milestone: "Governance, Risk Management, & Control", spec: "30% weight: Evaluates organizational governance and control frameworks." },
+  { milestone: "Ethics and Professionalism", spec: "20% weight: Focuses on code of ethics, integrity, and due professional care." },
+  { milestone: "Fraud Risks", spec: "15% weight: Covers fraud red flags, detection, and engagement consideration." },
+  { milestone: "Scoring & Completion Window", spec: "Scaled score of 600 required to pass (range 250–750). Must complete within 2 years of application approval." },
+];
 
 export default Iap;

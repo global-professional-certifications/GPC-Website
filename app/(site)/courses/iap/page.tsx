@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Iap from '../../../../src/components/Courses/Iap';
 import { getBrochureSection } from '../../../../src/services/brochure.service';
+import { client } from '../../../../src/lib/sanity/client';
+import type { CmsList } from '../../../../src/types/cms';
 
 /*
  * /courses/iap
@@ -29,18 +31,52 @@ export const metadata: Metadata = {
 /** Refresh the brochure content at most once a minute. */
 export const revalidate = 60;
 
+// Video testimonials for the IAP page. Sanity has no IAP-tagged videos yet, so
+// IAP videos (slug "iap", once added) come first and the newest CIA Part Wise
+// videos ("cia-all-parts"; IAP is built on CIA Part 1) fill the remaining slots.
+const VIDEO_TESTIMONIALS_QUERY = `*[_type == "successStory" && category == "video" && course->slug.current in ["iap", "cia-all-parts"]] | order(_createdAt desc) {
+                    _id,
+                    name,
+                    "courseSlug": course->slug.current,
+                    "courseName": course->name,
+                    thumbnail,
+                    "videoUrl": video.asset->url
+                }`;
+
+// Batch cards for "Live Batch Schedule & Upcoming Cohort Timelines", managed in
+// Sanity under Courses -> IAP -> Upcoming Batches.
+const COURSE_BATCHES_QUERY = `*[_type == "courseBatch" && course == "iap" && isActive != false] | order(order asc, startDate asc) {
+                    _id,
+                    title,
+                    startDate,
+                    "scheduleUrl": scheduleFile.asset->url
+                }`;
+
 export default async function Page() {
     // Brochure content for the IAP section and the "Other Courses" cards, loaded
     // with the same function (and query) the browser used before. No try/catch
     // on purpose: if Sanity fails during a refresh, Next.js keeps serving the
     // last good version instead of the built-in fallback content.
-    const [iap, cia, cisa] = await Promise.all([
+    const [iap, cia, cisa, videos, courseBatches] = await Promise.all([
         getBrochureSection('iap'),
         getBrochureSection('cia'),
         getBrochureSection('cisa'),
+        client.fetch<CmsList>(VIDEO_TESTIMONIALS_QUERY),
+        client.fetch<CmsList>(COURSE_BATCHES_QUERY),
     ]);
 
+    // IAP videos first, then CIA Part Wise; keep the newest four overall.
+    const videoTestimonials = [
+        ...(videos ?? []).filter(v => v.courseSlug === 'iap'),
+        ...(videos ?? []).filter(v => v.courseSlug !== 'iap'),
+    ].slice(0, 4);
+
     return (
-        <Iap brochure={iap} brochureSections={{ iap, cia, cisa }} />
+        <Iap
+            brochure={iap}
+            brochureSections={{ iap, cia, cisa }}
+            videoTestimonials={videoTestimonials}
+            courseBatches={courseBatches ?? []}
+        />
     );
 }

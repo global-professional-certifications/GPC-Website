@@ -14,6 +14,7 @@ import brochure from './brochure'
 import upcomingAnnouncement from './upcomingAnnouncement'
 import upcomingBatch from './upcomingBatch'
 import notificationBanner from './notificationBanner'
+import courseBatch from './courseBatch'
 
 
 // Custom block content types
@@ -42,6 +43,7 @@ export const schemaTypes = [
     upcomingAnnouncement,
     upcomingBatch,
     notificationBanner,
+    courseBatch,
 
     // Custom block content
     inlineCTA,

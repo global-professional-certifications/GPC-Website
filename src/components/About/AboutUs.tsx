@@ -5,6 +5,7 @@ import ourVision from "../../assets/about/our-vision.webp";
 import { Link } from '../routing';
 import { Users, GraduationCap, BookCheck, Award, Target, ShieldCheck, Globe } from "lucide-react";
 import MentorShowcase from "./MentorShowcase";
+import AnniversarySection from "../AnniversarySection/AnniversarySection";
 import { PiBrain } from "react-icons/pi";
 import { SchemaMarkup, generateBreadcrumbSchema, getAboutPageSchema, getPersonSchema, getOrganizationSchema } from "../Schema";
 
@@ -35,7 +36,7 @@ export default function AboutUs() {
             <SchemaMarkup schema={[aboutPageSchema, breadcrumbSchema, orgSchema, mentorSchema]} />
 
             {/* Hero Section */}
-            <section className="bg-brand-blue pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 relative md:min-h-[70vh] md:flex md:justify-center md:items-center">
+            <section className="bg-brand-blue pt-12 pb-16 md:pt-16 sm:pb-20 lg:pb-24 relative">
                 <div className="w-full max-w-[70rem] px-4 sm:px-6 lg:px-12 mx-auto">
                     <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-12 items-center">
                         <div className="w-full flex flex-col justify-start lg:items-start items-center gap-6">
@@ -61,6 +62,9 @@ export default function AboutUs() {
                     </div>
                 </div>
             </section>
+
+            {/* 1-Year Anniversary Celebration */}
+            <AnniversarySection />
 
             {/* Our Mission Section - Sober & Elegant */}
             <section className="py-16 bg-gray-50">

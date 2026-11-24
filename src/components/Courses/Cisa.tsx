@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from '../routing';
-import { height } from '../Notifications/NotificationBanner';
 
 import cisaHero from "../../assets/courses/cisa/cisa-hero.webp";
 import cisa from "../../assets/courses/cisa/what-is-cisa.webp";
@@ -41,6 +40,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import CareerPathway from "../CareerPathway/CareerPathway";
+import GoogleReviews from "../GoogleReviews/GoogleReviews";
+import VideoTestimonials from "../VideoTestimonials/VideoTestimonials";
+import ExamFeeTable, { type ExamFeeRow } from "../ExamDetails/ExamFeeTable";
+import ExamTimelineTable, { type ExamTimelineRow } from "../ExamDetails/ExamTimelineTable";
 
 
 const courseFaqs = [
@@ -136,7 +141,7 @@ const cisaPricingRows: CisaPricingPlan[][] = [
 ];
 
 
-const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
+const Cisa = ({ brochure = null, brochureSections, videoTestimonials = [] }: ComponentProps) => {
 
   // Editable brochure section content (Sanity), loaded on the server in
   // app/(site)/courses/cisa/page.tsx, with hardcoded fallbacks.
@@ -180,15 +185,14 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
   // Organization Schema
   const orgSchema = getOrganizationSchema();
 
-  const marginTop = 68 + (4 * (height ? height : 0))
   return (
     <>
       <SchemaMarkup schema={[cisaSchema, breadcrumbSchema, faqSchema, reviewSchema, softwareSchema, orgSchema]} />
 
 
       {/* Header */}
-      <div className={`md:h-screen flex justify-center items-center bg-brand-blue sm:pt-${(16 + (height ? height - 4 : 0)).toString()} pb-12 md:pb-0`}>
-        <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+      <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+        <div className="pt-12 md:pt-16 md:pb-16 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
           <div className="max-w-sm md:max-w-2xl mx-auto">
             <div className="relative max-w-xl">
               <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -503,6 +507,26 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
           </div>
         </section>
 
+        {/* ISACA Exam Fee */}
+        <ExamFeeTable
+          titleStart="Detailed ISACA"
+          highlight="Exam Fee"
+          titleEnd="for CISA"
+          description="Review the official ISACA Certified Information Systems Auditor (CISA) fee structure for 2026. Candidates can optimize their investment by leveraging ISACA professional or student memberships."
+          tierLabels={{ member: "ISACA Member" }}
+          rows={CISA_EXAM_FEES}
+          note={<><span className="font-semibold text-gray-900">Note:</span> An 18% GST and bank markup charges apply depending on the live USD-INR card rate on your payment date. Maintaining an active ISACA membership provides an immediate US $185 savings on exam registration.</>}
+        />
+
+        {/* CISA Exam Timeline Breakdown */}
+        <ExamTimelineTable
+          titleStart="CISA Exam"
+          highlight="Timeline"
+          titleEnd="Breakdown"
+          description="Here is the official exam structure, domain weightings, and milestone timeline required to successfully complete your CISA certification:"
+          rows={CISA_EXAM_TIMELINE}
+        />
+
 
         {/* Course Objectives */}
 
@@ -569,6 +593,9 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
             },
           ]} />
 
+        {/* Multi-Certification Career Progression Pathway (universal) */}
+        <CareerPathway />
+
         {/* About Mentor */}
         <MentorShowcase />
 
@@ -606,6 +633,32 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
             },
           ]}
         />
+
+        {/* Live Batch Schedule & Upcoming Cohort Timelines */}
+        <section id="batch-schedule" className="font-poppins px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="max-w-6xl mx-auto rounded-2xl border border-gray-200 bg-white shadow-sm px-6 py-10 md:px-12 md:py-12">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex h-20 w-20 md:h-24 md:w-24 flex-shrink-0 items-center justify-center rounded-2xl bg-brand-blue/10">
+                <FaRegCalendarCheck className="h-9 w-9 md:h-10 md:w-10 text-brand-blue" aria-hidden="true" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                  Live <span className="text-brand-blue font-normal italic">Batch Schedule</span> &amp; Upcoming Cohort Timelines
+                </h2>
+                <p className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed">
+                  Explore our structured live weekend batches and flexible hybrid study schedules designed to fit seamlessly into demanding IT and corporate audit calendars.
+                </p>
+              </div>
+              <Link
+                to="/upcoming#batches"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-xl bg-brand-blue px-6 py-3 text-sm md:text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-brand-purple hover:shadow-lg"
+              >
+                Our Upcoming Cohort
+                <FaArrowRightLong className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* CISA Enrollment CTA Banner */}
 
@@ -668,6 +721,19 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
         </div>
 
 
+        {/* Video Testimonials */}
+        <VideoTestimonials
+          videos={videoTestimonials}
+          titleStart="Video Testimonials from"
+          highlight="Our CISA Community"
+          description="Read real success stories, video testimonials, and trusted reviews from IT security and internal audit professionals who passed their exams on the first try with Global Professional Certifications."
+          moreLink="/success"
+          moreLabel="Watch More"
+        />
+
+        {/* Google Reviews (universal) */}
+        <GoogleReviews />
+
         {/* Companies */}
         <CompaniesShowcase
           titleStart="Placement Opportunities after"
@@ -718,5 +784,31 @@ const Cisa = ({ brochure = null, brochureSections }: ComponentProps) => {
     </>
   );
 };
+
+// ISACA CISA fee structure for 2026 (amounts as supplied by marketing; INR approx.).
+const CISA_EXAM_FEES: ExamFeeRow[] = [
+  {
+    component: "CISA Exam Registration Fee",
+    member: { usd: "US $575", inr: "₹48,875" },
+    student: { usd: "US $575", note: "Special student tiers vary" },
+    nonMember: { usd: "US $760", inr: "₹64,600" },
+  },
+  {
+    component: "Application Processing Fee (One-time)",
+    member: { usd: "US $50", inr: "₹4,250" },
+    student: { usd: "US $50", inr: "₹4,250" },
+    nonMember: { usd: "US $50", inr: "₹4,250" },
+  },
+];
+
+const CISA_EXAM_TIMELINE: ExamTimelineRow[] = [
+  { milestone: "Total Exam Format", spec: "Computer-based exam consisting of 150 multiple-choice questions administered over 4 hours (240 minutes)." },
+  { milestone: "Domain 1: Information Systems Auditing Process", spec: "18% weight — Covers audit standards, planning, execution, and reporting." },
+  { milestone: "Domain 2: Governance and Management of IT", spec: "18% weight — Focuses on IT governance, risk management, and compliance." },
+  { milestone: "Domain 3: IS Acquisition, Development & Implementation", spec: "12% weight — Evaluates business case, project management, and system deployment." },
+  { milestone: "Domain 4: IS Operations and Business Resilience", spec: "26% weight — Covers operational resilience, disaster recovery, and infrastructure." },
+  { milestone: "Domain 5: Protection of Information Assets", spec: "26% weight — Focuses on information security, access controls, and network security." },
+  { milestone: "Scoring & Completion Window", spec: "Scaled score of 450 or higher required to pass (range 200–800). Candidates have 5 years from passing the exam to submit professional work experience for final certification." },
+];
 
 export default Cisa;

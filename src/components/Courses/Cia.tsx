@@ -5,7 +5,6 @@ import { Link, NavLink } from '../routing';
 import Card from '../Card/Card';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaFileAlt, FaChalkboardTeacher, FaClipboardCheck, FaCertificate, FaGlobe, FaUserCheck, FaClock } from "react-icons/fa";
-import { height } from '../Notifications/NotificationBanner';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCertificate, faStar, faCalendarDays, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,6 +18,12 @@ import CoursesShowcase from "../Courses/CoursesShowcase";
 import BlogCall from "../Blogs/BlogCall";
 import CompaniesShowcase from "../Companies/CompaniesShowcase";
 import MentorShowcase from "../About/MentorShowcase";
+import CareerPathway from "../CareerPathway/CareerPathway";
+import GoogleReviews from "../GoogleReviews/GoogleReviews";
+import VideoTestimonials from "../VideoTestimonials/VideoTestimonials";
+import CourseBatchSchedule from "../CourseBatches/CourseBatchSchedule";
+import ExamFeeTable, { type ExamFeeRow } from "../ExamDetails/ExamFeeTable";
+import ExamTimelineTable, { type ExamTimelineRow } from "../ExamDetails/ExamTimelineTable";
 
 import { SchemaMarkup, getCourseSchema, generateBreadcrumbSchema, getFAQSchema, getReviewSchema, getSoftwareApplicationSchema, getOrganizationSchema } from "../Schema";
 
@@ -69,7 +74,7 @@ const courseFaqs = [
     },
 ];
 
-const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
+const Cia = ({ brochure = null, brochureSections, videoTestimonials = [], courseBatches = [] }: ComponentProps) => {
 
     // Editable brochure section content (Sanity), loaded on the server in
     // app/(site)/courses/cia/page.tsx, with hardcoded fallbacks.
@@ -123,8 +128,8 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
 
             {/* Hero Section */}
 
-            <div className={`md:h-screen flex justify-center items-center bg-brand-blue pb-12 md:pb-0 sm:pt-${(16 + (height ? height - 4 : 0)).toString()}`}>
-                <div className="md:py-32 pt-40 md:pt-32 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
+            <div className={`flex justify-center items-center bg-brand-blue pb-12 md:pb-0`}>
+                <div className="pt-12 md:pt-16 md:pb-16 mx-auto md:max-w-8xl flex flex-col lg:flex-row justify-center items-center gap-12 px-8 md:px-24">
                     <div className="max-w-sm md:max-w-2xl mx-auto">
                         <div className="relative w-md md:max-w-xl">
                             <h1 className="text-2xl md:text-4xl font-bold leading-tight text-white">
@@ -534,6 +539,9 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                     ]}
                 />
 
+                {/* Multi-Certification Career Progression Pathway (universal) */}
+                <CareerPathway />
+
                 {/* Flowchart */}
                 <DescriptiveFlowchart
                     titleStart="Process of"
@@ -766,6 +774,25 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                     </div>
                 </div>
 
+                {/* IIA Exam Fee */}
+                <ExamFeeTable
+                    titleStart="Detailed IIA"
+                    highlight="Exam Fee"
+                    titleEnd="for CIA"
+                    description="Review the official IIA Certified Internal Auditor (CIA) fee structure, updated effective August 1, 2026. Candidates can optimize their investments by leveraging IIA India professional or student memberships."
+                    rows={CIA_EXAM_FEES}
+                    note={<><span className="font-semibold text-gray-900">Note:</span> An 18% GST is applicable on the above fees. Members holding an active <Link to="/courses/iap" className="font-medium text-brand-blue underline underline-offset-2 hover:text-brand-purple">Internal Audit Practitioner (IAP)</Link> designation receive a waiver for CIA Part 1.</>}
+                />
+
+                {/* Exam Timeline Breakdown */}
+                <ExamTimelineTable
+                    titleStart="Exam"
+                    highlight="Timeline"
+                    titleEnd="Breakdown"
+                    description="Here is the official exam structure and milestone timeline required to successfully complete your CIA certification within the governing window:"
+                    rows={CIA_EXAM_TIMELINE}
+                />
+
                 {/* Exam Logistics */}
                 <div className="max-w-6xl mx-auto py-8 md:py-16 px-4">
                     <h2 className="text-center text-2xl md:text-4xl font-bold mb-12">
@@ -862,12 +889,14 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                 {/* About Mentor */}
                 <MentorShowcase />
 
-                {/* Excellence in Training Design */}
-                <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Excellence in <span className="text-brand-blue font-normal italic">Training Design</span>
-                        </h2>
+                {/* Live Batch Schedule & Upcoming Cohort Timelines (formerly "Excellence in Training Design") */}
+                <div className="max-w-7xl mx-auto py-12 md:py-16 px-6 md:px-8 font-poppins" id="batch-schedule">
+                    {/* Text + "More Updates" (left), batch cards from Sanity (right) */}
+                    <div className="mb-12 md:mb-16">
+                        <CourseBatchSchedule
+                            batches={courseBatches}
+                            description="Explore our structured live weekend batches and flexible hybrid study schedules designed to fit seamlessly into demanding corporate calendars."
+                        />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1028,6 +1057,19 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
                 {/* Testimonials Section */}
                 <TestimonialsShowcase />
 
+                {/* Video Testimonials */}
+                <VideoTestimonials
+                    videos={videoTestimonials}
+                    titleStart="Video Testimonials from"
+                    highlight="Our CIA Community"
+                    description="Browse real success stories, video testimonials, and verified reviews from finance and internal audit professionals who cleared their exams on the first attempt with Global Professional Certifications."
+                    moreLink="/success"
+                    moreLabel="Watch More"
+                />
+
+                {/* Google Reviews (universal) */}
+                <GoogleReviews />
+
 
                 {/* Companies */}
                 <CompaniesShowcase
@@ -1079,5 +1121,41 @@ const Cia = ({ brochure = null, brochureSections }: ComponentProps) => {
 
     );
 }
+
+// IIA CIA fee structure, effective August 1, 2026 (amounts as supplied by marketing).
+const CIA_EXAM_FEES: ExamFeeRow[] = [
+    {
+        component: "CIA Application Fee (One-time)",
+        member: { usd: "US $72", inr: "₹7,200" },
+        student: { usd: "US $45", inr: "₹4,500", note: "or $0 via IAP route" },
+        nonMember: { usd: "US $240", inr: "₹24,000" },
+    },
+    {
+        component: "CIA Part 1 Exam",
+        member: { usd: "US $186", inr: "₹18,600" },
+        student: { usd: "US $165", inr: "₹16,500" },
+        nonMember: { usd: "US $445", inr: "₹44,500" },
+    },
+    {
+        component: "CIA Part 2 Exam",
+        member: { usd: "US $168", inr: "₹16,800" },
+        student: { usd: "US $168", inr: "₹16,800" },
+        nonMember: { usd: "US $415", inr: "₹41,500" },
+    },
+    {
+        component: "CIA Part 3 Exam",
+        member: { usd: "US $168", inr: "₹16,800" },
+        student: { usd: "US $168", inr: "₹16,800" },
+        nonMember: { usd: "US $415", inr: "₹41,500" },
+    },
+];
+
+const CIA_EXAM_TIMELINE: ExamTimelineRow[] = [
+    { milestone: "Part 1: Internal Audit Essentials", spec: "125 multiple-choice questions" },
+    { milestone: "Part 2: Internal Audit Practice", spec: "100 multiple-choice questions" },
+    { milestone: "Part 3: Internal Audit Business Knowledge", spec: "100 multiple-choice questions" },
+    { milestone: "Program Completion Window", spec: "Must pass all required exam parts within 3 years of application approval." },
+    { milestone: "Exam Registration Validity", spec: "After purchasing an exam registration, you have 180 days to schedule and sit for the exam." },
+];
 
 export default Cia;

@@ -8,8 +8,7 @@ import Hero from "../Hero/Hero";
 import ISACAAccreditationSection from "../ISACAAccreditationSection/ISACAAccreditationSection";
 import IIARecognitionSection from "../IIARecognitionSection/IIARecognitionSection";
 import GRCOpeningsSection from "../GRCOpeningsSection/GRCOpeningsSection";
-import { m } from 'motion/react';
-import { Users, GraduationCap, BookCheck } from "lucide-react";
+import StatsBar from "../Stats/StatsBar";
 import LazySection from "../LazySection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,8 +16,7 @@ import {
   faGlobe,
   faChalkboardTeacher,
   faRobot,
-  faHandshake,
-  faPlay
+  faHandshake
 } from "@fortawesome/free-solid-svg-icons";
 
 // Lazy load below-the-fold components
@@ -50,55 +48,8 @@ import BrochureCtaButton from "../Brochure/BrochureCtaButton";
 import descriptionImage1 from "../../assets/home/global-platform.webp";
 import descriptionImage2 from "../../assets/home/global-community.webp";
 import ciaAchieverImage from "../../assets/home/cia-achievers.webp"
-import type { CmsData, ComponentProps } from '../../types/cms';
+import type { CmsData } from '../../types/cms';
 
-const AnniversaryVideo = () => {
-  const [playing, setPlaying] = useState(false);
-  const frameRef = useRef<CmsData>(null);
-
-  // Stop this video when the user clicks outside its frame (e.g. to play another video).
-  useEffect(() => {
-    if (!playing) return;
-
-    const handleOutsideClick = (event) => {
-      if (frameRef.current && !frameRef.current.contains(event.target)) {
-        setPlaying(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, [playing]);
-
-  return (
-    <div ref={frameRef} className="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
-      {!playing ? (
-        <div className="absolute inset-0 cursor-pointer" onClick={() => setPlaying(true)}>
-          <img
-            src="/thumbnails/WgA9VzD06kY-opt.webp"
-            alt="One Year of GPC — A Journey of Growth, Learning & Creativity"
-            width="800"
-            height="450"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-            <div className="bg-red-600 rounded-lg px-6 py-3 flex items-center justify-center shadow-lg">
-              <FontAwesomeIcon icon={faPlay} className="text-white text-xl" />
-            </div>
-          </div>
-        </div>
-      ) : (
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/WgA9VzD06kY?autoplay=1"
-          title="One Year of GPC | A Journey of Growth, Learning & Creativity"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      )}
-    </div>
-  );
-};
 
 const courseFaqs = [
   {
@@ -132,32 +83,8 @@ const courseFaqs = [
 ];
 
 
-const Counter = ({ target }: ComponentProps) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [target]);
-
-  return <span>{count.toLocaleString()}+</span>;
-};
 
 export default function Home() {
-  const anniversaryRef = useRef<CmsData>(null);
-  const [isAnniversaryVisible, setIsAnniversaryVisible] = useState(false);
-
   // The brochure section further down is commented out (hidden), so its
   // Sanity content is no longer fetched. `brochure` stays null so the lines
   // below and the commented-out section keep their hardcoded fallbacks. To
@@ -168,27 +95,6 @@ export default function Home() {
     ? urlFor(brochure.coverImage).width(704).url()
     : brochureCover;
   const brochureCoverAlt = brochure?.coverImage?.alt || "Brochure";
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsAnniversaryVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (anniversaryRef.current) {
-      observer.observe(anniversaryRef.current);
-    }
-
-    return () => {
-      if (anniversaryRef.current) {
-        observer.unobserve(anniversaryRef.current);
-      }
-    };
-  }, []);
 
   // Homepage schemas
   const websiteSchema = {
@@ -321,15 +227,6 @@ export default function Home() {
 
   return (
     <>
-      {/*
-        Was a <Helmet> block emitting these six JSON-LD scripts into <head>.
-        SchemaMarkup renders the identical tags inline, which is equally valid
-        for structured data and drops the Helmet dependency.
-
-        filter(Boolean) because faqSchema and aggregateRatingSchema are null
-        when their source data is empty; Helmet silently ignored those, and
-        without the filter they would serialise as the string "null".
-      */}
       <SchemaMarkup
         schema={[
           websiteSchema,
@@ -348,152 +245,14 @@ export default function Home() {
           {/* Hero Section */}
           <Hero />
 
-          {/* Stats Section */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-x-0 -bottom-6 md:-bottom-12 z-20 flex justify-center px-4"
-          >
-            <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-xl px-5 md:px-6 py-2 md:py-5 border border-gray-100/50 flex flex-row items-stretch md:items-center gap-2 md:gap-0 text-center min-w-[280px] md:min-w-[600px] pt-3">
-              {/* Professionals */}
-              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-brand-purple/10 flex items-center justify-center text-brand-purple flex-shrink-0">
-                  <Users size={16} className="md:w-8 md:h-8" />
-                </div>
-                <div className="flex flex-col gap-0 text-left text-nowrap">
-                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
-                    <Counter target={1500} />
-                  </p>
-                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
-                    Professionals
-                  </p>
-                </div>
-              </div>
-
-              <div className="hidden md:block w-px h-5 bg-gray-200"></div>
-
-              {/* Teaching Experience */}
-              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue flex-shrink-0">
-                  <GraduationCap size={16} className="md:w-8 md:h-8" />
-                </div>
-                <div className="flex flex-col gap-0 text-left text-nowrap">
-                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
-                    <Counter target={6} />
-                  </p>
-                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
-                    Years of Teaching <br />Experience
-                  </p>
-                </div>
-              </div>
-
-              <div className="hidden md:block w-px h-5 bg-gray-200"></div>
-
-              {/* Batches */}
-              <div className="h-full flex-1 flex items-start justify-center md:justify-start gap-2.5 px-0 md:px-4">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600 flex-shrink-0">
-                  <BookCheck size={16} className="md:w-8 md:h-8" />
-                </div>
-                <div className="flex flex-col gap-0 text-left text-nowrap">
-                  <p className="text-sm md:text-2xl font-bold text-gray-900 leading-none">
-                    <Counter target={30} />
-                  </p>
-                  <p className="text-[8px] md:text-[12px] text-gray-600 mt-0.5">
-                    Batches Completed
-                  </p>
-                </div>
-              </div>
-            </div>
-          </m.div>
+          {/* Stats Section (shared with /courses) */}
+          <StatsBar />
         </div>
 
-
-        {/* 1-Year Anniversary Celebration Section */}
-        <section
-          ref={anniversaryRef}
-          className={`relative bg-gradient-to-br from-pink-500 via-purple-600 to-purple-700 text-white py-20 md:py-28 px-4 md:px-12 lg:px-20 overflow-hidden transition-all duration-1000 ${isAnniversaryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-        >
-          {/* Beautiful Multi-layered Background Pattern */}
-          <div className="absolute inset-0 opacity-15">
-            {/* Large polka dots */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)',
-              backgroundSize: '60px 60px'
-            }}></div>
-            {/* Small polka dots offset */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-              backgroundSize: '30px 30px',
-              backgroundPosition: '15px 15px'
-            }}></div>
-          </div>
-
-          {/* Radial gradient circles for depth */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl"></div>
-
-          {/* Decorative Doodles */}
-          <svg className="absolute top-10 left-10 w-20 h-20 text-yellow-300 opacity-60" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-            <path d="M10,50 Q30,20 50,50 T90,50" />
-          </svg>
-
-          {/* Large Beautiful Stars */}
-          <div className="absolute top-20 right-20 text-6xl text-purple-300 opacity-50">★</div>
-          <div className="absolute top-1/3 right-1/4 text-5xl text-white opacity-40">★</div>
-          <div className="absolute bottom-1/4 left-20 text-4xl text-pink-300 opacity-35">★</div>
-
-          {/* Other Doodles */}
-          <div className="absolute bottom-20 left-32 w-12 h-12 text-pink-300 opacity-40">▲</div>
-          <div className="absolute bottom-32 right-10 w-14 h-14 border-4 border-yellow-400 rounded-full opacity-40"></div>
-          <div className="absolute top-1/3 left-10 w-3 h-3 bg-white rounded-full opacity-40"></div>
-          <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-white rounded-full opacity-30"></div>
-
-          <div className="container mx-auto relative z-10">
-            {/* Centered Title */}
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight px-2 md:px-28">
-                Global Professional Certifications: Marking 1 Year of <span className="italic font-regular text-yellow-400">Success and Growth</span>
-              </h2>
-              <p className="text-white text-sm md:text-lg mx-auto font-poppins max-w-2xl">
-                We are joining together to celebrate one year of success of our CIA students and aiming to continuously empower them with more knowledge and opportunities.
-              </p>
-            </div>
-
-            {/* Two Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mt-8">
-              {/* Video - Left Side (2 columns) */}
-              <div className="lg:col-span-2">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                  <AnniversaryVideo />
-                </div>
-              </div>
-
-              {/* CTA Card - Right Side (1 column) */}
-              <div className="lg:col-span-1">
-                <div className="bg-purple-600 bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-purple-400">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Our Journey So Far
-                  </h3>
-                  <p className="text-white text-base mb-6 opacity-90">
-                    Discover how we've grown into a trusted partner for thousands of professionals!
-                  </p>
-                  <Link
-                    to="/our-journey"
-                    className="inline-flex items-center justify-center w-full py-3 px-6 rounded-full bg-white text-brand-blue font-bold text-lg shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300"
-                  >
-                    See Our Journey →
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* IIA Recognition */}
-        <IIARecognitionSection />
+        {/* IIA Recognition — top padding clears the StatsBar card overhanging the hero */}
+        <div>
+          <IIARecognitionSection />
+        </div>
 
         {/* Desc 1 */}
 
