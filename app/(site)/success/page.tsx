@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import SuccessStories from '../../../src/components/SuccessStories/SuccessStories';
 import { client } from '../../../src/lib/sanity/client';
 import type { CmsData, CmsList } from '../../../src/types/cms';
+import { GLOBAL_CANDIDATES_QUERY } from '../../../src/lib/sanity/successQueries';
 
 /*
  * /success
@@ -85,12 +86,13 @@ const WALL_QUERY = `*[_type == "wallOfExcellence"] | order(order asc) {
 export default async function Page() {
     // No try/catch on purpose: if Sanity fails during a refresh, Next.js keeps
     // serving the last good version of the whole page instead of a broken one.
-    const [pageSettings, heroData, courses, stories, wallEntries] = await Promise.all([
+    const [pageSettings, heroData, courses, stories, wallEntries, globalCandidates] = await Promise.all([
         client.fetch<CmsData>(PAGE_SETTINGS_QUERY),
         client.fetch<CmsData>(HERO_QUERY),
         client.fetch<CmsList>(COURSES_QUERY),
         client.fetch<CmsList>(STORIES_QUERY),
         client.fetch<CmsList>(WALL_QUERY),
+        client.fetch<CmsList>(GLOBAL_CANDIDATES_QUERY),
     ]);
 
     return (
@@ -100,6 +102,7 @@ export default async function Page() {
             courses={courses ?? []}
             stories={stories ?? []}
             wallEntries={wallEntries ?? []}
+            globalCandidates={globalCandidates ?? []}
             // Stamped once here so the video SEO data is identical on the
             // server and in the browser (it used to call new Date() on every render).
             generatedAt={new Date().toISOString()}

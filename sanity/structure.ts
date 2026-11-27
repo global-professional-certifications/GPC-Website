@@ -370,6 +370,31 @@ export const structure: StructureResolver = (S, context) => {
                                                     ),
                                             ])
                                     ),
+                                S.divider(),
+
+                                // ─── Our Global Candidates (8 cards on /success) ───
+                                S.listItem()
+                                    .title('Global Candidates')
+                                    .icon(() => '🌍')
+                                    .id('global-candidates')
+                                    .schemaType('globalCandidate')
+                                    .child(
+                                        S.documentTypeList('globalCandidate')
+                                            .title('Global Candidates (first 8 by order are shown)')
+                                            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                    ),
+
+                                // Exceptional Performances: hidden for now, section is paused.
+                                // S.listItem()
+                                //     .title('Exceptional Performances')
+                                //     .icon(() => '⚡')
+                                //     .id('exceptional-performances')
+                                //     .schemaType('exceptionalPerformer')
+                                //     .child(
+                                //         S.documentTypeList('exceptionalPerformer')
+                                //             .title('Exceptional Performances')
+                                //             .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                                //     ),
                             ])
                     )
                 ),
