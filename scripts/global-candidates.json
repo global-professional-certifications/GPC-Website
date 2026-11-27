@@ -1,0 +1,10 @@
+[
+  {"_id": "globalCandidate-netsai-moonsan", "_type": "globalCandidate", "order": 1, "name": "Netsai Moonsan", "company": "Heidelberg Materials Asia PLC", "designation": "Senior Internal Auditor", "country": "Singapore", "certification": "CIA Part 1"},
+  {"_id": "globalCandidate-linda-dsouza", "_type": "globalCandidate", "order": 2, "name": "Linda D'souza", "company": "Dubai Insurance", "designation": "Internal Audit Assistant", "country": "UAE", "certification": "CIA Part 1"},
+  {"_id": "globalCandidate-raymond-okello", "_type": "globalCandidate", "order": 3, "name": "Raymond Okello", "company": "Centenary Bank", "designation": "Regional Control Specialist", "country": "Uganda", "certification": "CIA Part 2"},
+  {"_id": "globalCandidate-rutba-ayubkhan", "_type": "globalCandidate", "order": 4, "name": "Rutba Ayubkhan", "company": "EY", "designation": "Manager", "country": "Australia", "certification": "CIA Challenge"},
+  {"_id": "globalCandidate-wajiha-ansari", "_type": "globalCandidate", "order": 5, "name": "Wajiha Ansari", "company": "Grant Thornton", "designation": "Internal Auditor", "country": "Bahrain", "certification": "CIA Challenge"},
+  {"_id": "globalCandidate-chris-thomas", "_type": "globalCandidate", "order": 6, "name": "Chris Thomas", "company": "Triodos Bank", "designation": "Group Head of Internal Audit", "country": "Netherlands", "certification": "CIA Part 1"},
+  {"_id": "globalCandidate-mohammed-sahal", "_type": "globalCandidate", "order": 7, "name": "Mohammed Sahal", "company": "PwC", "designation": "Accountant", "country": "Qatar", "certification": "CIA Part 1"},
+  {"_id": "globalCandidate-syska-vincent", "_type": "globalCandidate", "order": 8, "name": "Syska Vincent", "company": "Wake QA Ltd", "designation": "Quality Controller", "country": "UK", "certification": "CIA All Parts"}
+]
