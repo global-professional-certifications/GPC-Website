@@ -51,5 +51,20 @@ export default defineType({
         initialValue: 'Raw, unfiltered experiences from professionals who transformed their careers. See how they mastered their certifications with GPC.',
         description: 'The description text shown below the written stories heading.',
     }),
+    defineField({
+        name: 'globalCandidatesTitle',
+        title: 'Global Candidates Title',
+        type: 'string',
+        initialValue: 'Achievers Across the Globe',
+        description: 'Heading in the dark panel of the global candidates section.',
+    }),
+    defineField({
+        name: 'globalCandidatesSubtitle',
+        title: 'Global Candidates Description',
+        type: 'text',
+        rows: 3,
+        initialValue: 'Professionals from around the world who earned their certification with Global Professional Certifications. Here are a few of them.',
+        description: 'Text shown below the global candidates heading.',
+    }),
   ],
 })

@@ -11,6 +11,8 @@ import HeroSection from "./HeroSection";
 import WallOfExcellence from "./WallOfExcellence";
 import { VideoVault, WrittenStories, VoicesOfExcellence } from "./StorySections";
 import MobileGallery from "./MobileGallery";
+// import ExceptionalPerformances from "./ExceptionalPerformances"; // paused, see below
+import GlobalCandidates from "./GlobalCandidates";
 import testimonialCover from "../../assets/home/testimonial-cover.webp";
 import type { ComponentProps } from '../../types/cms';
 
@@ -22,6 +24,7 @@ export default function SuccessStories({
     courses: serverCourses = [],
     stories: serverStories = [],
     wallEntries: serverWallEntries = [],
+    globalCandidates = [],
     generatedAt,
 }: ComponentProps) {
     // All five pieces arrive from app/(site)/success/page.tsx, fetched on the
@@ -110,6 +113,11 @@ export default function SuccessStories({
                 courses={courses}
                 settings={pageSettings}
             />
+
+            <GlobalCandidates candidates={globalCandidates} settings={pageSettings} />
+
+            {/* Exceptional Performances: hidden for now, will be picked up again later. */}
+            {/* <ExceptionalPerformances /> */}
 
             <WallOfExcellence
                 stories={allStories}
