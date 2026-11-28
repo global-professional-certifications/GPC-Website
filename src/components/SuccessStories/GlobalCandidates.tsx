@@ -31,7 +31,7 @@ const PinIcon = ({ className = '' }: { className?: string }) => (
 const CertBadge = ({ cert, onTint = false }: { cert?: string; onTint?: boolean }) => {
     if (!cert) return null;
     return (
-        <span className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] md:text-xs font-semibold text-[#5B21B6] ${onTint ? 'bg-white' : 'bg-[#F1EBFE]'}`}>
+        <span className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] md:text-xs font-semibold text-[#5B21B6] ${onTint ? 'bg-[#F1EBFE] md:bg-white' : 'bg-[#F1EBFE]'}`}>
             {cert}
         </span>
     );
@@ -73,18 +73,24 @@ const GlobalCandidates = ({ candidates = [], settings = null }: { candidates?: C
                     </Link>
                 </div>
 
-                {/* Candidate grid */}
-                <div className="grid gap-4 md:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+                {/* Candidate grid.
+                    Phones (< md): a symmetric 2 x 4 grid where all 8 cards share the same compact,
+                    centred white layout.
+                    md and up: 3 columns with the wide, tinted featured card spanning 2, so
+                    2 + 1 + 6 cards fill 3 rows evenly. Sizes step up again at xl. */}
+                <div className="grid gap-3 sm:gap-4 md:gap-4 xl:gap-5 grid-cols-2 md:grid-cols-3 auto-rows-fr">
                     {/* Featured */}
-                    <div className="sm:col-span-2 rounded-3xl bg-[#EFE9FD] p-5 md:p-7 flex items-center gap-5 md:gap-7">
-                        <Avatar photo={featured.photo} name={featured.name} className="w-20 h-20 md:w-28 md:h-28 bg-white border border-[#D6C8F5]" iconClassName="w-9 h-9 md:w-12 md:h-12" />
-                        <div className="min-w-0 flex-1">
-                            <h3 className="text-gray-900 text-xl md:text-[28px] font-bold leading-tight">{featured.name}</h3>
-                            <p className="text-gray-700 text-sm md:text-base font-semibold mt-2">{featured.company}</p>
-                            <p className="text-gray-500 text-sm md:text-base">{featured.designation}</p>
-                            <div className="mt-4 pt-4 border-t border-[#DDD3F7] flex flex-wrap items-center justify-between gap-2">
-                                <p className="text-gray-600 text-sm md:text-base flex items-center gap-1.5">
-                                    <PinIcon className="w-4 h-4 shrink-0" /> {featured.country}
+                    <div className="md:col-span-2 rounded-2xl sm:rounded-3xl bg-white border border-gray-100 md:bg-[#EFE9FD] md:border-transparent p-4 sm:p-5 xl:p-7 flex flex-col md:flex-row items-center gap-3 md:gap-5 xl:gap-7 text-center md:text-left">
+                        <Avatar photo={featured.photo} name={featured.name} className="w-14 h-14 md:w-20 md:h-20 xl:w-28 xl:h-28 bg-[#F1EBFE] md:bg-white border border-[#D6C8F5]" iconClassName="w-7 h-7 md:w-9 md:h-9 xl:w-12 xl:h-12" />
+                        <div className="min-w-0 w-full flex-1 flex flex-col md:block">
+                            <div className="flex-1">
+                                <h3 className="text-gray-900 text-sm sm:text-base md:text-xl xl:text-[28px] font-bold leading-tight break-words">{featured.name}</h3>
+                                <p className="text-gray-700 text-xs sm:text-[13px] md:text-sm xl:text-base font-semibold leading-snug mt-1 md:mt-2 break-words">{featured.company}</p>
+                                <p className="text-gray-500 text-[11px] sm:text-xs md:text-sm xl:text-base leading-snug break-words">{featured.designation}</p>
+                            </div>
+                            <div className="mt-3 pt-3 sm:mt-4 sm:pt-4 border-t border-gray-100 md:border-[#DDD3F7] flex flex-col md:flex-row flex-wrap items-center md:justify-between gap-2">
+                                <p className="text-gray-600 text-xs md:text-sm xl:text-base flex items-center gap-1.5">
+                                    <PinIcon className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" /> {featured.country}
                                 </p>
                                 <CertBadge cert={featured.certification} onTint />
                             </div>
@@ -92,16 +98,16 @@ const GlobalCandidates = ({ candidates = [], settings = null }: { candidates?: C
                     </div>
 
                     {rest.map(c => (
-                        <div key={c._id} className="rounded-3xl bg-white border border-gray-100 p-5 flex flex-col">
-                            <div className="flex items-center gap-4 flex-1">
-                                <Avatar photo={c.photo} name={c.name} className="w-14 h-14 md:w-16 md:h-16 bg-[#F1EBFE] border border-[#D6C8F5]" iconClassName="w-7 h-7" />
-                                <div className="min-w-0">
-                                    <h3 className="text-gray-900 text-base md:text-lg font-bold leading-tight">{c.name}</h3>
-                                    <p className="text-gray-700 text-[13px] md:text-sm font-semibold leading-snug mt-1">{c.company}</p>
-                                    <p className="text-gray-500 text-xs md:text-[13px] leading-snug">{c.designation}</p>
+                        <div key={c._id} className="rounded-2xl sm:rounded-3xl bg-white border border-gray-100 p-4 sm:p-5 md:p-4 xl:p-5 flex flex-col">
+                            <div className="flex flex-col md:flex-row items-center gap-3 xl:gap-4 flex-1 text-center md:text-left">
+                                <Avatar photo={c.photo} name={c.name} className="w-14 h-14 md:w-12 md:h-12 xl:w-16 xl:h-16 bg-[#F1EBFE] border border-[#D6C8F5]" iconClassName="w-7 h-7 md:w-6 md:h-6 xl:w-7 xl:h-7" />
+                                <div className="min-w-0 w-full">
+                                    <h3 className="text-gray-900 text-sm sm:text-base xl:text-lg font-bold leading-tight break-words">{c.name}</h3>
+                                    <p className="text-gray-700 text-xs sm:text-[13px] xl:text-sm font-semibold leading-snug mt-1 break-words">{c.company}</p>
+                                    <p className="text-gray-500 text-[11px] sm:text-xs xl:text-[13px] leading-snug break-words">{c.designation}</p>
                                 </div>
                             </div>
-                            <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2">
+                            <div className="mt-3 pt-3 sm:mt-4 sm:pt-4 border-t border-gray-100 flex flex-col md:flex-row flex-wrap items-center md:justify-between gap-2">
                                 <p className="text-gray-500 text-xs md:text-sm flex items-center gap-1">
                                     <PinIcon className="w-3.5 h-3.5 shrink-0" /> {c.country}
                                 </p>
