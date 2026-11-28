@@ -20,25 +20,21 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
             url: 'https://www.youtube.com/watch?v=n0BWhWfEs90',
             title: 'What ISACA Accreditation Means for Your CISA Journey | GPC Podcast',
             description: "Your CISA journey deserves the right guidance. Discover how GPC's ISACA accreditation strengthens CISA exam preparation, supports aspiring IT Audit professionals, and brings greater value to your professional growth. Chris and Arpit discuss what this means for CISA aspirants and the opportunities ahead in IT Audit, Risk, Cybersecurity and GRC.",
-            thumbnail: '/thumbnails/n0BWhWfEs90-opt.webp',
         },
         {
             url: 'https://youtu.be/CvzJ_SFD45Y?si=Sh8Y3pi_CE6mNV72',
             title: 'Interview with IIA India CEO Mukundan K V',
             description: 'Dive deep into the importance of Internal Audit, the role of the Institute of Internal Auditors (IIA India), and the value of the CIA Certification.',
-            thumbnail: '/thumbnails/CvzJ_SFD45Y-opt.webp',
         },
         {
             url: 'https://youtu.be/O4H2jSYZ6V8?si=ElxcVtghRgjeGig1',
             title: 'CIA Orientation Program 2026',
             description: 'Get to know everything about CIA course - Know your Mentor, registration process, study material, exam cost, new syllabus.',
-            thumbnail: '/thumbnails/O4H2jSYZ6V8-opt.webp',
         },
         {
             url: 'https://youtu.be/gh1jwuF7vyw?si=soGkDoIUEuB85PKu',
             title: 'How to Crack CISA on Your 1st Attempt',
             description: "If you are planning to pursue the globally recognized Certified Information Systems Auditor (CISA) credential in 2026, structuring your preparation with the right strategy is the critical first step.",
-            thumbnail: '/thumbnails/gh1jwuF7vyw-opt.webp',
         },
     ];
 
@@ -48,7 +44,9 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
             id,
             title: video.title,
             description: video.description,
-            thumbnail: video.thumbnail || `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+            // Always load the live thumbnail from YouTube so a thumbnail changed on
+            // YouTube shows up here too (after YouTube's CDN cache refreshes).
+            thumbnail: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
             url: video.url
         };
     });
@@ -143,9 +141,19 @@ const YouTubeCarousel = ({ videos }: ComponentProps) => {
                                             decoding="async"
                                             width="340"
                                             height="191"
+                                            onLoad={(e) => {
+                                                // Videos without an HD thumbnail get a 120x90 grey placeholder
+                                                // for maxresdefault; fall back to the always-present hqdefault.
+                                                const img = e.currentTarget;
+                                                if (img.naturalWidth <= 120 && !img.src.includes('hqdefault')) {
+                                                    img.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                                                }
+                                            }}
                                             onError={(e) => {
-                                                e.currentTarget.onerror = null;
-                                                e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`;
+                                                const img = e.currentTarget;
+                                                if (!img.src.includes('hqdefault')) {
+                                                    img.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                                                }
                                             }}
                                         />
 
